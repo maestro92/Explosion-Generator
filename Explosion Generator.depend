@@ -1,0 +1,361 @@
+# depslib dependency file v1.0
+1394360525 source:d:\martin\programming\c and c++\sdl\explosion generator\main.cpp
+	<cstdlib>
+	<iostream>
+	"main.h"
+	"SDL/SDL.h"
+	"SDL/SDL_image.h"
+	<stdio.h>
+	<string>
+	<sstream>
+	"gl/gl.h"
+	"gl/glu.h"
+	"PivotCamera.h"
+	"ParticleEffect.h"
+	"SphereEmitter.h"
+
+1255804049 c:\sdl-1.2.14\include\sdl\sdl.h
+	"SDL_main.h"
+	"SDL_stdinc.h"
+	"SDL_audio.h"
+	"SDL_cdrom.h"
+	"SDL_cpuinfo.h"
+	"SDL_endian.h"
+	"SDL_error.h"
+	"SDL_events.h"
+	"SDL_loadso.h"
+	"SDL_mutex.h"
+	"SDL_rwops.h"
+	"SDL_thread.h"
+	"SDL_timer.h"
+	"SDL_video.h"
+	"SDL_version.h"
+	"begin_code.h"
+	"close_code.h"
+
+1255804050 c:\sdl-1.2.14\include\sdl\sdl_main.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+	"begin_code.h"
+	"close_code.h"
+
+1255804050 c:\sdl-1.2.14\include\sdl\sdl_stdinc.h
+	"SDL_config.h"
+	<sys/types.h>
+	<stdio.h>
+	<stdlib.h>
+	<stddef.h>
+	<stdarg.h>
+	<stdlib.h>
+	<malloc.h>
+	<stddef.h>
+	<stdarg.h>
+	<memory.h>
+	<string.h>
+	<strings.h>
+	<inttypes.h>
+	<stdint.h>
+	<ctype.h>
+	<iconv.h>
+	"begin_code.h"
+	<alloca.h>
+	<malloc.h>
+	<malloc.h>
+	<malloc.h>
+	<stdlib.h>
+	"close_code.h"
+
+1255804064 c:\sdl-1.2.14\include\sdl\sdl_config.h
+	"SDL_platform.h"
+	<stdarg.h>
+
+1255804050 c:\sdl-1.2.14\include\sdl\sdl_platform.h
+
+1255804050 c:\sdl-1.2.14\include\sdl\begin_code.h
+
+1255804050 c:\sdl-1.2.14\include\sdl\close_code.h
+
+1255804049 c:\sdl-1.2.14\include\sdl\sdl_audio.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_endian.h"
+	"SDL_mutex.h"
+	"SDL_thread.h"
+	"SDL_rwops.h"
+	"begin_code.h"
+	"close_code.h"
+
+1255804049 c:\sdl-1.2.14\include\sdl\sdl_error.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1255804049 c:\sdl-1.2.14\include\sdl\sdl_endian.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1255804050 c:\sdl-1.2.14\include\sdl\sdl_mutex.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1255804050 c:\sdl-1.2.14\include\sdl\sdl_thread.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_mutex.h"
+	"begin_code.h"
+	<process.h>
+	"close_code.h"
+
+1255804050 c:\sdl-1.2.14\include\sdl\sdl_rwops.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1255804049 c:\sdl-1.2.14\include\sdl\sdl_cdrom.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1255804049 c:\sdl-1.2.14\include\sdl\sdl_cpuinfo.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1255804049 c:\sdl-1.2.14\include\sdl\sdl_events.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_active.h"
+	"SDL_keyboard.h"
+	"SDL_mouse.h"
+	"SDL_joystick.h"
+	"SDL_quit.h"
+	"begin_code.h"
+	"close_code.h"
+
+1255804049 c:\sdl-1.2.14\include\sdl\sdl_active.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1255804049 c:\sdl-1.2.14\include\sdl\sdl_keyboard.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_keysym.h"
+	"begin_code.h"
+	"close_code.h"
+
+1255804050 c:\sdl-1.2.14\include\sdl\sdl_keysym.h
+
+1255804050 c:\sdl-1.2.14\include\sdl\sdl_mouse.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_video.h"
+	"begin_code.h"
+	"close_code.h"
+
+1255804050 c:\sdl-1.2.14\include\sdl\sdl_video.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_rwops.h"
+	"begin_code.h"
+	"close_code.h"
+
+1255804049 c:\sdl-1.2.14\include\sdl\sdl_joystick.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1255804050 c:\sdl-1.2.14\include\sdl\sdl_quit.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+
+1255804050 c:\sdl-1.2.14\include\sdl\sdl_loadso.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1255804050 c:\sdl-1.2.14\include\sdl\sdl_timer.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1255804050 c:\sdl-1.2.14\include\sdl\sdl_version.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1300205769 source:d:\martin\programming\c and c++\sdl\explosion generator\particlesystempch.cpp
+	"ParticleSystemPCH.h"
+
+1394353134 d:\martin\programming\c and c++\sdl\explosion generator\particlesystempch.h
+	<string>
+	<iostream>
+	<ctime>
+	<vector>
+	<map>
+	<math.h>
+	<GL/glew.h>
+	"SDL/SDL_opengl.h"
+	<glm/glm.hpp>
+	<glm/gtc/type_ptr.hpp>
+	<glm/gtc/quaternion.hpp>
+	<glm/gtx/vector_angle.hpp>
+	<glm/gtx/compatibility.hpp>
+	<glm/gtx/matrix_operation.hpp>
+	<glm/gtx/transform.hpp>
+	<glm/gtx/quaternion.hpp>
+	<glm/gtx/euler_angles.hpp>
+	<glm/gtx/norm.hpp>
+	<SOIL.h>
+
+1390627523 c:\sdl-1.2.14\include\sdl\sdl_opengl.h
+	"SDL_config.h"
+	<windows.h>
+	<OpenGL/gl.h>
+	<OpenGL/glu.h>
+	<gl.h>
+	<glu.h>
+	<GL/gl.h>
+	<GL/glu.h>
+	<windows.h>
+	<stddef.h>
+
+1394357631 source:d:\martin\programming\c and c++\sdl\explosion generator\sphereemitter.cpp
+	"ParticleSystemPCH.h"
+	"Random.h"
+	"SphereEmitter.h"
+
+1300289840 d:\martin\programming\c and c++\sdl\explosion generator\random.h
+
+1394357618 d:\martin\programming\c and c++\sdl\explosion generator\sphereemitter.h
+	"ParticleEmitter.h"
+
+1394357919 d:\martin\programming\c and c++\sdl\explosion generator\particleemitter.h
+	"Particle.h"
+
+1391720651 d:\martin\programming\c and c++\sdl\explosion generator\particle.h
+	<glm/glm.hpp>
+	<cstdlib>
+	<vector>
+
+1391579469 source:d:\martin\programming\c and c++\sdl\explosion generator\particlesystem.cpp
+	"particlesystem.h"
+
+1394349553 d:\martin\programming\c and c++\sdl\explosion generator\particlesystem.h
+	<glm/glm.hpp>
+	<SDL/SDL.h>
+	<cstdlib>
+	<ctime>
+	<vector>
+	"vector3d.h"
+	"camera.h"
+	"SOIL.h"
+	<GL/gl.h>
+	<GL/glu.h>
+
+1348910498 d:\martin\programming\c and c++\sdl\explosion generator\vector3d.h
+	<iostream>
+	<cmath>
+
+1394356301 d:\martin\programming\c and c++\sdl\explosion generator\camera.h
+	<cmath>
+	<iostream>
+	<SDL/SDL.h>
+	"define.h"
+	<GL/gl.h>
+	<GL/glu.h>
+	"vector3d.h"
+
+1394360694 source:d:\martin\programming\c and c++\sdl\explosion generator\particleeffect.cpp
+	"ParticleSystemPCH.h"
+	"ParticleEmitter.h"
+	"camera.h"
+	"Random.h"
+	"ParticleEffect.h"
+	"gl/gl.h"
+	"gl/glu.h"
+	"iostream"
+
+1394359362 d:\martin\programming\c and c++\sdl\explosion generator\particleeffect.h
+	"Particle.h"
+	<SOIL.h>
+	"camera.h"
+	"SDL\SDL.h"
+	"SDL\SDL_image.h"
+	<cstdlib>
+	<vector>
+	<iostream>
+	<sstream>
+	<string>
+	<algorithm>
+	<fstream>
+	<cstdio>
+	"Interpolator.h"
+
+1391675704 d:\martin\programming\c and c++\sdl\explosion generator\interpolator.h
+	<iostream>
+	<map>
+	<vector>
+
+1348906896 source:d:\martin\programming\c and c++\sdl\explosion generator\vector3d.cpp
+	"vector3d.h"
+
+1394347321 source:d:\martin\programming\c and c++\sdl\explosion generator\camera.cpp
+	"camera.h"
+	<algorithm>
+	<iostream>
+
+1391895375 source:d:\martin\programming\c and c++\sdl\explosion generator\camera_fps.cpp
+	"camera.h"
+	<iostream>
+
+1394347387 source:d:\martin\programming\c and c++\sdl\explosion generator\pivotcamera.cpp
+	"PivotCamera.h"
+
+1394359104 d:\martin\programming\c and c++\sdl\explosion generator\main.h
+	<GL/glew.h>
+	"SDL/SDL_opengl.h"
+	"ParticleEffect.h"
+	"SphereEmitter.h"
+	"ElapsedTime.h"
+	"define.h"
+
+1394347221 d:\martin\programming\c and c++\sdl\explosion generator\pivotcamera.h
+	"camera.h"
+
+1394353905 d:\martin\programming\c and c++\sdl\explosion generator\define.h
+	<string>
+	<iostream>
+	<ctime>
+	<vector>
+	<map>
+	<math.h>
+	<glm/glm.hpp>
+	<glm/gtc/type_ptr.hpp>
+	<glm/gtc/quaternion.hpp>
+	<glm/gtx/vector_angle.hpp>
+	<glm/gtx/compatibility.hpp>
+	<glm/gtx/matrix_operation.hpp>
+	<glm/gtx/transform.hpp>
+	<glm/gtx/quaternion.hpp>
+	<glm/gtx/euler_angles.hpp>
+	<glm/gtx/norm.hpp>
+	<SOIL.h>
+
+1391591343 source:d:\martin\programming\c and c++\sdl\explosion generator\elapsedtime.cpp
+	"ParticleSystemPCH.h"
+	"ElapsedTime.h"
+	<algorithm>
+
+1300206296 d:\martin\programming\c and c++\sdl\explosion generator\elapsedtime.h
+
