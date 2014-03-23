@@ -56,6 +56,7 @@ class ExplosionGenerator
         void MotionGL();
 
 
+
         void update();
         void show();
         void start();

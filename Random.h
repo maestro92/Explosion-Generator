@@ -6,6 +6,8 @@ inline float Random()
     return rand() / (float)RAND_MAX;
 }
 
+
+
 inline float RandRange( float fMin, float fMax )
 {
     if ( fMin > fMax ) std::swap( fMin, fMax );

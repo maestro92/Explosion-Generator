@@ -14,6 +14,8 @@ class CubeEmitter : ParticleEmitter
     float MaxRadius;
     float MinRadius;
 
+
+
     public:
         CubeEmitter();
         void EmitParticles( Particle& particle);

@@ -21,6 +21,7 @@ struct Particle
 
 
 
+
     Particle()
         : m_InitPosition(0,0,0)
         , m_Position(0,0,0)     // Center point of particle

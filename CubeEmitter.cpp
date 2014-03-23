@@ -17,6 +17,8 @@ float pos_x, pos_y, pos_z;
 float vel_x, vel_y, vel_z;
 
 
+
+
 // this is a declared Quadrics, used to draw any bizzare shapes
 GLUquadricObj* quad;
 
