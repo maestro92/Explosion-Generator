@@ -44,18 +44,19 @@
 			<Add library="C:\SDL-1.2.14\lib\libSDLmain.a" />
 			<Add library="C:\Program Files (x86)\CodeBlocks\MinGW\lib\libmingw32.a" />
 		</Linker>
-		<Unit filename="Interpolator.h" />
+		<Unit filename="CubeEmitter.cpp" />
+		<Unit filename="CubeEmitter.h" />
+		<Unit filename="ElapsedTime.cpp" />
+		<Unit filename="ElapsedTime.h" />
+		<Unit filename="JosStam.cpp" />
+		<Unit filename="JosStam.h" />
 		<Unit filename="Particle.h" />
-		<Unit filename="ParticleEffect.cpp" />
-		<Unit filename="ParticleEffect.h" />
 		<Unit filename="ParticleEmitter.h" />
 		<Unit filename="ParticleSystemPCH.cpp" />
 		<Unit filename="ParticleSystemPCH.h" />
 		<Unit filename="PivotCamera.cpp" />
 		<Unit filename="PivotCamera.h" />
 		<Unit filename="Random.h" />
-		<Unit filename="SphereEmitter.cpp" />
-		<Unit filename="SphereEmitter.h" />
 		<Unit filename="camera.cpp" />
 		<Unit filename="camera.h" />
 		<Unit filename="define.h" />

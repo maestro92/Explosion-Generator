@@ -1,1 +1,282 @@
-Successfully loaded particle texture.
+nice
+start_x is -0.4
+start_y is 0
+start_z is -0.4
+position is -0.4 0 -0.4
+position is -0.4 0 -0.2
+position is -0.4 0 0
+position is -0.4 0 0.2
+position is -0.4 0 0.4
+position is -0.2 0 -0.4
+position is -0.2 0 -0.2
+position is -0.2 0 0
+position is -0.2 0 0.2
+position is -0.2 0 0.4
+position is 0 0 -0.4
+position is 0 0 -0.2
+position is 0 0 0
+position is 0 0 0.2
+position is 0 0 0.4
+position is 0.2 0 -0.4
+position is 0.2 0 -0.2
+position is 0.2 0 0
+position is 0.2 0 0.2
+position is 0.2 0 0.4
+position is 0.4 0 -0.4
+position is 0.4 0 -0.2
+position is 0.4 0 0
+position is 0.4 0 0.2
+position is 0.4 0 0.4
+position is -0.4 0.2 -0.4
+position is -0.4 0.2 -0.2
+position is -0.4 0.2 0
+position is -0.4 0.2 0.2
+position is -0.4 0.2 0.4
+position is -0.2 0.2 -0.4
+position is -0.2 0.2 -0.2
+position is -0.2 0.2 0
+position is -0.2 0.2 0.2
+position is -0.2 0.2 0.4
+position is 0 0.2 -0.4
+position is 0 0.2 -0.2
+position is 0 0.2 0
+position is 0 0.2 0.2
+position is 0 0.2 0.4
+position is 0.2 0.2 -0.4
+position is 0.2 0.2 -0.2
+position is 0.2 0.2 0
+position is 0.2 0.2 0.2
+position is 0.2 0.2 0.4
+position is 0.4 0.2 -0.4
+position is 0.4 0.2 -0.2
+position is 0.4 0.2 0
+position is 0.4 0.2 0.2
+position is 0.4 0.2 0.4
+position is -0.4 0.4 -0.4
+position is -0.4 0.4 -0.2
+position is -0.4 0.4 0
+position is -0.4 0.4 0.2
+position is -0.4 0.4 0.4
+position is -0.2 0.4 -0.4
+position is -0.2 0.4 -0.2
+position is -0.2 0.4 0
+position is -0.2 0.4 0.2
+position is -0.2 0.4 0.4
+position is 0 0.4 -0.4
+position is 0 0.4 -0.2
+position is 0 0.4 0
+position is 0 0.4 0.2
+position is 0 0.4 0.4
+position is 0.2 0.4 -0.4
+position is 0.2 0.4 -0.2
+position is 0.2 0.4 0
+position is 0.2 0.4 0.2
+position is 0.2 0.4 0.4
+position is 0.4 0.4 -0.4
+position is 0.4 0.4 -0.2
+position is 0.4 0.4 0
+position is 0.4 0.4 0.2
+position is 0.4 0.4 0.4
+position is -0.4 0.6 -0.4
+position is -0.4 0.6 -0.2
+position is -0.4 0.6 0
+position is -0.4 0.6 0.2
+position is -0.4 0.6 0.4
+position is -0.2 0.6 -0.4
+position is -0.2 0.6 -0.2
+position is -0.2 0.6 0
+position is -0.2 0.6 0.2
+position is -0.2 0.6 0.4
+position is 0 0.6 -0.4
+position is 0 0.6 -0.2
+position is 0 0.6 0
+position is 0 0.6 0.2
+position is 0 0.6 0.4
+position is 0.2 0.6 -0.4
+position is 0.2 0.6 -0.2
+position is 0.2 0.6 0
+position is 0.2 0.6 0.2
+position is 0.2 0.6 0.4
+position is 0.4 0.6 -0.4
+position is 0.4 0.6 -0.2
+position is 0.4 0.6 0
+position is 0.4 0.6 0.2
+position is 0.4 0.6 0.4
+position is -0.4 0.8 -0.4
+position is -0.4 0.8 -0.2
+position is -0.4 0.8 0
+position is -0.4 0.8 0.2
+position is -0.4 0.8 0.4
+position is -0.2 0.8 -0.4
+position is -0.2 0.8 -0.2
+position is -0.2 0.8 0
+position is -0.2 0.8 0.2
+position is -0.2 0.8 0.4
+position is 0 0.8 -0.4
+position is 0 0.8 -0.2
+position is 0 0.8 0
+position is 0 0.8 0.2
+position is 0 0.8 0.4
+position is 0.2 0.8 -0.4
+position is 0.2 0.8 -0.2
+position is 0.2 0.8 0
+position is 0.2 0.8 0.2
+position is 0.2 0.8 0.4
+position is 0.4 0.8 -0.4
+position is 0.4 0.8 -0.2
+position is 0.4 0.8 0
+position is 0.4 0.8 0.2
+position is 0.4 0.8 0.4
+Checking
+-0.4 0 -0.4
+-0.4 0 -0.2
+-0.4 0 0
+-0.4 0 0.2
+-0.4 0 0.4
+-0.2 0 -0.4
+-0.2 0 -0.2
+-0.2 0 0
+-0.2 0 0.2
+-0.2 0 0.4
+0 0 -0.4
+0 0 -0.2
+0 0 0
+0 0 0.2
+0 0 0.4
+0.2 0 -0.4
+0.2 0 -0.2
+0.2 0 0
+0.2 0 0.2
+0.2 0 0.4
+0.4 0 -0.4
+0.4 0 -0.2
+0.4 0 0
+0.4 0 0.2
+0.4 0 0.4
+-0.4 0.2 -0.4
+-0.4 0.2 -0.2
+-0.4 0.2 0
+-0.4 0.2 0.2
+-0.4 0.2 0.4
+-0.2 0.2 -0.4
+-0.2 0.2 -0.2
+-0.2 0.2 0
+-0.2 0.2 0.2
+-0.2 0.2 0.4
+0 0.2 -0.4
+0 0.2 -0.2
+0 0.2 0
+0 0.2 0.2
+0 0.2 0.4
+0.2 0.2 -0.4
+0.2 0.2 -0.2
+0.2 0.2 0
+0.2 0.2 0.2
+0.2 0.2 0.4
+0.4 0.2 -0.4
+0.4 0.2 -0.2
+0.4 0.2 0
+0.4 0.2 0.2
+0.4 0.2 0.4
+-0.4 0.4 -0.4
+-0.4 0.4 -0.2
+-0.4 0.4 0
+-0.4 0.4 0.2
+-0.4 0.4 0.4
+-0.2 0.4 -0.4
+-0.2 0.4 -0.2
+-0.2 0.4 0
+-0.2 0.4 0.2
+-0.2 0.4 0.4
+0 0.4 -0.4
+0 0.4 -0.2
+0 0.4 0
+0 0.4 0.2
+0 0.4 0.4
+0.2 0.4 -0.4
+0.2 0.4 -0.2
+0.2 0.4 0
+0.2 0.4 0.2
+0.2 0.4 0.4
+0.4 0.4 -0.4
+0.4 0.4 -0.2
+0.4 0.4 0
+0.4 0.4 0.2
+0.4 0.4 0.4
+-0.4 0.6 -0.4
+-0.4 0.6 -0.2
+-0.4 0.6 0
+-0.4 0.6 0.2
+-0.4 0.6 0.4
+-0.2 0.6 -0.4
+-0.2 0.6 -0.2
+-0.2 0.6 0
+-0.2 0.6 0.2
+-0.2 0.6 0.4
+0 0.6 -0.4
+0 0.6 -0.2
+0 0.6 0
+0 0.6 0.2
+0 0.6 0.4
+0.2 0.6 -0.4
+0.2 0.6 -0.2
+0.2 0.6 0
+0.2 0.6 0.2
+0.2 0.6 0.4
+0.4 0.6 -0.4
+0.4 0.6 -0.2
+0.4 0.6 0
+0.4 0.6 0.2
+0.4 0.6 0.4
+-0.4 0.8 -0.4
+-0.4 0.8 -0.2
+-0.4 0.8 0
+-0.4 0.8 0.2
+-0.4 0.8 0.4
+-0.2 0.8 -0.4
+-0.2 0.8 -0.2
+-0.2 0.8 0
+-0.2 0.8 0.2
+-0.2 0.8 0.4
+0 0.8 -0.4
+0 0.8 -0.2
+0 0.8 0
+0 0.8 0.2
+0 0.8 0.4
+0.2 0.8 -0.4
+0.2 0.8 -0.2
+0.2 0.8 0
+0.2 0.8 0.2
+0.2 0.8 0.4
+0.4 0.8 -0.4
+0.4 0.8 -0.2
+0.4 0.8 0
+0.4 0.8 0.2
+0.4 0.8 0.4
+clicking right
+clicking left
+clicking Up left
+clicking Up right
+clicking left
+clicking Up left
+clicking left
+clicking right
+clicking Up right
+clicking Up left
+clicking left
+clicking right
+clicking Up right
+clicking Up left
+clicking left
+clicking Up left
+clicking left
+clicking right
+clicking Up right
+clicking Up left
+clicking left
+clicking right
+clicking Up right
+clicking Up left
+clicking left
+clicking Up left
+Terminating normally.

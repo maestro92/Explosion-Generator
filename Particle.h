@@ -2,24 +2,37 @@
 #include <glm/glm.hpp>
 #include <cstdlib>
 #include <vector>
+
+using namespace glm;
 struct Particle
 {
+    vec3    m_InitPosition;
+    vec3    m_Position;
+    vec3    m_Velocity;
+  //  vec3    m_RotVelocity;
+    vec4    m_Color;
+
+    float   m_fRotate;
+    float   m_fRadius;
+    // float   m_fSize;
+    float   m_fAge;
+    float   m_fLifeTime;
+
+
+
+
     Particle()
-        : m_Position(0,0,0)
-        , m_Velocity(0)
+        : m_InitPosition(0,0,0)
+        , m_Position(0,0,0)     // Center point of particle
+        , m_Velocity(0,0,0)
         , m_Color(0)
+        , m_fRadius(1)
         , m_fRotate(0)
         , m_fAge(0)
         , m_fLifeTime(0)
     {}
 
-    glm::vec3   m_Position; // Center point of particle
-    glm::vec3   m_Velocity; // Current particle velocity
-    glm::vec4   m_Color;    // Particle color
-    float       m_fRotate;  // Rotate the particle the center
-    float       m_fSize;    // Size of the particle
-    float       m_fAge;		// duration in seconds since the particle was emitted
-    float       m_fLifeTime;
 };
-
 typedef std::vector<Particle> ParticleBuffer;
+
+

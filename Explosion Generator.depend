@@ -1,18 +1,14 @@
 # depslib dependency file v1.0
-1394360525 source:d:\martin\programming\c and c++\sdl\explosion generator\main.cpp
+1395612493 source:d:\martin\programming\c and c++\sdl\explosion generator\main.cpp
 	<cstdlib>
 	<iostream>
 	"main.h"
-	"SDL/SDL.h"
-	"SDL/SDL_image.h"
 	<stdio.h>
 	<string>
 	<sstream>
 	"gl/gl.h"
 	"gl/glu.h"
 	"PivotCamera.h"
-	"ParticleEffect.h"
-	"SphereEmitter.h"
 
 1255804049 c:\sdl-1.2.14\include\sdl\sdl.h
 	"SDL_main.h"
@@ -230,7 +226,7 @@
 	<windows.h>
 	<stddef.h>
 
-1394357631 source:d:\martin\programming\c and c++\sdl\explosion generator\sphereemitter.cpp
+1394584519 source:d:\martin\programming\c and c++\sdl\explosion generator\sphereemitter.cpp
 	"ParticleSystemPCH.h"
 	"Random.h"
 	"SphereEmitter.h"
@@ -240,10 +236,19 @@
 1394357618 d:\martin\programming\c and c++\sdl\explosion generator\sphereemitter.h
 	"ParticleEmitter.h"
 
-1394357919 d:\martin\programming\c and c++\sdl\explosion generator\particleemitter.h
+1395598119 d:\martin\programming\c and c++\sdl\explosion generator\particleemitter.h
 	"Particle.h"
+	<cstdlib>
+	<cstdlib>
+	<vector>
+	<iostream>
+	<sstream>
+	<string>
+	<algorithm>
+	<fstream>
+	<cstdio>
 
-1391720651 d:\martin\programming\c and c++\sdl\explosion generator\particle.h
+1395606574 d:\martin\programming\c and c++\sdl\explosion generator\particle.h
 	<glm/glm.hpp>
 	<cstdlib>
 	<vector>
@@ -276,7 +281,7 @@
 	<GL/glu.h>
 	"vector3d.h"
 
-1394360694 source:d:\martin\programming\c and c++\sdl\explosion generator\particleeffect.cpp
+1394583350 source:d:\martin\programming\c and c++\sdl\explosion generator\particleeffect.cpp
 	"ParticleSystemPCH.h"
 	"ParticleEmitter.h"
 	"camera.h"
@@ -286,7 +291,7 @@
 	"gl/glu.h"
 	"iostream"
 
-1394359362 d:\martin\programming\c and c++\sdl\explosion generator\particleeffect.h
+1394541494 d:\martin\programming\c and c++\sdl\explosion generator\particleeffect.h
 	"Particle.h"
 	<SOIL.h>
 	"camera.h"
@@ -322,13 +327,15 @@
 1394347387 source:d:\martin\programming\c and c++\sdl\explosion generator\pivotcamera.cpp
 	"PivotCamera.h"
 
-1394359104 d:\martin\programming\c and c++\sdl\explosion generator\main.h
+1395605924 d:\martin\programming\c and c++\sdl\explosion generator\main.h
 	<GL/glew.h>
 	"SDL/SDL_opengl.h"
-	"ParticleEffect.h"
-	"SphereEmitter.h"
+	"SDL/SDL.h"
+	"SDL/SDL_image.h"
 	"ElapsedTime.h"
 	"define.h"
+	"ParticleEmitter.h"
+	"CubeEmitter.h"
 
 1394347221 d:\martin\programming\c and c++\sdl\explosion generator\pivotcamera.h
 	"camera.h"
@@ -358,4 +365,91 @@
 	<algorithm>
 
 1300206296 d:\martin\programming\c and c++\sdl\explosion generator\elapsedtime.h
+
+1394362548 source:d:\martin\programming\c and c++\sdl\explosion generator\spriteemitter.cpp
+
+1394553245 source:d:\martin\programming\c and c++\sdl\explosion generator\shockwaveeffect.cpp
+	"ParticleSystemPCH.h"
+	"ParticleEmitter.h"
+	"camera.h"
+	"Random.h"
+	"ShockwaveEffect.h"
+	"gl/gl.h"
+	"gl/glu.h"
+	"iostream"
+
+1394541453 d:\martin\programming\c and c++\sdl\explosion generator\shockwaveeffect.h
+	"Particle.h"
+	<SOIL.h>
+	"camera.h"
+	"SDL\SDL.h"
+	"SDL\SDL_image.h"
+	<cstdlib>
+	<vector>
+	<iostream>
+	<sstream>
+	<string>
+	<algorithm>
+	<fstream>
+	<cstdio>
+	"Interpolator.h"
+
+1394523001 d:\martin\programming\c and c++\sdl\explosion generator\shockwaveemitter.h
+	"ParticleEmitter.h"
+
+1394553318 source:d:\martin\programming\c and c++\sdl\explosion generator\shockwaveemitter.cpp
+	"ParticleSystemPCH.h"
+	"Random.h"
+	"ShockwaveEmitter.h"
+
+1394584177 d:\martin\programming\c and c++\sdl\explosion generator\roundsparksemitter.h
+	"ParticleEmitter.h"
+
+1394584623 source:d:\martin\programming\c and c++\sdl\explosion generator\roundsparksemitter.cpp
+	"ParticleSystemPCH.h"
+	"Random.h"
+	"RoundSparksEmitter.h"
+
+1394580406 d:\martin\programming\c and c++\sdl\explosion generator\roundsparkseffect.h
+	"Particle.h"
+	<SOIL.h>
+	"camera.h"
+	"SDL\SDL.h"
+	"SDL\SDL_image.h"
+	<cstdlib>
+	<vector>
+	<iostream>
+	<sstream>
+	<string>
+	<algorithm>
+	<fstream>
+	<cstdio>
+	"Interpolator.h"
+
+1394583342 source:d:\martin\programming\c and c++\sdl\explosion generator\roundsparkseffect.cpp
+	"ParticleSystemPCH.h"
+	"ParticleEmitter.h"
+	"camera.h"
+	"Random.h"
+	"RoundSparksEffect.h"
+	"gl/gl.h"
+	"gl/glu.h"
+	"iostream"
+
+1395616052 source:d:\martin\programming\c and c++\sdl\explosion generator\cubeemitter.cpp
+	"CubeEmitter.h"
+	"gl/gl.h"
+	"gl/glu.h"
+
+1395615295 d:\martin\programming\c and c++\sdl\explosion generator\cubeemitter.h
+	"ParticleEmitter.h"
+	<cstdlib>
+	<iostream>
+	<algorithm>
+	"Random.h"
+
+1395567764 source:d:\martin\programming\c and c++\sdl\explosion generator\josstam.cpp
+	"JosStam.h"
+
+1395567773 d:\martin\programming\c and c++\sdl\explosion generator\josstam.h
 

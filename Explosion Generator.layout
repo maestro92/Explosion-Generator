@@ -1,52 +1,58 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <CodeBlocks_layout_file>
 	<ActiveTarget name="Debug" />
-	<File name="Particle.h" open="1" top="0" tabpos="8">
-		<Cursor position="345" topLine="0" />
+	<File name="CubeEmitter.cpp" open="1" top="0" tabpos="9">
+		<Cursor position="212" topLine="3" />
 	</File>
-	<File name="ParticleEffect.cpp" open="1" top="0" tabpos="10">
-		<Cursor position="201" topLine="3" />
+	<File name="CubeEmitter.h" open="1" top="0" tabpos="8">
+		<Cursor position="262" topLine="4" />
 	</File>
-	<File name="ParticleEffect.h" open="1" top="0" tabpos="9">
-		<Cursor position="782" topLine="9" />
-	</File>
-	<File name="ParticleEmitter.h" open="1" top="0" tabpos="11">
+	<File name="ElapsedTime.cpp" open="1" top="0" tabpos="4">
 		<Cursor position="0" topLine="0" />
 	</File>
-	<File name="ParticleSystemPCH.cpp" open="1" top="0" tabpos="13">
+	<File name="ElapsedTime.h" open="1" top="0" tabpos="3">
+		<Cursor position="228" topLine="0" />
+	</File>
+	<File name="JosStam.cpp" open="1" top="0" tabpos="11">
+		<Cursor position="24" topLine="0" />
+	</File>
+	<File name="JosStam.h" open="1" top="1" tabpos="12">
+		<Cursor position="52" topLine="0" />
+	</File>
+	<File name="Particle.h" open="1" top="0" tabpos="7">
+		<Cursor position="562" topLine="11" />
+	</File>
+	<File name="ParticleEmitter.h" open="1" top="0" tabpos="6">
+		<Cursor position="330" topLine="0" />
+	</File>
+	<File name="ParticleSystemPCH.cpp" open="0" top="0" tabpos="5">
 		<Cursor position="30" topLine="0" />
 	</File>
-	<File name="ParticleSystemPCH.h" open="1" top="0" tabpos="12">
-		<Cursor position="358" topLine="0" />
+	<File name="ParticleSystemPCH.h" open="1" top="0" tabpos="5">
+		<Cursor position="308" topLine="0" />
 	</File>
-	<File name="PivotCamera.cpp" open="1" top="0" tabpos="4">
-		<Cursor position="1418" topLine="33" />
+	<File name="PivotCamera.cpp" open="0" top="0" tabpos="4">
+		<Cursor position="1420" topLine="0" />
 	</File>
-	<File name="PivotCamera.h" open="1" top="0" tabpos="3">
-		<Cursor position="135" topLine="0" />
-	</File>
-	<File name="Random.h" open="1" top="0" tabpos="7">
-		<Cursor position="334" topLine="0" />
-	</File>
-	<File name="SphereEmitter.cpp" open="1" top="0" tabpos="15">
-		<Cursor position="2" topLine="0" />
-	</File>
-	<File name="SphereEmitter.h" open="1" top="0" tabpos="16">
+	<File name="PivotCamera.h" open="0" top="0" tabpos="3">
 		<Cursor position="0" topLine="0" />
 	</File>
-	<File name="camera.cpp" open="1" top="0" tabpos="2">
-		<Cursor position="810" topLine="27" />
+	<File name="Random.h" open="1" top="0" tabpos="10">
+		<Cursor position="503" topLine="0" />
 	</File>
-	<File name="camera.h" open="1" top="0" tabpos="1">
-		<Cursor position="176" topLine="57" />
+	<File name="camera.cpp" open="0" top="0" tabpos="2">
+		<Cursor position="441" topLine="18" />
 	</File>
-	<File name="define.h" open="1" top="0" tabpos="14">
+	<File name="camera.h" open="0" top="0" tabpos="1">
+		<Cursor position="710" topLine="24" />
+	</File>
+	<File name="define.h" open="0" top="0" tabpos="14">
 		<Cursor position="184" topLine="0" />
 	</File>
-	<File name="main.cpp" open="1" top="0" tabpos="5">
-		<Cursor position="661" topLine="15" />
+	<File name="main.cpp" open="1" top="0" tabpos="2">
+		<Cursor position="4080" topLine="164" />
 	</File>
-	<File name="main.h" open="1" top="1" tabpos="6">
-		<Cursor position="29" topLine="0" />
+	<File name="main.h" open="1" top="0" tabpos="1">
+		<Cursor position="957" topLine="41" />
 	</File>
 </CodeBlocks_layout_file>

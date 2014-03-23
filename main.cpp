@@ -8,8 +8,7 @@
 and may not be redistributed without written permission.*/
 
 //Using SDL, SDL_image, standard IO, strings, and string streams
-#include "SDL/SDL.h"
-#include "SDL/SDL_image.h"
+
 #include <stdio.h>
 #include <string>
 #include <sstream>
@@ -21,11 +20,12 @@ and may not be redistributed without written permission.*/
 #include "gl/glu.h"
 
 #include "PivotCamera.h"
-#include "ParticleEffect.h"
-#include "SphereEmitter.h"
+
 //Screen dimension constants
-const int SCREEN_WIDTH = 640;
-const int SCREEN_HEIGHT = 480;
+const int SCREEN_WIDTH = 1024;
+const int SCREEN_HEIGHT = 768;
+// const int SCREEN_WIDTH = 600;
+// const int SCREEN_HEIGHT = 480;
 
 
 
@@ -34,8 +34,6 @@ const int SCREEN_HEIGHT = 480;
 using namespace std;
 
 
-
-ParticleEffect g_ParticleEffect(100);
 
 
 //display surface
@@ -52,10 +50,37 @@ glm::vec2 g_MousePrevious = glm::vec2(0);
 glm::vec2 g_MouseDelta = glm::vec2(0);
 
 
-glm::vec3 g_DefaultCameraTranslate( 0, 0, 100 );
+glm::vec3 g_DefaultCameraTranslate( 0, 0, 400 );
 // so positive y axis faces downwards
-glm::vec3 g_DefaultCameraRotate( 0, 0, 180 );
+glm::vec3 g_DefaultCameraRotate( 0, 0, 0 );
 glm::vec3 g_DefaultCameraPivot( 0, 0, 0 );
+
+
+
+
+bool space_bar = false;
+
+
+
+ExplosionGenerator::ExplosionGenerator()
+{
+    running = true;
+    g_bLeftMouseDown = false;
+    g_bRightMouseDown = false;
+
+
+    initSDL_GLEW();
+    initOpenGL();
+    setupCamera();
+    setupColor_Texture();
+    setupParticleEmitter();
+
+    e_CubeEmitter.InitParticleCube();
+
+    SDL_WM_SetCaption("Template", NULL);
+
+    init_Lighting();
+}
 
 
 
@@ -65,9 +90,12 @@ void ExplosionGenerator::update()
 
     static ElapsedTime elapsedTime;
     float fDeltaTime = elapsedTime.GetElapsedTime();
-    g_ParticleEffect.Update(fDeltaTime);
 
 
+    if (space_bar)
+    {
+        e_CubeEmitter.UpdateParticleCube(fDeltaTime);
+    }
 
 }
 
@@ -105,15 +133,37 @@ void ExplosionGenerator::MotionGL()
 
     g_MousePrevious = g_MouseCurrent;
 
-
-
-
 }
 
 
 
+void ExplosionGenerator::init_Lighting()
+{
+    GLfloat light_ambient[] = {  (0.2),  (0.2),  (0.2),  (1.0) };
+	GLfloat light_diffuse[] = {  (1.0),  (1.0),  (1.0),  (1.0) };
+	GLfloat light_specular[] = {  (1.0),  (1.0),  (1.0),  (1.0 )};
+	/*	light_position is NOT default value	*/
+	GLfloat light_position0[] = {  (1.0),  (10.0),  (1.0),  (0.0 )};
+	GLfloat light_position1[] = {  (-1.0),  (-10.0),  (-1.0),  (0.0) };
+
+	glLightfv(GL_LIGHT0, GL_AMBIENT, light_ambient);
+	glLightfv(GL_LIGHT0, GL_DIFFUSE, light_diffuse);
+	glLightfv(GL_LIGHT0, GL_SPECULAR, light_specular);
+	glLightfv(GL_LIGHT0, GL_POSITION, light_position0);
+
+	glLightfv(GL_LIGHT1, GL_AMBIENT, light_ambient);
+	glLightfv(GL_LIGHT1, GL_DIFFUSE, light_diffuse);
+	glLightfv(GL_LIGHT1, GL_SPECULAR, light_specular);
+	glLightfv(GL_LIGHT1, GL_POSITION, light_position1);
+
+	glEnable(GL_LIGHTING);
+	glEnable(GL_LIGHT0);
+	glEnable(GL_LIGHT1);
 
 
+	glShadeModel(GL_SMOOTH);
+	glEnable(GL_DEPTH_TEST);
+}
 
 void ExplosionGenerator::show()
 {
@@ -121,56 +171,21 @@ void ExplosionGenerator::show()
     glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT);
     glMatrixMode( GL_MODELVIEW );
     glLoadIdentity();
-
+	glEnable(GL_DEPTH_TEST);
 
     // update your camera
     g_Camera.ApplyViewTransform();
 
-    DrawAxis( 20.0f, g_Camera.GetPivot());
-
-
-    g_ParticleEffect.Render();
-}
-
-
-
-
-
-void display()
-{
-
-        glDisable(GL_DEPTH_TEST);
-        glClear(GL_COLOR_BUFFER_BIT);
-
-
-        glBegin(GL_TRIANGLES);
-                glVertex3f(0.0,2.0,-2.0);
-                glVertex3f(-2.0,-2.0,-2.0);
-                glVertex3f(2.0,-2.0,-2.0);
-        glEnd();
-
+    DrawAxis( 20.0f);//, g_Camera.GetPivot());
+  //  drawCube(20);
+    e_CubeEmitter.DrawParticleCube();
 
 }
 
 
 
 
-ExplosionGenerator::ExplosionGenerator()
-{
-    running = true;
-    g_bLeftMouseDown = false;
-    g_bRightMouseDown = false;
 
-
-
-    init();
-    initOpenGL();
-    setupCamera();
-    setupColor_Texture();
-
-    SDL_WM_SetCaption("Template", NULL);
-
-}
 
 void ExplosionGenerator::start()
 {
@@ -242,17 +257,34 @@ void ExplosionGenerator::start()
                     break;
 
 
+
+                case SDL_KEYUP:
+                    switch (event.key.keysym.sym)
+                    {
+               //         case SDLK_SPACE:   space_bar = false;    break;
+                    }
+                    break;
+
+
                 case SDL_KEYDOWN:
                     switch (event.key.keysym.sym)
                     {
                         case SDLK_ESCAPE:   running = false;    break;
+                        case SDLK_z:
+                            e_CubeEmitter.InitParticleCube();
+                            space_bar = false;
+                            break;
+                        case SDLK_SPACE:
+                            space_bar = true;
+
+                            break;
                     }
                     break;
 			}
         }
             update();
             show();
-           // display();
+
 
             SDL_GL_SwapBuffers();
 
@@ -283,7 +315,7 @@ int main(int argc, char *argv[])
 
 
 
-void ExplosionGenerator::init()
+void ExplosionGenerator::initSDL_GLEW()
 {
     SDL_Init(SDL_INIT_EVERYTHING);
     pDisplaySurface = SDL_SetVideoMode(SCREEN_WIDTH,SCREEN_HEIGHT,32, SDL_SWSURFACE|SDL_OPENGL);
@@ -318,9 +350,9 @@ void ExplosionGenerator::initOpenGL()
 
     // creates a pyramid
     gluPerspective( 45,             // the camera angle
-                    640.0/480.0,    // width to height ratio
+                    SCREEN_WIDTH/SCREEN_HEIGHT,    // width to height ratio
                     1.0,            // the near z clippFing coordinate
-                    500.0);         // the far z clipping coordinate
+                    1000.0);         // the far z clipping coordinate
                                     // clipping coordinate: the cutoff range
     //Initialize Modelview Matrix
     glMatrixMode( GL_MODELVIEW );
@@ -342,38 +374,14 @@ void ExplosionGenerator::setupCamera()
 void ExplosionGenerator::setupColor_Texture()
 {
     glShadeModel( GL_SMOOTH );
-    //if (g_ParticleEffect.LoadTexture("images/Explosion/fire.png"))
-    if (g_ParticleEffect.LoadTexture("images/Explosion/fire alpha.png"))
-	{
-        std::cout << "Successfully loaded particle texture." << std::endl;
-    }
-    else
-    {
-        std::cerr << "Failed to load particle texture!" << std::endl;
-    }
-
-	// set camera
-    g_ParticleEffect.SetCamera( &g_Camera );
-
-
-    Fire_colors.AddValue(0.0f,  glm::vec4(1, 0, 0, 1) );     // red
-
-	Fire_colors.AddValue(0.15f, glm::vec4(1, 0, 0, 1));     // magenta
-	Fire_colors.AddValue(0.33f, glm::vec4(1, 0.9, 0, 1));     // blue
-	Fire_colors.AddValue(0.5f, glm::vec4(1, 0.8, 0, 1));     // cyan
-	Fire_colors.AddValue(0.67f, glm::vec4(1, 0.5, 0, 0.75));  // green
-	Fire_colors.AddValue(0.84f, glm::vec4(1, 1, 0, 0.5));   // yellow
-	Fire_colors.AddValue(1.0f, glm::vec4(1, 1, 0, 0));     // red
-
-
-
-    g_ParticleEffect.SetColorInterplator( Fire_colors );
-
-    g_ParticleEffect.SetParticleEmitter( &g_ParticleEmitter );
-    g_ParticleEffect.EmitParticles();
 
 }
 
+
+void ExplosionGenerator::setupParticleEmitter()
+{
+
+}
 
 
 void ExplosionGenerator::DrawAxis(float fScale, glm::vec3 translate)
@@ -381,7 +389,7 @@ void ExplosionGenerator::DrawAxis(float fScale, glm::vec3 translate)
 
     glPushAttrib( GL_ENABLE_BIT );
 
-    glDisable( GL_DEPTH_TEST );
+ //   glDisable( GL_DEPTH_TEST );
     glDisable( GL_LIGHTING );
 
     glPushMatrix();
@@ -413,35 +421,86 @@ void ExplosionGenerator::DrawAxis(float fScale, glm::vec3 translate)
 
 }
 
-/*
-void ExplosionGenerator::MotionGL( int x, int y )
+
+
+
+void ExplosionGenerator::drawCube(float size)
 {
-    g_MouseCurrent = glm::vec2( x, y );
-    g_MouseDelta = ( g_MousePrevious - g_MouseCurrent );
+//    float difamb[] ={1.0, 0.5, 0.3, 1.0};
+    glBegin(GL_QUADS);
+        // OpenGL use normal vectors to calculate light
+        // if we don't ENABLE(COLOR_MATERIAL)
 
-    // Update the camera
-    if ( g_bLeftMouseDown && g_bRightMouseDown )
-    {
-        g_Camera.TranslateZ( g_MouseDelta.y );
-    }
+        // we can manually create a material color here
+//       glMaterialfv(GL_FRONT_AND_BACK, GL_AMBIENT_AND_DIFFUSE, difamb);
 
-	// this changes the camera around the origin, no shifting at all
-    else if ( g_bLeftMouseDown )
-    {
+        // front face
+        glNormal3f(0.0,0.0,1.0);
+        glColor3f(1.0,0.0,0.0);
+        glVertex3f(size/2, size/2, size/2);
+        glVertex3f(-size/2, size/2, size/2);
+        glVertex3f(-size/2, -size/2, size/2);
+        glVertex3f(size/2, -size/2, size/2);
 
-		// if you have a picture of a burning fire
-		// addYaw will make it into a spinning burning fire
-		// if you add AddRoll, it will spin your camera around
-//		g_Camera.AddRoll(-g_MouseDelta.x);
-        g_Camera.AddPitch( -g_MouseDelta.y );
-        g_Camera.AddYaw( -g_MouseDelta.x );
-    }
-    else if ( g_bRightMouseDown )
-    {
-        g_Camera.TranslatePivotX( g_MouseDelta.x );
-        g_Camera.TranslatePivotY( -g_MouseDelta.y );
-    }
+        // back face
+        glNormal3f(0.0,0.0,-1.0);
+        glColor3f(0.0,0.0,1.0);
+        glVertex3f(size/2, size/2, -size/2);
+        glVertex3f(-size/2, size/2, -size/2);
+        glVertex3f(-size/2, -size/2, -size/2);
+        glVertex3f(size/2, -size/2, -size/2);
 
-    g_MousePrevious = g_MouseCurrent;
+        // left face
+        glNormal3f(-1.0,0.0,0.0);
+        glColor3f(0.0,1.0,0.0);
+        glVertex3f(-size/2, size/2, size/2);
+        glVertex3f(-size/2, size/2, -size/2);
+        glVertex3f(-size/2, -size/2, -size/2);
+        glVertex3f(-size/2, -size/2, size/2);
+
+        // right face
+        glNormal3f(1.0,0.0,0.0);
+        glColor3f(1.0,1.0,0.0);
+        glVertex3f(size/2, size/2, -size/2);
+        glVertex3f(size/2, size/2, size/2);
+        glVertex3f(size/2, -size/2, size/2);
+        glVertex3f(size/2, -size/2, -size/2);
+
+        // top face
+        glNormal3f(0.0,1.0,0.0);
+        glColor3f(1.0,0.0,1.0);
+        glVertex3f(size/2, size/2, size/2);
+        glVertex3f(-size/2, size/2, size/2);
+        glVertex3f(-size/2, size/2, -size/2);
+        glVertex3f(size/2, size/2, -size/2);
+
+        // bottom face
+        glNormal3f(0.0,-1.0,0.0);
+        glVertex3f(size/2, -size/2, size/2);
+        glVertex3f(-size/2, -size/2, size/2);
+        glVertex3f(-size/2, -size/2, -size/2);
+        glVertex3f(size/2, -size/2, -size/2);
+    glEnd();
+
 }
-*/
+
+
+
+
+void display()
+{
+
+        glDisable(GL_DEPTH_TEST);
+        glClear(GL_COLOR_BUFFER_BIT);
+
+
+        glBegin(GL_TRIANGLES);
+                glVertex3f(0.0,2.0,-2.0);
+                glVertex3f(-2.0,-2.0,-2.0);
+                glVertex3f(2.0,-2.0,-2.0);
+        glEnd();
+
+
+}
+
+

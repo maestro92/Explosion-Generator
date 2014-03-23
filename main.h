@@ -4,11 +4,21 @@
 #include <GL/glew.h>
 #include "SDL/SDL_opengl.h"
 
-#include "ParticleEffect.h"
-#include "SphereEmitter.h"
+#include "SDL/SDL.h"
+#include "SDL/SDL_image.h"
+
 #include "ElapsedTime.h"
 #include "define.h"
 
+#include "ParticleEmitter.h"
+#include "CubeEmitter.h"
+/*
+
+http://www.gamedev.net/page/resources/_/creative/visual-arts/make-a-particle-explosion-effect-r2701
+
+
+
+*/
 
 class ParticleEffect;
 
@@ -17,6 +27,7 @@ class ExplosionGenerator
 {
 
 
+    CubeEmitter e_CubeEmitter;
 
     bool running;
 
@@ -27,22 +38,18 @@ class ExplosionGenerator
     bool g_bRightMouseDown;
 
 
-    SphereEmitter g_ParticleEmitter;
-    ParticleEffect g_ParticleEffect;
-    ParticleEffect::ColorInterpolator Fire_colors;
-
-
-
     public:
 
 
         ExplosionGenerator();
 
 
-        void init();
+        void initSDL_GLEW();
         void initOpenGL();
         void setupCamera();
         void setupColor_Texture();
+        void setupParticleEmitter();
+        void init_Lighting();
 
         void DrawAxis(float fScale, glm::vec3 translate = glm::vec3(0));
 
@@ -53,7 +60,7 @@ class ExplosionGenerator
         void show();
         void start();
 
-
+        void drawCube(float size);
 
 };
 
