@@ -9,6 +9,21 @@ and may not be redistributed without written permission.*/
 
 //Using SDL, SDL_image, standard IO, strings, and string streams
 
+/*
+1. ground reference
+2. Bounce when landing
+3. Collision among spheres
+4. placing force at origin of cube
+5.
+
+// game loop
+FPS
+https://sites.google.com/site/sdlgamer/intemediate/lesson-7
+http://www.koonsolo.com/news/dewitters-gameloop/
+*/
+
+
+
 #include <stdio.h>
 #include <string>
 #include <sstream>
@@ -27,7 +42,14 @@ const int SCREEN_HEIGHT = 768;
 // const int SCREEN_WIDTH = 600;
 // const int SCREEN_HEIGHT = 480;
 
-
+// frame rate
+// https://sites.google.com/site/sdlgamer/intemediate/lesson-7
+// FPS is 50
+const int FRAMES_PER_SECOND = 33;
+// So Interval is 1000/50 which is 20ms
+// meaning my while loop runs 50 frames per second
+// which is every other 20 ms
+const int INTERVAL = 1000 / FRAMES_PER_SECOND;
 
 
 
@@ -65,6 +87,9 @@ bool space_bar = false;
 ExplosionGenerator::ExplosionGenerator()
 {
     running = true;
+    dvel = false;
+    addSmoke = false;
+
     g_bLeftMouseDown = false;
     g_bRightMouseDown = false;
 
@@ -97,6 +122,11 @@ void ExplosionGenerator::update()
         e_CubeEmitter.UpdateParticleCube(fDeltaTime);
     }
 
+
+  //  if (addSmoke)
+  //      smoke.addDensitySource_FromUI(5,5,5);
+
+    smoke.update(addSmoke);
 }
 
 
@@ -175,10 +205,15 @@ void ExplosionGenerator::show()
 
     // update your camera
     g_Camera.ApplyViewTransform();
-
+    smoke.show(dvel);
     DrawAxis( 20.0f);//, g_Camera.GetPivot());
   //  drawCube(20);
     e_CubeEmitter.DrawParticleCube();
+
+    int r = 20;
+
+    drawCubeFrame(r, r/2);
+
 
 }
 
@@ -191,6 +226,8 @@ void ExplosionGenerator::show()
 void ExplosionGenerator::start()
 {
     Uint32 startTime = SDL_GetTicks();
+    Uint32 next_game_tick = 0;
+    Uint32 delay_time = 0;
     while(running)
     {
         startTime = SDL_GetTicks();
@@ -262,7 +299,8 @@ void ExplosionGenerator::start()
                 case SDL_KEYUP:
                     switch (event.key.keysym.sym)
                     {
-               //         case SDLK_SPACE:   space_bar = false;    break;
+                        case SDLK_x:   addSmoke = false;    break;
+
                     }
                     break;
 
@@ -277,7 +315,13 @@ void ExplosionGenerator::start()
                             break;
                         case SDLK_SPACE:
                             space_bar = true;
-
+                            break;
+                        case SDLK_v:
+                            dvel = !dvel;
+                            break;
+                        case SDLK_x:
+                            cout << "here" << endl;
+                            addSmoke = true;
                             break;
                     }
                     break;
@@ -289,11 +333,17 @@ void ExplosionGenerator::start()
 
             SDL_GL_SwapBuffers();
 
-
-            if(1000/30> (SDL_GetTicks()-startTime))
+          //  next_game_tick += INTERVAL;
+         //   delay_time = next_game_tick - SDL_GetTicks();
+            if (next_game_tick > SDL_GetTicks())
+                SDL_Delay(next_game_tick - SDL_GetTicks());
+            next_game_tick = SDL_GetTicks() + INTERVAL;
+/*
+            if(INTERVAL > (SDL_GetTicks()-startTime))
             {
-                SDL_Delay(1000/30 - (SDL_GetTicks() - startTime));
+                SDL_Delay(INTERVAL - (SDL_GetTicks() - startTime));
             }
+  */
     }
 
 }
@@ -422,8 +472,72 @@ void ExplosionGenerator::DrawAxis(float fScale, glm::vec3 translate)
 
 }
 
+void ExplosionGenerator::drawCubeFrame(float size, int offset = 0)
+{
+    glPushMatrix();
+        glDisable( GL_LIGHTING );
+        glBegin(GL_LINES);
+            // front face
+            glColor3f(1.0,0.0,1.0);
+            glVertex3f(size/2, size/2 +offset, size/2);
+            glVertex3f(-size/2, size/2 +offset, size/2);
+
+            glVertex3f(-size/2, -size/2 +offset, size/2);
+            glVertex3f(size/2, -size/2 +offset, size/2);
+
+            glVertex3f(-size/2, size/2 +offset, size/2);
+            glVertex3f(-size/2, -size/2 +offset, size/2);
+
+            glVertex3f(size/2, size/2 +offset, size/2);
+            glVertex3f(size/2, -size/2 +offset, size/2);
 
 
+            // back face
+            glColor3f(1.0,1.0,1.0);
+            glVertex3f(size/2, size/2 +offset, -size/2);
+            glVertex3f(-size/2, size/2+offset, -size/2);
+
+            glVertex3f(-size/2, -size/2+offset, -size/2);
+            glVertex3f(size/2, -size/2+offset, -size/2);
+
+            glVertex3f(size/2, size/2 +offset, -size/2);
+            glVertex3f(size/2, -size/2+offset, -size/2);
+
+            glVertex3f(-size/2, size/2+offset, -size/2);
+            glVertex3f(-size/2, -size/2+offset, -size/2);
+
+            // left face
+            glColor3f(1.0,1.0,1.0);
+            glVertex3f(-size/2, size/2+offset, size/2);
+            glVertex3f(-size/2, size/2+offset, -size/2);
+            glVertex3f(-size/2, -size/2+offset, -size/2);
+            glVertex3f(-size/2, -size/2+offset, size/2);
+
+            // right face
+            glColor3f(1.0,1.0,1.0);
+            glVertex3f(size/2, size/2+offset, -size/2);
+            glVertex3f(size/2, size/2+offset, size/2);
+            glVertex3f(size/2, -size/2+offset, size/2);
+            glVertex3f(size/2, -size/2+offset, -size/2);
+/*
+            // top face
+            glColor3f(1.0,1.0,1.0);
+            glVertex3f(size/2, size/2+offset, size/2);
+            glVertex3f(-size/2, size/2+offset, size/2);
+            glVertex3f(-size/2, size/2+offset, -size/2);
+            glVertex3f(size/2, size/2+offset, -size/2);
+
+            // bottom face
+            glColor3f(1.0,1.0,1.0);
+            glVertex3f(size/2, -size/2+offset, size/2);
+            glVertex3f(-size/2, -size/2+offset, size/2);
+            glVertex3f(-size/2, -size/2+offset, -size/2);
+            glVertex3f(size/2, -size/2+offset, -size/2);
+            */
+        glEnd();
+        glEnable( GL_LIGHTING );
+    glPopMatrix();
+}
 
 void ExplosionGenerator::drawCube(float size)
 {

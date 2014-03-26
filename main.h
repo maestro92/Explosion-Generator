@@ -12,6 +12,7 @@
 
 #include "ParticleEmitter.h"
 #include "CubeEmitter.h"
+#include "Smoke.h"
 /*
 
 http://www.gamedev.net/page/resources/_/creative/visual-arts/make-a-particle-explosion-effect-r2701
@@ -28,10 +29,10 @@ class ExplosionGenerator
 
 
     CubeEmitter e_CubeEmitter;
-
+    Smoke smoke;
     bool running;
-
-
+    bool dvel;
+    bool addSmoke;
 
     // buttons
     bool g_bLeftMouseDown;
@@ -62,7 +63,7 @@ class ExplosionGenerator
         void start();
 
         void drawCube(float size);
-
+        void drawCubeFrame(float size, int offset);
 };
 
 

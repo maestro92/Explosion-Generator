@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1395612493 source:d:\martin\programming\c and c++\sdl\explosion generator\main.cpp
+1395797900 source:d:\martin\programming\c and c++\sdl\explosion generator\main.cpp
 	<cstdlib>
 	<iostream>
 	"main.h"
@@ -193,7 +193,7 @@
 1300205769 source:d:\martin\programming\c and c++\sdl\explosion generator\particlesystempch.cpp
 	"ParticleSystemPCH.h"
 
-1394353134 d:\martin\programming\c and c++\sdl\explosion generator\particlesystempch.h
+1395616955 d:\martin\programming\c and c++\sdl\explosion generator\particlesystempch.h
 	<string>
 	<iostream>
 	<ctime>
@@ -231,12 +231,12 @@
 	"Random.h"
 	"SphereEmitter.h"
 
-1300289840 d:\martin\programming\c and c++\sdl\explosion generator\random.h
+1395616946 d:\martin\programming\c and c++\sdl\explosion generator\random.h
 
 1394357618 d:\martin\programming\c and c++\sdl\explosion generator\sphereemitter.h
 	"ParticleEmitter.h"
 
-1395598119 d:\martin\programming\c and c++\sdl\explosion generator\particleemitter.h
+1395616953 d:\martin\programming\c and c++\sdl\explosion generator\particleemitter.h
 	"Particle.h"
 	<cstdlib>
 	<cstdlib>
@@ -248,7 +248,7 @@
 	<fstream>
 	<cstdio>
 
-1395606574 d:\martin\programming\c and c++\sdl\explosion generator\particle.h
+1395616951 d:\martin\programming\c and c++\sdl\explosion generator\particle.h
 	<glm/glm.hpp>
 	<cstdlib>
 	<vector>
@@ -327,7 +327,7 @@
 1394347387 source:d:\martin\programming\c and c++\sdl\explosion generator\pivotcamera.cpp
 	"PivotCamera.h"
 
-1395605924 d:\martin\programming\c and c++\sdl\explosion generator\main.h
+1395791946 d:\martin\programming\c and c++\sdl\explosion generator\main.h
 	<GL/glew.h>
 	"SDL/SDL_opengl.h"
 	"SDL/SDL.h"
@@ -336,6 +336,7 @@
 	"define.h"
 	"ParticleEmitter.h"
 	"CubeEmitter.h"
+	"Smoke.h"
 
 1394347221 d:\martin\programming\c and c++\sdl\explosion generator\pivotcamera.h
 	"camera.h"
@@ -359,12 +360,12 @@
 	<glm/gtx/norm.hpp>
 	<SOIL.h>
 
-1391591343 source:d:\martin\programming\c and c++\sdl\explosion generator\elapsedtime.cpp
+1395616957 source:d:\martin\programming\c and c++\sdl\explosion generator\elapsedtime.cpp
 	"ParticleSystemPCH.h"
 	"ElapsedTime.h"
 	<algorithm>
 
-1300206296 d:\martin\programming\c and c++\sdl\explosion generator\elapsedtime.h
+1395616959 d:\martin\programming\c and c++\sdl\explosion generator\elapsedtime.h
 
 1394362548 source:d:\martin\programming\c and c++\sdl\explosion generator\spriteemitter.cpp
 
@@ -436,20 +437,35 @@
 	"gl/glu.h"
 	"iostream"
 
-1395616052 source:d:\martin\programming\c and c++\sdl\explosion generator\cubeemitter.cpp
+1395630565 source:d:\martin\programming\c and c++\sdl\explosion generator\cubeemitter.cpp
 	"CubeEmitter.h"
 	"gl/gl.h"
 	"gl/glu.h"
 
-1395615295 d:\martin\programming\c and c++\sdl\explosion generator\cubeemitter.h
+1395616949 d:\martin\programming\c and c++\sdl\explosion generator\cubeemitter.h
 	"ParticleEmitter.h"
 	<cstdlib>
 	<iostream>
 	<algorithm>
 	"Random.h"
 
-1395567764 source:d:\martin\programming\c and c++\sdl\explosion generator\josstam.cpp
+1395616942 source:d:\martin\programming\c and c++\sdl\explosion generator\josstam.cpp
 	"JosStam.h"
 
-1395567773 d:\martin\programming\c and c++\sdl\explosion generator\josstam.h
+1395616940 d:\martin\programming\c and c++\sdl\explosion generator\josstam.h
+
+1395801807 source:d:\martin\programming\c and c++\sdl\explosion generator\smoke.cpp
+	"Smoke.h"
+
+1395798117 d:\martin\programming\c and c++\sdl\explosion generator\smoke.h
+	<vector>
+	<iostream>
+	<sstream>
+	<string>
+	<algorithm>
+	<fstream>
+	<cstdio>
+	"gl/gl.h"
+	"gl/glu.h"
+	"define.h"
 

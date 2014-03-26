@@ -1,282 +1,2940 @@
 nice
-start_x is -0.4
+
+
+
+
+
+
+
+
+start_x is -4
 start_y is 0
-start_z is -0.4
-position is -0.4 0 -0.4
-position is -0.4 0 -0.2
-position is -0.4 0 0
-position is -0.4 0 0.2
-position is -0.4 0 0.4
-position is -0.2 0 -0.4
-position is -0.2 0 -0.2
-position is -0.2 0 0
-position is -0.2 0 0.2
-position is -0.2 0 0.4
-position is 0 0 -0.4
-position is 0 0 -0.2
+start_z is -4
+position is -4 0 -4
+position is -4 0 -2
+position is -4 0 0
+position is -4 0 2
+position is -4 0 4
+position is -2 0 -4
+position is -2 0 -2
+position is -2 0 0
+position is -2 0 2
+position is -2 0 4
+position is 0 0 -4
+position is 0 0 -2
 position is 0 0 0
-position is 0 0 0.2
-position is 0 0 0.4
-position is 0.2 0 -0.4
-position is 0.2 0 -0.2
-position is 0.2 0 0
-position is 0.2 0 0.2
-position is 0.2 0 0.4
-position is 0.4 0 -0.4
-position is 0.4 0 -0.2
-position is 0.4 0 0
-position is 0.4 0 0.2
-position is 0.4 0 0.4
-position is -0.4 0.2 -0.4
-position is -0.4 0.2 -0.2
-position is -0.4 0.2 0
-position is -0.4 0.2 0.2
-position is -0.4 0.2 0.4
-position is -0.2 0.2 -0.4
-position is -0.2 0.2 -0.2
-position is -0.2 0.2 0
-position is -0.2 0.2 0.2
-position is -0.2 0.2 0.4
-position is 0 0.2 -0.4
-position is 0 0.2 -0.2
-position is 0 0.2 0
-position is 0 0.2 0.2
-position is 0 0.2 0.4
-position is 0.2 0.2 -0.4
-position is 0.2 0.2 -0.2
-position is 0.2 0.2 0
-position is 0.2 0.2 0.2
-position is 0.2 0.2 0.4
-position is 0.4 0.2 -0.4
-position is 0.4 0.2 -0.2
-position is 0.4 0.2 0
-position is 0.4 0.2 0.2
-position is 0.4 0.2 0.4
-position is -0.4 0.4 -0.4
-position is -0.4 0.4 -0.2
-position is -0.4 0.4 0
-position is -0.4 0.4 0.2
-position is -0.4 0.4 0.4
-position is -0.2 0.4 -0.4
-position is -0.2 0.4 -0.2
-position is -0.2 0.4 0
-position is -0.2 0.4 0.2
-position is -0.2 0.4 0.4
-position is 0 0.4 -0.4
-position is 0 0.4 -0.2
-position is 0 0.4 0
-position is 0 0.4 0.2
-position is 0 0.4 0.4
-position is 0.2 0.4 -0.4
-position is 0.2 0.4 -0.2
-position is 0.2 0.4 0
-position is 0.2 0.4 0.2
-position is 0.2 0.4 0.4
-position is 0.4 0.4 -0.4
-position is 0.4 0.4 -0.2
-position is 0.4 0.4 0
-position is 0.4 0.4 0.2
-position is 0.4 0.4 0.4
-position is -0.4 0.6 -0.4
-position is -0.4 0.6 -0.2
-position is -0.4 0.6 0
-position is -0.4 0.6 0.2
-position is -0.4 0.6 0.4
-position is -0.2 0.6 -0.4
-position is -0.2 0.6 -0.2
-position is -0.2 0.6 0
-position is -0.2 0.6 0.2
-position is -0.2 0.6 0.4
-position is 0 0.6 -0.4
-position is 0 0.6 -0.2
-position is 0 0.6 0
-position is 0 0.6 0.2
-position is 0 0.6 0.4
-position is 0.2 0.6 -0.4
-position is 0.2 0.6 -0.2
-position is 0.2 0.6 0
-position is 0.2 0.6 0.2
-position is 0.2 0.6 0.4
-position is 0.4 0.6 -0.4
-position is 0.4 0.6 -0.2
-position is 0.4 0.6 0
-position is 0.4 0.6 0.2
-position is 0.4 0.6 0.4
-position is -0.4 0.8 -0.4
-position is -0.4 0.8 -0.2
-position is -0.4 0.8 0
-position is -0.4 0.8 0.2
-position is -0.4 0.8 0.4
-position is -0.2 0.8 -0.4
-position is -0.2 0.8 -0.2
-position is -0.2 0.8 0
-position is -0.2 0.8 0.2
-position is -0.2 0.8 0.4
-position is 0 0.8 -0.4
-position is 0 0.8 -0.2
-position is 0 0.8 0
-position is 0 0.8 0.2
-position is 0 0.8 0.4
-position is 0.2 0.8 -0.4
-position is 0.2 0.8 -0.2
-position is 0.2 0.8 0
-position is 0.2 0.8 0.2
-position is 0.2 0.8 0.4
-position is 0.4 0.8 -0.4
-position is 0.4 0.8 -0.2
-position is 0.4 0.8 0
-position is 0.4 0.8 0.2
-position is 0.4 0.8 0.4
+position is 0 0 2
+position is 0 0 4
+position is 2 0 -4
+position is 2 0 -2
+position is 2 0 0
+position is 2 0 2
+position is 2 0 4
+position is 4 0 -4
+position is 4 0 -2
+position is 4 0 0
+position is 4 0 2
+position is 4 0 4
+position is -4 2 -4
+position is -4 2 -2
+position is -4 2 0
+position is -4 2 2
+position is -4 2 4
+position is -2 2 -4
+position is -2 2 -2
+position is -2 2 0
+position is -2 2 2
+position is -2 2 4
+position is 0 2 -4
+position is 0 2 -2
+position is 0 2 0
+position is 0 2 2
+position is 0 2 4
+position is 2 2 -4
+position is 2 2 -2
+position is 2 2 0
+position is 2 2 2
+position is 2 2 4
+position is 4 2 -4
+position is 4 2 -2
+position is 4 2 0
+position is 4 2 2
+position is 4 2 4
+position is -4 4 -4
+position is -4 4 -2
+position is -4 4 0
+position is -4 4 2
+position is -4 4 4
+position is -2 4 -4
+position is -2 4 -2
+position is -2 4 0
+position is -2 4 2
+position is -2 4 4
+position is 0 4 -4
+position is 0 4 -2
+position is 0 4 0
+position is 0 4 2
+position is 0 4 4
+position is 2 4 -4
+position is 2 4 -2
+position is 2 4 0
+position is 2 4 2
+position is 2 4 4
+position is 4 4 -4
+position is 4 4 -2
+position is 4 4 0
+position is 4 4 2
+position is 4 4 4
+position is -4 6 -4
+position is -4 6 -2
+position is -4 6 0
+position is -4 6 2
+position is -4 6 4
+position is -2 6 -4
+position is -2 6 -2
+position is -2 6 0
+position is -2 6 2
+position is -2 6 4
+position is 0 6 -4
+position is 0 6 -2
+position is 0 6 0
+position is 0 6 2
+position is 0 6 4
+position is 2 6 -4
+position is 2 6 -2
+position is 2 6 0
+position is 2 6 2
+position is 2 6 4
+position is 4 6 -4
+position is 4 6 -2
+position is 4 6 0
+position is 4 6 2
+position is 4 6 4
+position is -4 8 -4
+position is -4 8 -2
+position is -4 8 0
+position is -4 8 2
+position is -4 8 4
+position is -2 8 -4
+position is -2 8 -2
+position is -2 8 0
+position is -2 8 2
+position is -2 8 4
+position is 0 8 -4
+position is 0 8 -2
+position is 0 8 0
+position is 0 8 2
+position is 0 8 4
+position is 2 8 -4
+position is 2 8 -2
+position is 2 8 0
+position is 2 8 2
+position is 2 8 4
+position is 4 8 -4
+position is 4 8 -2
+position is 4 8 0
+position is 4 8 2
+position is 4 8 4
 Checking
--0.4 0 -0.4
--0.4 0 -0.2
--0.4 0 0
--0.4 0 0.2
--0.4 0 0.4
--0.2 0 -0.4
--0.2 0 -0.2
--0.2 0 0
--0.2 0 0.2
--0.2 0 0.4
-0 0 -0.4
-0 0 -0.2
+-4 0 -4
+-4 0 -2
+-4 0 0
+-4 0 2
+-4 0 4
+-2 0 -4
+-2 0 -2
+-2 0 0
+-2 0 2
+-2 0 4
+0 0 -4
+0 0 -2
 0 0 0
-0 0 0.2
-0 0 0.4
-0.2 0 -0.4
-0.2 0 -0.2
-0.2 0 0
-0.2 0 0.2
-0.2 0 0.4
-0.4 0 -0.4
-0.4 0 -0.2
-0.4 0 0
-0.4 0 0.2
-0.4 0 0.4
--0.4 0.2 -0.4
--0.4 0.2 -0.2
--0.4 0.2 0
--0.4 0.2 0.2
--0.4 0.2 0.4
--0.2 0.2 -0.4
--0.2 0.2 -0.2
--0.2 0.2 0
--0.2 0.2 0.2
--0.2 0.2 0.4
-0 0.2 -0.4
-0 0.2 -0.2
-0 0.2 0
-0 0.2 0.2
-0 0.2 0.4
-0.2 0.2 -0.4
-0.2 0.2 -0.2
-0.2 0.2 0
-0.2 0.2 0.2
-0.2 0.2 0.4
-0.4 0.2 -0.4
-0.4 0.2 -0.2
-0.4 0.2 0
-0.4 0.2 0.2
-0.4 0.2 0.4
--0.4 0.4 -0.4
--0.4 0.4 -0.2
--0.4 0.4 0
--0.4 0.4 0.2
--0.4 0.4 0.4
--0.2 0.4 -0.4
--0.2 0.4 -0.2
--0.2 0.4 0
--0.2 0.4 0.2
--0.2 0.4 0.4
-0 0.4 -0.4
-0 0.4 -0.2
-0 0.4 0
-0 0.4 0.2
-0 0.4 0.4
-0.2 0.4 -0.4
-0.2 0.4 -0.2
-0.2 0.4 0
-0.2 0.4 0.2
-0.2 0.4 0.4
-0.4 0.4 -0.4
-0.4 0.4 -0.2
-0.4 0.4 0
-0.4 0.4 0.2
-0.4 0.4 0.4
--0.4 0.6 -0.4
--0.4 0.6 -0.2
--0.4 0.6 0
--0.4 0.6 0.2
--0.4 0.6 0.4
--0.2 0.6 -0.4
--0.2 0.6 -0.2
--0.2 0.6 0
--0.2 0.6 0.2
--0.2 0.6 0.4
-0 0.6 -0.4
-0 0.6 -0.2
-0 0.6 0
-0 0.6 0.2
-0 0.6 0.4
-0.2 0.6 -0.4
-0.2 0.6 -0.2
-0.2 0.6 0
-0.2 0.6 0.2
-0.2 0.6 0.4
-0.4 0.6 -0.4
-0.4 0.6 -0.2
-0.4 0.6 0
-0.4 0.6 0.2
-0.4 0.6 0.4
--0.4 0.8 -0.4
--0.4 0.8 -0.2
--0.4 0.8 0
--0.4 0.8 0.2
--0.4 0.8 0.4
--0.2 0.8 -0.4
--0.2 0.8 -0.2
--0.2 0.8 0
--0.2 0.8 0.2
--0.2 0.8 0.4
-0 0.8 -0.4
-0 0.8 -0.2
-0 0.8 0
-0 0.8 0.2
-0 0.8 0.4
-0.2 0.8 -0.4
-0.2 0.8 -0.2
-0.2 0.8 0
-0.2 0.8 0.2
-0.2 0.8 0.4
-0.4 0.8 -0.4
-0.4 0.8 -0.2
-0.4 0.8 0
-0.4 0.8 0.2
-0.4 0.8 0.4
-clicking right
+0 0 2
+0 0 4
+2 0 -4
+2 0 -2
+2 0 0
+2 0 2
+2 0 4
+4 0 -4
+4 0 -2
+4 0 0
+4 0 2
+4 0 4
+-4 2 -4
+-4 2 -2
+-4 2 0
+-4 2 2
+-4 2 4
+-2 2 -4
+-2 2 -2
+-2 2 0
+-2 2 2
+-2 2 4
+0 2 -4
+0 2 -2
+0 2 0
+0 2 2
+0 2 4
+2 2 -4
+2 2 -2
+2 2 0
+2 2 2
+2 2 4
+4 2 -4
+4 2 -2
+4 2 0
+4 2 2
+4 2 4
+-4 4 -4
+-4 4 -2
+-4 4 0
+-4 4 2
+-4 4 4
+-2 4 -4
+-2 4 -2
+-2 4 0
+-2 4 2
+-2 4 4
+0 4 -4
+0 4 -2
+0 4 0
+0 4 2
+0 4 4
+2 4 -4
+2 4 -2
+2 4 0
+2 4 2
+2 4 4
+4 4 -4
+4 4 -2
+4 4 0
+4 4 2
+4 4 4
+-4 6 -4
+-4 6 -2
+-4 6 0
+-4 6 2
+-4 6 4
+-2 6 -4
+-2 6 -2
+-2 6 0
+-2 6 2
+-2 6 4
+0 6 -4
+0 6 -2
+0 6 0
+0 6 2
+0 6 4
+2 6 -4
+2 6 -2
+2 6 0
+2 6 2
+2 6 4
+4 6 -4
+4 6 -2
+4 6 0
+4 6 2
+4 6 4
+-4 8 -4
+-4 8 -2
+-4 8 0
+-4 8 2
+-4 8 4
+-2 8 -4
+-2 8 -2
+-2 8 0
+-2 8 2
+-2 8 4
+0 8 -4
+0 8 -2
+0 8 0
+0 8 2
+0 8 4
+2 8 -4
+2 8 -2
+2 8 0
+2 8 2
+2 8 4
+4 8 -4
+4 8 -2
+4 8 0
+4 8 2
+4 8 4
 clicking left
+clicking right
 clicking Up left
 clicking Up right
 clicking left
 clicking Up left
+clicking right
+clicking left
+clicking Up left
+clicking Up right
+start_x is -4
+start_y is 0
+start_z is -4
+position is -4 0 -4
+position is -4 0 -2
+position is -4 0 0
+position is -4 0 2
+position is -4 0 4
+position is -2 0 -4
+position is -2 0 -2
+position is -2 0 0
+position is -2 0 2
+position is -2 0 4
+position is 0 0 -4
+position is 0 0 -2
+position is 0 0 0
+position is 0 0 2
+position is 0 0 4
+position is 2 0 -4
+position is 2 0 -2
+position is 2 0 0
+position is 2 0 2
+position is 2 0 4
+position is 4 0 -4
+position is 4 0 -2
+position is 4 0 0
+position is 4 0 2
+position is 4 0 4
+position is -4 2 -4
+position is -4 2 -2
+position is -4 2 0
+position is -4 2 2
+position is -4 2 4
+position is -2 2 -4
+position is -2 2 -2
+position is -2 2 0
+position is -2 2 2
+position is -2 2 4
+position is 0 2 -4
+position is 0 2 -2
+position is 0 2 0
+position is 0 2 2
+position is 0 2 4
+position is 2 2 -4
+position is 2 2 -2
+position is 2 2 0
+position is 2 2 2
+position is 2 2 4
+position is 4 2 -4
+position is 4 2 -2
+position is 4 2 0
+position is 4 2 2
+position is 4 2 4
+position is -4 4 -4
+position is -4 4 -2
+position is -4 4 0
+position is -4 4 2
+position is -4 4 4
+position is -2 4 -4
+position is -2 4 -2
+position is -2 4 0
+position is -2 4 2
+position is -2 4 4
+position is 0 4 -4
+position is 0 4 -2
+position is 0 4 0
+position is 0 4 2
+position is 0 4 4
+position is 2 4 -4
+position is 2 4 -2
+position is 2 4 0
+position is 2 4 2
+position is 2 4 4
+position is 4 4 -4
+position is 4 4 -2
+position is 4 4 0
+position is 4 4 2
+position is 4 4 4
+position is -4 6 -4
+position is -4 6 -2
+position is -4 6 0
+position is -4 6 2
+position is -4 6 4
+position is -2 6 -4
+position is -2 6 -2
+position is -2 6 0
+position is -2 6 2
+position is -2 6 4
+position is 0 6 -4
+position is 0 6 -2
+position is 0 6 0
+position is 0 6 2
+position is 0 6 4
+position is 2 6 -4
+position is 2 6 -2
+position is 2 6 0
+position is 2 6 2
+position is 2 6 4
+position is 4 6 -4
+position is 4 6 -2
+position is 4 6 0
+position is 4 6 2
+position is 4 6 4
+position is -4 8 -4
+position is -4 8 -2
+position is -4 8 0
+position is -4 8 2
+position is -4 8 4
+position is -2 8 -4
+position is -2 8 -2
+position is -2 8 0
+position is -2 8 2
+position is -2 8 4
+position is 0 8 -4
+position is 0 8 -2
+position is 0 8 0
+position is 0 8 2
+position is 0 8 4
+position is 2 8 -4
+position is 2 8 -2
+position is 2 8 0
+position is 2 8 2
+position is 2 8 4
+position is 4 8 -4
+position is 4 8 -2
+position is 4 8 0
+position is 4 8 2
+position is 4 8 4
+Checking
+-4 0 -4
+-4 0 -2
+-4 0 0
+-4 0 2
+-4 0 4
+-2 0 -4
+-2 0 -2
+-2 0 0
+-2 0 2
+-2 0 4
+0 0 -4
+0 0 -2
+0 0 0
+0 0 2
+0 0 4
+2 0 -4
+2 0 -2
+2 0 0
+2 0 2
+2 0 4
+4 0 -4
+4 0 -2
+4 0 0
+4 0 2
+4 0 4
+-4 2 -4
+-4 2 -2
+-4 2 0
+-4 2 2
+-4 2 4
+-2 2 -4
+-2 2 -2
+-2 2 0
+-2 2 2
+-2 2 4
+0 2 -4
+0 2 -2
+0 2 0
+0 2 2
+0 2 4
+2 2 -4
+2 2 -2
+2 2 0
+2 2 2
+2 2 4
+4 2 -4
+4 2 -2
+4 2 0
+4 2 2
+4 2 4
+-4 4 -4
+-4 4 -2
+-4 4 0
+-4 4 2
+-4 4 4
+-2 4 -4
+-2 4 -2
+-2 4 0
+-2 4 2
+-2 4 4
+0 4 -4
+0 4 -2
+0 4 0
+0 4 2
+0 4 4
+2 4 -4
+2 4 -2
+2 4 0
+2 4 2
+2 4 4
+4 4 -4
+4 4 -2
+4 4 0
+4 4 2
+4 4 4
+-4 6 -4
+-4 6 -2
+-4 6 0
+-4 6 2
+-4 6 4
+-2 6 -4
+-2 6 -2
+-2 6 0
+-2 6 2
+-2 6 4
+0 6 -4
+0 6 -2
+0 6 0
+0 6 2
+0 6 4
+2 6 -4
+2 6 -2
+2 6 0
+2 6 2
+2 6 4
+4 6 -4
+4 6 -2
+4 6 0
+4 6 2
+4 6 4
+-4 8 -4
+-4 8 -2
+-4 8 0
+-4 8 2
+-4 8 4
+-2 8 -4
+-2 8 -2
+-2 8 0
+-2 8 2
+-2 8 4
+0 8 -4
+0 8 -2
+0 8 0
+0 8 2
+0 8 4
+2 8 -4
+2 8 -2
+2 8 0
+2 8 2
+2 8 4
+4 8 -4
+4 8 -2
+4 8 0
+4 8 2
+4 8 4
+start_x is -4
+start_y is 0
+start_z is -4
+position is -4 0 -4
+position is -4 0 -2
+position is -4 0 0
+position is -4 0 2
+position is -4 0 4
+position is -2 0 -4
+position is -2 0 -2
+position is -2 0 0
+position is -2 0 2
+position is -2 0 4
+position is 0 0 -4
+position is 0 0 -2
+position is 0 0 0
+position is 0 0 2
+position is 0 0 4
+position is 2 0 -4
+position is 2 0 -2
+position is 2 0 0
+position is 2 0 2
+position is 2 0 4
+position is 4 0 -4
+position is 4 0 -2
+position is 4 0 0
+position is 4 0 2
+position is 4 0 4
+position is -4 2 -4
+position is -4 2 -2
+position is -4 2 0
+position is -4 2 2
+position is -4 2 4
+position is -2 2 -4
+position is -2 2 -2
+position is -2 2 0
+position is -2 2 2
+position is -2 2 4
+position is 0 2 -4
+position is 0 2 -2
+position is 0 2 0
+position is 0 2 2
+position is 0 2 4
+position is 2 2 -4
+position is 2 2 -2
+position is 2 2 0
+position is 2 2 2
+position is 2 2 4
+position is 4 2 -4
+position is 4 2 -2
+position is 4 2 0
+position is 4 2 2
+position is 4 2 4
+position is -4 4 -4
+position is -4 4 -2
+position is -4 4 0
+position is -4 4 2
+position is -4 4 4
+position is -2 4 -4
+position is -2 4 -2
+position is -2 4 0
+position is -2 4 2
+position is -2 4 4
+position is 0 4 -4
+position is 0 4 -2
+position is 0 4 0
+position is 0 4 2
+position is 0 4 4
+position is 2 4 -4
+position is 2 4 -2
+position is 2 4 0
+position is 2 4 2
+position is 2 4 4
+position is 4 4 -4
+position is 4 4 -2
+position is 4 4 0
+position is 4 4 2
+position is 4 4 4
+position is -4 6 -4
+position is -4 6 -2
+position is -4 6 0
+position is -4 6 2
+position is -4 6 4
+position is -2 6 -4
+position is -2 6 -2
+position is -2 6 0
+position is -2 6 2
+position is -2 6 4
+position is 0 6 -4
+position is 0 6 -2
+position is 0 6 0
+position is 0 6 2
+position is 0 6 4
+position is 2 6 -4
+position is 2 6 -2
+position is 2 6 0
+position is 2 6 2
+position is 2 6 4
+position is 4 6 -4
+position is 4 6 -2
+position is 4 6 0
+position is 4 6 2
+position is 4 6 4
+position is -4 8 -4
+position is -4 8 -2
+position is -4 8 0
+position is -4 8 2
+position is -4 8 4
+position is -2 8 -4
+position is -2 8 -2
+position is -2 8 0
+position is -2 8 2
+position is -2 8 4
+position is 0 8 -4
+position is 0 8 -2
+position is 0 8 0
+position is 0 8 2
+position is 0 8 4
+position is 2 8 -4
+position is 2 8 -2
+position is 2 8 0
+position is 2 8 2
+position is 2 8 4
+position is 4 8 -4
+position is 4 8 -2
+position is 4 8 0
+position is 4 8 2
+position is 4 8 4
+Checking
+-4 0 -4
+-4 0 -2
+-4 0 0
+-4 0 2
+-4 0 4
+-2 0 -4
+-2 0 -2
+-2 0 0
+-2 0 2
+-2 0 4
+0 0 -4
+0 0 -2
+0 0 0
+0 0 2
+0 0 4
+2 0 -4
+2 0 -2
+2 0 0
+2 0 2
+2 0 4
+4 0 -4
+4 0 -2
+4 0 0
+4 0 2
+4 0 4
+-4 2 -4
+-4 2 -2
+-4 2 0
+-4 2 2
+-4 2 4
+-2 2 -4
+-2 2 -2
+-2 2 0
+-2 2 2
+-2 2 4
+0 2 -4
+0 2 -2
+0 2 0
+0 2 2
+0 2 4
+2 2 -4
+2 2 -2
+2 2 0
+2 2 2
+2 2 4
+4 2 -4
+4 2 -2
+4 2 0
+4 2 2
+4 2 4
+-4 4 -4
+-4 4 -2
+-4 4 0
+-4 4 2
+-4 4 4
+-2 4 -4
+-2 4 -2
+-2 4 0
+-2 4 2
+-2 4 4
+0 4 -4
+0 4 -2
+0 4 0
+0 4 2
+0 4 4
+2 4 -4
+2 4 -2
+2 4 0
+2 4 2
+2 4 4
+4 4 -4
+4 4 -2
+4 4 0
+4 4 2
+4 4 4
+-4 6 -4
+-4 6 -2
+-4 6 0
+-4 6 2
+-4 6 4
+-2 6 -4
+-2 6 -2
+-2 6 0
+-2 6 2
+-2 6 4
+0 6 -4
+0 6 -2
+0 6 0
+0 6 2
+0 6 4
+2 6 -4
+2 6 -2
+2 6 0
+2 6 2
+2 6 4
+4 6 -4
+4 6 -2
+4 6 0
+4 6 2
+4 6 4
+-4 8 -4
+-4 8 -2
+-4 8 0
+-4 8 2
+-4 8 4
+-2 8 -4
+-2 8 -2
+-2 8 0
+-2 8 2
+-2 8 4
+0 8 -4
+0 8 -2
+0 8 0
+0 8 2
+0 8 4
+2 8 -4
+2 8 -2
+2 8 0
+2 8 2
+2 8 4
+4 8 -4
+4 8 -2
+4 8 0
+4 8 2
+4 8 4
+start_x is -4
+start_y is 0
+start_z is -4
+position is -4 0 -4
+position is -4 0 -2
+position is -4 0 0
+position is -4 0 2
+position is -4 0 4
+position is -2 0 -4
+position is -2 0 -2
+position is -2 0 0
+position is -2 0 2
+position is -2 0 4
+position is 0 0 -4
+position is 0 0 -2
+position is 0 0 0
+position is 0 0 2
+position is 0 0 4
+position is 2 0 -4
+position is 2 0 -2
+position is 2 0 0
+position is 2 0 2
+position is 2 0 4
+position is 4 0 -4
+position is 4 0 -2
+position is 4 0 0
+position is 4 0 2
+position is 4 0 4
+position is -4 2 -4
+position is -4 2 -2
+position is -4 2 0
+position is -4 2 2
+position is -4 2 4
+position is -2 2 -4
+position is -2 2 -2
+position is -2 2 0
+position is -2 2 2
+position is -2 2 4
+position is 0 2 -4
+position is 0 2 -2
+position is 0 2 0
+position is 0 2 2
+position is 0 2 4
+position is 2 2 -4
+position is 2 2 -2
+position is 2 2 0
+position is 2 2 2
+position is 2 2 4
+position is 4 2 -4
+position is 4 2 -2
+position is 4 2 0
+position is 4 2 2
+position is 4 2 4
+position is -4 4 -4
+position is -4 4 -2
+position is -4 4 0
+position is -4 4 2
+position is -4 4 4
+position is -2 4 -4
+position is -2 4 -2
+position is -2 4 0
+position is -2 4 2
+position is -2 4 4
+position is 0 4 -4
+position is 0 4 -2
+position is 0 4 0
+position is 0 4 2
+position is 0 4 4
+position is 2 4 -4
+position is 2 4 -2
+position is 2 4 0
+position is 2 4 2
+position is 2 4 4
+position is 4 4 -4
+position is 4 4 -2
+position is 4 4 0
+position is 4 4 2
+position is 4 4 4
+position is -4 6 -4
+position is -4 6 -2
+position is -4 6 0
+position is -4 6 2
+position is -4 6 4
+position is -2 6 -4
+position is -2 6 -2
+position is -2 6 0
+position is -2 6 2
+position is -2 6 4
+position is 0 6 -4
+position is 0 6 -2
+position is 0 6 0
+position is 0 6 2
+position is 0 6 4
+position is 2 6 -4
+position is 2 6 -2
+position is 2 6 0
+position is 2 6 2
+position is 2 6 4
+position is 4 6 -4
+position is 4 6 -2
+position is 4 6 0
+position is 4 6 2
+position is 4 6 4
+position is -4 8 -4
+position is -4 8 -2
+position is -4 8 0
+position is -4 8 2
+position is -4 8 4
+position is -2 8 -4
+position is -2 8 -2
+position is -2 8 0
+position is -2 8 2
+position is -2 8 4
+position is 0 8 -4
+position is 0 8 -2
+position is 0 8 0
+position is 0 8 2
+position is 0 8 4
+position is 2 8 -4
+position is 2 8 -2
+position is 2 8 0
+position is 2 8 2
+position is 2 8 4
+position is 4 8 -4
+position is 4 8 -2
+position is 4 8 0
+position is 4 8 2
+position is 4 8 4
+Checking
+-4 0 -4
+-4 0 -2
+-4 0 0
+-4 0 2
+-4 0 4
+-2 0 -4
+-2 0 -2
+-2 0 0
+-2 0 2
+-2 0 4
+0 0 -4
+0 0 -2
+0 0 0
+0 0 2
+0 0 4
+2 0 -4
+2 0 -2
+2 0 0
+2 0 2
+2 0 4
+4 0 -4
+4 0 -2
+4 0 0
+4 0 2
+4 0 4
+-4 2 -4
+-4 2 -2
+-4 2 0
+-4 2 2
+-4 2 4
+-2 2 -4
+-2 2 -2
+-2 2 0
+-2 2 2
+-2 2 4
+0 2 -4
+0 2 -2
+0 2 0
+0 2 2
+0 2 4
+2 2 -4
+2 2 -2
+2 2 0
+2 2 2
+2 2 4
+4 2 -4
+4 2 -2
+4 2 0
+4 2 2
+4 2 4
+-4 4 -4
+-4 4 -2
+-4 4 0
+-4 4 2
+-4 4 4
+-2 4 -4
+-2 4 -2
+-2 4 0
+-2 4 2
+-2 4 4
+0 4 -4
+0 4 -2
+0 4 0
+0 4 2
+0 4 4
+2 4 -4
+2 4 -2
+2 4 0
+2 4 2
+2 4 4
+4 4 -4
+4 4 -2
+4 4 0
+4 4 2
+4 4 4
+-4 6 -4
+-4 6 -2
+-4 6 0
+-4 6 2
+-4 6 4
+-2 6 -4
+-2 6 -2
+-2 6 0
+-2 6 2
+-2 6 4
+0 6 -4
+0 6 -2
+0 6 0
+0 6 2
+0 6 4
+2 6 -4
+2 6 -2
+2 6 0
+2 6 2
+2 6 4
+4 6 -4
+4 6 -2
+4 6 0
+4 6 2
+4 6 4
+-4 8 -4
+-4 8 -2
+-4 8 0
+-4 8 2
+-4 8 4
+-2 8 -4
+-2 8 -2
+-2 8 0
+-2 8 2
+-2 8 4
+0 8 -4
+0 8 -2
+0 8 0
+0 8 2
+0 8 4
+2 8 -4
+2 8 -2
+2 8 0
+2 8 2
+2 8 4
+4 8 -4
+4 8 -2
+4 8 0
+4 8 2
+4 8 4
+start_x is -4
+start_y is 0
+start_z is -4
+position is -4 0 -4
+position is -4 0 -2
+position is -4 0 0
+position is -4 0 2
+position is -4 0 4
+position is -2 0 -4
+position is -2 0 -2
+position is -2 0 0
+position is -2 0 2
+position is -2 0 4
+position is 0 0 -4
+position is 0 0 -2
+position is 0 0 0
+position is 0 0 2
+position is 0 0 4
+position is 2 0 -4
+position is 2 0 -2
+position is 2 0 0
+position is 2 0 2
+position is 2 0 4
+position is 4 0 -4
+position is 4 0 -2
+position is 4 0 0
+position is 4 0 2
+position is 4 0 4
+position is -4 2 -4
+position is -4 2 -2
+position is -4 2 0
+position is -4 2 2
+position is -4 2 4
+position is -2 2 -4
+position is -2 2 -2
+position is -2 2 0
+position is -2 2 2
+position is -2 2 4
+position is 0 2 -4
+position is 0 2 -2
+position is 0 2 0
+position is 0 2 2
+position is 0 2 4
+position is 2 2 -4
+position is 2 2 -2
+position is 2 2 0
+position is 2 2 2
+position is 2 2 4
+position is 4 2 -4
+position is 4 2 -2
+position is 4 2 0
+position is 4 2 2
+position is 4 2 4
+position is -4 4 -4
+position is -4 4 -2
+position is -4 4 0
+position is -4 4 2
+position is -4 4 4
+position is -2 4 -4
+position is -2 4 -2
+position is -2 4 0
+position is -2 4 2
+position is -2 4 4
+position is 0 4 -4
+position is 0 4 -2
+position is 0 4 0
+position is 0 4 2
+position is 0 4 4
+position is 2 4 -4
+position is 2 4 -2
+position is 2 4 0
+position is 2 4 2
+position is 2 4 4
+position is 4 4 -4
+position is 4 4 -2
+position is 4 4 0
+position is 4 4 2
+position is 4 4 4
+position is -4 6 -4
+position is -4 6 -2
+position is -4 6 0
+position is -4 6 2
+position is -4 6 4
+position is -2 6 -4
+position is -2 6 -2
+position is -2 6 0
+position is -2 6 2
+position is -2 6 4
+position is 0 6 -4
+position is 0 6 -2
+position is 0 6 0
+position is 0 6 2
+position is 0 6 4
+position is 2 6 -4
+position is 2 6 -2
+position is 2 6 0
+position is 2 6 2
+position is 2 6 4
+position is 4 6 -4
+position is 4 6 -2
+position is 4 6 0
+position is 4 6 2
+position is 4 6 4
+position is -4 8 -4
+position is -4 8 -2
+position is -4 8 0
+position is -4 8 2
+position is -4 8 4
+position is -2 8 -4
+position is -2 8 -2
+position is -2 8 0
+position is -2 8 2
+position is -2 8 4
+position is 0 8 -4
+position is 0 8 -2
+position is 0 8 0
+position is 0 8 2
+position is 0 8 4
+position is 2 8 -4
+position is 2 8 -2
+position is 2 8 0
+position is 2 8 2
+position is 2 8 4
+position is 4 8 -4
+position is 4 8 -2
+position is 4 8 0
+position is 4 8 2
+position is 4 8 4
+Checking
+-4 0 -4
+-4 0 -2
+-4 0 0
+-4 0 2
+-4 0 4
+-2 0 -4
+-2 0 -2
+-2 0 0
+-2 0 2
+-2 0 4
+0 0 -4
+0 0 -2
+0 0 0
+0 0 2
+0 0 4
+2 0 -4
+2 0 -2
+2 0 0
+2 0 2
+2 0 4
+4 0 -4
+4 0 -2
+4 0 0
+4 0 2
+4 0 4
+-4 2 -4
+-4 2 -2
+-4 2 0
+-4 2 2
+-4 2 4
+-2 2 -4
+-2 2 -2
+-2 2 0
+-2 2 2
+-2 2 4
+0 2 -4
+0 2 -2
+0 2 0
+0 2 2
+0 2 4
+2 2 -4
+2 2 -2
+2 2 0
+2 2 2
+2 2 4
+4 2 -4
+4 2 -2
+4 2 0
+4 2 2
+4 2 4
+-4 4 -4
+-4 4 -2
+-4 4 0
+-4 4 2
+-4 4 4
+-2 4 -4
+-2 4 -2
+-2 4 0
+-2 4 2
+-2 4 4
+0 4 -4
+0 4 -2
+0 4 0
+0 4 2
+0 4 4
+2 4 -4
+2 4 -2
+2 4 0
+2 4 2
+2 4 4
+4 4 -4
+4 4 -2
+4 4 0
+4 4 2
+4 4 4
+-4 6 -4
+-4 6 -2
+-4 6 0
+-4 6 2
+-4 6 4
+-2 6 -4
+-2 6 -2
+-2 6 0
+-2 6 2
+-2 6 4
+0 6 -4
+0 6 -2
+0 6 0
+0 6 2
+0 6 4
+2 6 -4
+2 6 -2
+2 6 0
+2 6 2
+2 6 4
+4 6 -4
+4 6 -2
+4 6 0
+4 6 2
+4 6 4
+-4 8 -4
+-4 8 -2
+-4 8 0
+-4 8 2
+-4 8 4
+-2 8 -4
+-2 8 -2
+-2 8 0
+-2 8 2
+-2 8 4
+0 8 -4
+0 8 -2
+0 8 0
+0 8 2
+0 8 4
+2 8 -4
+2 8 -2
+2 8 0
+2 8 2
+2 8 4
+4 8 -4
+4 8 -2
+4 8 0
+4 8 2
+4 8 4
 clicking left
 clicking right
 clicking Up right
 clicking Up left
 clicking left
+here
+source is 100
+dens_prev[index(x, y, z)] is 0
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 10
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.4
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.48
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.496
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.4992
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.4998
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.5
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.5
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.5
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.5
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.5
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.5
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.5
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.5
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.5
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.5
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.5
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.5
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.5
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.5
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.5
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.5
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.5
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.5
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.5
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.5
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.5
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.5
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.5
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.5
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.5
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.5
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.5
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.5
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.5
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.5
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.5
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.5
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.5
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.5
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.5
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.5
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.5
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.5
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.5
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.5
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.5
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.5
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.5
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.5
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.5
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.5
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.5
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.5
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.5
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.5
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.5
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.5
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.5
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.5
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.5
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.5
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.5
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.5
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.5
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.5
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.5
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.5
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.5
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.5
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.5
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.5
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.5
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.5
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.5
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.5
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.5
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.5
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.5
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.5
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.5
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.5
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.5
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.5
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.5
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.5
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.5
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.5
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.5
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.5
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.5
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.5
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.5
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.5
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.5
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.5
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.5
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.5
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.5
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.5
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.5
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.5
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.5
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.5
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.5
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.5
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.5
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.5
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.5
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.5
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.5
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.5
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.5
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.5
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.5
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.5
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.5
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.5
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.5
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.5
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.5
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.5
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.5
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.5
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.5
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.5
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.5
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.5
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.5
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.5
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.5
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.5
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.5
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.5
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.5
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.5
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.5
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.5
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.5
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.5
+dens_prev[index(x, y, z)] is 100
+
+here
+source is 100
+dens_prev[index(x, y, z)] is 0.00273375
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 10.0005
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.0001
+dens_prev[index(x, y, z)] is 100
+
+here
+source is 100
+dens_prev[index(x, y, z)] is 1.77927e-07
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 10
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12
+dens_prev[index(x, y, z)] is 100
+
+here
+source is 100
+dens_prev[index(x, y, z)] is 6.58987e-06
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 10
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.4
+dens_prev[index(x, y, z)] is 100
+
+here
+source is 100
+dens_prev[index(x, y, z)] is 1.4505e-09
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 10
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.4
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.48
+dens_prev[index(x, y, z)] is 100
+
+clicking Up left
+clicking right
+clicking left
+clicking Up right
+clicking Up left
+clicking left
+here
+source is 100
+dens_prev[index(x, y, z)] is 4.29073e-33
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 10
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.4
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.48
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.496
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.4992
+dens_prev[index(x, y, z)] is 100
+
+clicking Up left
+clicking left
 clicking right
 clicking Up right
 clicking Up left
 clicking left
+here
+source is 100
+dens_prev[index(x, y, z)] is 2.18059e-28
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 10
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12
+dens_prev[index(x, y, z)] is 100
+
+here
+source is 100
+dens_prev[index(x, y, z)] is 6.58987e-06
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 10
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.4
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.48
+dens_prev[index(x, y, z)] is 100
+
+here
+source is 100
+dens_prev[index(x, y, z)] is 1.61374e-08
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 10
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.4
+dens_prev[index(x, y, z)] is 100
+
+here
+source is 100
+dens_prev[index(x, y, z)] is 1.36555e-21
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 10
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.4
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.48
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.496
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.4992
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.4998
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.5
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.5
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.5
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.5
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.5
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.5
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.5
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.5
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.5
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.5
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.5
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.5
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.5
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.5
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.5
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.5
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.5
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.5
+dens_prev[index(x, y, z)] is 100
+
+here
+source is 100
+dens_prev[index(x, y, z)] is 1.61425e-08
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 10
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.4
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.48
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.496
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.4992
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.4998
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.5
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.5
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.5
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.5
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.5
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.5
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.5
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.5
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.5
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.5
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.5
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.5
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.5
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.5
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.5
+dens_prev[index(x, y, z)] is 100
+
+here
+source is 100
+dens_prev[index(x, y, z)] is 4.35848e-10
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 10
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.4
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.48
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.496
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.4992
+dens_prev[index(x, y, z)] is 100
+
+here
+source is 100
+dens_prev[index(x, y, z)] is 5.38077e-08
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 10
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.4
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.48
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.496
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.4992
+dens_prev[index(x, y, z)] is 100
+
+here
+source is 100
+dens_prev[index(x, y, z)] is 3.74995
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 10.75
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.15
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.43
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.486
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.4972
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.4994
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.4999
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.5
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.5
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.5
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.5
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.5
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.5
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.5
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.5
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.5
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.5
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.5
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.5
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.5
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.5
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.5
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.5
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.5
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.5
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.5
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.5
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.5
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.5
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.5
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.5
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.5
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.5
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.5
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.5
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.5
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.5
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.5
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.5
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.5
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.5
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.5
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.5
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.5
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.5
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.5
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.5
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.5
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.5
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.5
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.5
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.5
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.5
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.5
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.5
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.5
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.5
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.5
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.5
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.5
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.5
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.5
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.5
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.5
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.5
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.5
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.5
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.5
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.5
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.5
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.5
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.5
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.5
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.5
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.5
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.5
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.5
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.5
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.5
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.5
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.5
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.5
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.5
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.5
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.5
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.5
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.5
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.5
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.5
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.5
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.5
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.5
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.5
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.5
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.5
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.5
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.5
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.5
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.5
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.5
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.5
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.5
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.5
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.5
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.5
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.5
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.5
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.5
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.5
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.5
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.5
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.5
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.5
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.5
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.5
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.5
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.5
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.5
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.5
+dens_prev[index(x, y, z)] is 100
+
+here
+source is 100
+dens_prev[index(x, y, z)] is 0.00273375
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 10.0005
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.0001
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.4
+dens_prev[index(x, y, z)] is 100
+
+here
+source is 100
+dens_prev[index(x, y, z)] is 0.00272938
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 10.0005
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.0001
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.4
+dens_prev[index(x, y, z)] is 100
+
+here
+source is 100
+dens_prev[index(x, y, z)] is 0.33696
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 10.0674
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.0135
+dens_prev[index(x, y, z)] is 100
+
+here
+source is 100
+dens_prev[index(x, y, z)] is 4.80506e-09
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 10
+dens_prev[index(x, y, z)] is 100
+
+here
+source is 100
+dens_prev[index(x, y, z)] is 2.12576e-05
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 10
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.4
+dens_prev[index(x, y, z)] is 100
+
+here
+source is 100
+dens_prev[index(x, y, z)] is 0.0303264
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 10.0061
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.0012
+dens_prev[index(x, y, z)] is 100
+
 clicking Up left
-clicking left
-clicking right
-clicking Up right
-clicking Up left
-clicking left
-clicking right
-clicking Up right
-clicking Up left
-clicking left
-clicking Up left
+here
+source is 100
+dens_prev[index(x, y, z)] is 5.931e-07
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 10
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.4
+dens_prev[index(x, y, z)] is 100
+
+here
+source is 100
+dens_prev[index(x, y, z)] is 0.101088
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 10.0202
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.004
+dens_prev[index(x, y, z)] is 100
+
+here
+source is 100
+dens_prev[index(x, y, z)] is 0.100447
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 10.0201
+dens_prev[index(x, y, z)] is 100
+
+here
+source is 100
+dens_prev[index(x, y, z)] is 0.0972325
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 10.0194
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.0039
+dens_prev[index(x, y, z)] is 100
+
+here
+source is 100
+dens_prev[index(x, y, z)] is 0.00904017
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 10.0018
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.0004
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.4001
+dens_prev[index(x, y, z)] is 100
+
+here
+source is 100
+dens_prev[index(x, y, z)] is 0.00909793
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 10.0018
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.0004
+dens_prev[index(x, y, z)] is 100
+
+here
+source is 100
+dens_prev[index(x, y, z)] is 0.0301322
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 10.006
+dens_prev[index(x, y, z)] is 100
+
+source is 100
+dens_prev[index(x, y, z)] is 12.0012
+dens_prev[index(x, y, z)] is 100
+
+quitting game
 Terminating normally.

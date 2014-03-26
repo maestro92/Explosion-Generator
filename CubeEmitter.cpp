@@ -11,7 +11,7 @@
 #define ARRAY_SIZE_Y 5
 #define ARRAY_SIZE_Z 5
 
-float Radius = 0.1;
+float Radius = 1;
 float start_x, start_y, start_z;
 float pos_x, pos_y, pos_z;
 float vel_x, vel_y, vel_z;
