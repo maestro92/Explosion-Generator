@@ -74,7 +74,7 @@ void Smoke::InitVector(double * temp, double init)
     cout << endl;
 }
 
-
+/*
 /// update functions
 void Smoke::update(bool addSmoke)
 {
@@ -82,6 +82,7 @@ void Smoke::update(bool addSmoke)
     vel_step();
     dens_step();
 }
+*/
 
 void Smoke::get_from_UI(bool addSmoke, int x, int y, int z)
 {
@@ -94,6 +95,8 @@ void Smoke::get_from_UI(bool addSmoke, int x, int y, int z)
         cout << "dens_prev[index(x, y, z)] is " << dens_prev[index(x, y, z)] << endl << endl;
     }
 }
+
+
 
 
 void Smoke::vel_step()
@@ -349,7 +352,7 @@ void Smoke::lin_solve(vector<double> list, vector<double> list_prev, double diff
 
 
 
-
+/*
 /// display function
 void Smoke::show(int dvel)
 {
@@ -358,6 +361,7 @@ void Smoke::show(int dvel)
     else
         draw_density ();
 }
+*/
 
 void Smoke::draw_velocity()
 {
@@ -487,3 +491,25 @@ void Smoke::draw_density()
 }
 
 
+
+void Smoke::update(bool toggle)
+{
+    get_from_UI(toggle, 5, 5, 5);
+    vel_step();
+    dens_step();
+}
+
+
+void Smoke::show(bool toggle)
+{
+    if ( toggle )
+        draw_velocity ();
+    else
+        draw_density ();
+}
+
+
+void Smoke::Reset()
+{
+
+}

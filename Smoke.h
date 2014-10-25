@@ -9,6 +9,8 @@
 #include <fstream>
 #include <cstdio>
 
+#include "ParticleEffect_Interface.h"
+
 #include "gl/gl.h"
 #include "gl/glu.h"
 
@@ -17,7 +19,7 @@
 using namespace std;
 
 
-class Smoke
+class Smoke : public ParticleEffect_Interface
 {
     public:
         // side size
@@ -56,14 +58,14 @@ class Smoke
 
         void InitVector(double * temp, double init=0);
 
-        void update(bool addSmoke);
+//        void update(bool addSmoke);
         void get_from_UI(bool addSmoke, int x, int y, int z);
         void vel_step();
         void dens_step();
 
 
 
-        void show(int dvel);
+  //      void show(int dvel);
         void draw_density();
         void draw_velocity();
 
@@ -88,6 +90,9 @@ class Smoke
         // returns the index
         int index(int x, int y, int z);
 
+        void update(bool toggle = false);
+        void show(bool toggle = false);
+        void Reset();
 
 };
 

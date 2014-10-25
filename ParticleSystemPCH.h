@@ -19,10 +19,11 @@
 //#include "gl/gl.h"
 //#include "gl/glu.h"
 
+
 #define GLM_SWIZZLE_XYZW
 #include "glm/glm.hpp"
 #include "glm/gtc/type_ptr.hpp"
-//#include "glm/gtc/swizzle.hpp"
+//#include <glm/gtc/swizzle.hpp>
 #include "glm/gtc/quaternion.hpp"
 #include "glm/gtx/vector_angle.hpp"
 #include "glm/gtx/compatibility.hpp"
@@ -32,4 +33,4 @@
 #include "glm/gtx/euler_angles.hpp"
 #include "glm/gtx/norm.hpp"
 
-#include "SOIL.h"
+#include <SOIL.h>

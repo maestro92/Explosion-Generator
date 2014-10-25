@@ -1,14 +1,17 @@
 # depslib dependency file v1.0
-1396235721 source:d:\martin\programming\c and c++\sdl\explosion generator\main.cpp
-	<cstdlib>
+1394347321 source:d:\martin\programming\c and c++\sdl\explosion generator new\camera.cpp
+	"camera.h"
+	<algorithm>
 	<iostream>
-	"main.h"
-	<stdio.h>
-	<string>
-	<sstream>
-	"gl/gl.h"
-	"gl/glu.h"
-	"PivotCamera.h"
+
+1394356301 d:\martin\programming\c and c++\sdl\explosion generator new\camera.h
+	<cmath>
+	<iostream>
+	<SDL/SDL.h>
+	"define.h"
+	<GL/gl.h>
+	<GL/glu.h>
+	"vector3d.h"
 
 1255804049 c:\sdl-1.2.14\include\sdl\sdl.h
 	"SDL_main.h"
@@ -190,158 +193,7 @@
 	"begin_code.h"
 	"close_code.h"
 
-1300205769 source:d:\martin\programming\c and c++\sdl\explosion generator\particlesystempch.cpp
-	"ParticleSystemPCH.h"
-
-1403659137 d:\martin\programming\c and c++\sdl\explosion generator\particlesystempch.h
-	<string>
-	<iostream>
-	<ctime>
-	<vector>
-	<map>
-	<math.h>
-	<GL/glew.h>
-	"SDL/SDL_opengl.h"
-	"glm/glm.hpp"
-	"glm/gtc/type_ptr.hpp"
-	"glm/gtc/quaternion.hpp"
-	"glm/gtx/vector_angle.hpp"
-	"glm/gtx/compatibility.hpp"
-	"glm/gtx/matrix_operation.hpp"
-	"glm/gtx/transform.hpp"
-	"glm/gtx/quaternion.hpp"
-	"glm/gtx/euler_angles.hpp"
-	"glm/gtx/norm.hpp"
-	"SOIL.h"
-
-1390627523 c:\sdl-1.2.14\include\sdl\sdl_opengl.h
-	"SDL_config.h"
-	<windows.h>
-	<OpenGL/gl.h>
-	<OpenGL/glu.h>
-	<gl.h>
-	<glu.h>
-	<GL/gl.h>
-	<GL/glu.h>
-	<windows.h>
-	<stddef.h>
-
-1394584519 source:d:\martin\programming\c and c++\sdl\explosion generator\sphereemitter.cpp
-	"ParticleSystemPCH.h"
-	"Random.h"
-	"SphereEmitter.h"
-
-1395616946 d:\martin\programming\c and c++\sdl\explosion generator\random.h
-
-1394357618 d:\martin\programming\c and c++\sdl\explosion generator\sphereemitter.h
-	"ParticleEmitter.h"
-
-1396828955 d:\martin\programming\c and c++\sdl\explosion generator\particleemitter.h
-	"Particle.h"
-	<cstdlib>
-	<cstdlib>
-	<vector>
-	<iostream>
-	<sstream>
-	<string>
-	<algorithm>
-	<fstream>
-	<cstdio>
-
-1403659122 d:\martin\programming\c and c++\sdl\explosion generator\particle.h
-	"glm/glm.hpp"
-	<cstdlib>
-	<vector>
-
-1391579469 source:d:\martin\programming\c and c++\sdl\explosion generator\particlesystem.cpp
-	"particlesystem.h"
-
-1394349553 d:\martin\programming\c and c++\sdl\explosion generator\particlesystem.h
-	<glm/glm.hpp>
-	<SDL/SDL.h>
-	<cstdlib>
-	<ctime>
-	<vector>
-	"vector3d.h"
-	"camera.h"
-	"SOIL.h"
-	<GL/gl.h>
-	<GL/glu.h>
-
-1348910498 d:\martin\programming\c and c++\sdl\explosion generator\vector3d.h
-	<iostream>
-	<cmath>
-
-1394356301 d:\martin\programming\c and c++\sdl\explosion generator\camera.h
-	<cmath>
-	<iostream>
-	<SDL/SDL.h>
-	"define.h"
-	<GL/gl.h>
-	<GL/glu.h>
-	"vector3d.h"
-
-1394583350 source:d:\martin\programming\c and c++\sdl\explosion generator\particleeffect.cpp
-	"ParticleSystemPCH.h"
-	"ParticleEmitter.h"
-	"camera.h"
-	"Random.h"
-	"ParticleEffect.h"
-	"gl/gl.h"
-	"gl/glu.h"
-	"iostream"
-
-1394541494 d:\martin\programming\c and c++\sdl\explosion generator\particleeffect.h
-	"Particle.h"
-	<SOIL.h>
-	"camera.h"
-	"SDL\SDL.h"
-	"SDL\SDL_image.h"
-	<cstdlib>
-	<vector>
-	<iostream>
-	<sstream>
-	<string>
-	<algorithm>
-	<fstream>
-	<cstdio>
-	"Interpolator.h"
-
-1391675704 d:\martin\programming\c and c++\sdl\explosion generator\interpolator.h
-	<iostream>
-	<map>
-	<vector>
-
-1348906896 source:d:\martin\programming\c and c++\sdl\explosion generator\vector3d.cpp
-	"vector3d.h"
-
-1394347321 source:d:\martin\programming\c and c++\sdl\explosion generator\camera.cpp
-	"camera.h"
-	<algorithm>
-	<iostream>
-
-1391895375 source:d:\martin\programming\c and c++\sdl\explosion generator\camera_fps.cpp
-	"camera.h"
-	<iostream>
-
-1394347387 source:d:\martin\programming\c and c++\sdl\explosion generator\pivotcamera.cpp
-	"PivotCamera.h"
-
-1396235399 d:\martin\programming\c and c++\sdl\explosion generator\main.h
-	<GL/glew.h>
-	"SDL/SDL_opengl.h"
-	"SDL/SDL.h"
-	"SDL/SDL_image.h"
-	"ElapsedTime.h"
-	"define.h"
-	"ParticleEmitter.h"
-	"CubeEmitter.h"
-	"Smoke.h"
-
-1394347221 d:\martin\programming\c and c++\sdl\explosion generator\pivotcamera.h
-	"camera.h"
-
-1403659076 d:\martin\programming\c and c++\sdl\explosion generator\define.h
+1403475573 d:\martin\programming\c and c++\sdl\explosion generator new\define.h
 	<string>
 	<iostream>
 	<ctime>
@@ -360,189 +212,16 @@
 	"glm/gtx/norm.hpp"
 	"SOIL.h"
 
-1395616957 source:d:\martin\programming\c and c++\sdl\explosion generator\elapsedtime.cpp
+1348910498 d:\martin\programming\c and c++\sdl\explosion generator new\vector3d.h
+	<iostream>
+	<cmath>
+
+1402726747 source:d:\martin\programming\c and c++\sdl\explosion generator new\elapsedtime.cpp
 	"ParticleSystemPCH.h"
 	"ElapsedTime.h"
 	<algorithm>
 
-1395616959 d:\martin\programming\c and c++\sdl\explosion generator\elapsedtime.h
-
-1394362548 source:d:\martin\programming\c and c++\sdl\explosion generator\spriteemitter.cpp
-
-1394553245 source:d:\martin\programming\c and c++\sdl\explosion generator\shockwaveeffect.cpp
-	"ParticleSystemPCH.h"
-	"ParticleEmitter.h"
-	"camera.h"
-	"Random.h"
-	"ShockwaveEffect.h"
-	"gl/gl.h"
-	"gl/glu.h"
-	"iostream"
-
-1394541453 d:\martin\programming\c and c++\sdl\explosion generator\shockwaveeffect.h
-	"Particle.h"
-	<SOIL.h>
-	"camera.h"
-	"SDL\SDL.h"
-	"SDL\SDL_image.h"
-	<cstdlib>
-	<vector>
-	<iostream>
-	<sstream>
-	<string>
-	<algorithm>
-	<fstream>
-	<cstdio>
-	"Interpolator.h"
-
-1394523001 d:\martin\programming\c and c++\sdl\explosion generator\shockwaveemitter.h
-	"ParticleEmitter.h"
-
-1394553318 source:d:\martin\programming\c and c++\sdl\explosion generator\shockwaveemitter.cpp
-	"ParticleSystemPCH.h"
-	"Random.h"
-	"ShockwaveEmitter.h"
-
-1394584177 d:\martin\programming\c and c++\sdl\explosion generator\roundsparksemitter.h
-	"ParticleEmitter.h"
-
-1394584623 source:d:\martin\programming\c and c++\sdl\explosion generator\roundsparksemitter.cpp
-	"ParticleSystemPCH.h"
-	"Random.h"
-	"RoundSparksEmitter.h"
-
-1394580406 d:\martin\programming\c and c++\sdl\explosion generator\roundsparkseffect.h
-	"Particle.h"
-	<SOIL.h>
-	"camera.h"
-	"SDL\SDL.h"
-	"SDL\SDL_image.h"
-	<cstdlib>
-	<vector>
-	<iostream>
-	<sstream>
-	<string>
-	<algorithm>
-	<fstream>
-	<cstdio>
-	"Interpolator.h"
-
-1394583342 source:d:\martin\programming\c and c++\sdl\explosion generator\roundsparkseffect.cpp
-	"ParticleSystemPCH.h"
-	"ParticleEmitter.h"
-	"camera.h"
-	"Random.h"
-	"RoundSparksEffect.h"
-	"gl/gl.h"
-	"gl/glu.h"
-	"iostream"
-
-1395630565 source:d:\martin\programming\c and c++\sdl\explosion generator\cubeemitter.cpp
-	"CubeEmitter.h"
-	"gl/gl.h"
-	"gl/glu.h"
-
-1396000561 d:\martin\programming\c and c++\sdl\explosion generator\cubeemitter.h
-	"ParticleEmitter.h"
-	<cstdlib>
-	<iostream>
-	<algorithm>
-	"Random.h"
-
-1395616942 source:d:\martin\programming\c and c++\sdl\explosion generator\josstam.cpp
-	"JosStam.h"
-
-1395616940 d:\martin\programming\c and c++\sdl\explosion generator\josstam.h
-
-1395801807 source:d:\martin\programming\c and c++\sdl\explosion generator\smoke.cpp
-	"Smoke.h"
-
-1395798117 d:\martin\programming\c and c++\sdl\explosion generator\smoke.h
-	<vector>
-	<iostream>
-	<sstream>
-	<string>
-	<algorithm>
-	<fstream>
-	<cstdio>
-	"gl/gl.h"
-	"gl/glu.h"
-	"define.h"
-
-1394347321 source:d:\martin\programming\c and c++\sdl\explosion generator - copy (2)\camera.cpp
-	"camera.h"
-	<algorithm>
-	<iostream>
-
-1394356301 d:\martin\programming\c and c++\sdl\explosion generator - copy (2)\camera.h
-	<cmath>
-	<iostream>
-	<SDL/SDL.h>
-	"define.h"
-	<GL/gl.h>
-	<GL/glu.h>
-	"vector3d.h"
-
-1403659076 d:\martin\programming\c and c++\sdl\explosion generator - copy (2)\define.h
-	<string>
-	<iostream>
-	<ctime>
-	<vector>
-	<map>
-	<math.h>
-	"glm/glm.hpp"
-	"glm/gtc/type_ptr.hpp"
-	"glm/gtc/quaternion.hpp"
-	"glm/gtx/vector_angle.hpp"
-	"glm/gtx/compatibility.hpp"
-	"glm/gtx/matrix_operation.hpp"
-	"glm/gtx/transform.hpp"
-	"glm/gtx/quaternion.hpp"
-	"glm/gtx/euler_angles.hpp"
-	"glm/gtx/norm.hpp"
-	"SOIL.h"
-
-1348910498 d:\martin\programming\c and c++\sdl\explosion generator - copy (2)\vector3d.h
-	<iostream>
-	<cmath>
-
-1395630565 source:d:\martin\programming\c and c++\sdl\explosion generator - copy (2)\cubeemitter.cpp
-	"CubeEmitter.h"
-	"gl/gl.h"
-	"gl/glu.h"
-
-1396000561 d:\martin\programming\c and c++\sdl\explosion generator - copy (2)\cubeemitter.h
-	"ParticleEmitter.h"
-	<cstdlib>
-	<iostream>
-	<algorithm>
-	"Random.h"
-
-1396828955 d:\martin\programming\c and c++\sdl\explosion generator - copy (2)\particleemitter.h
-	"Particle.h"
-	<cstdlib>
-	<cstdlib>
-	<vector>
-	<iostream>
-	<sstream>
-	<string>
-	<algorithm>
-	<fstream>
-	<cstdio>
-
-1403659122 d:\martin\programming\c and c++\sdl\explosion generator - copy (2)\particle.h
-	"glm/glm.hpp"
-	<cstdlib>
-	<vector>
-
-1395616946 d:\martin\programming\c and c++\sdl\explosion generator - copy (2)\random.h
-
-1395616957 source:d:\martin\programming\c and c++\sdl\explosion generator - copy (2)\elapsedtime.cpp
-	"ParticleSystemPCH.h"
-	"ElapsedTime.h"
-	<algorithm>
-
-1395616955 d:\martin\programming\c and c++\sdl\explosion generator - copy (2)\particlesystempch.h
+1395616955 d:\martin\programming\c and c++\sdl\explosion generator new\particlesystempch.h
 	<string>
 	<iostream>
 	<ctime>
@@ -563,782 +242,71 @@
 	<glm/gtx/norm.hpp>
 	<SOIL.h>
 
-1395616959 d:\martin\programming\c and c++\sdl\explosion generator - copy (2)\elapsedtime.h
+1390627523 c:\sdl-1.2.14\include\sdl\sdl_opengl.h
+	"SDL_config.h"
+	<windows.h>
+	<OpenGL/gl.h>
+	<OpenGL/glu.h>
+	<gl.h>
+	<glu.h>
+	<GL/gl.h>
+	<GL/glu.h>
+	<windows.h>
+	<stddef.h>
 
-1396235721 source:d:\martin\programming\c and c++\sdl\explosion generator - copy (2)\main.cpp
-	<cstdlib>
-	<iostream>
+1395616959 d:\martin\programming\c and c++\sdl\explosion generator new\elapsedtime.h
+
+1403475552 source:d:\martin\programming\c and c++\sdl\explosion generator new\main.cpp
 	"main.h"
-	<stdio.h>
-	<string>
-	<sstream>
 	"gl/gl.h"
 	"gl/glu.h"
 	"PivotCamera.h"
+	"SDL\SDL.h"
 
-1396235399 d:\martin\programming\c and c++\sdl\explosion generator - copy (2)\main.h
+1300205769 source:d:\martin\programming\c and c++\sdl\explosion generator new\particlesystempch.cpp
+	"ParticleSystemPCH.h"
+
+1348910496 source:d:\martin\programming\c and c++\sdl\explosion generator new\vector3d.cpp
+	"vector3d.h"
+
+1394347387 source:d:\martin\programming\c and c++\sdl\explosion generator new\pivotcamera.cpp
+	"PivotCamera.h"
+
+1394347221 d:\martin\programming\c and c++\sdl\explosion generator new\pivotcamera.h
+	"camera.h"
+
+1402709373 d:\martin\programming\c and c++\sdl\explosion generator new\main.h
+	<cstdlib>
+	<iostream>
+	<stdio.h>
+	<string>
+	<sstream>
+	"shader.h"
 	<GL/glew.h>
 	"SDL/SDL_opengl.h"
 	"SDL/SDL.h"
 	"SDL/SDL_image.h"
 	"ElapsedTime.h"
 	"define.h"
-	"ParticleEmitter.h"
-	"CubeEmitter.h"
+	"ParticleEffect_Interface.h"
+	"CubeEmitterEffect.h"
+	"L_CubeEmitterEffect.h"
 	"Smoke.h"
+	"CollisionDetection_HGrid.h"
 
-1395798117 d:\martin\programming\c and c++\sdl\explosion generator - copy (2)\smoke.h
-	<vector>
-	<iostream>
-	<sstream>
-	<string>
-	<algorithm>
-	<fstream>
-	<cstdio>
-	"gl/gl.h"
-	"gl/glu.h"
-	"define.h"
-
-1394347221 d:\martin\programming\c and c++\sdl\explosion generator - copy (2)\pivotcamera.h
-	"camera.h"
-
-1300205769 source:d:\martin\programming\c and c++\sdl\explosion generator - copy (2)\particlesystempch.cpp
-	"ParticleSystemPCH.h"
-
-1394347387 source:d:\martin\programming\c and c++\sdl\explosion generator - copy (2)\pivotcamera.cpp
-	"PivotCamera.h"
-
-1395801807 source:d:\martin\programming\c and c++\sdl\explosion generator - copy (2)\smoke.cpp
-	"Smoke.h"
-
-1359681820 d:\martin\programming\c and c++\sdl\explosion generator - copy (2)\glm\glm.hpp
-	"core/_fixes.hpp"
-	<cmath>
-	<climits>
-	<cfloat>
-	<limits>
-	<cstdio>
-	"core/setup.hpp"
-	"./core/_detail.hpp"
-	"./core/_vectorize.hpp"
-	"./core/type.hpp"
-	"./core/func_trigonometric.hpp"
-	"./core/func_exponential.hpp"
-	"./core/func_common.hpp"
-	"./core/func_packing.hpp"
-	"./core/func_geometric.hpp"
-	"./core/func_matrix.hpp"
-	"./core/func_vector_relational.hpp"
-	"./core/func_integer.hpp"
-	"./core/func_noise.hpp"
-	"./core/_swizzle.hpp"
-
-1359681820 d:\martin\programming\c and c++\sdl\explosion generator - copy (2)\glm\core\_fixes.hpp
-	<cmath>
-
-1359681818 d:\martin\programming\c and c++\sdl\explosion generator - copy (2)\glm\core\setup.hpp
-	<intrin.h>
-	<immintrin.h>
-	<immintrin.h>
-	<smmintrin.h>
-	<pmmintrin.h>
-	<emmintrin.h>
-
-1359681820 d:\martin\programming\c and c++\sdl\explosion generator - copy (2)\glm\core\_detail.hpp
-	"setup.hpp"
-	<cassert>
-	<cstdint>
-
-1359681820 d:\martin\programming\c and c++\sdl\explosion generator - copy (2)\glm\core\_vectorize.hpp
-
-1359681818 d:\martin\programming\c and c++\sdl\explosion generator - copy (2)\glm\core\type.hpp
-	"type_half.hpp"
-	"type_float.hpp"
-	"type_int.hpp"
-	"type_gentype.hpp"
-	"type_vec1.hpp"
-	"type_vec2.hpp"
-	"type_vec3.hpp"
-	"type_vec4.hpp"
-	"type_mat2x2.hpp"
-	"type_mat2x3.hpp"
-	"type_mat2x4.hpp"
-	"type_mat3x2.hpp"
-	"type_mat3x3.hpp"
-	"type_mat3x4.hpp"
-	"type_mat4x2.hpp"
-	"type_mat4x3.hpp"
-	"type_mat4x4.hpp"
-
-1359681818 d:\martin\programming\c and c++\sdl\explosion generator - copy (2)\glm\core\type_half.hpp
-	<cstdlib>
-	"type_half.inl"
-
-1359681818 d:\martin\programming\c and c++\sdl\explosion generator - copy (2)\glm\core\type_half.inl
-	"_detail.hpp"
-
-1359681818 d:\martin\programming\c and c++\sdl\explosion generator - copy (2)\glm\core\type_float.hpp
-	"type_half.hpp"
-	"setup.hpp"
-
-1359681818 d:\martin\programming\c and c++\sdl\explosion generator - copy (2)\glm\core\type_int.hpp
-	"setup.hpp"
-	"_detail.hpp"
-
-1359681818 d:\martin\programming\c and c++\sdl\explosion generator - copy (2)\glm\core\type_gentype.hpp
-	"type_size.hpp"
-
-1359681820 d:\martin\programming\c and c++\sdl\explosion generator - copy (2)\glm\core\type_size.hpp
-	<cstdlib>
-
-1359681820 d:\martin\programming\c and c++\sdl\explosion generator - copy (2)\glm\core\type_vec1.hpp
-	"type_vec.hpp"
-	"type_float.hpp"
-	"type_int.hpp"
-	"type_size.hpp"
-	"_swizzle.hpp"
-	"type_vec1.inl"
-
-1359681820 d:\martin\programming\c and c++\sdl\explosion generator - copy (2)\glm\core\type_vec.hpp
-	"type_gentype.hpp"
-
-1359681820 d:\martin\programming\c and c++\sdl\explosion generator - copy (2)\glm\core\_swizzle.hpp
-	"_swizzle_func.hpp"
-
-1359681820 d:\martin\programming\c and c++\sdl\explosion generator - copy (2)\glm\core\_swizzle_func.hpp
-
-1359681820 d:\martin\programming\c and c++\sdl\explosion generator - copy (2)\glm\core\type_vec1.inl
-
-1359681820 d:\martin\programming\c and c++\sdl\explosion generator - copy (2)\glm\core\type_vec2.hpp
-	"type_vec.hpp"
-	"type_float.hpp"
-	"type_int.hpp"
-	"type_size.hpp"
-	"_swizzle.hpp"
-	"type_vec2.inl"
-
-1359681820 d:\martin\programming\c and c++\sdl\explosion generator - copy (2)\glm\core\type_vec2.inl
-
-1359681820 d:\martin\programming\c and c++\sdl\explosion generator - copy (2)\glm\core\type_vec3.hpp
-	"type_vec.hpp"
-	"type_float.hpp"
-	"type_int.hpp"
-	"type_size.hpp"
-	"_swizzle.hpp"
-	"type_vec3.inl"
-
-1359681820 d:\martin\programming\c and c++\sdl\explosion generator - copy (2)\glm\core\type_vec3.inl
-
-1359681820 d:\martin\programming\c and c++\sdl\explosion generator - copy (2)\glm\core\type_vec4.hpp
-	"type_vec.hpp"
-	"type_float.hpp"
-	"type_int.hpp"
-	"type_size.hpp"
-	"_swizzle.hpp"
-	"type_vec4.inl"
-
-1359681820 d:\martin\programming\c and c++\sdl\explosion generator - copy (2)\glm\core\type_vec4.inl
-
-1359681818 d:\martin\programming\c and c++\sdl\explosion generator - copy (2)\glm\core\type_mat2x2.hpp
-	"type_mat.hpp"
-	"type_mat2x2.inl"
-
-1359681818 d:\martin\programming\c and c++\sdl\explosion generator - copy (2)\glm\core\type_mat.hpp
-	"type_gentype.hpp"
-
-1359681818 d:\martin\programming\c and c++\sdl\explosion generator - copy (2)\glm\core\type_mat2x2.inl
-
-1359681818 d:\martin\programming\c and c++\sdl\explosion generator - copy (2)\glm\core\type_mat2x3.hpp
-	"type_mat.hpp"
-	"type_mat2x3.inl"
-
-1359681818 d:\martin\programming\c and c++\sdl\explosion generator - copy (2)\glm\core\type_mat2x3.inl
-
-1359681818 d:\martin\programming\c and c++\sdl\explosion generator - copy (2)\glm\core\type_mat2x4.hpp
-	"type_mat.hpp"
-	"type_mat2x4.inl"
-
-1359681818 d:\martin\programming\c and c++\sdl\explosion generator - copy (2)\glm\core\type_mat2x4.inl
-
-1359681820 d:\martin\programming\c and c++\sdl\explosion generator - copy (2)\glm\core\type_mat3x2.hpp
-	"type_mat.hpp"
-	"type_mat3x2.inl"
-
-1359681820 d:\martin\programming\c and c++\sdl\explosion generator - copy (2)\glm\core\type_mat3x2.inl
-
-1359681820 d:\martin\programming\c and c++\sdl\explosion generator - copy (2)\glm\core\type_mat3x3.hpp
-	"type_mat.hpp"
-	"type_mat3x3.inl"
-
-1359681820 d:\martin\programming\c and c++\sdl\explosion generator - copy (2)\glm\core\type_mat3x3.inl
-
-1359681820 d:\martin\programming\c and c++\sdl\explosion generator - copy (2)\glm\core\type_mat3x4.hpp
-	"type_mat.hpp"
-	"type_mat3x4.inl"
-
-1359681820 d:\martin\programming\c and c++\sdl\explosion generator - copy (2)\glm\core\type_mat3x4.inl
-
-1359681820 d:\martin\programming\c and c++\sdl\explosion generator - copy (2)\glm\core\type_mat4x2.hpp
-	"type_mat.hpp"
-	"type_mat4x2.inl"
-
-1359681820 d:\martin\programming\c and c++\sdl\explosion generator - copy (2)\glm\core\type_mat4x2.inl
-
-1359681820 d:\martin\programming\c and c++\sdl\explosion generator - copy (2)\glm\core\type_mat4x3.hpp
-	"type_mat.hpp"
-	"type_mat4x3.inl"
-
-1359681820 d:\martin\programming\c and c++\sdl\explosion generator - copy (2)\glm\core\type_mat4x3.inl
-
-1359681820 d:\martin\programming\c and c++\sdl\explosion generator - copy (2)\glm\core\type_mat4x4.hpp
-	"type_mat.hpp"
-	"type_mat4x4.inl"
-
-1359681820 d:\martin\programming\c and c++\sdl\explosion generator - copy (2)\glm\core\type_mat4x4.inl
-
-1359681818 d:\martin\programming\c and c++\sdl\explosion generator - copy (2)\glm\core\func_trigonometric.hpp
-	"func_trigonometric.inl"
-
-1359681818 d:\martin\programming\c and c++\sdl\explosion generator - copy (2)\glm\core\func_trigonometric.inl
-
-1359681818 d:\martin\programming\c and c++\sdl\explosion generator - copy (2)\glm\core\func_exponential.hpp
-	"func_exponential.inl"
-
-1359681818 d:\martin\programming\c and c++\sdl\explosion generator - copy (2)\glm\core\func_exponential.inl
-
-1359681818 d:\martin\programming\c and c++\sdl\explosion generator - copy (2)\glm\core\func_common.hpp
-	"_fixes.hpp"
-	"func_common.inl"
-
-1359681818 d:\martin\programming\c and c++\sdl\explosion generator - copy (2)\glm\core\func_common.inl
-
-1359681818 d:\martin\programming\c and c++\sdl\explosion generator - copy (2)\glm\core\func_packing.hpp
-	"func_packing.inl"
-
-1359681818 d:\martin\programming\c and c++\sdl\explosion generator - copy (2)\glm\core\func_packing.inl
-
-1359681818 d:\martin\programming\c and c++\sdl\explosion generator - copy (2)\glm\core\func_geometric.hpp
-	"func_geometric.inl"
-
-1359681818 d:\martin\programming\c and c++\sdl\explosion generator - copy (2)\glm\core\func_geometric.inl
-
-1359681818 d:\martin\programming\c and c++\sdl\explosion generator - copy (2)\glm\core\func_matrix.hpp
-	"func_matrix.inl"
-
-1359681818 d:\martin\programming\c and c++\sdl\explosion generator - copy (2)\glm\core\func_matrix.inl
-
-1359681818 d:\martin\programming\c and c++\sdl\explosion generator - copy (2)\glm\core\func_vector_relational.hpp
-	"_detail.hpp"
-	"func_vector_relational.inl"
-
-1359681818 d:\martin\programming\c and c++\sdl\explosion generator - copy (2)\glm\core\func_vector_relational.inl
-
-1359681818 d:\martin\programming\c and c++\sdl\explosion generator - copy (2)\glm\core\func_integer.hpp
-	"func_integer.inl"
-
-1359681818 d:\martin\programming\c and c++\sdl\explosion generator - copy (2)\glm\core\func_integer.inl
-	<intrin.h>
-
-1359681818 d:\martin\programming\c and c++\sdl\explosion generator - copy (2)\glm\core\func_noise.hpp
-	"func_noise.inl"
-
-1359681818 d:\martin\programming\c and c++\sdl\explosion generator - copy (2)\glm\core\func_noise.inl
-
-1359681820 d:\martin\programming\c and c++\sdl\explosion generator - copy (2)\glm\gtc\type_ptr.hpp
-	"../glm.hpp"
-	"../gtc/half_float.hpp"
-	"../gtc/quaternion.hpp"
-	<cstring>
-	"type_ptr.inl"
-
-1359681820 d:\martin\programming\c and c++\sdl\explosion generator - copy (2)\glm\gtc\half_float.hpp
-	"../glm.hpp"
-	"half_float.inl"
-
-1359681820 d:\martin\programming\c and c++\sdl\explosion generator - copy (2)\glm\gtc\half_float.inl
-
-1359681820 d:\martin\programming\c and c++\sdl\explosion generator - copy (2)\glm\gtc\quaternion.hpp
-	"../glm.hpp"
-	"../gtc/half_float.hpp"
-	"../gtc/constants.hpp"
-	"quaternion.inl"
-
-1359681820 d:\martin\programming\c and c++\sdl\explosion generator - copy (2)\glm\gtc\constants.hpp
-	"../glm.hpp"
-	"../gtc/half_float.hpp"
-	"constants.inl"
-
-1359681820 d:\martin\programming\c and c++\sdl\explosion generator - copy (2)\glm\gtc\constants.inl
-
-1359681820 d:\martin\programming\c and c++\sdl\explosion generator - copy (2)\glm\gtc\quaternion.inl
-	<limits>
-
-1359681820 d:\martin\programming\c and c++\sdl\explosion generator - copy (2)\glm\gtc\type_ptr.inl
-
-1359681824 d:\martin\programming\c and c++\sdl\explosion generator - copy (2)\glm\gtx\vector_angle.hpp
-	"../glm.hpp"
-	"../gtc/epsilon.hpp"
-	"../gtx/quaternion.hpp"
-	"../gtx/rotate_vector.hpp"
-	"vector_angle.inl"
-
-1359681820 d:\martin\programming\c and c++\sdl\explosion generator - copy (2)\glm\gtc\epsilon.hpp
-	"../glm.hpp"
-	"../gtc/half_float.hpp"
-	"../gtc/quaternion.hpp"
-	"epsilon.inl"
-
-1359681820 d:\martin\programming\c and c++\sdl\explosion generator - copy (2)\glm\gtc\epsilon.inl
-
-1359681822 d:\martin\programming\c and c++\sdl\explosion generator - copy (2)\glm\gtx\quaternion.hpp
-	"../glm.hpp"
-	"../gtc/quaternion.hpp"
-	"quaternion.inl"
-
-1359681822 d:\martin\programming\c and c++\sdl\explosion generator - copy (2)\glm\gtx\quaternion.inl
-	<limits>
-
-1359681822 d:\martin\programming\c and c++\sdl\explosion generator - copy (2)\glm\gtx\rotate_vector.hpp
-	"../glm.hpp"
-	"../gtx/transform.hpp"
-	"rotate_vector.inl"
-
-1359681822 d:\martin\programming\c and c++\sdl\explosion generator - copy (2)\glm\gtx\transform.hpp
-	"../glm.hpp"
-	"../gtc/matrix_transform.hpp"
-	"transform.inl"
-
-1359681820 d:\martin\programming\c and c++\sdl\explosion generator - copy (2)\glm\gtc\matrix_transform.hpp
-	"../glm.hpp"
-	"matrix_transform.inl"
-
-1359681820 d:\martin\programming\c and c++\sdl\explosion generator - copy (2)\glm\gtc\matrix_transform.inl
-
-1359681822 d:\martin\programming\c and c++\sdl\explosion generator - copy (2)\glm\gtx\transform.inl
-
-1359681822 d:\martin\programming\c and c++\sdl\explosion generator - copy (2)\glm\gtx\rotate_vector.inl
-
-1359681824 d:\martin\programming\c and c++\sdl\explosion generator - copy (2)\glm\gtx\vector_angle.inl
-
-1359681820 d:\martin\programming\c and c++\sdl\explosion generator - copy (2)\glm\gtx\compatibility.hpp
-	"../glm.hpp"
-	"../gtc/half_float.hpp"
-	"../gtc/quaternion.hpp"
-	<cfloat>
-	<cmath>
-	"compatibility.inl"
-
-1359681820 d:\martin\programming\c and c++\sdl\explosion generator - copy (2)\glm\gtx\compatibility.inl
-
-1359681822 d:\martin\programming\c and c++\sdl\explosion generator - copy (2)\glm\gtx\matrix_operation.hpp
-	"../glm.hpp"
-	"matrix_operation.inl"
-
-1359681822 d:\martin\programming\c and c++\sdl\explosion generator - copy (2)\glm\gtx\matrix_operation.inl
-
-1359681822 d:\martin\programming\c and c++\sdl\explosion generator - copy (2)\glm\gtx\euler_angles.hpp
-	"../glm.hpp"
-	"../gtc/half_float.hpp"
-	"euler_angles.inl"
-
-1359681822 d:\martin\programming\c and c++\sdl\explosion generator - copy (2)\glm\gtx\euler_angles.inl
-
-1359681822 d:\martin\programming\c and c++\sdl\explosion generator - copy (2)\glm\gtx\norm.hpp
-	"../glm.hpp"
-	"../gtx/quaternion.hpp"
-	"norm.inl"
-
-1359681822 d:\martin\programming\c and c++\sdl\explosion generator - copy (2)\glm\gtx\norm.inl
-
-1394347321 source:d:\martin\programming\c and c++\sdl\explosion generator 2014 04 13 collision with ground and crappy smoke\camera.cpp
-	"camera.h"
-	<algorithm>
-	<iostream>
-
-1394356301 d:\martin\programming\c and c++\sdl\explosion generator 2014 04 13 collision with ground and crappy smoke\camera.h
-	<cmath>
-	<iostream>
-	<SDL/SDL.h>
-	"define.h"
-	<GL/gl.h>
-	<GL/glu.h>
-	"vector3d.h"
-
-1403659076 d:\martin\programming\c and c++\sdl\explosion generator 2014 04 13 collision with ground and crappy smoke\define.h
-	<string>
-	<iostream>
-	<ctime>
-	<vector>
-	<map>
-	<math.h>
-	"glm/glm.hpp"
-	"glm/gtc/type_ptr.hpp"
-	"glm/gtc/quaternion.hpp"
-	"glm/gtx/vector_angle.hpp"
-	"glm/gtx/compatibility.hpp"
-	"glm/gtx/matrix_operation.hpp"
-	"glm/gtx/transform.hpp"
-	"glm/gtx/quaternion.hpp"
-	"glm/gtx/euler_angles.hpp"
-	"glm/gtx/norm.hpp"
-	"SOIL.h"
-
-1359681820 d:\martin\programming\c and c++\sdl\explosion generator 2014 04 13 collision with ground and crappy smoke\glm\glm.hpp
-	"core/_fixes.hpp"
-	<cmath>
-	<climits>
-	<cfloat>
-	<limits>
-	<cstdio>
-	"core/setup.hpp"
-	"./core/_detail.hpp"
-	"./core/_vectorize.hpp"
-	"./core/type.hpp"
-	"./core/func_trigonometric.hpp"
-	"./core/func_exponential.hpp"
-	"./core/func_common.hpp"
-	"./core/func_packing.hpp"
-	"./core/func_geometric.hpp"
-	"./core/func_matrix.hpp"
-	"./core/func_vector_relational.hpp"
-	"./core/func_integer.hpp"
-	"./core/func_noise.hpp"
-	"./core/_swizzle.hpp"
-
-1359681820 d:\martin\programming\c and c++\sdl\explosion generator 2014 04 13 collision with ground and crappy smoke\glm\core\_fixes.hpp
-	<cmath>
-
-1359681818 d:\martin\programming\c and c++\sdl\explosion generator 2014 04 13 collision with ground and crappy smoke\glm\core\setup.hpp
-	<intrin.h>
-	<immintrin.h>
-	<immintrin.h>
-	<smmintrin.h>
-	<pmmintrin.h>
-	<emmintrin.h>
-
-1359681820 d:\martin\programming\c and c++\sdl\explosion generator 2014 04 13 collision with ground and crappy smoke\glm\core\_detail.hpp
-	"setup.hpp"
-	<cassert>
-	<cstdint>
-
-1359681820 d:\martin\programming\c and c++\sdl\explosion generator 2014 04 13 collision with ground and crappy smoke\glm\core\_vectorize.hpp
-
-1359681818 d:\martin\programming\c and c++\sdl\explosion generator 2014 04 13 collision with ground and crappy smoke\glm\core\type.hpp
-	"type_half.hpp"
-	"type_float.hpp"
-	"type_int.hpp"
-	"type_gentype.hpp"
-	"type_vec1.hpp"
-	"type_vec2.hpp"
-	"type_vec3.hpp"
-	"type_vec4.hpp"
-	"type_mat2x2.hpp"
-	"type_mat2x3.hpp"
-	"type_mat2x4.hpp"
-	"type_mat3x2.hpp"
-	"type_mat3x3.hpp"
-	"type_mat3x4.hpp"
-	"type_mat4x2.hpp"
-	"type_mat4x3.hpp"
-	"type_mat4x4.hpp"
-
-1359681818 d:\martin\programming\c and c++\sdl\explosion generator 2014 04 13 collision with ground and crappy smoke\glm\core\type_half.hpp
-	<cstdlib>
-	"type_half.inl"
-
-1359681818 d:\martin\programming\c and c++\sdl\explosion generator 2014 04 13 collision with ground and crappy smoke\glm\core\type_half.inl
-	"_detail.hpp"
-
-1359681818 d:\martin\programming\c and c++\sdl\explosion generator 2014 04 13 collision with ground and crappy smoke\glm\core\type_float.hpp
-	"type_half.hpp"
-	"setup.hpp"
-
-1359681818 d:\martin\programming\c and c++\sdl\explosion generator 2014 04 13 collision with ground and crappy smoke\glm\core\type_int.hpp
-	"setup.hpp"
-	"_detail.hpp"
-
-1359681818 d:\martin\programming\c and c++\sdl\explosion generator 2014 04 13 collision with ground and crappy smoke\glm\core\type_gentype.hpp
-	"type_size.hpp"
-
-1359681820 d:\martin\programming\c and c++\sdl\explosion generator 2014 04 13 collision with ground and crappy smoke\glm\core\type_size.hpp
-	<cstdlib>
-
-1359681820 d:\martin\programming\c and c++\sdl\explosion generator 2014 04 13 collision with ground and crappy smoke\glm\core\type_vec1.hpp
-	"type_vec.hpp"
-	"type_float.hpp"
-	"type_int.hpp"
-	"type_size.hpp"
-	"_swizzle.hpp"
-	"type_vec1.inl"
-
-1359681820 d:\martin\programming\c and c++\sdl\explosion generator 2014 04 13 collision with ground and crappy smoke\glm\core\type_vec.hpp
-	"type_gentype.hpp"
-
-1359681820 d:\martin\programming\c and c++\sdl\explosion generator 2014 04 13 collision with ground and crappy smoke\glm\core\_swizzle.hpp
-	"_swizzle_func.hpp"
-
-1359681820 d:\martin\programming\c and c++\sdl\explosion generator 2014 04 13 collision with ground and crappy smoke\glm\core\_swizzle_func.hpp
-
-1359681820 d:\martin\programming\c and c++\sdl\explosion generator 2014 04 13 collision with ground and crappy smoke\glm\core\type_vec1.inl
-
-1359681820 d:\martin\programming\c and c++\sdl\explosion generator 2014 04 13 collision with ground and crappy smoke\glm\core\type_vec2.hpp
-	"type_vec.hpp"
-	"type_float.hpp"
-	"type_int.hpp"
-	"type_size.hpp"
-	"_swizzle.hpp"
-	"type_vec2.inl"
-
-1359681820 d:\martin\programming\c and c++\sdl\explosion generator 2014 04 13 collision with ground and crappy smoke\glm\core\type_vec2.inl
-
-1359681820 d:\martin\programming\c and c++\sdl\explosion generator 2014 04 13 collision with ground and crappy smoke\glm\core\type_vec3.hpp
-	"type_vec.hpp"
-	"type_float.hpp"
-	"type_int.hpp"
-	"type_size.hpp"
-	"_swizzle.hpp"
-	"type_vec3.inl"
-
-1359681820 d:\martin\programming\c and c++\sdl\explosion generator 2014 04 13 collision with ground and crappy smoke\glm\core\type_vec3.inl
-
-1359681820 d:\martin\programming\c and c++\sdl\explosion generator 2014 04 13 collision with ground and crappy smoke\glm\core\type_vec4.hpp
-	"type_vec.hpp"
-	"type_float.hpp"
-	"type_int.hpp"
-	"type_size.hpp"
-	"_swizzle.hpp"
-	"type_vec4.inl"
-
-1359681820 d:\martin\programming\c and c++\sdl\explosion generator 2014 04 13 collision with ground and crappy smoke\glm\core\type_vec4.inl
-
-1359681818 d:\martin\programming\c and c++\sdl\explosion generator 2014 04 13 collision with ground and crappy smoke\glm\core\type_mat2x2.hpp
-	"type_mat.hpp"
-	"type_mat2x2.inl"
-
-1359681818 d:\martin\programming\c and c++\sdl\explosion generator 2014 04 13 collision with ground and crappy smoke\glm\core\type_mat.hpp
-	"type_gentype.hpp"
-
-1359681818 d:\martin\programming\c and c++\sdl\explosion generator 2014 04 13 collision with ground and crappy smoke\glm\core\type_mat2x2.inl
-
-1359681818 d:\martin\programming\c and c++\sdl\explosion generator 2014 04 13 collision with ground and crappy smoke\glm\core\type_mat2x3.hpp
-	"type_mat.hpp"
-	"type_mat2x3.inl"
-
-1359681818 d:\martin\programming\c and c++\sdl\explosion generator 2014 04 13 collision with ground and crappy smoke\glm\core\type_mat2x3.inl
-
-1359681818 d:\martin\programming\c and c++\sdl\explosion generator 2014 04 13 collision with ground and crappy smoke\glm\core\type_mat2x4.hpp
-	"type_mat.hpp"
-	"type_mat2x4.inl"
-
-1359681818 d:\martin\programming\c and c++\sdl\explosion generator 2014 04 13 collision with ground and crappy smoke\glm\core\type_mat2x4.inl
-
-1359681820 d:\martin\programming\c and c++\sdl\explosion generator 2014 04 13 collision with ground and crappy smoke\glm\core\type_mat3x2.hpp
-	"type_mat.hpp"
-	"type_mat3x2.inl"
-
-1359681820 d:\martin\programming\c and c++\sdl\explosion generator 2014 04 13 collision with ground and crappy smoke\glm\core\type_mat3x2.inl
-
-1359681820 d:\martin\programming\c and c++\sdl\explosion generator 2014 04 13 collision with ground and crappy smoke\glm\core\type_mat3x3.hpp
-	"type_mat.hpp"
-	"type_mat3x3.inl"
-
-1359681820 d:\martin\programming\c and c++\sdl\explosion generator 2014 04 13 collision with ground and crappy smoke\glm\core\type_mat3x3.inl
-
-1359681820 d:\martin\programming\c and c++\sdl\explosion generator 2014 04 13 collision with ground and crappy smoke\glm\core\type_mat3x4.hpp
-	"type_mat.hpp"
-	"type_mat3x4.inl"
-
-1359681820 d:\martin\programming\c and c++\sdl\explosion generator 2014 04 13 collision with ground and crappy smoke\glm\core\type_mat3x4.inl
-
-1359681820 d:\martin\programming\c and c++\sdl\explosion generator 2014 04 13 collision with ground and crappy smoke\glm\core\type_mat4x2.hpp
-	"type_mat.hpp"
-	"type_mat4x2.inl"
-
-1359681820 d:\martin\programming\c and c++\sdl\explosion generator 2014 04 13 collision with ground and crappy smoke\glm\core\type_mat4x2.inl
-
-1359681820 d:\martin\programming\c and c++\sdl\explosion generator 2014 04 13 collision with ground and crappy smoke\glm\core\type_mat4x3.hpp
-	"type_mat.hpp"
-	"type_mat4x3.inl"
-
-1359681820 d:\martin\programming\c and c++\sdl\explosion generator 2014 04 13 collision with ground and crappy smoke\glm\core\type_mat4x3.inl
-
-1359681820 d:\martin\programming\c and c++\sdl\explosion generator 2014 04 13 collision with ground and crappy smoke\glm\core\type_mat4x4.hpp
-	"type_mat.hpp"
-	"type_mat4x4.inl"
-
-1359681820 d:\martin\programming\c and c++\sdl\explosion generator 2014 04 13 collision with ground and crappy smoke\glm\core\type_mat4x4.inl
-
-1359681818 d:\martin\programming\c and c++\sdl\explosion generator 2014 04 13 collision with ground and crappy smoke\glm\core\func_trigonometric.hpp
-	"func_trigonometric.inl"
-
-1359681818 d:\martin\programming\c and c++\sdl\explosion generator 2014 04 13 collision with ground and crappy smoke\glm\core\func_trigonometric.inl
-
-1359681818 d:\martin\programming\c and c++\sdl\explosion generator 2014 04 13 collision with ground and crappy smoke\glm\core\func_exponential.hpp
-	"func_exponential.inl"
-
-1359681818 d:\martin\programming\c and c++\sdl\explosion generator 2014 04 13 collision with ground and crappy smoke\glm\core\func_exponential.inl
-
-1359681818 d:\martin\programming\c and c++\sdl\explosion generator 2014 04 13 collision with ground and crappy smoke\glm\core\func_common.hpp
-	"_fixes.hpp"
-	"func_common.inl"
-
-1359681818 d:\martin\programming\c and c++\sdl\explosion generator 2014 04 13 collision with ground and crappy smoke\glm\core\func_common.inl
-
-1359681818 d:\martin\programming\c and c++\sdl\explosion generator 2014 04 13 collision with ground and crappy smoke\glm\core\func_packing.hpp
-	"func_packing.inl"
-
-1359681818 d:\martin\programming\c and c++\sdl\explosion generator 2014 04 13 collision with ground and crappy smoke\glm\core\func_packing.inl
-
-1359681818 d:\martin\programming\c and c++\sdl\explosion generator 2014 04 13 collision with ground and crappy smoke\glm\core\func_geometric.hpp
-	"func_geometric.inl"
-
-1359681818 d:\martin\programming\c and c++\sdl\explosion generator 2014 04 13 collision with ground and crappy smoke\glm\core\func_geometric.inl
-
-1359681818 d:\martin\programming\c and c++\sdl\explosion generator 2014 04 13 collision with ground and crappy smoke\glm\core\func_matrix.hpp
-	"func_matrix.inl"
-
-1359681818 d:\martin\programming\c and c++\sdl\explosion generator 2014 04 13 collision with ground and crappy smoke\glm\core\func_matrix.inl
-
-1359681818 d:\martin\programming\c and c++\sdl\explosion generator 2014 04 13 collision with ground and crappy smoke\glm\core\func_vector_relational.hpp
-	"_detail.hpp"
-	"func_vector_relational.inl"
-
-1359681818 d:\martin\programming\c and c++\sdl\explosion generator 2014 04 13 collision with ground and crappy smoke\glm\core\func_vector_relational.inl
-
-1359681818 d:\martin\programming\c and c++\sdl\explosion generator 2014 04 13 collision with ground and crappy smoke\glm\core\func_integer.hpp
-	"func_integer.inl"
-
-1359681818 d:\martin\programming\c and c++\sdl\explosion generator 2014 04 13 collision with ground and crappy smoke\glm\core\func_integer.inl
-	<intrin.h>
-
-1359681818 d:\martin\programming\c and c++\sdl\explosion generator 2014 04 13 collision with ground and crappy smoke\glm\core\func_noise.hpp
-	"func_noise.inl"
-
-1359681818 d:\martin\programming\c and c++\sdl\explosion generator 2014 04 13 collision with ground and crappy smoke\glm\core\func_noise.inl
-
-1359681820 d:\martin\programming\c and c++\sdl\explosion generator 2014 04 13 collision with ground and crappy smoke\glm\gtc\type_ptr.hpp
-	"../glm.hpp"
-	"../gtc/half_float.hpp"
-	"../gtc/quaternion.hpp"
-	<cstring>
-	"type_ptr.inl"
-
-1359681820 d:\martin\programming\c and c++\sdl\explosion generator 2014 04 13 collision with ground and crappy smoke\glm\gtc\half_float.hpp
-	"../glm.hpp"
-	"half_float.inl"
-
-1359681820 d:\martin\programming\c and c++\sdl\explosion generator 2014 04 13 collision with ground and crappy smoke\glm\gtc\half_float.inl
-
-1359681820 d:\martin\programming\c and c++\sdl\explosion generator 2014 04 13 collision with ground and crappy smoke\glm\gtc\quaternion.hpp
-	"../glm.hpp"
-	"../gtc/half_float.hpp"
-	"../gtc/constants.hpp"
-	"quaternion.inl"
-
-1359681820 d:\martin\programming\c and c++\sdl\explosion generator 2014 04 13 collision with ground and crappy smoke\glm\gtc\constants.hpp
-	"../glm.hpp"
-	"../gtc/half_float.hpp"
-	"constants.inl"
-
-1359681820 d:\martin\programming\c and c++\sdl\explosion generator 2014 04 13 collision with ground and crappy smoke\glm\gtc\constants.inl
-
-1359681820 d:\martin\programming\c and c++\sdl\explosion generator 2014 04 13 collision with ground and crappy smoke\glm\gtc\quaternion.inl
-	<limits>
-
-1359681820 d:\martin\programming\c and c++\sdl\explosion generator 2014 04 13 collision with ground and crappy smoke\glm\gtc\type_ptr.inl
-
-1359681824 d:\martin\programming\c and c++\sdl\explosion generator 2014 04 13 collision with ground and crappy smoke\glm\gtx\vector_angle.hpp
-	"../glm.hpp"
-	"../gtc/epsilon.hpp"
-	"../gtx/quaternion.hpp"
-	"../gtx/rotate_vector.hpp"
-	"vector_angle.inl"
-
-1359681820 d:\martin\programming\c and c++\sdl\explosion generator 2014 04 13 collision with ground and crappy smoke\glm\gtc\epsilon.hpp
-	"../glm.hpp"
-	"../gtc/half_float.hpp"
-	"../gtc/quaternion.hpp"
-	"epsilon.inl"
-
-1359681820 d:\martin\programming\c and c++\sdl\explosion generator 2014 04 13 collision with ground and crappy smoke\glm\gtc\epsilon.inl
-
-1359681822 d:\martin\programming\c and c++\sdl\explosion generator 2014 04 13 collision with ground and crappy smoke\glm\gtx\quaternion.hpp
-	"../glm.hpp"
-	"../gtc/quaternion.hpp"
-	"quaternion.inl"
-
-1359681822 d:\martin\programming\c and c++\sdl\explosion generator 2014 04 13 collision with ground and crappy smoke\glm\gtx\quaternion.inl
-	<limits>
-
-1359681822 d:\martin\programming\c and c++\sdl\explosion generator 2014 04 13 collision with ground and crappy smoke\glm\gtx\rotate_vector.hpp
-	"../glm.hpp"
-	"../gtx/transform.hpp"
-	"rotate_vector.inl"
-
-1359681822 d:\martin\programming\c and c++\sdl\explosion generator 2014 04 13 collision with ground and crappy smoke\glm\gtx\transform.hpp
-	"../glm.hpp"
-	"../gtc/matrix_transform.hpp"
-	"transform.inl"
-
-1359681820 d:\martin\programming\c and c++\sdl\explosion generator 2014 04 13 collision with ground and crappy smoke\glm\gtc\matrix_transform.hpp
-	"../glm.hpp"
-	"matrix_transform.inl"
-
-1359681820 d:\martin\programming\c and c++\sdl\explosion generator 2014 04 13 collision with ground and crappy smoke\glm\gtc\matrix_transform.inl
-
-1359681822 d:\martin\programming\c and c++\sdl\explosion generator 2014 04 13 collision with ground and crappy smoke\glm\gtx\transform.inl
-
-1359681822 d:\martin\programming\c and c++\sdl\explosion generator 2014 04 13 collision with ground and crappy smoke\glm\gtx\rotate_vector.inl
-
-1359681824 d:\martin\programming\c and c++\sdl\explosion generator 2014 04 13 collision with ground and crappy smoke\glm\gtx\vector_angle.inl
-
-1359681820 d:\martin\programming\c and c++\sdl\explosion generator 2014 04 13 collision with ground and crappy smoke\glm\gtx\compatibility.hpp
-	"../glm.hpp"
-	"../gtc/half_float.hpp"
-	"../gtc/quaternion.hpp"
-	<cfloat>
-	<cmath>
-	"compatibility.inl"
-
-1359681820 d:\martin\programming\c and c++\sdl\explosion generator 2014 04 13 collision with ground and crappy smoke\glm\gtx\compatibility.inl
-
-1359681822 d:\martin\programming\c and c++\sdl\explosion generator 2014 04 13 collision with ground and crappy smoke\glm\gtx\matrix_operation.hpp
-	"../glm.hpp"
-	"matrix_operation.inl"
-
-1359681822 d:\martin\programming\c and c++\sdl\explosion generator 2014 04 13 collision with ground and crappy smoke\glm\gtx\matrix_operation.inl
-
-1359681822 d:\martin\programming\c and c++\sdl\explosion generator 2014 04 13 collision with ground and crappy smoke\glm\gtx\euler_angles.hpp
-	"../glm.hpp"
-	"../gtc/half_float.hpp"
-	"euler_angles.inl"
-
-1359681822 d:\martin\programming\c and c++\sdl\explosion generator 2014 04 13 collision with ground and crappy smoke\glm\gtx\euler_angles.inl
-
-1359681822 d:\martin\programming\c and c++\sdl\explosion generator 2014 04 13 collision with ground and crappy smoke\glm\gtx\norm.hpp
-	"../glm.hpp"
-	"../gtx/quaternion.hpp"
-	"norm.inl"
-
-1359681822 d:\martin\programming\c and c++\sdl\explosion generator 2014 04 13 collision with ground and crappy smoke\glm\gtx\norm.inl
-
-1348910498 d:\martin\programming\c and c++\sdl\explosion generator 2014 04 13 collision with ground and crappy smoke\vector3d.h
-	<iostream>
-	<cmath>
-
-1395630565 source:d:\martin\programming\c and c++\sdl\explosion generator 2014 04 13 collision with ground and crappy smoke\cubeemitter.cpp
+1395630565 source:d:\martin\programming\c and c++\sdl\explosion generator new\cubeemitter.cpp
 	"CubeEmitter.h"
 	"gl/gl.h"
 	"gl/glu.h"
 
-1396000561 d:\martin\programming\c and c++\sdl\explosion generator 2014 04 13 collision with ground and crappy smoke\cubeemitter.h
+1396000561 d:\martin\programming\c and c++\sdl\explosion generator new\cubeemitter.h
 	"ParticleEmitter.h"
 	<cstdlib>
 	<iostream>
 	<algorithm>
 	"Random.h"
 
-1396828955 d:\martin\programming\c and c++\sdl\explosion generator 2014 04 13 collision with ground and crappy smoke\particleemitter.h
+1396828955 d:\martin\programming\c and c++\sdl\explosion generator new\particleemitter.h
 	"Particle.h"
 	<cstdlib>
 	<cstdlib>
@@ -1350,27 +318,478 @@
 	<fstream>
 	<cstdio>
 
-1403659122 d:\martin\programming\c and c++\sdl\explosion generator 2014 04 13 collision with ground and crappy smoke\particle.h
+1403475604 d:\martin\programming\c and c++\sdl\explosion generator new\particle.h
 	"glm/glm.hpp"
 	<cstdlib>
 	<vector>
+	<stdint.h>
 
-1395616946 d:\martin\programming\c and c++\sdl\explosion generator 2014 04 13 collision with ground and crappy smoke\random.h
+1395616946 d:\martin\programming\c and c++\sdl\explosion generator new\random.h
 
-1395616957 source:d:\martin\programming\c and c++\sdl\explosion generator 2014 04 13 collision with ground and crappy smoke\elapsedtime.cpp
-	"ParticleSystemPCH.h"
-	"ElapsedTime.h"
+1397420564 d:\martin\programming\c and c++\sdl\explosion generator new\smoke.h
+	<vector>
+	<iostream>
+	<sstream>
+	<string>
 	<algorithm>
+	<fstream>
+	<cstdio>
+	"ParticleEffect_Interface.h"
+	"gl/gl.h"
+	"gl/glu.h"
+	"define.h"
 
-1403659137 d:\martin\programming\c and c++\sdl\explosion generator 2014 04 13 collision with ground and crappy smoke\particlesystempch.h
+1396838424 source:d:\martin\programming\c and c++\sdl\explosion generator new\smoke.cpp
+	"Smoke.h"
+
+1396838391 d:\martin\programming\c and c++\sdl\explosion generator new\particleeffect.h
+	"Particle.h"
+	<cstdlib>
+	<cstdlib>
+	<vector>
+	<iostream>
+	<sstream>
+	<string>
+	<algorithm>
+	<fstream>
+	<cstdio>
+
+1397950416 d:\martin\programming\c and c++\sdl\explosion generator new\cubeemittereffect.h
+	"ParticleEffect_Interface.h"
+	<cstdlib>
+	<iostream>
+	<algorithm>
+	"Random.h"
+	"gl/gl.h"
+	"gl/glu.h"
+
+1397950413 source:d:\martin\programming\c and c++\sdl\explosion generator new\cubeemittereffect.cpp
+	"CubeEmitterEffect.h"
+
+1403475614 source:d:\martin\programming\c and c++\sdl\explosion generator new\collisiondetection_hgrid.cpp
+	"CollisionDetection_HGrid.h"
+
+1397949143 d:\martin\programming\c and c++\sdl\explosion generator new\particleeffect_interface.h
+	"Particle.h"
+	<cstdlib>
+	<cstdlib>
+	<vector>
+	<iostream>
+	<sstream>
+	<string>
+	<algorithm>
+	<fstream>
+	<cstdio>
+
+1403475609 d:\martin\programming\c and c++\sdl\explosion generator new\collisiondetection_hgrid.h
+	"CollisionDetection_Interface.h"
+	"Particle.h"
+	"glm/glm.hpp"
+	<cstdlib>
+	<vector>
+	<iostream>
+	<algorithm>
+	<unordered_map>
+	<string>
+	<typeinfo>
+	<bitset>
+	<math.h>
+	"gl/gl.h"
+	"gl/glu.h"
+
+1397420157 d:\martin\programming\c and c++\sdl\explosion generator new\collisiondetection_interface.h
+
+1401050334 d:\martin\programming\c and c++\sdl\explosion generator new\l_cubeemittereffect.h
+	"ParticleEffect_Interface.h"
+	<cstdlib>
+	<iostream>
+	<algorithm>
+	"CollisionDetection_HGrid.h"
+	"Random.h"
+
+1402544345 source:d:\martin\programming\c and c++\sdl\explosion generator new\l_cubeemittereffect.cpp
+	"L_CubeEmitterEffect.h"
+	"gl/gl.h"
+	"gl/glu.h"
+
+1156914632 d:\martin\programming\c and c++\sdl\explosion generator new\glee\glee.h
+	<windows.h>
+	<GL/gl.h>
+	<OpenGL/gl.h>
+	<GL/gl.h>
+	<GL/glx.h>
+	<stddef.h>
+
+1396137810 d:\martin\programming\c and c++\sdl\explosion generator new\shader.h
+	<GL/glew.h>
+	<string>
+	<vector>
+	<fstream>
+	<iostream>
+
+1402708176 source:d:\martin\programming\c and c++\sdl\explosion generator new\shader.cpp
+	"shader.h"
+
+1359681820 d:\martin\programming\c and c++\sdl\explosion generator new\glm\glm.hpp
+	"core/_fixes.hpp"
+	<cmath>
+	<climits>
+	<cfloat>
+	<limits>
+	<cstdio>
+	"core/setup.hpp"
+	"./core/_detail.hpp"
+	"./core/_vectorize.hpp"
+	"./core/type.hpp"
+	"./core/func_trigonometric.hpp"
+	"./core/func_exponential.hpp"
+	"./core/func_common.hpp"
+	"./core/func_packing.hpp"
+	"./core/func_geometric.hpp"
+	"./core/func_matrix.hpp"
+	"./core/func_vector_relational.hpp"
+	"./core/func_integer.hpp"
+	"./core/func_noise.hpp"
+	"./core/_swizzle.hpp"
+
+1359681820 d:\martin\programming\c and c++\sdl\explosion generator new\glm\core\_fixes.hpp
+	<cmath>
+
+1359681818 d:\martin\programming\c and c++\sdl\explosion generator new\glm\core\setup.hpp
+	<intrin.h>
+	<immintrin.h>
+	<immintrin.h>
+	<smmintrin.h>
+	<pmmintrin.h>
+	<emmintrin.h>
+
+1359681820 d:\martin\programming\c and c++\sdl\explosion generator new\glm\core\_detail.hpp
+	"setup.hpp"
+	<cassert>
+	<cstdint>
+
+1359681820 d:\martin\programming\c and c++\sdl\explosion generator new\glm\core\_vectorize.hpp
+
+1359681818 d:\martin\programming\c and c++\sdl\explosion generator new\glm\core\type.hpp
+	"type_half.hpp"
+	"type_float.hpp"
+	"type_int.hpp"
+	"type_gentype.hpp"
+	"type_vec1.hpp"
+	"type_vec2.hpp"
+	"type_vec3.hpp"
+	"type_vec4.hpp"
+	"type_mat2x2.hpp"
+	"type_mat2x3.hpp"
+	"type_mat2x4.hpp"
+	"type_mat3x2.hpp"
+	"type_mat3x3.hpp"
+	"type_mat3x4.hpp"
+	"type_mat4x2.hpp"
+	"type_mat4x3.hpp"
+	"type_mat4x4.hpp"
+
+1359681818 d:\martin\programming\c and c++\sdl\explosion generator new\glm\core\type_half.hpp
+	<cstdlib>
+	"type_half.inl"
+
+1359681818 d:\martin\programming\c and c++\sdl\explosion generator new\glm\core\type_half.inl
+	"_detail.hpp"
+
+1359681818 d:\martin\programming\c and c++\sdl\explosion generator new\glm\core\type_float.hpp
+	"type_half.hpp"
+	"setup.hpp"
+
+1359681818 d:\martin\programming\c and c++\sdl\explosion generator new\glm\core\type_int.hpp
+	"setup.hpp"
+	"_detail.hpp"
+
+1359681818 d:\martin\programming\c and c++\sdl\explosion generator new\glm\core\type_gentype.hpp
+	"type_size.hpp"
+
+1359681820 d:\martin\programming\c and c++\sdl\explosion generator new\glm\core\type_size.hpp
+	<cstdlib>
+
+1359681820 d:\martin\programming\c and c++\sdl\explosion generator new\glm\core\type_vec1.hpp
+	"type_vec.hpp"
+	"type_float.hpp"
+	"type_int.hpp"
+	"type_size.hpp"
+	"_swizzle.hpp"
+	"type_vec1.inl"
+
+1359681820 d:\martin\programming\c and c++\sdl\explosion generator new\glm\core\type_vec.hpp
+	"type_gentype.hpp"
+
+1359681820 d:\martin\programming\c and c++\sdl\explosion generator new\glm\core\_swizzle.hpp
+	"_swizzle_func.hpp"
+
+1359681820 d:\martin\programming\c and c++\sdl\explosion generator new\glm\core\_swizzle_func.hpp
+
+1359681820 d:\martin\programming\c and c++\sdl\explosion generator new\glm\core\type_vec1.inl
+
+1359681820 d:\martin\programming\c and c++\sdl\explosion generator new\glm\core\type_vec2.hpp
+	"type_vec.hpp"
+	"type_float.hpp"
+	"type_int.hpp"
+	"type_size.hpp"
+	"_swizzle.hpp"
+	"type_vec2.inl"
+
+1359681820 d:\martin\programming\c and c++\sdl\explosion generator new\glm\core\type_vec2.inl
+
+1359681820 d:\martin\programming\c and c++\sdl\explosion generator new\glm\core\type_vec3.hpp
+	"type_vec.hpp"
+	"type_float.hpp"
+	"type_int.hpp"
+	"type_size.hpp"
+	"_swizzle.hpp"
+	"type_vec3.inl"
+
+1359681820 d:\martin\programming\c and c++\sdl\explosion generator new\glm\core\type_vec3.inl
+
+1359681820 d:\martin\programming\c and c++\sdl\explosion generator new\glm\core\type_vec4.hpp
+	"type_vec.hpp"
+	"type_float.hpp"
+	"type_int.hpp"
+	"type_size.hpp"
+	"_swizzle.hpp"
+	"type_vec4.inl"
+
+1359681820 d:\martin\programming\c and c++\sdl\explosion generator new\glm\core\type_vec4.inl
+
+1359681818 d:\martin\programming\c and c++\sdl\explosion generator new\glm\core\type_mat2x2.hpp
+	"type_mat.hpp"
+	"type_mat2x2.inl"
+
+1359681818 d:\martin\programming\c and c++\sdl\explosion generator new\glm\core\type_mat.hpp
+	"type_gentype.hpp"
+
+1359681818 d:\martin\programming\c and c++\sdl\explosion generator new\glm\core\type_mat2x2.inl
+
+1359681818 d:\martin\programming\c and c++\sdl\explosion generator new\glm\core\type_mat2x3.hpp
+	"type_mat.hpp"
+	"type_mat2x3.inl"
+
+1359681818 d:\martin\programming\c and c++\sdl\explosion generator new\glm\core\type_mat2x3.inl
+
+1359681818 d:\martin\programming\c and c++\sdl\explosion generator new\glm\core\type_mat2x4.hpp
+	"type_mat.hpp"
+	"type_mat2x4.inl"
+
+1359681818 d:\martin\programming\c and c++\sdl\explosion generator new\glm\core\type_mat2x4.inl
+
+1359681820 d:\martin\programming\c and c++\sdl\explosion generator new\glm\core\type_mat3x2.hpp
+	"type_mat.hpp"
+	"type_mat3x2.inl"
+
+1359681820 d:\martin\programming\c and c++\sdl\explosion generator new\glm\core\type_mat3x2.inl
+
+1359681820 d:\martin\programming\c and c++\sdl\explosion generator new\glm\core\type_mat3x3.hpp
+	"type_mat.hpp"
+	"type_mat3x3.inl"
+
+1359681820 d:\martin\programming\c and c++\sdl\explosion generator new\glm\core\type_mat3x3.inl
+
+1359681820 d:\martin\programming\c and c++\sdl\explosion generator new\glm\core\type_mat3x4.hpp
+	"type_mat.hpp"
+	"type_mat3x4.inl"
+
+1359681820 d:\martin\programming\c and c++\sdl\explosion generator new\glm\core\type_mat3x4.inl
+
+1359681820 d:\martin\programming\c and c++\sdl\explosion generator new\glm\core\type_mat4x2.hpp
+	"type_mat.hpp"
+	"type_mat4x2.inl"
+
+1359681820 d:\martin\programming\c and c++\sdl\explosion generator new\glm\core\type_mat4x2.inl
+
+1359681820 d:\martin\programming\c and c++\sdl\explosion generator new\glm\core\type_mat4x3.hpp
+	"type_mat.hpp"
+	"type_mat4x3.inl"
+
+1359681820 d:\martin\programming\c and c++\sdl\explosion generator new\glm\core\type_mat4x3.inl
+
+1359681820 d:\martin\programming\c and c++\sdl\explosion generator new\glm\core\type_mat4x4.hpp
+	"type_mat.hpp"
+	"type_mat4x4.inl"
+
+1359681820 d:\martin\programming\c and c++\sdl\explosion generator new\glm\core\type_mat4x4.inl
+
+1359681818 d:\martin\programming\c and c++\sdl\explosion generator new\glm\core\func_trigonometric.hpp
+	"func_trigonometric.inl"
+
+1359681818 d:\martin\programming\c and c++\sdl\explosion generator new\glm\core\func_trigonometric.inl
+
+1359681818 d:\martin\programming\c and c++\sdl\explosion generator new\glm\core\func_exponential.hpp
+	"func_exponential.inl"
+
+1359681818 d:\martin\programming\c and c++\sdl\explosion generator new\glm\core\func_exponential.inl
+
+1359681818 d:\martin\programming\c and c++\sdl\explosion generator new\glm\core\func_common.hpp
+	"_fixes.hpp"
+	"func_common.inl"
+
+1359681818 d:\martin\programming\c and c++\sdl\explosion generator new\glm\core\func_common.inl
+
+1359681818 d:\martin\programming\c and c++\sdl\explosion generator new\glm\core\func_packing.hpp
+	"func_packing.inl"
+
+1359681818 d:\martin\programming\c and c++\sdl\explosion generator new\glm\core\func_packing.inl
+
+1359681818 d:\martin\programming\c and c++\sdl\explosion generator new\glm\core\func_geometric.hpp
+	"func_geometric.inl"
+
+1359681818 d:\martin\programming\c and c++\sdl\explosion generator new\glm\core\func_geometric.inl
+
+1359681818 d:\martin\programming\c and c++\sdl\explosion generator new\glm\core\func_matrix.hpp
+	"func_matrix.inl"
+
+1359681818 d:\martin\programming\c and c++\sdl\explosion generator new\glm\core\func_matrix.inl
+
+1359681818 d:\martin\programming\c and c++\sdl\explosion generator new\glm\core\func_vector_relational.hpp
+	"_detail.hpp"
+	"func_vector_relational.inl"
+
+1359681818 d:\martin\programming\c and c++\sdl\explosion generator new\glm\core\func_vector_relational.inl
+
+1359681818 d:\martin\programming\c and c++\sdl\explosion generator new\glm\core\func_integer.hpp
+	"func_integer.inl"
+
+1359681818 d:\martin\programming\c and c++\sdl\explosion generator new\glm\core\func_integer.inl
+	<intrin.h>
+
+1359681818 d:\martin\programming\c and c++\sdl\explosion generator new\glm\core\func_noise.hpp
+	"func_noise.inl"
+
+1359681818 d:\martin\programming\c and c++\sdl\explosion generator new\glm\core\func_noise.inl
+
+1359681820 d:\martin\programming\c and c++\sdl\explosion generator new\glm\gtc\type_ptr.hpp
+	"../glm.hpp"
+	"../gtc/half_float.hpp"
+	"../gtc/quaternion.hpp"
+	<cstring>
+	"type_ptr.inl"
+
+1359681820 d:\martin\programming\c and c++\sdl\explosion generator new\glm\gtc\half_float.hpp
+	"../glm.hpp"
+	"half_float.inl"
+
+1359681820 d:\martin\programming\c and c++\sdl\explosion generator new\glm\gtc\half_float.inl
+
+1359681820 d:\martin\programming\c and c++\sdl\explosion generator new\glm\gtc\quaternion.hpp
+	"../glm.hpp"
+	"../gtc/half_float.hpp"
+	"../gtc/constants.hpp"
+	"quaternion.inl"
+
+1359681820 d:\martin\programming\c and c++\sdl\explosion generator new\glm\gtc\constants.hpp
+	"../glm.hpp"
+	"../gtc/half_float.hpp"
+	"constants.inl"
+
+1359681820 d:\martin\programming\c and c++\sdl\explosion generator new\glm\gtc\constants.inl
+
+1359681820 d:\martin\programming\c and c++\sdl\explosion generator new\glm\gtc\quaternion.inl
+	<limits>
+
+1359681820 d:\martin\programming\c and c++\sdl\explosion generator new\glm\gtc\type_ptr.inl
+
+1359681824 d:\martin\programming\c and c++\sdl\explosion generator new\glm\gtx\vector_angle.hpp
+	"../glm.hpp"
+	"../gtc/epsilon.hpp"
+	"../gtx/quaternion.hpp"
+	"../gtx/rotate_vector.hpp"
+	"vector_angle.inl"
+
+1359681820 d:\martin\programming\c and c++\sdl\explosion generator new\glm\gtc\epsilon.hpp
+	"../glm.hpp"
+	"../gtc/half_float.hpp"
+	"../gtc/quaternion.hpp"
+	"epsilon.inl"
+
+1359681820 d:\martin\programming\c and c++\sdl\explosion generator new\glm\gtc\epsilon.inl
+
+1359681822 d:\martin\programming\c and c++\sdl\explosion generator new\glm\gtx\quaternion.hpp
+	"../glm.hpp"
+	"../gtc/quaternion.hpp"
+	"quaternion.inl"
+
+1359681822 d:\martin\programming\c and c++\sdl\explosion generator new\glm\gtx\quaternion.inl
+	<limits>
+
+1359681822 d:\martin\programming\c and c++\sdl\explosion generator new\glm\gtx\rotate_vector.hpp
+	"../glm.hpp"
+	"../gtx/transform.hpp"
+	"rotate_vector.inl"
+
+1359681822 d:\martin\programming\c and c++\sdl\explosion generator new\glm\gtx\transform.hpp
+	"../glm.hpp"
+	"../gtc/matrix_transform.hpp"
+	"transform.inl"
+
+1359681820 d:\martin\programming\c and c++\sdl\explosion generator new\glm\gtc\matrix_transform.hpp
+	"../glm.hpp"
+	"matrix_transform.inl"
+
+1359681820 d:\martin\programming\c and c++\sdl\explosion generator new\glm\gtc\matrix_transform.inl
+
+1359681822 d:\martin\programming\c and c++\sdl\explosion generator new\glm\gtx\transform.inl
+
+1359681822 d:\martin\programming\c and c++\sdl\explosion generator new\glm\gtx\rotate_vector.inl
+
+1359681824 d:\martin\programming\c and c++\sdl\explosion generator new\glm\gtx\vector_angle.inl
+
+1359681820 d:\martin\programming\c and c++\sdl\explosion generator new\glm\gtx\compatibility.hpp
+	"../glm.hpp"
+	"../gtc/half_float.hpp"
+	"../gtc/quaternion.hpp"
+	<cfloat>
+	<cmath>
+	"compatibility.inl"
+
+1359681820 d:\martin\programming\c and c++\sdl\explosion generator new\glm\gtx\compatibility.inl
+
+1359681822 d:\martin\programming\c and c++\sdl\explosion generator new\glm\gtx\matrix_operation.hpp
+	"../glm.hpp"
+	"matrix_operation.inl"
+
+1359681822 d:\martin\programming\c and c++\sdl\explosion generator new\glm\gtx\matrix_operation.inl
+
+1359681822 d:\martin\programming\c and c++\sdl\explosion generator new\glm\gtx\euler_angles.hpp
+	"../glm.hpp"
+	"../gtc/half_float.hpp"
+	"euler_angles.inl"
+
+1359681822 d:\martin\programming\c and c++\sdl\explosion generator new\glm\gtx\euler_angles.inl
+
+1359681822 d:\martin\programming\c and c++\sdl\explosion generator new\glm\gtx\norm.hpp
+	"../glm.hpp"
+	"../gtx/quaternion.hpp"
+	"norm.inl"
+
+1359681822 d:\martin\programming\c and c++\sdl\explosion generator new\glm\gtx\norm.inl
+
+1394347321 source:d:\martin\programming\c and c++\sdl\explosion generator 2014 05 19 sphere sphere collision detection\camera.cpp
+	"camera.h"
+	<algorithm>
+	<iostream>
+
+1394356301 d:\martin\programming\c and c++\sdl\explosion generator 2014 05 19 sphere sphere collision detection\camera.h
+	<cmath>
+	<iostream>
+	<SDL/SDL.h>
+	"define.h"
+	<GL/gl.h>
+	<GL/glu.h>
+	"vector3d.h"
+
+1403475573 d:\martin\programming\c and c++\sdl\explosion generator 2014 05 19 sphere sphere collision detection\define.h
 	<string>
 	<iostream>
 	<ctime>
 	<vector>
 	<map>
 	<math.h>
-	<GL/glew.h>
-	"SDL/SDL_opengl.h"
 	"glm/glm.hpp"
 	"glm/gtc/type_ptr.hpp"
 	"glm/gtc/quaternion.hpp"
@@ -1383,31 +802,392 @@
 	"glm/gtx/norm.hpp"
 	"SOIL.h"
 
-1395616959 d:\martin\programming\c and c++\sdl\explosion generator 2014 04 13 collision with ground and crappy smoke\elapsedtime.h
+1359681820 d:\martin\programming\c and c++\sdl\explosion generator 2014 05 19 sphere sphere collision detection\glm\glm.hpp
+	"core/_fixes.hpp"
+	<cmath>
+	<climits>
+	<cfloat>
+	<limits>
+	<cstdio>
+	"core/setup.hpp"
+	"./core/_detail.hpp"
+	"./core/_vectorize.hpp"
+	"./core/type.hpp"
+	"./core/func_trigonometric.hpp"
+	"./core/func_exponential.hpp"
+	"./core/func_common.hpp"
+	"./core/func_packing.hpp"
+	"./core/func_geometric.hpp"
+	"./core/func_matrix.hpp"
+	"./core/func_vector_relational.hpp"
+	"./core/func_integer.hpp"
+	"./core/func_noise.hpp"
+	"./core/_swizzle.hpp"
 
-1396235721 source:d:\martin\programming\c and c++\sdl\explosion generator 2014 04 13 collision with ground and crappy smoke\main.cpp
+1359681820 d:\martin\programming\c and c++\sdl\explosion generator 2014 05 19 sphere sphere collision detection\glm\core\_fixes.hpp
+	<cmath>
+
+1359681818 d:\martin\programming\c and c++\sdl\explosion generator 2014 05 19 sphere sphere collision detection\glm\core\setup.hpp
+	<intrin.h>
+	<immintrin.h>
+	<immintrin.h>
+	<smmintrin.h>
+	<pmmintrin.h>
+	<emmintrin.h>
+
+1359681820 d:\martin\programming\c and c++\sdl\explosion generator 2014 05 19 sphere sphere collision detection\glm\core\_detail.hpp
+	"setup.hpp"
+	<cassert>
+	<cstdint>
+
+1359681820 d:\martin\programming\c and c++\sdl\explosion generator 2014 05 19 sphere sphere collision detection\glm\core\_vectorize.hpp
+
+1359681818 d:\martin\programming\c and c++\sdl\explosion generator 2014 05 19 sphere sphere collision detection\glm\core\type.hpp
+	"type_half.hpp"
+	"type_float.hpp"
+	"type_int.hpp"
+	"type_gentype.hpp"
+	"type_vec1.hpp"
+	"type_vec2.hpp"
+	"type_vec3.hpp"
+	"type_vec4.hpp"
+	"type_mat2x2.hpp"
+	"type_mat2x3.hpp"
+	"type_mat2x4.hpp"
+	"type_mat3x2.hpp"
+	"type_mat3x3.hpp"
+	"type_mat3x4.hpp"
+	"type_mat4x2.hpp"
+	"type_mat4x3.hpp"
+	"type_mat4x4.hpp"
+
+1359681818 d:\martin\programming\c and c++\sdl\explosion generator 2014 05 19 sphere sphere collision detection\glm\core\type_half.hpp
 	<cstdlib>
+	"type_half.inl"
+
+1359681818 d:\martin\programming\c and c++\sdl\explosion generator 2014 05 19 sphere sphere collision detection\glm\core\type_half.inl
+	"_detail.hpp"
+
+1359681818 d:\martin\programming\c and c++\sdl\explosion generator 2014 05 19 sphere sphere collision detection\glm\core\type_float.hpp
+	"type_half.hpp"
+	"setup.hpp"
+
+1359681818 d:\martin\programming\c and c++\sdl\explosion generator 2014 05 19 sphere sphere collision detection\glm\core\type_int.hpp
+	"setup.hpp"
+	"_detail.hpp"
+
+1359681818 d:\martin\programming\c and c++\sdl\explosion generator 2014 05 19 sphere sphere collision detection\glm\core\type_gentype.hpp
+	"type_size.hpp"
+
+1359681820 d:\martin\programming\c and c++\sdl\explosion generator 2014 05 19 sphere sphere collision detection\glm\core\type_size.hpp
+	<cstdlib>
+
+1359681820 d:\martin\programming\c and c++\sdl\explosion generator 2014 05 19 sphere sphere collision detection\glm\core\type_vec1.hpp
+	"type_vec.hpp"
+	"type_float.hpp"
+	"type_int.hpp"
+	"type_size.hpp"
+	"_swizzle.hpp"
+	"type_vec1.inl"
+
+1359681820 d:\martin\programming\c and c++\sdl\explosion generator 2014 05 19 sphere sphere collision detection\glm\core\type_vec.hpp
+	"type_gentype.hpp"
+
+1359681820 d:\martin\programming\c and c++\sdl\explosion generator 2014 05 19 sphere sphere collision detection\glm\core\_swizzle.hpp
+	"_swizzle_func.hpp"
+
+1359681820 d:\martin\programming\c and c++\sdl\explosion generator 2014 05 19 sphere sphere collision detection\glm\core\_swizzle_func.hpp
+
+1359681820 d:\martin\programming\c and c++\sdl\explosion generator 2014 05 19 sphere sphere collision detection\glm\core\type_vec1.inl
+
+1359681820 d:\martin\programming\c and c++\sdl\explosion generator 2014 05 19 sphere sphere collision detection\glm\core\type_vec2.hpp
+	"type_vec.hpp"
+	"type_float.hpp"
+	"type_int.hpp"
+	"type_size.hpp"
+	"_swizzle.hpp"
+	"type_vec2.inl"
+
+1359681820 d:\martin\programming\c and c++\sdl\explosion generator 2014 05 19 sphere sphere collision detection\glm\core\type_vec2.inl
+
+1359681820 d:\martin\programming\c and c++\sdl\explosion generator 2014 05 19 sphere sphere collision detection\glm\core\type_vec3.hpp
+	"type_vec.hpp"
+	"type_float.hpp"
+	"type_int.hpp"
+	"type_size.hpp"
+	"_swizzle.hpp"
+	"type_vec3.inl"
+
+1359681820 d:\martin\programming\c and c++\sdl\explosion generator 2014 05 19 sphere sphere collision detection\glm\core\type_vec3.inl
+
+1359681820 d:\martin\programming\c and c++\sdl\explosion generator 2014 05 19 sphere sphere collision detection\glm\core\type_vec4.hpp
+	"type_vec.hpp"
+	"type_float.hpp"
+	"type_int.hpp"
+	"type_size.hpp"
+	"_swizzle.hpp"
+	"type_vec4.inl"
+
+1359681820 d:\martin\programming\c and c++\sdl\explosion generator 2014 05 19 sphere sphere collision detection\glm\core\type_vec4.inl
+
+1359681818 d:\martin\programming\c and c++\sdl\explosion generator 2014 05 19 sphere sphere collision detection\glm\core\type_mat2x2.hpp
+	"type_mat.hpp"
+	"type_mat2x2.inl"
+
+1359681818 d:\martin\programming\c and c++\sdl\explosion generator 2014 05 19 sphere sphere collision detection\glm\core\type_mat.hpp
+	"type_gentype.hpp"
+
+1359681818 d:\martin\programming\c and c++\sdl\explosion generator 2014 05 19 sphere sphere collision detection\glm\core\type_mat2x2.inl
+
+1359681818 d:\martin\programming\c and c++\sdl\explosion generator 2014 05 19 sphere sphere collision detection\glm\core\type_mat2x3.hpp
+	"type_mat.hpp"
+	"type_mat2x3.inl"
+
+1359681818 d:\martin\programming\c and c++\sdl\explosion generator 2014 05 19 sphere sphere collision detection\glm\core\type_mat2x3.inl
+
+1359681818 d:\martin\programming\c and c++\sdl\explosion generator 2014 05 19 sphere sphere collision detection\glm\core\type_mat2x4.hpp
+	"type_mat.hpp"
+	"type_mat2x4.inl"
+
+1359681818 d:\martin\programming\c and c++\sdl\explosion generator 2014 05 19 sphere sphere collision detection\glm\core\type_mat2x4.inl
+
+1359681820 d:\martin\programming\c and c++\sdl\explosion generator 2014 05 19 sphere sphere collision detection\glm\core\type_mat3x2.hpp
+	"type_mat.hpp"
+	"type_mat3x2.inl"
+
+1359681820 d:\martin\programming\c and c++\sdl\explosion generator 2014 05 19 sphere sphere collision detection\glm\core\type_mat3x2.inl
+
+1359681820 d:\martin\programming\c and c++\sdl\explosion generator 2014 05 19 sphere sphere collision detection\glm\core\type_mat3x3.hpp
+	"type_mat.hpp"
+	"type_mat3x3.inl"
+
+1359681820 d:\martin\programming\c and c++\sdl\explosion generator 2014 05 19 sphere sphere collision detection\glm\core\type_mat3x3.inl
+
+1359681820 d:\martin\programming\c and c++\sdl\explosion generator 2014 05 19 sphere sphere collision detection\glm\core\type_mat3x4.hpp
+	"type_mat.hpp"
+	"type_mat3x4.inl"
+
+1359681820 d:\martin\programming\c and c++\sdl\explosion generator 2014 05 19 sphere sphere collision detection\glm\core\type_mat3x4.inl
+
+1359681820 d:\martin\programming\c and c++\sdl\explosion generator 2014 05 19 sphere sphere collision detection\glm\core\type_mat4x2.hpp
+	"type_mat.hpp"
+	"type_mat4x2.inl"
+
+1359681820 d:\martin\programming\c and c++\sdl\explosion generator 2014 05 19 sphere sphere collision detection\glm\core\type_mat4x2.inl
+
+1359681820 d:\martin\programming\c and c++\sdl\explosion generator 2014 05 19 sphere sphere collision detection\glm\core\type_mat4x3.hpp
+	"type_mat.hpp"
+	"type_mat4x3.inl"
+
+1359681820 d:\martin\programming\c and c++\sdl\explosion generator 2014 05 19 sphere sphere collision detection\glm\core\type_mat4x3.inl
+
+1359681820 d:\martin\programming\c and c++\sdl\explosion generator 2014 05 19 sphere sphere collision detection\glm\core\type_mat4x4.hpp
+	"type_mat.hpp"
+	"type_mat4x4.inl"
+
+1359681820 d:\martin\programming\c and c++\sdl\explosion generator 2014 05 19 sphere sphere collision detection\glm\core\type_mat4x4.inl
+
+1359681818 d:\martin\programming\c and c++\sdl\explosion generator 2014 05 19 sphere sphere collision detection\glm\core\func_trigonometric.hpp
+	"func_trigonometric.inl"
+
+1359681818 d:\martin\programming\c and c++\sdl\explosion generator 2014 05 19 sphere sphere collision detection\glm\core\func_trigonometric.inl
+
+1359681818 d:\martin\programming\c and c++\sdl\explosion generator 2014 05 19 sphere sphere collision detection\glm\core\func_exponential.hpp
+	"func_exponential.inl"
+
+1359681818 d:\martin\programming\c and c++\sdl\explosion generator 2014 05 19 sphere sphere collision detection\glm\core\func_exponential.inl
+
+1359681818 d:\martin\programming\c and c++\sdl\explosion generator 2014 05 19 sphere sphere collision detection\glm\core\func_common.hpp
+	"_fixes.hpp"
+	"func_common.inl"
+
+1359681818 d:\martin\programming\c and c++\sdl\explosion generator 2014 05 19 sphere sphere collision detection\glm\core\func_common.inl
+
+1359681818 d:\martin\programming\c and c++\sdl\explosion generator 2014 05 19 sphere sphere collision detection\glm\core\func_packing.hpp
+	"func_packing.inl"
+
+1359681818 d:\martin\programming\c and c++\sdl\explosion generator 2014 05 19 sphere sphere collision detection\glm\core\func_packing.inl
+
+1359681818 d:\martin\programming\c and c++\sdl\explosion generator 2014 05 19 sphere sphere collision detection\glm\core\func_geometric.hpp
+	"func_geometric.inl"
+
+1359681818 d:\martin\programming\c and c++\sdl\explosion generator 2014 05 19 sphere sphere collision detection\glm\core\func_geometric.inl
+
+1359681818 d:\martin\programming\c and c++\sdl\explosion generator 2014 05 19 sphere sphere collision detection\glm\core\func_matrix.hpp
+	"func_matrix.inl"
+
+1359681818 d:\martin\programming\c and c++\sdl\explosion generator 2014 05 19 sphere sphere collision detection\glm\core\func_matrix.inl
+
+1359681818 d:\martin\programming\c and c++\sdl\explosion generator 2014 05 19 sphere sphere collision detection\glm\core\func_vector_relational.hpp
+	"_detail.hpp"
+	"func_vector_relational.inl"
+
+1359681818 d:\martin\programming\c and c++\sdl\explosion generator 2014 05 19 sphere sphere collision detection\glm\core\func_vector_relational.inl
+
+1359681818 d:\martin\programming\c and c++\sdl\explosion generator 2014 05 19 sphere sphere collision detection\glm\core\func_integer.hpp
+	"func_integer.inl"
+
+1359681818 d:\martin\programming\c and c++\sdl\explosion generator 2014 05 19 sphere sphere collision detection\glm\core\func_integer.inl
+	<intrin.h>
+
+1359681818 d:\martin\programming\c and c++\sdl\explosion generator 2014 05 19 sphere sphere collision detection\glm\core\func_noise.hpp
+	"func_noise.inl"
+
+1359681818 d:\martin\programming\c and c++\sdl\explosion generator 2014 05 19 sphere sphere collision detection\glm\core\func_noise.inl
+
+1359681820 d:\martin\programming\c and c++\sdl\explosion generator 2014 05 19 sphere sphere collision detection\glm\gtc\type_ptr.hpp
+	"../glm.hpp"
+	"../gtc/half_float.hpp"
+	"../gtc/quaternion.hpp"
+	<cstring>
+	"type_ptr.inl"
+
+1359681820 d:\martin\programming\c and c++\sdl\explosion generator 2014 05 19 sphere sphere collision detection\glm\gtc\half_float.hpp
+	"../glm.hpp"
+	"half_float.inl"
+
+1359681820 d:\martin\programming\c and c++\sdl\explosion generator 2014 05 19 sphere sphere collision detection\glm\gtc\half_float.inl
+
+1359681820 d:\martin\programming\c and c++\sdl\explosion generator 2014 05 19 sphere sphere collision detection\glm\gtc\quaternion.hpp
+	"../glm.hpp"
+	"../gtc/half_float.hpp"
+	"../gtc/constants.hpp"
+	"quaternion.inl"
+
+1359681820 d:\martin\programming\c and c++\sdl\explosion generator 2014 05 19 sphere sphere collision detection\glm\gtc\constants.hpp
+	"../glm.hpp"
+	"../gtc/half_float.hpp"
+	"constants.inl"
+
+1359681820 d:\martin\programming\c and c++\sdl\explosion generator 2014 05 19 sphere sphere collision detection\glm\gtc\constants.inl
+
+1359681820 d:\martin\programming\c and c++\sdl\explosion generator 2014 05 19 sphere sphere collision detection\glm\gtc\quaternion.inl
+	<limits>
+
+1359681820 d:\martin\programming\c and c++\sdl\explosion generator 2014 05 19 sphere sphere collision detection\glm\gtc\type_ptr.inl
+
+1359681824 d:\martin\programming\c and c++\sdl\explosion generator 2014 05 19 sphere sphere collision detection\glm\gtx\vector_angle.hpp
+	"../glm.hpp"
+	"../gtc/epsilon.hpp"
+	"../gtx/quaternion.hpp"
+	"../gtx/rotate_vector.hpp"
+	"vector_angle.inl"
+
+1359681820 d:\martin\programming\c and c++\sdl\explosion generator 2014 05 19 sphere sphere collision detection\glm\gtc\epsilon.hpp
+	"../glm.hpp"
+	"../gtc/half_float.hpp"
+	"../gtc/quaternion.hpp"
+	"epsilon.inl"
+
+1359681820 d:\martin\programming\c and c++\sdl\explosion generator 2014 05 19 sphere sphere collision detection\glm\gtc\epsilon.inl
+
+1359681822 d:\martin\programming\c and c++\sdl\explosion generator 2014 05 19 sphere sphere collision detection\glm\gtx\quaternion.hpp
+	"../glm.hpp"
+	"../gtc/quaternion.hpp"
+	"quaternion.inl"
+
+1359681822 d:\martin\programming\c and c++\sdl\explosion generator 2014 05 19 sphere sphere collision detection\glm\gtx\quaternion.inl
+	<limits>
+
+1359681822 d:\martin\programming\c and c++\sdl\explosion generator 2014 05 19 sphere sphere collision detection\glm\gtx\rotate_vector.hpp
+	"../glm.hpp"
+	"../gtx/transform.hpp"
+	"rotate_vector.inl"
+
+1359681822 d:\martin\programming\c and c++\sdl\explosion generator 2014 05 19 sphere sphere collision detection\glm\gtx\transform.hpp
+	"../glm.hpp"
+	"../gtc/matrix_transform.hpp"
+	"transform.inl"
+
+1359681820 d:\martin\programming\c and c++\sdl\explosion generator 2014 05 19 sphere sphere collision detection\glm\gtc\matrix_transform.hpp
+	"../glm.hpp"
+	"matrix_transform.inl"
+
+1359681820 d:\martin\programming\c and c++\sdl\explosion generator 2014 05 19 sphere sphere collision detection\glm\gtc\matrix_transform.inl
+
+1359681822 d:\martin\programming\c and c++\sdl\explosion generator 2014 05 19 sphere sphere collision detection\glm\gtx\transform.inl
+
+1359681822 d:\martin\programming\c and c++\sdl\explosion generator 2014 05 19 sphere sphere collision detection\glm\gtx\rotate_vector.inl
+
+1359681824 d:\martin\programming\c and c++\sdl\explosion generator 2014 05 19 sphere sphere collision detection\glm\gtx\vector_angle.inl
+
+1359681820 d:\martin\programming\c and c++\sdl\explosion generator 2014 05 19 sphere sphere collision detection\glm\gtx\compatibility.hpp
+	"../glm.hpp"
+	"../gtc/half_float.hpp"
+	"../gtc/quaternion.hpp"
+	<cfloat>
+	<cmath>
+	"compatibility.inl"
+
+1359681820 d:\martin\programming\c and c++\sdl\explosion generator 2014 05 19 sphere sphere collision detection\glm\gtx\compatibility.inl
+
+1359681822 d:\martin\programming\c and c++\sdl\explosion generator 2014 05 19 sphere sphere collision detection\glm\gtx\matrix_operation.hpp
+	"../glm.hpp"
+	"matrix_operation.inl"
+
+1359681822 d:\martin\programming\c and c++\sdl\explosion generator 2014 05 19 sphere sphere collision detection\glm\gtx\matrix_operation.inl
+
+1359681822 d:\martin\programming\c and c++\sdl\explosion generator 2014 05 19 sphere sphere collision detection\glm\gtx\euler_angles.hpp
+	"../glm.hpp"
+	"../gtc/half_float.hpp"
+	"euler_angles.inl"
+
+1359681822 d:\martin\programming\c and c++\sdl\explosion generator 2014 05 19 sphere sphere collision detection\glm\gtx\euler_angles.inl
+
+1359681822 d:\martin\programming\c and c++\sdl\explosion generator 2014 05 19 sphere sphere collision detection\glm\gtx\norm.hpp
+	"../glm.hpp"
+	"../gtx/quaternion.hpp"
+	"norm.inl"
+
+1359681822 d:\martin\programming\c and c++\sdl\explosion generator 2014 05 19 sphere sphere collision detection\glm\gtx\norm.inl
+
+1348910498 d:\martin\programming\c and c++\sdl\explosion generator 2014 05 19 sphere sphere collision detection\vector3d.h
 	<iostream>
-	"main.h"
-	<stdio.h>
+	<cmath>
+
+1408566170 source:d:\martin\programming\c and c++\sdl\explosion generator 2014 05 19 sphere sphere collision detection\collisiondetection_hgrid.cpp
+	"CollisionDetection_HGrid.h"
+
+1408486782 d:\martin\programming\c and c++\sdl\explosion generator 2014 05 19 sphere sphere collision detection\collisiondetection_hgrid.h
+	"CollisionDetection_Interface.h"
+	"Particle.h"
+	"glm/glm.hpp"
+	<cstdlib>
+	<vector>
+	<iostream>
+	<algorithm>
+	<unordered_map>
 	<string>
-	<sstream>
+	<typeinfo>
+	<bitset>
+	<math.h>
 	"gl/gl.h"
 	"gl/glu.h"
-	"PivotCamera.h"
 
-1396235399 d:\martin\programming\c and c++\sdl\explosion generator 2014 04 13 collision with ground and crappy smoke\main.h
-	<GL/glew.h>
-	"SDL/SDL_opengl.h"
-	"SDL/SDL.h"
-	"SDL/SDL_image.h"
-	"ElapsedTime.h"
-	"define.h"
-	"ParticleEmitter.h"
-	"CubeEmitter.h"
-	"Smoke.h"
+1397420157 d:\martin\programming\c and c++\sdl\explosion generator 2014 05 19 sphere sphere collision detection\collisiondetection_interface.h
 
-1395798117 d:\martin\programming\c and c++\sdl\explosion generator 2014 04 13 collision with ground and crappy smoke\smoke.h
+1408437474 d:\martin\programming\c and c++\sdl\explosion generator 2014 05 19 sphere sphere collision detection\particle.h
+	"glm/glm.hpp"
+	<cstdlib>
+	<vector>
+	<stdint.h>
+
+1408437319 source:d:\martin\programming\c and c++\sdl\explosion generator 2014 05 19 sphere sphere collision detection\cubeemittereffect.cpp
+	"CubeEmitterEffect.h"
+
+1397950416 d:\martin\programming\c and c++\sdl\explosion generator 2014 05 19 sphere sphere collision detection\cubeemittereffect.h
+	"ParticleEffect_Interface.h"
+	<cstdlib>
+	<iostream>
+	<algorithm>
+	"Random.h"
+	"gl/gl.h"
+	"gl/glu.h"
+
+1397949143 d:\martin\programming\c and c++\sdl\explosion generator 2014 05 19 sphere sphere collision detection\particleeffect_interface.h
+	"Particle.h"
+	<cstdlib>
+	<cstdlib>
 	<vector>
 	<iostream>
 	<sstream>
@@ -1415,21 +1195,146 @@
 	<algorithm>
 	<fstream>
 	<cstdio>
+
+1395616946 d:\martin\programming\c and c++\sdl\explosion generator 2014 05 19 sphere sphere collision detection\random.h
+
+1402726747 source:d:\martin\programming\c and c++\sdl\explosion generator 2014 05 19 sphere sphere collision detection\elapsedtime.cpp
+	"ParticleSystemPCH.h"
+	"ElapsedTime.h"
+	<algorithm>
+
+1395616955 d:\martin\programming\c and c++\sdl\explosion generator 2014 05 19 sphere sphere collision detection\particlesystempch.h
+	<string>
+	<iostream>
+	<ctime>
+	<vector>
+	<map>
+	<math.h>
+	<GL/glew.h>
+	"SDL/SDL_opengl.h"
+	<glm/glm.hpp>
+	<glm/gtc/type_ptr.hpp>
+	<glm/gtc/quaternion.hpp>
+	<glm/gtx/vector_angle.hpp>
+	<glm/gtx/compatibility.hpp>
+	<glm/gtx/matrix_operation.hpp>
+	<glm/gtx/transform.hpp>
+	<glm/gtx/quaternion.hpp>
+	<glm/gtx/euler_angles.hpp>
+	<glm/gtx/norm.hpp>
+	<SOIL.h>
+
+1395616959 d:\martin\programming\c and c++\sdl\explosion generator 2014 05 19 sphere sphere collision detection\elapsedtime.h
+
+1408568612 source:d:\martin\programming\c and c++\sdl\explosion generator 2014 05 19 sphere sphere collision detection\l_cubeemittereffect.cpp
+	"L_CubeEmitterEffect.h"
+	"gl/gl.h"
+	"gl/glu.h"
+
+1401050334 d:\martin\programming\c and c++\sdl\explosion generator 2014 05 19 sphere sphere collision detection\l_cubeemittereffect.h
+	"ParticleEffect_Interface.h"
+	<cstdlib>
+	<iostream>
+	<algorithm>
+	"CollisionDetection_HGrid.h"
+	"Random.h"
+
+1408568842 source:d:\martin\programming\c and c++\sdl\explosion generator 2014 05 19 sphere sphere collision detection\main.cpp
+	"main.h"
+	"gl/gl.h"
+	"gl/glu.h"
+	"PivotCamera.h"
+	"SDL\SDL.h"
+
+1402709373 d:\martin\programming\c and c++\sdl\explosion generator 2014 05 19 sphere sphere collision detection\main.h
+	<cstdlib>
+	<iostream>
+	<stdio.h>
+	<string>
+	<sstream>
+	"shader.h"
+	<GL/glew.h>
+	"SDL/SDL_opengl.h"
+	"SDL/SDL.h"
+	"SDL/SDL_image.h"
+	"ElapsedTime.h"
+	"define.h"
+	"ParticleEffect_Interface.h"
+	"CubeEmitterEffect.h"
+	"L_CubeEmitterEffect.h"
+	"Smoke.h"
+	"CollisionDetection_HGrid.h"
+
+1396137810 d:\martin\programming\c and c++\sdl\explosion generator 2014 05 19 sphere sphere collision detection\shader.h
+	<GL/glew.h>
+	<string>
+	<vector>
+	<fstream>
+	<iostream>
+
+1397420564 d:\martin\programming\c and c++\sdl\explosion generator 2014 05 19 sphere sphere collision detection\smoke.h
+	<vector>
+	<iostream>
+	<sstream>
+	<string>
+	<algorithm>
+	<fstream>
+	<cstdio>
+	"ParticleEffect_Interface.h"
 	"gl/gl.h"
 	"gl/glu.h"
 	"define.h"
 
-1394347221 d:\martin\programming\c and c++\sdl\explosion generator 2014 04 13 collision with ground and crappy smoke\pivotcamera.h
+1394347221 d:\martin\programming\c and c++\sdl\explosion generator 2014 05 19 sphere sphere collision detection\pivotcamera.h
 	"camera.h"
 
-1300205769 source:d:\martin\programming\c and c++\sdl\explosion generator 2014 04 13 collision with ground and crappy smoke\particlesystempch.cpp
+1300205769 source:d:\martin\programming\c and c++\sdl\explosion generator 2014 05 19 sphere sphere collision detection\particlesystempch.cpp
 	"ParticleSystemPCH.h"
 
-1394347387 source:d:\martin\programming\c and c++\sdl\explosion generator 2014 04 13 collision with ground and crappy smoke\pivotcamera.cpp
+1394347387 source:d:\martin\programming\c and c++\sdl\explosion generator 2014 05 19 sphere sphere collision detection\pivotcamera.cpp
 	"PivotCamera.h"
 
-1395801807 source:d:\martin\programming\c and c++\sdl\explosion generator 2014 04 13 collision with ground and crappy smoke\smoke.cpp
+1402708176 source:d:\martin\programming\c and c++\sdl\explosion generator 2014 05 19 sphere sphere collision detection\shader.cpp
+	"shader.h"
+
+1396838424 source:d:\martin\programming\c and c++\sdl\explosion generator 2014 05 19 sphere sphere collision detection\smoke.cpp
 	"Smoke.h"
+
+1348910496 source:d:\martin\programming\c and c++\sdl\explosion generator 2014 05 19 sphere sphere collision detection\vector3d.cpp
+	"vector3d.h"
+
+1394347321 source:d:\martin\programming\c and c++\sdl\explosion generator\camera.cpp
+	"camera.h"
+	<algorithm>
+	<iostream>
+
+1394356301 d:\martin\programming\c and c++\sdl\explosion generator\camera.h
+	<cmath>
+	<iostream>
+	<SDL/SDL.h>
+	"define.h"
+	<GL/gl.h>
+	<GL/glu.h>
+	"vector3d.h"
+
+1403475573 d:\martin\programming\c and c++\sdl\explosion generator\define.h
+	<string>
+	<iostream>
+	<ctime>
+	<vector>
+	<map>
+	<math.h>
+	"glm/glm.hpp"
+	"glm/gtc/type_ptr.hpp"
+	"glm/gtc/quaternion.hpp"
+	"glm/gtx/vector_angle.hpp"
+	"glm/gtx/compatibility.hpp"
+	"glm/gtx/matrix_operation.hpp"
+	"glm/gtx/transform.hpp"
+	"glm/gtx/quaternion.hpp"
+	"glm/gtx/euler_angles.hpp"
+	"glm/gtx/norm.hpp"
+	"SOIL.h"
 
 1359681820 d:\martin\programming\c and c++\sdl\explosion generator\glm\glm.hpp
 	"core/_fixes.hpp"
@@ -1769,4 +1674,61 @@
 	"norm.inl"
 
 1359681822 d:\martin\programming\c and c++\sdl\explosion generator\glm\gtx\norm.inl
+
+1348910498 d:\martin\programming\c and c++\sdl\explosion generator\vector3d.h
+	<iostream>
+	<cmath>
+
+1408566170 source:d:\martin\programming\c and c++\sdl\explosion generator\collisiondetection_hgrid.cpp
+	"CollisionDetection_HGrid.h"
+
+1408486782 d:\martin\programming\c and c++\sdl\explosion generator\collisiondetection_hgrid.h
+	"CollisionDetection_Interface.h"
+	"Particle.h"
+	"glm/glm.hpp"
+	<cstdlib>
+	<vector>
+	<iostream>
+	<algorithm>
+	<unordered_map>
+	<string>
+	<typeinfo>
+	<bitset>
+	<math.h>
+	"gl/gl.h"
+	"gl/glu.h"
+
+1397420157 d:\martin\programming\c and c++\sdl\explosion generator\collisiondetection_interface.h
+
+1408437474 d:\martin\programming\c and c++\sdl\explosion generator\particle.h
+	"glm/glm.hpp"
+	<cstdlib>
+	<vector>
+	<stdint.h>
+
+1408437319 source:d:\martin\programming\c and c++\sdl\explosion generator\cubeemittereffect.cpp
+	"CubeEmitterEffect.h"
+
+1397950416 d:\martin\programming\c and c++\sdl\explosion generator\cubeemittereffect.h
+	"ParticleEffect_Interface.h"
+	<cstdlib>
+	<iostream>
+	<algorithm>
+	"Random.h"
+	"gl/gl.h"
+	"gl/glu.h"
+
+1397949143 d:\martin\programming\c and c++\sdl\explosion generator\particleeffect_interface.h
+	"Particle.h"
+	<cstdlib>
+	<cstdlib>
+	<vector>
+	<iostream>
+	<sstream>
+	<string>
+	<algorithm>
+	<fstream>
+	<cstdio>
+
+1395616946 d:\martin\programming\c and c++\sdl\explosion generator\random.h
 

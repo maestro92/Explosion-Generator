@@ -7,21 +7,22 @@
 		<Option compiler="gcc" />
 		<Build>
 			<Target title="Debug">
-				<Option output="bin\Debug\client" prefix_auto="1" extension_auto="1" />
-				<Option object_output="obj\Debug\" />
+				<Option output="bin/Debug/Explosion Generator" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Debug/" />
 				<Option type="1" />
 				<Option compiler="gcc" />
 				<Compiler>
 					<Add option="-g" />
-					<Add directory="C:\SDL-1.2.14\include" />
+					<Add directory="C:/SDL-1.2.14/include" />
+					<Add directory="Maths" />
 				</Compiler>
 				<Linker>
-					<Add directory="C:\SDL-1.2.14\lib" />
+					<Add directory="C:/SDL-1.2.14/lib" />
 				</Linker>
 			</Target>
 			<Target title="Release">
-				<Option output="bin\Release\client" prefix_auto="1" extension_auto="1" />
-				<Option object_output="obj\Release\" />
+				<Option output="bin/Release/Explosion Generator" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Release/" />
 				<Option type="1" />
 				<Option compiler="gcc" />
 				<Compiler>
@@ -44,12 +45,17 @@
 			<Add library="C:\SDL-1.2.14\lib\libSDLmain.a" />
 			<Add library="C:\Program Files (x86)\CodeBlocks\MinGW\lib\libmingw32.a" />
 		</Linker>
-		<Unit filename="CubeEmitter.cpp" />
-		<Unit filename="CubeEmitter.h" />
+		<Unit filename="CollisionDetection_HGrid.cpp" />
+		<Unit filename="CollisionDetection_HGrid.h" />
+		<Unit filename="CollisionDetection_Interface.h" />
+		<Unit filename="CubeEmitterEffect.cpp" />
+		<Unit filename="CubeEmitterEffect.h" />
 		<Unit filename="ElapsedTime.cpp" />
 		<Unit filename="ElapsedTime.h" />
+		<Unit filename="L_CubeEmitterEffect.cpp" />
+		<Unit filename="L_CubeEmitterEffect.h" />
 		<Unit filename="Particle.h" />
-		<Unit filename="ParticleEmitter.h" />
+		<Unit filename="ParticleEffect_Interface.h" />
 		<Unit filename="ParticleSystemPCH.cpp" />
 		<Unit filename="ParticleSystemPCH.h" />
 		<Unit filename="PivotCamera.cpp" />
@@ -60,8 +66,13 @@
 		<Unit filename="camera.cpp" />
 		<Unit filename="camera.h" />
 		<Unit filename="define.h" />
+		<Unit filename="links.h" />
 		<Unit filename="main.cpp" />
 		<Unit filename="main.h" />
+		<Unit filename="shader.cpp" />
+		<Unit filename="shader.h" />
+		<Unit filename="vector3d.cpp" />
+		<Unit filename="vector3d.h" />
 		<Extensions>
 			<code_completion />
 			<debugger />
