@@ -1,5 +1,9 @@
 #include "sceneLoader.h"
 
+string model_path = "./models/";
+string m_str;
+
+
 void meshLoader::recursiveProcess(aiNode* node,const aiScene* scene)
 {
 	//process
@@ -136,10 +140,37 @@ unsigned int meshLoader::loadTexture(const char* filename)
 }
 
 
-
+/*
 meshLoader::meshLoader(const char* filename)
 {
 	const aiScene* scene=aiImportFile(filename, aiProcess_GenSmoothNormals | aiProcess_Triangulate | aiProcess_CalcTangentSpace | aiProcess_FlipUVs);
+
+	if(aiGetErrorString()!=NULL)
+	{
+		std::cout << "The file wasn't successfuly opened " << filename << std::endl;
+		return;
+	}
+
+	recursiveProcess(scene->mRootNode,scene);
+}
+*/
+
+meshLoader::meshLoader(string filename)
+{
+
+    m_str = model_path;
+    m_str = m_str + filename;
+
+    cout << "model_path " << model_path << endl;
+    cout << "m_str " << m_str << endl;
+	const aiScene* scene=aiImportFile(m_str.c_str(), aiProcess_GenSmoothNormals | aiProcess_Triangulate | aiProcess_CalcTangentSpace | aiProcess_FlipUVs);
+
+
+
+
+//	const aiScene* scene=aiImportFile(filename.c_str(), aiProcess_GenSmoothNormals | aiProcess_Triangulate | aiProcess_CalcTangentSpace | aiProcess_FlipUVs);
+
+
 /*
 	if(aiGetErrorString()!=NULL)
 	{

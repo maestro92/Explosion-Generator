@@ -26,7 +26,7 @@ L_CubeEmitterEffect::L_CubeEmitterEffect()
 {
     testRadius = 2.0;
     Ball2Ball_CollisionMode = false;
-    first = true;
+
     MaxRadius = 0.5;
     MinRadius = 2;
     cout << "nice" << endl;
@@ -225,17 +225,18 @@ void L_CubeEmitterEffect::InitParticleVel(int i, int k, int j, int Index)
 //    float vel_x, vel_y, vel_z;
     if (!Ball2Ball_CollisionMode)
     {
-        float VelMag = 10;
-        float scale = 0.5;
+        float VelMag = 5;
+        float scale = 1.0;
+        float y_scale = 2.0f;
         // init velocity
     //    vel_x = RandRange(-scale*VelMag,VelMag);
     //    vel_y = RandRange(0,VelMag*2);
     //    vel_z = RandRange(-scale*VelMag,scale*VelMag);
 
         vel_x = RandRange(-scale*VelMag,scale*VelMag);
-        vel_y = RandRange(VelMag*2,VelMag*2);
+        vel_y = RandRange(0,y_scale*VelMag);
         vel_z = RandRange(-scale*VelMag,scale*VelMag);
-#if 1
+#if 0
         vel_x = 0;
         vel_y = 0;
         vel_z = 0;
@@ -269,11 +270,11 @@ void L_CubeEmitterEffect::InitParticleAttribute(int i, int k, int j, int Index)
         e_ParticleBuffer[Index].m_fRadius = 3; // dRadius/2;
 */
   //  e_ParticleBuffer[Index].m_fRadius = 0.5;
-    e_ParticleBuffer[Index].m_fRadius = testRadius;
+//    e_ParticleBuffer[Index].m_fRadius = testRadius;
 
     float lifetime;
     lifetime = RandRange(3,5);
- //   e_ParticleBuffer[Index].m_fRadius = RandRange(MinRadius, MaxRadius); // dRadius/2;
+    e_ParticleBuffer[Index].m_fRadius = RandRange(MinRadius, MaxRadius); // dRadius/2;
     e_ParticleBuffer[Index].m_fLifeTime = lifetime;
     e_ParticleBuffer[Index].m_fAge = 0;
     e_ParticleBuffer[Index].m_id = Index;
@@ -383,7 +384,9 @@ void L_CubeEmitterEffect::DrawParticleCube(pipeline &m_pipeline,  unsigned int s
     {
 
         m_pipeline.pushMatrix();
+
             m_pipeline.translate(e_ParticleBuffer[i].m_Position.x, e_ParticleBuffer[i].m_Position.y, e_ParticleBuffer[i].m_Position.z);
+            m_pipeline.scale(e_ParticleBuffer[i].m_fRadius);
             m_pipeline.updateMatrices(shaderID);
             m_pipeline.updateShadowMatrix(shaderID);
             mymesh->draw(shaderID);

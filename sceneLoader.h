@@ -13,7 +13,11 @@ class meshLoader{
 	void processMesh(aiMesh* mesh,const aiScene* scene);
 	unsigned int loadTexture(const char* filename);
 	public:
-		meshLoader(const char* filename);
+
+	    string path;
+
+        meshLoader(string filename);
+		// meshLoader(const char* filename);
 		~meshLoader();
 		void draw(unsigned int programId);
         void draw1(unsigned int programId);

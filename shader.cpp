@@ -1,13 +1,21 @@
 #include "shader.h"
 
+#include <stdio.h>
+#include <string.h>
 
-
-
+string dir_path = "./shaders/";
+string p_str;
 
 
 void shader::loadFile(const char* fn, string & str)
 {
-    ifstream in(fn);
+    p_str = dir_path;
+    string mstr(fn);
+    p_str = p_str + mstr;
+//    cout << "p_str is " << p_str << endl;
+
+
+    ifstream in(p_str);
 
     if(!in.is_open())
     {

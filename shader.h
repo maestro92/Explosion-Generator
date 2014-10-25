@@ -7,14 +7,20 @@
 #include <vector>
 #include <fstream>
 #include <iostream>
+#include <stdio.h>
 
 using namespace std;
 class shader{
     unsigned int vs, fs, program;
+    string path;
     void loadFile(const char* fn, string & str);
     unsigned int loadShader(string& source, unsigned int shaderType);
 
+
+
 public:
+
+
     shader(const char* vs_source, const char* fs_source);
     ~shader();
     void useShader();

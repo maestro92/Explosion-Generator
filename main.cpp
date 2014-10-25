@@ -97,6 +97,7 @@ ExplosionGenerator::ExplosionGenerator()
 
 
 
+
     setupCamera();
     setupColor_Texture();
 
@@ -253,13 +254,15 @@ void ExplosionGenerator::init_OpenGL()
 #endif
 
 
+
 void ExplosionGenerator::init_Shader()
 {
-//    ObjShader = new shader("m_obj_new.vs", "m_obj_new.fs");
+
     ObjShader = new shader("m_obj2_Spot.vs", "m_obj2_Spot.fs");
 	quadRenderShader=new shader("quadRender.vs","quadRender.frag"); // rendering texture as a quad
     shadow_FirstRender = new shader("shadow_FirstRender.vs", "shadow_FirstRender.fs");
-    shadow_SecondRender = new shader("shadow_SecondRender2.vs", "shadow_SecondRender2.fs");
+    shadow_SecondRender = new shader("shadow_SecondRender.vs", "shadow_SecondRender.fs");
+
   //  shadow_SecondRender = new shader("shadow_SecondRender.vs", "shadow_SecondRender.fs");
 }
 
@@ -271,8 +274,10 @@ void ExplosionGenerator::init_Models()
     scene = new meshLoader("shadow.obj");
     ground = new meshLoader("ground.obj");
     ground1 = new meshLoader("quad12.obj");
-    sphere = new meshLoader("sphere20.obj");
+    sphere = new meshLoader("sphere10.obj");
     monkeyMesh = new meshLoader("monkey1.obj");
+
+
   //  sphere = new meshLoader("phoenix_ugv.md2");
 /*
     if (!m_pLightingEffect->Init()) {
@@ -387,6 +392,9 @@ void ExplosionGenerator::start()
                             break;
                         case SDLK_v:
                             dvel = !dvel;
+                            break;
+                        case SDLK_p:
+                            cam.mouseIn(false);
                             break;
                         case SDLK_x:
                             cout << "here" << endl;
