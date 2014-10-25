@@ -113,6 +113,7 @@ void Camera::ApplyViewport()
 }
 
 
+
 void Camera::ApplyProjectionTransform()
 {
     glMatrixMode( GL_PROJECTION );

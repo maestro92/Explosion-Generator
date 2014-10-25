@@ -6,7 +6,7 @@
 #include "gl/gl.h"
 #include "gl/glu.h"
 
-#include "PivotCamera.h"
+
 
 #include "SDL\SDL.h"
 
@@ -20,7 +20,6 @@ const int SCREEN_WIDTH = 1024;
 const int SCREEN_HEIGHT = 768;
 // const int SCREEN_WIDTH = 600;
 // const int SCREEN_HEIGHT = 480;
-
 
 // frame rate
 // https://sites.google.com/site/sdlgamer/intemediate/lesson-7
@@ -53,7 +52,8 @@ glm::vec2 g_MousePrevious = glm::vec2(0);
 glm::vec2 g_MouseDelta = glm::vec2(0);
 
 
-glm::vec3 g_DefaultCameraTranslate( 0, 0, 400 );
+//glm::vec3 g_DefaultCameraTranslate( 0, 0, 400 );
+glm::vec3 g_DefaultCameraTranslate( 0, 0, 0 );
 // so positive y axis faces downwards
 glm::vec3 g_DefaultCameraRotate( 0, 0, 0 );
 glm::vec3 g_DefaultCameraPivot( 0, 0, 0 );
@@ -63,64 +63,9 @@ glm::vec3 g_DefaultCameraPivot( 0, 0, 0 );
 
 
 
-
-
-glm::vec3 cameraPosition(-2.5f, 3.5f, -2.5f);
-glm::vec3 lightPosition(2.0f, 3.0f,-2.0f);
-// size of shadow map
-const int shadowMapSize = 512;
-
 // Textures
 GLuint shadowMapTexture;
 
-//Matrices
-glm::mat4 lightProjectionMatrix, lightViewMatrix;
-glm::mat4 cameraProjectionMatrix, cameraViewMatrix;
-
-//GLfloat* lightProjectionMatrix;
-//GLfloat* lightViewMatrix;
-//GLfloat* cameraProjectionMatrix, cameraViewMatrix;
-/*
-GLfloat lightProjectionMatrix[16] =
-{
-    0,0,0,0,
-    0,0,0,0,
-    0,0,0,0,
-    0,0,0,0,
-};
-
-
-GLfloat lightViewMatrix[16] =
-{
-    0,0,0,0,
-    0,0,0,0,
-    0,0,0,0,
-    0,0,0,0,
-};
-
-
-GLfloat cameraProjectionMatrix[16] =
-{
-    0,0,0,0,
-    0,0,0,0,
-    0,0,0,0,
-    0,0,0,0,
-};
-
-
-GLfloat cameraViewMatrix[16] =
-{
-    0,0,0,0,
-    0,0,0,0,
-    0,0,0,0,
-    0,0,0,0,
-};
-*/
-
-
-
-//glm::vec4 white(1.0f, 1.0f, 1.0f, 1.0f);
-//glm::vec4 black(0.0f, 0.0f, 0.0f, 0.0f);
 
 float white[] = {1.0f,1.0f,1.0f,1.0f};
 float grey[] = {0.2f,0.2f,0.2f,0.2f};
@@ -128,16 +73,21 @@ float black[] = {0.0f,0.0f,0.0f,0.0f};
 
 
 
-
-
-
+int shadowMapWidth = SCREEN_WIDTH * 2;
+int shadowMapheight = SCREEN_HEIGHT * 2;
 
 bool space_bar = false;
 
 
+//vector3d lightPosition(-11.0865, 13.8124, 21.3599);
+vector3d lightDirection(-29, 330.6);
+
+vector3d lightPosition(-19.1004, 28.881, 40.5246);
+//vector3d lightDirection(-37, 335.4);
 
 ExplosionGenerator::ExplosionGenerator()
 {
+    angle = 0;
     running = true;
     dvel = false;
     addSmoke = false;
@@ -149,9 +99,20 @@ ExplosionGenerator::ExplosionGenerator()
     initSDL_GLEW();
     initOpenGL();
 
-  //  init_FrameBuffer();
- //   initShader();
+    initShader();
+    init_Texture_and_FrameBuffer();
+    scene = new meshLoader("shadow.obj");
+    ground = new meshLoader("ground.obj");
+    sphere = new meshLoader("sphere20.obj");
+    monkeyMesh = new meshLoader("monkey1.obj");
 
+
+    init_shadowMapping();
+
+
+//    scene = new meshLoader("test.obj");
+
+    cam = t_camera(lightPosition, lightDirection.x, lightDirection.y);
 
     setupCamera();
     setupColor_Texture();
@@ -164,9 +125,6 @@ ExplosionGenerator::ExplosionGenerator()
     SDL_WM_SetCaption("Template", NULL);
 
     init_Lighting();
-
-    setup_CollisionDetection_HGrid();
-
 
 
     // l_CubeEffect.ExamineParticleAttribute();
@@ -198,18 +156,80 @@ void ExplosionGenerator::initSDL_GLEW()
 
 }
 
-glm::vec3 Vertices[1];
+glm::vec3 Vertices[4];
 
-void ExplosionGenerator::init_FrameBuffer()
+void ExplosionGenerator::init_Texture_and_FrameBuffer()
 {
-    /*
-    Vertices[0] = glm::vec3(0,0,0);
+
+    Vertices[0] = glm::vec3(-1,1,-4);
+    Vertices[1] = glm::vec3(-1,-1,-4);
+    Vertices[2] = glm::vec3(1,-1,-4);
+    Vertices[3] = glm::vec3(1,1,-4);
+
     glGenBuffers(1, &VBO);
     glBindBuffer(GL_ARRAY_BUFFER, VBO);
     glBufferData(GL_ARRAY_BUFFER, sizeof(Vertices), Vertices, GL_STATIC_DRAW);
     glEnableVertexAttribArray(0);
     glBindBuffer(GL_ARRAY_BUFFER, VBO);
-    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, 0);*/
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, 0);
+
+
+    shadow_depthTexture = createTexture(shadowMapWidth, shadowMapheight, true);
+    glBindTexture(GL_TEXTURE_2D, shadow_depthTexture);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_COMPARE_MODE, GL_COMPARE_R_TO_TEXTURE);
+    glBindTexture(GL_TEXTURE_2D, 0);
+
+
+ //   renderTexture=createTexture(SCREEN_WIDTH,SCREEN_HEIGHT);
+//	depthTexture=createTexture(SCREEN_WIDTH,SCREEN_HEIGHT,true);
+    glGenFramebuffers(1,&FBO);
+	glBindFramebuffer(GL_FRAMEBUFFER,FBO);
+	//GL_COLOR_ATTACHMENT0
+	//GL_DEPTH_ATTACHMENT
+//	glFramebufferTexture2D(GL_FRAMEBUFFER,GL_COLOR_ATTACHMENT0,GL_TEXTURE_2D,renderTexture,0);
+
+//	glFramebufferTexture2D(GL_FRAMEBUFFER,GL_DEPTH_ATTACHMENT,GL_TEXTURE_2D,depthTexture,0);
+
+    int i=glCheckFramebufferStatus(GL_FRAMEBUFFER);
+	if(i!=GL_FRAMEBUFFER_COMPLETE)
+	{
+		std::cout << "Framebuffer is not OK, status=" << i << std::endl;
+	}
+	glBindFramebuffer(GL_FRAMEBUFFER,0);
+	{
+		std::vector<unsigned int> indices;
+		std::vector<vertexData> vertices;
+		vertexData tmp;
+		//1.
+		tmp.position.change(-1.0,1.0,0.0);
+		tmp.U=0;
+		tmp.V=1;
+		vertices.push_back(tmp);
+		//2.
+		tmp.position.change(-1.0,-1.0,0.0);
+		tmp.U=0;
+		tmp.V=0;
+		vertices.push_back(tmp);
+		//3.
+		tmp.position.change(1.0,-1.0,0.0);
+		tmp.U=1;
+		tmp.V=0;
+		vertices.push_back(tmp);
+		//4.
+		tmp.position.change(1.0,1.0,0.0);
+		tmp.U=1;
+		tmp.V=1;
+		vertices.push_back(tmp);
+
+		indices.push_back(0);
+		indices.push_back(1);
+		indices.push_back(2);
+
+		indices.push_back(0);
+		indices.push_back(2);
+		indices.push_back(3);
+		quad=new mesh(&vertices,&indices);
+	}
 }
 
 
@@ -222,9 +242,13 @@ void ExplosionGenerator::initOpenGL()
 {
 
     //Initialize clear color
-    glClearColor( 0.7f, 0.7f, 1.0f, 1.0f );
-  //  glClearDepth(1.0);
+    glClearColor( 0.0f, 0.0f, 0.0f, 1.0f );
 
+    m_pipeline.perspective(45, SCREEN_WIDTH/SCREEN_HEIGHT, 1,1000.0);
+    m_pipeline.matrixMode(MODEL_MATRIX);
+
+
+#if 1
     //Initialize Projection Mode    (We initialize the camera lens)
     glMatrixMode( GL_PROJECTION );
     glLoadIdentity();
@@ -237,36 +261,24 @@ void ExplosionGenerator::initOpenGL()
                                     // clipping coordinate: the cutoff range
 
 
-
     //Initialize Modelview Matrix
     glMatrixMode( GL_MODELVIEW );
-    glLoadIdentity();
+ //   glLoadIdentity();
+#endif
 
     glEnable(GL_DEPTH_TEST);
 
 }
 #endif
 
-void ExplosionGenerator::reshape()
-{
-	//Update the camera's projection matrix
-	glPushMatrix();
-	glLoadIdentity();
-    gluPerspective( 45,             // the camera angle
-                    SCREEN_WIDTH/SCREEN_HEIGHT,    // width to height ratio
-                    1.0,            // the near z clippFing coordinate
-                    1000.0);         // the far z clipping coordinate
-                                    // clipping coordinate: the cutoff range
-	glGetFloatv(GL_MODELVIEW_MATRIX, &cameraProjectionMatrix[0][0]);
-	glPopMatrix();
-
-}
-
 
 void ExplosionGenerator::initShader()
 {
-    MainShader = new shader("vertex.vs", "fragment.fs");
-
+ //   MainShader = new shader("m_vertex.vs", "m_fragment.fs");
+    ObjShader = new shader("m_obj.vs", "m_obj.fs");
+	quadRenderShader=new shader("quadRender.vs","quadRender.frag"); // rendering texture as a quad
+    shadow_FirstRender = new shader("shadow_FirstRender.vs", "shadow_FirstRender.fs");
+    shadow_SecondRender = new shader("shadow_SecondRender.vs", "shadow_SecondRender.fs");
 }
 
 
@@ -276,11 +288,6 @@ void ExplosionGenerator::setupParticleEmitter()
 }
 
 
-void ExplosionGenerator::setup_CollisionDetection_HGrid()
-{
-
-
-}
 
 
 void ExplosionGenerator::start()
@@ -329,6 +336,9 @@ void ExplosionGenerator::start()
 
 
                 case SDL_MOUSEBUTTONDOWN:
+                    cam.mouseIn(true);
+                    cam.lookAt(lightDirection.x, lightDirection.y);
+
                     switch(event.button.button)
                     {
                         int tmpx,tmpy;
@@ -396,8 +406,8 @@ void ExplosionGenerator::start()
             update();
       //      reshape();
             show();
-//            shadow_show();
-            // reshape();
+          //  shadow_show();
+
 
             SDL_GL_SwapBuffers();
 
@@ -416,8 +426,10 @@ void ExplosionGenerator::start()
 
 
 
+
 void ExplosionGenerator::init_Lighting()
 {
+
 
 
 
@@ -448,190 +460,587 @@ void ExplosionGenerator::init_Lighting()
 
 }
 
-
-
-#if 1
-void ExplosionGenerator::show()
+void ExplosionGenerator::init_shadowMapping()
 {
-    // it's stored in your own comptuer not in the video card
-    glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT);
-    glMatrixMode( GL_MODELVIEW );
-    glLoadIdentity();
-	glEnable(GL_DEPTH_TEST);
-
-    // update your camera
-    g_Camera.ApplyViewTransform();
-    drawGround(200, textureID);
-  //  smoke.show(dvel);
-    DrawAxis( 20.0f);//, g_Camera.GetPivot());
+   // shadow_depthTexture = createTexture(SCREEN_WIDTH, SCREEN_HEIGHT, true);
+}
 
 
-    l_CubeEffect.show();
-    //e_CubeEffect.DrawParticleCube();
-   // e_CubeEffect.show();
 
-    int r = 20;
 
-  //  drawCubeFrame(r, r/2);
- //   myCD_Hgrid.Draw();
+
+// bool isDepth: true if it's depth texture
+unsigned int ExplosionGenerator::createTexture(int w, int h, bool isDepth)
+{
+    unsigned int textureID;
+
+    glGenTextures(1,&textureID);
+	glBindTexture(GL_TEXTURE_2D,textureID);
+	glTexImage2D(GL_TEXTURE_2D,0,(!isDepth ? GL_RGBA8 : GL_DEPTH_COMPONENT),w,h,0,isDepth ? GL_DEPTH_COMPONENT : GL_RGBA,GL_FLOAT,NULL);
+	glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MAG_FILTER,GL_NEAREST);
+	glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MIN_FILTER,GL_NEAREST);
+	glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_WRAP_S,GL_CLAMP_TO_BORDER);
+	glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_WRAP_T,GL_CLAMP_TO_BORDER);
+//	glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_WRAP_S,GL_CLAMP_TO_EDGE);
+//	glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_WRAP_T,GL_CLAMP_TO_EDGE);
+    int i;
+    i = glGetError();
+    if(i!=0)
+    {
+        std::cout << "Error happened while loading the texture: " << i << std::endl;
+    }
+    // unbind the texture
+    glBindTexture(GL_TEXTURE_2D,0);
+    return textureID;
+}
+
+
+
+// we first create a depthTexture: shadow_depthTexture
+// then we render to it with glEnable(GL_DEPTH_TEST)
+
+
+glm::mat4 Light_ModelMatrix;
+glm::mat4 Light_ViewMatrix;
+glm::mat4 Light_ProjectionMatrix;
+glm::mat4 Light_ModelViewProjectionMatrix;
+glm::mat4 Light_BiasMatrix;
+
+glm::mat4 shadowMatrix;
+
+
+void ExplosionGenerator::shadow_getDepthTexture_FromLightPosion()
+{
+    m_pipeline.matrixMode(VIEW_MATRIX);
+    m_pipeline.loadIdentity();
+
+    m_pipeline.rotateX(lightDirection.x);
+    m_pipeline.rotateY(lightDirection.y);
+    m_pipeline.translate(lightPosition.x,lightPosition.y, lightPosition.z);
+
+
+    Light_ModelMatrix = m_pipeline.getModelMatrix();
+    Light_ViewMatrix = m_pipeline.getViewMatrix();
+    Light_ProjectionMatrix = m_pipeline.getProjectionMatrix();
+    Light_ModelViewProjectionMatrix = Light_ProjectionMatrix * Light_ViewMatrix * Light_ModelMatrix;
+
+    m_pipeline.updateLightMatrix(Light_ModelMatrix, Light_ViewMatrix, Light_ProjectionMatrix);
+
+    Light_BiasMatrix[0][0]=0.5;Light_BiasMatrix[0][1]=0.0;Light_BiasMatrix[0][2]=0.0;Light_BiasMatrix[0][3]=0.0;
+	Light_BiasMatrix[1][0]=0.0;Light_BiasMatrix[1][1]=0.5;Light_BiasMatrix[1][2]=0.0;Light_BiasMatrix[1][3]=0.0;
+	Light_BiasMatrix[2][0]=0.0;Light_BiasMatrix[2][1]=0.0;Light_BiasMatrix[2][2]=0.5;Light_BiasMatrix[2][3]=0.0;
+	Light_BiasMatrix[3][0]=0.5;Light_BiasMatrix[3][1]=0.5;Light_BiasMatrix[3][2]=0.5;Light_BiasMatrix[3][3]=1.0;
+
+    shadowMatrix = Light_BiasMatrix * Light_ModelViewProjectionMatrix;
+
+
+    glViewport(0,0,shadowMapWidth, shadowMapheight);
+	m_pipeline.matrixMode(MODEL_MATRIX);
+
+    glBindFramebuffer(GL_FRAMEBUFFER, FBO);
+    glEnable(GL_CULL_FACE);
+    glCullFace(GL_FRONT);       // we don't render the front, the moisser pattern doesn't appear in the front
+    glFramebufferTexture2D(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_TEXTURE_2D, shadow_depthTexture, 0);
+
+    glEnable(GL_DEPTH_TEST);
+    shadow_FirstRender->useShader();
+        glClear(GL_DEPTH_BUFFER_BIT);
+        m_pipeline.updateMatrices(shadow_FirstRender->getProgramId());
+  //      m_pipeline.updateShadowMatrix(shadow_FirstRender->getProgramId());
+    //    updateShadowMatrix(shadow_FirstRender->getProgramId());   ///
+        scene->draw(shadow_FirstRender->getProgramId());
+
+        m_pipeline.translate(-2,2,-3);                      ///
+        m_pipeline.updateMatrices(shadow_FirstRender->getProgramId()); ///
+  //      m_pipeline.updateShadowMatrix(shadow_FirstRender->getProgramId());
+     //   updateShadowMatrix(shadow_FirstRender->getProgramId());   ///
+        sphere->draw(shadow_FirstRender->getProgramId());   ///
+
+    shadow_FirstRender->delShader();
+    glBindFramebuffer(GL_FRAMEBUFFER, 0);
+    glDisable(GL_CULL_FACE);
+    glViewport(0,0,SCREEN_WIDTH, SCREEN_HEIGHT);
+}
+
+
+void ExplosionGenerator::getDepthTexture_FromLightPosion()
+{
+    m_pipeline.matrixMode(VIEW_MATRIX);
+    m_pipeline.loadIdentity();
+
+    m_pipeline.rotateX(lightDirection.x);
+    m_pipeline.rotateY(lightDirection.y);
+    m_pipeline.translate(lightPosition.x,lightPosition.y, lightPosition.z);
+
+
+    Light_ModelMatrix = m_pipeline.getModelMatrix();
+    Light_ViewMatrix = m_pipeline.getViewMatrix();
+    Light_ProjectionMatrix = m_pipeline.getProjectionMatrix();
+    Light_ModelViewProjectionMatrix = Light_ProjectionMatrix * Light_ViewMatrix * Light_ModelMatrix;
+
+    m_pipeline.updateLightMatrix(Light_ModelMatrix, Light_ViewMatrix, Light_ProjectionMatrix);
+
+    Light_BiasMatrix[0][0]=0.5;Light_BiasMatrix[0][1]=0.0;Light_BiasMatrix[0][2]=0.0;Light_BiasMatrix[0][3]=0.0;
+	Light_BiasMatrix[1][0]=0.0;Light_BiasMatrix[1][1]=0.5;Light_BiasMatrix[1][2]=0.0;Light_BiasMatrix[1][3]=0.0;
+	Light_BiasMatrix[2][0]=0.0;Light_BiasMatrix[2][1]=0.0;Light_BiasMatrix[2][2]=0.5;Light_BiasMatrix[2][3]=0.0;
+	Light_BiasMatrix[3][0]=0.5;Light_BiasMatrix[3][1]=0.5;Light_BiasMatrix[3][2]=0.5;Light_BiasMatrix[3][3]=1.0;
+
+    shadowMatrix = Light_BiasMatrix * Light_ModelViewProjectionMatrix;
+
+
+    glViewport(0,0,shadowMapWidth, shadowMapheight);
+	m_pipeline.matrixMode(MODEL_MATRIX);
+
+    glBindFramebuffer(GL_FRAMEBUFFER, FBO);
+    glEnable(GL_CULL_FACE);
+    glCullFace(GL_FRONT);       // we don't render the front, the moisser pattern doesn't appear in the front
+    glFramebufferTexture2D(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_TEXTURE_2D, shadow_depthTexture, 0);
+
+    glEnable(GL_DEPTH_TEST);
+    shadow_FirstRender->useShader();
+        glClear(GL_DEPTH_BUFFER_BIT);
+        m_pipeline.updateMatrices(shadow_FirstRender->getProgramId());
+        ground->draw(shadow_FirstRender->getProgramId());
+
+        l_CubeEffect.show(m_pipeline, shadow_FirstRender->getProgramId(), sphere);
+    shadow_FirstRender->delShader();
+
+    glBindFramebuffer(GL_FRAMEBUFFER, 0);
+    glDisable(GL_CULL_FACE);
+    glViewport(0,0,SCREEN_WIDTH, SCREEN_HEIGHT);
+}
+
+
+void ExplosionGenerator::updateShadowMatrix(unsigned int shaderId)
+{
+    Light_ModelMatrix = m_pipeline.getModelMatrix();
+    Light_ModelViewProjectionMatrix = Light_ProjectionMatrix * Light_ViewMatrix * Light_ModelMatrix;
+    shadowMatrix = Light_BiasMatrix * Light_ModelViewProjectionMatrix;
+
+		glUniformMatrix4fv(glGetUniformLocation(shaderId,"lightModelViewProjectionMatrix"),1,GL_FALSE,&shadowMatrix[0][0]);
 
 }
-#endif
 
-#if 0
+
+
+
+
+
+
+
 void ExplosionGenerator::shadow_show()
 {
-    // First pass - from's light's point of view
+    glClearColor(0.0,0.0,1.0,1.0);
+
+#if 1
+    // it's stored in your own comptuer not in the video card
+    m_pipeline.perspective(45,SCREEN_WIDTH/SCREEN_HEIGHT,1.0, 1000.0);
+	glEnable(GL_DEPTH_TEST);
+
+
+/// set to correct mode
+    glMatrixMode( GL_MODELVIEW );
+    glLoadIdentity();
+
+
+/*
+///First render pass: light's point of view
+    getDepthTexture_FromLightPosion();
+*/
+
+///First render pass: light's point of view
+    shadow_getDepthTexture_FromLightPosion();
+
+///Camera controls
+    m_pipeline.matrixMode(VIEW_MATRIX);
+    m_pipeline.loadIdentity();
+    // MotionGL();
+    // g_Camera.ApplyViewTransform();
+    // g_Camera.ApplyViewTransform(m_pipeline);
+    cam.Control();
+    cam.UpdateCamera();
+    cam.UpdateCamera(m_pipeline);
+
+
+/*
+    m_pipeline.rotateX(lightDirection.x);
+    m_pipeline.rotateY(lightDirection.y);
+    m_pipeline.translate(lightPosition.x,lightPosition.y, lightPosition.z);
+*/
+/*
+    glRotatef(-lightDirection.x, 1.0, 0.0, 0.0);
+    glRotatef(-lightDirection.y, 0.0, 1.0, 0.0);
+    glTranslatef(-lightPosition.x, -lightPosition.y, -lightPosition.z);
+*/
+
+    m_pipeline.matrixMode(MODEL_MATRIX);
+
+
+
+///2nd Render pass: camera's point of view
+    shadow_SecondRender->useShader();
+
+        glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT);
+        glActiveTexture(GL_TEXTURE0);
+        glBindTexture(GL_TEXTURE_2D, shadow_depthTexture);
+		glUniformMatrix4fv(glGetUniformLocation(shadow_SecondRender->getProgramId(),"lightModelViewProjectionMatrix"),1,GL_FALSE,&shadowMatrix[0][0]);
+		glUniform1i(glGetUniformLocation(shadow_SecondRender->getProgramId(),"shadowMap"),0);
+
+        m_pipeline.updateMatrices(shadow_SecondRender->getProgramId());
+        m_pipeline.updateShadowMatrix(shadow_SecondRender->getProgramId());
+   //     updateShadowMatrix(shadow_SecondRender->getProgramId());   ///
+        scene->draw(shadow_SecondRender->getProgramId());
+
+
+        m_pipeline.translate(-2,2,-3);
+        m_pipeline.updateMatrices(shadow_SecondRender->getProgramId());
+        m_pipeline.updateShadowMatrix(shadow_SecondRender->getProgramId());
+   //     updateShadowMatrix(shadow_SecondRender->getProgramId());   ///
+        sphere->draw(shadow_SecondRender->getProgramId());
+
+    shadow_SecondRender->delShader();
+
+
+
+# if 0  // rendering the depthTexture
+    glDisable(GL_DEPTH_TEST);
+    //render texture to screen
+	m_pipeline.loadIdentity();
+	m_pipeline.ortho(-1,1,-1,1,-1,1);
+
+    glBindFramebuffer(GL_FRAMEBUFFER, 0);
+	glClear(GL_COLOR_BUFFER_BIT);
+	quadRenderShader->useShader();
+	glActiveTexture(GL_TEXTURE0);
+	glBindTexture(GL_TEXTURE_2D,shadow_depthTexture);
+	glUniform1i(glGetUniformLocation(quadRenderShader->getProgramId(),"texture"),0);
+	glUniform2f(glGetUniformLocation(quadRenderShader->getProgramId(),"pixelSize"),1.0/SCREEN_WIDTH, 1.0/SCREEN_HEIGHT);
+	m_pipeline.updateMatrices(quadRenderShader->getProgramId());
+	quad->draw(shadow_FirstRender->getProgramId());
+	quadRenderShader->delShader();
+
+    glEnable(GL_DEPTH_TEST);
+#endif
+
+
+ //   drawCubeFrame(r, r/2);
+//    myCD_Hgrid.Draw();
+
+#endif
+
+
+
+
+}
+
+
+
+
+
+
+void ExplosionGenerator::show()
+{
+
+    glClearColor(0,0,0.5,1);
+
+    m_pipeline.perspective(45,SCREEN_WIDTH/SCREEN_HEIGHT,1.0, 1000.0);
+    glEnable(GL_DEPTH_TEST);
+
+
+
+///First render pass: light's point of view
+    getDepthTexture_FromLightPosion();
+
+
+
+    glMatrixMode( GL_MODELVIEW );
+    glLoadIdentity();
+
+	m_pipeline.matrixMode(VIEW_MATRIX);
+	m_pipeline.loadIdentity();
+
+    cam.Control();
+    cam.UpdateCamera();
+    cam.UpdateCamera(m_pipeline);
+
+
+    cout << "cam.x " << cam.getLocation().x << " cam.y " << cam.getLocation().y << " cam.z " << cam.getLocation().z << endl;
+    cout << "cam pitch " << cam.getPitch() << " cam yaw " << cam.getYaw() << endl;
+    // get modelViewMatrix for LightPosition, you essentially just treat the light pos like a regular object
+    // exactly the same of how you get the ModelView Matrix of a sphere.
+    // push -> translate -> m_pipeline.update   which includes updating the modelView Matrix of that sphere
+    // here is exactly the same
+    m_pipeline.matrixMode(MODEL_MATRIX);
+    glm::mat4 LightPos_viewMatrix = m_pipeline.getViewMatrix();
+    m_pipeline.pushMatrix();
+        m_pipeline.translate(lightPosition.x, lightPosition.y, lightPosition.z);
+        glm::mat4 LightPos_modelMatrix = m_pipeline.getModelMatrix();
+    m_pipeline.popMatrix();
+    glm::mat4 LightPos_modelViewMatrix = LightPos_viewMatrix * LightPos_modelMatrix;
+
+
+///2nd Render pass: camera's point of view
+    m_pipeline.matrixMode(MODEL_MATRIX);
     glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT);
 
-    glMatrixMode(GL_PROJECTION);
-	glLoadMatrixf(&lightProjectionMatrix[0][0]);
+    shadow_SecondRender->useShader();
 
-	glMatrixMode(GL_MODELVIEW);
-	glLoadMatrixf(&lightViewMatrix[0][0]);
+        glActiveTexture(GL_TEXTURE0);
+        glBindTexture(GL_TEXTURE_2D, shadow_depthTexture);
+		glUniformMatrix4fv(glGetUniformLocation(shadow_SecondRender->getProgramId(),"lightModelViewProjectionMatrix"),1,GL_FALSE,&shadowMatrix[0][0]);
+		glUniform1i(glGetUniformLocation(shadow_SecondRender->getProgramId(),"shadowMap"),0);
 
-	//Use viewport the same size as the shadow map
-	glViewport(0, 0, shadowMapSize, shadowMapSize);
-
-	//Draw back faces into the shadow map
-	glCullFace(GL_FRONT);
-
-	//Disable color writes, and use flat shading for speed
-	glShadeModel(GL_FLAT);
-	glColorMask(0, 0, 0, 0);
-
-    shadow_Render();
+        glUniformMatrix4fv(glGetUniformLocation(shadow_SecondRender->getProgramId(),"LightPosition_ModelViewMatrix"),1,GL_FALSE,&LightPos_modelViewMatrix[0][0]);
+		glUniform3f(glGetUniformLocation(shadow_SecondRender->getProgramId(),"LightPosition"),lightPosition.x,lightPosition.y,lightPosition.z);
+		glUniform3f(glGetUniformLocation(shadow_SecondRender->getProgramId(),"cameraPosition"),cam.getLocation().x,cam.getLocation().y,cam.getLocation().z);
 
 
-//Read the depth buffer into the shadow map texture
-	glBindTexture(GL_TEXTURE_2D, shadowMapTexture);
-	glCopyTexSubImage2D(GL_TEXTURE_2D, 0, 0, 0, 0, 0, shadowMapSize, shadowMapSize);
+        m_pipeline.updateMatrices(shadow_SecondRender->getProgramId());
+        ground->draw(shadow_SecondRender->getProgramId());
 
-	//restore states
-	glCullFace(GL_BACK);
-	glShadeModel(GL_SMOOTH);
-	glColorMask(1, 1, 1, 1);
+        l_CubeEffect.show(m_pipeline, shadow_SecondRender->getProgramId(), sphere);
+    shadow_SecondRender->delShader();
 
 
+    /// remember to turn off shader when draw using fixed pipeline functionality
+    DrawAxis( 20.0f, m_pipeline);
 
 
-	//2nd pass - Draw from camera's point of view
-	glClear(GL_DEPTH_BUFFER_BIT);
+#if 0
+    glDisable(GL_DEPTH_TEST);
+    //render texture to screen
+	m_pipeline.loadIdentity();
+	m_pipeline.ortho(-1,1,-1,1,-1,1);
 
-	glMatrixMode(GL_PROJECTION);
-	glLoadMatrixf(&cameraProjectionMatrix[0][0]);
+    glBindFramebuffer(GL_FRAMEBUFFER, 0);
+	glClear(GL_COLOR_BUFFER_BIT);
+	quadRenderShader->useShader();
+        glActiveTexture(GL_TEXTURE0);
+        glBindTexture(GL_TEXTURE_2D,shadow_depthTexture);
+        glUniform1i(glGetUniformLocation(quadRenderShader->getProgramId(),"texture"),0);
+        glUniform2f(glGetUniformLocation(quadRenderShader->getProgramId(),"pixelSize"),1.0/SCREEN_WIDTH, 1.0/SCREEN_HEIGHT);
+        m_pipeline.updateMatrices(quadRenderShader->getProgramId());
+        quad->draw(quadRenderShader->getProgramId());
+	quadRenderShader->delShader();
 
-	glMatrixMode(GL_MODELVIEW);
-	glLoadMatrixf(&cameraViewMatrix[0][0]);
+    glEnable(GL_DEPTH_TEST);
+#endif
 
-	glViewport(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
+}
 
-	//Use dim light to represent shadowed areas
-//	glLightfv(GL_LIGHT1, GL_POSITION, VECTOR4D(lightPosition));
-//	glLightfv(GL_LIGHT1, GL_AMBIENT, white*0.2f);
-//	glLightfv(GL_LIGHT1, GL_DIFFUSE, white*0.2f);
-//	glLightfv(GL_LIGHT1, GL_SPECULAR, black);
-// (2.0f, 3.0f,-2.0f)
 
-    float pos[] ={2.0f, 3.0f,-2.0f,1.0};
-	glLightfv(GL_LIGHT1, GL_POSITION, pos);
-	glLightfv(GL_LIGHT1, GL_AMBIENT, grey);
-	glLightfv(GL_LIGHT1, GL_DIFFUSE, grey);
-	glLightfv(GL_LIGHT1, GL_SPECULAR, black );
 
-	glEnable(GL_LIGHT1);
-	glEnable(GL_LIGHTING);
-    shadow_Render();
+
+
+
+
+
+
+
+
+
+
+void ExplosionGenerator::show1()
+{
+//rendering to texture...
+    glClearColor(0,0,0.5,1);
+
+    m_pipeline.perspective(45,SCREEN_WIDTH/SCREEN_HEIGHT,1.0, 1000.0);
+    glEnable(GL_DEPTH_TEST);
+	m_pipeline.matrixMode(VIEW_MATRIX);
+	m_pipeline.loadIdentity();
+    cam.Control();
+    cam.UpdateCamera();
+    cam.UpdateCamera(m_pipeline);
+
+	m_pipeline.matrixMode(MODEL_MATRIX);
+	glUniform3f(glGetUniformLocation(ObjShader->getProgramId(),"lightPos"),0,1,2);
+	glUniform3f(glGetUniformLocation(ObjShader->getProgramId(),"cameraPosition"),cam.getLocation().x,cam.getLocation().y,cam.getLocation().z);
+	ObjShader->useShader();
+	m_pipeline.updateMatrices(ObjShader->getProgramId());
+//	glBindFramebuffer(GL_FRAMEBUFFER,FBO);  // this will render to a texture if we bind FBO
+		glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT);
+		scene->draw(ObjShader->getProgramId());
+//	glBindFramebuffer(GL_FRAMEBUFFER,0);
+	ObjShader->delShader();
+
+
+
+
+#if 0
+    glDisable(GL_DEPTH_TEST);
+    //render texture to screen
+	m_pipeline.loadIdentity();
+	m_pipeline.ortho(-1,1,-1,1,-1,1);
+
+    glBindFramebuffer(GL_FRAMEBUFFER, 0);
+	glClear(GL_COLOR_BUFFER_BIT);
+	quadRenderShader->useShader();
+	glActiveTexture(GL_TEXTURE0);
+	glBindTexture(GL_TEXTURE_2D,renderTexture);
+	glUniform1i(glGetUniformLocation(quadRenderShader->getProgramId(),"texture"),0);
+	glUniform2f(glGetUniformLocation(quadRenderShader->getProgramId(),"pixelSize"),1.0/SCREEN_WIDTH, 1.0/SCREEN_HEIGHT);
+	m_pipeline.updateMatrices(quadRenderShader->getProgramId());
+	quad->draw(quadRenderShader->getProgramId());
+	quadRenderShader->delShader();
+
+    glEnable(GL_DEPTH_TEST)
+#endif
+
+
+
+
+
+
+
+
+
 
 
 
 
 
 #if 0
-	//3rd pass
-	//Draw with bright light
-	glLightfv(GL_LIGHT1, GL_DIFFUSE, white);
-	glLightfv(GL_LIGHT1, GL_SPECULAR, white);
+    // it's stored in your own comptuer not in the video card
+    glClearColor(0.0,0.0,1.0,1.0);
+    glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT);
+	glEnable(GL_DEPTH_TEST);
 
-	//Calculate texture matrix for projection
-	//This matrix takes us from eye space to the light's clip space
-	//It is postmultiplied by the inverse of the current view matrix when specifying texgen
-    glm::mat4 biasMatrix = {0.5f, 0.0f, 0.0f, 0.0f,
-                    0.0f, 0.5f, 0.0f, 0.0f,
-                    0.0f, 0.0f, 0.5f, 0.0f,
-                    0.5f, 0.5f, 0.5f, 1.0f};	//bias from [-1, 1] to [0, 1]
-	glm::mat4 textureMatrix;
-    textureMatrix=biasMatrix*lightProjectionMatrix*lightViewMatrix;
 
-	//Set up texture coordinate generation.
-	float row_t[]={textureMatrix[0][0], textureMatrix[0][1], textureMatrix[0][2], textureMatrix[0][3]};
-	glTexGeni(GL_S, GL_TEXTURE_GEN_MODE, GL_EYE_LINEAR);
-	glTexGenfv(GL_S, GL_EYE_PLANE, row_t);
-	glEnable(GL_TEXTURE_GEN_S);
+/// set to correct mode
+    glMatrixMode( GL_MODELVIEW );
+    glLoadIdentity();
 
-    float row_t1[]={textureMatrix[1][0], textureMatrix[1][1], textureMatrix[1][2], textureMatrix[1][3]};
-	glTexGeni(GL_T, GL_TEXTURE_GEN_MODE, GL_EYE_LINEAR);
-	glTexGenfv(GL_T, GL_EYE_PLANE, row_t1);
-	glEnable(GL_TEXTURE_GEN_T);
+    m_pipeline.matrixMode(VIEW_MATRIX);
+    m_pipeline.loadIdentity();
 
-    float row_t2[]={textureMatrix[2][0], textureMatrix[2][1], textureMatrix[2][2], textureMatrix[2][3]};
-	glTexGeni(GL_R, GL_TEXTURE_GEN_MODE, GL_EYE_LINEAR);
-	glTexGenfv(GL_R, GL_EYE_PLANE, row_t2);
-	glEnable(GL_TEXTURE_GEN_R);
 
-    float row_t3[]={textureMatrix[3][0], textureMatrix[3][1], textureMatrix[3][2], textureMatrix[3][3]};
-	glTexGeni(GL_Q, GL_TEXTURE_GEN_MODE, GL_EYE_LINEAR);
-	glTexGenfv(GL_Q, GL_EYE_PLANE, row_t3);
-	glEnable(GL_TEXTURE_GEN_Q);
+///Camera controls
+    // MotionGL();
+    // g_Camera.ApplyViewTransform();
+    // g_Camera.ApplyViewTransform(m_pipeline);
+    cam.Control();
+    cam.UpdateCamera();
+    cam.UpdateCamera(m_pipeline);
 
-	//Bind & enable shadow map texture
-	glBindTexture(GL_TEXTURE_2D, shadowMapTexture);
-	glEnable(GL_TEXTURE_2D);
 
-	//Enable shadow comparison
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_COMPARE_MODE_ARB, GL_COMPARE_R_TO_TEXTURE);
+/*
+    m_pipeline.rotateX(lightDirection.x);
+    m_pipeline.rotateY(lightDirection.y);
+    m_pipeline.translate(lightPosition.x,lightPosition.y, lightPosition.z);
 
-	//Shadow comparison should be true (ie not in shadow) if r<=texture
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_COMPARE_FUNC_ARB, GL_LEQUAL);
 
-	//Shadow comparison should generate an INTENSITY result
-	glTexParameteri(GL_TEXTURE_2D, GL_DEPTH_TEXTURE_MODE_ARB, GL_INTENSITY);
+    glRotatef(-lightDirection.x, 1.0, 0.0, 0.0);
+    glRotatef(-lightDirection.y, 0.0, 1.0, 0.0);
+    glTranslatef(-lightPosition.x, -lightPosition.y, -lightPosition.z);
+*/
 
-	//Set alpha test to discard false comparisons
-	glAlphaFunc(GL_GEQUAL, 0.99f);
-	glEnable(GL_ALPHA_TEST);
-    shadow_Render();
+
+///First render pass: light's point of view
 
 
 
 
-	//Disable textures and texgen
-	glDisable(GL_TEXTURE_2D);
 
-	glDisable(GL_TEXTURE_GEN_S);
-	glDisable(GL_TEXTURE_GEN_T);
-	glDisable(GL_TEXTURE_GEN_R);
-	glDisable(GL_TEXTURE_GEN_Q);
+  //  getDepthTexture_FromLightPosion();
+
+
+
+
+
+    m_pipeline.matrixMode(MODEL_MATRIX);
+	glEnable(GL_DEPTH_TEST);
+
+
+
+
+    //DrawAxis( 20.0f);//, g_Camera.GetPivot());
+
+/*
+  //  glDisable(GL_CULL_FACE);
+    GLUquadricObj* quad;
+	quad = gluNewQuadric();
+    MainShader->useShader();
+
+    glPushMatrix();
+    m_pipeline.pushMatrix();
+        m_pipeline.updateMatrices(MainShader->getProgramId());
+        gluSphere(quad,0.5,20,20);
+    glPopMatrix();
+    m_pipeline.popMatrix();
+    MainShader->delShader();
+
+ //   glEnable(GL_CULL_FACE);
+    m_pipeline.pushMatrix();
+   // drawGround(200, textureID);
+*/
+
+
+
+
+
+
+
+#if 0
+    MainShader->useShader();
+    m_pipeline.pushMatrix();
+
+    // updating variables
+        m_pipeline.updateMatrices(MainShader->getProgramId());
+
+        glUniform3f(glGetUniformLocation(MainShader->getProgramId(),"lightPos"),0.0,0.0,0.0);	//light position (is the same as the player position)
+
+        glUniform3f(glGetUniformLocation(MainShader->getProgramId(),"mambient"),0.2,0.2,0.2);	//setting the material property
+        glUniform3f(glGetUniformLocation(MainShader->getProgramId(),"mdiffuse"),0.6,0.6,0.6);
+        glUniform3f(glGetUniformLocation(MainShader->getProgramId(),"mspecular"),1.0,1.0,1.0);
+
+        glUniform3f(glGetUniformLocation(MainShader->getProgramId(),"lambient"),0.2,0.2,0.2);	//setting light property
+        glUniform3f(glGetUniformLocation(MainShader->getProgramId(),"ldiffuse"),0.6,0.6,0.6);
+        glUniform3f(glGetUniformLocation(MainShader->getProgramId(),"lspecular"),1.0,1.0,1.0);
+
+        glUniform1f(glGetUniformLocation(MainShader->getProgramId(),"shininess"),32.0);	//shininess
+
+
+    // drawing it
+        glEnableVertexAttribArray(0);
+        glBindBuffer(GL_ARRAY_BUFFER, VBO);
+        glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, 0);
+        glDrawArrays(GL_QUADS, 0, 4);
+
+
+    m_pipeline.popMatrix();
+    MainShader->delShader();
+
+
+
+
+
+
+    ObjShader->useShader();
+     //   glUniform3f(glGetUniformLocation(ObjShader->getProgramId(),"lightPos"),0,1,2);
+    //	glUniform3f(glGetUniformLocation(ObjShader->getProgramId(),"cameraPosition"),2,3,2);
+        m_pipeline.updateMatrices(ObjShader->getProgramId());
+        scene->draw(ObjShader->getProgramId());
+    ObjShader->delShader();
+
+
+  //  l_CubeEffect.show();
+    int r = 20;
+
+    DrawAxis( 20.0f, m_pipeline);//, g_Camera.GetPivot());
+#endif
+
+
+
+ //   drawCubeFrame(r, r/2);
+//    myCD_Hgrid.Draw();
 
 #endif
 
 
-	//Restore other states
-	glDisable(GL_LIGHTING);
-	glDisable(GL_ALPHA_TEST);
 
-
-
-
-    //reset matrices
-	glMatrixMode(GL_PROJECTION);
-	glPopMatrix();
-	glMatrixMode(GL_MODELVIEW);
-	glPopMatrix();
 
 }
-#endif
-
 
 
 
@@ -645,7 +1054,7 @@ ExplosionGenerator::~ExplosionGenerator()
 
 void ExplosionGenerator::update()
 {
-    MotionGL();
+ //   MotionGL();
 
     static ElapsedTime elapsedTime;
     float fDeltaTime = elapsedTime.GetElapsedTime();
@@ -670,6 +1079,9 @@ void ExplosionGenerator::update()
   //      smoke.addDensitySource_FromUI(5,5,5);
 
    // smoke.update(addSmoke);
+
+
+
 
 
 }
@@ -744,11 +1156,7 @@ void ExplosionGenerator::setupColor_Texture()
     glShadeModel( GL_SMOOTH );
 
     glEnable(GL_TEXTURE_2D);
-//    textureID = loadTexture("red clay.jpg");
-//   textureID = loadTexture("blue floor.jpg");
-//    textureID = loadTexture("white.png");
-    textureID = loadTexture("grey.jpg");
-
+    textureID = loadTexture("red clay.jpg");
     if(textureID == false)
     {
         cout << "textureID is NULL" << glGetError << endl;
@@ -878,6 +1286,50 @@ void ExplosionGenerator::DrawAxis(float fScale, glm::vec3 translate)
 
 
 
+
+void ExplosionGenerator::DrawAxis(float fScale, pipeline& m_pipeline, glm::vec3 translate)
+{
+ //   glDisable( GL_DEPTH_TEST );
+    glDisable( GL_LIGHTING );
+
+    m_pipeline.pushMatrix();
+    glPushMatrix();
+
+        glTranslatef( translate.x, translate.y, translate.z );
+        glScalef( fScale, fScale, fScale );
+        glColor3f( 0.0f, 0.0f, 1.0f );
+
+        m_pipeline.matrixMode(MODEL_MATRIX);
+        m_pipeline.translate(translate.x, translate.y, translate.z);
+        m_pipeline.scale(fScale);
+
+        glBegin( GL_LINES );
+        {
+            // x axis: red
+            glColor3f( 1.0f, 0.0f, 0.0f );
+            glVertex3f( 0.0f, 0.0f, 0.0 );
+            glVertex3f( 1.0f, 0.0f, 0.0f );
+
+            // y axis: green
+            glColor3f( 0.0f, 1.0f, 0.0f );
+            glVertex3f( 0.0f, 0.0f, 0.0f );
+            glVertex3f( 0.0f, 1.0f, 0.0f );
+
+            // zaxis: blue
+            glColor3f( 0.0f, 0.0f, 1.0f );
+            glVertex3f( 0.0f, 0.0f, 0.0f );
+            glVertex3f( 0.0f, 0.0f, 1.0f );
+        }
+        glEnd();
+
+    glPopMatrix();
+    m_pipeline.popMatrix();
+    glEnable(GL_LIGHTING);
+//   glPopAttrib();
+
+}
+
+
 void ExplosionGenerator::drawCubeFrame(float size, int offset = 0)
 {
     glPushMatrix();
@@ -899,7 +1351,7 @@ void ExplosionGenerator::drawCubeFrame(float size, int offset = 0)
 
 
             // back face
-            glColor3f(1.0,0.0,1.0);
+            glColor3f(1.0,1.0,1.0);
             glVertex3f(size/2, size/2 +offset, -size/2);
             glVertex3f(-size/2, size/2+offset, -size/2);
 
@@ -913,14 +1365,14 @@ void ExplosionGenerator::drawCubeFrame(float size, int offset = 0)
             glVertex3f(-size/2, -size/2+offset, -size/2);
 
             // left face
-            glColor3f(1.0,0.0,1.0);
+            glColor3f(1.0,1.0,1.0);
             glVertex3f(-size/2, size/2+offset, size/2);
             glVertex3f(-size/2, size/2+offset, -size/2);
             glVertex3f(-size/2, -size/2+offset, -size/2);
             glVertex3f(-size/2, -size/2+offset, size/2);
 
             // right face
-            glColor3f(1.0,0.0,1.0);
+            glColor3f(1.0,1.0,1.0);
             glVertex3f(size/2, size/2+offset, -size/2);
             glVertex3f(size/2, size/2+offset, size/2);
             glVertex3f(size/2, -size/2+offset, size/2);
@@ -1014,16 +1466,16 @@ void ExplosionGenerator::drawGround(float size, unsigned int textureId)
 
         glNormal3f(0.0,1.0,0.0);
         glColor3f(1.0,1.0,1.0);
-        glTexCoord2f(0.0,1.0);
+        glTexCoord2f(0.0,2.0);
         glVertex3f(size/2, 0, size/2);
 
         glTexCoord2f(0.0,0.0);
         glVertex3f(-size/2, 0, size/2);
 
-        glTexCoord2f(1.0,0.0);
+        glTexCoord2f(2.0,0.0);
         glVertex3f(-size/2, 0, -size/2);
 
-        glTexCoord2f(1.0,1.0);
+        glTexCoord2f(2.0,2.0);
         glVertex3f(size/2, 0, -size/2);
     glEnd();
     glEnable( GL_LIGHTING );

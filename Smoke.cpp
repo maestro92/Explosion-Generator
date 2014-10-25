@@ -3,6 +3,7 @@
 #define SWAP(x0,x) {double * tmp=x0;x0=x;x=tmp;}
 
 
+
 Smoke::Smoke()
 {
     N = 8;

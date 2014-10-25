@@ -1,13 +1,14 @@
 #ifndef _L_CUBE_EMITTER_H_
 #define _L_CUBE_EMITTER_H_
 
-
+#include "pipeline.h"
+#include "sceneLoader.h"
 #include "ParticleEffect_Interface.h"
 #include <cstdlib>
 #include <iostream>
 #include <algorithm>
 #include "CollisionDetection_HGrid.h"
-
+//#include "pipeline.h"
 #include "Random.h"
 using namespace std;
 class L_CubeEmitterEffect : public ParticleEffect_Interface
@@ -20,6 +21,8 @@ class L_CubeEmitterEffect : public ParticleEffect_Interface
     glm::vec3 ExternalForce_half_pos;
     float MaxRadius;
     float MinRadius;
+    float testRadius;
+
 
     bool Ball2Ball_CollisionMode;
     bool first;
@@ -41,9 +44,11 @@ class L_CubeEmitterEffect : public ParticleEffect_Interface
 
         void UpdateParticleCube(float dt);
         void DrawParticleCube();
+        void DrawParticleCube(pipeline &m_pipeline, unsigned int shaderID, meshLoader* mymesh);
 
         void update(bool toggle = false);
         void show(bool toggle = false);
+        void show(pipeline &m_pipeline,  unsigned int shaderID , meshLoader* mymesh);
         void Reset();
 
         void ExamineParticleAttribute();

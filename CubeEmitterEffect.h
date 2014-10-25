@@ -13,6 +13,7 @@
 #include "gl/glu.h"
 
 
+
 using namespace std;
 class CubeEmitterEffect : public ParticleEffect_Interface
 {

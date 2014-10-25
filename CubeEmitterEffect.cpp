@@ -15,6 +15,7 @@
 
 
 
+
 // this is a declared Quadrics, used to draw any bizzare shapes
 
 
@@ -66,6 +67,7 @@ void CubeEmitterEffect::InitParticleCube()
         {
             for(int j = 0;j<ARRAY_SIZE_Z;j++)
             {
+
                 int Index = k* ARRAY_SIZE_X * ARRAY_SIZE_Z + i*ARRAY_SIZE_Z + j;
 
                 InitParticlePos(i, k, j, Index);

@@ -4,6 +4,7 @@
 
 
 
+
 void shader::loadFile(const char* fn, string & str)
 {
     ifstream in(fn);

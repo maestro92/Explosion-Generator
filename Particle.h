@@ -1,8 +1,8 @@
 #pragma once
 #include "glm/glm.hpp"
 #include <cstdlib>
-#include <vector>
 #include <stdint.h>
+#include <vector>
 
 using namespace glm;
 
@@ -21,6 +21,7 @@ typedef union {
 	} data;
 	unsigned char c[8];
 } hash_t;
+
 
 
 struct Particle

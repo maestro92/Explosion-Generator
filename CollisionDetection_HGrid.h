@@ -6,6 +6,7 @@
 #include "glm/glm.hpp"
 #include <cstdlib>
 #include <vector>
+#include <stdint.h>
 #include <iostream>
 #include <algorithm>
 #include <unordered_map>
@@ -108,12 +109,22 @@ class CollisionDetection_HGrid : public CollisionDetection_Interface
     // http://www.cplusplus.com/doc/tutorial/other_data_types/
 
 
+
     public:
         // my grid
         unordered_map<uint64_t, h_Particle*> myMap;
        // unordered_map<string, h_Particle*> myMap;
 
         unordered_map<uint32_t, ParticleCollisionPair*> ParticleCollisionPairList;
+
+
+        glm::vec3 ExternalForce_neg;
+        glm::vec3 ExternalForce_half_neg;
+        glm::vec3 ExternalForce_pos;
+        glm::vec3 ExternalForce_half_pos;
+
+        float EnergyRetainRate_V;
+        float EnergyRetainRate_H;
 
         // bit mask to see if it's occupied at each level
         uint32_t occupied_Levels_Mask;
@@ -124,14 +135,6 @@ class CollisionDetection_HGrid : public CollisionDetection_Interface
         hash_t ComputeHashBucketIndex(h_Particle * h_par);
         hash_t ComputeHashBucketIndex(int x, int y, int z, int level);
 
-
-        glm::vec3 ExternalForce_neg;
-        glm::vec3 ExternalForce_half_neg;
-        glm::vec3 ExternalForce_pos;
-        glm::vec3 ExternalForce_half_pos;
-
-        float EnergyRetainRate_V;
-        float EnergyRetainRate_H;
 
     public:
 

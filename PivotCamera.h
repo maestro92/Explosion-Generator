@@ -1,6 +1,7 @@
 #pragma once;
-
+#include "pipeline.h"
 #include "camera.h"
+
 
 
 class PivotCamera : public Camera
@@ -12,7 +13,7 @@ public:
 
     virtual void Update( float fDeltaTime );
     virtual void ApplyViewTransform();
-
+    void ApplyViewTransform(pipeline& m_pipeline);
     // Project a position in screen coordinates onto a unit sphere
     // centered at the origin and return the projected point .
     glm::vec3 ProjectOntoUnitSphere( glm::vec2 screenPos );

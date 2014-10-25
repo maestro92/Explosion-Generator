@@ -1,6 +1,7 @@
 #include "vector3d.h"
 
 
+
 vector3d::vector3d()
 {
 	x=y=z=0;
@@ -18,7 +19,7 @@ vector3d::vector3d(float a,float b,float c)
 	y=b;
 	z=c;
 }
-		
+
 float vector3d::dotProduct(const vector3d& vec2)
 {
 	return (x*vec2.x+y*vec2.y+z*vec2.z);
@@ -45,7 +46,7 @@ void vector3d::normalize()
 		z/=len;
 	}
 }
-		
+
 void vector3d::change(float a,float b,float c)
 {
 	x=a;
@@ -72,7 +73,7 @@ void vector3d::changeZ(float a)
 {
 	z=a;
 }
-		
+
 vector3d vector3d::operator+(const vector3d& vec2)
 {
 	return vector3d(x+vec2.x,y+vec2.y,z+vec2.z);
@@ -120,7 +121,7 @@ vector3d& vector3d::operator*=(float num)
 	return *this;
 }
 
-vector3d& vector3d::operator/=(float num)	
+vector3d& vector3d::operator/=(float num)
 {
 	if(num!=0)
 	{
@@ -140,7 +141,7 @@ bool vector3d::operator!=(const vector3d vec2)
 {
 	!(*this==vec2);
 }
-		
+
 std::ostream& operator<<(std::ostream& out,const vector3d& vec)
 {
 	out << vec.x << " " << vec.y << " " << vec.z << std::endl;

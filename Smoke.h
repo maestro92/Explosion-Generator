@@ -31,6 +31,7 @@ class Smoke : public ParticleEffect_Interface
         double dt, diffusion_rate, viscosity;
         double force, source;
 
+
 /*
         // velocity
         vector<double> xv, xv_prev;

@@ -1,0 +1,660 @@
+#if 1
+#include "pipeline.h"
+
+pipeline::pipeline()
+{
+	modelMatrix.push_back(glm::mat4(1.0));
+	viewMatrix.push_back(glm::mat4(1.0));
+	projectionMatrix.push_back(glm::mat4(1.0));
+
+	modelViewMatrix=glm::mat4(1.0);
+	modelViewProjectionMatrix=glm::mat4(1.0);
+	normalMatrix=glm::mat3(1.0);
+	matricesReady=true;
+	currentMatrix=0;
+
+
+
+
+
+    Light_BiasMatrix[0][0]=0.5;Light_BiasMatrix[0][1]=0.0;Light_BiasMatrix[0][2]=0.0;Light_BiasMatrix[0][3]=0.0;
+	Light_BiasMatrix[1][0]=0.0;Light_BiasMatrix[1][1]=0.5;Light_BiasMatrix[1][2]=0.0;Light_BiasMatrix[1][3]=0.0;
+	Light_BiasMatrix[2][0]=0.0;Light_BiasMatrix[2][1]=0.0;Light_BiasMatrix[2][2]=0.5;Light_BiasMatrix[2][3]=0.0;
+	Light_BiasMatrix[3][0]=0.5;Light_BiasMatrix[3][1]=0.5;Light_BiasMatrix[3][2]=0.5;Light_BiasMatrix[3][3]=1.0;
+}
+
+void pipeline::loadIdentity()
+{
+	if(currentMatrix==MODEL_MATRIX || currentMatrix==VIEW_MATRIX)
+	{
+		modelMatrix[modelMatrix.size()-1]=glm::mat4(1.0);
+		viewMatrix[modelMatrix.size()-1]=glm::mat4(1.0);
+	}else
+		projectionMatrix[viewMatrix.size()-1]=glm::mat4(1.0);
+	matricesReady=false;
+}
+
+bool pipeline::matrixMode(int m)
+{
+	if(m==MODEL_MATRIX || m==VIEW_MATRIX || m==PROJECTION_MATRIX)
+		currentMatrix=m;
+}
+
+		//modelview
+void pipeline::translate(float x,float y,float z)
+{
+	if(currentMatrix==MODEL_MATRIX)
+		modelMatrix[modelMatrix.size()-1]*=glm::translate(x,y,z);
+	else if(currentMatrix==VIEW_MATRIX)
+		viewMatrix[viewMatrix.size()-1]*=glm::translate(-x,-y,-z);
+	matricesReady=false;
+}
+
+void pipeline::scale(float x,float y,float z)
+{
+	if(currentMatrix==MODEL_MATRIX)
+		modelMatrix[modelMatrix.size()-1]*=glm::scale(x,y,z);
+	else if(currentMatrix==VIEW_MATRIX)
+		viewMatrix[viewMatrix.size()-1]*=glm::scale(x,y,z);
+	matricesReady=false;
+}
+
+void pipeline::scale(float v)
+{
+	if(currentMatrix==MODEL_MATRIX)
+		modelMatrix[modelMatrix.size()-1]*=glm::scale(v,v,v);
+	else if(currentMatrix==VIEW_MATRIX)
+		viewMatrix[viewMatrix.size()-1]*=glm::scale(v,v,v);
+	matricesReady=false;
+}
+
+void pipeline::rotateX(float angle)
+{
+	if(currentMatrix==MODEL_MATRIX)
+		modelMatrix[modelMatrix.size()-1]*=glm::rotate(angle,1.0f,0.0f,0.0f);
+	else if(currentMatrix==VIEW_MATRIX)
+		viewMatrix[viewMatrix.size()-1]*=glm::rotate(-angle,1.0f,0.0f,0.0f);
+	matricesReady=false;
+}
+
+void pipeline::rotateY(float angle)
+{
+	if(currentMatrix==MODEL_MATRIX)
+		modelMatrix[modelMatrix.size()-1]*=glm::rotate(angle,0.0f,1.0f,0.0f);
+	else if(currentMatrix==VIEW_MATRIX)
+		viewMatrix[viewMatrix.size()-1]*=glm::rotate(-angle,0.0f,1.0f,0.0f);
+	matricesReady=false;
+}
+
+void pipeline::rotateZ(float angle)
+{
+	if(currentMatrix==MODEL_MATRIX)
+		modelMatrix[modelMatrix.size()-1]*=glm::rotate(angle,0.0f,0.0f,1.0f);
+	else if(currentMatrix==VIEW_MATRIX)
+		viewMatrix[viewMatrix.size()-1]*=glm::rotate(-angle,0.0f,0.0f,1.0f);
+	matricesReady=false;
+}
+
+		//projection
+void pipeline::ortho(float left,float right,float bottom,float top,float near,float far) //==glOrtho
+{
+	projectionMatrix[projectionMatrix.size()-1]=glm::ortho(left,right,bottom,top,near,far);
+	matricesReady=false;
+}
+
+void pipeline::perspective(float angle,float aRatio,float near,float far)	//==gluPerspective
+{
+	projectionMatrix[projectionMatrix.size()-1]=glm::perspective(angle,aRatio,near,far);
+	matricesReady=false;
+}
+
+		//getters
+glm::mat4 pipeline::getModelMatrix()
+{
+	return modelMatrix[modelMatrix.size()-1];
+}
+
+glm::mat4 pipeline::getViewMatrix()
+{
+	return viewMatrix[viewMatrix.size()-1];
+}
+
+glm::mat4 pipeline::getModelViewMatrix()
+{
+	if(!matricesReady)
+		return viewMatrix[viewMatrix.size()-1]*modelMatrix[modelMatrix.size()-1];
+	else
+		return modelViewMatrix;
+}
+
+glm::mat4 pipeline::getProjectionMatrix()
+{
+	return projectionMatrix[projectionMatrix.size()-1];
+}
+
+glm::mat4 pipeline::getModelViewProjectionMatrix()
+{
+	if(!matricesReady)
+		return viewMatrix[viewMatrix.size()-1]*modelMatrix[modelMatrix.size()-1]*projectionMatrix[projectionMatrix.size()-1];
+	else
+		return modelViewProjectionMatrix;
+}
+
+
+void pipeline::pushMatrix()      // glPushMatrix()
+{
+    glm::mat4 matrix;
+
+    if ( currentMatrix == MODEL_MATRIX )
+    {
+        matrix = modelMatrix[modelMatrix.size()-1];
+        modelMatrix.push_back(matrix);
+    }
+
+    else if ( currentMatrix == VIEW_MATRIX)
+    {
+        matrix = viewMatrix[modelMatrix.size()-1];
+        viewMatrix.push_back(matrix);
+    }
+    else
+    {
+        matrix = projectionMatrix[projectionMatrix.size()-1];
+        projectionMatrix.push_back(matrix);
+    }
+
+}
+
+void pipeline::popMatrix()       // glPopMatrix()
+{
+    if ( currentMatrix == MODEL_MATRIX )
+    {
+        if(modelMatrix.size()>1)
+            modelMatrix.pop_back();
+    }
+
+    else if ( currentMatrix == VIEW_MATRIX)
+    {
+        if(viewMatrix.size()>1)
+            viewMatrix.pop_back();
+    }
+    else
+    {
+        if(projectionMatrix.size()>1)
+            projectionMatrix.pop_back();
+    }
+}
+
+
+
+
+		//GLSL
+void pipeline::updateMatrices(unsigned int programId)
+{
+	if(!matricesReady)
+	{
+		modelViewMatrix=viewMatrix[viewMatrix.size()-1]*modelMatrix[modelMatrix.size()-1];
+		modelViewProjectionMatrix=projectionMatrix[projectionMatrix.size()-1]*viewMatrix[viewMatrix.size()-1]*modelMatrix[modelMatrix.size()-1];
+		normalMatrix=glm::mat3(modelViewMatrix);
+	}
+	glUniformMatrix4fv(glGetUniformLocation(programId,"modelMatrix"),1,GL_FALSE,&modelMatrix[modelMatrix.size()-1][0][0]);
+	glUniformMatrix4fv(glGetUniformLocation(programId,"viewMatrix"),1,GL_FALSE,&viewMatrix[viewMatrix.size()-1][0][0]);
+	glUniformMatrix4fv(glGetUniformLocation(programId,"modelViewMatrix"),1,GL_FALSE,&modelViewMatrix[0][0]);
+	glUniformMatrix4fv(glGetUniformLocation(programId,"modelViewProjectionMatrix"),1,GL_FALSE,&modelViewProjectionMatrix[0][0]);
+	glUniformMatrix3fv(glGetUniformLocation(programId,"normalMatrix"),1,GL_FALSE,&normalMatrix[0][0]);
+}
+
+
+
+
+
+void pipeline::updateLightMatrix(glm::mat4 Light_Model, glm::mat4 Light_View, glm::mat4 Light_Projection)
+{
+    Light_ModelMatrix = Light_Model;
+    Light_ViewMatrix = Light_View;
+    Light_ProjectionMatrix = Light_Projection;
+}
+
+//GLSL
+void pipeline::updateShadowMatrix(unsigned int shaderId)
+{
+
+    shadowMatrix = Light_BiasMatrix * Light_ProjectionMatrix * Light_ViewMatrix * modelMatrix[modelMatrix.size()-1];
+
+    glUniformMatrix4fv(glGetUniformLocation(shaderId,"lightModelViewProjectionMatrix"),1,GL_FALSE,&shadowMatrix[0][0]);
+}
+
+
+
+
+
+
+/*
+#include "pipeline.h"
+
+
+
+pipeline::pipeline()
+{
+    // set everything to identity
+    modelMatrix.push_back(glm::mat4(1.0)); // identity
+    viewMatrix.push_back(glm::mat4(1.0));
+    projectionMatrix.push_back(glm::mat4(1.0));
+    currentMatrix = MODEL_MATRIX;
+    matricesReady = true;
+    modelViewMatrix = glm::mat4(1.0);
+    modelViewProjectionMatrix = glm::mat4(1.0);
+    normalMatrix=glm::mat3(1.0);
+
+}
+
+void pipeline::loadIdentity()    // glLoadIdentity()
+{
+    if(currentMatrix == MODEL_MATRIX || currentMatrix == VIEW_MATRIX)
+    {
+        modelMatrix[modelMatrix.size() - 1] = glm::mat4(1.0);
+        viewMatrix[viewMatrix.size() - 1] = glm::mat4(1.0);
+    }
+    else
+    {
+        projectionMatrix[projectionMatrix.size()-1] = glm::mat4(1.0);
+    }
+
+    // set it to false, since we have to recalculate the matrix
+    matricesReady = false;
+}
+
+
+void pipeline::matrixMode(int i) // glMatrixMode
+{
+
+    if ( i == MODEL_MATRIX)
+        currentMatrix = MODEL_MATRIX;
+    else if ( i == VIEW_MATRIX)
+        currentMatrix = VIEW_MATRIX;
+    else if ( i == PROJECTION_MATRIX)
+        currentMatrix = PROJECTION_MATRIX;
+
+
+}
+
+
+// transformation
+void pipeline::translate(float x, float y, float z) // == glTranslatef
+{
+
+    // combining transformations = multiplying transformation matrix together
+    if ( currentMatrix == MODEL_MATRIX )
+		modelMatrix[modelMatrix.size()-1]*=glm::translate(x,y,z);
+    else if ( currentMatrix == VIEW_MATRIX)
+        viewMatrix[modelMatrix.size()-1]*=glm::translate(-x,-y,-z);
+}
+
+
+void pipeline::scale(float x, float y, float z)      // glScalef(x,y,z)
+{
+    // combining transformations = multiplying transformation matrix together
+    if ( currentMatrix == MODEL_MATRIX )
+        modelMatrix[modelMatrix.size()-1]*=glm::scale(x,y,z);
+    else if ( currentMatrix == VIEW_MATRIX)
+        viewMatrix[modelMatrix.size()-1]*=glm::scale(-x,-y,-z);
+
+
+}
+
+
+void pipeline::scale(float x)                        // glScalef(x,x,x)
+{
+    if ( currentMatrix == MODEL_MATRIX )
+        modelMatrix[modelMatrix.size()-1]*=glm::scale(x,x,x);
+    else if ( currentMatrix == VIEW_MATRIX)
+        viewMatrix[modelMatrix.size()-1]*=glm::scale(-x,-x,-x);
+}
+
+void pipeline::rotateX(float angle)  //glRotatef(angle, 1, 0, 0)
+{
+
+    if ( currentMatrix == MODEL_MATRIX )
+        modelMatrix[modelMatrix.size()-1]*=glm::rotate(angle,1.0f,0.0f,0.0f);
+    else if ( currentMatrix == VIEW_MATRIX)
+        viewMatrix[modelMatrix.size()-1]*=glm::rotate(-angle,1.0f,0.0f,0.0f);
+
+}
+
+
+void pipeline::rotateY(float angle)  //glRotatef(angle, 0, 1, 0)
+{
+    if ( currentMatrix == MODEL_MATRIX )
+        modelMatrix[modelMatrix.size()-1]*=glm::rotate(angle,0.0f,1.0f,0.0f);
+    else if ( currentMatrix == VIEW_MATRIX)
+        viewMatrix[modelMatrix.size()-1]*=glm::rotate(-angle,0.0f,1.0f,0.0f);
+}
+
+void pipeline::rotateZ(float angle)  //glRotatef(angle, 0, 0, 1)
+{
+    if ( currentMatrix == MODEL_MATRIX )
+        modelMatrix[modelMatrix.size()-1]*=glm::rotate(angle,0.0f,0.0f,1.0f);
+    else if ( currentMatrix == VIEW_MATRIX)
+        viewMatrix[modelMatrix.size()-1]*=glm::rotate(-angle,0.0f,0.0f,1.0f);
+}
+
+
+
+
+// projection
+void pipeline::perspective(float angle, float aRatio, float near, float far) // == gluPerspective
+{
+    projectionMatrix[projectionMatrix.size()-1] = glm::perspective(angle, aRatio, near, far);
+}
+
+void pipeline::ortho(float left, float right, float bottom, float top, float near, float far) // this is like defining a box
+{
+
+    projectionMatrix[projectionMatrix.size()-1] = glm::ortho(left, right, bottom, top, near, far);
+}
+
+void pipeline::pushMatrix()      // glPushMatrix()
+{
+    glm::mat4 matrix;
+
+    if ( currentMatrix == MODEL_MATRIX )
+    {
+        matrix = modelMatrix[modelMatrix.size()-1];
+        modelMatrix.push_back(matrix);
+    }
+
+    else if ( currentMatrix == VIEW_MATRIX)
+    {
+        matrix = viewMatrix[modelMatrix.size()-1];
+        viewMatrix.push_back(matrix);
+    }
+    else
+    {
+        matrix = projectionMatrix[projectionMatrix.size()-1];
+        projectionMatrix.push_back(matrix);
+    }
+
+}
+
+void pipeline::popMatrix()       // glPopMatrix()
+{
+    if ( currentMatrix == MODEL_MATRIX )
+    {
+        if(modelMatrix.size()>1)
+            modelMatrix.pop_back();
+    }
+
+    else if ( currentMatrix == VIEW_MATRIX)
+    {
+        if(viewMatrix.size()>1)
+            viewMatrix.pop_back();
+    }
+    else
+    {
+        if(projectionMatrix.size()>1)
+            projectionMatrix.pop_back();
+    }
+}
+
+
+glm::mat4 pipeline::getModelMatrix()
+{
+	return modelMatrix[modelMatrix.size()-1];
+}
+
+glm::mat4 pipeline::getModelViewMatrix()
+{
+    if(!matricesReady)
+        return viewMatrix[viewMatrix.size()-1]*modelMatrix[modelMatrix.size()-1];
+    else
+        return modelViewMatrix;
+}
+
+
+glm::mat4 pipeline::getModelViewProjectionMatrix()
+{
+	if(!matricesReady)
+		return viewMatrix[viewMatrix.size()-1]*modelMatrix[modelMatrix.size()-1]*projectionMatrix[projectionMatrix.size()-1];
+	else
+		return modelViewProjectionMatrix;
+}
+
+glm::mat4 pipeline::getProjectionMatrix()
+{
+	return projectionMatrix[projectionMatrix.size()-1];
+}
+
+glm::mat4 pipeline::getNormalMatrix()
+{
+	return projectionMatrix[projectionMatrix.size()-1];
+}
+
+void pipeline::updateMatrices(unsigned int programId)
+{
+    if(!matricesReady)
+	{
+		modelViewMatrix=viewMatrix[viewMatrix.size()-1]*modelMatrix[modelMatrix.size()-1];
+		modelViewProjectionMatrix=projectionMatrix[projectionMatrix.size()-1]*viewMatrix[viewMatrix.size()-1]*modelMatrix[modelMatrix.size()-1];
+		normalMatrix=glm::mat3(modelViewMatrix);
+	}
+	glUniformMatrix4fv(glGetUniformLocation(programId,"modelMatrix"),1,GL_FALSE,&modelMatrix[modelMatrix.size()-1][0][0]);
+	glUniformMatrix4fv(glGetUniformLocation(programId,"viewMatrix"),1,GL_FALSE,&viewMatrix[viewMatrix.size()-1][0][0]);
+	glUniformMatrix4fv(glGetUniformLocation(programId,"modelViewMatrix"),1,GL_FALSE,&modelViewMatrix[0][0]);
+	glUniformMatrix4fv(glGetUniformLocation(programId,"modelViewProjectionMatrix"),1,GL_FALSE,&modelViewProjectionMatrix[0][0]);
+	glUniformMatrix3fv(glGetUniformLocation(programId,"normalMatrix"),1,GL_FALSE,&normalMatrix[0][0]);
+
+
+
+}
+*/
+
+#endif
+
+
+#if 0
+#include "pipeline.h"
+
+
+pipeline::pipeline()
+{
+    modelMatrix.push_back(glm::mat4(1.0));
+    viewMatrix.push_back(glm::mat4(1.0));
+    projectionMatrix.push_back(glm::mat4(1.0));
+
+    modelViewMatrix = glm::mat4(1.0);
+    modelViewProjectionMatrix = glm::mat4(1.0);
+    normalMatrix = glm::mat3(1.0);
+    matricesReady = true;
+    currentMatrixMode = MODEL;
+}
+
+void pipeline::loadIdentity() // currentMatrix = glLoadIdentity()
+{
+    if(currentMatrixMode == MODEL || currentMatrixMode == VIEW)
+    {
+        modelMatrix[modelMatrix.size()-1] = glm::mat4(1.0);
+        viewMatrix[viewMatrix.size()-1] = glm::mat4(1.0);
+    }
+    else
+    {
+        projectionMatrix[projectionMatrix.size()-1] = glm::mat4(1.0);
+    }
+    matricesReady = false;
+}
+
+
+void pipeline::matrixMode(int i) //glMatrixMode
+{
+    if(i == MODEL)
+        currentMatrixMode = MODEL;
+    else if (i == VIEW)
+        currentMatrixMode = VIEW;
+    else if (i == PROJECTION)
+        currentMatrixMode = PROJECTION;
+}
+
+
+//transformation
+void pipeline::translate(float x,float y,float z)
+{
+	if(currentMatrixMode == MODEL)
+		modelMatrix[modelMatrix.size()-1]*=glm::translate(x,y,z);
+	else if(currentMatrixMode == VIEW)
+		viewMatrix[viewMatrix.size()-1]*=glm::translate(-x,-y,-z);
+	matricesReady=false;
+}
+
+void pipeline::scale(float x, float y, float z)
+{
+    if(currentMatrixMode == MODEL)
+        modelMatrix[modelMatrix.size()-1]*= glm::translate(x,y,z);
+    else if (currentMatrixMode == VIEW)
+        viewMatrix[viewMatrix.size()-1]*= glm::translate(-x,-y,-z);
+    matricesReady = false;
+}
+
+void pipeline::scale(float x)
+{
+    if(currentMatrixMode == MODEL)
+        modelMatrix[modelMatrix.size()-1]*= glm::translate(x,x,x);
+    else if (currentMatrixMode == VIEW)
+        viewMatrix[viewMatrix.size()-1]*= glm::translate(-x,-x,-x);
+    matricesReady = false;
+}
+
+void pipeline::rotateX(float angle)
+{
+    if(currentMatrixMode == MODEL)
+        modelMatrix[modelMatrix.size()-1]*= glm::rotate(angle, 1.0f, 0.0f, 0.0f);
+    else if (currentMatrixMode == VIEW)
+        viewMatrix[viewMatrix.size()-1]*= glm::rotate(angle, 1.0f, 0.0f, 0.0f);
+    matricesReady = false;
+}
+
+void pipeline::rotateY(float angle)
+{
+    if(currentMatrixMode == MODEL)
+        modelMatrix[modelMatrix.size()-1]*= glm::rotate(angle, 0.0f, 1.0f, 0.0f);
+    else if (currentMatrixMode == VIEW)
+        viewMatrix[viewMatrix.size()-1]*= glm::rotate(angle, 0.0f, 1.0f, 0.0f);
+    matricesReady = false;
+}
+
+void pipeline::rotateZ(float angle)
+{
+    if(currentMatrixMode == MODEL)
+        modelMatrix[modelMatrix.size()-1]*= glm::rotate(angle, 0.0f, 0.0f, 1.0f);
+    else if (currentMatrixMode == VIEW)
+        viewMatrix[viewMatrix.size()-1]*= glm::rotate(angle, 0.0f, 0.0f, 1.0f);
+    matricesReady = false;
+}
+
+
+
+// projection
+void pipeline::perspective(float angle, float aRatio, float near, float far)
+{
+    projectionMatrix[projectionMatrix.size()-1] = glm::perspective(angle, aRatio, near, far);
+}
+
+void pipeline::ortho(float left, float right, float bottom, float top, float near, float far)  // parallel projection, like a box
+{
+    projectionMatrix[projectionMatrix.size()-1] = glm::ortho(left, right, bottom, top, near, far);
+}
+
+
+void pipeline::pushMatrix()
+{
+    glm::mat4 matrix;
+    if(currentMatrixMode == MODEL)
+    {
+        matrix = modelMatrix[modelMatrix.size()-1];
+        modelMatrix.push_back(matrix);
+    }
+    else if (currentMatrixMode == VIEW)
+    {
+        matrix = viewMatrix[viewMatrix.size()-1];
+        viewMatrix.push_back(matrix);
+    }
+    else if (currentMatrixMode == PROJECTION)
+    {
+        matrix = projectionMatrix[projectionMatrix.size()-1];
+        projectionMatrix.push_back(matrix);
+    }
+}
+
+void pipeline::popMatrix()
+{
+    if(currentMatrixMode == MODEL)
+    {
+        if(modelMatrix.size()>1);
+            modelMatrix.pop_back();
+    }
+    else if (currentMatrixMode == VIEW)
+    {
+        if(viewMatrix.size()>1);
+            viewMatrix.pop_back();
+    }
+    else if (currentMatrixMode == PROJECTION)
+    {
+        if(projectionMatrix.size()>1);
+            projectionMatrix.pop_back();
+    }
+}
+
+glm::mat4& pipeline::getModelMatrix()
+{
+    return modelMatrix[modelMatrix.size()-1];
+}
+
+glm::mat4& pipeline::getModelViewMatrix()
+{
+    if(!matricesReady)
+        modelViewMatrix = viewMatrix[viewMatrix.size()-1] *
+                            modelMatrix[modelMatrix.size()-1];
+    return modelViewMatrix;
+}
+
+glm::mat4& pipeline::getModelViewProjectionMatrix()
+{
+    if(!matricesReady)
+    {
+        modelViewProjectionMatrix = projectionMatrix[projectionMatrix.size()-1] *
+                                            viewMatrix[viewMatrix.size()-1] *
+                                            modelMatrix[modelMatrix.size()-1];
+    }
+    return modelViewProjectionMatrix;
+}
+
+glm::mat4& pipeline::getProjectionMatrix()
+{
+    return projectionMatrix[projectionMatrix.size()-1];
+}
+
+
+/*
+glm::mat4& pipeline::getNormalMatrix()
+{
+    if(!matricesReady)
+    {
+        normalMatrix = glm::mat3(getModelViewMatrix());
+    }
+    return normalMatrix;
+}
+*/
+// will upload the matrices to the GLSL shaders
+void pipeline::updateMatrices(unsigned int programId)
+{
+    if(!matricesReady)
+    {
+		modelViewMatrix=viewMatrix[viewMatrix.size()-1]*modelMatrix[modelMatrix.size()-1];
+		modelViewProjectionMatrix=projectionMatrix[projectionMatrix.size()-1]*viewMatrix[viewMatrix.size()-1]*modelMatrix[modelMatrix.size()-1];
+		normalMatrix=glm::mat3(modelViewMatrix);
+    }
+	glUniformMatrix4fv(glGetUniformLocation(programId,"modelMatrix"),1,GL_FALSE,&modelMatrix[modelMatrix.size()-1][0][0]);
+	glUniformMatrix4fv(glGetUniformLocation(programId,"viewMatrix"),1,GL_FALSE,&viewMatrix[viewMatrix.size()-1][0][0]);
+	glUniformMatrix4fv(glGetUniformLocation(programId,"modelViewMatrix"),1,GL_FALSE,&modelViewMatrix[0][0]);
+	glUniformMatrix4fv(glGetUniformLocation(programId,"modelViewProjectionMatrix"),1,GL_FALSE,&modelViewProjectionMatrix[0][0]);
+	glUniformMatrix3fv(glGetUniformLocation(programId,"normalMatrix"),1,GL_FALSE,&normalMatrix[0][0]);
+}
+
+#endif

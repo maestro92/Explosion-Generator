@@ -63,3 +63,27 @@ void PivotCamera::ApplyViewTransform()
     glTranslatef( -m_PivotPoint.x, -m_PivotPoint.y, -m_PivotPoint.z );
 }
 
+
+void PivotCamera::ApplyViewTransform(pipeline& m_pipeline)
+{
+    m_pipeline.matrixMode(VIEW_MATRIX);
+    m_pipeline.translate(0.0f, 0.0f, m_Translate.z);
+#if 1
+    m_pipeline.rotateZ(-m_Rotate.z);
+    m_pipeline.rotateY(-m_Rotate.y);
+    m_pipeline.rotateX(-m_Rotate.x);
+#else
+    m_pipeline.rotateZ(m_Rotate.z);
+    m_pipeline.rotateY(m_Rotate.y);
+    m_pipeline.rotateX(m_Rotate.x);
+#endif
+
+    m_pipeline.translate(m_PivotPoint.x, m_PivotPoint.y, m_PivotPoint.z);
+/*
+    glTranslatef( 0.0f, 0.0f, -m_Translate.z );
+    glRotatef( m_Rotate.z, 0.0f, 0.0f, 1.0f );
+    glRotatef( m_Rotate.y, 0.0f, 1.0f, 0.0f );
+    glRotatef( m_Rotate.x, 1.0f, 0.0f, 0.0f );
+    glTranslatef( -m_PivotPoint.x, -m_PivotPoint.y, -m_PivotPoint.z );
+    */
+}

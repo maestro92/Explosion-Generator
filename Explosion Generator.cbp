@@ -2,7 +2,7 @@
 <CodeBlocks_project_file>
 	<FileVersion major="1" minor="6" />
 	<Project>
-		<Option title="Explosion Generator" />
+		<Option title="Explosion Generator Experiment" />
 		<Option pch_mode="2" />
 		<Option compiler="gcc" />
 		<Build>
@@ -69,8 +69,17 @@
 		<Unit filename="links.h" />
 		<Unit filename="main.cpp" />
 		<Unit filename="main.h" />
+		<Unit filename="mesh.cpp" />
+		<Unit filename="mesh.h" />
+		<Unit filename="meshData.h" />
+		<Unit filename="pipeline.cpp" />
+		<Unit filename="pipeline.h" />
+		<Unit filename="sceneLoader.cpp" />
+		<Unit filename="sceneLoader.h" />
 		<Unit filename="shader.cpp" />
 		<Unit filename="shader.h" />
+		<Unit filename="t_camera.cpp" />
+		<Unit filename="t_camera.h" />
 		<Unit filename="vector3d.cpp" />
 		<Unit filename="vector3d.h" />
 		<Extensions>

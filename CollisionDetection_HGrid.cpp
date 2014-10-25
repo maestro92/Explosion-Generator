@@ -226,6 +226,7 @@ bool CollisionDetection_HGrid::UpdateSphereGroundCollision(h_Particle * h_par, f
 
 
 
+
 bool CollisionDetection_HGrid::UpdateSphereSphereCollision(h_Particle * h_par, vector<h_Particle*>& neighbors, float dt)
 {
     float cell_size;
@@ -456,7 +457,7 @@ bool CollisionDetection_HGrid::SphereAtRest(h_Particle * h_par)
 
 void CollisionDetection_HGrid::HandleSphereSphereCollision(h_Particle * h_par1, h_Particle * h_par2, float dt)
 {
-    const double restitution = 0.8f; // coefficient of restitution
+    const double restitution = 0.1f; // coefficient of restitution
     glm::vec3 x1 = h_par1->m_Position;
     glm::vec3 x2 = h_par2->m_Position;
 
@@ -492,7 +493,9 @@ void CollisionDetection_HGrid::HandleSphereSphereCollision(h_Particle * h_par1, 
         cout << "newSepVel " << newSepVel << endl;
 
         if (newSepVel < 10.0f * fabs(dt * ExternalForce_neg.y * norm.y) )
+        {
             newSepVel = 10.0f * fabs(dt * ExternalForce_neg.y * norm.y);
+        }
 
         float deltaVel = newSepVel - rel_v_norm;
         cout << "deltaVel " << deltaVel << endl;
@@ -848,7 +851,7 @@ void CollisionDetection_HGrid::drawCubeFrame(float size)
         glDisable( GL_LIGHTING );
         glBegin(GL_LINES);
             // front face
-            glColor3f(0.0,0.0,0.0);
+            glColor3f(1.0,0.0,1.0);
             glVertex3f(size/2, size/2  , size/2);
             glVertex3f(-size/2, size/2  , size/2);
 
@@ -863,7 +866,7 @@ void CollisionDetection_HGrid::drawCubeFrame(float size)
 
 
             // back face
-            glColor3f(0.0,0.0,0.0);
+            glColor3f(1.0,1.0,1.0);
             glVertex3f(size/2, size/2  , -size/2);
             glVertex3f(-size/2, size/2 , -size/2);
 
@@ -877,14 +880,14 @@ void CollisionDetection_HGrid::drawCubeFrame(float size)
             glVertex3f(-size/2, -size/2 , -size/2);
 
             // left face
-            glColor3f(0.0,0.0,0.0);
+            glColor3f(1.0,1.0,1.0);
             glVertex3f(-size/2, size/2 , size/2);
             glVertex3f(-size/2, size/2 , -size/2);
             glVertex3f(-size/2, -size/2 , -size/2);
             glVertex3f(-size/2, -size/2 , size/2);
 
             // right face
-            glColor3f(0.0,0.0,0.0);
+            glColor3f(1.0,1.0,1.0);
             glVertex3f(size/2, size/2 , -size/2);
             glVertex3f(size/2, size/2 , size/2);
             glVertex3f(size/2, -size/2 , size/2);

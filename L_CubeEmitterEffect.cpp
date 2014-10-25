@@ -7,9 +7,9 @@
 #define START_POS_Y 0
 #define START_POS_Z 0
 
-#define ARRAY_SIZE_X 3
-#define ARRAY_SIZE_Y 3
-#define ARRAY_SIZE_Z 3
+#define ARRAY_SIZE_X 2
+#define ARRAY_SIZE_Y 2
+#define ARRAY_SIZE_Z 2
 
 float Radius = 1;
 float start_x, start_y, start_z;
@@ -24,6 +24,7 @@ GLUquadricObj* quad;
 
 L_CubeEmitterEffect::L_CubeEmitterEffect()
 {
+    testRadius = 2.0;
     Ball2Ball_CollisionMode = true;
     first = true;
     MaxRadius = 0.5;
@@ -84,6 +85,7 @@ void L_CubeEmitterEffect::InitParticleCube(bool reset)
     start_z = (START_POS_Z - ARRAY_SIZE_Z/2)*Radius*2;
     int Index = 0;
 
+
     cout << "start_x is " << start_x << endl;
     cout << "start_y is " << start_y << endl;
     cout << "start_z is " << start_z << endl;
@@ -118,14 +120,14 @@ void L_CubeEmitterEffect::InitParticleCube(bool reset)
         // float scale = 20.0f;
         // e_ParticleBuffer[Index].m_Velocity = glm::vec3(scale, -scale, scale);
 
-        e_ParticleBuffer[Index].m_Position = glm::vec3(-30, 6, -0);
-        float scale = 50.0f;
+        e_ParticleBuffer[Index].m_Position = glm::vec3(-30, 3, -0);
+        float scale = 30.0f;
         e_ParticleBuffer[Index].m_Velocity = glm::vec3(scale, 0, 0);
       //  e_ParticleBuffer[Index].m_Velocity = glm::vec3(scale, -scale+10, 0);
         //e_ParticleBuffer[Index].m_Velocity = glm::vec3(scale, 0, 0);
 
         e_ParticleBuffer[Index].m_Pre_Velocity = glm::vec3(1000,1000,1000);
-        e_ParticleBuffer[Index].m_fRadius = 2; // dRadius/2;
+        e_ParticleBuffer[Index].m_fRadius = testRadius; // dRadius/2;
         float lifetime;
         lifetime = RandRange(3,5);
         e_ParticleBuffer[Index].m_fLifeTime = lifetime;
@@ -186,10 +188,16 @@ void L_CubeEmitterEffect::InitParticlePos(int i, int k, int j, int Index)
     pos_z = start_z + Radius*2 * j;
 */
     int offset_y = 3;
+    int Gap = 5;
 
-    pos_x = start_x + Radius*5 * i;
-    pos_y = start_y + Radius*5 * k + offset_y;
-    pos_z = start_z + Radius*5 * j;
+    int offset_x = 0;
+    int offset_z = 0;
+//    int offset_x = RandRange(-2, 2);
+//    int offset_z = RandRange(-2, 2);
+
+    pos_x = start_x + Radius*Gap * i + offset_x;
+    pos_y = start_y + Radius*Gap * k + offset_y;
+    pos_z = start_z + Radius*Gap * j + offset_z;
 
 /*
     if (!Ball2Ball_CollisionMode)
@@ -200,8 +208,6 @@ void L_CubeEmitterEffect::InitParticlePos(int i, int k, int j, int Index)
             pos_y = 20;
     }
 */
-
-
 
 
     glm::vec3 pos( pos_x, pos_y, pos_z );
@@ -254,16 +260,16 @@ void L_CubeEmitterEffect::InitParticleVel(int i, int k, int j, int Index)
 void L_CubeEmitterEffect::InitParticleAttribute(int i, int k, int j, int Index)
 {
     // Radius
-/*
-    if (Index < 1)
+    /*
+    if (Index < 3)
         e_ParticleBuffer[Index].m_fRadius = 1; // dRadius/2;
-    else if (Index >= 1 && Index < 6)
+    else if (Index >= 3 && Index < 6)
         e_ParticleBuffer[Index].m_fRadius = 2; // dRadius/2;
     else
         e_ParticleBuffer[Index].m_fRadius = 3; // dRadius/2;
 */
-    e_ParticleBuffer[Index].m_fRadius = RandRange(1,3);
-
+  //  e_ParticleBuffer[Index].m_fRadius = 0.5;
+    e_ParticleBuffer[Index].m_fRadius = testRadius;
 
     float lifetime;
     lifetime = RandRange(3,5);
@@ -341,7 +347,6 @@ void L_CubeEmitterEffect::UpdateParticleCube(float dt)
 // http://stackoverflow.com/questions/8494942/why-does-my-color-go-away-when-i-enable-lighting-in-opengl
 void L_CubeEmitterEffect::DrawParticleCube()
 {
-  //  glDisable( GL_LIGHTING );
     static GLuint spheresList=0, torusList=0, baseList=0;
     glEnable(GL_COLOR_MATERIAL);
     for(int i = 0; i < e_ParticleBuffer.size(); i++)
@@ -351,9 +356,7 @@ void L_CubeEmitterEffect::DrawParticleCube()
             glTranslatef(e_ParticleBuffer[i].m_Position.x, e_ParticleBuffer[i].m_Position.y, e_ParticleBuffer[i].m_Position.z);
             // draw a sphere
             // Glint slices, Glint stacks: resolution
-            //glColor3f(5 * 0.125, 0, 0);
-      //      glColor3f(0.1, 0.1, 0.1);
-                    glColor3f(0, 0, 1);
+            glColor3f(0,0, 5 * 0.125);
          //   glColor3f(0,0,e_ParticleBuffer[i].m_id * 0.125);
             gluSphere(quad,e_ParticleBuffer[i].m_fRadius,20,20);
         glPopMatrix();
@@ -363,8 +366,34 @@ void L_CubeEmitterEffect::DrawParticleCube()
 
     // drawing the cubes
     myHgrid.Draw();
-  //          glEnable( GL_LIGHTING );
 
+
+}
+
+
+
+// http://stackoverflow.com/questions/8494942/why-does-my-color-go-away-when-i-enable-lighting-in-opengl
+void L_CubeEmitterEffect::DrawParticleCube(pipeline &m_pipeline,  unsigned int shaderID , meshLoader* mymesh)
+{
+    m_pipeline.matrixMode(MODEL_MATRIX);
+    // static GLuint spheresList=0, torusList=0, baseList=0;
+    // glEnable(GL_COLOR_MATERIAL);
+  //  myshader->useShader();
+    for(int i = 0; i < e_ParticleBuffer.size(); i++)
+    {
+
+        m_pipeline.pushMatrix();
+            m_pipeline.translate(e_ParticleBuffer[i].m_Position.x, e_ParticleBuffer[i].m_Position.y, e_ParticleBuffer[i].m_Position.z);
+            m_pipeline.updateMatrices(shaderID);
+            m_pipeline.updateShadowMatrix(shaderID);
+            mymesh->draw(shaderID);
+        m_pipeline.popMatrix();
+    }
+ //   glDisable(GL_COLOR_MATERIAL);
+
+   // myshader->delShader();
+    // drawing the cubes
+ //   myHgrid.Draw();
 }
 
 
@@ -376,10 +405,13 @@ void L_CubeEmitterEffect::update(bool toggle)
   //   UpdateParticleCube(0.01);
 }
 
+void L_CubeEmitterEffect::show(pipeline &m_pipeline,  unsigned int shaderID , meshLoader* mymesh)
+{
+    DrawParticleCube(m_pipeline, shaderID, mymesh);
+}
+
 void L_CubeEmitterEffect::show(bool toggle)
 {
     DrawParticleCube();
 }
-
-
 

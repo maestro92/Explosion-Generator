@@ -7,6 +7,7 @@ ElapsedTime::ElapsedTime( float maxTimeStep /* = 0.03333f */ )
 {}
 
 
+
 float ElapsedTime::GetElapsedTime() const
 {
     float fCurrentTime = std::clock() / (float)CLOCKS_PER_SEC;
