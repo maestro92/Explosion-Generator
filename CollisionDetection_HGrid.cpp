@@ -193,7 +193,6 @@ bool CollisionDetection_HGrid::UpdateSphereGroundCollision(h_Particle * h_par, f
         cout << "boundary is" << h_par->m_Position.y - h_par->m_fRadius << endl;
 #endif
 
-
         {
             cout << "I'm here" << endl;
 
@@ -457,6 +456,16 @@ bool CollisionDetection_HGrid::SphereAtRest(h_Particle * h_par)
 
 void CollisionDetection_HGrid::HandleSphereSphereCollision(h_Particle * h_par1, h_Particle * h_par2, float dt)
 {
+    bool straight_down = false;
+    int upperBall = 1;
+
+    float offset_x = 0;
+    float offset_z = 0;
+    cout << "HandleSphereSphereCollision" << endl;
+    cout << "h_par1 id" << h_par1->m_id << endl;
+
+    cout << "h_par2 id" << h_par2->m_id << endl;
+
     const double restitution = 0.1f; // coefficient of restitution
     glm::vec3 x1 = h_par1->m_Position;
     glm::vec3 x2 = h_par2->m_Position;
@@ -466,6 +475,16 @@ void CollisionDetection_HGrid::HandleSphereSphereCollision(h_Particle * h_par1, 
 
     // calculate the normal
     glm::vec3 rel_x = x1-x2;
+    if (fabs(rel_x.x) <= 0.5 && fabs(rel_x.z) <= 0.5)
+    {
+        cout << "straight down" << endl;
+        straight_down = true;
+        offset_x = RandRange(-2, 2);
+        offset_z = RandRange(-2, 2);
+        if (h_par2->m_Position.y > h_par1->m_Position.y)
+            upperBall = 2;
+    }
+
 
     glm::vec3 norm = glm::normalize(rel_x);
    // float mag_x = dot(rel_x, rel_x);
@@ -503,6 +522,17 @@ void CollisionDetection_HGrid::HandleSphereSphereCollision(h_Particle * h_par1, 
         float impulse = deltaVel / totalInverseMass;
         glm::vec3 impulsePerIMass = impulse * norm;
 
+        if (upperBall == 2)
+        {
+
+            h_par2->m_Velocity.x += offset_x;
+            h_par2->m_Velocity.z += offset_z;
+        }
+        else
+        {
+            h_par1->m_Velocity.x += offset_x;
+            h_par1->m_Velocity.z += offset_z;
+        }
         h_par1->m_Velocity += (impulsePerIMass/h_par1->m_fmass);
         h_par2->m_Velocity -= (impulsePerIMass/h_par2->m_fmass);
 

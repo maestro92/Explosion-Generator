@@ -1,12 +1,7 @@
-
-
-
 #include "main.h"
 
 #include "gl/gl.h"
 #include "gl/glu.h"
-
-
 
 #include "SDL\SDL.h"
 
@@ -18,8 +13,7 @@ using namespace std;
 //Screen dimension constants
 const int SCREEN_WIDTH = 1024;
 const int SCREEN_HEIGHT = 768;
-// const int SCREEN_WIDTH = 600;
-// const int SCREEN_HEIGHT = 480;
+
 
 // frame rate
 // https://sites.google.com/site/sdlgamer/intemediate/lesson-7
@@ -67,11 +61,6 @@ glm::vec3 g_DefaultCameraPivot( 0, 0, 0 );
 GLuint shadowMapTexture;
 
 
-float white[] = {1.0f,1.0f,1.0f,1.0f};
-float grey[] = {0.2f,0.2f,0.2f,0.2f};
-float black[] = {0.0f,0.0f,0.0f,0.0f};
-
-
 
 int shadowMapWidth = SCREEN_WIDTH * 2;
 int shadowMapheight = SCREEN_HEIGHT * 2;
@@ -87,6 +76,7 @@ vector3d lightPosition(-19.1004, 28.881, 40.5246);
 
 ExplosionGenerator::ExplosionGenerator()
 {
+    field_length = 20;
     angle = 0;
     running = true;
     dvel = false;
@@ -96,27 +86,20 @@ ExplosionGenerator::ExplosionGenerator()
     g_bRightMouseDown = false;
 
 
-    initSDL_GLEW();
-    initOpenGL();
+    init_SDL_GLEW();
+    init_OpenGL();
 
-    initShader();
+    init_Shader();
+    init_Models();
+    init_Lighting();
+
     init_Texture_and_FrameBuffer();
-    scene = new meshLoader("shadow.obj");
-    ground = new meshLoader("ground.obj");
-    sphere = new meshLoader("sphere20.obj");
-    monkeyMesh = new meshLoader("monkey1.obj");
 
 
-    init_shadowMapping();
-
-
-//    scene = new meshLoader("test.obj");
-
-    cam = t_camera(lightPosition, lightDirection.x, lightDirection.y);
 
     setupCamera();
     setupColor_Texture();
-    setupParticleEmitter();
+
 
 
     l_CubeEffect.InitParticleCube();
@@ -124,16 +107,14 @@ ExplosionGenerator::ExplosionGenerator()
 
     SDL_WM_SetCaption("Template", NULL);
 
-    init_Lighting();
 
 
-    // l_CubeEffect.ExamineParticleAttribute();
 
 }
 
 
 
-void ExplosionGenerator::initSDL_GLEW()
+void ExplosionGenerator::init_SDL_GLEW()
 {
     SDL_Init(SDL_INIT_EVERYTHING);
     pDisplaySurface = SDL_SetVideoMode(SCREEN_WIDTH,SCREEN_HEIGHT,32, SDL_SWSURFACE|SDL_OPENGL);
@@ -238,7 +219,7 @@ void ExplosionGenerator::init_Texture_and_FrameBuffer()
 
 
 #if 1
-void ExplosionGenerator::initOpenGL()
+void ExplosionGenerator::init_OpenGL()
 {
 
     //Initialize clear color
@@ -272,20 +253,35 @@ void ExplosionGenerator::initOpenGL()
 #endif
 
 
-void ExplosionGenerator::initShader()
+void ExplosionGenerator::init_Shader()
 {
- //   MainShader = new shader("m_vertex.vs", "m_fragment.fs");
-    ObjShader = new shader("m_obj.vs", "m_obj.fs");
+//    ObjShader = new shader("m_obj_new.vs", "m_obj_new.fs");
+    ObjShader = new shader("m_obj2_Spot.vs", "m_obj2_Spot.fs");
 	quadRenderShader=new shader("quadRender.vs","quadRender.frag"); // rendering texture as a quad
     shadow_FirstRender = new shader("shadow_FirstRender.vs", "shadow_FirstRender.fs");
-    shadow_SecondRender = new shader("shadow_SecondRender.vs", "shadow_SecondRender.fs");
+    shadow_SecondRender = new shader("shadow_SecondRender2.vs", "shadow_SecondRender2.fs");
+  //  shadow_SecondRender = new shader("shadow_SecondRender.vs", "shadow_SecondRender.fs");
 }
 
 
-void ExplosionGenerator::setupParticleEmitter()
+void ExplosionGenerator::init_Models()
 {
 
+    // most for shadow mapping
+    scene = new meshLoader("shadow.obj");
+    ground = new meshLoader("ground.obj");
+    ground1 = new meshLoader("quad12.obj");
+    sphere = new meshLoader("sphere20.obj");
+    monkeyMesh = new meshLoader("monkey1.obj");
+  //  sphere = new meshLoader("phoenix_ugv.md2");
+/*
+    if (!m_pLightingEffect->Init()) {
+        printf("Error initializing the lighting technique\n");
+        return false;
+    }
+*/
 }
+
 
 
 
@@ -405,6 +401,8 @@ void ExplosionGenerator::start()
         }
             update();
       //      reshape();
+          //  PointLight_show();
+          //  SpotLight_show();
             show();
           //  shadow_show();
 
@@ -425,44 +423,56 @@ void ExplosionGenerator::start()
 
 
 
-
+//GLuint nice1;
 
 void ExplosionGenerator::init_Lighting()
 {
+    Specular_Intensity = 0.0f;
+    Specular_Power = 0.0f;
+
+    // set any directional light you have
+    m_directionalLight.Color = glm::vec3(1.0f, 1.0f, 1.0f);
+    m_directionalLight.AmbientIntensity = 0.00f;
+    m_directionalLight.DiffuseIntensity = 0.00f;
+    m_directionalLight.Direction = glm::vec3(1.0f, -0.5, 0.0);
+
+    // set any point light you have
+    pl[0].DiffuseIntensity = 0.5f;
+    pl[0].Color = glm::vec3(1.0f, 0.5f, 0.0f);
+    pl[0].Position = glm::vec3(3.0f, 1.0f, 0.0f);
+    pl[0].Attenuation.Linear = 0.1f;
 
 
 
-
-    GLfloat light_ambient[] = {  (0.2),  (0.2),  (0.2),  (1.0) };
-	GLfloat light_diffuse[] = {  (1.0),  (1.0),  (1.0),  (1.0) };
-	GLfloat light_specular[] = {  (1.0),  (1.0),  (1.0),  (1.0 )};
-	//	light_position is NOT default value
-	GLfloat light_position0[] = {  (1.0),  (10.0),  (1.0),  (0.0 )};
-	GLfloat light_position1[] = {  (-1.0),  (-10.0),  (-1.0),  (0.0) };
-
-	glLightfv(GL_LIGHT0, GL_AMBIENT, light_ambient);
-	glLightfv(GL_LIGHT0, GL_DIFFUSE, light_diffuse);
-	glLightfv(GL_LIGHT0, GL_SPECULAR, light_specular);
-	glLightfv(GL_LIGHT0, GL_POSITION, light_position0);
-
-	glLightfv(GL_LIGHT1, GL_AMBIENT, light_ambient);
-	glLightfv(GL_LIGHT1, GL_DIFFUSE, light_diffuse);
-	glLightfv(GL_LIGHT1, GL_SPECULAR, light_specular);
-	glLightfv(GL_LIGHT1, GL_POSITION, light_position1);
-
-	glEnable(GL_LIGHTING);
-	glEnable(GL_LIGHT0);
-	glEnable(GL_LIGHT1);
+    pl[1].DiffuseIntensity = 0.5f;
+    pl[1].Color = glm::vec3(0.0f, 0.5f, 1.0f);
+    pl[1].Position = glm::vec3(7.0f, 1.0f, field_length * (sinf(angle) + 1.0f) / 2.0f);
+    pl[1].Attenuation.Linear = 0.1f;
+    // set any spot light you have
 
 
-	glShadeModel(GL_SMOOTH);
-	glEnable(GL_DEPTH_TEST);
+  //  sl[0].AmbientIntensity = 0.1f;
+    sl[0].DiffuseIntensity = 0.9f;
+    sl[0].Color = glm::vec3(1.0f, 1.0f, 1.0f);
+    sl[0].Position  = glm::vec3(1.0, 3.0, 0.0f);
+    sl[0].Direction = glm::vec3(0.0f, -1.0f, 0.0f);
+    sl[0].Attenuation.Linear = 0.1f;
+    sl[0].Cutoff = 20.0f;
 
-}
 
-void ExplosionGenerator::init_shadowMapping()
-{
-   // shadow_depthTexture = createTexture(SCREEN_WIDTH, SCREEN_HEIGHT, true);
+    m_LightingEffect = new Lighting_Technique();
+    m_LightingEffect->Init(ObjShader->getProgramId());
+
+
+/*
+    m_spotLight.AmbientIntensity = 0.1f;
+    m_spotLight.DiffuseIntensity = 0.9f;
+    m_spotLight.Color = glm::vec3(1.0f, 1.0f, 1.0f);
+    m_spotLight.Attenuation.Linear = 0.01f;
+    m_spotLight.Position = glm::vec3(-20.0, 20.0, 1.0f);
+    m_spotLight.Direction = glm::vec3(1.0f, -1.0f, 0.0f);
+    m_spotLight.Cutoff =  20.0f;
+*/
 }
 
 
@@ -498,69 +508,6 @@ unsigned int ExplosionGenerator::createTexture(int w, int h, bool isDepth)
 
 // we first create a depthTexture: shadow_depthTexture
 // then we render to it with glEnable(GL_DEPTH_TEST)
-
-
-glm::mat4 Light_ModelMatrix;
-glm::mat4 Light_ViewMatrix;
-glm::mat4 Light_ProjectionMatrix;
-glm::mat4 Light_ModelViewProjectionMatrix;
-glm::mat4 Light_BiasMatrix;
-
-glm::mat4 shadowMatrix;
-
-
-void ExplosionGenerator::shadow_getDepthTexture_FromLightPosion()
-{
-    m_pipeline.matrixMode(VIEW_MATRIX);
-    m_pipeline.loadIdentity();
-
-    m_pipeline.rotateX(lightDirection.x);
-    m_pipeline.rotateY(lightDirection.y);
-    m_pipeline.translate(lightPosition.x,lightPosition.y, lightPosition.z);
-
-
-    Light_ModelMatrix = m_pipeline.getModelMatrix();
-    Light_ViewMatrix = m_pipeline.getViewMatrix();
-    Light_ProjectionMatrix = m_pipeline.getProjectionMatrix();
-    Light_ModelViewProjectionMatrix = Light_ProjectionMatrix * Light_ViewMatrix * Light_ModelMatrix;
-
-    m_pipeline.updateLightMatrix(Light_ModelMatrix, Light_ViewMatrix, Light_ProjectionMatrix);
-
-    Light_BiasMatrix[0][0]=0.5;Light_BiasMatrix[0][1]=0.0;Light_BiasMatrix[0][2]=0.0;Light_BiasMatrix[0][3]=0.0;
-	Light_BiasMatrix[1][0]=0.0;Light_BiasMatrix[1][1]=0.5;Light_BiasMatrix[1][2]=0.0;Light_BiasMatrix[1][3]=0.0;
-	Light_BiasMatrix[2][0]=0.0;Light_BiasMatrix[2][1]=0.0;Light_BiasMatrix[2][2]=0.5;Light_BiasMatrix[2][3]=0.0;
-	Light_BiasMatrix[3][0]=0.5;Light_BiasMatrix[3][1]=0.5;Light_BiasMatrix[3][2]=0.5;Light_BiasMatrix[3][3]=1.0;
-
-    shadowMatrix = Light_BiasMatrix * Light_ModelViewProjectionMatrix;
-
-
-    glViewport(0,0,shadowMapWidth, shadowMapheight);
-	m_pipeline.matrixMode(MODEL_MATRIX);
-
-    glBindFramebuffer(GL_FRAMEBUFFER, FBO);
-    glEnable(GL_CULL_FACE);
-    glCullFace(GL_FRONT);       // we don't render the front, the moisser pattern doesn't appear in the front
-    glFramebufferTexture2D(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_TEXTURE_2D, shadow_depthTexture, 0);
-
-    glEnable(GL_DEPTH_TEST);
-    shadow_FirstRender->useShader();
-        glClear(GL_DEPTH_BUFFER_BIT);
-        m_pipeline.updateMatrices(shadow_FirstRender->getProgramId());
-  //      m_pipeline.updateShadowMatrix(shadow_FirstRender->getProgramId());
-    //    updateShadowMatrix(shadow_FirstRender->getProgramId());   ///
-        scene->draw(shadow_FirstRender->getProgramId());
-
-        m_pipeline.translate(-2,2,-3);                      ///
-        m_pipeline.updateMatrices(shadow_FirstRender->getProgramId()); ///
-  //      m_pipeline.updateShadowMatrix(shadow_FirstRender->getProgramId());
-     //   updateShadowMatrix(shadow_FirstRender->getProgramId());   ///
-        sphere->draw(shadow_FirstRender->getProgramId());   ///
-
-    shadow_FirstRender->delShader();
-    glBindFramebuffer(GL_FRAMEBUFFER, 0);
-    glDisable(GL_CULL_FACE);
-    glViewport(0,0,SCREEN_WIDTH, SCREEN_HEIGHT);
-}
 
 
 void ExplosionGenerator::getDepthTexture_FromLightPosion()
@@ -628,117 +575,8 @@ void ExplosionGenerator::updateShadowMatrix(unsigned int shaderId)
 
 
 
-void ExplosionGenerator::shadow_show()
-{
-    glClearColor(0.0,0.0,1.0,1.0);
 
-#if 1
-    // it's stored in your own comptuer not in the video card
-    m_pipeline.perspective(45,SCREEN_WIDTH/SCREEN_HEIGHT,1.0, 1000.0);
-	glEnable(GL_DEPTH_TEST);
-
-
-/// set to correct mode
-    glMatrixMode( GL_MODELVIEW );
-    glLoadIdentity();
-
-
-/*
-///First render pass: light's point of view
-    getDepthTexture_FromLightPosion();
-*/
-
-///First render pass: light's point of view
-    shadow_getDepthTexture_FromLightPosion();
-
-///Camera controls
-    m_pipeline.matrixMode(VIEW_MATRIX);
-    m_pipeline.loadIdentity();
-    // MotionGL();
-    // g_Camera.ApplyViewTransform();
-    // g_Camera.ApplyViewTransform(m_pipeline);
-    cam.Control();
-    cam.UpdateCamera();
-    cam.UpdateCamera(m_pipeline);
-
-
-/*
-    m_pipeline.rotateX(lightDirection.x);
-    m_pipeline.rotateY(lightDirection.y);
-    m_pipeline.translate(lightPosition.x,lightPosition.y, lightPosition.z);
-*/
-/*
-    glRotatef(-lightDirection.x, 1.0, 0.0, 0.0);
-    glRotatef(-lightDirection.y, 0.0, 1.0, 0.0);
-    glTranslatef(-lightPosition.x, -lightPosition.y, -lightPosition.z);
-*/
-
-    m_pipeline.matrixMode(MODEL_MATRIX);
-
-
-
-///2nd Render pass: camera's point of view
-    shadow_SecondRender->useShader();
-
-        glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT);
-        glActiveTexture(GL_TEXTURE0);
-        glBindTexture(GL_TEXTURE_2D, shadow_depthTexture);
-		glUniformMatrix4fv(glGetUniformLocation(shadow_SecondRender->getProgramId(),"lightModelViewProjectionMatrix"),1,GL_FALSE,&shadowMatrix[0][0]);
-		glUniform1i(glGetUniformLocation(shadow_SecondRender->getProgramId(),"shadowMap"),0);
-
-        m_pipeline.updateMatrices(shadow_SecondRender->getProgramId());
-        m_pipeline.updateShadowMatrix(shadow_SecondRender->getProgramId());
-   //     updateShadowMatrix(shadow_SecondRender->getProgramId());   ///
-        scene->draw(shadow_SecondRender->getProgramId());
-
-
-        m_pipeline.translate(-2,2,-3);
-        m_pipeline.updateMatrices(shadow_SecondRender->getProgramId());
-        m_pipeline.updateShadowMatrix(shadow_SecondRender->getProgramId());
-   //     updateShadowMatrix(shadow_SecondRender->getProgramId());   ///
-        sphere->draw(shadow_SecondRender->getProgramId());
-
-    shadow_SecondRender->delShader();
-
-
-
-# if 0  // rendering the depthTexture
-    glDisable(GL_DEPTH_TEST);
-    //render texture to screen
-	m_pipeline.loadIdentity();
-	m_pipeline.ortho(-1,1,-1,1,-1,1);
-
-    glBindFramebuffer(GL_FRAMEBUFFER, 0);
-	glClear(GL_COLOR_BUFFER_BIT);
-	quadRenderShader->useShader();
-	glActiveTexture(GL_TEXTURE0);
-	glBindTexture(GL_TEXTURE_2D,shadow_depthTexture);
-	glUniform1i(glGetUniformLocation(quadRenderShader->getProgramId(),"texture"),0);
-	glUniform2f(glGetUniformLocation(quadRenderShader->getProgramId(),"pixelSize"),1.0/SCREEN_WIDTH, 1.0/SCREEN_HEIGHT);
-	m_pipeline.updateMatrices(quadRenderShader->getProgramId());
-	quad->draw(shadow_FirstRender->getProgramId());
-	quadRenderShader->delShader();
-
-    glEnable(GL_DEPTH_TEST);
-#endif
-
-
- //   drawCubeFrame(r, r/2);
-//    myCD_Hgrid.Draw();
-
-#endif
-
-
-
-
-}
-
-
-
-
-
-
-void ExplosionGenerator::show()
+void ExplosionGenerator::PointLight_show()
 {
 
     glClearColor(0,0,0.5,1);
@@ -752,7 +590,7 @@ void ExplosionGenerator::show()
     getDepthTexture_FromLightPosion();
 
 
-
+///camera motion
     glMatrixMode( GL_MODELVIEW );
     glLoadIdentity();
 
@@ -764,12 +602,14 @@ void ExplosionGenerator::show()
     cam.UpdateCamera(m_pipeline);
 
 
-    cout << "cam.x " << cam.getLocation().x << " cam.y " << cam.getLocation().y << " cam.z " << cam.getLocation().z << endl;
-    cout << "cam pitch " << cam.getPitch() << " cam yaw " << cam.getYaw() << endl;
+  //  cout << "cam.x " << cam.getLocation().x << " cam.y " << cam.getLocation().y << " cam.z " << cam.getLocation().z << endl;
+  //  cout << "cam pitch " << cam.getPitch() << " cam yaw " << cam.getYaw() << endl;
+
     // get modelViewMatrix for LightPosition, you essentially just treat the light pos like a regular object
     // exactly the same of how you get the ModelView Matrix of a sphere.
     // push -> translate -> m_pipeline.update   which includes updating the modelView Matrix of that sphere
     // here is exactly the same
+
     m_pipeline.matrixMode(MODEL_MATRIX);
     glm::mat4 LightPos_viewMatrix = m_pipeline.getViewMatrix();
     m_pipeline.pushMatrix();
@@ -779,10 +619,16 @@ void ExplosionGenerator::show()
     glm::mat4 LightPos_modelViewMatrix = LightPos_viewMatrix * LightPos_modelMatrix;
 
 
+    m_LightingEffect->LoadingModeViewMatrix_ForPointLights(m_pipeline, pl, LightPos_viewMatrix, 0);
+    m_LightingEffect->LoadingModeViewMatrix_ForPointLights(m_pipeline, pl, LightPos_viewMatrix, 1);
+
+
+
+
 ///2nd Render pass: camera's point of view
     m_pipeline.matrixMode(MODEL_MATRIX);
     glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT);
-
+    m_pipeline.pushMatrix();
     shadow_SecondRender->useShader();
 
         glActiveTexture(GL_TEXTURE0);
@@ -795,77 +641,45 @@ void ExplosionGenerator::show()
 		glUniform3f(glGetUniformLocation(shadow_SecondRender->getProgramId(),"cameraPosition"),cam.getLocation().x,cam.getLocation().y,cam.getLocation().z);
 
 
-        m_pipeline.updateMatrices(shadow_SecondRender->getProgramId());
+      //  m_pipeline.updateMatrices(shadow_SecondRender->getProgramId());
         ground->draw(shadow_SecondRender->getProgramId());
 
-        l_CubeEffect.show(m_pipeline, shadow_SecondRender->getProgramId(), sphere);
+      //  l_CubeEffect.show(m_pipeline, shadow_SecondRender->getProgramId(), sphere);
     shadow_SecondRender->delShader();
-
+    m_pipeline.popMatrix();
 
     /// remember to turn off shader when draw using fixed pipeline functionality
     DrawAxis( 20.0f, m_pipeline);
 
 
-#if 0
-    glDisable(GL_DEPTH_TEST);
-    //render texture to screen
-	m_pipeline.loadIdentity();
-	m_pipeline.ortho(-1,1,-1,1,-1,1);
 
-    glBindFramebuffer(GL_FRAMEBUFFER, 0);
-	glClear(GL_COLOR_BUFFER_BIT);
-	quadRenderShader->useShader();
+
+
+
+
+
+
+
+    m_pipeline.pushMatrix();
+    ObjShader->useShader();
+
+		glUniform3f(glGetUniformLocation(ObjShader->getProgramId(),"cameraPosition"),cam.getLocation().x,cam.getLocation().y,cam.getLocation().z);
+
+        m_pipeline.updateMatrices(ObjShader->getProgramId());
+        m_LightingEffect->SetDirectionalLight(m_directionalLight);
+        m_LightingEffect->SetMatSpecularIntensity(Specular_Intensity);
+        m_LightingEffect->SetMatSpecularPower(Specular_Power);
+
+        m_LightingEffect->SetPointLights(2, pl);
+
+
         glActiveTexture(GL_TEXTURE0);
-        glBindTexture(GL_TEXTURE_2D,shadow_depthTexture);
-        glUniform1i(glGetUniformLocation(quadRenderShader->getProgramId(),"texture"),0);
-        glUniform2f(glGetUniformLocation(quadRenderShader->getProgramId(),"pixelSize"),1.0/SCREEN_WIDTH, 1.0/SCREEN_HEIGHT);
-        m_pipeline.updateMatrices(quadRenderShader->getProgramId());
-        quad->draw(quadRenderShader->getProgramId());
-	quadRenderShader->delShader();
+        glBindTexture(GL_TEXTURE_2D, textureID);
+        ground1->draw(ObjShader->getProgramId());
 
-    glEnable(GL_DEPTH_TEST);
-#endif
-
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-void ExplosionGenerator::show1()
-{
-//rendering to texture...
-    glClearColor(0,0,0.5,1);
-
-    m_pipeline.perspective(45,SCREEN_WIDTH/SCREEN_HEIGHT,1.0, 1000.0);
-    glEnable(GL_DEPTH_TEST);
-	m_pipeline.matrixMode(VIEW_MATRIX);
-	m_pipeline.loadIdentity();
-    cam.Control();
-    cam.UpdateCamera();
-    cam.UpdateCamera(m_pipeline);
-
-	m_pipeline.matrixMode(MODEL_MATRIX);
-	glUniform3f(glGetUniformLocation(ObjShader->getProgramId(),"lightPos"),0,1,2);
-	glUniform3f(glGetUniformLocation(ObjShader->getProgramId(),"cameraPosition"),cam.getLocation().x,cam.getLocation().y,cam.getLocation().z);
-	ObjShader->useShader();
-	m_pipeline.updateMatrices(ObjShader->getProgramId());
-//	glBindFramebuffer(GL_FRAMEBUFFER,FBO);  // this will render to a texture if we bind FBO
-		glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT);
-		scene->draw(ObjShader->getProgramId());
-//	glBindFramebuffer(GL_FRAMEBUFFER,0);
-	ObjShader->delShader();
-
-
-
+    ObjShader->delShader();
+    glBindTexture(GL_TEXTURE_2D,0);
+    m_pipeline.popMatrix();
 
 #if 0
     glDisable(GL_DEPTH_TEST);
@@ -887,160 +701,260 @@ void ExplosionGenerator::show1()
     glEnable(GL_DEPTH_TEST)
 #endif
 
+}
 
 
 
 
+void ExplosionGenerator::SpotLight_show()
+{
+
+    glClearColor(0,0,0.5,1);
+
+    m_pipeline.perspective(45,SCREEN_WIDTH/SCREEN_HEIGHT,1.0, 1000.0);
+    glEnable(GL_DEPTH_TEST);
 
 
 
+///First render pass: light's point of view
+    getDepthTexture_FromLightPosion();
 
 
-
-
-
-
-#if 0
-    // it's stored in your own comptuer not in the video card
-    glClearColor(0.0,0.0,1.0,1.0);
-    glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT);
-	glEnable(GL_DEPTH_TEST);
-
-
-/// set to correct mode
+///camera motion
     glMatrixMode( GL_MODELVIEW );
     glLoadIdentity();
 
-    m_pipeline.matrixMode(VIEW_MATRIX);
-    m_pipeline.loadIdentity();
+	m_pipeline.matrixMode(VIEW_MATRIX);
+	m_pipeline.loadIdentity();
 
-
-///Camera controls
-    // MotionGL();
-    // g_Camera.ApplyViewTransform();
-    // g_Camera.ApplyViewTransform(m_pipeline);
     cam.Control();
     cam.UpdateCamera();
     cam.UpdateCamera(m_pipeline);
 
 
-/*
-    m_pipeline.rotateX(lightDirection.x);
-    m_pipeline.rotateY(lightDirection.y);
-    m_pipeline.translate(lightPosition.x,lightPosition.y, lightPosition.z);
+  //  cout << "cam.x " << cam.getLocation().x << " cam.y " << cam.getLocation().y << " cam.z " << cam.getLocation().z << endl;
+  //  cout << "cam pitch " << cam.getPitch() << " cam yaw " << cam.getYaw() << endl;
+
+    // get modelViewMatrix for LightPosition, you essentially just treat the light pos like a regular object
+    // exactly the same of how you get the ModelView Matrix of a sphere.
+    // push -> translate -> m_pipeline.update   which includes updating the modelView Matrix of that sphere
+    // here is exactly the same
+
+    m_pipeline.matrixMode(MODEL_MATRIX);
+    glm::mat4 LightPos_viewMatrix = m_pipeline.getViewMatrix();
+    m_pipeline.pushMatrix();
+        m_pipeline.translate(lightPosition.x, lightPosition.y, lightPosition.z);
+        glm::mat4 LightPos_modelMatrix = m_pipeline.getModelMatrix();
+    m_pipeline.popMatrix();
+    glm::mat4 LightPos_modelViewMatrix = LightPos_viewMatrix * LightPos_modelMatrix;
 
 
-    glRotatef(-lightDirection.x, 1.0, 0.0, 0.0);
-    glRotatef(-lightDirection.y, 0.0, 1.0, 0.0);
-    glTranslatef(-lightPosition.x, -lightPosition.y, -lightPosition.z);
-*/
+    m_LightingEffect->LoadingModeViewMatrix_ForPointLights(m_pipeline, pl, LightPos_viewMatrix, 0);
+    m_LightingEffect->LoadingModeViewMatrix_ForPointLights(m_pipeline, pl, LightPos_viewMatrix, 1);
+
+    m_LightingEffect->LoadingModeViewMatrix_ForSpotLights(m_pipeline, sl, LightPos_viewMatrix, 0);
+
+
+
+///2nd Render pass: camera's point of view
+    m_pipeline.matrixMode(MODEL_MATRIX);
+    glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT);
+    m_pipeline.pushMatrix();
+    shadow_SecondRender->useShader();
+
+        glActiveTexture(GL_TEXTURE0);
+        glBindTexture(GL_TEXTURE_2D, shadow_depthTexture);
+		glUniformMatrix4fv(glGetUniformLocation(shadow_SecondRender->getProgramId(),"lightModelViewProjectionMatrix"),1,GL_FALSE,&shadowMatrix[0][0]);
+		glUniform1i(glGetUniformLocation(shadow_SecondRender->getProgramId(),"shadowMap"),0);
+
+        glUniformMatrix4fv(glGetUniformLocation(shadow_SecondRender->getProgramId(),"LightPosition_ModelViewMatrix"),1,GL_FALSE,&LightPos_modelViewMatrix[0][0]);
+		glUniform3f(glGetUniformLocation(shadow_SecondRender->getProgramId(),"LightPosition"),lightPosition.x,lightPosition.y,lightPosition.z);
+		glUniform3f(glGetUniformLocation(shadow_SecondRender->getProgramId(),"cameraPosition"),cam.getLocation().x,cam.getLocation().y,cam.getLocation().z);
+
+
+        m_pipeline.updateMatrices(shadow_SecondRender->getProgramId());
+    //    ground->draw(shadow_SecondRender->getProgramId());
+
+    //    l_CubeEffect.show(m_pipeline, shadow_SecondRender->getProgramId(), sphere);
+    shadow_SecondRender->delShader();
+    m_pipeline.popMatrix();
+
+    /// remember to turn off shader when draw using fixed pipeline functionality
+    DrawAxis( 20.0f, m_pipeline);
+
+
+
+
+
+    m_pipeline.pushMatrix();
+    ObjShader->useShader();
+
+		glUniform3f(glGetUniformLocation(ObjShader->getProgramId(),"cameraPosition"),cam.getLocation().x,cam.getLocation().y,cam.getLocation().z);
+
+        m_pipeline.updateMatrices(ObjShader->getProgramId());
+        m_LightingEffect->SetDirectionalLight(m_directionalLight);
+        m_LightingEffect->SetMatSpecularIntensity(Specular_Intensity);
+        m_LightingEffect->SetMatSpecularPower(Specular_Power);
+
+        m_LightingEffect->SetPointLights(2, pl);
+        m_LightingEffect->SetSpotLights(1, sl);
+
+        glActiveTexture(GL_TEXTURE0);
+        glBindTexture(GL_TEXTURE_2D, textureID);
+        ground1->draw(ObjShader->getProgramId());
+
+    ObjShader->delShader();
+    glBindTexture(GL_TEXTURE_2D,0);
+    m_pipeline.popMatrix();
+
+}
+
+
+
+
+
+
+
+
+
+
+
+void ExplosionGenerator::show()
+{
+
+    glClearColor(0,0,0.5,1);
+
+    m_pipeline.perspective(45,SCREEN_WIDTH/SCREEN_HEIGHT,1.0, 1000.0);
+    glEnable(GL_DEPTH_TEST);
+
 
 
 ///First render pass: light's point of view
+    getDepthTexture_FromLightPosion();
 
 
+///camera motion
+    glMatrixMode( GL_MODELVIEW );
+    glLoadIdentity();
+
+	m_pipeline.matrixMode(VIEW_MATRIX);
+	m_pipeline.loadIdentity();
+
+    cam.Control();
+    cam.UpdateCamera();
+    cam.UpdateCamera(m_pipeline);
 
 
+  //  cout << "cam.x " << cam.getLocation().x << " cam.y " << cam.getLocation().y << " cam.z " << cam.getLocation().z << endl;
+  //  cout << "cam pitch " << cam.getPitch() << " cam yaw " << cam.getYaw() << endl;
 
-  //  getDepthTexture_FromLightPosion();
-
-
-
-
+    // get modelViewMatrix for LightPosition, you essentially just treat the light pos like a regular object
+    // exactly the same of how you get the ModelView Matrix of a sphere.
+    // push -> translate -> m_pipeline.update   which includes updating the modelView Matrix of that sphere
+    // here is exactly the same
 
     m_pipeline.matrixMode(MODEL_MATRIX);
-	glEnable(GL_DEPTH_TEST);
+    glm::mat4 LightPos_viewMatrix = m_pipeline.getViewMatrix();
+    m_pipeline.pushMatrix();
+        m_pipeline.translate(lightPosition.x, lightPosition.y, lightPosition.z);
+        glm::mat4 LightPos_modelMatrix = m_pipeline.getModelMatrix();
+    m_pipeline.popMatrix();
+    glm::mat4 LightPos_modelViewMatrix = LightPos_viewMatrix * LightPos_modelMatrix;
+
+
+    m_LightingEffect->LoadingModeViewMatrix_ForPointLights(m_pipeline, pl, LightPos_viewMatrix, 0);
+    m_LightingEffect->LoadingModeViewMatrix_ForPointLights(m_pipeline, pl, LightPos_viewMatrix, 1);
 
 
 
 
-    //DrawAxis( 20.0f);//, g_Camera.GetPivot());
+///2nd Render pass: camera's point of view
+    m_pipeline.matrixMode(MODEL_MATRIX);
+    glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT);
+    m_pipeline.pushMatrix();
+    shadow_SecondRender->useShader();
+
+        glActiveTexture(GL_TEXTURE0);
+        glBindTexture(GL_TEXTURE_2D, shadow_depthTexture);
+		glUniformMatrix4fv(glGetUniformLocation(shadow_SecondRender->getProgramId(),"lightModelViewProjectionMatrix"),1,GL_FALSE,&shadowMatrix[0][0]);
+		glUniform1i(glGetUniformLocation(shadow_SecondRender->getProgramId(),"shadowMap"),0);
+
+        glUniformMatrix4fv(glGetUniformLocation(shadow_SecondRender->getProgramId(),"LightPosition_ModelViewMatrix"),1,GL_FALSE,&LightPos_modelViewMatrix[0][0]);
+		glUniform3f(glGetUniformLocation(shadow_SecondRender->getProgramId(),"LightPosition"),lightPosition.x,lightPosition.y,lightPosition.z);
+		glUniform3f(glGetUniformLocation(shadow_SecondRender->getProgramId(),"cameraPosition"),cam.getLocation().x,cam.getLocation().y,cam.getLocation().z);
+
+
+        m_pipeline.updateMatrices(shadow_SecondRender->getProgramId());
+        ground->draw(shadow_SecondRender->getProgramId());
+
+        l_CubeEffect.show(m_pipeline, shadow_SecondRender->getProgramId(), sphere);
+    shadow_SecondRender->delShader();
+    m_pipeline.popMatrix();
+
+    /// remember to turn off shader when draw using fixed pipeline functionality
+    DrawAxis( 20.0f, m_pipeline);
+
+
+
+
+
+
+
+
 
 /*
-  //  glDisable(GL_CULL_FACE);
-    GLUquadricObj* quad;
-	quad = gluNewQuadric();
-    MainShader->useShader();
-
-    glPushMatrix();
     m_pipeline.pushMatrix();
-        m_pipeline.updateMatrices(MainShader->getProgramId());
-        gluSphere(quad,0.5,20,20);
-    glPopMatrix();
-    m_pipeline.popMatrix();
-    MainShader->delShader();
-
- //   glEnable(GL_CULL_FACE);
-    m_pipeline.pushMatrix();
-   // drawGround(200, textureID);
-*/
-
-
-
-
-
-
-
-#if 0
-    MainShader->useShader();
-    m_pipeline.pushMatrix();
-
-    // updating variables
-        m_pipeline.updateMatrices(MainShader->getProgramId());
-
-        glUniform3f(glGetUniformLocation(MainShader->getProgramId(),"lightPos"),0.0,0.0,0.0);	//light position (is the same as the player position)
-
-        glUniform3f(glGetUniformLocation(MainShader->getProgramId(),"mambient"),0.2,0.2,0.2);	//setting the material property
-        glUniform3f(glGetUniformLocation(MainShader->getProgramId(),"mdiffuse"),0.6,0.6,0.6);
-        glUniform3f(glGetUniformLocation(MainShader->getProgramId(),"mspecular"),1.0,1.0,1.0);
-
-        glUniform3f(glGetUniformLocation(MainShader->getProgramId(),"lambient"),0.2,0.2,0.2);	//setting light property
-        glUniform3f(glGetUniformLocation(MainShader->getProgramId(),"ldiffuse"),0.6,0.6,0.6);
-        glUniform3f(glGetUniformLocation(MainShader->getProgramId(),"lspecular"),1.0,1.0,1.0);
-
-        glUniform1f(glGetUniformLocation(MainShader->getProgramId(),"shininess"),32.0);	//shininess
-
-
-    // drawing it
-        glEnableVertexAttribArray(0);
-        glBindBuffer(GL_ARRAY_BUFFER, VBO);
-        glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, 0);
-        glDrawArrays(GL_QUADS, 0, 4);
-
-
-    m_pipeline.popMatrix();
-    MainShader->delShader();
-
-
-
-
-
-
     ObjShader->useShader();
-     //   glUniform3f(glGetUniformLocation(ObjShader->getProgramId(),"lightPos"),0,1,2);
-    //	glUniform3f(glGetUniformLocation(ObjShader->getProgramId(),"cameraPosition"),2,3,2);
+
+		glUniform3f(glGetUniformLocation(ObjShader->getProgramId(),"cameraPosition"),cam.getLocation().x,cam.getLocation().y,cam.getLocation().z);
+
         m_pipeline.updateMatrices(ObjShader->getProgramId());
-        scene->draw(ObjShader->getProgramId());
+        m_LightingEffect->SetDirectionalLight(m_directionalLight);
+        m_LightingEffect->SetMatSpecularIntensity(Specular_Intensity);
+        m_LightingEffect->SetMatSpecularPower(Specular_Power);
+
+        m_LightingEffect->SetPointLights(2, pl);
+
+
+        glActiveTexture(GL_TEXTURE0);
+        glBindTexture(GL_TEXTURE_2D, textureID);
+        ground1->draw(ObjShader->getProgramId());
+
     ObjShader->delShader();
+    glBindTexture(GL_TEXTURE_2D,0);
+    m_pipeline.popMatrix();
+*/
+#if 0
+    glDisable(GL_DEPTH_TEST);
+    //render texture to screen
+	m_pipeline.loadIdentity();
+	m_pipeline.ortho(-1,1,-1,1,-1,1);
 
+    glBindFramebuffer(GL_FRAMEBUFFER, 0);
+	glClear(GL_COLOR_BUFFER_BIT);
+	quadRenderShader->useShader();
+	glActiveTexture(GL_TEXTURE0);
+	glBindTexture(GL_TEXTURE_2D,renderTexture);
+	glUniform1i(glGetUniformLocation(quadRenderShader->getProgramId(),"texture"),0);
+	glUniform2f(glGetUniformLocation(quadRenderShader->getProgramId(),"pixelSize"),1.0/SCREEN_WIDTH, 1.0/SCREEN_HEIGHT);
+	m_pipeline.updateMatrices(quadRenderShader->getProgramId());
+	quad->draw(quadRenderShader->getProgramId());
+	quadRenderShader->delShader();
 
-  //  l_CubeEffect.show();
-    int r = 20;
-
-    DrawAxis( 20.0f, m_pipeline);//, g_Camera.GetPivot());
+    glEnable(GL_DEPTH_TEST)
 #endif
-
-
-
- //   drawCubeFrame(r, r/2);
-//    myCD_Hgrid.Draw();
-
-#endif
-
-
-
 
 }
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -1058,6 +972,12 @@ void ExplosionGenerator::update()
 
     static ElapsedTime elapsedTime;
     float fDeltaTime = elapsedTime.GetElapsedTime();
+    angle+=0.05f;
+
+    pl[0].Position = glm::vec3(3.0f, 1.0f, -field_length/2 + field_length * (cosf(angle) + 1.0f) / 2.0f);
+    pl[1].Position = glm::vec3(-3.0f, 1.0f, -field_length/2 + field_length * (sinf(angle) + 1.0f) / 2.0f);
+
+ //   sl[0].Position = glm::vec3(0.0f, 1.0f, -field_length/2 + field_length * (sinf(angle) + 1.0f) / 2.0f);
 
     if (space_bar)
     {
@@ -1079,11 +999,6 @@ void ExplosionGenerator::update()
   //      smoke.addDensitySource_FromUI(5,5,5);
 
    // smoke.update(addSmoke);
-
-
-
-
-
 }
 
 
@@ -1142,6 +1057,7 @@ void ExplosionGenerator::MotionGL()
 
 void ExplosionGenerator::setupCamera()
 {
+    cam = t_camera(lightPosition, lightDirection.x, lightDirection.y);
 
     g_Camera.SetTranslate( g_DefaultCameraTranslate );
     g_Camera.SetRotate( g_DefaultCameraRotate );
@@ -1377,21 +1293,7 @@ void ExplosionGenerator::drawCubeFrame(float size, int offset = 0)
             glVertex3f(size/2, size/2+offset, size/2);
             glVertex3f(size/2, -size/2+offset, size/2);
             glVertex3f(size/2, -size/2+offset, -size/2);
-/*
-            // top face
-            glColor3f(1.0,1.0,1.0);
-            glVertex3f(size/2, size/2+offset, size/2);
-            glVertex3f(-size/2, size/2+offset, size/2);
-            glVertex3f(-size/2, size/2+offset, -size/2);
-            glVertex3f(size/2, size/2+offset, -size/2);
 
-            // bottom face
-            glColor3f(1.0,1.0,1.0);
-            glVertex3f(size/2, -size/2+offset, size/2);
-            glVertex3f(-size/2, -size/2+offset, size/2);
-            glVertex3f(-size/2, -size/2+offset, -size/2);
-            glVertex3f(size/2, -size/2+offset, -size/2);
-            */
         glEnd();
         glEnable( GL_LIGHTING );
     glPopMatrix();
@@ -1483,4 +1385,203 @@ void ExplosionGenerator::drawGround(float size, unsigned int textureId)
         glEnable(GL_CULL_FACE);
 }
 
+
+
+
+
+
+
+
+void ExplosionGenerator::show1()
+{
+//rendering to texture...
+    glClearColor(0,0,0.5,1);
+
+    m_pipeline.perspective(45,SCREEN_WIDTH/SCREEN_HEIGHT,1.0, 1000.0);
+    glEnable(GL_DEPTH_TEST);
+	m_pipeline.matrixMode(VIEW_MATRIX);
+	m_pipeline.loadIdentity();
+    cam.Control();
+    cam.UpdateCamera();
+    cam.UpdateCamera(m_pipeline);
+
+	m_pipeline.matrixMode(MODEL_MATRIX);
+	glUniform3f(glGetUniformLocation(ObjShader->getProgramId(),"lightPos"),0,1,2);
+	glUniform3f(glGetUniformLocation(ObjShader->getProgramId(),"cameraPosition"),cam.getLocation().x,cam.getLocation().y,cam.getLocation().z);
+	ObjShader->useShader();
+	m_pipeline.updateMatrices(ObjShader->getProgramId());
+//	glBindFramebuffer(GL_FRAMEBUFFER,FBO);  // this will render to a texture if we bind FBO
+		glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT);
+		scene->draw(ObjShader->getProgramId());
+//	glBindFramebuffer(GL_FRAMEBUFFER,0);
+	ObjShader->delShader();
+
+
+
+
+#if 0
+    glDisable(GL_DEPTH_TEST);
+    //render texture to screen
+	m_pipeline.loadIdentity();
+	m_pipeline.ortho(-1,1,-1,1,-1,1);
+
+    glBindFramebuffer(GL_FRAMEBUFFER, 0);
+	glClear(GL_COLOR_BUFFER_BIT);
+	quadRenderShader->useShader();
+	glActiveTexture(GL_TEXTURE0);
+	glBindTexture(GL_TEXTURE_2D,renderTexture);
+	glUniform1i(glGetUniformLocation(quadRenderShader->getProgramId(),"texture"),0);
+	glUniform2f(glGetUniformLocation(quadRenderShader->getProgramId(),"pixelSize"),1.0/SCREEN_WIDTH, 1.0/SCREEN_HEIGHT);
+	m_pipeline.updateMatrices(quadRenderShader->getProgramId());
+	quad->draw(quadRenderShader->getProgramId());
+	quadRenderShader->delShader();
+
+    glEnable(GL_DEPTH_TEST)
+#endif
+
+
+
+
+
+#if 0
+    // it's stored in your own comptuer not in the video card
+    glClearColor(0.0,0.0,1.0,1.0);
+    glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT);
+	glEnable(GL_DEPTH_TEST);
+
+
+/// set to correct mode
+    glMatrixMode( GL_MODELVIEW );
+    glLoadIdentity();
+
+    m_pipeline.matrixMode(VIEW_MATRIX);
+    m_pipeline.loadIdentity();
+
+
+///Camera controls
+    // MotionGL();
+    // g_Camera.ApplyViewTransform();
+    // g_Camera.ApplyViewTransform(m_pipeline);
+    cam.Control();
+    cam.UpdateCamera();
+    cam.UpdateCamera(m_pipeline);
+
+
+/*
+    m_pipeline.rotateX(lightDirection.x);
+    m_pipeline.rotateY(lightDirection.y);
+    m_pipeline.translate(lightPosition.x,lightPosition.y, lightPosition.z);
+
+
+    glRotatef(-lightDirection.x, 1.0, 0.0, 0.0);
+    glRotatef(-lightDirection.y, 0.0, 1.0, 0.0);
+    glTranslatef(-lightPosition.x, -lightPosition.y, -lightPosition.z);
+*/
+
+
+///First render pass: light's point of view
+
+
+
+
+
+  //  getDepthTexture_FromLightPosion();
+
+
+
+
+
+    m_pipeline.matrixMode(MODEL_MATRIX);
+	glEnable(GL_DEPTH_TEST);
+
+
+
+
+    //DrawAxis( 20.0f);//, g_Camera.GetPivot());
+
+/*
+  //  glDisable(GL_CULL_FACE);
+    GLUquadricObj* quad;
+	quad = gluNewQuadric();
+    MainShader->useShader();
+
+    glPushMatrix();
+    m_pipeline.pushMatrix();
+        m_pipeline.updateMatrices(MainShader->getProgramId());
+        gluSphere(quad,0.5,20,20);
+    glPopMatrix();
+    m_pipeline.popMatrix();
+    MainShader->delShader();
+
+ //   glEnable(GL_CULL_FACE);
+    m_pipeline.pushMatrix();
+   // drawGround(200, textureID);
+*/
+
+
+
+
+
+
+
+#if 0
+    MainShader->useShader();
+    m_pipeline.pushMatrix();
+
+    // updating variables
+        m_pipeline.updateMatrices(MainShader->getProgramId());
+
+        glUniform3f(glGetUniformLocation(MainShader->getProgramId(),"lightPos"),0.0,0.0,0.0);	//light position (is the same as the player position)
+
+        glUniform3f(glGetUniformLocation(MainShader->getProgramId(),"mambient"),0.2,0.2,0.2);	//setting the material property
+        glUniform3f(glGetUniformLocation(MainShader->getProgramId(),"mdiffuse"),0.6,0.6,0.6);
+        glUniform3f(glGetUniformLocation(MainShader->getProgramId(),"mspecular"),1.0,1.0,1.0);
+
+        glUniform3f(glGetUniformLocation(MainShader->getProgramId(),"lambient"),0.2,0.2,0.2);	//setting light property
+        glUniform3f(glGetUniformLocation(MainShader->getProgramId(),"ldiffuse"),0.6,0.6,0.6);
+        glUniform3f(glGetUniformLocation(MainShader->getProgramId(),"lspecular"),1.0,1.0,1.0);
+
+        glUniform1f(glGetUniformLocation(MainShader->getProgramId(),"shininess"),32.0);	//shininess
+
+
+    // drawing it
+        glEnableVertexAttribArray(0);
+        glBindBuffer(GL_ARRAY_BUFFER, VBO);
+        glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, 0);
+        glDrawArrays(GL_QUADS, 0, 4);
+
+
+    m_pipeline.popMatrix();
+    MainShader->delShader();
+
+
+
+
+
+
+    ObjShader->useShader();
+     //   glUniform3f(glGetUniformLocation(ObjShader->getProgramId(),"lightPos"),0,1,2);
+    //	glUniform3f(glGetUniformLocation(ObjShader->getProgramId(),"cameraPosition"),2,3,2);
+        m_pipeline.updateMatrices(ObjShader->getProgramId());
+        scene->draw(ObjShader->getProgramId());
+    ObjShader->delShader();
+
+
+  //  l_CubeEffect.show();
+    int r = 20;
+
+    DrawAxis( 20.0f, m_pipeline);//, g_Camera.GetPivot());
+#endif
+
+
+
+ //   drawCubeFrame(r, r/2);
+//    myCD_Hgrid.Draw();
+
+#endif
+
+
+
+
+}
 

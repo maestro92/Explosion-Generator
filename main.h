@@ -7,9 +7,10 @@
 #include <stdio.h>
 #include <string>
 #include <sstream>
+#include "define.h"
 
 #include "shader.h"
-
+#include "Lighting_Technique.h"
 #include "PivotCamera.h"
 #include "sceneLoader.h"
 
@@ -26,7 +27,7 @@
 #include "SDL/SDL_image.h"
 
 #include "ElapsedTime.h"
-#include "define.h"
+
 
 #include "ParticleEffect_Interface.h"
 #include "CubeEmitterEffect.h"
@@ -46,16 +47,35 @@ class ExplosionGenerator
     GLuint FBO;
     pipeline m_pipeline;
 
+    // Material Property
+    float Specular_Intensity;
+    float Specular_Power;
+
+
+    // Lighting
+    DirectionalLight m_directionalLight;
+    PointLight pl[2];
+    SpotLight sl[1];
+
+
+    Lighting_Technique* m_LightingEffect;
+
+
+
     L_CubeEmitterEffect l_CubeEffect;
     CubeEmitterEffect e_CubeEffect;
     Smoke smoke;
 
     t_camera cam;
+
+    // models
     meshLoader* scene;
     meshLoader* ground;
+    meshLoader* ground1;
     meshLoader* sphere;
     meshLoader* monkeyMesh;
     mesh* quad;
+
 
     bool running;
     bool dvel;
@@ -63,10 +83,9 @@ class ExplosionGenerator
 
     // textures
     unsigned int textureID;
-
+    unsigned int groundTexture;
     unsigned int renderTexture;
     unsigned int depthTexture;
-
     unsigned int shadow_depthTexture;
 
 
@@ -75,26 +94,42 @@ class ExplosionGenerator
     shader* ObjShader;
     shader* shadow_FirstRender;
     shader* shadow_SecondRender;
-    shader* quadRenderShader;   // for rendering the texture into a quad
+    shader* quadRenderShader;   // for rendering the texture into a quad, then displaying the quad into the screen under a orthographic view
+
+
+
+    glm::mat4 Light_ModelMatrix;
+    glm::mat4 Light_ViewMatrix;
+    glm::mat4 Light_ProjectionMatrix;
+    glm::mat4 Light_ModelViewProjectionMatrix;
+    glm::mat4 Light_BiasMatrix;
+
+    glm::mat4 shadowMatrix;     // the matrix used to for conversion in the 2nd rendering pass
+    //  convert Vertices in object space into texture coordinates in the light's perspective
+
+
+
 
     // buttons
     bool g_bLeftMouseDown;
     bool g_bRightMouseDown;
 
     float angle;
+    float field_length;
     public:
 
 
         ExplosionGenerator();
         ~ExplosionGenerator();
 
-        void initSDL_GLEW();
-        void initOpenGL();
+        void init_SDL_GLEW();
+        void init_OpenGL();
 
-        void init_shadowMapping();
+
         unsigned int createTexture(int w, int h, bool isDepth = false);
 
-        void initShader();
+        void init_Shader();
+        void init_Models();
         void FreeShader();
 
         void setupCamera();
@@ -120,6 +155,8 @@ class ExplosionGenerator
         void shadow_show();
         void start();
 
+        void PointLight_show();
+        void SpotLight_show();
 
 /// for Shadowmapping
         void shadow_getDepthTexture_FromLightPosion();

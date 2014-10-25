@@ -40,11 +40,13 @@ void mesh::draw(unsigned int programId)
 	//texture0
 	//texture1...
 	string str="texture";
+	cout << "texture size" << textures.size() << endl;
 	for(int i=0;i<textures.size();i++)
 	{
 		glActiveTexture(GL_TEXTURE0+i);
 		glBindTexture(GL_TEXTURE_2D,textures[i].id);
 		glUniform1i(glGetUniformLocation(programId,(str+(char)(i+'0')).c_str()),i);
+        cout << (str+(char)(i+'0')).c_str() << endl;
 	}
 
 	glBindBuffer(GL_ARRAY_BUFFER,VBO);

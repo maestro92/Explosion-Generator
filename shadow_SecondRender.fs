@@ -1,3 +1,5 @@
+#version 330
+
 uniform sampler2DShadow shadowMap; // also the depth texture
 uniform vec3 cameraPosition;
 

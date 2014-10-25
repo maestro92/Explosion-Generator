@@ -14,6 +14,7 @@
 #include <typeinfo>
 #include <bitset>
 #include <math.h>
+#include "Random.h"
 
 #include "gl/gl.h"
 #include "gl/glu.h"

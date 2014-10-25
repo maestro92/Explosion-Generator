@@ -20,13 +20,6 @@ uniform mat4 LightPosition_ModelViewMatrix;	//ModelViewMatrix for the light posi
 uniform vec3 LightPosition;  //Light's actual position 
 
 
-/*
-varying vec4 lightVertexPosition;	// vertex seen in light's clip space
-varying vec3 outColor;
-varying vec3 position;
-varying vec3 outNormal;
-varying vec3 lightPosition;	// World-Space
-*/
 
 out vec4 lightVertexPosition;		// vertex seen in light's clip space
 out vec3 outColor;
@@ -34,7 +27,8 @@ out vec3 position;					// position of the vertex (the specific vertex we're look
 out vec3 outNormal;
 out vec3 LightPosition_EyeSpace;  // LightPosition * ModelView_Matrix, so LightPosition is in the actual correct position in the 3D world
 
-
+out mat3 outNormal_Matrix;
+out vec3 LightActualPosition;
 
 
 void main()
@@ -48,4 +42,6 @@ void main()
 	outColor=color;	
 	LightPosition_EyeSpace = vec3(LightPosition_ModelViewMatrix * vec4(LightPosition,1.0));
 
+	outNormal_Matrix = mat3(LightPosition_ModelViewMatrix);
+	LightActualPosition = LightPosition;
 }

@@ -2,7 +2,7 @@
 <CodeBlocks_project_file>
 	<FileVersion major="1" minor="6" />
 	<Project>
-		<Option title="Explosion Generator Experiment" />
+		<Option title="Explosion Generator" />
 		<Option pch_mode="2" />
 		<Option compiler="gcc" />
 		<Build>
@@ -54,6 +54,8 @@
 		<Unit filename="ElapsedTime.h" />
 		<Unit filename="L_CubeEmitterEffect.cpp" />
 		<Unit filename="L_CubeEmitterEffect.h" />
+		<Unit filename="Lighting_Technique.cpp" />
+		<Unit filename="Lighting_Technique.h" />
 		<Unit filename="Particle.h" />
 		<Unit filename="ParticleEffect_Interface.h" />
 		<Unit filename="ParticleSystemPCH.cpp" />
