@@ -1,0 +1,213 @@
+#version 330
+
+
+out vec4 FragColor;
+in vec2 gTexCoord;
+
+
+uniform sampler2D RayStartPoints;
+uniform sampler2D RayStopPoints;
+uniform sampler3D Density;
+uniform sampler2D DepthMap;
+uniform sampler2D Depth_TwoPassFront;
+uniform sampler2D Depth_TwoPassBack;
+
+
+uniform vec3 LightPosition = vec3(1.0, 1.0, 2.0);
+uniform vec3 LightIntensity = vec3(10.0);
+uniform float Absorption = 1.0;
+
+const float maxDist = sqrt(2.0);	
+const int numSamples = 128;
+const float stepSize = maxDist/float(numSamples);
+const float d_stepSize = 1/float(numSamples);
+
+const int numLightSamples = 2;
+//const int numLightSamples = 1;
+const float lscale = maxDist / float(numLightSamples);
+const float densityFactor = 10;
+
+
+
+/*
+uniform vec3 LightPosition = vec3(0.25,1.0,3);
+uniform vec3 LightIntensity = vec3(15);
+uniform float Absorption = 1.0;
+
+const float densityFactor = 5;
+*/
+
+void main()
+{
+    // range [-1:1, -1:1, -1:1]
+    vec3 rayStart = texture(RayStartPoints, gTexCoord).xyz;
+    vec3 rayStop = texture(RayStopPoints, gTexCoord).xyz;
+    vec3 currentDepth = texture(DepthMap, gTexCoord).xyz;
+    vec3 TwoPassFront_Depth = texture(Depth_TwoPassFront, gTexCoord).xyz;
+    vec3 TwoPassBack_Depth = texture(Depth_TwoPassBack, gTexCoord).xyz;
+
+    float Regular_Depth = texture2D(DepthMap, gTexCoord.xy).r;
+    float TwoPassFront_R_Depth = texture2D(Depth_TwoPassFront, gTexCoord.xy).r;
+    float TwoPassBack_R_Depth = texture2D(Depth_TwoPassBack, gTexCoord.xy).r;
+
+
+    if (rayStart == rayStop)
+    {
+   //     FragColor = vec4(1);
+   //     FragColor = vec4(0,0,0.5,0);
+        FragColor = vec4(0.2,0.2,0.2,0);
+        return;
+    }
+
+
+
+
+
+
+/*
+    ivec2 T1 = ivec2(gl_FragCoord.xy);
+    float depthValue = texelFetch(DepthMap, T1, 0).z;
+*/
+
+//    float compareDepth = rayStart.z;
+    /*
+    if(rayStart.z < rayStop.z)
+        compareDepth = rayStart.z;
+    else
+        compareDepth = rayStop.z;
+*/
+
+// can't use raystart because we're essentially painting a fullscreen quad for that
+
+
+ //   FragColor = vec4(rayStart.x,0,0,1);
+
+
+
+/*
+    if(currentDepth.z <= TwoPassFront_Depth.z)
+    {
+        FragColor = vec4(0.2,0.2,0.2,0);
+        return;
+    }
+  */  
+
+
+
+
+
+
+
+
+
+
+
+    // NDC is from -1 - 1
+    // texture coordinates 0 - 1
+
+    // converting from NDC to texture coordinates
+    rayStart = 0.5 * (rayStart + 1.0);
+    rayStop = 0.5 * (rayStop + 1.0);
+
+    vec3 pos = rayStart;
+    vec3 step = normalize(rayStop-rayStart) * stepSize;
+    float travel = distance(rayStop, rayStart); // the depth each pixel will traverse
+    float T = 1.0;			// transparency
+    vec3 Lo = vec3(0.0);	// iniital color
+
+    float d_pos_start = TwoPassFront_R_Depth;
+    float d_pos = TwoPassFront_R_Depth;
+   // float d_step = normalize(TwoPassBack_R_Depth - TwoPassFront_R_Depth) * d_stepSize;
+    float d_step = (TwoPassBack_R_Depth - TwoPassFront_R_Depth) * d_stepSize;
+
+#if 0
+// checking TwoPassFront_R_Depth and TwoPassBack_R_Depth textures
+// Front -> 0,  Back -> 1
+//    if (TwoPassFront_R_Depth != TwoPassBack_R_Depth)
+    if (TwoPassFront_R_Depth < TwoPassBack_R_Depth)
+    {
+        // float density = texture(Density, pos).x * densityFactor
+        // can use pow to expand differences between (0,1)
+//        FragColor = vec4(0,pow(TwoPassBack_R_Depth,32),0,1);
+
+//        FragColor = vec4(rayStart.x,rayStart.y,rayStart.z,1);        
+        FragColor = vec4(rayStop.x,rayStop.y,rayStop.z,1); 
+    //    FragColor = vec4(0,pow(TwoPassBack_R_Depth,16),0,1);  
+        return;
+    }
+#endif
+
+
+
+
+
+#if 1
+// 	ray casting, sums the color and the opacity properties of each data voxel
+// read http://http.developer.nvidia.com/GPUGems3/gpugems3_ch30.html
+// go to part 30.3 Volume Ray Casting
+
+ //   for (int i=0; i < numSamples && travel > 0.0; ++i, pos += step, d_pos += d_step ,travel -= stepSize) 
+
+    for (int i=0; i < numSamples && travel > 0.0; ++i, pos += step, travel -= stepSize) 
+ //   for (int i=0; i < numSamples && travel > 0.0; ++i) 
+    {
+    	// grab the 3D texture density
+        float density = texture(Density, pos).x * densityFactor;
+
+
+     //   if ( density > 0.0)       
+        if ( density > 0.001 && (Regular_Depth < d_pos))
+        {
+     //       FragColor = vec4( pow(d_pos,16),0,0,1);
+     //       FragColor = vec4( pos.x,pos.y,pos.z,1);
+     //       FragColor = vec4(0.2,0.2,0.2,0);
+              FragColor = vec4(0.2,0.2,0.2,0);
+            
+
+            return; 
+        }
+
+
+
+        if (density <= 0.0) {
+            continue;
+        }
+
+        // the absorption function is the probability that a photon traveling over a unit distance is lost by absorption
+        T *= 1.0-density*stepSize*Absorption;
+
+
+        // if the composite transparency falls below a threshold, we quit
+        // since the color is no longer transparent, so it won't change much
+        if (T <= 0.01)
+            break;
+
+        vec3 lightDir = normalize(LightPosition-pos)*lscale;
+        float Tl = 1.0;
+        vec3 lpos = pos + lightDir;
+
+        for (int s=0; s < numLightSamples; ++s) 
+        {
+        	// light density
+            float ld = texture(Density, lpos).x;
+            Tl *= 1.0-Absorption*lscale*ld;
+            if (Tl <= 0.01) 
+            lpos += lightDir;
+        }
+
+        vec3 Li = LightIntensity*Tl;
+        Lo += Li*T*density*stepSize;
+
+        d_pos += d_step;
+      //  pos += step;
+      //  travel -= stepSize;
+    }
+
+    FragColor.rgb = Lo;
+    FragColor.a = 1-T;
+
+   // FragColor = vec4(1,0,0,1);
+ #endif
+}
+
+

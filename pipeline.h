@@ -43,7 +43,12 @@ class pipeline{
     glm::mat4 Light_ModelViewProjectionMatrix;
     glm::mat4 shadowMatrix;
 
-
+    glm::mat4 Camera_BiasMatrix;
+    glm::mat4 Camera_ModelMatrix;
+    glm::mat4 Camera_ViewMatrix;
+    glm::mat4 Camera_ProjectionMatrix;
+    glm::mat4 Camera_ModelViewProjectionMatrix;
+    glm::mat4 DepthMatrix;
 	public:
 
 		pipeline();
@@ -76,6 +81,12 @@ class pipeline{
         void updateLightMatrix(glm::mat4 Light_Model, glm::mat4 Light_View, glm::mat4 Light_Projection);
         void updateShadowMatrix(unsigned int shaderId);
         void updateShadowMatrix(unsigned int shaderId, glm::mat4 Light_ViewMatrix, glm::mat4 Light_ProjectionMatrix);
+
+
+
+        void updateCameraMatrix(glm::mat4 Camera_Model, glm::mat4 Camera_View, glm::mat4 Camera_Projection);
+        void updateCameraMatrix(unsigned int shaderId);
+
 
         void pushMatrix();
 		void popMatrix();

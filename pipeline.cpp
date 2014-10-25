@@ -227,6 +227,23 @@ void pipeline::updateShadowMatrix(unsigned int shaderId)
 
 
 
+void pipeline::updateCameraMatrix(glm::mat4 Camera_Model, glm::mat4 Camera_View, glm::mat4 Camera_Projection)
+{
+    Camera_ModelMatrix = Camera_Model;
+    Camera_ViewMatrix = Camera_View;
+    Camera_ProjectionMatrix = Camera_Projection;
+}
+
+//GLSL
+void pipeline::updateCameraMatrix(unsigned int shaderId)
+{
+    DepthMatrix = Camera_BiasMatrix * Camera_ProjectionMatrix * Camera_ViewMatrix * modelMatrix[modelMatrix.size()-1];
+    glUniformMatrix4fv(glGetUniformLocation(shaderId,"CameraModelViewProjectionMatrix"),1,GL_FALSE,&DepthMatrix[0][0]);
+}
+
+
+
+
 
 /*
 #include "pipeline.h"

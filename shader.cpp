@@ -62,6 +62,7 @@ unsigned int shader::loadShader(string& source, unsigned int shaderType)
 shader::shader(const char* vs_source, const char* fs_source)
 {
     string source;
+    cout << "vs: " << vs_source << ", fs: " << fs_source << endl;
     loadFile(vs_source, source);
 
     // source code and Mode
@@ -85,15 +86,66 @@ shader::shader(const char* vs_source, const char* fs_source)
 }
 
 
+
+
+
+shader::shader(const char* vs_source, const char* gs_source, const char* fs_source)
+{
+    string source;
+    cout << "vs: " << vs_source << ", gs:" << gs_source << ", fs: " << fs_source << endl;
+    loadFile(vs_source, source);
+    // source code and Mode
+    vs = loadShader(source, GL_VERTEX_SHADER);
+
+
+    source = "";
+    // load the geometry shader
+    loadFile(gs_source, source);
+    gs = loadShader(source, GL_GEOMETRY_SHADER);
+
+
+    source = "";
+    // load the fragment shader
+    loadFile(fs_source, source);
+    fs = loadShader(source, GL_FRAGMENT_SHADER);
+
+
+    program = glCreateProgram();
+    glAttachShader(program, vs);
+    glAttachShader(program, gs);
+    glAttachShader(program, fs);
+
+
+    glBindAttribLocation(program, SlotPosition, "Position");
+    glBindAttribLocation(program, SlotTexCoord, "TexCoord");
+    // links the program object
+    glLinkProgram(program);
+    // this will use this shader program
+    glUseProgram(program);
+}
+
+
+
 // deletes the shader
 shader::~shader()
 {
     glDetachShader(program, vs);
+    glDetachShader(program, gs);
     glDetachShader(program, fs);
+
     glDeleteShader(vs);
+    glDeleteShader(gs);
     glDeleteShader(fs);
     glDeleteProgram(program);
 }
+
+void shader::linkShader()
+{
+    // links the program object
+    glLinkProgram(program);
+}
+
+
 
 void shader::useShader()
 {

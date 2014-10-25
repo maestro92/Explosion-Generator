@@ -106,6 +106,49 @@ void t_camera::Control()
 }
 
 
+void t_camera::Control(int mid_x, int mid_y)
+{
+	if(mi)
+	{
+		int MidX=mid_x;
+		int MidY=mid_y;
+		SDL_ShowCursor(SDL_DISABLE);
+		int tmpx,tmpy;
+		SDL_GetMouseState(&tmpx,&tmpy);
+		camYaw+=mousevel*(MidX-tmpx);
+		camPitch+=mousevel*(MidY-tmpy);
+		lockCamera();
+		SDL_WarpMouse(MidX,MidY);
+		Uint8* state=SDL_GetKeyState(NULL);
+		ismoved=false;
+		if(state[SDLK_w])
+		{
+			ismoved=true;
+			if(camPitch!=90 && camPitch!=-90)
+				moveCamera(0.0);
+			moveCameraUp(0.0);
+		}else if(state[SDLK_s])
+		{
+			ismoved=true;
+			if(camPitch!=90 && camPitch!=-90)
+				moveCamera(180.0);
+			moveCameraUp(180.0);
+		}
+		if(state[SDLK_a])
+		{
+			ismoved=true;
+			moveCamera(90.0);
+		}
+		else if(state[SDLK_d])
+		{
+			ismoved=true;
+			moveCamera(270);
+		}
+	}
+
+}
+
+
 void t_camera::Control(pipeline& m_pipeline)
 {
 	if(mi)
@@ -148,6 +191,56 @@ void t_camera::Control(pipeline& m_pipeline)
 //	m_pipeline.rotateX(camPitch);
 //	m_pipeline.rotateY(camYaw);
 }
+
+
+
+
+
+
+void t_camera::Control(pipeline& m_pipeline, int mid_x, int mid_y)
+{
+	if(mi)
+	{
+		int MidX=mid_x;
+		int MidY=mid_y;
+		SDL_ShowCursor(SDL_DISABLE);
+		int tmpx,tmpy;
+		SDL_GetMouseState(&tmpx,&tmpy);
+		camYaw+=mousevel*(MidX-tmpx);
+		camPitch+=mousevel*(MidY-tmpy);
+		lockCamera();
+		SDL_WarpMouse(MidX,MidY);
+		Uint8* state=SDL_GetKeyState(NULL);
+		ismoved=false;
+		if(state[SDLK_w])
+		{
+			ismoved=true;
+			if(camPitch!=90 && camPitch!=-90)
+				moveCamera(0.0);
+			moveCameraUp(0.0);
+		}else if(state[SDLK_s])
+		{
+			ismoved=true;
+			if(camPitch!=90 && camPitch!=-90)
+				moveCamera(180.0);
+			moveCameraUp(180.0);
+		}
+		if(state[SDLK_a])
+		{
+			ismoved=true;
+			moveCamera(90.0);
+		}
+		else if(state[SDLK_d])
+		{
+			ismoved=true;
+			moveCamera(270);
+		}
+	}
+//	m_pipeline.rotateX(camPitch);
+//	m_pipeline.rotateY(camYaw);
+}
+
+
 
 
 

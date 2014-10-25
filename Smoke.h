@@ -1,6 +1,11 @@
 #ifndef _SMOKE_H_
 #define _SMOKE_H_
 
+#include "shader.h"
+
+#define NO_SDL_GLEXT
+#include <GL/glew.h>
+
 #include <vector>
 #include <iostream>
 #include <sstream> //You'll need to include this header to use 'std::stringstream'.
@@ -10,90 +15,157 @@
 #include <cstdio>
 
 #include "ParticleEffect_Interface.h"
-
-#include "gl/gl.h"
-#include "gl/glu.h"
-
 #include "define.h"
 
+
+
+
+const int ViewportWidth = 320;
+const int ViewportHeight = ViewportWidth;
+
+const int GridWidth = 64;
+const int GridHeight = GridWidth;
+const int GridDepth = GridWidth;
+
+
+
+
+const float CellSize = 1.25f;
+const float SplatRadius = GridWidth / 8.0f;
+const float AmbientTemperature = 0.0f;
+const float ImpulseTemperature = 10.0f;
+const float ImpulseDensity = 1.0f;
+const int NumJacobiIterations = 10;
+const float TimeStep = 0.25f;
+const float SmokeBuoyancy = 1.0f;
+const float SmokeWeight = 0.0125f;
+const float GradientScale = 1.125f / CellSize;
+/*
+const float TemperatureDissipation = 0.99f;
+const float VelocityDissipation = 0.99f;
+const float DensityDissipation = 0.9995f;
+*/
+const float ImpulseVelocity = 10.0f;
+
+const float TemperatureDissipation = 0.95f;
+const float VelocityDissipation = 0.95f;
+const float DensityDissipation = 0.95f;
+
+
+//glm::vec3 ImpulsePosition( GridWidth / 2.0f, GridHeight - (int) SplatRadius / 2.0f, GridDepth / 2.0f);
+
+
 using namespace std;
+
+
+struct SurfacePod {
+    GLuint FboHandle;
+    GLuint ColorTexture;
+    GLsizei Width;
+    GLsizei Height;
+    GLsizei Depth;
+};
+
+struct Surfaces_t{
+    SurfacePod Divergence;
+    SurfacePod Obstacles;
+    SurfacePod HiresObstacles;
+};
+
+struct SlabPod {
+    SurfacePod Ping;
+    SurfacePod Pong;
+};
+
+struct Slabs_t{
+    SlabPod Velocity;
+    SlabPod Density;
+    SlabPod Pressure;
+    SlabPod Temperature;
+};
+
+static struct Matrices_t{
+    glm::mat4 Projection;
+    glm::mat4 Modelview;
+    glm::mat4 Model;
+    glm::mat4 View;
+    glm::mat4 ModelviewProjection;
+} Matrices;
+
+static struct Vbos_t{
+    GLuint CubeCenter;
+    GLuint FullscreenQuad;
+} Vbos;
+
+
 
 
 class Smoke : public ParticleEffect_Interface
 {
     public:
         // side size
-        int N;
-        int dim1;
-        int dim2;
-        int dim3;
-
-        double dt, diffusion_rate, viscosity;
-        double force, source;
-
-
-/*
-        // velocity
-        vector<double> xv, xv_prev;
-        vector<double> yv, yv_prev;
-        vector<double> zv, zv_prev;
-
-        // density
-        vector<double> dens, dens_prev;
-*/
-
-
-        double* xv;
-        double* xv_prev;
-        double* yv;
-        double* yv_prev;
-        double* zv;
-        double* zv_prev;
-        double* dens;
-        double* dens_prev;
-
-
-
+        Vbos_t myVbos;
+        Slabs_t f_Slab;
+        Surfaces_t f_Surfaces;
         Smoke();
         ~Smoke();
 
-        void InitVector(double * temp, double init=0);
-
-//        void update(bool addSmoke);
-        void get_from_UI(bool addSmoke, int x, int y, int z);
-        void vel_step();
-        void dens_step();
-
-
-
-  //      void show(int dvel);
-        void draw_density();
-        void draw_velocity();
-
-        void addVelocityForce(glm::vec3 coord, glm::vec3 force);
-        void addDensitySource(int x, int y, int z);
-        void addDensitySource(glm::vec3 coord);
-        void addDensitySource();
-        void addDensitySource_FromUI(int x, int y, int z);
-
-
-        void diffuse(double* list, double* list_prev,double diff_rate);
-        void diffuse( vector<double> list, vector<double> list_prev,double diff_rate);
-        void advect(double* list, double* list_prev, double* vx, double* vy, double* vz, double diff_rate);
-
-        double interp(double * list, double x, double y, double z);
-
-
-        void project();
-        void lin_solve(double* list, double* list_prev, double diff_rate, double divisor);
-        void lin_solve(vector<double> list, vector<double> list_prev, double diff_rate, double divisor);
-
-        // returns the index
-        int index(int x, int y, int z);
+        void init();
+        void init2();
+        void init3();
 
         void update(bool toggle = false);
         void show(bool toggle = false);
         void Reset();
+
+
+
+        void SetUniform(GLuint programID, const char* name, int value);
+        void SetUniform(GLuint programID, const char* name, float value);
+        void SetUniform(GLuint programID, const char* name, float x, float y);
+        void SetUniform(GLuint progarmID, const char* name, glm::vec3 value);
+        void SetUniform(GLuint programID, const char* name, glm::mat4 value);
+
+
+
+        void Advect3D_SameFBO(SurfacePod velocity, SurfacePod source, SurfacePod obstacles, SurfacePod dest, float dissipation, GLuint p);
+        void Jacobi3D_SameFBO(SurfacePod pressure, SurfacePod divergence, SurfacePod obstacles, SurfacePod dest, GLuint p);
+        void SubtractGradient3D_SameFBO(SurfacePod velocity, SurfacePod pressure, SurfacePod obstacles, SurfacePod dest, GLuint p);
+        void ApplyBuoyancy3D_SameFBO(SurfacePod velocity, SurfacePod temperature, SurfacePod density, SurfacePod dest, GLuint p);
+        void ComputeDivergence3D_SameFBO(SurfacePod velocity, SurfacePod obstacles, SurfacePod dest, GLuint p);
+        void ApplyImpulse3D_SameFBO(SurfacePod dest, glm::vec3 position, float value, GLuint p);
+
+        GLuint CreatePointVbo(float x, float y, float z);
+        GLuint CreateQuadVbo();
+        SlabPod CreateSlab3D(GLsizei width, GLsizei height, GLsizei depth, int numComponents);
+        SurfacePod CreateVolume(GLsizei width, GLsizei height, GLsizei depth, int numComponents);
+
+        SlabPod CreateSlab3D_SameFBO(GLsizei width, GLsizei height, GLsizei depth, int numComponents);
+        SurfacePod CreateVolume_SameFBO(GLsizei width, GLsizei height, GLsizei depth, int numComponents);
+        void ClearSurface_SameFBO(GLuint tex_id, float v);
+        void CreateObstacles_SameFBO(SurfacePod dest);
+        void ResetState_SameFBO();
+
+        void CreateObstacles(SurfacePod dest);
+        void ClearSurface(SurfacePod s, float v);
+        void SwapSurfaces(SlabPod* slab);
+        void ResetState();
+
+        GLuint CreatePyroclasticVolume(int n, float r);
+
+    private:
+        GLuint fbo;
+
+        shader* Eulerian3D_Raycast;
+        shader* Eulerian3D_Advect;
+        shader* Eulerian3D_Fill;
+
+        shader* Eulerian3D_Jacobi;
+        shader* Eulerian3D_SubtractGradient;
+        shader* Eulerian3D_ComputeDivergence;
+        shader* Eulerian3D_ApplyImpulse;
+        shader* Eulerian3D_ApplyBuoyancy;
+
 
 };
 

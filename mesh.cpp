@@ -30,6 +30,7 @@ mesh::~mesh()
 
 void mesh::draw(unsigned int programId)
 {
+
 	//attribute vec3 vertex
 	int vertex=glGetAttribLocation(programId,"vertex"); //0
 	int normal=glGetAttribLocation(programId,"normal"); //1
@@ -69,11 +70,14 @@ void mesh::draw(unsigned int programId)
 
 	glDrawElements(GL_TRIANGLES,indices.size(),GL_UNSIGNED_INT,0);
 
-	glDisableVertexAttribArray(vertex);
+//	glDisableVertexAttribArray(vertex);
 	glDisableVertexAttribArray(normal);
 	glDisableVertexAttribArray(tangent);
 	glDisableVertexAttribArray(color);
 	glDisableVertexAttribArray(UV);
+
 	glBindBuffer(GL_ARRAY_BUFFER,0);
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER,0);
+
+
 }

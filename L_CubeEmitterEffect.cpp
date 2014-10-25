@@ -7,9 +7,9 @@
 #define START_POS_Y 0
 #define START_POS_Z 0
 
-#define ARRAY_SIZE_X 3
-#define ARRAY_SIZE_Y 3
-#define ARRAY_SIZE_Z 3
+#define ARRAY_SIZE_X 2
+#define ARRAY_SIZE_Y 2
+#define ARRAY_SIZE_Z 2
 
 float Radius = 1;
 float start_x, start_y, start_z;

@@ -9,9 +9,16 @@
 #include <iostream>
 #include <stdio.h>
 
+enum AttributeSlot {
+    SlotPosition,
+    SlotTexCoord,
+};
+
+
 using namespace std;
 class shader{
     unsigned int vs, fs, program;
+    unsigned int gs;
     string path;
     void loadFile(const char* fn, string & str);
     unsigned int loadShader(string& source, unsigned int shaderType);
@@ -20,9 +27,10 @@ class shader{
 
 public:
 
-
     shader(const char* vs_source, const char* fs_source);
+    shader(const char* vs_source, const char* gs_source, const char* fs_source);
     ~shader();
+    void linkShader();
     void useShader();
     unsigned int getProgramId();
     void delShader();

@@ -30,7 +30,7 @@
 
 
 #define ARRAY_SIZE_IN_ELEMENTS(a) (sizeof(a)/sizeof(a[0]))
-#define INVALID_UNIFORM_LOCATION 0xFFFFFFFF
+#define INVALID_UNIFORM_LOCATION -1
 
 //# define M_PI           3.14159265358979323846  /* pi */
 #define ToRadian(x) (float)(((x) * M_PI / 180.0f))

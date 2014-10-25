@@ -3,510 +3,146 @@
 #define SWAP(x0,x) {double * tmp=x0;x0=x;x=tmp;}
 
 
+glm::vec3 ImpulsePosition( GridWidth / 2.0f, GridHeight - (int) SplatRadius / 2.0f, GridDepth / 2.0f);
 
 Smoke::Smoke()
 {
-    N = 8;
-    dim1 = (N+2);
-    dim2 = (N+2)*(N+2);
-    dim3 = (N+2)*(N+2)*(N+2);
-    dt = 0.1;
-    source = 100.0f;
 
-    xv = new double [dim3];
-    yv = new double [dim3];
-    zv = new double [dim3];
-    xv_prev = new double [dim3];
-    yv_prev = new double [dim3];
-    zv_prev = new double [dim3];
-    dens = new double [dim3];
-    dens_prev = new double [dim3];
-
-
-    InitVector(xv);
-    InitVector(yv,1);
-    InitVector(zv);
-    InitVector(xv_prev);
-    InitVector(yv_prev,1);
-    InitVector(zv_prev);
-    InitVector(dens);
-    InitVector(dens_prev);
-
-
-
-/*
-    xv.resize(dim3);
-    yv.resize(dim3);
-    zv.resize(dim3);
-    xv_prev.resize(dim3);
-    yv_prev.resize(dim3);
-    zv_prev.resize(dim3);
-
-    dens.resize(dim3);
-    dens_prev.resize(dim3);
-*/
 }
 
 Smoke::~Smoke()
 {
 
-    delete[] xv;
-    delete[] yv;
-    delete[] zv;
-    delete[] xv_prev;
-    delete[] yv_prev;
-    delete[] zv_prev;
-    delete[] dens;
-    delete[] dens_prev;
-
 }
 
 
-
-
-void Smoke::InitVector(double * temp, double init)
+void Smoke::init()
 {
-    for(int i = 0; i<dim3; i++)
-    {
-        temp[i] = init;
-    }
+
+    glGenFramebuffers(1, &fbo);
+    glBindFramebuffer(GL_FRAMEBUFFER, fbo);
+
+    Eulerian3D_Raycast = new shader("3D_Eulerian_Raycast.vs", "3D_Eulerian_Raycast.gs", "3D_Eulerian_Raycast.fs");
+
+    Eulerian3D_Fill = new shader("3D_Eulerian_Vertex.vs", "3D_Eulerian_Fill.fs");
+    Eulerian3D_Advect = new shader("3D_Eulerian_Vertex.vs", "3D_Eulerian_PickLayer.gs", "3D_Eulerian_Advect.fs");
+    Eulerian3D_Jacobi = new shader("3D_Eulerian_Vertex.vs", "3D_Eulerian_PickLayer.gs", "3D_Eulerian_Jacobi.fs");
+    Eulerian3D_SubtractGradient = new shader("3D_Eulerian_Vertex.vs", "3D_Eulerian_PickLayer.gs", "3D_Eulerian_SubtractGradient.fs");
+    Eulerian3D_ComputeDivergence = new shader("3D_Eulerian_Vertex.vs", "3D_Eulerian_PickLayer.gs", "3D_Eulerian_ComputeDivergence.fs");
+    Eulerian3D_ApplyImpulse = new shader("3D_Eulerian_Vertex.vs", "3D_Eulerian_PickLayer.gs", "3D_Eulerian_ApplyImpulse.fs");
+    Eulerian3D_ApplyBuoyancy = new shader("3D_Eulerian_Vertex.vs", "3D_Eulerian_PickLayer.gs", "3D_Eulerian_Buoyancy.fs");
 
 
-    cout << endl;
-}
+    myVbos.CubeCenter = CreatePointVbo(0,0,0);
+    myVbos.FullscreenQuad = CreateQuadVbo();
 
 /*
-/// update functions
-void Smoke::update(bool addSmoke)
-{
-    get_from_UI(addSmoke, 5, 5, 5);
-    vel_step();
-    dens_step();
-}
+    Slabs.Velocity = CreateSlab3D_SameFBO(GridWidth, GridHeight, GridDepth, 3);
+    Slabs.Density = CreateSlab3D_SameFBO(GridWidth, GridHeight, GridDepth, 1);
+    Slabs.Pressure = CreateSlab3D_SameFBO(GridWidth, GridHeight, GridDepth, 1);
+    Slabs.Temperature = CreateSlab3D_SameFBO(GridWidth, GridHeight, GridDepth, 1);
+    Surfaces.Divergence = CreateVolume_SameFBO(GridWidth, GridHeight, GridDepth, 3);
+
+    Eulerian3D_Fill->useShader();
+    Surfaces.Obstacles = CreateVolume_SameFBO(GridWidth, GridHeight, GridDepth, 3);
+    CreateObstacles_SameFBO(Surfaces.Obstacles);
+    ClearSurface(Slabs.Temperature.Ping, AmbientTemperature);
 */
 
-void Smoke::get_from_UI(bool addSmoke, int x, int y, int z)
-{
-  //  addDensitySource(5,5,5);
-    if(addSmoke)
-    {
-        cout << "source is " << source << endl;
-        cout << "dens_prev[index(x, y, z)] is " << dens_prev[index(x, y, z)] << endl;
-        dens_prev[index(x, y, z)] = source;
-        cout << "dens_prev[index(x, y, z)] is " << dens_prev[index(x, y, z)] << endl << endl;
-    }
+    f_Slab.Velocity = CreateSlab3D_SameFBO(GridWidth, GridHeight, GridDepth, 3);
+    f_Slab.Density = CreateSlab3D_SameFBO(GridWidth, GridHeight, GridDepth, 1);
+    f_Slab.Pressure = CreateSlab3D_SameFBO(GridWidth, GridHeight, GridDepth, 1);
+    f_Slab.Temperature = CreateSlab3D_SameFBO(GridWidth, GridHeight, GridDepth, 1);
+    f_Surfaces.Divergence = CreateVolume_SameFBO(GridWidth, GridHeight, GridDepth, 3);
+
+    Eulerian3D_Fill->useShader();
+    f_Surfaces.Obstacles = CreateVolume_SameFBO(GridWidth, GridHeight, GridDepth, 3);
+    CreateObstacles_SameFBO(f_Surfaces.Obstacles);
+    ClearSurface(f_Slab.Temperature.Ping, AmbientTemperature);
+
+    glDisable(GL_DEPTH_TEST);
+    glEnable(GL_CULL_FACE);
+    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+    glEnableVertexAttribArray(SlotPosition);
+
+    Eulerian3D_ApplyBuoyancy->delShader();
+    glBindFramebuffer(GL_FRAMEBUFFER, 0);
 }
 
 
 
 
-void Smoke::vel_step()
+
+void Smoke::init2()
 {
+    glGenFramebuffers(1, &fbo);
+    glBindFramebuffer(GL_FRAMEBUFFER, fbo);
 
-	SWAP ( xv_prev, xv ); diffuse ( xv, xv_prev, viscosity);
-	SWAP ( yv_prev, yv ); diffuse ( yv, yv_prev, viscosity);
-	SWAP ( zv_prev, zv ); diffuse ( zv, zv_prev, viscosity);
+    myVbos.CubeCenter = CreatePointVbo(0,0,0);
+    myVbos.FullscreenQuad = CreateQuadVbo();
+
+    glDisable(GL_DEPTH_TEST);
+    glEnable(GL_CULL_FACE);
+    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+    glEnableVertexAttribArray(SlotPosition);
+
+    Eulerian3D_ApplyBuoyancy->delShader();
 }
-
-void Smoke::dens_step()
-{
-    addDensitySource();
-
-    // change with dens_temp/prev
-    // dens.swap(dens_prev);
-    SWAP(dens, dens_prev);
-	diffuse ( dens, dens_prev, diffusion_rate);
-
-    // advection
-    // dens.swap(dens_prev);
-    SWAP(dens, dens_prev);
-    advect ( dens, dens_prev, xv, yv, zv,diffusion_rate);
-}
-
-
-
-int Smoke::index(int x, int y, int z)
-{
-    return y*dim2 + z*dim1 + x;
-}
-
-// coord: coordinate
-void Smoke::addVelocityForce(glm::vec3 coord, glm::vec3 force)
-{
-    xv[index(coord.x,coord.y,coord.z)] = force.x;
-    yv[index(coord.x,coord.y,coord.z)] = force.y;
-    zv[index(coord.x,coord.y,coord.z)] = force.z;
-}
-
-void Smoke::addDensitySource_FromUI(int x, int y, int z)
-{
-    dens_prev[index(x, y, z)] = source;
-}
-
-
-void Smoke::addDensitySource()
-{
-
-    for(int i=0; i<dim3; i++)
-    {
-        dens[i] += dt*dens_prev[i];
-    }
-
-
-/*
-    for(int i=0; i<dens_prev.size(); i++)
-    {
-        dens[i] += dt*dens_prev[i]
-    }
-
-    int i, size=(N+2)*(N+2);
-	for ( i=0 ; i<size ; i++ )
-        x[i] += dt*s[i];
-*/
-}
-
-
-void Smoke::addDensitySource(glm::vec3 coord)
-{
-    dens_prev[index(coord.x,coord.y,coord.z)] = source;
-
-/*
-    for(int i=0; i<dens_prev.size(); i++)
-    {
-        dens[i] += dt*dens_prev[i]
-    }
-
-    int i, size=(N+2)*(N+2);
-	for ( i=0 ; i<size ; i++ )
-        x[i] += dt*s[i];
-*/
-}
-
-
-//( int N, int b, double * x, double * x0, double diff, double dt )
-
-
-void Smoke::diffuse( double* list, double* list_prev,double diff_rate)
-{
-	double a=dt * diff_rate * N * N * N;
-	lin_solve (list, list_prev, a, 1+6*a );
-
-	// lin_solve ( N, b, x, x0, a, 1+4*a );
-}
-
-
-
-void Smoke::diffuse( vector<double> list, vector<double> list_prev,double diff_rate)
-{
-	double a=dt * diff_rate * N * N * N;
-	lin_solve (list, list_prev, a, 1+6*a );
-
-	// lin_solve ( N, b, x, x0, a, 1+4*a );
-}
-
-void Smoke::advect(double* list, double* list_prev, double* vx, double* vy, double* vz, double diff_rate)
-{
-    int i, j, k;
-    int i0, j0, k0;
-    int i1, j1, k1;
-
-    double s0,s1;
-    double t0,t1;
-    double u0,u1;
-
-    double rate = dt*N;
-
-    for(int y = 1; y <= N; y++)
-    {
-        for(int z = 1; z <= N; z++)
-        {
-            for(int x = 1; x <= N; x++)
-            {
-                int i = index(x,y,z);
-
-                double x0 = x - rate * vx[i];
-                double y0 = y - rate * vy[i];
-                double z0 = z - rate * vz[i];
-
-
-                if(x0 < 0.5) x0 = 0.5;
-                if(x0 > N + 0.5) x0 = N + 0.5;
-                i0 = (int)x0;
-                i1 = i0 + 1;
-
-                if(y0 < 0.5) y0 = 0.5;
-                if(y0 > N + 0.5) y0 = N + 0.5;
-                j0 = (int)y0;
-                j1 = j0 + 1;
-
-                if(z0 < 0.5) z0 = 0.5;
-                if(z0 > N + 0.5) z0 = N + 0.5;
-                k0 = (int)z0;
-                k1 = k0 + 1;
-
-                s1 = x0 - i0;
-                s0 = 1.0 - s1;
-                t1 = y0 - j0;
-                t0 = 1.0 - t1;
-                u1 = z0 - k0;
-                u0 = 1.0 - u1;
-
-
-                list[i] =
-
-                        s0 * ( t0 * (u0 * list_prev[index(i0, j0, k0)]
-                                    +u1 * list_prev[index(i0, j0, k1)])
-                            +( t1 * (u0 * list_prev[index(i0, j1, k0)]
-                                    +u1 * list_prev[index(i0, j1, k1)])))
-                        +s1 * ( t0 * (u0 * list_prev[index(i1, j0, k0)]
-                                    +u1 * list_prev[index(i1, j0, k1)])
-                            +( t1 * (u0 * list_prev[index(i1, j1, k0)]
-                                    +u1 * list_prev[index(i1, j1, k1)])));
-            //    list[i] = interp(list_prev, x0, y0, z0);
-                // we're dealing with 8 cubes instead of 4 like in 2D
-/*
-                list[index(x,y,z)] = (list_prev[index(x,y,z)] +
-                                    diff_rate * (list[index(x-1,y,z)] + list[index(x+1,y,z)] +
-                                                 list[index(x,y-1,z)] + list[index(x,y+1,z)] +
-                                                 list[index(x,y,z-1)] + list[index(x,y,z+1)])) * div;
-  */
-            }
-        }
-    }
-
-
-}
-
-double interp(double * list, double x, double y, double z)
-{
-    // get the integer components, and normalized 0..1 interp factors, of x,y,z:
-    /*
-    int x0 = (int)x; double xbf = x-(double)x0; double xaf = 1-xbf;
-    int y0 = (int)y; double ybf = y-(double)y0; double yaf = 1-ybf;
-    int z0 = (int)z; double zbf = z-(double)z0; double zaf = 1-zbf;
-    */
-
-    //
-
-}
-
-
-
-void Smoke::project()
-{
-
-
-}
-
-
-
-void Smoke::lin_solve(double* list, double* list_prev, double diff_rate, double divisor)
-{
-    double div = 1.0 / divisor;
-
-    for(int iter = 0; iter<20; iter++)
-    {
-        for(int y = 1; y <= N; y++)
-        {
-
-            for(int z = 1; z <= N; z++)
-            {
-                for(int x = 1; x <= N; x++)
-                {
-
-                    list[index(x,y,z)] = (list_prev[index(x,y,z)] +
-                                        diff_rate * (list[index(x-1,y,z)] + list[index(x+1,y,z)] +
-                                                     list[index(x,y-1,z)] + list[index(x,y+1,z)] +
-                                                     list[index(x,y,z-1)] + list[index(x,y,z+1)])) * div;
-                }
-            }
-        }
-    }
-
-}
-
-
-void Smoke::lin_solve(vector<double> list, vector<double> list_prev, double diff_rate, double divisor)
-{
-    double div = 1.0 / divisor;
-
-    for(int iter = 0; iter<20; iter++)
-    {
-        for(int y = 1; y <= N; y++)
-        {
-
-            for(int z = 1; z <= N; z++)
-            {
-                for(int x = 1; x <= N; x++)
-                {
-
-                    list[index(x,y,z)] = (list_prev[index(x,y,z)] +
-                                        diff_rate * (list[index(x-1,y,z)] + list[index(x+1,y,z)] +
-                                                     list[index(x,y-1,z)] + list[index(x,y+1,z)] +
-                                                     list[index(x,y,z-1)] + list[index(x,y,z+1)])) * div;
-                }
-            }
-        }
-    }
-
-}
-
-
-
-/*
-/// display function
-void Smoke::show(int dvel)
-{
-    if ( dvel )
-        draw_velocity ();
-    else
-        draw_density ();
-}
-*/
-
-void Smoke::draw_velocity()
-{
-
-    double i, j, k;
-	double h;
-
-	h = 10*1.0f/N;
-
-
-    glPushMatrix();
-        glDisable( GL_LIGHTING );
-    	glColor3f ( 1.0f, 1.0f, 0.0f );
-
-        glLineWidth ( 1.0f );
-
-        glBegin ( GL_LINES );
-
-
-            for(int y = 1; y <= N; y++)
-            {
-                j = (y-0.5f)*h;
-                for(int z = 1; z <= N; z++)
-                {
-                    k = (z-0.5f)*h;
-                    for(int x = 1; x <= N; x++)
-                    {
-                        i = (x-0.5f)*h;
-                        glVertex3f ( i, j, k );
-                        glVertex3f ( i+xv[index(x,y,z)], j+yv[index(x,y,z)], k+zv[index(x,y,z)]);
-                    }
-                }
-            }
-
-        glEnd ();
-        glEnable( GL_LIGHTING );
-    glPopMatrix();
-}
-
-
-void Smoke::draw_density()
-{
-
-    double i, j, k, d000, d001, d010, d011, d100, d101, d110, d111;
-    double h;
-
-	h = 10*1.0f/N;
-
-    glPushMatrix();
-    glDisable(GL_LIGHTING);
-//	glBegin ( GL_QUADS );
-	glBegin ( GL_QUADS );
-
-
-        for(int y = 1; y <= N; y++)
-        {
-            j = (y-0.5f)*h;
-            for(int z = 1; z <= N; z++)
-            {
-                k = (z-0.5f)*h;
-                for(int x = 1; x <= N; x++)
-                {
-                    i = (x-0.5f)*h;
-
-                    d000 = dens[index(x,y,z)];
-                    d001 = dens[index(x,y,z+1)];
-                    d010 = dens[index(x,y+1,z)];
-                    d011 = dens[index(x,y+1,z+1)];
-                    d100 = dens[index(x+1,y,z)];
-                    d101 = dens[index(x+1,y,z+1)];
-                    d110 = dens[index(x+1,y+1,z)];
-                    d111 = dens[index(x+1,y+1,z+1)];
-
-
-            //        glVertex3f ( i, j, k );
-             //       glVertex3f ( i+xv[index(x,y,z)], j+yv[index(x,y,z)], k+zv[index(x,y,z)]);
-
-
-           //         printf ("0 is %g \n", d000 );
-           //         printf ("1 is %g \n", d001 );
-
-               /*     printf ("2 is %g \n", d010 );
-                    printf ("3 is %g \n", d011 );
-                    printf ("4 is %g \n", d100 );
-                    printf ("5 is %g \n", d101 );
-                    printf ("6 is %g \n", d110 );
-                    printf ("7 is %g \n", d111 );
-*/
-              //      glDisable(GL_LIGHTING);
-
-
-     //               glColor3f ( 1.0f, 0.0f, 0.0f ); glVertex3f ( i, j, k );
-     //               glColor3f ( 1.0f, 0.0f, 0.0f ); glVertex3f ( i, j, k+h );
-
-
-
-                    glColor3f ( d000, d000, d000 ); glVertex3f ( i, j, k );
-                    glColor3f ( d001, d001, d001 ); glVertex3f ( i, j, k+h );
-                    glColor3f ( d010, d010, d010 ); glVertex3f ( i, j+h, k );
-                    glColor3f ( d011, d011, d011 ); glVertex3f ( i, j+h, k+h );
-
-                    glColor3f ( d100, d100, d100 ); glVertex3f ( i+h, j, k );
-                    glColor3f ( d101, d101, d101 ); glVertex3f ( i+h, j, k+h );
-                    glColor3f ( d110, d110, d110 ); glVertex3f ( i+h, j+h, k );
-                    glColor3f ( d111, d111, d111 ); glVertex3f ( i+h, j+h, k+h );
-
-
-                }
-            }
-        }
-/*
-				d00 = dens[IX(i,j)];
-				d01 = dens[IX(i,j+1)];
-				d10 = dens[IX(i+1,j)];
-				d11 = dens[IX(i+1,j+1)];
-
-				glColor3f ( d00, d00, d00 ); glVertex2f ( x, y );
-				glColor3f ( d10, d10, d10 ); glVertex2f ( x+h, y );
-				glColor3f ( d11, d11, d11 ); glVertex2f ( x+h, y+h );
-				glColor3f ( d01, d01, d01 ); glVertex2f ( x, y+h );
-*/
-
-	glEnd ();
-    glEnable(GL_LIGHTING);
-
-    glPopMatrix();
-}
-
 
 
 void Smoke::update(bool toggle)
 {
-    get_from_UI(toggle, 5, 5, 5);
-    vel_step();
-    dens_step();
+    glBindFramebuffer(GL_FRAMEBUFFER, fbo);
+    if(true)
+    {
+        GLuint pID;
+
+        glBindBuffer(GL_ARRAY_BUFFER, myVbos.FullscreenQuad);
+        glVertexAttribPointer(SlotPosition, 2, GL_SHORT, GL_FALSE, 2 * sizeof(short), 0);
+        glViewport(0, 0, GridWidth, GridHeight);
+
+            pID = Eulerian3D_Advect->getProgramId();
+        Advect3D_SameFBO(f_Slab.Velocity.Ping, f_Slab.Velocity.Ping, f_Surfaces.Obstacles, f_Slab.Velocity.Pong, VelocityDissipation, pID);
+        SwapSurfaces(&f_Slab.Velocity);
+
+        Advect3D_SameFBO(f_Slab.Velocity.Ping, f_Slab.Temperature.Ping, f_Surfaces.Obstacles, f_Slab.Temperature.Pong, TemperatureDissipation, pID);
+        SwapSurfaces(&f_Slab.Temperature);
+
+        Advect3D_SameFBO(f_Slab.Velocity.Ping, f_Slab.Density.Ping, f_Surfaces.Obstacles, f_Slab.Density.Pong, DensityDissipation, pID);
+        SwapSurfaces(&f_Slab.Density);
+
+            pID = Eulerian3D_ApplyBuoyancy->getProgramId();
+        ApplyBuoyancy3D_SameFBO(f_Slab.Velocity.Ping, f_Slab.Temperature.Ping, f_Slab.Density.Ping, f_Slab.Velocity.Pong, pID);
+        SwapSurfaces(&f_Slab.Velocity);
+
+            pID = Eulerian3D_ApplyImpulse->getProgramId();
+        ApplyImpulse3D_SameFBO(f_Slab.Temperature.Ping, ImpulsePosition, ImpulseTemperature, pID);
+ //       ApplyImpulse3D_SameFBO(f_Slab.Velocity.Ping, ImpulsePosition, ImpulseVelocity);
+        ApplyImpulse3D_SameFBO(f_Slab.Density.Ping, ImpulsePosition, ImpulseDensity, pID);
+
+            pID = Eulerian3D_ComputeDivergence->getProgramId();
+        ComputeDivergence3D_SameFBO(f_Slab.Velocity.Ping, f_Surfaces.Obstacles, f_Surfaces.Divergence, pID);
+        ClearSurface_SameFBO(f_Slab.Pressure.Ping.ColorTexture, 0);
+
+            pID = Eulerian3D_Jacobi->getProgramId();
+        for (int i = 0; i < NumJacobiIterations; ++i)
+        {
+            Jacobi3D_SameFBO(f_Slab.Pressure.Ping, f_Surfaces.Divergence, f_Surfaces.Obstacles, f_Slab.Pressure.Pong, pID);
+            SwapSurfaces(&f_Slab.Pressure);
+        }
+
+            pID = Eulerian3D_SubtractGradient->getProgramId();
+        SubtractGradient3D_SameFBO(f_Slab.Velocity.Ping, f_Slab.Pressure.Ping, f_Surfaces.Obstacles, f_Slab.Velocity.Pong, pID);
+        SwapSurfaces(&f_Slab.Velocity);
+
+    }
+    glBindFramebuffer(GL_FRAMEBUFFER, 0);
 }
 
 
 void Smoke::show(bool toggle)
 {
-    if ( toggle )
-        draw_velocity ();
-    else
-        draw_density ();
+
 }
 
 
@@ -514,3 +150,709 @@ void Smoke::Reset()
 {
 
 }
+
+
+
+
+GLuint Smoke::CreateQuadVbo()
+{
+    short positions[] = {
+        -1, -1,
+         1, -1,
+        -1,  1,
+         1,  1,
+    };
+    GLuint vbo;
+    GLsizeiptr size = sizeof(positions);
+    glGenBuffers(1, &vbo);
+    glBindBuffer(GL_ARRAY_BUFFER, vbo);
+    glBufferData(GL_ARRAY_BUFFER, size, positions, GL_STATIC_DRAW);
+    return vbo;
+}
+
+
+
+
+
+SlabPod Smoke::CreateSlab3D(GLsizei width, GLsizei height, GLsizei depth, int numComponents)
+{
+    SlabPod slab;
+    slab.Ping = CreateVolume(width, height, depth, numComponents);
+    slab.Pong = CreateVolume(width, height, depth, numComponents);
+    return slab;
+}
+
+
+SurfacePod Smoke::CreateVolume(GLsizei width, GLsizei height, GLsizei depth, int numComponents)
+{
+    GLuint fboHandle;
+    glGenFramebuffers(1, &fboHandle);
+    glBindFramebuffer(GL_FRAMEBUFFER, fboHandle);
+
+    GLuint textureHandle;
+    glGenTextures(1, &textureHandle);
+    glBindTexture(GL_TEXTURE_3D, textureHandle);
+    glTexParameteri(GL_TEXTURE_3D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+    glTexParameteri(GL_TEXTURE_3D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+    glTexParameteri(GL_TEXTURE_3D, GL_TEXTURE_WRAP_R, GL_CLAMP_TO_EDGE);
+    glTexParameteri(GL_TEXTURE_3D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+    glTexParameteri(GL_TEXTURE_3D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+
+    switch (numComponents) {
+        case 1:
+            glTexImage3D(GL_TEXTURE_3D, 0, GL_R16F, width, height, depth, 0, GL_RED, GL_HALF_FLOAT, 0);
+            break;
+        case 2:
+            glTexImage3D(GL_TEXTURE_3D, 0, GL_RG16F, width, height, depth, 0, GL_RG, GL_HALF_FLOAT, 0);
+            break;
+        case 3:
+            glTexImage3D(GL_TEXTURE_3D, 0, GL_RGB16F, width, height, depth, 0, GL_RGB, GL_HALF_FLOAT, 0);
+            break;
+        case 4:
+            glTexImage3D(GL_TEXTURE_3D, 0, GL_RGBA16F, width, height, depth, 0, GL_RGBA, GL_HALF_FLOAT, 0);
+            break;
+    }
+
+    if (GL_NO_ERROR != glGetError())
+    {
+        cout << "Unable to create volume texture" << endl;
+        exit(1);
+    }
+
+    glFramebufferTexture(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, textureHandle, 0);
+    if (GL_NO_ERROR != glGetError())
+    {
+        cout << "Unable to attach color buffer" << endl;
+        exit(1);
+    }
+
+    if (glCheckFramebufferStatus(GL_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE)
+    {
+        cout << "Unable to create FBO" << endl;
+        exit(1);
+    }
+
+    SurfacePod surface = { fboHandle, textureHandle };
+
+    glClearColor(0, 0, 0, 0);
+    glClear(GL_COLOR_BUFFER_BIT);
+    glBindFramebuffer(GL_FRAMEBUFFER, 0);
+    surface.Width = width;
+    surface.Height = height;
+    surface.Depth = depth;
+    return surface;
+}
+
+
+
+
+
+
+
+
+void Smoke::CreateObstacles(SurfacePod dest)
+{
+    glBindFramebuffer(GL_FRAMEBUFFER, dest.FboHandle);
+    glViewport(0, 0, dest.Width, dest.Height);
+    glClearColor(0, 0, 0, 0);
+    glClear(GL_COLOR_BUFFER_BIT);
+
+    GLuint vao;
+    glGenVertexArrays(1, &vao);
+    glBindVertexArray(vao);
+
+    GLuint lineVbo;
+    glGenBuffers(1, &lineVbo);
+    GLuint circleVbo;
+    glGenBuffers(1, &circleVbo);
+    glEnableVertexAttribArray(0);
+
+    for (int slice = 0; slice < dest.Depth; ++slice) {
+
+        glFramebufferTextureLayer(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, dest.ColorTexture, 0, dest.Depth - 1 - slice);
+        float z = dest.Depth / 2.0f;
+        z = abs(slice - z) / z;
+        float fraction = 1 - sqrt(z);
+        float radius = 0.5f * fraction;
+
+        if (slice == 0 || slice == dest.Depth - 1) {
+            radius *= 100;
+        }
+
+        const bool DrawBorder = true;
+        if (DrawBorder && slice != 0 && slice != dest.Depth - 1)
+            {
+            #define T 0.9999f
+            float positions[] = { -T, -T, T, -T, T,  T, -T,  T, -T, -T };
+            #undef T
+            GLsizeiptr size = sizeof(positions);
+            glBindBuffer(GL_ARRAY_BUFFER, lineVbo);
+            glBufferData(GL_ARRAY_BUFFER, size, positions, GL_STATIC_DRAW);
+            GLsizeiptr stride = 2 * sizeof(positions[0]);
+            glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, stride, 0);
+            glDrawArrays(GL_LINE_STRIP, 0, 5);
+        }
+
+        const bool DrawSphere = false;
+        if (DrawSphere || slice == 0 || slice == dest.Depth - 1)
+        {
+            const int slices = 64;
+            float positions[slices*2*3];
+            float twopi = 8*atan(1.0f);
+            float theta = 0;
+            float dtheta = twopi / (float) (slices - 1);
+            float* pPositions = &positions[0];
+            for (int i = 0; i < slices; i++) {
+                *pPositions++ = 0;
+                *pPositions++ = 0;
+
+                *pPositions++ = radius * cos(theta);
+                *pPositions++ = radius * sin(theta);
+                theta += dtheta;
+
+                *pPositions++ = radius * cos(theta);
+                *pPositions++ = radius * sin(theta);
+            }
+
+            GLsizeiptr size = sizeof(positions);
+            glBindBuffer(GL_ARRAY_BUFFER, circleVbo);
+            glBufferData(GL_ARRAY_BUFFER, size, positions, GL_STATIC_DRAW);
+            GLsizeiptr stride = 2 * sizeof(positions[0]);
+            glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, stride, 0);
+            glDrawArrays(GL_TRIANGLES, 0, slices * 3);
+        }
+    }
+
+    // Cleanup
+
+    glDeleteVertexArrays(1, &vao);
+    glDeleteBuffers(1, &lineVbo);
+    glDeleteBuffers(1, &circleVbo);
+}
+
+void Smoke::ClearSurface(SurfacePod s, float v)
+{
+    glBindFramebuffer(GL_FRAMEBUFFER, s.FboHandle);
+    glClearColor(v, v, v, v);
+    glClear(GL_COLOR_BUFFER_BIT);
+}
+
+void Smoke::SwapSurfaces(SlabPod* slab)
+{
+    SurfacePod temp = slab->Ping;
+    slab->Ping = slab->Pong;
+    slab->Pong = temp;
+}
+
+
+
+
+
+
+
+SlabPod Smoke::CreateSlab3D_SameFBO(GLsizei width, GLsizei height, GLsizei depth, int numComponents)
+{
+    SlabPod slab;
+    slab.Ping = CreateVolume_SameFBO(width, height, depth, numComponents);
+    slab.Pong = CreateVolume_SameFBO(width, height, depth, numComponents);
+    return slab;
+}
+
+SurfacePod Smoke::CreateVolume_SameFBO(GLsizei width, GLsizei height, GLsizei depth, int numComponents)
+{
+    GLuint textureHandle;
+    glGenTextures(1, &textureHandle);
+    glBindTexture(GL_TEXTURE_3D, textureHandle);
+    glTexParameteri(GL_TEXTURE_3D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+    glTexParameteri(GL_TEXTURE_3D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+    glTexParameteri(GL_TEXTURE_3D, GL_TEXTURE_WRAP_R, GL_CLAMP_TO_EDGE);
+    glTexParameteri(GL_TEXTURE_3D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+    glTexParameteri(GL_TEXTURE_3D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+
+    switch (numComponents) {
+        case 1:
+            glTexImage3D(GL_TEXTURE_3D, 0, GL_R16F, width, height, depth, 0, GL_RED, GL_HALF_FLOAT, 0);
+            break;
+        case 2:
+            glTexImage3D(GL_TEXTURE_3D, 0, GL_RG16F, width, height, depth, 0, GL_RG, GL_HALF_FLOAT, 0);
+            break;
+        case 3:
+            glTexImage3D(GL_TEXTURE_3D, 0, GL_RGB16F, width, height, depth, 0, GL_RGB, GL_HALF_FLOAT, 0);
+            break;
+        case 4:
+            glTexImage3D(GL_TEXTURE_3D, 0, GL_RGBA16F, width, height, depth, 0, GL_RGBA, GL_HALF_FLOAT, 0);
+            break;
+    }
+/*
+    if (GL_NO_ERROR != glGetError())
+    {
+        cout << "Unable to create volume texture" << endl;
+        exit(1);
+    }
+*/
+    SurfacePod surface;
+
+    glClearColor(0, 0, 0, 0);
+    glClear(GL_COLOR_BUFFER_BIT);
+
+    surface.Width = width;
+    surface.Height = height;
+    surface.Depth = depth;
+    surface.ColorTexture = textureHandle;
+    return surface;
+}
+
+void Smoke::CreateObstacles_SameFBO(SurfacePod dest)
+{
+    glViewport(0, 0, dest.Width, dest.Height);
+    glClearColor(0, 0, 0, 0);
+    glClear(GL_COLOR_BUFFER_BIT);
+
+    GLuint vao;
+    glGenVertexArrays(1, &vao);
+    glBindVertexArray(vao);
+
+    GLuint lineVbo;
+    glGenBuffers(1, &lineVbo);
+    GLuint circleVbo;
+    glGenBuffers(1, &circleVbo);
+    glEnableVertexAttribArray(0);
+
+    for (int slice = 0; slice < dest.Depth; ++slice)
+    {
+
+        glFramebufferTextureLayer(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, dest.ColorTexture, 0, dest.Depth - 1 - slice);
+        float z = dest.Depth / 2.0f;
+        z = abs(slice - z) / z;
+        float fraction = 1 - sqrt(z);
+        float radius = 0.5f * fraction;
+
+        if (slice == 0 || slice == dest.Depth - 1) {
+            radius *= 100;
+        }
+
+        const bool DrawBorder = true;
+        if (DrawBorder && slice != 0 && slice != dest.Depth - 1)
+            {
+            #define T 0.9999f
+            float positions[] = { -T, -T, T, -T, T,  T, -T,  T, -T, -T };
+            #undef T
+            GLsizeiptr size = sizeof(positions);
+            glBindBuffer(GL_ARRAY_BUFFER, lineVbo);
+            glBufferData(GL_ARRAY_BUFFER, size, positions, GL_STATIC_DRAW);
+            GLsizeiptr stride = 2 * sizeof(positions[0]);
+            glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, stride, 0);
+            glDrawArrays(GL_LINE_STRIP, 0, 5);
+        }
+
+        const bool DrawSphere = true;
+        if (DrawSphere || slice == 0 || slice == dest.Depth - 1)
+        {
+            const int slices = 64;
+            float positions[slices*2*3];
+            float twopi = 8*atan(1.0f);
+            float theta = 0;
+            float dtheta = twopi / (float) (slices - 1);
+            float* pPositions = &positions[0];
+            for (int i = 0; i < slices; i++)
+            {
+                *pPositions++ = 0;
+                *pPositions++ = 0;
+
+                *pPositions++ = radius * cos(theta);
+                *pPositions++ = radius * sin(theta);
+                theta += dtheta;
+
+                *pPositions++ = radius * cos(theta);
+                *pPositions++ = radius * sin(theta);
+            }
+
+            GLsizeiptr size = sizeof(positions);
+            glBindBuffer(GL_ARRAY_BUFFER, circleVbo);
+            glBufferData(GL_ARRAY_BUFFER, size, positions, GL_STATIC_DRAW);
+            GLsizeiptr stride = 2 * sizeof(positions[0]);
+            glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, stride, 0);
+            glDrawArrays(GL_TRIANGLES, 0, slices * 3);
+        }
+    }
+
+    // Cleanup
+    glDeleteVertexArrays(1, &vao);
+    glDeleteBuffers(1, &lineVbo);
+    glDeleteBuffers(1, &circleVbo);
+}
+
+void Smoke::ClearSurface_SameFBO(GLuint tex_id, float v)
+{
+    glFramebufferTexture(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, tex_id ,0);
+    glClearColor(v, v, v, v);
+    glClear(GL_COLOR_BUFFER_BIT);
+}
+
+void Smoke::ResetState_SameFBO()
+{
+    glActiveTexture(GL_TEXTURE2); glBindTexture(GL_TEXTURE_3D, 0);
+    glActiveTexture(GL_TEXTURE1); glBindTexture(GL_TEXTURE_3D, 0);
+    glActiveTexture(GL_TEXTURE0); glBindTexture(GL_TEXTURE_3D, 0);
+    glDisable(GL_BLEND);
+}
+
+void Smoke::ResetState()
+{
+    glActiveTexture(GL_TEXTURE2); glBindTexture(GL_TEXTURE_3D, 0);
+    glActiveTexture(GL_TEXTURE1); glBindTexture(GL_TEXTURE_3D, 0);
+    glActiveTexture(GL_TEXTURE0); glBindTexture(GL_TEXTURE_3D, 0);
+    glBindFramebuffer(GL_FRAMEBUFFER, 0);
+    glDisable(GL_BLEND);
+}
+
+
+
+
+
+
+
+
+#if 1
+
+void Smoke::Advect3D_SameFBO(SurfacePod velocity, SurfacePod source, SurfacePod obstacles, SurfacePod dest, float dissipation, GLuint p)
+{
+    glUseProgram(p);
+
+    SetUniform(p, "InverseSize", glm::vec3( float(1.0f/float(GridWidth)), float(1.0f/float(GridHeight)), float(1.0f/float(GridDepth))) );
+    SetUniform(p, "TimeStep", TimeStep);
+    SetUniform(p, "Dissipation", dissipation);
+    SetUniform(p, "SourceTexture", 1);
+    SetUniform(p, "Obstacles", 2);
+
+    cout << "advecting" << endl;
+
+    glFramebufferTexture(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, dest.ColorTexture ,0);
+    if (GL_NO_ERROR != glGetError())
+    {
+        cout << "Advect3D Unable to attach color buffer" << endl;
+        cout << glGetError() << endl;
+    //    exit(1);
+    }
+
+    if (glCheckFramebufferStatus(GL_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE)
+    {
+        cout << "Unable to create FBO" << endl;
+    }
+
+    glActiveTexture(GL_TEXTURE0);
+
+    glBindTexture(GL_TEXTURE_3D, velocity.ColorTexture);
+    glActiveTexture(GL_TEXTURE1);
+
+    glBindTexture(GL_TEXTURE_3D, source.ColorTexture);
+    glActiveTexture(GL_TEXTURE2);
+
+    glBindTexture(GL_TEXTURE_3D, obstacles.ColorTexture);
+
+    // http://www.opengl.org/wiki/GLAPI/glDrawArraysInstanced
+    // glDrawArraysInstanced: behaves identically to glDrawArrays except that primcount
+    // instances of the range of elements are executed and the value of internal counter instancedID advances for each iteration
+    // instanceID​ is an internal 32-bit integer counter that may be read by a vertex shader as gl_InstanceID​
+
+    glDrawArraysInstanced(GL_TRIANGLE_STRIP, 0, 4, dest.Depth);
+    ResetState_SameFBO();
+}
+
+
+
+void Smoke::Jacobi3D_SameFBO(SurfacePod pressure, SurfacePod divergence, SurfacePod obstacles, SurfacePod dest, GLuint p)
+{
+ //   GLuint p = Eulerian3D_Jacobi->getProgramId();
+    glUseProgram(p);
+
+    SetUniform(p, "Alpha", -CellSize * CellSize);
+    SetUniform(p, "InverseBeta", 0.1666f);
+    SetUniform(p, "Divergence", 1);
+    SetUniform(p, "Obstacles", 2);
+
+    glFramebufferTexture(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, dest.ColorTexture ,0);
+    if (GL_NO_ERROR != glGetError())
+    {
+        cout << "Unable to attach color buffer" << endl;
+    //    exit(1);
+    }
+
+    if (glCheckFramebufferStatus(GL_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE)
+    {
+        cout << "Unable to create FBO" << endl;
+    //    exit(1);
+    }
+
+    glActiveTexture(GL_TEXTURE0);
+    glBindTexture(GL_TEXTURE_3D, pressure.ColorTexture);
+    glActiveTexture(GL_TEXTURE1);
+    glBindTexture(GL_TEXTURE_3D, divergence.ColorTexture);
+    glActiveTexture(GL_TEXTURE2);
+    glBindTexture(GL_TEXTURE_3D, obstacles.ColorTexture);
+    glDrawArraysInstanced(GL_TRIANGLE_STRIP, 0, 4, dest.Depth);
+    ResetState_SameFBO();
+}
+
+
+
+
+void Smoke::SubtractGradient3D_SameFBO(SurfacePod velocity, SurfacePod pressure, SurfacePod obstacles, SurfacePod dest, GLuint p)
+{
+ //   GLuint p = Eulerian3D_SubtractGradient->getProgramId();
+    glUseProgram(p);
+
+    SetUniform(p, "GradientScale", GradientScale);
+    SetUniform(p, "HalfInverseCellSize", 0.5f / CellSize);
+    SetUniform(p, "Pressure", 1);
+    SetUniform(p, "Obstacles", 2);
+
+    glFramebufferTexture(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, dest.ColorTexture ,0);
+    if (GL_NO_ERROR != glGetError())
+    {
+        cout << "Unable to attach color buffer" << endl;
+   //     exit(1);
+    }
+
+    if (glCheckFramebufferStatus(GL_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE)
+    {
+        cout << "Unable to create FBO" << endl;
+    //    exit(1);
+    }
+
+    glActiveTexture(GL_TEXTURE0);
+    glBindTexture(GL_TEXTURE_3D, velocity.ColorTexture);
+    glActiveTexture(GL_TEXTURE1);
+    glBindTexture(GL_TEXTURE_3D, pressure.ColorTexture);
+    glActiveTexture(GL_TEXTURE2);
+    glBindTexture(GL_TEXTURE_3D, obstacles.ColorTexture);
+    glDrawArraysInstanced(GL_TRIANGLE_STRIP, 0, 4, dest.Depth);
+    ResetState_SameFBO();
+}
+
+
+
+
+void Smoke::ComputeDivergence3D_SameFBO(SurfacePod velocity, SurfacePod obstacles, SurfacePod dest, GLuint p)
+{
+//    GLuint p = Eulerian3D_ComputeDivergence->getProgramId();
+    glUseProgram(p);
+
+    SetUniform(p, "HalfInverseCellSize", 0.5f / CellSize);
+    SetUniform(p, "Obstacles", 1);
+
+    glFramebufferTexture(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, dest.ColorTexture ,0);
+    if (GL_NO_ERROR != glGetError())
+    {
+        cout << "Unable to attach color buffer" << endl;
+     //   exit(1);
+    }
+
+    if (glCheckFramebufferStatus(GL_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE)
+    {
+        cout << "Unable to create FBO" << endl;
+    //    exit(1);
+    }
+
+    glActiveTexture(GL_TEXTURE0);
+    glBindTexture(GL_TEXTURE_3D, velocity.ColorTexture);
+    glActiveTexture(GL_TEXTURE1);
+    glBindTexture(GL_TEXTURE_3D, obstacles.ColorTexture);
+    glDrawArraysInstanced(GL_TRIANGLE_STRIP, 0, 4, dest.Depth);
+    ResetState_SameFBO();
+}
+
+
+
+
+void Smoke::ApplyBuoyancy3D_SameFBO(SurfacePod velocity, SurfacePod temperature, SurfacePod density, SurfacePod dest, GLuint p)
+{
+//    GLuint p = Eulerian3D_ApplyBuoyancy->getProgramId();
+    glUseProgram(p);
+
+    SetUniform(p, "Temperature", 1);
+    SetUniform(p, "Density", 2);
+    SetUniform(p, "AmbientTemperature", AmbientTemperature);
+    SetUniform(p, "TimeStep", TimeStep);
+    SetUniform(p, "Sigma", SmokeBuoyancy);
+    SetUniform(p, "Kappa", SmokeWeight);
+
+    glFramebufferTexture(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, dest.ColorTexture ,0);
+    if (GL_NO_ERROR != glGetError())
+    {
+        cout << "Unable to attach color buffer" << endl;
+        cout << glGetError() << endl;
+   //     exit(1);
+    }
+
+    if (glCheckFramebufferStatus(GL_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE)
+    {
+        cout << "Unable to create FBO" << endl;
+   //     exit(1);
+    }
+
+    glActiveTexture(GL_TEXTURE0);
+    glBindTexture(GL_TEXTURE_3D, velocity.ColorTexture);
+    glActiveTexture(GL_TEXTURE1);
+    glBindTexture(GL_TEXTURE_3D, temperature.ColorTexture);
+    glActiveTexture(GL_TEXTURE2);
+    glBindTexture(GL_TEXTURE_3D, density.ColorTexture);
+    glDrawArraysInstanced(GL_TRIANGLE_STRIP, 0, 4, dest.Depth);
+    ResetState_SameFBO();
+}
+
+
+
+void Smoke::ApplyImpulse3D_SameFBO(SurfacePod dest, glm::vec3 position, float value, GLuint p)
+{
+//    GLuint p = Eulerian3D_ApplyImpulse->getProgramId();
+    glUseProgram(p);
+
+    SetUniform(p, "Point", position);
+    SetUniform(p, "Radius", SplatRadius);
+    SetUniform(p, "FillColor", glm::vec3(value, value, value));
+
+    glFramebufferTexture(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, dest.ColorTexture ,0);
+    if (GL_NO_ERROR != glGetError())
+    {
+        cout << "Unable to attach color buffer" << endl;
+   //     exit(1);
+    }
+
+    if (glCheckFramebufferStatus(GL_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE)
+    {
+        cout << "Unable to create FBO" << endl;
+ //       exit(1);
+    }
+
+    glEnable(GL_BLEND);
+    glDrawArraysInstanced(GL_TRIANGLE_STRIP, 0, 4, dest.Depth);
+    ResetState_SameFBO();
+}
+#endif
+
+
+GLuint Smoke::CreatePointVbo(float x, float y, float z)
+{
+    cout << "in CreatePointVbo" << endl;
+    float p[] = {x, y, z};
+    GLuint vbo;
+    glGenBuffers(1, &vbo);
+    glBindBuffer(GL_ARRAY_BUFFER, vbo);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(p), &p[0], GL_STATIC_DRAW);
+    return vbo;
+}
+
+
+
+
+
+
+void Smoke::SetUniform(GLuint programID, const char* name, int value)
+{
+    GLint location = glGetUniformLocation(programID, name);
+    glUniform1i(location, value);
+}
+
+void Smoke::SetUniform(GLuint programID, const char* name, float value)
+{
+    GLint location = glGetUniformLocation(programID, name);
+    glUniform1f(location, value);
+}
+
+void Smoke::SetUniform(GLuint programID, const char* name, float x, float y)
+{
+    GLint location = glGetUniformLocation(programID, name);
+    glUniform2f(location, x, y);
+}
+
+void Smoke::SetUniform(GLuint programID, const char* name, glm::vec3 value)
+{
+    GLint location = glGetUniformLocation(programID, name);
+    glUniform3f(location, value.x, value.y, value.z);
+}
+
+void Smoke::SetUniform(GLuint programID, const char* name, glm::mat4 value)
+{
+    GLint location = glGetUniformLocation(programID, name);
+    glUniformMatrix4fv(location, 1, GL_FALSE, &value[0][0]);
+}
+
+
+
+
+
+
+
+GLuint Smoke::CreatePyroclasticVolume(int n, float r)
+{
+    GLuint handle;
+    glGenTextures(1, &handle);
+    glBindTexture(GL_TEXTURE_3D, handle);
+    glTexParameteri(GL_TEXTURE_3D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+    glTexParameteri(GL_TEXTURE_3D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+    glTexParameteri(GL_TEXTURE_3D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+    glTexParameteri(GL_TEXTURE_3D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+    glTexParameteri(GL_TEXTURE_3D, GL_TEXTURE_WRAP_R, GL_CLAMP_TO_EDGE);
+    glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
+
+    unsigned char *data = new unsigned char[n*n*n];
+    unsigned char *ptr = data;
+
+    float frequency = 3.0f / n;
+    float center = n / 2.0f + 0.5f;
+    srand (time(NULL));
+
+    for(int x=0; x < n; ++x)
+	{
+        for (int y=0; y < n; ++y)
+		{
+            for (int z=0; z < n; ++z)
+			{
+                float dx = center-x;
+                float dy = center-y;
+                float dz = center-z;
+
+                int rand_n = rand()%(6-2)+2;
+
+/*
+                float off = fabsf((float) PerlinNoise3D1(
+                    x*frequency,
+                    y*frequency,
+                    z*frequency,
+                    5,
+                    6, 3));
+*/
+                float off = ((float) rand() / (RAND_MAX));
+//                float off = 0;
+                float d = sqrtf(dx*dx+dy*dy+dz*dz)/(n);
+                bool isFilled = (d-off) < r;
+                *ptr++ = isFilled ? 255 : 0;
+            }
+        }
+        //PezDebugString("Slice %d of %d\n", x, n);
+     //   cout << "Slice " << x << " of " << n << endl;
+    }
+    int i;
+    i = glGetError();
+    if(i!=0)
+    {
+        std::cout << "Error happened while creating the 3D texture: " << i << std::endl;
+    }
+    glTexImage3D(GL_TEXTURE_3D, 0,
+                 GL_LUMINANCE,
+                 n, n, n, 0,
+                 GL_LUMINANCE,
+                 GL_UNSIGNED_BYTE,
+                 data);
+
+    delete[] data;
+    return handle;
+}
+
+
+
+
+
+
+

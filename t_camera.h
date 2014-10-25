@@ -26,7 +26,10 @@ class t_camera{
 
 
 		void Control();
+        void Control(int mid_x, int mid_y);
 		void Control(pipeline& m_pipeline);
+		void Control(pipeline& m_pipeline, int mid_x, int mid_y);
+
 		void UpdateCamera();
 		void UpdateCamera(pipeline& m_pipeline);
 		vector3d getVector();

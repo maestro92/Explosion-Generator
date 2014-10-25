@@ -1,4 +1,4 @@
-#include "ParticleSystemPCH.h"
+#include "define.h"
 #include "ElapsedTime.h"
 #include <algorithm>
 ElapsedTime::ElapsedTime( float maxTimeStep /* = 0.03333f */ )
