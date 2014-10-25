@@ -30,9 +30,20 @@ class ExplosionGenerator
 
     CubeEmitter e_CubeEmitter;
     Smoke smoke;
+
+
     bool running;
     bool dvel;
     bool addSmoke;
+
+
+    // Shaders
+    unsigned int VertexShader;
+    unsigned int FragmentShader;
+    unsigned int ShaderObjectID;
+
+
+
 
     // buttons
     bool g_bLeftMouseDown;
@@ -43,10 +54,18 @@ class ExplosionGenerator
 
 
         ExplosionGenerator();
-
+        ~ExplosionGenerator();
 
         void initSDL_GLEW();
         void initOpenGL();
+
+        // Shaders
+        void initShader(const char* vname, const char*fname);
+        void loadFile(const char* fn, string & str);
+        unsigned int loadShader(string& source, unsigned int shaderType);
+        void FreeShader();
+
+
         void setupCamera();
         void setupColor_Texture();
         void setupParticleEmitter();

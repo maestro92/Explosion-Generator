@@ -48,8 +48,6 @@
 		<Unit filename="CubeEmitter.h" />
 		<Unit filename="ElapsedTime.cpp" />
 		<Unit filename="ElapsedTime.h" />
-		<Unit filename="JosStam.cpp" />
-		<Unit filename="JosStam.h" />
 		<Unit filename="Particle.h" />
 		<Unit filename="ParticleEmitter.h" />
 		<Unit filename="ParticleSystemPCH.cpp" />
@@ -57,6 +55,8 @@
 		<Unit filename="PivotCamera.cpp" />
 		<Unit filename="PivotCamera.h" />
 		<Unit filename="Random.h" />
+		<Unit filename="Smoke.cpp" />
+		<Unit filename="Smoke.h" />
 		<Unit filename="camera.cpp" />
 		<Unit filename="camera.h" />
 		<Unit filename="define.h" />

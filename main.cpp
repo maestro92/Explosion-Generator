@@ -14,7 +14,7 @@ and may not be redistributed without written permission.*/
 2. Bounce when landing
 3. Collision among spheres
 4. placing force at origin of cube
-5.
+5. Abstract class, interface C++ (modular)
 
 // game loop
 FPS
@@ -96,6 +96,7 @@ ExplosionGenerator::ExplosionGenerator()
 
     initSDL_GLEW();
     initOpenGL();
+   // initShader("vertex.vs", "fragment.frag");
     setupCamera();
     setupColor_Texture();
     setupParticleEmitter();
@@ -107,6 +108,10 @@ ExplosionGenerator::ExplosionGenerator()
     init_Lighting();
 }
 
+ExplosionGenerator::~ExplosionGenerator()
+{
+    FreeShader();
+}
 
 
 void ExplosionGenerator::update()
@@ -410,6 +415,87 @@ void ExplosionGenerator::initOpenGL()
 
     glEnable(GL_DEPTH_TEST);
 }
+
+
+void ExplosionGenerator::initShader(const char* vname, const char* fname)
+{
+    string source;
+    loadFile(vname, source);
+
+    // source code and Mode
+    VertexShader = loadShader(source, GL_VERTEX_SHADER);
+
+    source = "";
+    // load the fragment shader
+    loadFile(fname, source);
+    FragmentShader = loadShader(source, GL_FRAGMENT_SHADER);
+
+    ShaderObjectID = glCreateProgram();
+    glAttachShader(ShaderObjectID, VertexShader);
+    glAttachShader(ShaderObjectID, FragmentShader);
+
+    // links the program object
+    glLinkProgram(ShaderObjectID);
+    // this will use this shader program
+    glUseProgram(ShaderObjectID);
+
+}
+
+
+void ExplosionGenerator::loadFile(const char* fn, string & str)
+{
+    ifstream in(fn);
+    if(!in.is_open())
+    {
+        cout << "The file " << fn << "cannot be openned\n" << endl;
+        return;
+    }
+    char tmp[300];
+    while(!in.eof())
+    {
+        in.getline(tmp,300);
+        str+=tmp;
+        str+='\n';
+    }
+
+}
+
+// need glew to run Shader
+unsigned int ExplosionGenerator::loadShader(string& source, unsigned int shaderType)
+{
+    // id of current shader
+    unsigned int id;
+
+    // Specifices the type of shader to be created
+    id = glCreateShader(shaderType);
+
+    const char* csource = source.c_str();
+
+
+    // replace the source code in a shader object
+    // 1: number of elements in the string and length arrays
+    glShaderSource(id, 1, &csource, NULL);
+    glCompileShader(id);
+
+    char error[1000];
+    glGetShaderInfoLog(id, 1000, NULL, error);
+
+    cout << "Shader Compile Status: \n" << error << endl;
+
+    return id;
+}
+
+
+void ExplosionGenerator::FreeShader()
+{
+    glDetachShader(ShaderObjectID,VertexShader);
+    glDetachShader(ShaderObjectID,FragmentShader);
+    glDeleteShader(VertexShader);
+    glDeleteShader(FragmentShader);
+    glDeleteProgram(ShaderObjectID);
+}
+
+
 
 
 

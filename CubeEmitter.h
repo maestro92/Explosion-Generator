@@ -21,9 +21,9 @@ class CubeEmitter : ParticleEmitter
         void EmitParticles( Particle& particle);
 
         void InitParticleCube();
-        void InitParticlePos(int i, int k, int k, int Index);
-        void InitParticleVel(int i, int k, int k, int Index);
-        void InitParticleAttribute(int i, int k, int k, int Index);
+        void InitParticlePos(int i, int k, int j, int Index);
+        void InitParticleVel(int i, int k, int j, int Index);
+        void InitParticleAttribute(int i, int k, int j, int Index);
 
         void Reset();
         void UpdateParticleCube(float dt);
