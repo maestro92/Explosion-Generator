@@ -7,18 +7,22 @@ mesh::mesh(vector<vertexData>* vd,vector<unsigned int>* id,vector<textureData>* 
 	if(td)
 		textures=*td;
 
+    /// we generate the Vertex buffer object
+    /// we then fill up the vertex buffer object
 	glGenBuffers(1,&VBO);
 	glBindBuffer(GL_ARRAY_BUFFER,VBO);
 	glBufferData(GL_ARRAY_BUFFER,data.size()*sizeof(vertexData), &data[0],GL_STATIC_DRAW);
 
-
+    /// we generate the Index buffer object
+    /// we then fill up the Index buffer object
+    /// indexes should be bound to GL_ELEMENT_ARRAY_BUFFER
 	glGenBuffers(1,&IND);
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER,IND);
 	glBufferData(GL_ELEMENT_ARRAY_BUFFER,indices.size()*sizeof(unsigned int),&indices[0],GL_STATIC_DRAW);
 
+    /// we unbind the buffers, so that no one accidentally unbind the buffers
 	glBindBuffer(GL_ARRAY_BUFFER,0);
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER,0);
-
 }
 
 mesh::~mesh()
@@ -28,10 +32,22 @@ mesh::~mesh()
 }
 
 
+/*
+inputs to a vertex shader are called vertex attributes
+which is exactly what this function means
+    glEnableVertexAttribArray(vertex);
+
+Each input to a vertex shader has an index location called an attribute index
+The input in shaders is defined using the layout statement
+
+
+
+*/
+
 void mesh::draw(unsigned int programId)
 {
-
 	//attribute vec3 vertex
+	/// this is similar to the glGetuniform location
 	int vertex=glGetAttribLocation(programId,"vertex"); //0
 	int normal=glGetAttribLocation(programId,"normal"); //1
 	int tangent=glGetAttribLocation(programId,"tangent"); //2
@@ -41,7 +57,7 @@ void mesh::draw(unsigned int programId)
 	//texture0
 	//texture1...
 	string str="texture";
-	cout << "texture size" << textures.size() << endl;
+//	cout << "texture size" << textures.size() << endl;
 	for(int i=0;i<textures.size();i++)
 	{
 		glActiveTexture(GL_TEXTURE0+i);
@@ -50,9 +66,18 @@ void mesh::draw(unsigned int programId)
         cout << (str+(char)(i+'0')).c_str() << endl;
 	}
 
+    /// this means we're going to use these two buffer object
 	glBindBuffer(GL_ARRAY_BUFFER,VBO);
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER,IND);
 
+
+    /// http://arcsynthesis.org/gltut/Basics/Tut01%20Following%20the%20Data.html
+    /// glEnableVertexAttribArray is
+
+    /// glVertexAttribPointer tells how OpenGL interprets your data in the VBO object
+    /// when rendering, OpenGL pulls vertex data from arrays stored in buffer objects.
+    /// what we need to tell OpenGL is what form our vertex array in the buffer object is stored in
+    /// meaning we need to tell OpenGL how to interpret the array of data stored in the buffer
 	glEnableVertexAttribArray(vertex);
 	glVertexAttribPointer(vertex,3,GL_FLOAT,GL_FALSE,sizeof(vertexData),0);
 
@@ -68,6 +93,8 @@ void mesh::draw(unsigned int programId)
 	glEnableVertexAttribArray(UV);
 	glVertexAttribPointer(UV,2,GL_FLOAT,GL_FALSE,sizeof(vertexData),(void*)(12*sizeof(float)));
 
+    /// glDrawElements, you need to supply an index buffer
+    /// glDrawArrays submits the vertices in linear order
 	glDrawElements(GL_TRIANGLES,indices.size(),GL_UNSIGNED_INT,0);
 
 //	glDisableVertexAttribArray(vertex);

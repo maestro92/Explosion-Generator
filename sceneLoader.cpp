@@ -13,8 +13,6 @@ void meshLoader::recursiveProcess(aiNode* node,const aiScene* scene)
 		processMesh(mesh,scene);
 	}
 
-
-
 	//recursion
 	for(int i=0;i<node->mNumChildren;i++)
 	{
@@ -155,6 +153,17 @@ meshLoader::meshLoader(const char* filename)
 }
 */
 
+
+
+
+
+/*
+it takes a filename as a parameter and then starts building
+vertex buffer, index buffer and Texture Objects
+
+we use a aiScene object to represent the loaded mesh
+complex models can contain multiple mesh structures
+*/
 meshLoader::meshLoader(string filename)
 {
 
@@ -164,7 +173,11 @@ meshLoader::meshLoader(string filename)
     cout << "model_path " << model_path << endl;
     cout << "m_str " << m_str << endl;
 	const aiScene* scene=aiImportFile(m_str.c_str(), aiProcess_GenSmoothNormals | aiProcess_Triangulate | aiProcess_CalcTangentSpace | aiProcess_FlipUVs);
-
+    // the filename and a mask of post processing options
+    // aiProcess_Triangulate:       making non triangle polygons into triangle based meshes
+    // aiProcess_GenSmoothNormals:  generates vertex normals if the original model does not already have them
+    // aiProcess_FlipUVsv:             flips the texture coordinates along the Y axis
+    //
 
 
 
@@ -178,6 +191,7 @@ meshLoader::meshLoader(string filename)
 		return;
 	}
 */
+    // this aiScene contains the entire model contents, divided into aiMesh structures
 	recursiveProcess(scene->mRootNode,scene);
 }
 

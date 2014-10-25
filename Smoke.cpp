@@ -431,7 +431,7 @@ void Smoke::CreateObstacles_SameFBO(SurfacePod dest)
             radius *= 100;
         }
 
-        const bool DrawBorder = true;
+        const bool DrawBorder = false;
         if (DrawBorder && slice != 0 && slice != dest.Depth - 1)
             {
             #define T 0.9999f
@@ -445,7 +445,7 @@ void Smoke::CreateObstacles_SameFBO(SurfacePod dest)
             glDrawArrays(GL_LINE_STRIP, 0, 5);
         }
 
-        const bool DrawSphere = true;
+        const bool DrawSphere = false;
         if (DrawSphere || slice == 0 || slice == dest.Depth - 1)
         {
             const int slices = 64;

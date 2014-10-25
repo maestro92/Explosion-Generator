@@ -513,46 +513,7 @@ void ExplosionGenerator::show()
     cam.UpdateCamera();
     cam.UpdateCamera(m_pipeline);
 
-/// First pass of the RayCasting
-    Matrices.View = m_pipeline.getViewMatrix();
-    m_pipeline.matrixMode(MODEL_MATRIX);
 
-    m_pipeline.pushMatrix();
-        m_pipeline.rotateZ(180);
-        m_pipeline.translate(0,-5,0);
-        m_pipeline.scale(5);
-        Matrices.Model = m_pipeline.getModelMatrix();
-        Matrices.Modelview = Matrices.View * Matrices.Model;
-    m_pipeline.popMatrix();
-
-    Matrices.Projection = m_pipeline.getProjectionMatrix();
-    Matrices.ModelviewProjection = Matrices.Projection * Matrices.Modelview;
-
-    glEnable(GL_CULL_FACE);
-    glViewport(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
-
-
-    glBindBuffer(GL_ARRAY_BUFFER, smoke.myVbos.CubeCenter);
-    glEnableVertexAttribArray(SlotPosition);
-    glVertexAttribPointer(SlotPosition, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), 0);
-
-
-    /// getting the Front and Back of the cube
-    TwoPass_Render.Render_TwoPass_RayCasting_1(Matrices);
-
-    /// getting the Front and Back depth of the cube
-    TwoPass_Render.Render_TwoPass_RayCasting_CubeDepth(Matrices, FBO);
-
-    /// To check if the texture is correct
-//    RenderTexture((GLuint)TwoPass_depthTexture_Front);
-
-#if 1
-    glClearColor(0,0,0.5,1);
-    glEnable(GL_DEPTH_TEST);
-    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-
-    m_pipeline.matrixMode(MODEL_MATRIX);
-    GetLightPos_ModelView_Matrix();
 
 
     /// getting the depth of the scene
@@ -571,6 +532,54 @@ void ExplosionGenerator::show()
         Depth_CameraRender->delShader();
         m_pipeline.popMatrix();
     glBindFramebuffer(GL_FRAMEBUFFER, 0);
+
+
+
+
+/// First pass of the RayCasting
+    Matrices.View = m_pipeline.getViewMatrix();
+    m_pipeline.matrixMode(MODEL_MATRIX);
+
+    m_pipeline.pushMatrix();
+        m_pipeline.rotateZ(180);
+        m_pipeline.translate(0,-5,0);
+        m_pipeline.scale(5);
+        Matrices.Model = m_pipeline.getModelMatrix();
+        Matrices.Modelview = Matrices.View * Matrices.Model;
+    m_pipeline.popMatrix();
+
+    Matrices.Projection = m_pipeline.getProjectionMatrix();
+    Matrices.ModelviewProjection = Matrices.Projection * Matrices.Modelview;
+
+
+
+
+    glEnable(GL_CULL_FACE);
+    glViewport(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
+
+
+    glBindBuffer(GL_ARRAY_BUFFER, smoke.myVbos.CubeCenter);
+    glEnableVertexAttribArray(SlotPosition);
+    glVertexAttribPointer(SlotPosition, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), 0);
+
+
+    /// getting the Front and Back of the cube
+    TwoPass_Render.Render_TwoPass_RayCasting_1(Matrices);
+  //  TwoPass_Render.Render_TwoPass_RayCasting_1(m_pipeline);
+
+    /// To check if the texture is correct
+//    RenderTexture((GLuint)TwoPass_depthTexture_Front);
+
+#if 1
+    glClearColor(0,0,0.5,1);
+    glEnable(GL_DEPTH_TEST);
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+    m_pipeline.matrixMode(MODEL_MATRIX);
+    GetLightPos_ModelView_Matrix();
+
+
+
 
 
     /// 2nd Render pass of shadowMapping: camera's point of view
@@ -610,6 +619,7 @@ void ExplosionGenerator::show()
 
     /// the volume RayCasting part
     TwoPass_Render.Render_TwoPass_RayCasting_2(Matrices, depthTexture);
+  //  TwoPass_Render.Render_TwoPass_RayCasting_2(m_pipeline, depthTexture);
 #endif
   //  glDisableVertexAttribArray(SlotPosition);
 }

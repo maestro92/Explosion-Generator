@@ -89,8 +89,11 @@ static struct Matrices_t{
     glm::mat4 Modelview;
     glm::mat4 Model;
     glm::mat4 View;
+    glm::mat4 ViewNoRotate;
     glm::mat4 ModelviewProjection;
 } Matrices;
+
+
 
 static struct Vbos_t{
     GLuint CubeCenter;

@@ -25,6 +25,8 @@ class TwoPass_RayCasting_Technique
             GLuint ModelviewMatrix;
             GLuint ViewMatrix;
             GLuint ModelviewProjection;
+            GLuint ModelMatrix;
+            GLuint ViewNoRotateMatrix;
         };
 
 
@@ -36,7 +38,10 @@ class TwoPass_RayCasting_Technique
         void Load_glUniform(Matrices_Location& Mat_Loc, Matrices_t& Mat);
 
         void Render_TwoPass_RayCasting_1(Matrices_t& Mat);
+        void Render_TwoPass_RayCasting_1(pipeline &m_pipeline);
+
         void Render_TwoPass_RayCasting_2(Matrices_t& Mat, GLuint depthTexture);
+        void Render_TwoPass_RayCasting_2(pipeline &m_pipeline, GLuint depthTexture);
         void Render_TwoPass_RayCasting_CubeDepth(Matrices_t& Mat, GLuint fbo);
 
         unsigned int createTexture(int w, int h, bool isDepth);

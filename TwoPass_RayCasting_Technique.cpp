@@ -122,44 +122,66 @@ void TwoPass_RayCasting_Technique::Init_Shader_GL_Location(unsigned int shaderID
     Mat.ModelviewMatrix = glGetUniformLocation( shaderID, "m_Modelview");
     Mat.ViewMatrix = glGetUniformLocation( shaderID, "m_ViewMatrix");
     Mat.ProjectionMatrix = glGetUniformLocation( shaderID, "m_ProjectionMatrix");
+    Mat.ModelMatrix = glGetUniformLocation( shaderID, "m_ModelMatrix");
+    Mat.ViewNoRotateMatrix = glGetUniformLocation( shaderID, "m_ViewNoRotateMatrix");
 }
 
 
 
 void TwoPass_RayCasting_Technique::Render_TwoPass_RayCasting_1(Matrices_t& Mat)
 {
-/*
-    glBindBuffer(GL_ARRAY_BUFFER, Vbos.CubeCenter);
-    glEnableVertexAttribArray(SlotPosition);
-    glVertexAttribPointer(SlotPosition, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), 0);
-*/
-        cout << "i'm here in raycast1" << endl;
     TwoPassIntervals->useShader();
 
         Load_glUniform(Matrices_Loc1, Mat);
-                    cout << "i'm here in raycast1_11" << endl;
         glClearColor(0, 0, 0, 0);
-                    cout << "i'm here in raycast1_12" << endl;
         glBindFramebuffer(GL_FRAMEBUFFER, IntervalsFbo1);
-                    cout << "i'm here in raycast1_13" << endl;
         glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT);
-                    cout << "i'm here in raycast1_14" << endl;
-        glCullFace(GL_FRONT);
-                    cout << "i'm here in raycast1_15" << endl;
+        glCullFace(GL_BACK);
         glDrawArrays(GL_POINTS, 0, 1);
 
-            cout << "i'm here in raycast1_12" << endl;
 
         glBindFramebuffer(GL_FRAMEBUFFER, IntervalsFbo2);
         glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT);
-        glCullFace(GL_BACK);
+        glCullFace(GL_FRONT);
         glDrawArrays(GL_POINTS, 0, 1);
         glBindFramebuffer(GL_FRAMEBUFFER, 0);
 
     TwoPassIntervals->delShader();
-            cout << "i'm here in raycast1_2" << endl;
+        glCullFace(GL_BACK);
 }
 
+
+void TwoPass_RayCasting_Technique::Render_TwoPass_RayCasting_1(pipeline &m_pipeline)
+{
+    m_pipeline.pushMatrix();
+
+        m_pipeline.rotateZ(180);
+        m_pipeline.translate(0,5,0);
+        m_pipeline.scale(5);
+
+
+    TwoPassIntervals->useShader();
+
+        glClearColor(0, 0, 0, 0);
+        glBindFramebuffer(GL_FRAMEBUFFER, IntervalsFbo1);
+        glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT);
+        glCullFace(GL_BACK);
+
+        m_pipeline.updateMatrices_TwoPassRayCasting(TwoPassIntervals->getProgramId());
+        glDrawArrays(GL_POINTS, 0, 1);
+
+
+        glBindFramebuffer(GL_FRAMEBUFFER, IntervalsFbo2);
+        glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT);
+        glCullFace(GL_FRONT);
+        glDrawArrays(GL_POINTS, 0, 1);
+        glBindFramebuffer(GL_FRAMEBUFFER, 0);
+
+    TwoPassIntervals->delShader();
+        glCullFace(GL_BACK);
+
+    m_pipeline.popMatrix();
+}
 
 
 
@@ -242,6 +264,56 @@ void TwoPass_RayCasting_Technique::Render_TwoPass_RayCasting_2(Matrices_t& Mat, 
 
 
 
+void TwoPass_RayCasting_Technique::Render_TwoPass_RayCasting_2(pipeline &m_pipeline, GLuint depthTexture)
+{
+
+    m_pipeline.pushMatrix();
+
+        m_pipeline.rotateZ(180);
+        m_pipeline.translate(0,5,0);
+        m_pipeline.scale(5);
+
+    glEnable(GL_BLEND);
+    TwoPassRaycast->useShader();
+        m_pipeline.updateMatrices_TwoPassRayCasting(TwoPassRaycast->getProgramId());
+        glUniform1i(RayStartPoints_Location2, 1);
+        glUniform1i(RayStopPoints_Location2, 2);
+        glUniform1i(Depth_Location2, 3);
+        glUniform1i(Depth_TwoPassLocation_Front2, 4);
+        glUniform1i(Depth_TwoPassLocation_Back2, 5);
+
+
+        glActiveTexture(GL_TEXTURE1);
+        glBindTexture(GL_TEXTURE_2D, TextureFbo1);
+        glActiveTexture(GL_TEXTURE2);
+        glBindTexture(GL_TEXTURE_2D, TextureFbo2);
+        glActiveTexture(GL_TEXTURE3);
+        glBindTexture(GL_TEXTURE_2D, depthTexture);
+        glActiveTexture(GL_TEXTURE4);
+        glBindTexture(GL_TEXTURE_2D, TwoPass_CubeDepthTexture_Front);
+        glActiveTexture(GL_TEXTURE5);
+        glBindTexture(GL_TEXTURE_2D, TwoPass_CubeDepthTexture_Back);
+
+        glDrawArrays(GL_POINTS, 0, 1);
+    TwoPassRaycast->delShader();
+
+    glActiveTexture(GL_TEXTURE5);
+    glBindTexture(GL_TEXTURE_2D, 0);
+    glActiveTexture(GL_TEXTURE4);
+    glBindTexture(GL_TEXTURE_2D, 0);
+    glActiveTexture(GL_TEXTURE3);
+    glBindTexture(GL_TEXTURE_2D, 0);
+    glActiveTexture(GL_TEXTURE2);
+    glBindTexture(GL_TEXTURE_2D, 0);
+    glActiveTexture(GL_TEXTURE1);
+    glBindTexture(GL_TEXTURE_2D, 0);
+    glActiveTexture(GL_TEXTURE0);
+    glBindTexture(GL_TEXTURE_2D, 0);
+    glDisable(GL_BLEND);
+
+    m_pipeline.popMatrix();
+}
+
 
 void TwoPass_RayCasting_Technique::Load_glUniform(Matrices_Location& Mat_Loc, Matrices_t& Mat)
 {
@@ -249,6 +321,8 @@ void TwoPass_RayCasting_Technique::Load_glUniform(Matrices_Location& Mat_Loc, Ma
     glUniformMatrix4fv(Mat_Loc.ModelviewMatrix,1,GL_FALSE,&Mat.Modelview[0][0]);
     glUniformMatrix4fv(Mat_Loc.ViewMatrix,1,GL_FALSE,&Mat.View[0][0]);
     glUniformMatrix4fv(Mat_Loc.ProjectionMatrix,1,GL_FALSE,&Mat.Projection[0][0]);
+    glUniformMatrix4fv(Mat_Loc.ModelMatrix,1,GL_FALSE,&Mat.Model[0][0]);
+    glUniformMatrix4fv(Mat_Loc.ViewNoRotateMatrix,1,GL_FALSE,&Mat.ViewNoRotate[0][0]);
 }
 
 

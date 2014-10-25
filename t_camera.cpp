@@ -261,6 +261,10 @@ void t_camera::UpdateCamera(pipeline& m_pipeline)
     m_pipeline.translate(loc.x, loc.y, loc.z);
 }
 
+glm::mat4 t_camera::UpdateCamera_NoRotate(pipeline& m_pipeline)
+{
+    return m_pipeline.translateNoRotate(loc.x, loc.y, loc.z);
+}
 
 
 

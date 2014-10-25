@@ -9,8 +9,7 @@ struct vertexData
     vector3d normal;
     vector3d tangent;
     vector3d color;
-    float U,V;
-
+    float U,V;  // we want the UV coordinates
 };
 
 
@@ -18,10 +17,6 @@ struct textureData
 {
     unsigned int id;
     unsigned int type;
-
-
-
-
 };
 #endif
 

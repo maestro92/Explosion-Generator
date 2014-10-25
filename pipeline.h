@@ -58,6 +58,7 @@ class pipeline{
 
 		//modelview
 		void translate(float x,float y,float z);
+		glm::mat4 translateNoRotate(float x,float y,float z);
 		void scale(float x,float y,float z);
 		void scale(float v);
 		void rotateX(float angle);
@@ -78,6 +79,8 @@ class pipeline{
 
 		//GLSL
 		void updateMatrices(unsigned int programId);
+		void updateMatrices_TwoPassRayCasting(unsigned int programId);
+
         void updateLightMatrix(glm::mat4 Light_Model, glm::mat4 Light_View, glm::mat4 Light_Projection);
         void updateShadowMatrix(unsigned int shaderId);
         void updateShadowMatrix(unsigned int shaderId, glm::mat4 Light_ViewMatrix, glm::mat4 Light_ProjectionMatrix);

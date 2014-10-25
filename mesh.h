@@ -17,11 +17,11 @@ using namespace std;
 
 
 class mesh{
-	vector<vertexData> data;
-	vector<textureData> textures;
-	vector<unsigned int> indices;
-	unsigned int VBO;
-	unsigned int IND;
+	vector<vertexData> data;        // vertex data
+	vector<textureData> textures;   // texture data
+	vector<unsigned int> indices;   //
+	unsigned int VBO;   // vertex buffer object
+	unsigned int IND;   // index buffer object
 	public:
 		mesh(vector<vertexData>* vd,vector<unsigned int>* id,vector<textureData>* td=NULL);
 		~mesh();

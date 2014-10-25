@@ -32,6 +32,8 @@ class t_camera{
 
 		void UpdateCamera();
 		void UpdateCamera(pipeline& m_pipeline);
+		glm::mat4 UpdateCamera_NoRotate(pipeline& m_pipeline);
+
 		vector3d getVector();
 		vector3d getLocation();
 		float getPitch();

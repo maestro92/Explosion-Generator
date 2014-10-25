@@ -50,6 +50,12 @@ void pipeline::translate(float x,float y,float z)
 	matricesReady=false;
 }
 
+glm::mat4 pipeline::translateNoRotate(float x,float y,float z)
+{
+    return (viewMatrix[viewMatrix.size()-1]*glm::translate(-x,-y,-z));
+}
+
+
 void pipeline::scale(float x,float y,float z)
 {
 	if(currentMatrix==MODEL_MATRIX)
@@ -203,6 +209,24 @@ void pipeline::updateMatrices(unsigned int programId)
 	glUniformMatrix3fv(glGetUniformLocation(programId,"normalMatrix"),1,GL_FALSE,&normalMatrix[0][0]);
 }
 
+
+
+
+		//GLSL
+void pipeline::updateMatrices_TwoPassRayCasting(unsigned int programId)
+{
+	if(!matricesReady)
+	{
+		modelViewMatrix=viewMatrix[viewMatrix.size()-1]*modelMatrix[modelMatrix.size()-1];
+		modelViewProjectionMatrix=projectionMatrix[projectionMatrix.size()-1]*viewMatrix[viewMatrix.size()-1]*modelMatrix[modelMatrix.size()-1];
+		normalMatrix=glm::mat3(modelViewMatrix);
+	}
+	glUniformMatrix4fv(glGetUniformLocation(programId,"m_Modelview"),1,GL_FALSE,&modelMatrix[modelMatrix.size()-1][0][0]);
+	glUniformMatrix4fv(glGetUniformLocation(programId,"m_ViewMatrix"),1,GL_FALSE,&viewMatrix[viewMatrix.size()-1][0][0]);
+	glUniformMatrix4fv(glGetUniformLocation(programId,"m_Modelview"),1,GL_FALSE,&modelViewMatrix[0][0]);
+	glUniformMatrix4fv(glGetUniformLocation(programId,"m_ModelviewProjection"),1,GL_FALSE,&modelViewProjectionMatrix[0][0]);
+	glUniformMatrix3fv(glGetUniformLocation(programId,"m_normalMatrix"),1,GL_FALSE,&normalMatrix[0][0]);
+}
 
 
 

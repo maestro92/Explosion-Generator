@@ -112,1201 +112,156 @@ Start
 advecting
 advecting
 advecting
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-i'm here in raycast1
-i'm here in raycast1_11
-i'm here in raycast1_12
-i'm here in raycast1_13
-i'm here in raycast1_14
-i'm here in raycast1_15
-i'm here in raycast1_12
-i'm here in raycast1_2
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
 advecting
 Advect3D Unable to attach color buffer
 0
 advecting
 advecting
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-i'm here in raycast1
-i'm here in raycast1_11
-i'm here in raycast1_12
-i'm here in raycast1_13
-i'm here in raycast1_14
-i'm here in raycast1_15
-i'm here in raycast1_12
-i'm here in raycast1_2
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
 advecting
 Advect3D Unable to attach color buffer
 0
 advecting
 advecting
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-i'm here in raycast1
-i'm here in raycast1_11
-i'm here in raycast1_12
-i'm here in raycast1_13
-i'm here in raycast1_14
-i'm here in raycast1_15
-i'm here in raycast1_12
-i'm here in raycast1_2
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
 advecting
 Advect3D Unable to attach color buffer
 0
 advecting
 advecting
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-i'm here in raycast1
-i'm here in raycast1_11
-i'm here in raycast1_12
-i'm here in raycast1_13
-i'm here in raycast1_14
-i'm here in raycast1_15
-i'm here in raycast1_12
-i'm here in raycast1_2
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
 advecting
 Advect3D Unable to attach color buffer
 0
 advecting
 advecting
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-i'm here in raycast1
-i'm here in raycast1_11
-i'm here in raycast1_12
-i'm here in raycast1_13
-i'm here in raycast1_14
-i'm here in raycast1_15
-i'm here in raycast1_12
-i'm here in raycast1_2
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
 advecting
 Advect3D Unable to attach color buffer
 0
 advecting
 advecting
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-i'm here in raycast1
-i'm here in raycast1_11
-i'm here in raycast1_12
-i'm here in raycast1_13
-i'm here in raycast1_14
-i'm here in raycast1_15
-i'm here in raycast1_12
-i'm here in raycast1_2
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
 advecting
 Advect3D Unable to attach color buffer
 0
 advecting
 advecting
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-i'm here in raycast1
-i'm here in raycast1_11
-i'm here in raycast1_12
-i'm here in raycast1_13
-i'm here in raycast1_14
-i'm here in raycast1_15
-i'm here in raycast1_12
-i'm here in raycast1_2
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
 advecting
 Advect3D Unable to attach color buffer
 0
 advecting
 advecting
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-i'm here in raycast1
-i'm here in raycast1_11
-i'm here in raycast1_12
-i'm here in raycast1_13
-i'm here in raycast1_14
-i'm here in raycast1_15
-i'm here in raycast1_12
-i'm here in raycast1_2
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
 advecting
 Advect3D Unable to attach color buffer
 0
 advecting
 advecting
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-i'm here in raycast1
-i'm here in raycast1_11
-i'm here in raycast1_12
-i'm here in raycast1_13
-i'm here in raycast1_14
-i'm here in raycast1_15
-i'm here in raycast1_12
-i'm here in raycast1_2
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
 advecting
 Advect3D Unable to attach color buffer
 0
 advecting
 advecting
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-i'm here in raycast1
-i'm here in raycast1_11
-i'm here in raycast1_12
-i'm here in raycast1_13
-i'm here in raycast1_14
-i'm here in raycast1_15
-i'm here in raycast1_12
-i'm here in raycast1_2
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-advecting
-Advect3D Unable to attach color buffer
-0
-advecting
-advecting
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-i'm here in raycast1
-i'm here in raycast1_11
-i'm here in raycast1_12
-i'm here in raycast1_13
-i'm here in raycast1_14
-i'm here in raycast1_15
-i'm here in raycast1_12
-i'm here in raycast1_2
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-advecting
-Advect3D Unable to attach color buffer
-0
-advecting
-advecting
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-i'm here in raycast1
-i'm here in raycast1_11
-i'm here in raycast1_12
-i'm here in raycast1_13
-i'm here in raycast1_14
-i'm here in raycast1_15
-i'm here in raycast1_12
-i'm here in raycast1_2
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
 clicking left
 advecting
 Advect3D Unable to attach color buffer
 0
 advecting
 advecting
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-i'm here in raycast1
-i'm here in raycast1_11
-i'm here in raycast1_12
-i'm here in raycast1_13
-i'm here in raycast1_14
-i'm here in raycast1_15
-i'm here in raycast1_12
-i'm here in raycast1_2
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
 advecting
 Advect3D Unable to attach color buffer
 0
 advecting
 advecting
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-i'm here in raycast1
-i'm here in raycast1_11
-i'm here in raycast1_12
-i'm here in raycast1_13
-i'm here in raycast1_14
-i'm here in raycast1_15
-i'm here in raycast1_12
-i'm here in raycast1_2
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-advecting
-Advect3D Unable to attach color buffer
-0
-advecting
-advecting
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-i'm here in raycast1
-i'm here in raycast1_11
-i'm here in raycast1_12
-i'm here in raycast1_13
-i'm here in raycast1_14
-i'm here in raycast1_15
-i'm here in raycast1_12
-i'm here in raycast1_2
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
 clicking Up left
 advecting
 Advect3D Unable to attach color buffer
 0
 advecting
 advecting
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-i'm here in raycast1
-i'm here in raycast1_11
-i'm here in raycast1_12
-i'm here in raycast1_13
-i'm here in raycast1_14
-i'm here in raycast1_15
-i'm here in raycast1_12
-i'm here in raycast1_2
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
 advecting
 Advect3D Unable to attach color buffer
 0
 advecting
 advecting
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-i'm here in raycast1
-i'm here in raycast1_11
-i'm here in raycast1_12
-i'm here in raycast1_13
-i'm here in raycast1_14
-i'm here in raycast1_15
-i'm here in raycast1_12
-i'm here in raycast1_2
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
 advecting
 Advect3D Unable to attach color buffer
 0
 advecting
 advecting
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-i'm here in raycast1
-i'm here in raycast1_11
-i'm here in raycast1_12
-i'm here in raycast1_13
-i'm here in raycast1_14
-i'm here in raycast1_15
-i'm here in raycast1_12
-i'm here in raycast1_2
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
 advecting
 Advect3D Unable to attach color buffer
 0
 advecting
 advecting
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-i'm here in raycast1
-i'm here in raycast1_11
-i'm here in raycast1_12
-i'm here in raycast1_13
-i'm here in raycast1_14
-i'm here in raycast1_15
-i'm here in raycast1_12
-i'm here in raycast1_2
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
 advecting
 Advect3D Unable to attach color buffer
 0
 advecting
 advecting
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-i'm here in raycast1
-i'm here in raycast1_11
-i'm here in raycast1_12
-i'm here in raycast1_13
-i'm here in raycast1_14
-i'm here in raycast1_15
-i'm here in raycast1_12
-i'm here in raycast1_2
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
 advecting
 Advect3D Unable to attach color buffer
 0
 advecting
 advecting
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-i'm here in raycast1
-i'm here in raycast1_11
-i'm here in raycast1_12
-i'm here in raycast1_13
-i'm here in raycast1_14
-i'm here in raycast1_15
-i'm here in raycast1_12
-i'm here in raycast1_2
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
 advecting
 Advect3D Unable to attach color buffer
 0
 advecting
 advecting
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-i'm here in raycast1
-i'm here in raycast1_11
-i'm here in raycast1_12
-i'm here in raycast1_13
-i'm here in raycast1_14
-i'm here in raycast1_15
-i'm here in raycast1_12
-i'm here in raycast1_2
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
 advecting
 Advect3D Unable to attach color buffer
 0
 advecting
 advecting
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-i'm here in raycast1
-i'm here in raycast1_11
-i'm here in raycast1_12
-i'm here in raycast1_13
-i'm here in raycast1_14
-i'm here in raycast1_15
-i'm here in raycast1_12
-i'm here in raycast1_2
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
 advecting
 Advect3D Unable to attach color buffer
 0
 advecting
 advecting
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-i'm here in raycast1
-i'm here in raycast1_11
-i'm here in raycast1_12
-i'm here in raycast1_13
-i'm here in raycast1_14
-i'm here in raycast1_15
-i'm here in raycast1_12
-i'm here in raycast1_2
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
 advecting
 Advect3D Unable to attach color buffer
 0
 advecting
 advecting
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-i'm here in raycast1
-i'm here in raycast1_11
-i'm here in raycast1_12
-i'm here in raycast1_13
-i'm here in raycast1_14
-i'm here in raycast1_15
-i'm here in raycast1_12
-i'm here in raycast1_2
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
 advecting
 Advect3D Unable to attach color buffer
 0
 advecting
 advecting
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-i'm here in raycast1
-i'm here in raycast1_11
-i'm here in raycast1_12
-i'm here in raycast1_13
-i'm here in raycast1_14
-i'm here in raycast1_15
-i'm here in raycast1_12
-i'm here in raycast1_2
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
 advecting
 Advect3D Unable to attach color buffer
 0
 advecting
 advecting
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-i'm here in raycast1
-i'm here in raycast1_11
-i'm here in raycast1_12
-i'm here in raycast1_13
-i'm here in raycast1_14
-i'm here in raycast1_15
-i'm here in raycast1_12
-i'm here in raycast1_2
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
 advecting
 Advect3D Unable to attach color buffer
 0
 advecting
 advecting
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-i'm here in raycast1
-i'm here in raycast1_11
-i'm here in raycast1_12
-i'm here in raycast1_13
-i'm here in raycast1_14
-i'm here in raycast1_15
-i'm here in raycast1_12
-i'm here in raycast1_2
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
 advecting
 Advect3D Unable to attach color buffer
 0
 advecting
 advecting
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-i'm here in raycast1
-i'm here in raycast1_11
-i'm here in raycast1_12
-i'm here in raycast1_13
-i'm here in raycast1_14
-i'm here in raycast1_15
-i'm here in raycast1_12
-i'm here in raycast1_2
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
 advecting
 Advect3D Unable to attach color buffer
 0
 advecting
 advecting
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-i'm here in raycast1
-i'm here in raycast1_11
-i'm here in raycast1_12
-i'm here in raycast1_13
-i'm here in raycast1_14
-i'm here in raycast1_15
-i'm here in raycast1_12
-i'm here in raycast1_2
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
-texture size0
+advecting
+Advect3D Unable to attach color buffer
+0
+advecting
+advecting
+advecting
+Advect3D Unable to attach color buffer
+0
+advecting
+advecting
+advecting
+Advect3D Unable to attach color buffer
+0
+advecting
+advecting
+advecting
+Advect3D Unable to attach color buffer
+0
+advecting
+advecting
 Terminating normally.
