@@ -253,6 +253,21 @@ void t_camera::UpdateCamera()
     glTranslatef(-loc.x, -loc.y, -loc.z);
 }
 
+
+void t_camera::UpdateCamera_Translation(pipeline& m_pipeline)
+{
+    m_pipeline.matrixMode(VIEW_MATRIX);
+    m_pipeline.translate(loc.x, loc.y, loc.z);
+}
+
+void t_camera::UpdateCamera_Rotation(pipeline& m_pipeline)
+{
+    m_pipeline.matrixMode(VIEW_MATRIX);
+    m_pipeline.rotateX(camPitch);
+    m_pipeline.rotateY(camYaw);
+}
+
+
 void t_camera::UpdateCamera(pipeline& m_pipeline)
 {
     m_pipeline.matrixMode(VIEW_MATRIX);

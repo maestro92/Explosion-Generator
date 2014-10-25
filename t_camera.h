@@ -32,6 +32,10 @@ class t_camera{
 
 		void UpdateCamera();
 		void UpdateCamera(pipeline& m_pipeline);
+		void UpdateCamera_Translation(pipeline& m_pipeline);
+        void UpdateCamera_Rotation(pipeline& m_pipeline);
+
+
 		glm::mat4 UpdateCamera_NoRotate(pipeline& m_pipeline);
 
 		vector3d getVector();

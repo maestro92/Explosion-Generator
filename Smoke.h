@@ -3,6 +3,9 @@
 
 #include "shader.h"
 
+#include "TwoPass_RayCasting_Technique.h"
+#include "Smoke_struct.h"
+
 #define NO_SDL_GLEXT
 #include <GL/glew.h>
 
@@ -14,7 +17,7 @@
 #include <fstream>
 #include <cstdio>
 
-#include "ParticleEffect_Interface.h"
+#include "L_ParticleEffect_Interface.h"
 #include "define.h"
 
 
@@ -57,7 +60,7 @@ const float DensityDissipation = 0.95f;
 
 using namespace std;
 
-
+/*
 struct SurfacePod {
     GLuint FboHandle;
     GLuint ColorTexture;
@@ -99,14 +102,16 @@ static struct Vbos_t{
     GLuint CubeCenter;
     GLuint FullscreenQuad;
 } Vbos;
+*/
 
 
 
-
-class Smoke : public ParticleEffect_Interface
+class Smoke //: public L_ParticleEffect_Interface
 {
     public:
         // side size
+        TwoPass_RayCasting_Technique TwoPass_Render;
+
         Vbos_t myVbos;
         Slabs_t f_Slab;
         Surfaces_t f_Surfaces;

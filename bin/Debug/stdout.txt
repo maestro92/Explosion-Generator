@@ -19,7 +19,23 @@ Shader Compile Status:
 
 Shader Compile Status: 
 
+vs: Reflection.vs, fs: Reflection.frag
+Shader Compile Status: 
+
+Shader Compile Status: 
+
+vs: Refraction.vs, fs: Refraction.frag
+Shader Compile Status: 
+
+Shader Compile Status: 
+
+vs: skybox.vs, fs: skybox.frag
+Shader Compile Status: 
+
+Shader Compile Status: 
+
 Framebuffer is not OK, status=36055
+Error initializing OpenGL! invalid operation
 vs: 3D_Eulerian_Raycast.vs, gs:3D_Eulerian_Raycast.gs, fs: 3D_Eulerian_Raycast.fs
 Shader Compile Status: 
 
@@ -82,6 +98,7 @@ Shader Compile Status:
 
 Shader Compile Status: 
 
+Error in Init_Shader
 vs: TwoPass.vs, gs:TwoPass.Cube, fs: TwoPass_Depth.fs
 Shader Compile Status: 
 
@@ -89,6 +106,7 @@ Shader Compile Status:
 
 Shader Compile Status: 
 
+Error in Init_Shader
 vs: TwoPass.vs, gs:TwoPass.Fullscreen, fs: TwoPass.Raycast
 Shader Compile Status: 
 
@@ -96,6 +114,7 @@ Shader Compile Status:
 
 Shader Compile Status: 
 
+Error in Init_Shader
 Error happened while loading the texture: 1286
 Nor oepened1
 model_path ./models/
@@ -103,53 +122,19 @@ m_str ./models/shadow.obj
 model_path ./models/
 m_str ./models/ground.obj
 model_path ./models/
-m_str ./models/sphere10.obj
+m_str ./models/./Sphere/sphere10_grey_flat.obj
+model_path ./models/
+m_str ./models/./Sphere/sphere_grey.obj
+model_path ./models/
+m_str ./models/cube.obj
+model_path ./models/
+m_str ./models/monkey.obj
 start_x is -2
 start_y is 0
 start_z is -2
 Checking
 Start
 advecting
-advecting
-advecting
-advecting
-Advect3D Unable to attach color buffer
-0
-advecting
-advecting
-advecting
-Advect3D Unable to attach color buffer
-0
-advecting
-advecting
-advecting
-Advect3D Unable to attach color buffer
-0
-advecting
-advecting
-advecting
-Advect3D Unable to attach color buffer
-0
-advecting
-advecting
-advecting
-Advect3D Unable to attach color buffer
-0
-advecting
-advecting
-advecting
-Advect3D Unable to attach color buffer
-0
-advecting
-advecting
-advecting
-Advect3D Unable to attach color buffer
-0
-advecting
-advecting
-advecting
-Advect3D Unable to attach color buffer
-0
 advecting
 advecting
 advecting
@@ -168,7 +153,42 @@ Advect3D Unable to attach color buffer
 0
 advecting
 advecting
+advecting
+Advect3D Unable to attach color buffer
+0
+advecting
+advecting
 clicking Up left
+advecting
+Advect3D Unable to attach color buffer
+0
+advecting
+advecting
+advecting
+Advect3D Unable to attach color buffer
+0
+advecting
+advecting
+advecting
+Advect3D Unable to attach color buffer
+0
+advecting
+advecting
+advecting
+Advect3D Unable to attach color buffer
+0
+advecting
+advecting
+advecting
+Advect3D Unable to attach color buffer
+0
+advecting
+advecting
+advecting
+Advect3D Unable to attach color buffer
+0
+advecting
+advecting
 advecting
 Advect3D Unable to attach color buffer
 0

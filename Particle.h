@@ -63,14 +63,8 @@ struct h_Particle
 
 
     vec3    m_Position;
-    vec3    m_NextPosition;
-
-    vec3    m_prev_Position;
     vec3    m_Pre_Velocity;
-
     vec3    m_Velocity;
-    vec3    m_NextVelocity;
-
 
   //  vec3    m_RotVelocity;
     vec4    m_Color;
@@ -90,13 +84,8 @@ struct h_Particle
 
     h_Particle()
         : m_Position(0,0,0)     // Center point of particle
-        , m_prev_Position(0,0,0)     // Center point of particle
-        , m_NextPosition(0,0,0)     // Center point of particle
-
         , m_Pre_Velocity(0,1000,0)
         , m_Velocity(0,0,0)
-        , m_NextVelocity(0,0,0)
-    //    , m_Pre_Out_Velocity(0,1000,0)
 
         , m_Color(0)
         , m_fRadius(1)

@@ -1,9 +1,9 @@
-#ifndef _L_CUBE_EMITTER_H_
-#define _L_CUBE_EMITTER_H_
+#ifndef _L_SPHERE_PARTICLE_EFFECT_H_
+#define _L_SPHERE_PARTICLE_EFFECT_H_
 
 #include "pipeline.h"
 #include "sceneLoader.h"
-#include "ParticleEffect_Interface.h"
+#include "L_ParticleEffect_Interface.h"
 #include <cstdlib>
 #include <iostream>
 #include <algorithm>
@@ -11,14 +11,10 @@
 //#include "pipeline.h"
 #include "Random.h"
 using namespace std;
-class L_CubeEmitterEffect : public ParticleEffect_Interface
+class L_SphereParticleEffect : public L_ParticleEffect_Interface
 {
     public:
 
-    glm::vec3 ExternalForce_neg;
-    glm::vec3 ExternalForce_half_neg;
-    glm::vec3 ExternalForce_pos;
-    glm::vec3 ExternalForce_half_pos;
     float MaxRadius;
     float MinRadius;
     float testRadius;
@@ -32,17 +28,15 @@ class L_CubeEmitterEffect : public ParticleEffect_Interface
     CollisionDetection_HGrid    myHgrid;
 
     public:
-        L_CubeEmitterEffect();
-        void EmitParticles( Particle& particle);
+        L_SphereParticleEffect();
 
-        void InitParticleCube(bool reset = false);
+        void InitParticle(bool reset = false);
         void InitParticlePos(int i, int k, int j, int Index);
         void InitParticleVel(int i, int k, int j, int Index);
         void InitParticleAttribute(int i, int k, int j, int Index);
-        void InitCollisionDetection_HGrid();
 
 
-        void UpdateParticleCube(float dt);
+        void UpdateParticleEffect(float dt);
         void DrawParticleCube();
         void DrawParticleCube(pipeline &m_pipeline, unsigned int shaderID, meshLoader* mymesh);
 
@@ -53,6 +47,12 @@ class L_CubeEmitterEffect : public ParticleEffect_Interface
 
         void ExamineParticleAttribute();
 
+
+    float start_x, start_y, start_z;
+    float pos_x, pos_y, pos_z;
+    float vel_x, vel_y, vel_z;
+    float Radius;
+    GLUquadricObj* quad;
 };
 
 

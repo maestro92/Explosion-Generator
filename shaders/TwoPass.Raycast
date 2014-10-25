@@ -47,10 +47,10 @@ void main()
 
     vec3 pos = rayStart;
     vec3 step = normalize(rayStop-rayStart) * stepSize;
-    float travel = distance(rayStop, rayStart); // the depth each pixel will traverse
-    float T = 1.0;          // transparency
-    vec3 Lo = vec3(0.0);    // iniital color
-    vec3 d_pos;             // Depth position
+    float travel = distance(rayStop, rayStart);     // the depth each pixel will traverse
+    float Transparency = 1.0;                       // transparency
+    vec3 Color_0 = vec3(0.0);                       // iniital color
+    vec3 d_pos;                                     // Depth position
 
 
     for (int i=0; i < numSamples && travel > 0.0; ++i, pos += step, travel -= stepSize) 
@@ -90,14 +90,16 @@ void main()
             // we check if we ever run into a sphere in the smoke
             if( Regular_Depth < CalcDepthValue(d_pos))
             {
-                T *= 1.0-density*stepSize*Absorption;
-                if (T <= 0.01)
-                    break;
-                float Tl = 1.0;
-                vec3 Li = LightIntensity*Tl;
-                Lo += Li*T*density*stepSize;
-                FragColor.rgb = Lo;
-                FragColor.a = 1-T;
+                //  Transparency
+
+                
+                Color_0 += LightIntensity*density*stepSize * Transparency;
+                
+                Transparency *= 1.0-density*stepSize;
+                if (Transparency <= 0.01)  break;
+
+                FragColor.rgb = Color_0;
+                FragColor.a = 1-Transparency;
                 return;
             }
         }
@@ -105,21 +107,28 @@ void main()
         if (density <= 0.0) 
             continue;
 
-        // the absorption function is the probability that a photon traveling over a unit distance is lost by absorption
-        T *= 1.0-density*stepSize*Absorption;
+        // Front to back transparency
+        // use this for reference !!! http://graphics.ethz.ch/teaching/former/scivis_07/Notes/Handouts/03-raycasting.pdf
+
+        Color_0 += LightIntensity*density*stepSize * Transparency;    // this is accumulating the colors
+
+
+        // Composite Transparency value
+        // so density*stepSize is like alpha, the higher density value, the higher alpha is,
+        // the thicker the smoke, so less transparency
+        Transparency *= 1.0-density*stepSize;
 
         // if the composite transparency falls below a threshold, we quit
         // since the color is no longer transparent, so it won't change much
-        if (T <= 0.01)
-            break;
-
-        float Tl = 1.0;
-        vec3 Li = LightIntensity*Tl;
-        Lo += Li*T*density*stepSize;    // this is accumulating the colors
+        // because Transparency <= 0.01 means 1-Transparency >= 0.99
+        if (Transparency <= 0.01)  break;
     }
 
-    FragColor.rgb = Lo;
-    FragColor.a = 1-T;
+    FragColor.rgb = Color_0;
+    FragColor.a = 1-Transparency;   // 0 alpha value = full Transparency
+
+  //  FragColor = vec4(1.0,0.0,0.0,1.0);
 }
+
 
 

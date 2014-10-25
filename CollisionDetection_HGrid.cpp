@@ -50,7 +50,6 @@ bool CollisionDetection_HGrid::CheckRestingContactOnGround(h_Particle * h_par, f
             h_par->m_Velocity.z = h_par->m_Velocity.z * EnergyRetainRate_H;
             h_par->m_Velocity = vec3(h_par->m_Velocity.x, 0, h_par->m_Velocity.z);
             h_par->m_Position = vec3(h_par->m_Position.x ,h_par->m_fRadius,h_par->m_Position.z );
-            h_par->m_Pre_Velocity = vec3(h_par->m_Velocity.x, 0, h_par->m_Velocity.z);
             return true;
         }
     }
@@ -58,118 +57,6 @@ bool CollisionDetection_HGrid::CheckRestingContactOnGround(h_Particle * h_par, f
 }
 
 
-
-#if 0
-bool CollisionDetection_HGrid::UpdateSphereGroundCollision(h_Particle * h_par, float dt)
-{
-/*
-    // see if it be stationary next;
-    if ( (h_par->m_Position.y - h_par->m_fRadius) >= 0.0f)
-    {Looking for quick sex
-        float next_pos_y = h_par->m_Position.y + (h_par->m_Velocity.y + dt * ExternalForce_half_neg.y )* dt;
-        float next_vel_y = h_par->m_Velocity.y + ExternalForce_neg.y*dt;
-
-        if (fabs(next_vel_y) < (9.81 * dt) && ((next_pos_y - h_par->m_fRadius) <= 0) )
-        {
-            h_par->m_Velocity.x = h_par->m_Velocity.x * EnergyRetainRate_H;
-            h_par->m_Velocity.z = h_par->m_Velocity.z * EnergyRetainRate_H;
-            h_par->m_Velocity = vec3(h_par->m_Velocity.x, 0, h_par->m_Velocity.z);
-            h_par->m_Position = vec3(h_par->m_Position.x ,h_par->m_fRadius,h_par->m_Position.z );
-            h_par->m_Pre_Velocity = vec3(h_par->m_Velocity.x, 0, h_par->m_Velocity.z);
-            return true;
-        }
-
-    }
-*/
-
-
-/*
-    if (CheckRestingContactOnGround(h_par, dt))
-        return true;
-*/
-
-
-    if ( (h_par->m_Position.y - h_par->m_fRadius)<= 0.0f && h_par->m_Velocity.y < 0)
-    {
-
-#ifdef DEBUG_HGRID_BOARD_COLLISION
-        cout << "id is " << h_par->m_id << endl;
-        cout << "vel x is " << h_par->m_Velocity.x << endl;
-        cout << "vel y is " << h_par->m_Velocity.y << endl;
-        cout << "vel z is " << h_par->m_Velocity.z << endl;
-
-        cout << "pre_vel x is " << h_par->m_Pre_Velocity.x << endl;
-        cout << "pre_vel y is " << h_par->m_Pre_Velocity.y << endl;
-        cout << "pre_vel z is " << h_par->m_Pre_Velocity.z << endl;
-        cout << "boundary is" << h_par->m_Position.y - h_par->m_fRadius << endl;
-#endif
-
-
-//        if( fabs(h_par->m_Pre_Velocity.y) < 0.01 && fabs(h_par->m_Pre_Velocity.x) < 0.01 && fabs(h_par->m_Pre_Velocity.z) < 0.01)
-        if( fabs(h_par->m_Pre_Velocity.y) < (9.81 * dt) && fabs(h_par->m_Pre_Velocity.x) < 0.01 && fabs(h_par->m_Pre_Velocity.z) < 0.01)
-        {
-
-            cout << "I'm really here" << endl;
-            h_par->m_Velocity = vec3(0,0,0);
-            h_par->m_Pre_Velocity = h_par->m_Velocity;
-            h_par->m_Position = vec3(h_par->m_Position.x ,h_par->m_fRadius,h_par->m_Position.z );
-            return true;
-
-        }
-
-        if( fabs(h_par->m_Pre_Velocity.y) < (9.81 * dt))
-        {
-
-            cout << "Really here Checking y" << endl;
-
-
-            h_par->m_Velocity.x = h_par->m_Velocity.x * EnergyRetainRate_H;
-            h_par->m_Velocity.z = h_par->m_Velocity.z * EnergyRetainRate_H;
-            h_par->m_Velocity = vec3(h_par->m_Velocity.x, 0, h_par->m_Velocity.z);
-
-            h_par->m_Position += (h_par->m_Velocity + dt * ExternalForce_half_pos ) * dt;
-            h_par->m_Pre_Velocity = vec3(h_par->m_Velocity.x, 0, h_par->m_Velocity.z);
-            return true;
-        }
-
-        // else it's just a regular sphere ground collision
-        else if ( h_par->m_Velocity.y < 0)
-        {
-            cout << "I'm here" << endl;
-
-/// this is incorrect, should return the position based on the old velocity, not the new one
-            h_par->m_Velocity.y = h_par->m_Velocity.y * -1.0f;
-     //       h_par->m_Position += (h_par->m_Velocity + dt * ExternalForce_half_pos ) * dt;
-         //   h_par->m_Position = h_par->m_prev_Position;
-
-
-
-//            glm::vec3 old_vel = h_par->m_Velocity.y + ExternalForce_half_pos*2.0f * dt;
-  //          h_par->m_Position -= (h_par->m_Velocity + old_vel ) * 0.5f * dt;
-
-    //        e_ParticleBuffer[i].m_Velocity += ExternalForce_neg*dt;
-      //      e_ParticleBuffer[i].m_Position += (old_vel + e_ParticleBuffer[i].m_Velocity)* 0.5f * dt;
-
-            // m_Vel and m_Pre_Vec, Which ever one is lower, we choose that as the new velocity
-
-#if 0
-
-#endif
-
-            h_par->m_Velocity.y = h_par->m_Velocity.y * EnergyRetainRate_V;
-            h_par->m_Velocity.x = h_par->m_Velocity.x * EnergyRetainRate_H;
-            h_par->m_Velocity.z = h_par->m_Velocity.z * EnergyRetainRate_H;
-
-            h_par->m_Pre_Velocity = h_par->m_Velocity;
-            cout << "after - vel y is " << h_par->m_Velocity.y << endl;
-
-            return true;
-        }
-    }
-    return false;
-}
-
-#endif
 
 
 

@@ -21,7 +21,11 @@ enum matrixModes
     PROJECTION_MATRIX
 };
 
+/*
+http://www.geeksforgeeks.org/assignment-operator-overloading-in-c/
 
+if a class doesn't contain pointers, then there is no need to write assignment operator and copy constructor
+*/
 class pipeline{
 	int currentMatrix;
 	//members

@@ -25,10 +25,6 @@
 #define DEBUG_HGRID_BOARD_COLLISION
 #define DEBUG_HGRID_BALLBALL_COLLISION
 
-const float MIN_CELL_SIZE = 2;
-const float MAX_CELL_SIZE = 20;       // the length of the side of a square
-const unsigned int HGRID_MAX_LEVELS = 31;
-const int NUM_BUCKETS = 1024;
 
 
 using namespace std;
@@ -71,6 +67,8 @@ typedef union {
 } hash_t;
 */
 
+
+/*
 typedef union {
 
  //   unsigned long int value;
@@ -84,18 +82,10 @@ typedef union {
 
 
 
-struct ParticleCollisionPair
-{
-     h_Particle* h_par1;
-     h_Particle* h_par2;
 
-     ParticleCollisionPair()
-     {
-         h_par1 = new h_Particle();
-         h_par2 = new h_Particle();
-     }
+*/
 
-};
+
 
 struct ParticleGroundPair
 {
@@ -149,11 +139,6 @@ class CollisionDetection_HGrid : public CollisionDetection_Interface
         void RemoveParticleFromHGrid( h_Particle *h_par );
 
         void CheckObjAgainstObjects(h_Particle * h_par, vector<h_Particle*>& neighbors);
-
-
-        void CheckParticleAgainstGrid(h_Particle *h_par,
-                                 void (*pCallbackFunc)(h_Particle *pA, h_Particle *pB));
-
 
         void rehash( h_Particle *h_par );
 

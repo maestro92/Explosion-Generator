@@ -1,7 +1,7 @@
 #ifndef TWOPASS1_TECHNIQUE_H
 #define TWOPASS1_TECHNIQUE_H
 
-
+#include "Smoke_struct.h"
 #include "pipeline.h"
 
 #define NO_SDL_GLEXT
@@ -12,8 +12,11 @@
 #include <stdio.h>
 #include <string>
 #include <sstream>
-#include "Smoke.h"
+
 #include "Technique.h"
+
+
+
 
 class TwoPass_RayCasting_Technique
 {
@@ -38,11 +41,11 @@ class TwoPass_RayCasting_Technique
         void Load_glUniform(Matrices_Location& Mat_Loc, Matrices_t& Mat);
 
         void Render_TwoPass_RayCasting_1(Matrices_t& Mat);
-        void Render_TwoPass_RayCasting_1(pipeline &m_pipeline);
-
         void Render_TwoPass_RayCasting_2(Matrices_t& Mat, GLuint depthTexture);
-        void Render_TwoPass_RayCasting_2(pipeline &m_pipeline, GLuint depthTexture);
         void Render_TwoPass_RayCasting_CubeDepth(Matrices_t& Mat, GLuint fbo);
+
+
+        void Render_TwoPass_RayCasting_1_draft(Matrices_t& Mat);
 
         unsigned int createTexture(int w, int h, bool isDepth);
 

@@ -1,5 +1,5 @@
 
-#include "L_CubeEmitterEffect.h"
+#include "L_SphereParticleEffect.h"
 #include "gl/gl.h"
 #include "gl/glu.h"
 
@@ -11,19 +11,13 @@
 #define ARRAY_SIZE_Y 2
 #define ARRAY_SIZE_Z 2
 
-float Radius = 1;
-float start_x, start_y, start_z;
-float pos_x, pos_y, pos_z;
-float vel_x, vel_y, vel_z;
-
-
-
 
 // this is a declared Quadrics, used to draw any bizzare shapesz
-GLUquadricObj* quad;
 
-L_CubeEmitterEffect::L_CubeEmitterEffect()
+
+L_SphereParticleEffect::L_SphereParticleEffect()
 {
+    Radius = 1;
     testRadius = 2.0;
     Ball2Ball_CollisionMode = false;
 
@@ -37,11 +31,6 @@ L_CubeEmitterEffect::L_CubeEmitterEffect()
         size = ARRAY_SIZE_X * ARRAY_SIZE_Y * ARRAY_SIZE_Z;
 
 	quad = gluNewQuadric();
-//    ExternalForce = vec3(0,0,0);
-    ExternalForce_neg = vec3(0,-9.8,0);
-    ExternalForce_pos = vec3(0,9.8,0);
-    ExternalForce_half_neg = vec3(0,-4.9,0);
-    ExternalForce_half_pos = vec3(0,4.9,0);
     e_ParticleBuffer.resize(size, h_Particle());
 
 
@@ -71,7 +60,7 @@ L_CubeEmitterEffect::L_CubeEmitterEffect()
 
 
 
-void L_CubeEmitterEffect::InitParticleCube(bool reset)
+void L_SphereParticleEffect::InitParticle(bool reset)
 {
     // creates and returns a pointer to a new quadric object
 
@@ -126,7 +115,7 @@ void L_CubeEmitterEffect::InitParticleCube(bool reset)
       //  e_ParticleBuffer[Index].m_Velocity = glm::vec3(scale, -scale+10, 0);
         //e_ParticleBuffer[Index].m_Velocity = glm::vec3(scale, 0, 0);
 
-        e_ParticleBuffer[Index].m_Pre_Velocity = glm::vec3(1000,1000,1000);
+     //   e_ParticleBuffer[Index].m_Pre_Velocity = glm::vec3(1000,1000,1000);
         e_ParticleBuffer[Index].m_fRadius = testRadius; // dRadius/2;
         float lifetime;
         lifetime = RandRange(3,5);
@@ -166,7 +155,8 @@ void L_CubeEmitterEffect::InitParticleCube(bool reset)
 
 
 
-void L_CubeEmitterEffect::ExamineParticleAttribute()
+
+void L_SphereParticleEffect::ExamineParticleAttribute()
 {
 
     for(int i = 0; i < e_ParticleBuffer.size(); i++)
@@ -179,7 +169,7 @@ void L_CubeEmitterEffect::ExamineParticleAttribute()
 
 
 
-void L_CubeEmitterEffect::InitParticlePos(int i, int k, int j, int Index)
+void L_SphereParticleEffect::InitParticlePos(int i, int k, int j, int Index)
 {
 
 /*
@@ -219,7 +209,7 @@ void L_CubeEmitterEffect::InitParticlePos(int i, int k, int j, int Index)
 
 
 
-void L_CubeEmitterEffect::InitParticleVel(int i, int k, int j, int Index)
+void L_SphereParticleEffect::InitParticleVel(int i, int k, int j, int Index)
 {
 
 //    float vel_x, vel_y, vel_z;
@@ -254,11 +244,11 @@ void L_CubeEmitterEffect::InitParticleVel(int i, int k, int j, int Index)
     }
 
 
-    e_ParticleBuffer[Index].m_Pre_Velocity = glm::vec3(1000,1000,1000);
+//    e_ParticleBuffer[Index].m_Pre_Velocity = glm::vec3(1000,1000,1000);
 
 }
 
-void L_CubeEmitterEffect::InitParticleAttribute(int i, int k, int j, int Index)
+void L_SphereParticleEffect::InitParticleAttribute(int i, int k, int j, int Index)
 {
     // Radius
     /*
@@ -283,14 +273,14 @@ void L_CubeEmitterEffect::InitParticleAttribute(int i, int k, int j, int Index)
 
 
 // resets to initial position
-void L_CubeEmitterEffect::Reset()
+void L_SphereParticleEffect::Reset()
 {
-    InitParticleCube(true);
+    InitParticle(true);
 }
 
 
 /* updating the particle */
-void L_CubeEmitterEffect::UpdateParticleCube(float dt)
+void L_SphereParticleEffect::UpdateParticleEffect(float dt)
 {
     for(int i = 0; i < e_ParticleBuffer.size(); i++)
     {
@@ -346,7 +336,7 @@ void L_CubeEmitterEffect::UpdateParticleCube(float dt)
 
 
 // http://stackoverflow.com/questions/8494942/why-does-my-color-go-away-when-i-enable-lighting-in-opengl
-void L_CubeEmitterEffect::DrawParticleCube()
+void L_SphereParticleEffect::DrawParticleCube()
 {
     static GLuint spheresList=0, torusList=0, baseList=0;
     glEnable(GL_COLOR_MATERIAL);
@@ -367,14 +357,12 @@ void L_CubeEmitterEffect::DrawParticleCube()
 
     // drawing the cubes
     myHgrid.Draw();
-
-
 }
 
 
 
 // http://stackoverflow.com/questions/8494942/why-does-my-color-go-away-when-i-enable-lighting-in-opengl
-void L_CubeEmitterEffect::DrawParticleCube(pipeline &m_pipeline,  unsigned int shaderID , meshLoader* mymesh)
+void L_SphereParticleEffect::DrawParticleCube(pipeline &m_pipeline,  unsigned int shaderID , meshLoader* mymesh)
 {
     m_pipeline.matrixMode(MODEL_MATRIX);
     // static GLuint spheresList=0, torusList=0, baseList=0;
@@ -400,20 +388,20 @@ void L_CubeEmitterEffect::DrawParticleCube(pipeline &m_pipeline,  unsigned int s
 }
 
 
-void L_CubeEmitterEffect::update(bool toggle)
+void L_SphereParticleEffect::update(bool toggle)
 {
-    UpdateParticleCube(0.031);
+    UpdateParticleEffect(0.031);
  //   UpdateParticleCube(0.015);
  //   UpdateParticleCube(0.015);
   //   UpdateParticleCube(0.01);
 }
 
-void L_CubeEmitterEffect::show(pipeline &m_pipeline,  unsigned int shaderID , meshLoader* mymesh)
+void L_SphereParticleEffect::show(pipeline &m_pipeline,  unsigned int shaderID , meshLoader* mymesh)
 {
     DrawParticleCube(m_pipeline, shaderID, mymesh);
 }
 
-void L_CubeEmitterEffect::show(bool toggle)
+void L_SphereParticleEffect::show(bool toggle)
 {
     DrawParticleCube();
 }

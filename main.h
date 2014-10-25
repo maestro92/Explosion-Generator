@@ -9,13 +9,18 @@
 #include <sstream>
 #include "define.h"
 
+#include "EG_utility.h"
+#include "EG_Skybox.h"
 #include "shader.h"
 #include "sceneLoader.h"
 #include "TwoPass_RayCasting_Technique.h"
 
+#include "WorldBox.h"
+#include "WorldSphere.h"
 
 #include "pipeline.h"
-#include "L_CubeEmitterEffect.h"
+#include "L_SphereParticleEffect.h"
+#include "L_Cube_Sphere_ParticleEffect.h"
 
 #define NO_SDL_GLEXT
 #include <GL/glew.h>
@@ -25,7 +30,7 @@
 #include "SDL/SDL_image.h"
 #include "ElapsedTime.h"
 
-#include "ParticleEffect_Interface.h"
+#include "L_ParticleEffect_Interface.h"
 
 #include "Smoke.h"
 #include "CollisionDetection_HGrid.h"
@@ -54,10 +59,13 @@ class ExplosionGenerator
         PointLight pl[2];
         SpotLight sl[1];
     */
+        EG_utility utility_function;
 
-      //  Lighting_Technique* m_LightingEffect;
+        EG_SkyBox m_skybox;
 
-        L_CubeEmitterEffect l_CubeEffect;
+        L_SphereParticleEffect l_SphereEffect;
+        L_Cube_Sphere_ParticleEffect l_Cube_SphereEffect;
+
         Smoke smoke;
 
         t_camera cam;
@@ -67,6 +75,9 @@ class ExplosionGenerator
         meshLoader* ground;
         meshLoader* ground1;
         meshLoader* sphere;
+        meshLoader* smooth_sphere;
+        meshLoader* cube;
+        meshLoader* monkey;
         mesh* quad;
 
         bool running;
@@ -80,6 +91,12 @@ class ExplosionGenerator
         unsigned int depthTexture;
         unsigned int depth_TwoPassTexture;
         unsigned int shadow_depthTexture;
+
+        unsigned int CubeMap_ColorTextureID_Dynamic;
+        unsigned int CubeMap_DepthTextureID_Dynamic;
+        unsigned int CubeMapTextureID;
+        unsigned int CubeMapFBO;
+
         GLuint shadowMapTexture;
 
 
@@ -89,7 +106,9 @@ class ExplosionGenerator
         shader* shadow_SecondRender;
         shader* quadRenderShader;   // for rendering the texture into a quad, then displaying the quad into the screen under a orthographic view
         shader* Depth_CameraRender;
-
+        shader* ReflectionShader;
+        shader* RefractionShader;
+        shader* SkyboxShader;
 
         /// Matrices
         glm::mat4 Light_ModelMatrix;
@@ -116,7 +135,7 @@ class ExplosionGenerator
 
         float angle;
 
-
+        Matrices_t ReflectionSmoke;
 
 
     public:
@@ -147,9 +166,17 @@ class ExplosionGenerator
         void update();
         void show();
         void RenderTexture(GLuint TextureId);
+        void RenderScene();
+        void RenderReflectiveObjects();
+        void RenderSmoke();
 
 
+        void Render_to_CubeMapTexture();
+        void Render_to_CubeMapFace(int face);
 
+
+        void Render_to_CubeMapTexture2();
+        void Render_to_CubeMapFace2(int face);
 
 
         /// Basic Drawing functions
