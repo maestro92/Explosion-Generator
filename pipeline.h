@@ -26,33 +26,35 @@ http://www.geeksforgeeks.org/assignment-operator-overloading-in-c/
 
 if a class doesn't contain pointers, then there is no need to write assignment operator and copy constructor
 */
-class pipeline{
-	int currentMatrix;
-	//members
-	std::vector<glm::mat4> modelMatrix;
-	std::vector<glm::mat4> viewMatrix;
-	std::vector<glm::mat4> projectionMatrix;
+class pipeline
+{
+    public:
+        int currentMatrix;
+        //members
+        std::vector<glm::mat4> modelMatrix;
+        std::vector<glm::mat4> viewMatrix;
+        std::vector<glm::mat4> projectionMatrix;
 
 
-	bool matricesReady;
-	glm::mat4 modelViewMatrix;						//only to save time for vertexshader
-	glm::mat4 modelViewProjectionMatrix;	//only to save time for vertexshader
-	glm::mat3 normalMatrix;							  //only to save time for vertexshader
+        bool matricesReady;
+        glm::mat4 modelViewMatrix;						//only to save time for vertexshader
+        glm::mat4 modelViewProjectionMatrix;	//only to save time for vertexshader
+        glm::mat3 normalMatrix;							  //only to save time for vertexshader
 
-    /// for shadow mapping
-    glm::mat4 Light_BiasMatrix;
-    glm::mat4 Light_ModelMatrix;
-    glm::mat4 Light_ViewMatrix;
-    glm::mat4 Light_ProjectionMatrix;
-    glm::mat4 Light_ModelViewProjectionMatrix;
-    glm::mat4 shadowMatrix;
+        /// for shadow mapping
+        glm::mat4 Light_BiasMatrix;
+        glm::mat4 Light_ModelMatrix;
+        glm::mat4 Light_ViewMatrix;
+        glm::mat4 Light_ProjectionMatrix;
+        glm::mat4 Light_ModelViewProjectionMatrix;
+        glm::mat4 shadowMatrix;
 
-    glm::mat4 Camera_BiasMatrix;
-    glm::mat4 Camera_ModelMatrix;
-    glm::mat4 Camera_ViewMatrix;
-    glm::mat4 Camera_ProjectionMatrix;
-    glm::mat4 Camera_ModelViewProjectionMatrix;
-    glm::mat4 DepthMatrix;
+        glm::mat4 Camera_BiasMatrix;
+        glm::mat4 Camera_ModelMatrix;
+        glm::mat4 Camera_ViewMatrix;
+        glm::mat4 Camera_ProjectionMatrix;
+        glm::mat4 Camera_ModelViewProjectionMatrix;
+        glm::mat4 DepthMatrix;
 	public:
 
 		pipeline();
@@ -83,6 +85,7 @@ class pipeline{
 
 		//GLSL
 		void updateMatrices(unsigned int programId);
+		void updateMatrices_depth(unsigned int programId);
 		void updateMatrices_TwoPassRayCasting(unsigned int programId);
 
         void updateLightMatrix(glm::mat4 Light_Model, glm::mat4 Light_View, glm::mat4 Light_Projection);

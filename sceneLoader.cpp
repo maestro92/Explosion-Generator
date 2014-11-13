@@ -201,6 +201,14 @@ meshLoader::~meshLoader()
 		delete meshes[i];
 }
 
+
+void meshLoader::draw()
+{
+	for(int i=0;i<meshes.size();i++)
+		meshes[i]->draw();
+}
+
+
 void meshLoader::draw(unsigned int programId)
 {
 	for(int i=0;i<meshes.size();i++)

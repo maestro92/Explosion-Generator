@@ -193,7 +193,7 @@ void pipeline::popMatrix()       // glPopMatrix()
 
 
 
-		//GLSL
+//GLSL
 void pipeline::updateMatrices(unsigned int programId)
 {
 	if(!matricesReady)
@@ -206,13 +206,34 @@ void pipeline::updateMatrices(unsigned int programId)
 	glUniformMatrix4fv(glGetUniformLocation(programId,"viewMatrix"),1,GL_FALSE,&viewMatrix[viewMatrix.size()-1][0][0]);
 	glUniformMatrix4fv(glGetUniformLocation(programId,"modelViewMatrix"),1,GL_FALSE,&modelViewMatrix[0][0]);
 	glUniformMatrix4fv(glGetUniformLocation(programId,"modelViewProjectionMatrix"),1,GL_FALSE,&modelViewProjectionMatrix[0][0]);
+	glUniformMatrix4fv(glGetUniformLocation(programId,"m_ModelviewProjection"),1,GL_FALSE,&modelViewProjectionMatrix[0][0]);
 	glUniformMatrix3fv(glGetUniformLocation(programId,"normalMatrix"),1,GL_FALSE,&normalMatrix[0][0]);
 }
 
 
 
 
-		//GLSL
+//GLSL
+void pipeline::updateMatrices_depth(unsigned int programId)
+{
+	if(!matricesReady)
+	{
+		modelViewMatrix=viewMatrix[viewMatrix.size()-1]*modelMatrix[modelMatrix.size()-1];
+		modelViewProjectionMatrix=projectionMatrix[projectionMatrix.size()-1]*viewMatrix[viewMatrix.size()-1]*modelMatrix[modelMatrix.size()-1];
+		normalMatrix=glm::mat3(modelViewMatrix);
+	}
+	glUniformMatrix4fv(glGetUniformLocation(programId,"modelMatrix"),1,GL_FALSE,&modelMatrix[modelMatrix.size()-1][0][0]);
+	glUniformMatrix4fv(glGetUniformLocation(programId,"viewMatrix"),1,GL_FALSE,&viewMatrix[viewMatrix.size()-1][0][0]);
+	glUniformMatrix4fv(glGetUniformLocation(programId,"modelViewMatrix"),1,GL_FALSE,&modelViewMatrix[0][0]);
+	glUniformMatrix4fv(glGetUniformLocation(programId,"modelViewProjectionMatrix"),1,GL_FALSE,&modelViewProjectionMatrix[0][0]);
+	glUniformMatrix4fv(glGetUniformLocation(programId,"m_ModelviewProjection"),1,GL_FALSE,&modelViewProjectionMatrix[0][0]);
+	glUniformMatrix3fv(glGetUniformLocation(programId,"normalMatrix"),1,GL_FALSE,&normalMatrix[0][0]);
+}
+
+
+
+
+//GLSL
 void pipeline::updateMatrices_TwoPassRayCasting(unsigned int programId)
 {
 	if(!matricesReady)

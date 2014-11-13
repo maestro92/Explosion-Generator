@@ -25,6 +25,7 @@ class mesh{
 	public:
 		mesh(vector<vertexData>* vd,vector<unsigned int>* id,vector<textureData>* td=NULL);
 		~mesh();
+		void draw();
 		void draw(unsigned int programId);
 };
 #endif

@@ -3,7 +3,7 @@
 
 #include "shader.h"
 
-#include "TwoPass_RayCasting_Technique.h"
+#include "EG_Technique_TwoPass_RayCasting.h"
 #include "Smoke_struct.h"
 
 #define NO_SDL_GLEXT
@@ -110,7 +110,15 @@ class Smoke //: public L_ParticleEffect_Interface
 {
     public:
         // side size
-        TwoPass_RayCasting_Technique TwoPass_Render;
+//        Technique_TwoPass_RayCasting TwoPass_Render;
+
+        Advect3D_Location_t Advect3D_Location;
+        Jacobi3D_Location_t Jacobi3D_Location;
+        SubtractGradient3D_Location_t SubtractGradient3D_Location;
+        ApplyImpulse3D_Location_t ApplyImpulse3D_Location;
+        ApplyBuoyancy3D_Location_t ApplyBuoyancy3D_Location;
+        ComputeDivergence3D_Location_t ComputeDivergence3D_Location;
+
 
         Vbos_t myVbos;
         Slabs_t f_Slab;
@@ -127,14 +135,21 @@ class Smoke //: public L_ParticleEffect_Interface
         void Reset();
 
 
+        GLuint GetUniform(shader* s, const char* name);
+        GLuint GetUniform(GLuint programID, const char* name);
 
+        void SetUniform(GLuint location, int value);
+        void SetUniform(GLuint location, float value);
+        void SetUniform(GLuint location, float x, float y);
+        void SetUniform(GLuint location, glm::vec3 value);
+        void SetUniform(GLuint location, glm::mat4 value);
+/*
         void SetUniform(GLuint programID, const char* name, int value);
         void SetUniform(GLuint programID, const char* name, float value);
         void SetUniform(GLuint programID, const char* name, float x, float y);
         void SetUniform(GLuint progarmID, const char* name, glm::vec3 value);
         void SetUniform(GLuint programID, const char* name, glm::mat4 value);
-
-
+*/
 
         void Advect3D_SameFBO(SurfacePod velocity, SurfacePod source, SurfacePod obstacles, SurfacePod dest, float dissipation, GLuint p);
         void Jacobi3D_SameFBO(SurfacePod pressure, SurfacePod divergence, SurfacePod obstacles, SurfacePod dest, GLuint p);

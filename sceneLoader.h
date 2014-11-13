@@ -19,8 +19,8 @@ class meshLoader{
         meshLoader(string filename);
 		// meshLoader(const char* filename);
 		~meshLoader();
+        void draw();
 		void draw(unsigned int programId);
-        void draw1(unsigned int programId);
 		std::vector<mesh*>& getMeshes();
 };
 

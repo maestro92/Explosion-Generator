@@ -44,15 +44,94 @@ The input in shaders is defined using the layout statement
 
 */
 
+
+
+void mesh::draw()
+{
+	int vertex=0;
+	int normal=1;
+	int tangent=2; //2
+	int color=3; //3
+	int UV=4; //4
+
+	//texture0
+	//texture1...
+	string str="texture";
+//	cout << "texture size" << textures.size() << endl;
+	for(int i=0;i<textures.size();i++)
+	{
+		glActiveTexture(GL_TEXTURE0+i);
+		glBindTexture(GL_TEXTURE_2D,textures[i].id);
+
+//////////////
+//		glUniform1i(glGetUniformLocation(programId,(str+(char)(i+'0')).c_str()),i);
+//////////////
+        cout << (str+(char)(i+'0')).c_str() << endl;
+	}
+
+    /// this means we're going to use these two buffer object
+	glBindBuffer(GL_ARRAY_BUFFER,VBO);
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER,IND);
+
+
+    /// http://arcsynthesis.org/gltut/Basics/Tut01%20Following%20the%20Data.html
+    /// glEnableVertexAttribArray is
+
+    /// glVertexAttribPointer tells how OpenGL interprets your data in the VBO object
+    /// when rendering, OpenGL pulls vertex data from arrays stored in buffer objects.
+    /// what we need to tell OpenGL is what form our vertex array in the buffer object is stored in
+    /// meaning we need to tell OpenGL how to interpret the array of data stored in the buffer
+	glEnableVertexAttribArray(vertex);
+	glVertexAttribPointer(vertex,3,GL_FLOAT,GL_FALSE,sizeof(vertexData),0);
+
+	glEnableVertexAttribArray(normal);
+	glVertexAttribPointer(normal,3,GL_FLOAT,GL_FALSE,sizeof(vertexData),(void*)(3*sizeof(float)));
+
+	glEnableVertexAttribArray(tangent);
+	glVertexAttribPointer(tangent,3,GL_FLOAT,GL_FALSE,sizeof(vertexData),(void*)(6*sizeof(float)));
+
+	glEnableVertexAttribArray(color);
+	glVertexAttribPointer(color,3,GL_FLOAT,GL_FALSE,sizeof(vertexData),(void*)(9*sizeof(float)));
+
+	glEnableVertexAttribArray(UV);
+	glVertexAttribPointer(UV,2,GL_FLOAT,GL_FALSE,sizeof(vertexData),(void*)(12*sizeof(float)));
+
+    /// glDrawElements, you need to supply an index buffer
+    /// glDrawArrays submits the vertices in linear order
+	glDrawElements(GL_TRIANGLES,indices.size(),GL_UNSIGNED_INT,0);
+
+	glDisableVertexAttribArray(vertex);
+	glDisableVertexAttribArray(normal);
+	glDisableVertexAttribArray(tangent);
+	glDisableVertexAttribArray(color);
+	glDisableVertexAttribArray(UV);
+
+	glBindBuffer(GL_ARRAY_BUFFER,0);
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER,0);
+}
+
+
+
 void mesh::draw(unsigned int programId)
 {
+
 	//attribute vec3 vertex
+	/*
 	/// this is similar to the glGetuniform location
 	int vertex=glGetAttribLocation(programId,"vertex"); //0
 	int normal=glGetAttribLocation(programId,"normal"); //1
 	int tangent=glGetAttribLocation(programId,"tangent"); //2
 	int color=glGetAttribLocation(programId,"color"); //3
 	int UV=glGetAttribLocation(programId,"UV"); //4
+
+    cout << "color is " << color << endl;
+*/
+
+	int vertex=0;
+	int normal=1;
+	int tangent=2; //2
+	int color=3; //3
+	int UV=4; //4
 
 	//texture0
 	//texture1...
@@ -97,7 +176,7 @@ void mesh::draw(unsigned int programId)
     /// glDrawArrays submits the vertices in linear order
 	glDrawElements(GL_TRIANGLES,indices.size(),GL_UNSIGNED_INT,0);
 
-//	glDisableVertexAttribArray(vertex);
+	glDisableVertexAttribArray(vertex);
 	glDisableVertexAttribArray(normal);
 	glDisableVertexAttribArray(tangent);
 	glDisableVertexAttribArray(color);

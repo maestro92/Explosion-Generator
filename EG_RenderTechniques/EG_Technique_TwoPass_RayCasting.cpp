@@ -1,22 +1,24 @@
 
-#include "TwoPass_RayCasting_Technique.h"
+#include "EG_Technique_TwoPass_RayCasting.h"
 
 
 
-TwoPass_RayCasting_Technique::TwoPass_RayCasting_Technique()
+Technique_TwoPass_Raycasting::Technique_TwoPass_Raycasting()
 {
 
 }
 
 
-TwoPass_RayCasting_Technique::~TwoPass_RayCasting_Technique()
+Technique_TwoPass_Raycasting::~Technique_TwoPass_Raycasting()
 {
 
 }
 
 
-void TwoPass_RayCasting_Technique::init(int w, int h)
+void Technique_TwoPass_Raycasting::init(int w, int h, int Shader_Num)
 {
+    allocate_memberVariables(Shader_Num);
+
     // generate a frame buffer
     glGenFramebuffers(1, &IntervalsFbo1);
     glBindFramebuffer(GL_FRAMEBUFFER,IntervalsFbo1);
@@ -70,15 +72,25 @@ void TwoPass_RayCasting_Technique::init(int w, int h)
 
     /// Interval
     TwoPassIntervals = new shader("TwoPass.vs", "TwoPass.Cube", "TwoPass.Intervals");
-    Init_Shader_GL_Location(TwoPassIntervals->getProgramId(), Matrices_Loc1);
+    ProgShaders[RENDER_PASS1] = new shader("TwoPass.vs", "TwoPass.Cube", "TwoPass.Intervals");
 
     /// Cube depth
     TwoPass_CubeDepth = new shader("TwoPass.vs", "TwoPass.Cube", "TwoPass_Depth.fs");
-    Init_Shader_GL_Location(TwoPass_CubeDepth->getProgramId(), Matrices_CubeDepth);
 
     /// Raycast
     TwoPassRaycast = new shader("TwoPass.vs", "TwoPass.Fullscreen", "TwoPass.Raycast");
-    Init_Shader_GL_Location(TwoPassRaycast->getProgramId(), Matrices_Loc2);
+    ProgShaders[RENDER_PASS2] = new shader("TwoPass.vs", "TwoPass.Cube", "TwoPass.Intervals");
+
+
+    init_memberVariables();
+
+
+    if (Matrices_UniLoc[RENDER_PASS2].ModelviewProjection == -1)
+    {
+        cout << "TwoPass get location error" << endl;
+        exit(1);
+    }
+
 
     RayStartPoints_Location2 = glGetUniformLocation( TwoPassRaycast->getProgramId(), "RayStartPoints");
     RayStopPoints_Location2 = glGetUniformLocation( TwoPassRaycast->getProgramId(), "RayStopPoints");
@@ -87,11 +99,7 @@ void TwoPass_RayCasting_Technique::init(int w, int h)
     Depth_TwoPassLocation_Back2 = glGetUniformLocation( TwoPassRaycast->getProgramId(), "Depth_TwoPassBack");
 
 
-    if (Matrices_Loc2.ModelviewProjection == -1)
-    {
-        cout << "TwoPass get location error" << endl;
-        exit(1);
-    }
+
 
 
  //   glDisable(GL_DEPTH_TEST);
@@ -115,58 +123,13 @@ void TwoPass_RayCasting_Technique::init(int w, int h)
 
 
 
-// assign GL location
-void TwoPass_RayCasting_Technique::Init_Shader_GL_Location(unsigned int shaderID, Matrices_Location& Mat)
-{
-    Mat.ModelviewProjection = glGetUniformLocation( shaderID, "m_ModelviewProjection");
-    Mat.ModelviewMatrix = glGetUniformLocation( shaderID, "m_Modelview");
-    Mat.ViewMatrix = glGetUniformLocation( shaderID, "m_ViewMatrix");
-    Mat.ProjectionMatrix = glGetUniformLocation( shaderID, "m_ProjectionMatrix");
-    Mat.ModelMatrix = glGetUniformLocation( shaderID, "m_ModelMatrix");
-    Mat.ViewNoRotateMatrix = glGetUniformLocation( shaderID, "m_ViewNoRotateMatrix");
 
-    if(Mat.ModelviewProjection == -1 ||
-       Mat.ModelviewMatrix == -1 ||
-       Mat.ViewMatrix == -1 ||
-       Mat.ProjectionMatrix == -1 ||
-       Mat.ModelMatrix == -1 ||
-       Mat.ViewNoRotateMatrix == -1 )
-    {
-        cout << "Error in Init_Shader" << endl;
-    //    exit(1);
-    }
-
-}
-
-
-
-void TwoPass_RayCasting_Technique::Render_TwoPass_RayCasting_1(Matrices_t& Mat)
+void Technique_TwoPass_Raycasting::Render_TwoPass_RayCasting_1(Matrices_t& Mat)
 {
     TwoPassIntervals->useShader();
 
-        Load_glUniform(Matrices_Loc1, Mat);
-        glClearColor(0, 0, 0, 0);
-        glBindFramebuffer(GL_FRAMEBUFFER, IntervalsFbo1);
-        glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT);
-        glCullFace(GL_BACK);
-        glDrawArrays(GL_POINTS, 0, 1);
-
-
-        glBindFramebuffer(GL_FRAMEBUFFER, IntervalsFbo2);
-        glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT);
-        glCullFace(GL_FRONT);
-        glDrawArrays(GL_POINTS, 0, 1);
-        glBindFramebuffer(GL_FRAMEBUFFER, 0);
-
-    TwoPassIntervals->delShader();
-        glCullFace(GL_BACK);
-}
-
-void TwoPass_RayCasting_Technique::Render_TwoPass_RayCasting_1_draft(Matrices_t& Mat)
-{
-    TwoPassIntervals->useShader();
-
-        Load_glUniform(Matrices_Loc1, Mat);
+//        Load_glUniform(Matrices_Loc1, Mat);
+        Load_glUniform(Matrices_UniLoc[RENDER_PASS1], Mat);
         glClearColor(0, 0, 0, 0);
         glBindFramebuffer(GL_FRAMEBUFFER, IntervalsFbo1);
         glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT);
@@ -185,8 +148,8 @@ void TwoPass_RayCasting_Technique::Render_TwoPass_RayCasting_1_draft(Matrices_t&
 }
 
 
-
-void TwoPass_RayCasting_Technique::Render_TwoPass_RayCasting_CubeDepth(Matrices_t& Mat, GLuint fbo)
+/*
+void Technique_TwoPass_Raycasting::Render_TwoPass_RayCasting_CubeDepth(Matrices_t& Mat, GLuint fbo)
 {
     /// Back Cube depth
     glBindFramebuffer(GL_FRAMEBUFFER, fbo);
@@ -219,14 +182,15 @@ void TwoPass_RayCasting_Technique::Render_TwoPass_RayCasting_CubeDepth(Matrices_
 
     glBindFramebuffer(GL_FRAMEBUFFER, 0);
 }
+*/
 
 
-
-void TwoPass_RayCasting_Technique::Render_TwoPass_RayCasting_2(Matrices_t& Mat, GLuint depthTexture)
+void Technique_TwoPass_Raycasting::Render_TwoPass_RayCasting_2(Matrices_t& Mat, GLuint depthTexture)
 {
     glEnable(GL_BLEND);
     TwoPassRaycast->useShader();
-        Load_glUniform(Matrices_Loc2, Mat);
+//        Load_glUniform(Matrices_Loc2, Mat);
+        Load_glUniform(Matrices_UniLoc[RENDER_PASS2], Mat);
         glUniform1i(RayStartPoints_Location2, 1);
         glUniform1i(RayStopPoints_Location2, 2);
         glUniform1i(Depth_Location2, 3);
@@ -265,7 +229,7 @@ void TwoPass_RayCasting_Technique::Render_TwoPass_RayCasting_2(Matrices_t& Mat, 
 
 
 
-void TwoPass_RayCasting_Technique::Load_glUniform(Matrices_Location& Mat_Loc, Matrices_t& Mat)
+void Technique_TwoPass_Raycasting::Load_glUniform(Matrices_Location& Mat_Loc, Matrices_t& Mat)
 {
     glUniformMatrix4fv(Mat_Loc.ModelviewProjection,1,GL_FALSE,&Mat.ModelviewProjection[0][0]);
     glUniformMatrix4fv(Mat_Loc.ModelviewMatrix,1,GL_FALSE,&Mat.Modelview[0][0]);
@@ -277,7 +241,7 @@ void TwoPass_RayCasting_Technique::Load_glUniform(Matrices_Location& Mat_Loc, Ma
 
 
 
-unsigned int TwoPass_RayCasting_Technique::createTexture(int w, int h, bool isDepth)
+unsigned int Technique_TwoPass_Raycasting::createTexture(int w, int h, bool isDepth)
 {
     unsigned int textureID;
 

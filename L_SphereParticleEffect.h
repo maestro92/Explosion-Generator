@@ -2,6 +2,9 @@
 #define _L_SPHERE_PARTICLE_EFFECT_H_
 
 #include "pipeline.h"
+#include "EG_Technique.h"
+#include "EG_Technique_Shadow_Render.h"
+#include "EG_Technique_TwoPass_RayCasting.h"
 #include "sceneLoader.h"
 #include "L_ParticleEffect_Interface.h"
 #include <cstdlib>
@@ -37,12 +40,14 @@ class L_SphereParticleEffect : public L_ParticleEffect_Interface
 
 
         void UpdateParticleEffect(float dt);
-        void DrawParticleCube();
         void DrawParticleCube(pipeline &m_pipeline, unsigned int shaderID, meshLoader* mymesh);
+        void DrawParticleCube(pipeline &m_pipeline, meshLoader* mymesh);
 
         void update(bool toggle = false);
         void show(bool toggle = false);
+        void show(pipeline &m_pipeline, Technique* RenderTechnique, int RenderTypeID, int RenderPassID, meshLoader* mymesh);
         void show(pipeline &m_pipeline,  unsigned int shaderID , meshLoader* mymesh);
+
         void Reset();
 
         void ExamineParticleAttribute();

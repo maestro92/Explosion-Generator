@@ -4,21 +4,6 @@ Shader Compile Status:
 
 Shader Compile Status: 
 
-vs: shadow_FirstRender.vs, fs: shadow_FirstRender.fs
-Shader Compile Status: 
-
-Shader Compile Status: 
-
-vs: shadow_SecondRender.vs, fs: shadow_SecondRender.fs
-Shader Compile Status: 
-
-Shader Compile Status: 
-
-vs: Depth_CameraRender.vs, fs: Depth_CameraRender.fs
-Shader Compile Status: 
-
-Shader Compile Status: 
-
 vs: Reflection.vs, fs: Reflection.frag
 Shader Compile Status: 
 
@@ -91,6 +76,48 @@ Shader Compile Status:
 Shader Compile Status: 
 
 in CreatePointVbo
+vs: shadow_FirstRender.vs, fs: shadow_FirstRender.fs
+Shader Compile Status: 
+
+Shader Compile Status: 
+
+vs: shadow_SecondRender.vs, fs: shadow_SecondRender.fs
+Shader Compile Status: 
+
+Shader Compile Status: 
+
+Error in Init_Shader
+Error in Init_Shader
+Error in Init_Shader
+Error in Init_Shader
+vs: TwoPass.vs, gs:TwoPass.Cube, fs: TwoPass.Intervals
+Shader Compile Status: 
+
+Shader Compile Status: 
+
+Shader Compile Status: 
+
+vs: TwoPass.vs, gs:TwoPass.Cube, fs: TwoPass.Intervals
+Shader Compile Status: 
+
+Shader Compile Status: 
+
+Shader Compile Status: 
+
+vs: TwoPass.vs, gs:TwoPass.Cube, fs: TwoPass_Depth.fs
+Shader Compile Status: 
+
+Shader Compile Status: 
+
+Shader Compile Status: 
+
+vs: TwoPass.vs, gs:TwoPass.Fullscreen, fs: TwoPass.Raycast
+Shader Compile Status: 
+
+Shader Compile Status: 
+
+Shader Compile Status: 
+
 vs: TwoPass.vs, gs:TwoPass.Cube, fs: TwoPass.Intervals
 Shader Compile Status: 
 
@@ -99,24 +126,27 @@ Shader Compile Status:
 Shader Compile Status: 
 
 Error in Init_Shader
-vs: TwoPass.vs, gs:TwoPass.Cube, fs: TwoPass_Depth.fs
-Shader Compile Status: 
-
-Shader Compile Status: 
-
-Shader Compile Status: 
-
-Error in Init_Shader
-vs: TwoPass.vs, gs:TwoPass.Fullscreen, fs: TwoPass.Raycast
-Shader Compile Status: 
-
-Shader Compile Status: 
-
-Shader Compile Status: 
-
 Error in Init_Shader
 Error happened while loading the texture: 1286
+vs: Depth_CameraRender.vs, fs: Depth_CameraRender.fs
+Shader Compile Status: 
+
+Shader Compile Status: 
+
+Error in Init_Shader
+vs: Reflection.vs, fs: Reflection.frag
+Shader Compile Status: 
+
+Shader Compile Status: 
+
+Error in Init_Shader
 Nor oepened1
+vs: skybox.vs, fs: skybox.frag
+Shader Compile Status: 
+
+Shader Compile Status: 
+
+Error in Init_Shader
 model_path ./models/
 m_str ./models/shadow.obj
 model_path ./models/
@@ -137,151 +167,1393 @@ Start
 advecting
 advecting
 advecting
+delay is 89
 advecting
 Advect3D Unable to attach color buffer
 0
 advecting
 advecting
+delay is 5
+advecting
+Advect3D Unable to attach color buffer
+0
+advecting
+advecting
+delay is 2
+advecting
+Advect3D Unable to attach color buffer
+0
+advecting
+advecting
+delay is 17
+advecting
+Advect3D Unable to attach color buffer
+0
+advecting
+advecting
+delay is 90
+advecting
+Advect3D Unable to attach color buffer
+0
+advecting
+advecting
+delay is 76
+advecting
+Advect3D Unable to attach color buffer
+0
+advecting
+advecting
+delay is 67
+advecting
+Advect3D Unable to attach color buffer
+0
+advecting
+advecting
+delay is 66
+advecting
+Advect3D Unable to attach color buffer
+0
+advecting
+advecting
+delay is 65
+advecting
+Advect3D Unable to attach color buffer
+0
+advecting
+advecting
+delay is 66
+advecting
+Advect3D Unable to attach color buffer
+0
+advecting
+advecting
+delay is 65
+advecting
+Advect3D Unable to attach color buffer
+0
+advecting
+advecting
+delay is 76
+advecting
+Advect3D Unable to attach color buffer
+0
+advecting
+advecting
+delay is 53
+advecting
+Advect3D Unable to attach color buffer
+0
+advecting
+advecting
+delay is 65
+advecting
+Advect3D Unable to attach color buffer
+0
+advecting
+advecting
+delay is 66
+advecting
+Advect3D Unable to attach color buffer
+0
+advecting
+advecting
+delay is 62
+advecting
+Advect3D Unable to attach color buffer
+0
+advecting
+advecting
+delay is 67
+advecting
+Advect3D Unable to attach color buffer
+0
+advecting
+advecting
+delay is 65
+advecting
+Advect3D Unable to attach color buffer
+0
+advecting
+advecting
+delay is 66
+advecting
+Advect3D Unable to attach color buffer
+0
+advecting
+advecting
+delay is 65
+advecting
+Advect3D Unable to attach color buffer
+0
+advecting
+advecting
+delay is 66
+advecting
+Advect3D Unable to attach color buffer
+0
+advecting
+advecting
+delay is 65
+advecting
+Advect3D Unable to attach color buffer
+0
+advecting
+advecting
+delay is 67
+advecting
+Advect3D Unable to attach color buffer
+0
+advecting
+advecting
+delay is 67
+advecting
+Advect3D Unable to attach color buffer
+0
+advecting
+advecting
+delay is 67
+advecting
+Advect3D Unable to attach color buffer
+0
+advecting
+advecting
+delay is 79
+advecting
+Advect3D Unable to attach color buffer
+0
+advecting
+advecting
+delay is 49
+advecting
+Advect3D Unable to attach color buffer
+0
+advecting
+advecting
+delay is 65
+advecting
+Advect3D Unable to attach color buffer
+0
+advecting
+advecting
+delay is 65
+advecting
+Advect3D Unable to attach color buffer
+0
+advecting
+advecting
+delay is 65
+advecting
+Advect3D Unable to attach color buffer
+0
+advecting
+advecting
+delay is 65
+advecting
+Advect3D Unable to attach color buffer
+0
+advecting
+advecting
+delay is 62
+advecting
+Advect3D Unable to attach color buffer
+0
+advecting
+advecting
+delay is 65
+advecting
+Advect3D Unable to attach color buffer
+0
+advecting
+advecting
+delay is 63
+advecting
+Advect3D Unable to attach color buffer
+0
+advecting
+advecting
+delay is 62
+advecting
+Advect3D Unable to attach color buffer
+0
+advecting
+advecting
+delay is 62
+advecting
+Advect3D Unable to attach color buffer
+0
+advecting
+advecting
+delay is 64
+advecting
+Advect3D Unable to attach color buffer
+0
+advecting
+advecting
+delay is 62
+advecting
+Advect3D Unable to attach color buffer
+0
+advecting
+advecting
+delay is 64
+advecting
+Advect3D Unable to attach color buffer
+0
+advecting
+advecting
+delay is 64
+advecting
+Advect3D Unable to attach color buffer
+0
+advecting
+advecting
+delay is 2
+advecting
+Advect3D Unable to attach color buffer
+0
+advecting
+advecting
+delay is 2
+advecting
+Advect3D Unable to attach color buffer
+0
+advecting
+advecting
+delay is 2
+advecting
+Advect3D Unable to attach color buffer
+0
+advecting
+advecting
+delay is 57
+advecting
+Advect3D Unable to attach color buffer
+0
+advecting
+advecting
+delay is 64
+advecting
+Advect3D Unable to attach color buffer
+0
+advecting
+advecting
+delay is 63
 clicking left
 advecting
 Advect3D Unable to attach color buffer
 0
 advecting
 advecting
+delay is 64
 advecting
 Advect3D Unable to attach color buffer
 0
 advecting
 advecting
-advecting
-Advect3D Unable to attach color buffer
-0
-advecting
-advecting
+delay is 63
 clicking Up left
 advecting
 Advect3D Unable to attach color buffer
 0
 advecting
 advecting
+delay is 62
 advecting
 Advect3D Unable to attach color buffer
 0
 advecting
 advecting
+delay is 44
 advecting
 Advect3D Unable to attach color buffer
 0
 advecting
 advecting
+delay is 43
 advecting
 Advect3D Unable to attach color buffer
 0
 advecting
 advecting
+delay is 43
 advecting
 Advect3D Unable to attach color buffer
 0
 advecting
 advecting
+delay is 45
 advecting
 Advect3D Unable to attach color buffer
 0
 advecting
 advecting
+delay is 46
 advecting
 Advect3D Unable to attach color buffer
 0
 advecting
 advecting
+delay is 44
 advecting
 Advect3D Unable to attach color buffer
 0
 advecting
 advecting
+delay is 45
 advecting
 Advect3D Unable to attach color buffer
 0
 advecting
 advecting
+delay is 45
 advecting
 Advect3D Unable to attach color buffer
 0
 advecting
 advecting
+delay is 44
 advecting
 Advect3D Unable to attach color buffer
 0
 advecting
 advecting
+delay is 46
 advecting
 Advect3D Unable to attach color buffer
 0
 advecting
 advecting
+delay is 45
 advecting
 Advect3D Unable to attach color buffer
 0
 advecting
 advecting
+delay is 45
 advecting
 Advect3D Unable to attach color buffer
 0
 advecting
 advecting
+delay is 46
 advecting
 Advect3D Unable to attach color buffer
 0
 advecting
 advecting
+delay is 47
 advecting
 Advect3D Unable to attach color buffer
 0
 advecting
 advecting
+delay is 52
 advecting
 Advect3D Unable to attach color buffer
 0
 advecting
 advecting
+delay is 51
 advecting
 Advect3D Unable to attach color buffer
 0
 advecting
 advecting
+delay is 54
 advecting
 Advect3D Unable to attach color buffer
 0
 advecting
 advecting
+delay is 54
 advecting
 Advect3D Unable to attach color buffer
 0
 advecting
 advecting
+delay is 57
 advecting
 Advect3D Unable to attach color buffer
 0
 advecting
 advecting
+delay is 58
 advecting
 Advect3D Unable to attach color buffer
 0
 advecting
 advecting
+delay is 56
 advecting
 Advect3D Unable to attach color buffer
 0
 advecting
 advecting
+delay is 55
 advecting
 Advect3D Unable to attach color buffer
 0
 advecting
 advecting
+delay is 55
 advecting
 Advect3D Unable to attach color buffer
 0
 advecting
 advecting
+delay is 56
+advecting
+Advect3D Unable to attach color buffer
+0
+advecting
+advecting
+delay is 55
+advecting
+Advect3D Unable to attach color buffer
+0
+advecting
+advecting
+delay is 56
+advecting
+Advect3D Unable to attach color buffer
+0
+advecting
+advecting
+delay is 55
+advecting
+Advect3D Unable to attach color buffer
+0
+advecting
+advecting
+delay is 55
+advecting
+Advect3D Unable to attach color buffer
+0
+advecting
+advecting
+delay is 56
+advecting
+Advect3D Unable to attach color buffer
+0
+advecting
+advecting
+delay is 54
+advecting
+Advect3D Unable to attach color buffer
+0
+advecting
+advecting
+delay is 53
+advecting
+Advect3D Unable to attach color buffer
+0
+advecting
+advecting
+delay is 48
+advecting
+Advect3D Unable to attach color buffer
+0
+advecting
+advecting
+delay is 41
+advecting
+Advect3D Unable to attach color buffer
+0
+advecting
+advecting
+delay is 40
+advecting
+Advect3D Unable to attach color buffer
+0
+advecting
+advecting
+delay is 40
+advecting
+Advect3D Unable to attach color buffer
+0
+advecting
+advecting
+delay is 39
+advecting
+Advect3D Unable to attach color buffer
+0
+advecting
+advecting
+delay is 39
+advecting
+Advect3D Unable to attach color buffer
+0
+advecting
+advecting
+delay is 39
+advecting
+Advect3D Unable to attach color buffer
+0
+advecting
+advecting
+delay is 40
+advecting
+Advect3D Unable to attach color buffer
+0
+advecting
+advecting
+delay is 41
+advecting
+Advect3D Unable to attach color buffer
+0
+advecting
+advecting
+delay is 40
+advecting
+Advect3D Unable to attach color buffer
+0
+advecting
+advecting
+delay is 39
+advecting
+Advect3D Unable to attach color buffer
+0
+advecting
+advecting
+delay is 40
+advecting
+Advect3D Unable to attach color buffer
+0
+advecting
+advecting
+delay is 40
+advecting
+Advect3D Unable to attach color buffer
+0
+advecting
+advecting
+delay is 40
+advecting
+Advect3D Unable to attach color buffer
+0
+advecting
+advecting
+delay is 39
+advecting
+Advect3D Unable to attach color buffer
+0
+advecting
+advecting
+delay is 39
+advecting
+Advect3D Unable to attach color buffer
+0
+advecting
+advecting
+delay is 40
+advecting
+Advect3D Unable to attach color buffer
+0
+advecting
+advecting
+delay is 40
+advecting
+Advect3D Unable to attach color buffer
+0
+advecting
+advecting
+delay is 39
+advecting
+Advect3D Unable to attach color buffer
+0
+advecting
+advecting
+delay is 39
+advecting
+Advect3D Unable to attach color buffer
+0
+advecting
+advecting
+delay is 40
+advecting
+Advect3D Unable to attach color buffer
+0
+advecting
+advecting
+delay is 39
+advecting
+Advect3D Unable to attach color buffer
+0
+advecting
+advecting
+delay is 40
+advecting
+Advect3D Unable to attach color buffer
+0
+advecting
+advecting
+delay is 40
+advecting
+Advect3D Unable to attach color buffer
+0
+advecting
+advecting
+delay is 40
+advecting
+Advect3D Unable to attach color buffer
+0
+advecting
+advecting
+delay is 39
+advecting
+Advect3D Unable to attach color buffer
+0
+advecting
+advecting
+delay is 40
+advecting
+Advect3D Unable to attach color buffer
+0
+advecting
+advecting
+delay is 42
+advecting
+Advect3D Unable to attach color buffer
+0
+advecting
+advecting
+delay is 39
+advecting
+Advect3D Unable to attach color buffer
+0
+advecting
+advecting
+delay is 39
+advecting
+Advect3D Unable to attach color buffer
+0
+advecting
+advecting
+delay is 40
+advecting
+Advect3D Unable to attach color buffer
+0
+advecting
+advecting
+delay is 41
+advecting
+Advect3D Unable to attach color buffer
+0
+advecting
+advecting
+delay is 40
+advecting
+Advect3D Unable to attach color buffer
+0
+advecting
+advecting
+delay is 40
+advecting
+Advect3D Unable to attach color buffer
+0
+advecting
+advecting
+delay is 38
+advecting
+Advect3D Unable to attach color buffer
+0
+advecting
+advecting
+delay is 39
+advecting
+Advect3D Unable to attach color buffer
+0
+advecting
+advecting
+delay is 41
+advecting
+Advect3D Unable to attach color buffer
+0
+advecting
+advecting
+delay is 43
+advecting
+Advect3D Unable to attach color buffer
+0
+advecting
+advecting
+delay is 40
+advecting
+Advect3D Unable to attach color buffer
+0
+advecting
+advecting
+delay is 40
+advecting
+Advect3D Unable to attach color buffer
+0
+advecting
+advecting
+delay is 39
+advecting
+Advect3D Unable to attach color buffer
+0
+advecting
+advecting
+delay is 40
+advecting
+Advect3D Unable to attach color buffer
+0
+advecting
+advecting
+delay is 40
+advecting
+Advect3D Unable to attach color buffer
+0
+advecting
+advecting
+delay is 38
+advecting
+Advect3D Unable to attach color buffer
+0
+advecting
+advecting
+delay is 40
+advecting
+Advect3D Unable to attach color buffer
+0
+advecting
+advecting
+delay is 39
+advecting
+Advect3D Unable to attach color buffer
+0
+advecting
+advecting
+delay is 40
+advecting
+Advect3D Unable to attach color buffer
+0
+advecting
+advecting
+delay is 40
+advecting
+Advect3D Unable to attach color buffer
+0
+advecting
+advecting
+delay is 41
+advecting
+Advect3D Unable to attach color buffer
+0
+advecting
+advecting
+delay is 40
+advecting
+Advect3D Unable to attach color buffer
+0
+advecting
+advecting
+delay is 40
+advecting
+Advect3D Unable to attach color buffer
+0
+advecting
+advecting
+delay is 41
+advecting
+Advect3D Unable to attach color buffer
+0
+advecting
+advecting
+delay is 40
+advecting
+Advect3D Unable to attach color buffer
+0
+advecting
+advecting
+delay is 39
+advecting
+Advect3D Unable to attach color buffer
+0
+advecting
+advecting
+delay is 39
+advecting
+Advect3D Unable to attach color buffer
+0
+advecting
+advecting
+delay is 40
+advecting
+Advect3D Unable to attach color buffer
+0
+advecting
+advecting
+delay is 41
+advecting
+Advect3D Unable to attach color buffer
+0
+advecting
+advecting
+delay is 40
+advecting
+Advect3D Unable to attach color buffer
+0
+advecting
+advecting
+delay is 39
+advecting
+Advect3D Unable to attach color buffer
+0
+advecting
+advecting
+delay is 38
+advecting
+Advect3D Unable to attach color buffer
+0
+advecting
+advecting
+delay is 40
+advecting
+Advect3D Unable to attach color buffer
+0
+advecting
+advecting
+delay is 41
+advecting
+Advect3D Unable to attach color buffer
+0
+advecting
+advecting
+delay is 40
+advecting
+Advect3D Unable to attach color buffer
+0
+advecting
+advecting
+delay is 39
+advecting
+Advect3D Unable to attach color buffer
+0
+advecting
+advecting
+delay is 39
+advecting
+Advect3D Unable to attach color buffer
+0
+advecting
+advecting
+delay is 40
+advecting
+Advect3D Unable to attach color buffer
+0
+advecting
+advecting
+delay is 40
+advecting
+Advect3D Unable to attach color buffer
+0
+advecting
+advecting
+delay is 40
+advecting
+Advect3D Unable to attach color buffer
+0
+advecting
+advecting
+delay is 40
+advecting
+Advect3D Unable to attach color buffer
+0
+advecting
+advecting
+delay is 40
+advecting
+Advect3D Unable to attach color buffer
+0
+advecting
+advecting
+delay is 41
+advecting
+Advect3D Unable to attach color buffer
+0
+advecting
+advecting
+delay is 41
+advecting
+Advect3D Unable to attach color buffer
+0
+advecting
+advecting
+delay is 39
+advecting
+Advect3D Unable to attach color buffer
+0
+advecting
+advecting
+delay is 39
+advecting
+Advect3D Unable to attach color buffer
+0
+advecting
+advecting
+delay is 40
+advecting
+Advect3D Unable to attach color buffer
+0
+advecting
+advecting
+delay is 41
+advecting
+Advect3D Unable to attach color buffer
+0
+advecting
+advecting
+delay is 39
+advecting
+Advect3D Unable to attach color buffer
+0
+advecting
+advecting
+delay is 38
+advecting
+Advect3D Unable to attach color buffer
+0
+advecting
+advecting
+delay is 39
+advecting
+Advect3D Unable to attach color buffer
+0
+advecting
+advecting
+delay is 39
+advecting
+Advect3D Unable to attach color buffer
+0
+advecting
+advecting
+delay is 40
+advecting
+Advect3D Unable to attach color buffer
+0
+advecting
+advecting
+delay is 38
+advecting
+Advect3D Unable to attach color buffer
+0
+advecting
+advecting
+delay is 38
+advecting
+Advect3D Unable to attach color buffer
+0
+advecting
+advecting
+delay is 40
+advecting
+Advect3D Unable to attach color buffer
+0
+advecting
+advecting
+delay is 43
+advecting
+Advect3D Unable to attach color buffer
+0
+advecting
+advecting
+delay is 48
+advecting
+Advect3D Unable to attach color buffer
+0
+advecting
+advecting
+delay is 51
+advecting
+Advect3D Unable to attach color buffer
+0
+advecting
+advecting
+delay is 54
+advecting
+Advect3D Unable to attach color buffer
+0
+advecting
+advecting
+delay is 55
+advecting
+Advect3D Unable to attach color buffer
+0
+advecting
+advecting
+delay is 59
+advecting
+Advect3D Unable to attach color buffer
+0
+advecting
+advecting
+delay is 60
+advecting
+Advect3D Unable to attach color buffer
+0
+advecting
+advecting
+delay is 61
+advecting
+Advect3D Unable to attach color buffer
+0
+advecting
+advecting
+delay is 60
+advecting
+Advect3D Unable to attach color buffer
+0
+advecting
+advecting
+delay is 57
+advecting
+Advect3D Unable to attach color buffer
+0
+advecting
+advecting
+delay is 57
+advecting
+Advect3D Unable to attach color buffer
+0
+advecting
+advecting
+delay is 57
+advecting
+Advect3D Unable to attach color buffer
+0
+advecting
+advecting
+delay is 57
+advecting
+Advect3D Unable to attach color buffer
+0
+advecting
+advecting
+delay is 56
+advecting
+Advect3D Unable to attach color buffer
+0
+advecting
+advecting
+delay is 56
+advecting
+Advect3D Unable to attach color buffer
+0
+advecting
+advecting
+delay is 56
+advecting
+Advect3D Unable to attach color buffer
+0
+advecting
+advecting
+delay is 54
+advecting
+Advect3D Unable to attach color buffer
+0
+advecting
+advecting
+delay is 54
+advecting
+Advect3D Unable to attach color buffer
+0
+advecting
+advecting
+delay is 56
+advecting
+Advect3D Unable to attach color buffer
+0
+advecting
+advecting
+delay is 53
+advecting
+Advect3D Unable to attach color buffer
+0
+advecting
+advecting
+delay is 54
+advecting
+Advect3D Unable to attach color buffer
+0
+advecting
+advecting
+delay is 54
+advecting
+Advect3D Unable to attach color buffer
+0
+advecting
+advecting
+delay is 53
+advecting
+Advect3D Unable to attach color buffer
+0
+advecting
+advecting
+delay is 53
+advecting
+Advect3D Unable to attach color buffer
+0
+advecting
+advecting
+delay is 53
+advecting
+Advect3D Unable to attach color buffer
+0
+advecting
+advecting
+delay is 53
+advecting
+Advect3D Unable to attach color buffer
+0
+advecting
+advecting
+delay is 52
+advecting
+Advect3D Unable to attach color buffer
+0
+advecting
+advecting
+delay is 52
+advecting
+Advect3D Unable to attach color buffer
+0
+advecting
+advecting
+delay is 53
+advecting
+Advect3D Unable to attach color buffer
+0
+advecting
+advecting
+delay is 51
+advecting
+Advect3D Unable to attach color buffer
+0
+advecting
+advecting
+delay is 51
+advecting
+Advect3D Unable to attach color buffer
+0
+advecting
+advecting
+delay is 52
+advecting
+Advect3D Unable to attach color buffer
+0
+advecting
+advecting
+delay is 51
+advecting
+Advect3D Unable to attach color buffer
+0
+advecting
+advecting
+delay is 51
+advecting
+Advect3D Unable to attach color buffer
+0
+advecting
+advecting
+delay is 51
+advecting
+Advect3D Unable to attach color buffer
+0
+advecting
+advecting
+delay is 51
+advecting
+Advect3D Unable to attach color buffer
+0
+advecting
+advecting
+delay is 50
+advecting
+Advect3D Unable to attach color buffer
+0
+advecting
+advecting
+delay is 50
+advecting
+Advect3D Unable to attach color buffer
+0
+advecting
+advecting
+delay is 50
+advecting
+Advect3D Unable to attach color buffer
+0
+advecting
+advecting
+delay is 50
+advecting
+Advect3D Unable to attach color buffer
+0
+advecting
+advecting
+delay is 49
+advecting
+Advect3D Unable to attach color buffer
+0
+advecting
+advecting
+delay is 49
+advecting
+Advect3D Unable to attach color buffer
+0
+advecting
+advecting
+delay is 48
+advecting
+Advect3D Unable to attach color buffer
+0
+advecting
+advecting
+delay is 49
+advecting
+Advect3D Unable to attach color buffer
+0
+advecting
+advecting
+delay is 48
+advecting
+Advect3D Unable to attach color buffer
+0
+advecting
+advecting
+delay is 49
+advecting
+Advect3D Unable to attach color buffer
+0
+advecting
+advecting
+delay is 48
+advecting
+Advect3D Unable to attach color buffer
+0
+advecting
+advecting
+delay is 48
+advecting
+Advect3D Unable to attach color buffer
+0
+advecting
+advecting
+delay is 48
+advecting
+Advect3D Unable to attach color buffer
+0
+advecting
+advecting
+delay is 49
+advecting
+Advect3D Unable to attach color buffer
+0
+advecting
+advecting
+delay is 47
+advecting
+Advect3D Unable to attach color buffer
+0
+advecting
+advecting
+delay is 48
+advecting
+Advect3D Unable to attach color buffer
+0
+advecting
+advecting
+delay is 47
+advecting
+Advect3D Unable to attach color buffer
+0
+advecting
+advecting
+delay is 48
+advecting
+Advect3D Unable to attach color buffer
+0
+advecting
+advecting
+delay is 47
+advecting
+Advect3D Unable to attach color buffer
+0
+advecting
+advecting
+delay is 47
+advecting
+Advect3D Unable to attach color buffer
+0
+advecting
+advecting
+delay is 46
+advecting
+Advect3D Unable to attach color buffer
+0
+advecting
+advecting
+delay is 47
+advecting
+Advect3D Unable to attach color buffer
+0
+advecting
+advecting
+delay is 47
+advecting
+Advect3D Unable to attach color buffer
+0
+advecting
+advecting
+delay is 48
+advecting
+Advect3D Unable to attach color buffer
+0
+advecting
+advecting
+delay is 47
+advecting
+Advect3D Unable to attach color buffer
+0
+advecting
+advecting
+delay is 46
+advecting
+Advect3D Unable to attach color buffer
+0
+advecting
+advecting
+delay is 46
+advecting
+Advect3D Unable to attach color buffer
+0
+advecting
+advecting
+delay is 46
+advecting
+Advect3D Unable to attach color buffer
+0
+advecting
+advecting
+delay is 45
+advecting
+Advect3D Unable to attach color buffer
+0
+advecting
+advecting
+delay is 46
+advecting
+Advect3D Unable to attach color buffer
+0
+advecting
+advecting
+delay is 46
+advecting
+Advect3D Unable to attach color buffer
+0
+advecting
+advecting
+delay is 48
 Terminating normally.

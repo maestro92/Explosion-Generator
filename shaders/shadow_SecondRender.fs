@@ -6,6 +6,7 @@ uniform vec3 LightPosition;         //Light's actual position
 in vec4 lightVertexPosition;        // vertex seen in light's clip space
  
 in vec3 outNormal;
+in vec3 outTangent;
 in vec3 outColor;
 in vec3 LightPosition_EyeSpace;
 in vec3 position;

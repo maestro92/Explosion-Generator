@@ -18,7 +18,6 @@ Smoke::~Smoke()
 
 void Smoke::init()
 {
-
     glGenFramebuffers(1, &fbo);
     glBindFramebuffer(GL_FRAMEBUFFER, fbo);
 
@@ -31,6 +30,37 @@ void Smoke::init()
     Eulerian3D_ComputeDivergence = new shader("3D_Eulerian_Vertex.vs", "3D_Eulerian_PickLayer.gs", "3D_Eulerian_ComputeDivergence.fs");
     Eulerian3D_ApplyImpulse = new shader("3D_Eulerian_Vertex.vs", "3D_Eulerian_PickLayer.gs", "3D_Eulerian_ApplyImpulse.fs");
     Eulerian3D_ApplyBuoyancy = new shader("3D_Eulerian_Vertex.vs", "3D_Eulerian_PickLayer.gs", "3D_Eulerian_Buoyancy.fs");
+
+    Advect3D_Location.InverseSize = GetUniform(Eulerian3D_Advect->getProgramId(), "InverseSize");
+    Advect3D_Location.TimeStep = GetUniform(Eulerian3D_Advect->getProgramId(), "TimeStep");
+    Advect3D_Location.Dissipation = GetUniform(Eulerian3D_Advect->getProgramId(), "Dissipation");
+    Advect3D_Location.SourceTexture = GetUniform(Eulerian3D_Advect->getProgramId(), "SourceTexture");
+    Advect3D_Location.Obstacles = GetUniform(Eulerian3D_Advect->getProgramId(), "Obstacles");
+
+    Jacobi3D_Location.Alpha = GetUniform(Eulerian3D_Jacobi->getProgramId(), "Alpha");
+    Jacobi3D_Location.InverseBeta = GetUniform(Eulerian3D_Jacobi->getProgramId(), "InverseBeta");
+    Jacobi3D_Location.Divergence = GetUniform(Eulerian3D_Jacobi->getProgramId(), "Divergence");
+    Jacobi3D_Location.Obstacles = GetUniform(Eulerian3D_Jacobi->getProgramId(), "Obstacles");
+
+    SubtractGradient3D_Location.GradientScale = GetUniform(Eulerian3D_SubtractGradient, "GradientScale");
+    SubtractGradient3D_Location.HalfInverseCellSize = GetUniform(Eulerian3D_SubtractGradient, "HalfInverseCellSize");
+    SubtractGradient3D_Location.Pressure = GetUniform(Eulerian3D_SubtractGradient, "Pressure");
+    SubtractGradient3D_Location.Obstacles = GetUniform(Eulerian3D_SubtractGradient, "Obstacles");
+
+    ComputeDivergence3D_Location.HalfInverseCellSize = GetUniform(Eulerian3D_ComputeDivergence, "HalfInverseCellSize");
+    ComputeDivergence3D_Location.Obstacles = GetUniform(Eulerian3D_ComputeDivergence, "Obstacles");
+
+    ApplyBuoyancy3D_Location.Temperature = GetUniform(Eulerian3D_ApplyBuoyancy, "Temperature");
+    ApplyBuoyancy3D_Location.Density = GetUniform(Eulerian3D_ApplyBuoyancy, "Density");
+    ApplyBuoyancy3D_Location.AmbientTemperature = GetUniform(Eulerian3D_ApplyBuoyancy, "AmbientTemperature");
+    ApplyBuoyancy3D_Location.TimeStep = GetUniform(Eulerian3D_ApplyBuoyancy, "TimeStep");
+    ApplyBuoyancy3D_Location.Sigma = GetUniform(Eulerian3D_ApplyBuoyancy, "Sigma");
+    ApplyBuoyancy3D_Location.Kappa = GetUniform(Eulerian3D_ApplyBuoyancy, "Kappa");
+
+    ApplyImpulse3D_Location.Point = GetUniform(Eulerian3D_ApplyImpulse, "Point");
+    ApplyImpulse3D_Location.Radius = GetUniform(Eulerian3D_ApplyImpulse, "Radius");
+    ApplyImpulse3D_Location.FillColor = GetUniform(Eulerian3D_ApplyImpulse, "FillColor");
+
 
 
     myVbos.CubeCenter = CreatePointVbo(0,0,0);
@@ -518,12 +548,19 @@ void Smoke::ResetState()
 void Smoke::Advect3D_SameFBO(SurfacePod velocity, SurfacePod source, SurfacePod obstacles, SurfacePod dest, float dissipation, GLuint p)
 {
     glUseProgram(p);
-
+/*
     SetUniform(p, "InverseSize", glm::vec3( float(1.0f/float(GridWidth)), float(1.0f/float(GridHeight)), float(1.0f/float(GridDepth))) );
     SetUniform(p, "TimeStep", TimeStep);
     SetUniform(p, "Dissipation", dissipation);
     SetUniform(p, "SourceTexture", 1);
     SetUniform(p, "Obstacles", 2);
+*/
+
+    SetUniform(Advect3D_Location.InverseSize, glm::vec3( float(1.0f/float(GridWidth)), float(1.0f/float(GridHeight)), float(1.0f/float(GridDepth))) );
+    SetUniform(Advect3D_Location.TimeStep, TimeStep);
+    SetUniform(Advect3D_Location.Dissipation, dissipation);
+    SetUniform(Advect3D_Location.SourceTexture, 1);
+    SetUniform(Advect3D_Location.Obstacles, 2);
 
     cout << "advecting" << endl;
 
@@ -566,10 +603,18 @@ void Smoke::Jacobi3D_SameFBO(SurfacePod pressure, SurfacePod divergence, Surface
  //   GLuint p = Eulerian3D_Jacobi->getProgramId();
     glUseProgram(p);
 
+/*
     SetUniform(p, "Alpha", -CellSize * CellSize);
     SetUniform(p, "InverseBeta", 0.1666f);
     SetUniform(p, "Divergence", 1);
     SetUniform(p, "Obstacles", 2);
+*/
+
+    SetUniform(Jacobi3D_Location.Alpha, -CellSize * CellSize);
+    SetUniform(Jacobi3D_Location.InverseBeta, 0.1666f);
+    SetUniform(Jacobi3D_Location.Divergence, 1);
+    SetUniform(Jacobi3D_Location.Obstacles, 2);
+
 
     glFramebufferTexture(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, dest.ColorTexture ,0);
     if (GL_NO_ERROR != glGetError())
@@ -601,11 +646,17 @@ void Smoke::SubtractGradient3D_SameFBO(SurfacePod velocity, SurfacePod pressure,
 {
  //   GLuint p = Eulerian3D_SubtractGradient->getProgramId();
     glUseProgram(p);
-
+/*
     SetUniform(p, "GradientScale", GradientScale);
     SetUniform(p, "HalfInverseCellSize", 0.5f / CellSize);
     SetUniform(p, "Pressure", 1);
     SetUniform(p, "Obstacles", 2);
+*/
+    SetUniform(SubtractGradient3D_Location.GradientScale, GradientScale);
+    SetUniform(SubtractGradient3D_Location.HalfInverseCellSize, 0.5f / CellSize);
+    SetUniform(SubtractGradient3D_Location.Pressure, 1);
+    SetUniform(SubtractGradient3D_Location.Obstacles, 2);
+
 
     glFramebufferTexture(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, dest.ColorTexture ,0);
     if (GL_NO_ERROR != glGetError())
@@ -637,9 +688,12 @@ void Smoke::ComputeDivergence3D_SameFBO(SurfacePod velocity, SurfacePod obstacle
 {
 //    GLuint p = Eulerian3D_ComputeDivergence->getProgramId();
     glUseProgram(p);
-
+/*
     SetUniform(p, "HalfInverseCellSize", 0.5f / CellSize);
     SetUniform(p, "Obstacles", 1);
+*/
+    SetUniform(ComputeDivergence3D_Location.HalfInverseCellSize, 0.5f / CellSize);
+    SetUniform(ComputeDivergence3D_Location.Obstacles, 1);
 
     glFramebufferTexture(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, dest.ColorTexture ,0);
     if (GL_NO_ERROR != glGetError())
@@ -670,12 +724,23 @@ void Smoke::ApplyBuoyancy3D_SameFBO(SurfacePod velocity, SurfacePod temperature,
 //    GLuint p = Eulerian3D_ApplyBuoyancy->getProgramId();
     glUseProgram(p);
 
+/*
     SetUniform(p, "Temperature", 1);
     SetUniform(p, "Density", 2);
     SetUniform(p, "AmbientTemperature", AmbientTemperature);
     SetUniform(p, "TimeStep", TimeStep);
     SetUniform(p, "Sigma", SmokeBuoyancy);
     SetUniform(p, "Kappa", SmokeWeight);
+*/
+
+
+    SetUniform(ApplyBuoyancy3D_Location.Temperature, 1);
+    SetUniform(ApplyBuoyancy3D_Location.Density, 2);
+    SetUniform(ApplyBuoyancy3D_Location.AmbientTemperature, AmbientTemperature);
+    SetUniform(ApplyBuoyancy3D_Location.TimeStep, TimeStep);
+    SetUniform(ApplyBuoyancy3D_Location.Sigma, SmokeBuoyancy);
+    SetUniform(ApplyBuoyancy3D_Location.Kappa, SmokeWeight);
+
 
     glFramebufferTexture(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, dest.ColorTexture ,0);
     if (GL_NO_ERROR != glGetError())
@@ -708,9 +773,15 @@ void Smoke::ApplyImpulse3D_SameFBO(SurfacePod dest, glm::vec3 position, float va
 //    GLuint p = Eulerian3D_ApplyImpulse->getProgramId();
     glUseProgram(p);
 
+/*
     SetUniform(p, "Point", position);
     SetUniform(p, "Radius", SplatRadius);
     SetUniform(p, "FillColor", glm::vec3(value, value, value));
+*/
+
+    SetUniform(ApplyImpulse3D_Location.Point, position);
+    SetUniform(ApplyImpulse3D_Location.Radius, SplatRadius);
+    SetUniform(ApplyImpulse3D_Location.FillColor, glm::vec3(value, value, value));
 
     glFramebufferTexture(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, dest.ColorTexture ,0);
     if (GL_NO_ERROR != glGetError())
@@ -744,10 +815,50 @@ GLuint Smoke::CreatePointVbo(float x, float y, float z)
 }
 
 
+GLuint Smoke::GetUniform(shader* s, const char* name)
+{
+    GLuint location = glGetUniformLocation(s->getProgramId(), name);
+    return location;
+}
+
+
+GLuint Smoke::GetUniform(GLuint programID, const char* name)
+{
+    GLuint location = glGetUniformLocation(programID, name);
+    return location;
+}
+
+
+void Smoke::SetUniform(GLuint location, int value)
+{
+    glUniform1i(location, value);
+}
+
+void Smoke::SetUniform(GLuint location, float value)
+{
+    glUniform1f(location, value);
+}
+
+void Smoke::SetUniform(GLuint location, float x, float y)
+{
+    glUniform2f(location, x, y);
+}
+
+void Smoke::SetUniform(GLuint location, glm::vec3 value)
+{
+    glUniform3f(location, value.x, value.y, value.z);
+}
+
+void Smoke::SetUniform(GLuint location, glm::mat4 value)
+{
+    glUniformMatrix4fv(location, 1, GL_FALSE, &value[0][0]);
+}
 
 
 
 
+
+/*
 void Smoke::SetUniform(GLuint programID, const char* name, int value)
 {
     GLint location = glGetUniformLocation(programID, name);
@@ -777,7 +888,7 @@ void Smoke::SetUniform(GLuint programID, const char* name, glm::mat4 value)
     GLint location = glGetUniformLocation(programID, name);
     glUniformMatrix4fv(location, 1, GL_FALSE, &value[0][0]);
 }
-
+*/
 
 
 

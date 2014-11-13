@@ -13,7 +13,10 @@
 #include "EG_Skybox.h"
 #include "shader.h"
 #include "sceneLoader.h"
-#include "TwoPass_RayCasting_Technique.h"
+#include "EG_Technique_DepthTexture_Render.h"
+#include "EG_Technique_TwoPass_RayCasting.h"
+#include "EG_Technique_Shadow_Render.h"
+#include "EG_Technique_Reflection.h"
 
 #include "WorldBox.h"
 #include "WorldSphere.h"
@@ -43,7 +46,11 @@ using namespace std;
 class ExplosionGenerator
 {
     private:
-        TwoPass_RayCasting_Technique TwoPass_Render;
+        Technique* r_Technique;
+        Technique_Reflection r_Reflection_Render;
+        Technique_Shadow_Render r_Shadow_Render;
+        Technique_TwoPass_Raycasting r_TwoPass_Render;
+        Technique_DepthTexture_Render r_DepthTexture_Render;
 
         GLuint VBO;
         GLuint FBO;
@@ -155,9 +162,6 @@ class ExplosionGenerator
         void init_Texture_and_FrameBuffer();
 
         void MotionGL();
-
-        unsigned int loadTexture(string filename, int background = 0, bool generate=false);
-        unsigned int createTexture(int w, int h, bool isDepth = false);
 
 
         void getDepthTexture_FromLightPosion();

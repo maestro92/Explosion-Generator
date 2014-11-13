@@ -13,43 +13,30 @@
 #include <string>
 #include <sstream>
 
-#include "Technique.h"
+#include "EG_Technique.h"
 
 
 
 
-class TwoPass_RayCasting_Technique
+class Technique_TwoPass_Raycasting : public Technique
 {
     public:
-         // Matrix Locations
-        struct Matrices_Location
-        {
-            GLuint ProjectionMatrix;
-            GLuint ModelviewMatrix;
-            GLuint ViewMatrix;
-            GLuint ModelviewProjection;
-            GLuint ModelMatrix;
-            GLuint ViewNoRotateMatrix;
-        };
 
 
+        Technique_TwoPass_Raycasting();
+        ~Technique_TwoPass_Raycasting();
 
-        TwoPass_RayCasting_Technique();
-        ~TwoPass_RayCasting_Technique();
+        void init(int w, int h, int Shader_Num);
 
-        void init(int w, int h);
         void Load_glUniform(Matrices_Location& Mat_Loc, Matrices_t& Mat);
 
         void Render_TwoPass_RayCasting_1(Matrices_t& Mat);
         void Render_TwoPass_RayCasting_2(Matrices_t& Mat, GLuint depthTexture);
-        void Render_TwoPass_RayCasting_CubeDepth(Matrices_t& Mat, GLuint fbo);
-
-
-        void Render_TwoPass_RayCasting_1_draft(Matrices_t& Mat);
+    //    void Render_TwoPass_RayCasting_CubeDepth(Matrices_t& Mat, GLuint fbo);
 
         unsigned int createTexture(int w, int h, bool isDepth);
 
-  //  private:
+        //  private:
         GLuint IntervalsFbo1;   // BackFace
         GLuint IntervalsFbo2;   // FrontFace
         GLuint TextureFbo1;   // BackFace
@@ -57,11 +44,7 @@ class TwoPass_RayCasting_Technique
         GLuint TwoPass_CubeDepthTexture_Front;
         GLuint TwoPass_CubeDepthTexture_Back;
 
-
-        Matrices_Location Matrices_Loc1;
-        Matrices_Location Matrices_Loc2;
         Matrices_Location Matrices_CubeDepth;
-
 
 
         GLuint RayStartPoints_Location2;
@@ -75,7 +58,7 @@ class TwoPass_RayCasting_Technique
         shader* TwoPassRaycast;
         shader* TwoPass_CubeDepth;
 
-        void Init_Shader_GL_Location(unsigned int shaderID, Matrices_Location& Mat);
+
 
 };
 

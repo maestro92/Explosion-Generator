@@ -7,6 +7,64 @@
 #include <GL/glew.h>
 
 
+
+struct Advect3D_Location_t
+{
+    GLuint InverseSize;
+    GLuint TimeStep;
+    GLuint Dissipation;
+    GLuint SourceTexture;
+    GLuint Obstacles;
+};
+
+
+struct Jacobi3D_Location_t
+{
+    GLuint Alpha;
+    GLuint InverseBeta;
+    GLuint Divergence;
+    GLuint Obstacles;
+};
+
+
+struct SubtractGradient3D_Location_t
+{
+    GLuint GradientScale;
+    GLuint HalfInverseCellSize;
+    GLuint Pressure;
+    GLuint Obstacles;
+};
+
+
+struct ApplyImpulse3D_Location_t
+{
+    GLuint Point;
+    GLuint Radius;
+    GLuint FillColor;
+};
+
+struct ApplyBuoyancy3D_Location_t
+{
+    GLuint Temperature;
+    GLuint Density;
+    GLuint AmbientTemperature;
+    GLuint TimeStep;
+    GLuint Sigma;
+    GLuint Kappa;
+};
+
+
+struct ComputeDivergence3D_Location_t
+{
+    GLuint HalfInverseCellSize;
+    GLuint Obstacles;
+};
+
+
+
+
+
+
 struct SurfacePod {
     GLuint FboHandle;
     GLuint ColorTexture;
@@ -33,14 +91,6 @@ struct Slabs_t{
     SlabPod Temperature;
 };
 
-static struct Matrices_t{
-    glm::mat4 Projection;
-    glm::mat4 Modelview;
-    glm::mat4 Model;
-    glm::mat4 View;
-    glm::mat4 ViewNoRotate;
-    glm::mat4 ModelviewProjection;
-} Matrices;
 
 
 

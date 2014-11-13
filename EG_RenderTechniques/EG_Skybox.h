@@ -15,6 +15,7 @@
 #include "shader.h"
 #include "sceneLoader.h"
 #include "pipeline.h"
+#include "EG_Technique.h"
 
 #define NO_SDL_GLEXT
 #include <GL/glew.h>
@@ -24,16 +25,21 @@
 
 using namespace std;
 
-class EG_SkyBox
+class EG_SkyBox : public Technique
 {
     public:
+
+        shader* SkyboxShader;
+
         EG_SkyBox();
         ~EG_SkyBox();
+
+        GLuint Cubemap_UniLoc;
 
         void init();
         void RenderSkyBox(shader* skybox_shader);
         void RenderSkyBox(shader* skybox_shader, pipeline& m_pipeline);
-        void RenderSkyBox_Dynamic(shader* skybox_shader, pipeline& m_pipeline);
+  //      void RenderSkyBox_Dynamic(shader* skybox_shader, pipeline& m_pipeline);
 
         void Render_to_CubeMapFace();
         void Render_to_CubeMapTexture();

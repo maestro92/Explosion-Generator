@@ -335,29 +335,6 @@ void L_SphereParticleEffect::UpdateParticleEffect(float dt)
 }
 
 
-// http://stackoverflow.com/questions/8494942/why-does-my-color-go-away-when-i-enable-lighting-in-opengl
-void L_SphereParticleEffect::DrawParticleCube()
-{
-    static GLuint spheresList=0, torusList=0, baseList=0;
-    glEnable(GL_COLOR_MATERIAL);
-    for(int i = 0; i < e_ParticleBuffer.size(); i++)
-    {
-
-        glPushMatrix();
-            glTranslatef(e_ParticleBuffer[i].m_Position.x, e_ParticleBuffer[i].m_Position.y, e_ParticleBuffer[i].m_Position.z);
-            // draw a sphere
-            // Glint slices, Glint stacks: resolution
-            glColor3f(0,0, 5 * 0.125);
-         //   glColor3f(0,0,e_ParticleBuffer[i].m_id * 0.125);
-            gluSphere(quad,e_ParticleBuffer[i].m_fRadius,20,20);
-        glPopMatrix();
-    }
-    glDisable(GL_COLOR_MATERIAL);
-
-
-    // drawing the cubes
-    myHgrid.Draw();
-}
 
 
 
@@ -388,6 +365,32 @@ void L_SphereParticleEffect::DrawParticleCube(pipeline &m_pipeline,  unsigned in
 }
 
 
+
+// http://stackoverflow.com/questions/8494942/why-does-my-color-go-away-when-i-enable-lighting-in-opengl
+void L_SphereParticleEffect::DrawParticleCube(pipeline &m_pipeline, meshLoader* mymesh)
+{
+    /*
+    m_pipeline.matrixMode(MODEL_MATRIX);
+
+    for(int i = 0; i < e_ParticleBuffer.size(); i++)
+    {
+
+        m_pipeline.pushMatrix();
+
+            m_pipeline.translate(e_ParticleBuffer[i].m_Position.x, e_ParticleBuffer[i].m_Position.y, e_ParticleBuffer[i].m_Position.z);
+            m_pipeline.scale(e_ParticleBuffer[i].m_fRadius);
+            m_pipeline.updateMatrices(shaderID);
+            m_pipeline.updateShadowMatrix(shaderID);
+            mymesh->draw(shaderID);
+        m_pipeline.popMatrix();
+    }
+*/
+}
+
+
+
+
+
 void L_SphereParticleEffect::update(bool toggle)
 {
     UpdateParticleEffect(0.031);
@@ -396,13 +399,79 @@ void L_SphereParticleEffect::update(bool toggle)
   //   UpdateParticleCube(0.01);
 }
 
+/*
+void L_SphereParticleEffect::show(pipeline &m_pipeline, Technique* RenderTechnique, int RenderTypeID,
+                                int RenderPassID, meshLoader* mymesh)
+{
+    Technique* mytech;
+    switch(RenderTypeID)
+    {
+        case SHADOW_RENDER:
+            mytech = (Technique_Shadow_Render*) RenderTechnique;
+            break;
+        case TWOPASS_RAYCASTING_RENDER:
+            mytech = (Technique_TwoPass_Raycasting*) RenderTechnique;
+            break;
+    }
+
+
+    m_pipeline.matrixMode(MODEL_MATRIX);
+
+    for(int i = 0; i < e_ParticleBuffer.size(); i++)
+    {
+        m_pipeline.pushMatrix();
+            m_pipeline.translate(e_ParticleBuffer[i].m_Position.x, e_ParticleBuffer[i].m_Position.y, e_ParticleBuffer[i].m_Position.z);
+            m_pipeline.scale(e_ParticleBuffer[i].m_fRadius);
+            mytech->Setup_Matrix_forRender(m_pipeline, RenderPassID);
+            ((Technique_Shadow_Render*)mytech)->Setup_ShadowMatrix_forRender(m_pipeline, RenderPassID);
+      //      m_pipeline.updateMatrices(shaderID);
+      //      m_pipeline.updateShadowMatrix(shaderID);
+
+            mymesh->draw();
+        m_pipeline.popMatrix();
+    }
+
+}
+*/
+
+
+
+void L_SphereParticleEffect::show(pipeline &m_pipeline, Technique* RenderTechnique, int RenderTypeID,
+                                  int RenderPassID, meshLoader* mymesh)
+{
+    m_pipeline.matrixMode(MODEL_MATRIX);
+
+    for(int i = 0; i < e_ParticleBuffer.size(); i++)
+    {
+        m_pipeline.pushMatrix();
+            m_pipeline.translate(e_ParticleBuffer[i].m_Position.x, e_ParticleBuffer[i].m_Position.y, e_ParticleBuffer[i].m_Position.z);
+            m_pipeline.scale(e_ParticleBuffer[i].m_fRadius);
+
+      //      m_pipeline.updateMatrices(shaderID);
+      //      m_pipeline.updateShadowMatrix(shaderID);
+
+      //      RenderTechnique->Setup_Matrix_forRender(m_pipeline, RenderPassID);
+            RenderTechnique->Load_glUniform(m_pipeline, RenderPassID);
+
+            if(RenderTypeID == SHADOW_RENDER)
+                ((Technique_Shadow_Render*)RenderTechnique)->Setup_ShadowMatrix_forRender(m_pipeline, RenderPassID);
+
+            mymesh->draw();
+        m_pipeline.popMatrix();
+    }
+
+}
+
+
+
 void L_SphereParticleEffect::show(pipeline &m_pipeline,  unsigned int shaderID , meshLoader* mymesh)
 {
     DrawParticleCube(m_pipeline, shaderID, mymesh);
 }
 
+
 void L_SphereParticleEffect::show(bool toggle)
 {
-    DrawParticleCube();
+ //   DrawParticleCube();
 }
 

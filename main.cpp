@@ -75,6 +75,8 @@ vector3d lightPosition(-19.1004, 28.881, 40.5246);
 int inc_flag = 1;
 glm::vec3 ReflectiveSphere_Pos(0,5,15);
 
+// http://developer.download.nvidia.com/SDK/9.5/Samples/samples.html#gpgpu_fluid
+
 ExplosionGenerator::ExplosionGenerator()
 {
     angle = 0;
@@ -95,7 +97,12 @@ ExplosionGenerator::ExplosionGenerator()
     init_Texture_and_FrameBuffer();
 
     smoke.init();
-    TwoPass_Render.init(SCREEN_WIDTH, SCREEN_HEIGHT);
+
+
+    r_Shadow_Render.init(SCREEN_WIDTH, SCREEN_HEIGHT, 2);
+    r_TwoPass_Render.init(SCREEN_WIDTH, SCREEN_HEIGHT, 2);
+    r_DepthTexture_Render.init(1);
+    r_Reflection_Render.init(1);
 
     setupCamera();
     setupColor_Texture();
@@ -117,10 +124,8 @@ ExplosionGenerator::ExplosionGenerator()
 
 ExplosionGenerator::~ExplosionGenerator()
 {
-    delete shadow_FirstRender;
-    delete shadow_SecondRender;
+
     delete quadRenderShader;
-    delete Depth_CameraRender;
 
     delete scene;
     delete ground;
@@ -270,6 +275,8 @@ void ExplosionGenerator::init_Texture_and_FrameBuffer()
     glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_CUBE_MAP_POSITIVE_X,
                            CubeMap_ColorTextureID_Dynamic, 0);
 
+ //   glClear(GL_COLOR_BUFFER_BIT);
+
     GLenum status = glCheckFramebufferStatus(GL_FRAMEBUFFER);
     if(status != GL_FRAMEBUFFER_COMPLETE)
     {
@@ -321,9 +328,6 @@ void ExplosionGenerator::init_Shader()
 {
     // init other shaders
 	quadRenderShader=new shader("quadRender.vs","quadRender.frag"); // rendering texture as a quad
-    shadow_FirstRender = new shader("shadow_FirstRender.vs", "shadow_FirstRender.fs");
-    shadow_SecondRender = new shader("shadow_SecondRender.vs", "shadow_SecondRender.fs");
-    Depth_CameraRender = new shader("Depth_CameraRender.vs", "Depth_CameraRender.fs");
 
     ReflectionShader = new shader("Reflection.vs", "Reflection.frag");
     RefractionShader = new shader("Refraction.vs", "Refraction.frag");
@@ -336,6 +340,7 @@ void ExplosionGenerator::init_Models()
     scene = new meshLoader("shadow.obj");
     ground = new meshLoader("ground.obj");
     sphere = new meshLoader("./Sphere/sphere10_grey_flat.obj");
+//    sphere = new meshLoader("./Sphere/sphere10_grey_smooth.obj");
 //    smooth_sphere = new meshLoader("./Sphere/sphere10_grey_smooth.obj");
     smooth_sphere = new meshLoader("./Sphere/sphere_grey.obj");
     cube = new meshLoader("cube.obj");
@@ -427,7 +432,6 @@ void ExplosionGenerator::start()
                     {
                         case SDLK_ESCAPE:   running = false;    break;
                         case SDLK_z:
-                            // e_CubeEffect.Reset();
 
 #if SPHERE_EFFECT
                              l_SphereEffect.Reset();
@@ -477,18 +481,33 @@ void ExplosionGenerator::start()
                     break;
 			}
         }
+
+       //     Uint32 pre_show_time = SDL_GetTicks();
+       //     show();
+
+     //       SDL_GL_SwapBuffers();
+      //      cout << "delay is " << (SDL_GetTicks() - pre_show_time) << endl;
+
+
+/*
             update();
             show();
-
             SDL_GL_SwapBuffers();
+*/
+
+            update();
+            Uint32 pre_show_time = SDL_GetTicks();
+            show();
+            SDL_GL_SwapBuffers();
+            cout << "delay is " << (SDL_GetTicks() - pre_show_time) << endl;
 
           //  next_game_tick += INTERVAL;
          //   delay_time = next_game_tick - SDL_GetTicks();
-
+/*
             if (next_game_tick > SDL_GetTicks())
                 SDL_Delay(next_game_tick - SDL_GetTicks());
             next_game_tick = SDL_GetTicks() + INTERVAL;
-
+*/
     }
 }
 
@@ -582,21 +601,30 @@ void ExplosionGenerator::getDepthTexture_FromLightPosion()
     glFramebufferTexture2D(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_TEXTURE_2D, shadow_depthTexture, 0);
 
     glEnable(GL_DEPTH_TEST);
-    shadow_FirstRender->useShader();
+
+    r_Technique = &r_Shadow_Render;
+    r_Technique->EnableShader(RENDER_PASS1);
+
         glClear(GL_DEPTH_BUFFER_BIT);
-        m_pipeline.updateMatrices(shadow_FirstRender->getProgramId());
-        ground->draw(shadow_FirstRender->getProgramId());
+        r_Shadow_Render.Load_glUniform(m_pipeline, RENDER_PASS1);
+        ground->draw();
+
 #if SPHERE_EFFECT
-        l_SphereEffect.show(m_pipeline, shadow_FirstRender->getProgramId(), sphere);
+        l_SphereEffect.show(m_pipeline, r_Technique, SHADOW_RENDER, RENDER_PASS1, sphere);
 #endif
+
 #if CUBE_SPHERE_EFFECT
         l_Cube_SphereEffect.show(m_pipeline, shadow_FirstRender->getProgramId(), cube);
 #endif
-        m_pipeline.translate(ReflectiveSphere_Pos.x,ReflectiveSphere_Pos.y,ReflectiveSphere_Pos.z);
-        m_pipeline.updateMatrices(shadow_FirstRender->getProgramId());
-        smooth_sphere->draw(shadow_FirstRender->getProgramId());
 
-    shadow_FirstRender->delShader();
+
+        m_pipeline.translate(ReflectiveSphere_Pos.x,ReflectiveSphere_Pos.y,ReflectiveSphere_Pos.z);
+        r_Shadow_Render.Load_glUniform(m_pipeline, RENDER_PASS1);
+
+        smooth_sphere->draw();
+
+    r_Technique->DisableShader(RENDER_PASS1);
+
 
     glBindFramebuffer(GL_FRAMEBUFFER, 0);
     glDisable(GL_CULL_FACE);
@@ -670,6 +698,7 @@ void ExplosionGenerator::show()
     cam.UpdateCamera_Translation(m_pipeline);
 
 
+    r_Technique = &r_DepthTexture_Render;
     /// getting the depth of the scene
     m_pipeline.matrixMode(MODEL_MATRIX);
     glBindFramebuffer(GL_FRAMEBUFFER, FBO);
@@ -677,24 +706,28 @@ void ExplosionGenerator::show()
     glEnable(GL_DEPTH_TEST);
     glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT);
         m_pipeline.pushMatrix();
-        Depth_CameraRender->useShader();
+        r_Technique->EnableShader(RENDER_PASS1);
 
-            m_pipeline.updateMatrices(Depth_CameraRender->getProgramId());
-            ground->draw(Depth_CameraRender->getProgramId());
+            r_DepthTexture_Render.Load_glUniform(m_pipeline, RENDER_PASS1);
+            ground->draw();
 
 #if SPHERE_EFFECT
-            l_SphereEffect.show(m_pipeline, Depth_CameraRender->getProgramId(), sphere);
+            l_SphereEffect.show(m_pipeline, r_Technique, DEPTH_TEXTURE_RENDER, RENDER_PASS1, sphere);
 #endif
 #if CUBE_SPHERE_EFFECT
             l_Cube_SphereEffect.show(m_pipeline, Depth_CameraRender->getProgramId(), cube);
 #endif
-            m_pipeline.translate(ReflectiveSphere_Pos.x,ReflectiveSphere_Pos.y,ReflectiveSphere_Pos.z);
-            m_pipeline.updateMatrices(Depth_CameraRender->getProgramId());
-            smooth_sphere->draw(Depth_CameraRender->getProgramId());
 
-        Depth_CameraRender->delShader();
+            m_pipeline.translate(ReflectiveSphere_Pos.x, ReflectiveSphere_Pos.y, ReflectiveSphere_Pos.z);
+            r_DepthTexture_Render.Load_glUniform(m_pipeline, RENDER_PASS1);
+
+            smooth_sphere->draw();
+
+        r_Technique->DisableShader(RENDER_PASS1);
         m_pipeline.popMatrix();
     glBindFramebuffer(GL_FRAMEBUFFER, 0);
+
+
 
 
 
@@ -744,7 +777,7 @@ void ExplosionGenerator::show()
     glVertexAttribPointer(SlotPosition, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), 0);
 
     /// getting the Front and Back of the cube
-    TwoPass_Render.Render_TwoPass_RayCasting_1(Matrices);
+    r_TwoPass_Render.Render_TwoPass_RayCasting_1(Matrices);
 
 
 
@@ -755,7 +788,7 @@ void ExplosionGenerator::show()
     glBindTexture(GL_TEXTURE_3D, smoke.f_Slab.Density.Ping.ColorTexture);
 
     /// the volume RayCasting part
-    TwoPass_Render.Render_TwoPass_RayCasting_2(Matrices, depthTexture);
+    r_TwoPass_Render.Render_TwoPass_RayCasting_2(Matrices, depthTexture);
 #endif
 
 
@@ -823,7 +856,7 @@ void ExplosionGenerator::setupColor_Texture()
     glShadeModel( GL_SMOOTH );
 
     glEnable(GL_TEXTURE_2D);
-    textureID = loadTexture("red clay.jpg");
+    textureID = utility_function.Load_Texture("red clay.jpg");
     if(textureID == false)
     {
         cout << "textureID is NULL" << glGetError << endl;
@@ -831,79 +864,6 @@ void ExplosionGenerator::setupColor_Texture()
     }
 }
 
-
-unsigned int ExplosionGenerator::loadTexture(string filename, int background, bool generate)
-{
-    std::ifstream in(filename.c_str());
-
-    if(!in.is_open())
-    {
-        std::cout << "Nor oepened1" << std::endl;
-        return -1;
-    }
-
-    string path = filename.substr(0,(filename.find_last_of('/') != string::npos ?
-            filename.find_last_of('/')+1 : 0));
-
-    unsigned int num;
-    glGenTextures(1,&num);
-    SDL_Surface* img = IMG_Load(filename.c_str());
-    if(img == NULL)
-    {
-        cout << "Loadtexture img failed" << endl;
-        return -1;
-    }
-
-    SDL_PixelFormat pixel_format = {NULL,
-                                    32,             // converting to 32 bit pixel
-                                    4,              // number of bytes
-                                    0,0,0,0,        // byte lost
-                                    0,0,0,0,        // byte shift
-                                    0xff000000,     // red mask
-                                    0x00ff0000,     // green mask
-                                    0x0000ff00,     // blue mask
-                                    0x000000ff,     // alpha mask
-                                    0,              // color code
-                                    255};           // alpha code
-
-    // SDL_SWSURFACE means it's a software surface so we don't store it
-    // in the video card
-    // we're converting im2 to into this new SDL_PixelFormat format
-    SDL_Surface* img2 = SDL_ConvertSurface(img, &pixel_format ,SDL_SWSURFACE);
-    if(img2 == NULL)
-    {
-        cout << "img2 was not loaded" << std :: endl;
-        return -1;
-    }
-
-    // tell OpenGL we want to use this texture
-    glBindTexture(GL_TEXTURE_2D,num);       //and use the texture, we have just generated
-    glTexImage2D(GL_TEXTURE_2D,0,GL_RGBA,img->w,img->h,0,GL_RGBA,GL_UNSIGNED_INT_8_8_8_8,img2->pixels);        //we make the actual texture
-//    glTexImage2D(GL_TEXTURE_2D,0,GL_RGB,img->w,img->h,0,GL_BGR,GL_UNSIGNED_BYTE,img->pixels);        //we make the actual texture
-
-
-    if(generate)
-        glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MIN_FILTER,GL_LINEAR_MIPMAP_NEAREST); //if the texture is smaller, than the image, we get the avarege of the pixels next to it
-    else
-        // no need to Magnify the MAG_FILTER
-        glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MIN_FILTER,GL_LINEAR);
-    glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MAG_FILTER,GL_LINEAR);
-
-    // if you comment these two lines out, you will see the edges of the cube
-    if(background)
-    {
-        glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_WRAP_S,GL_CLAMP);      //we repeat the pixels in the edge of the texture, it will hide that 1px wide line at the edge of the cube, which you have seen in the video
-        glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_WRAP_T,GL_CLAMP);      //we do it for vertically and horizontally (previous line)
-    }
-
-    // openGL 3.0
-    if(generate)
-        glGenerateMipmap(GL_TEXTURE_2D);
-
-    SDL_FreeSurface(img);   //we delete the image, we don't need it anymore
-    SDL_FreeSurface(img2);
-    return num;
-}
 
 
 void ExplosionGenerator::GetLightPos_ModelView_Matrix()
@@ -920,6 +880,25 @@ void ExplosionGenerator::GetLightPos_ModelView_Matrix()
 
 void ExplosionGenerator::RenderReflectiveObjects()
 {
+
+    r_Technique = &r_Reflection_Render;
+    m_pipeline.pushMatrix();
+    r_Technique->EnableShader(RENDER_PASS1);
+        m_pipeline.translate(ReflectiveSphere_Pos.x,ReflectiveSphere_Pos.y,ReflectiveSphere_Pos.z);
+        glUniform3f( r_Reflection_Render.CameraPosition_UniformLocation, cam.getLocation().x,cam.getLocation().y,cam.getLocation().z);
+        glActiveTexture(GL_TEXTURE0);
+        glBindTexture(GL_TEXTURE_CUBE_MAP, m_skybox.Dynamic_CubeMap_ColorTextureID);
+        glUniform1i(r_Reflection_Render.CubeMap_UniformLocation,0);
+
+     //   m_pipeline.updateMatrices(ReflectionShader->getProgramId());
+        r_Reflection_Render.Load_glUniform(m_pipeline, RENDER_PASS1);
+        smooth_sphere->draw();
+
+    r_Technique->DisableShader(RENDER_PASS1);
+    m_pipeline.popMatrix();
+
+
+/*
     m_pipeline.pushMatrix();
     ReflectionShader->useShader();
         m_pipeline.translate(ReflectiveSphere_Pos.x,ReflectiveSphere_Pos.y,ReflectiveSphere_Pos.z);
@@ -935,6 +914,7 @@ void ExplosionGenerator::RenderReflectiveObjects()
 
     ReflectionShader->delShader();
     m_pipeline.popMatrix();
+*/
 }
 
 
@@ -964,7 +944,7 @@ void ExplosionGenerator::RenderSmoke()
     glVertexAttribPointer(SlotPosition, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), 0);
 
     /// getting the Front and Back of the cube
-    TwoPass_Render.Render_TwoPass_RayCasting_1(ReflectionSmoke);
+    r_TwoPass_Render.Render_TwoPass_RayCasting_1(ReflectionSmoke);
 */
 
 
@@ -975,8 +955,8 @@ void ExplosionGenerator::RenderSmoke()
     glBindTexture(GL_TEXTURE_3D, smoke.f_Slab.Density.Ping.ColorTexture);
 
     /// the volume RayCasting part
-//    TwoPass_Render.Render_TwoPass_RayCasting_2(ReflectionSmoke, depthTexture);
-    TwoPass_Render.Render_TwoPass_RayCasting_2(ReflectionSmoke, m_skybox.Dynamic_CubeMap_DepthTextureID);
+//    r_TwoPass_Render.Render_TwoPass_RayCasting_2(ReflectionSmoke, depthTexture);
+    r_TwoPass_Render.Render_TwoPass_RayCasting_2(ReflectionSmoke, m_skybox.Dynamic_CubeMap_DepthTextureID);
 #else
 /// First pass of the RayCasting
     Matrices.View = m_pipeline.getViewMatrix();
@@ -999,7 +979,7 @@ void ExplosionGenerator::RenderSmoke()
     glVertexAttribPointer(SlotPosition, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), 0);
 
     /// getting the Front and Back of the cube
-    TwoPass_Render.Render_TwoPass_RayCasting_1(Matrices);
+    r_TwoPass_Render.Render_TwoPass_RayCasting_1(Matrices);
 
 
     /// Second pass of the RayCasting
@@ -1009,7 +989,7 @@ void ExplosionGenerator::RenderSmoke()
     glBindTexture(GL_TEXTURE_3D, smoke.f_Slab.Density.Ping.ColorTexture);
 
     /// the volume RayCasting part
-    TwoPass_Render.Render_TwoPass_RayCasting_2(Matrices, depthTexture);
+    r_TwoPass_Render.Render_TwoPass_RayCasting_2(Matrices, depthTexture);
 #endif
 }
 
@@ -1019,34 +999,52 @@ void ExplosionGenerator::RenderScene()
     m_pipeline.matrixMode(MODEL_MATRIX);
     GetLightPos_ModelView_Matrix();
 
+
     /// 2nd Render pass of shadowMapping: camera's point of view
     m_pipeline.matrixMode(MODEL_MATRIX);
  //   glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT);
+
+
+
     m_pipeline.pushMatrix();
-    shadow_SecondRender->useShader();
+    r_Shadow_Render.EnableShader(RENDER_PASS2);
 
         glActiveTexture(GL_TEXTURE0);
         glBindTexture(GL_TEXTURE_2D, shadow_depthTexture);
-		glUniformMatrix4fv(glGetUniformLocation(shadow_SecondRender->getProgramId(),"lightModelViewProjectionMatrix"),1,GL_FALSE,&shadowMatrix[0][0]);
-		glUniform1i(glGetUniformLocation(shadow_SecondRender->getProgramId(),"shadowMap"),0);
 
-        glUniformMatrix4fv(glGetUniformLocation(shadow_SecondRender->getProgramId(),"LightPosition_ModelViewMatrix"),1,GL_FALSE,&LightPos_modelViewMatrix[0][0]);
-		glUniform3f(glGetUniformLocation(shadow_SecondRender->getProgramId(),"LightPosition"),lightPosition.x,lightPosition.y,lightPosition.z);
-		glUniform3f(glGetUniformLocation(shadow_SecondRender->getProgramId(),"cameraPosition"),cam.getLocation().x,cam.getLocation().y,cam.getLocation().z);
+		glUniformMatrix4fv(r_Shadow_Render.LightMVPmatrix_UniLoc,1,GL_FALSE,&shadowMatrix[0][0]);
+		glUniform1i(r_Shadow_Render.shadowMap_UniLoc,0);
 
-        m_pipeline.updateMatrices(shadow_SecondRender->getProgramId());
-        ground->draw(shadow_SecondRender->getProgramId());
+        glUniformMatrix4fv(r_Shadow_Render.LightPosition_MVmatrix_UniLoc,1,GL_FALSE,&LightPos_modelViewMatrix[0][0]);
+		glUniform3f(r_Shadow_Render.LightPosition_UniLoc,
+                        lightPosition.x,
+                        lightPosition.y,
+                        lightPosition.z);
+		glUniform3f(r_Shadow_Render.CameraPosition_UniLoc,cam.getLocation().x,cam.getLocation().y,cam.getLocation().z);
+
+        r_Shadow_Render.Setup_ShadowMatrix_forRender(m_pipeline, RENDER_PASS2);
+        r_Shadow_Render.Load_glUniform(m_pipeline, RENDER_PASS2);
+
+        ground->draw();
+
 #if SPHERE_EFFECT
-        l_SphereEffect.show(m_pipeline, shadow_SecondRender->getProgramId(), sphere);
+        r_Technique = &r_Shadow_Render;
+        l_SphereEffect.show(m_pipeline, r_Technique, SHADOW_RENDER, RENDER_PASS2, sphere);
 #endif
 #if CUBE_SPHERE_EFFECT
         l_Cube_SphereEffect.show(m_pipeline, shadow_SecondRender->getProgramId(), cube);
 #endif
-    shadow_SecondRender->delShader();
+
+
 #if CUBE_SPHERE_EFFECT
         l_Cube_SphereEffect.DrawMyHgridFrames();
 #endif
+
+
+        r_Shadow_Render.DisableShader(RENDER_PASS2);
     m_pipeline.popMatrix();
+
+
 
 }
 
@@ -1065,11 +1063,13 @@ void ExplosionGenerator::Render_to_CubeMapTexture2()
     glDisable(GL_CULL_FACE);
     glViewport(0, 0, 512, 512);
 
-    for(int i=0; i<6; i++)
+    /// for some reason if I start at i=0, the positive X face doesn't work
+    for(int i=-1; i<6; i++)
     {
         Render_to_CubeMapFace2(i);
         RenderScene();
   //      glDisable(GL_DEPTH_TEST);
+
         if(i==NEGATIVE_Z)
 //        if(i==0)
             RenderSmoke();
@@ -1159,15 +1159,30 @@ void ExplosionGenerator::Render_to_CubeMapFace2(int face)
     glVertexAttribPointer(SlotPosition, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), 0);
 
     /// getting the Front and Back of the cube
-    TwoPass_Render.Render_TwoPass_RayCasting_1_draft(ReflectionSmoke);
+    r_TwoPass_Render.Render_TwoPass_RayCasting_1(ReflectionSmoke);
+//    r_TwoPass_Render.Render_TwoPass_RayCasting_1_draft(ReflectionSmoke);
     glDisable(GL_CULL_FACE);
 ///*********************************
 
+
+
+  //  glClearColor(0.0,0.0,0.5,1.0);
+  //  glClear(GL_COLOR_BUFFER_BIT);
+
     glViewport(0,0,512,512);
+
+
+
     glBindFramebuffer(GL_FRAMEBUFFER, m_skybox.CubeMapFBO);
+
+
+
     glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_CUBE_MAP_POSITIVE_X + (int)face, m_skybox.Dynamic_CubeMap_ColorTextureID, 0);
     glFramebufferTexture2D(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_TEXTURE_2D, m_skybox.Dynamic_CubeMap_DepthTextureID, 0);
-    glClearColor(0.0,0.0,0.5,1.0);
+
+  //  if(face != POSITIVE_X)
+  //  glClearColor(0.0,0.0,0.5,1.0);
+    glClear(GL_COLOR_BUFFER_BIT);
 
     m_pipeline.matrixMode(MODEL_MATRIX);
     m_skybox.RenderSkyBox(SkyboxShader, m_pipeline);
@@ -1191,7 +1206,7 @@ void ExplosionGenerator::Render_to_CubeMapFace2(int face)
 
 
 
-
+/*
 void ExplosionGenerator::Render_to_CubeMapTexture()
 {
     glDisable(GL_CULL_FACE);
@@ -1214,6 +1229,7 @@ void ExplosionGenerator::Render_to_CubeMapTexture()
     glViewport(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
     glEnable(GL_CULL_FACE);
 }
+
 
 void ExplosionGenerator::Render_to_CubeMapFace(int face)
 {
@@ -1285,14 +1301,15 @@ void ExplosionGenerator::Render_to_CubeMapFace(int face)
     glVertexAttribPointer(SlotPosition, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), 0);
 
     /// getting the Front and Back of the cube
-   // TwoPass_Render.Render_TwoPass_RayCasting_1(ReflectionSmoke);
+   // r_TwoPass_Render.Render_TwoPass_RayCasting_1(ReflectionSmoke);
 ///*********************************
 
 
+    glClear(GL_COLOR_BUFFER_BIT);
+    glClearColor(0.0,0.0,0.5,1.0);
 
     glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_CUBE_MAP_POSITIVE_X + (int)face, m_skybox.Dynamic_CubeMap_ColorTextureID, 0);
     glFramebufferTexture2D(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_TEXTURE_2D, m_skybox.Dynamic_CubeMap_DepthTextureID, 0);
-    glClearColor(0.0,0.0,0.5,1.0);
 
     m_pipeline.matrixMode(MODEL_MATRIX);
     m_skybox.RenderSkyBox(SkyboxShader, m_pipeline);
@@ -1305,7 +1322,7 @@ void ExplosionGenerator::Render_to_CubeMapFace(int face)
     glClear(GL_DEPTH_BUFFER_BIT);
 
 }
-
+*/
 
 
 
