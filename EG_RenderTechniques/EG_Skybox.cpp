@@ -159,6 +159,30 @@ void EG_SkyBox::RenderSkyBox_Dynamic(shader* skybox_shader, pipeline& m_pipeline
 }
 */
 
+
+
+void EG_SkyBox::UpdateRotationOnly_View_Pipeline(pipeline& m_pipeline, glm::mat4 myMatrix)
+{
+    m_pipeline.pushMatrix();
+        m_pipeline.LoadMatrix(myMatrix);
+        RotationOnly_View_pipeline = m_pipeline;
+    m_pipeline.popMatrix();
+}
+
+/*
+void EG_SkyBox::UpdateRotationOnly_View_Pipeline(pipeline& m_pipeline, glm::mat4 myMatrix, float m_pitch, float m_Yaw)
+{
+    m_pipeline.pushMatrix();
+
+ //       m_pipeline.rotateX(m_pitch);
+ //       m_pipeline.rotateY(m_Yaw);
+ //       m_pipeline.matrixMode(MODEL_MATRIX);
+        m_pipeline.LoadMatrix(myMatrix);
+        RotationOnly_View_pipeline = m_pipeline;
+    m_pipeline.popMatrix();
+}
+*/
+
 void EG_SkyBox::UpdateRotationOnly_View_Pipeline(pipeline& m_pipeline)
 {
     RotationOnly_View_pipeline = m_pipeline;

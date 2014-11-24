@@ -8,9 +8,14 @@
 #include "gl/gl.h"
 #include "gl/glu.h"
 #include "vector3d.h"
+#include "define.h"
 
 class t_camera{
 	vector3d loc;
+
+    glm::quat rotation_quaternion;
+
+
 	float camPitch,camYaw;
 	float movevel;
 	float mousevel;
@@ -29,6 +34,7 @@ class t_camera{
         void Control(int mid_x, int mid_y);
 		void Control(pipeline& m_pipeline);
 		void Control(pipeline& m_pipeline, int mid_x, int mid_y);
+        void Control_MatrixBased(pipeline& m_pipeline, int mid_x, int mid_y);
 
 		void UpdateCamera();
 		void UpdateCamera(pipeline& m_pipeline);
@@ -37,6 +43,17 @@ class t_camera{
 
 
 		glm::mat4 UpdateCamera_NoRotate(pipeline& m_pipeline);
+
+
+        glm::vec3 m_eye;
+        glm::vec3 m_xAxis;
+        glm::vec3 m_yAxis;
+        glm::vec3 m_zAxis;
+        glm::vec3 m_viewDir;
+        glm::mat4 m_viewMatrix;
+        float m_accumPitchDegres;
+        void UpdateCamera_MatrixBased(glm::vec3& eye, glm::vec3& target, glm::vec3& up);
+        void UpdateCamera_MatrixBased(pipeline& m_pipeline, glm::vec3& eye, glm::vec3& target, glm::vec3& up);
 
 		vector3d getVector();
 		vector3d getLocation();

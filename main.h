@@ -9,8 +9,10 @@
 #include <sstream>
 #include "define.h"
 
+#include "EG_Camera.h"
+#include "ThirdPersonPOV_camera.h"
 #include "EG_utility.h"
-#include "EG_Skybox.h"
+#include "EG_RenderTechniques/EG_Skybox.h"
 #include "shader.h"
 #include "sceneLoader.h"
 #include "EG_Technique_DepthTexture_Render.h"
@@ -76,6 +78,7 @@ class ExplosionGenerator
         Smoke smoke;
 
         t_camera cam;
+        EG_Camera myOrbitCamera;
 
         // models
         meshLoader* scene;
@@ -85,6 +88,7 @@ class ExplosionGenerator
         meshLoader* smooth_sphere;
         meshLoader* cube;
         meshLoader* monkey;
+        meshLoader* MainCharacter;
         mesh* quad;
 
         bool running;

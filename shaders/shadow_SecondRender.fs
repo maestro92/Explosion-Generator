@@ -17,9 +17,11 @@ out vec4 FragColor;
 const vec3 ambientColor=vec3(0.01,0.01,0.01);
 const vec3 diffuseColor=vec3(0.9,0.9,0.9);
 const vec3 specularColor=vec3(1.0,1.0,1.0);
- 
-float Cutoff = 0.9917;  // spotlight region cutoff value    
- 
+
+float Cutoff = 0.9857;  // spotlight region cutoff value     
+// float Cutoff = 0.9917;  // spotlight region cutoff value    
+// float Cutoff = 0.9517;  // spotlight region cutoff value     
+
 vec4 CalcLightPerFragment(vec3 LightDirection, vec3 normal)
 {
     // ambient light

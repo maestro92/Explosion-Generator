@@ -11281,13 +11281,13 @@
 	<sstream>
 	"EG_Technique.h"
 
-1415840300 source:d:\martin\programming\c and c++\sdl\explosion generator 2014 11 12 added render technique polymorphism and removed some glgetuniformlocation in render frame\main.cpp
+1416204934 source:d:\martin\programming\c and c++\sdl\explosion generator 2014 11 12 added render technique polymorphism and removed some glgetuniformlocation in render frame\main.cpp
 	"main.h"
 	"gl/gl.h"
 	"gl/glu.h"
 	"SDL\SDL.h"
 
-1415839508 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 12 added render technique polymorphism and removed some glgetuniformlocation in render frame\main.h
+1416204613 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 12 added render technique polymorphism and removed some glgetuniformlocation in render frame\main.h
 	<cstdlib>
 	<iostream>
 	<stdio.h>
@@ -11398,4 +11398,2656 @@
 	<string>
 	<sstream>
 	"EG_Technique.h"
+
+1411152007 source:d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view\collisiondetection_hgrid.cpp
+	"CollisionDetection_HGrid.h"
+
+1411189847 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view\collisiondetection_hgrid.h
+	"CollisionDetection_Interface.h"
+	"Particle.h"
+	"glm/glm.hpp"
+	<cstdlib>
+	<vector>
+	<stdint.h>
+	<iostream>
+	<algorithm>
+	<unordered_map>
+	<string>
+	<typeinfo>
+	<bitset>
+	<math.h>
+	"Random.h"
+	"gl/gl.h"
+	"gl/glu.h"
+
+1411189197 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view\collisiondetection_interface.h
+	"glm/glm.hpp"
+	<cstdlib>
+	"WorldBox.h"
+	"WorldSphere.h"
+	"WorldObject.h"
+
+1359678220 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view\glm\glm.hpp
+	"core/_fixes.hpp"
+	<cmath>
+	<climits>
+	<cfloat>
+	<limits>
+	<cstdio>
+	"core/setup.hpp"
+	"./core/_detail.hpp"
+	"./core/_vectorize.hpp"
+	"./core/type.hpp"
+	"./core/func_trigonometric.hpp"
+	"./core/func_exponential.hpp"
+	"./core/func_common.hpp"
+	"./core/func_packing.hpp"
+	"./core/func_geometric.hpp"
+	"./core/func_matrix.hpp"
+	"./core/func_vector_relational.hpp"
+	"./core/func_integer.hpp"
+	"./core/func_noise.hpp"
+	"./core/_swizzle.hpp"
+
+1359678220 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view\glm\core\_fixes.hpp
+	<cmath>
+
+1359678218 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view\glm\core\setup.hpp
+	<intrin.h>
+	<immintrin.h>
+	<immintrin.h>
+	<smmintrin.h>
+	<pmmintrin.h>
+	<emmintrin.h>
+
+1359678220 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view\glm\core\_detail.hpp
+	"setup.hpp"
+	<cassert>
+	<cstdint>
+
+1359678220 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view\glm\core\_vectorize.hpp
+
+1359678218 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view\glm\core\type.hpp
+	"type_half.hpp"
+	"type_float.hpp"
+	"type_int.hpp"
+	"type_gentype.hpp"
+	"type_vec1.hpp"
+	"type_vec2.hpp"
+	"type_vec3.hpp"
+	"type_vec4.hpp"
+	"type_mat2x2.hpp"
+	"type_mat2x3.hpp"
+	"type_mat2x4.hpp"
+	"type_mat3x2.hpp"
+	"type_mat3x3.hpp"
+	"type_mat3x4.hpp"
+	"type_mat4x2.hpp"
+	"type_mat4x3.hpp"
+	"type_mat4x4.hpp"
+
+1359678218 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view\glm\core\type_half.hpp
+	<cstdlib>
+	"type_half.inl"
+
+1359678218 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view\glm\core\type_half.inl
+	"_detail.hpp"
+
+1359678218 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view\glm\core\type_float.hpp
+	"type_half.hpp"
+	"setup.hpp"
+
+1359678218 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view\glm\core\type_int.hpp
+	"setup.hpp"
+	"_detail.hpp"
+
+1359678218 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view\glm\core\type_gentype.hpp
+	"type_size.hpp"
+
+1359678220 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view\glm\core\type_size.hpp
+	<cstdlib>
+
+1359678220 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view\glm\core\type_vec1.hpp
+	"type_vec.hpp"
+	"type_float.hpp"
+	"type_int.hpp"
+	"type_size.hpp"
+	"_swizzle.hpp"
+	"type_vec1.inl"
+
+1359678220 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view\glm\core\type_vec.hpp
+	"type_gentype.hpp"
+
+1359678220 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view\glm\core\_swizzle.hpp
+	"_swizzle_func.hpp"
+
+1359678220 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view\glm\core\_swizzle_func.hpp
+
+1359678220 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view\glm\core\type_vec1.inl
+
+1359678220 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view\glm\core\type_vec2.hpp
+	"type_vec.hpp"
+	"type_float.hpp"
+	"type_int.hpp"
+	"type_size.hpp"
+	"_swizzle.hpp"
+	"type_vec2.inl"
+
+1359678220 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view\glm\core\type_vec2.inl
+
+1359678220 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view\glm\core\type_vec3.hpp
+	"type_vec.hpp"
+	"type_float.hpp"
+	"type_int.hpp"
+	"type_size.hpp"
+	"_swizzle.hpp"
+	"type_vec3.inl"
+
+1359678220 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view\glm\core\type_vec3.inl
+
+1359678220 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view\glm\core\type_vec4.hpp
+	"type_vec.hpp"
+	"type_float.hpp"
+	"type_int.hpp"
+	"type_size.hpp"
+	"_swizzle.hpp"
+	"type_vec4.inl"
+
+1359678220 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view\glm\core\type_vec4.inl
+
+1359678218 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view\glm\core\type_mat2x2.hpp
+	"type_mat.hpp"
+	"type_mat2x2.inl"
+
+1359678218 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view\glm\core\type_mat.hpp
+	"type_gentype.hpp"
+
+1359678218 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view\glm\core\type_mat2x2.inl
+
+1359678218 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view\glm\core\type_mat2x3.hpp
+	"type_mat.hpp"
+	"type_mat2x3.inl"
+
+1359678218 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view\glm\core\type_mat2x3.inl
+
+1359678218 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view\glm\core\type_mat2x4.hpp
+	"type_mat.hpp"
+	"type_mat2x4.inl"
+
+1359678218 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view\glm\core\type_mat2x4.inl
+
+1359678220 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view\glm\core\type_mat3x2.hpp
+	"type_mat.hpp"
+	"type_mat3x2.inl"
+
+1359678220 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view\glm\core\type_mat3x2.inl
+
+1359678220 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view\glm\core\type_mat3x3.hpp
+	"type_mat.hpp"
+	"type_mat3x3.inl"
+
+1359678220 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view\glm\core\type_mat3x3.inl
+
+1359678220 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view\glm\core\type_mat3x4.hpp
+	"type_mat.hpp"
+	"type_mat3x4.inl"
+
+1359678220 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view\glm\core\type_mat3x4.inl
+
+1359678220 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view\glm\core\type_mat4x2.hpp
+	"type_mat.hpp"
+	"type_mat4x2.inl"
+
+1359678220 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view\glm\core\type_mat4x2.inl
+
+1359678220 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view\glm\core\type_mat4x3.hpp
+	"type_mat.hpp"
+	"type_mat4x3.inl"
+
+1359678220 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view\glm\core\type_mat4x3.inl
+
+1359678220 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view\glm\core\type_mat4x4.hpp
+	"type_mat.hpp"
+	"type_mat4x4.inl"
+
+1359678220 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view\glm\core\type_mat4x4.inl
+
+1359678218 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view\glm\core\func_trigonometric.hpp
+	"func_trigonometric.inl"
+
+1359678218 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view\glm\core\func_trigonometric.inl
+
+1359678218 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view\glm\core\func_exponential.hpp
+	"func_exponential.inl"
+
+1359678218 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view\glm\core\func_exponential.inl
+
+1359678218 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view\glm\core\func_common.hpp
+	"_fixes.hpp"
+	"func_common.inl"
+
+1359678218 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view\glm\core\func_common.inl
+
+1359678218 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view\glm\core\func_packing.hpp
+	"func_packing.inl"
+
+1359678218 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view\glm\core\func_packing.inl
+
+1359678218 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view\glm\core\func_geometric.hpp
+	"func_geometric.inl"
+
+1359678218 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view\glm\core\func_geometric.inl
+
+1359678218 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view\glm\core\func_matrix.hpp
+	"func_matrix.inl"
+
+1359678218 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view\glm\core\func_matrix.inl
+
+1359678218 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view\glm\core\func_vector_relational.hpp
+	"_detail.hpp"
+	"func_vector_relational.inl"
+
+1359678218 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view\glm\core\func_vector_relational.inl
+
+1359678218 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view\glm\core\func_integer.hpp
+	"func_integer.inl"
+
+1359678218 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view\glm\core\func_integer.inl
+	<intrin.h>
+
+1359678218 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view\glm\core\func_noise.hpp
+	"func_noise.inl"
+
+1359678218 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view\glm\core\func_noise.inl
+
+1411632901 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view\worldbox.h
+	"WorldObject.h"
+	<iostream>
+	<cstdlib>
+
+1413068393 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view\worldobject.h
+	"glm/glm.hpp"
+	"glm/gtc/matrix_transform.hpp"
+	"glm/gtx/transform.hpp"
+	<cstdlib>
+	<stdint.h>
+	<vector>
+	"Particle.h"
+
+1359678220 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view\glm\gtc\matrix_transform.hpp
+	"../glm.hpp"
+	"matrix_transform.inl"
+
+1359678220 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view\glm\gtc\matrix_transform.inl
+
+1359678222 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view\glm\gtx\transform.hpp
+	"../glm.hpp"
+	"../gtc/matrix_transform.hpp"
+	"transform.inl"
+
+1359678222 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view\glm\gtx\transform.inl
+
+1411151009 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view\particle.h
+	"glm/glm.hpp"
+	<cstdlib>
+	<stdint.h>
+	<vector>
+
+1411368856 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view\worldsphere.h
+	"WorldObject.h"
+
+1403655018 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view\random.h
+
+1413064622 source:d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view\collisiondetection_hgrid_new.cpp
+	"CollisionDetection_HGrid_new.h"
+
+1411406087 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view\collisiondetection_hgrid_new.h
+	"CollisionDetection_Interface.h"
+	"Particle.h"
+	"glm/glm.hpp"
+	<cstdlib>
+	<vector>
+	<stdint.h>
+	<iostream>
+	<algorithm>
+	<unordered_map>
+	<string>
+	<typeinfo>
+	<bitset>
+	<math.h>
+	"Random.h"
+	"gl/gl.h"
+	"gl/glu.h"
+
+1415843477 source:d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view\eg_rendertechniques\eg_skybox.cpp
+	"EG_Skybox.h"
+
+1415823057 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view\eg_rendertechniques\eg_skybox.h
+	<cstdlib>
+	<vector>
+	<iostream>
+	<sstream>
+	<string>
+	<algorithm>
+	<fstream>
+	<cstdio>
+	"EG_utility.h"
+	"shader.h"
+	"sceneLoader.h"
+	"pipeline.h"
+	"EG_Technique.h"
+	<GL/glew.h>
+	"SDL/SDL.h"
+	"SDL/SDL_image.h"
+
+1415839037 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view\eg_rendertechniques\eg_technique.h
+	"define.h"
+	"shader.h"
+	"pipeline.h"
+
+1415838917 source:d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view\eg_rendertechniques\eg_technique.cpp
+	"EG_Technique.h"
+
+1415836815 source:d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view\eg_rendertechniques\eg_technique_depthtexture_render.cpp
+	"EG_Technique_DepthTexture_Render.h"
+
+1415835715 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view\eg_rendertechniques\eg_technique_depthtexture_render.h
+	"pipeline.h"
+	<GL/glew.h>
+	<cstdlib>
+	<iostream>
+	<stdio.h>
+	<string>
+	<sstream>
+	"EG_Technique.h"
+
+1415839654 source:d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view\eg_rendertechniques\eg_technique_reflection.cpp
+	"EG_Technique_Reflection.h"
+
+1415839650 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view\eg_rendertechniques\eg_technique_reflection.h
+	"pipeline.h"
+	<GL/glew.h>
+	<cstdlib>
+	<iostream>
+	<stdio.h>
+	<string>
+	<sstream>
+	"EG_Technique.h"
+
+1415836885 source:d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view\eg_rendertechniques\eg_technique_shadow_render.cpp
+	"EG_Technique_Shadow_Render.h"
+
+1415836160 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view\eg_rendertechniques\eg_technique_shadow_render.h
+	"pipeline.h"
+	<GL/glew.h>
+	<cstdlib>
+	<iostream>
+	<stdio.h>
+	<string>
+	<sstream>
+	"EG_Technique.h"
+
+1415836793 source:d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view\eg_rendertechniques\eg_technique_twopass_raycasting.cpp
+	"EG_Technique_TwoPass_RayCasting.h"
+
+1415837026 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view\eg_rendertechniques\eg_technique_twopass_raycasting.h
+	"Smoke_struct.h"
+	"pipeline.h"
+	<GL/glew.h>
+	<cstdlib>
+	<iostream>
+	<stdio.h>
+	<string>
+	<sstream>
+	"EG_Technique.h"
+
+1415825128 source:d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view\eg_utility.cpp
+	"EG_utility.h"
+
+1415825098 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view\eg_utility.h
+	<cstdlib>
+	<vector>
+	<iostream>
+	<sstream>
+	<string>
+	<algorithm>
+	<fstream>
+	<cstdio>
+	<GL/glew.h>
+	"shader.h"
+	<GL/glew.h>
+	"SDL/SDL.h"
+	"SDL/SDL_image.h"
+
+1408181344 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view\shader.h
+	<GL/glew.h>
+	<string>
+	<vector>
+	<fstream>
+	<iostream>
+	<stdio.h>
+
+1409357051 source:d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view\elapsedtime.cpp
+	"define.h"
+	"ElapsedTime.h"
+	<algorithm>
+
+1409331678 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view\define.h
+	<string>
+	<iostream>
+	<ctime>
+	<vector>
+	<map>
+	<math.h>
+	"glm/glm.hpp"
+	"glm/gtc/type_ptr.hpp"
+	"glm/gtc/quaternion.hpp"
+	"glm/gtx/vector_angle.hpp"
+	"glm/gtx/compatibility.hpp"
+	"glm/gtx/matrix_operation.hpp"
+	"glm/gtx/transform.hpp"
+	"glm/gtx/quaternion.hpp"
+	"glm/gtx/euler_angles.hpp"
+	"glm/gtx/norm.hpp"
+	"SOIL.h"
+
+1359678220 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view\glm\gtc\type_ptr.hpp
+	"../glm.hpp"
+	"../gtc/half_float.hpp"
+	"../gtc/quaternion.hpp"
+	<cstring>
+	"type_ptr.inl"
+
+1359678220 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view\glm\gtc\half_float.hpp
+	"../glm.hpp"
+	"half_float.inl"
+
+1359678220 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view\glm\gtc\half_float.inl
+
+1359678220 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view\glm\gtc\quaternion.hpp
+	"../glm.hpp"
+	"../gtc/half_float.hpp"
+	"../gtc/constants.hpp"
+	"quaternion.inl"
+
+1359678220 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view\glm\gtc\constants.hpp
+	"../glm.hpp"
+	"../gtc/half_float.hpp"
+	"constants.inl"
+
+1359678220 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view\glm\gtc\constants.inl
+
+1359678220 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view\glm\gtc\quaternion.inl
+	<limits>
+
+1359678220 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view\glm\gtc\type_ptr.inl
+
+1359678224 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view\glm\gtx\vector_angle.hpp
+	"../glm.hpp"
+	"../gtc/epsilon.hpp"
+	"../gtx/quaternion.hpp"
+	"../gtx/rotate_vector.hpp"
+	"vector_angle.inl"
+
+1359678220 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view\glm\gtc\epsilon.hpp
+	"../glm.hpp"
+	"../gtc/half_float.hpp"
+	"../gtc/quaternion.hpp"
+	"epsilon.inl"
+
+1359678220 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view\glm\gtc\epsilon.inl
+
+1359678222 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view\glm\gtx\quaternion.hpp
+	"../glm.hpp"
+	"../gtc/quaternion.hpp"
+	"quaternion.inl"
+
+1359678222 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view\glm\gtx\quaternion.inl
+	<limits>
+
+1359678222 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view\glm\gtx\rotate_vector.hpp
+	"../glm.hpp"
+	"../gtx/transform.hpp"
+	"rotate_vector.inl"
+
+1359678222 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view\glm\gtx\rotate_vector.inl
+
+1359678224 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view\glm\gtx\vector_angle.inl
+
+1359678220 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view\glm\gtx\compatibility.hpp
+	"../glm.hpp"
+	"../gtc/half_float.hpp"
+	"../gtc/quaternion.hpp"
+	<cfloat>
+	<cmath>
+	"compatibility.inl"
+
+1359678220 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view\glm\gtx\compatibility.inl
+
+1359678222 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view\glm\gtx\matrix_operation.hpp
+	"../glm.hpp"
+	"matrix_operation.inl"
+
+1359678222 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view\glm\gtx\matrix_operation.inl
+
+1359678222 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view\glm\gtx\euler_angles.hpp
+	"../glm.hpp"
+	"../gtc/half_float.hpp"
+	"euler_angles.inl"
+
+1359678222 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view\glm\gtx\euler_angles.inl
+
+1359678222 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view\glm\gtx\norm.hpp
+	"../glm.hpp"
+	"../gtx/quaternion.hpp"
+	"norm.inl"
+
+1359678222 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view\glm\gtx\norm.inl
+
+1413931435 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view\elapsedtime.h
+
+1411638663 source:d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view\l_cube_sphere_particleeffect.cpp
+	"L_Cube_Sphere_ParticleEffect.h"
+
+1411328540 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view\l_cube_sphere_particleeffect.h
+	<GL/glew.h>
+	"WorldBox.h"
+	"WorldSphere.h"
+	"pipeline.h"
+	"sceneLoader.h"
+	"L_ParticleEffect_Interface.h"
+	<cstdlib>
+	<iostream>
+	<algorithm>
+	"CollisionDetection_HGrid_new.h"
+	"Random.h"
+
+1415419465 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view\pipeline.h
+	<iostream>
+	<vector>
+	"glm/glm.hpp"
+	"glm/gtc/matrix_transform.hpp"
+	"glm/gtx/transform.hpp"
+	<GL/glew.h>
+	<iostream>
+	<vector>
+	"glm/glm.hpp"
+	"glm/gtc/matrix_transform.hpp"
+	"glm/gtx/transform.hpp"
+	<GL/glew.h>
+
+1415254258 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view\sceneloader.h
+	<vector>
+	<assimp/cimport.h>
+	<assimp/scene.h>
+	<assimp/postprocess.h>
+	<SDL/SDL_image.h>
+	"mesh.h"
+
+1415254205 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view\mesh.h
+	<iostream>
+	"meshData.h"
+	<GL/glew.h>
+	"SDL/SDL_opengl.h"
+	<vector>
+	<string>
+
+1410747814 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view\meshdata.h
+	"vector3d.h"
+
+1403655039 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view\vector3d.h
+	<iostream>
+	<cmath>
+
+1411324028 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view\l_particleeffect_interface.h
+	"Particle.h"
+	<cstdlib>
+	<cstdlib>
+	<vector>
+	<iostream>
+	<sstream>
+	<string>
+	<algorithm>
+	<fstream>
+	<cstdio>
+	"glm/glm.hpp"
+
+1415833161 source:d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view\l_sphereparticleeffect.cpp
+	"L_SphereParticleEffect.h"
+	"gl/gl.h"
+	"gl/glu.h"
+
+1415509956 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view\l_sphereparticleeffect.h
+	"pipeline.h"
+	"EG_Technique.h"
+	"EG_Technique_Shadow_Render.h"
+	"EG_Technique_TwoPass_RayCasting.h"
+	"sceneLoader.h"
+	"L_ParticleEffect_Interface.h"
+	<cstdlib>
+	<iostream>
+	<algorithm>
+	"CollisionDetection_HGrid.h"
+	"Random.h"
+
+1415840795 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view\eg_technique_shadow_render.h
+	"pipeline.h"
+	<GL/glew.h>
+	<cstdlib>
+	<iostream>
+	<stdio.h>
+	<string>
+	<sstream>
+	"EG_Technique.h"
+
+1416387763 source:d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view\main.cpp
+	"main.h"
+	"gl/gl.h"
+	"gl/glu.h"
+	"SDL\SDL.h"
+
+1416204613 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view\main.h
+	<cstdlib>
+	<iostream>
+	<stdio.h>
+	<string>
+	<sstream>
+	"define.h"
+	"EG_utility.h"
+	"EG_Skybox.h"
+	"shader.h"
+	"sceneLoader.h"
+	"EG_Technique_DepthTexture_Render.h"
+	"EG_Technique_TwoPass_RayCasting.h"
+	"EG_Technique_Shadow_Render.h"
+	"EG_Technique_Reflection.h"
+	"WorldBox.h"
+	"WorldSphere.h"
+	"pipeline.h"
+	"L_SphereParticleEffect.h"
+	"L_Cube_Sphere_ParticleEffect.h"
+	<GL/glew.h>
+	"SDL/SDL_opengl.h"
+	"SDL/SDL.h"
+	"SDL/SDL_image.h"
+	"ElapsedTime.h"
+	"L_ParticleEffect_Interface.h"
+	"Smoke.h"
+	"CollisionDetection_HGrid.h"
+	"t_camera.h"
+
+1415840799 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view\eg_technique_reflection.h
+	"pipeline.h"
+	<GL/glew.h>
+	<cstdlib>
+	<iostream>
+	<stdio.h>
+	<string>
+	<sstream>
+	"EG_Technique.h"
+
+1415510612 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view\smoke.h
+	"shader.h"
+	"EG_Technique_TwoPass_RayCasting.h"
+	"Smoke_struct.h"
+	<GL/glew.h>
+	<vector>
+	<iostream>
+	<sstream>
+	<string>
+	<algorithm>
+	<fstream>
+	<cstdio>
+	"L_ParticleEffect_Interface.h"
+	"define.h"
+
+1415432244 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view\smoke_struct.h
+	"define.h"
+	<GL/glew.h>
+
+1413931402 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view\t_camera.h
+	<cmath>
+	<iostream>
+	<SDL/SDL.h>
+	"pipeline.h"
+	"gl/gl.h"
+	"gl/glu.h"
+	"vector3d.h"
+
+1415486326 source:d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view\mesh.cpp
+	"mesh.h"
+
+1415421925 source:d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view\pipeline.cpp
+	"pipeline.h"
+	"pipeline.h"
+	"pipeline.h"
+
+1415254225 source:d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view\sceneloader.cpp
+	"sceneLoader.h"
+
+1408785599 source:d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view\shader.cpp
+	"shader.h"
+	<stdio.h>
+	<string.h>
+
+1415510618 source:d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view\smoke.cpp
+	"Smoke.h"
+
+1416386600 source:d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view\t_camera.cpp
+	"t_camera.h"
+
+1403654959 source:d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view\vector3d.cpp
+	"vector3d.h"
+
+1411638571 source:d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view\worldbox.cpp
+	"WorldBox.h"
+
+1411368904 source:d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view\worldobject.cpp
+	"WorldObject.h"
+
+1411368920 source:d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view\worldsphere.cpp
+	"WorldSphere.h"
+
+1411152007 source:d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view with quaternions\collisiondetection_hgrid.cpp
+	"CollisionDetection_HGrid.h"
+
+1411189847 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view with quaternions\collisiondetection_hgrid.h
+	"CollisionDetection_Interface.h"
+	"Particle.h"
+	"glm/glm.hpp"
+	<cstdlib>
+	<vector>
+	<stdint.h>
+	<iostream>
+	<algorithm>
+	<unordered_map>
+	<string>
+	<typeinfo>
+	<bitset>
+	<math.h>
+	"Random.h"
+	"gl/gl.h"
+	"gl/glu.h"
+
+1411189197 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view with quaternions\collisiondetection_interface.h
+	"glm/glm.hpp"
+	<cstdlib>
+	"WorldBox.h"
+	"WorldSphere.h"
+	"WorldObject.h"
+
+1359678220 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view with quaternions\glm\glm.hpp
+	"core/_fixes.hpp"
+	<cmath>
+	<climits>
+	<cfloat>
+	<limits>
+	<cstdio>
+	"core/setup.hpp"
+	"./core/_detail.hpp"
+	"./core/_vectorize.hpp"
+	"./core/type.hpp"
+	"./core/func_trigonometric.hpp"
+	"./core/func_exponential.hpp"
+	"./core/func_common.hpp"
+	"./core/func_packing.hpp"
+	"./core/func_geometric.hpp"
+	"./core/func_matrix.hpp"
+	"./core/func_vector_relational.hpp"
+	"./core/func_integer.hpp"
+	"./core/func_noise.hpp"
+	"./core/_swizzle.hpp"
+
+1359678220 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view with quaternions\glm\core\_fixes.hpp
+	<cmath>
+
+1359678218 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view with quaternions\glm\core\setup.hpp
+	<intrin.h>
+	<immintrin.h>
+	<immintrin.h>
+	<smmintrin.h>
+	<pmmintrin.h>
+	<emmintrin.h>
+
+1359678220 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view with quaternions\glm\core\_detail.hpp
+	"setup.hpp"
+	<cassert>
+	<cstdint>
+
+1359678220 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view with quaternions\glm\core\_vectorize.hpp
+
+1359678218 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view with quaternions\glm\core\type.hpp
+	"type_half.hpp"
+	"type_float.hpp"
+	"type_int.hpp"
+	"type_gentype.hpp"
+	"type_vec1.hpp"
+	"type_vec2.hpp"
+	"type_vec3.hpp"
+	"type_vec4.hpp"
+	"type_mat2x2.hpp"
+	"type_mat2x3.hpp"
+	"type_mat2x4.hpp"
+	"type_mat3x2.hpp"
+	"type_mat3x3.hpp"
+	"type_mat3x4.hpp"
+	"type_mat4x2.hpp"
+	"type_mat4x3.hpp"
+	"type_mat4x4.hpp"
+
+1359678218 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view with quaternions\glm\core\type_half.hpp
+	<cstdlib>
+	"type_half.inl"
+
+1359678218 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view with quaternions\glm\core\type_half.inl
+	"_detail.hpp"
+
+1359678218 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view with quaternions\glm\core\type_float.hpp
+	"type_half.hpp"
+	"setup.hpp"
+
+1359678218 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view with quaternions\glm\core\type_int.hpp
+	"setup.hpp"
+	"_detail.hpp"
+
+1359678218 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view with quaternions\glm\core\type_gentype.hpp
+	"type_size.hpp"
+
+1359678220 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view with quaternions\glm\core\type_size.hpp
+	<cstdlib>
+
+1359678220 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view with quaternions\glm\core\type_vec1.hpp
+	"type_vec.hpp"
+	"type_float.hpp"
+	"type_int.hpp"
+	"type_size.hpp"
+	"_swizzle.hpp"
+	"type_vec1.inl"
+
+1359678220 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view with quaternions\glm\core\type_vec.hpp
+	"type_gentype.hpp"
+
+1359678220 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view with quaternions\glm\core\_swizzle.hpp
+	"_swizzle_func.hpp"
+
+1359678220 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view with quaternions\glm\core\_swizzle_func.hpp
+
+1359678220 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view with quaternions\glm\core\type_vec1.inl
+
+1359678220 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view with quaternions\glm\core\type_vec2.hpp
+	"type_vec.hpp"
+	"type_float.hpp"
+	"type_int.hpp"
+	"type_size.hpp"
+	"_swizzle.hpp"
+	"type_vec2.inl"
+
+1359678220 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view with quaternions\glm\core\type_vec2.inl
+
+1359678220 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view with quaternions\glm\core\type_vec3.hpp
+	"type_vec.hpp"
+	"type_float.hpp"
+	"type_int.hpp"
+	"type_size.hpp"
+	"_swizzle.hpp"
+	"type_vec3.inl"
+
+1359678220 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view with quaternions\glm\core\type_vec3.inl
+
+1359678220 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view with quaternions\glm\core\type_vec4.hpp
+	"type_vec.hpp"
+	"type_float.hpp"
+	"type_int.hpp"
+	"type_size.hpp"
+	"_swizzle.hpp"
+	"type_vec4.inl"
+
+1359678220 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view with quaternions\glm\core\type_vec4.inl
+
+1359678218 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view with quaternions\glm\core\type_mat2x2.hpp
+	"type_mat.hpp"
+	"type_mat2x2.inl"
+
+1359678218 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view with quaternions\glm\core\type_mat.hpp
+	"type_gentype.hpp"
+
+1359678218 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view with quaternions\glm\core\type_mat2x2.inl
+
+1359678218 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view with quaternions\glm\core\type_mat2x3.hpp
+	"type_mat.hpp"
+	"type_mat2x3.inl"
+
+1359678218 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view with quaternions\glm\core\type_mat2x3.inl
+
+1359678218 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view with quaternions\glm\core\type_mat2x4.hpp
+	"type_mat.hpp"
+	"type_mat2x4.inl"
+
+1359678218 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view with quaternions\glm\core\type_mat2x4.inl
+
+1359678220 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view with quaternions\glm\core\type_mat3x2.hpp
+	"type_mat.hpp"
+	"type_mat3x2.inl"
+
+1359678220 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view with quaternions\glm\core\type_mat3x2.inl
+
+1359678220 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view with quaternions\glm\core\type_mat3x3.hpp
+	"type_mat.hpp"
+	"type_mat3x3.inl"
+
+1359678220 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view with quaternions\glm\core\type_mat3x3.inl
+
+1359678220 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view with quaternions\glm\core\type_mat3x4.hpp
+	"type_mat.hpp"
+	"type_mat3x4.inl"
+
+1359678220 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view with quaternions\glm\core\type_mat3x4.inl
+
+1359678220 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view with quaternions\glm\core\type_mat4x2.hpp
+	"type_mat.hpp"
+	"type_mat4x2.inl"
+
+1359678220 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view with quaternions\glm\core\type_mat4x2.inl
+
+1359678220 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view with quaternions\glm\core\type_mat4x3.hpp
+	"type_mat.hpp"
+	"type_mat4x3.inl"
+
+1359678220 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view with quaternions\glm\core\type_mat4x3.inl
+
+1359678220 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view with quaternions\glm\core\type_mat4x4.hpp
+	"type_mat.hpp"
+	"type_mat4x4.inl"
+
+1359678220 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view with quaternions\glm\core\type_mat4x4.inl
+
+1359678218 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view with quaternions\glm\core\func_trigonometric.hpp
+	"func_trigonometric.inl"
+
+1359678218 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view with quaternions\glm\core\func_trigonometric.inl
+
+1359678218 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view with quaternions\glm\core\func_exponential.hpp
+	"func_exponential.inl"
+
+1359678218 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view with quaternions\glm\core\func_exponential.inl
+
+1359678218 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view with quaternions\glm\core\func_common.hpp
+	"_fixes.hpp"
+	"func_common.inl"
+
+1359678218 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view with quaternions\glm\core\func_common.inl
+
+1359678218 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view with quaternions\glm\core\func_packing.hpp
+	"func_packing.inl"
+
+1359678218 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view with quaternions\glm\core\func_packing.inl
+
+1359678218 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view with quaternions\glm\core\func_geometric.hpp
+	"func_geometric.inl"
+
+1359678218 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view with quaternions\glm\core\func_geometric.inl
+
+1359678218 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view with quaternions\glm\core\func_matrix.hpp
+	"func_matrix.inl"
+
+1359678218 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view with quaternions\glm\core\func_matrix.inl
+
+1359678218 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view with quaternions\glm\core\func_vector_relational.hpp
+	"_detail.hpp"
+	"func_vector_relational.inl"
+
+1359678218 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view with quaternions\glm\core\func_vector_relational.inl
+
+1359678218 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view with quaternions\glm\core\func_integer.hpp
+	"func_integer.inl"
+
+1359678218 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view with quaternions\glm\core\func_integer.inl
+	<intrin.h>
+
+1359678218 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view with quaternions\glm\core\func_noise.hpp
+	"func_noise.inl"
+
+1359678218 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view with quaternions\glm\core\func_noise.inl
+
+1411632901 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view with quaternions\worldbox.h
+	"WorldObject.h"
+	<iostream>
+	<cstdlib>
+
+1413068393 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view with quaternions\worldobject.h
+	"glm/glm.hpp"
+	"glm/gtc/matrix_transform.hpp"
+	"glm/gtx/transform.hpp"
+	<cstdlib>
+	<stdint.h>
+	<vector>
+	"Particle.h"
+
+1359678220 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view with quaternions\glm\gtc\matrix_transform.hpp
+	"../glm.hpp"
+	"matrix_transform.inl"
+
+1359678220 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view with quaternions\glm\gtc\matrix_transform.inl
+
+1359678222 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view with quaternions\glm\gtx\transform.hpp
+	"../glm.hpp"
+	"../gtc/matrix_transform.hpp"
+	"transform.inl"
+
+1359678222 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view with quaternions\glm\gtx\transform.inl
+
+1411151009 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view with quaternions\particle.h
+	"glm/glm.hpp"
+	<cstdlib>
+	<stdint.h>
+	<vector>
+
+1411368856 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view with quaternions\worldsphere.h
+	"WorldObject.h"
+
+1403655018 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view with quaternions\random.h
+
+1413064622 source:d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view with quaternions\collisiondetection_hgrid_new.cpp
+	"CollisionDetection_HGrid_new.h"
+
+1411406087 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view with quaternions\collisiondetection_hgrid_new.h
+	"CollisionDetection_Interface.h"
+	"Particle.h"
+	"glm/glm.hpp"
+	<cstdlib>
+	<vector>
+	<stdint.h>
+	<iostream>
+	<algorithm>
+	<unordered_map>
+	<string>
+	<typeinfo>
+	<bitset>
+	<math.h>
+	"Random.h"
+	"gl/gl.h"
+	"gl/glu.h"
+
+1416812811 source:d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view with quaternions\eg_rendertechniques\eg_skybox.cpp
+	"EG_Skybox.h"
+
+1416721770 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view with quaternions\eg_rendertechniques\eg_skybox.h
+	<cstdlib>
+	<vector>
+	<iostream>
+	<sstream>
+	<string>
+	<algorithm>
+	<fstream>
+	<cstdio>
+	"EG_utility.h"
+	"shader.h"
+	"sceneLoader.h"
+	"pipeline.h"
+	"EG_Technique.h"
+	<GL/glew.h>
+	"SDL/SDL.h"
+	"SDL/SDL_image.h"
+
+1415839037 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view with quaternions\eg_rendertechniques\eg_technique.h
+	"define.h"
+	"shader.h"
+	"pipeline.h"
+
+1415838917 source:d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view with quaternions\eg_rendertechniques\eg_technique.cpp
+	"EG_Technique.h"
+
+1415836815 source:d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view with quaternions\eg_rendertechniques\eg_technique_depthtexture_render.cpp
+	"EG_Technique_DepthTexture_Render.h"
+
+1415835715 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view with quaternions\eg_rendertechniques\eg_technique_depthtexture_render.h
+	"pipeline.h"
+	<GL/glew.h>
+	<cstdlib>
+	<iostream>
+	<stdio.h>
+	<string>
+	<sstream>
+	"EG_Technique.h"
+
+1415839654 source:d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view with quaternions\eg_rendertechniques\eg_technique_reflection.cpp
+	"EG_Technique_Reflection.h"
+
+1415839650 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view with quaternions\eg_rendertechniques\eg_technique_reflection.h
+	"pipeline.h"
+	<GL/glew.h>
+	<cstdlib>
+	<iostream>
+	<stdio.h>
+	<string>
+	<sstream>
+	"EG_Technique.h"
+
+1415836885 source:d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view with quaternions\eg_rendertechniques\eg_technique_shadow_render.cpp
+	"EG_Technique_Shadow_Render.h"
+
+1415836160 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view with quaternions\eg_rendertechniques\eg_technique_shadow_render.h
+	"pipeline.h"
+	<GL/glew.h>
+	<cstdlib>
+	<iostream>
+	<stdio.h>
+	<string>
+	<sstream>
+	"EG_Technique.h"
+
+1415836793 source:d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view with quaternions\eg_rendertechniques\eg_technique_twopass_raycasting.cpp
+	"EG_Technique_TwoPass_RayCasting.h"
+
+1415837026 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view with quaternions\eg_rendertechniques\eg_technique_twopass_raycasting.h
+	"Smoke_struct.h"
+	"pipeline.h"
+	<GL/glew.h>
+	<cstdlib>
+	<iostream>
+	<stdio.h>
+	<string>
+	<sstream>
+	"EG_Technique.h"
+
+1415825128 source:d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view with quaternions\eg_utility.cpp
+	"EG_utility.h"
+
+1416394258 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view with quaternions\eg_utility.h
+	<cstdlib>
+	<vector>
+	<iostream>
+	<sstream>
+	<string>
+	<algorithm>
+	<fstream>
+	<cstdio>
+	<GL/glew.h>
+	"shader.h"
+	<GL/glew.h>
+	"SDL/SDL.h"
+	"SDL/SDL_image.h"
+
+1408181344 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view with quaternions\shader.h
+	<GL/glew.h>
+	<string>
+	<vector>
+	<fstream>
+	<iostream>
+	<stdio.h>
+
+1409357051 source:d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view with quaternions\elapsedtime.cpp
+	"define.h"
+	"ElapsedTime.h"
+	<algorithm>
+
+1409331678 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view with quaternions\define.h
+	<string>
+	<iostream>
+	<ctime>
+	<vector>
+	<map>
+	<math.h>
+	"glm/glm.hpp"
+	"glm/gtc/type_ptr.hpp"
+	"glm/gtc/quaternion.hpp"
+	"glm/gtx/vector_angle.hpp"
+	"glm/gtx/compatibility.hpp"
+	"glm/gtx/matrix_operation.hpp"
+	"glm/gtx/transform.hpp"
+	"glm/gtx/quaternion.hpp"
+	"glm/gtx/euler_angles.hpp"
+	"glm/gtx/norm.hpp"
+	"SOIL.h"
+
+1359678220 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view with quaternions\glm\gtc\type_ptr.hpp
+	"../glm.hpp"
+	"../gtc/half_float.hpp"
+	"../gtc/quaternion.hpp"
+	<cstring>
+	"type_ptr.inl"
+
+1359678220 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view with quaternions\glm\gtc\half_float.hpp
+	"../glm.hpp"
+	"half_float.inl"
+
+1359678220 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view with quaternions\glm\gtc\half_float.inl
+
+1359678220 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view with quaternions\glm\gtc\quaternion.hpp
+	"../glm.hpp"
+	"../gtc/half_float.hpp"
+	"../gtc/constants.hpp"
+	"quaternion.inl"
+
+1359678220 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view with quaternions\glm\gtc\constants.hpp
+	"../glm.hpp"
+	"../gtc/half_float.hpp"
+	"constants.inl"
+
+1359678220 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view with quaternions\glm\gtc\constants.inl
+
+1359678220 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view with quaternions\glm\gtc\quaternion.inl
+	<limits>
+
+1359678220 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view with quaternions\glm\gtc\type_ptr.inl
+
+1359678224 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view with quaternions\glm\gtx\vector_angle.hpp
+	"../glm.hpp"
+	"../gtc/epsilon.hpp"
+	"../gtx/quaternion.hpp"
+	"../gtx/rotate_vector.hpp"
+	"vector_angle.inl"
+
+1359678220 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view with quaternions\glm\gtc\epsilon.hpp
+	"../glm.hpp"
+	"../gtc/half_float.hpp"
+	"../gtc/quaternion.hpp"
+	"epsilon.inl"
+
+1359678220 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view with quaternions\glm\gtc\epsilon.inl
+
+1359678222 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view with quaternions\glm\gtx\quaternion.hpp
+	"../glm.hpp"
+	"../gtc/quaternion.hpp"
+	"quaternion.inl"
+
+1359678222 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view with quaternions\glm\gtx\quaternion.inl
+	<limits>
+
+1359678222 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view with quaternions\glm\gtx\rotate_vector.hpp
+	"../glm.hpp"
+	"../gtx/transform.hpp"
+	"rotate_vector.inl"
+
+1359678222 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view with quaternions\glm\gtx\rotate_vector.inl
+
+1359678224 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view with quaternions\glm\gtx\vector_angle.inl
+
+1359678220 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view with quaternions\glm\gtx\compatibility.hpp
+	"../glm.hpp"
+	"../gtc/half_float.hpp"
+	"../gtc/quaternion.hpp"
+	<cfloat>
+	<cmath>
+	"compatibility.inl"
+
+1359678220 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view with quaternions\glm\gtx\compatibility.inl
+
+1359678222 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view with quaternions\glm\gtx\matrix_operation.hpp
+	"../glm.hpp"
+	"matrix_operation.inl"
+
+1359678222 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view with quaternions\glm\gtx\matrix_operation.inl
+
+1359678222 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view with quaternions\glm\gtx\euler_angles.hpp
+	"../glm.hpp"
+	"../gtc/half_float.hpp"
+	"euler_angles.inl"
+
+1359678222 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view with quaternions\glm\gtx\euler_angles.inl
+
+1359678222 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view with quaternions\glm\gtx\norm.hpp
+	"../glm.hpp"
+	"../gtx/quaternion.hpp"
+	"norm.inl"
+
+1359678222 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view with quaternions\glm\gtx\norm.inl
+
+1413931435 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view with quaternions\elapsedtime.h
+
+1411638663 source:d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view with quaternions\l_cube_sphere_particleeffect.cpp
+	"L_Cube_Sphere_ParticleEffect.h"
+
+1411328540 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view with quaternions\l_cube_sphere_particleeffect.h
+	<GL/glew.h>
+	"WorldBox.h"
+	"WorldSphere.h"
+	"pipeline.h"
+	"sceneLoader.h"
+	"L_ParticleEffect_Interface.h"
+	<cstdlib>
+	<iostream>
+	<algorithm>
+	"CollisionDetection_HGrid_new.h"
+	"Random.h"
+
+1416686102 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view with quaternions\pipeline.h
+	<iostream>
+	<vector>
+	"define.h"
+	"glm/glm.hpp"
+	"glm/gtc/matrix_transform.hpp"
+	"glm/gtx/transform.hpp"
+	"glm/gtc/quaternion.hpp"
+	"glm/gtx/quaternion.hpp"
+	<GL/glew.h>
+	<iostream>
+	<vector>
+	"glm/glm.hpp"
+	"glm/gtc/matrix_transform.hpp"
+	"glm/gtx/transform.hpp"
+	<GL/glew.h>
+
+1415254258 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view with quaternions\sceneloader.h
+	<vector>
+	<assimp/cimport.h>
+	<assimp/scene.h>
+	<assimp/postprocess.h>
+	<SDL/SDL_image.h>
+	"mesh.h"
+
+1415254205 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view with quaternions\mesh.h
+	<iostream>
+	"meshData.h"
+	<GL/glew.h>
+	"SDL/SDL_opengl.h"
+	<vector>
+	<string>
+
+1410747814 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view with quaternions\meshdata.h
+	"vector3d.h"
+
+1403655039 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view with quaternions\vector3d.h
+	<iostream>
+	<cmath>
+
+1411324028 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view with quaternions\l_particleeffect_interface.h
+	"Particle.h"
+	<cstdlib>
+	<cstdlib>
+	<vector>
+	<iostream>
+	<sstream>
+	<string>
+	<algorithm>
+	<fstream>
+	<cstdio>
+	"glm/glm.hpp"
+
+1415833161 source:d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view with quaternions\l_sphereparticleeffect.cpp
+	"L_SphereParticleEffect.h"
+	"gl/gl.h"
+	"gl/glu.h"
+
+1415509956 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view with quaternions\l_sphereparticleeffect.h
+	"pipeline.h"
+	"EG_Technique.h"
+	"EG_Technique_Shadow_Render.h"
+	"EG_Technique_TwoPass_RayCasting.h"
+	"sceneLoader.h"
+	"L_ParticleEffect_Interface.h"
+	<cstdlib>
+	<iostream>
+	<algorithm>
+	"CollisionDetection_HGrid.h"
+	"Random.h"
+
+1415840795 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view with quaternions\eg_technique_shadow_render.h
+	"pipeline.h"
+	<GL/glew.h>
+	<cstdlib>
+	<iostream>
+	<stdio.h>
+	<string>
+	<sstream>
+	"EG_Technique.h"
+
+1416814750 source:d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view with quaternions\main.cpp
+	"main.h"
+	"gl/gl.h"
+	"gl/glu.h"
+	"SDL\SDL.h"
+
+1416704406 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view with quaternions\main.h
+	<cstdlib>
+	<iostream>
+	<stdio.h>
+	<string>
+	<sstream>
+	"define.h"
+	"EG_Camera.h"
+	"ThirdPersonPOV_camera.h"
+	"EG_utility.h"
+	"EG_RenderTechniques/EG_Skybox.h"
+	"shader.h"
+	"sceneLoader.h"
+	"EG_Technique_DepthTexture_Render.h"
+	"EG_Technique_TwoPass_RayCasting.h"
+	"EG_Technique_Shadow_Render.h"
+	"EG_Technique_Reflection.h"
+	"WorldBox.h"
+	"WorldSphere.h"
+	"pipeline.h"
+	"L_SphereParticleEffect.h"
+	"L_Cube_Sphere_ParticleEffect.h"
+	<GL/glew.h>
+	"SDL/SDL_opengl.h"
+	"SDL/SDL.h"
+	"SDL/SDL_image.h"
+	"ElapsedTime.h"
+	"L_ParticleEffect_Interface.h"
+	"Smoke.h"
+	"CollisionDetection_HGrid.h"
+	"t_camera.h"
+
+1415840799 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view with quaternions\eg_technique_reflection.h
+	"pipeline.h"
+	<GL/glew.h>
+	<cstdlib>
+	<iostream>
+	<stdio.h>
+	<string>
+	<sstream>
+	"EG_Technique.h"
+
+1415510612 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view with quaternions\smoke.h
+	"shader.h"
+	"EG_Technique_TwoPass_RayCasting.h"
+	"Smoke_struct.h"
+	<GL/glew.h>
+	<vector>
+	<iostream>
+	<sstream>
+	<string>
+	<algorithm>
+	<fstream>
+	<cstdio>
+	"L_ParticleEffect_Interface.h"
+	"define.h"
+
+1415432244 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view with quaternions\smoke_struct.h
+	"define.h"
+	<GL/glew.h>
+
+1416689937 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view with quaternions\t_camera.h
+	<cmath>
+	<iostream>
+	<SDL/SDL.h>
+	"pipeline.h"
+	"gl/gl.h"
+	"gl/glu.h"
+	"vector3d.h"
+	"define.h"
+
+1415486326 source:d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view with quaternions\mesh.cpp
+	"mesh.h"
+
+1415254225 source:d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view with quaternions\sceneloader.cpp
+	"sceneLoader.h"
+
+1408785599 source:d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view with quaternions\shader.cpp
+	"shader.h"
+	<stdio.h>
+	<string.h>
+
+1415510618 source:d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view with quaternions\smoke.cpp
+	"Smoke.h"
+
+1403654959 source:d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view with quaternions\vector3d.cpp
+	"vector3d.h"
+
+1411638571 source:d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view with quaternions\worldbox.cpp
+	"WorldBox.h"
+
+1411368904 source:d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view with quaternions\worldobject.cpp
+	"WorldObject.h"
+
+1411368920 source:d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view with quaternions\worldsphere.cpp
+	"WorldSphere.h"
+
+1416686076 source:d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view with quaternions\pipeline.cpp
+	"pipeline.h"
+	"glm/gtx/quaternion.hpp"
+	"pipeline.h"
+	"pipeline.h"
+
+1416726851 source:d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view with quaternions\t_camera.cpp
+	"t_camera.h"
+
+1389479879 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view with quaternions\glm\detail\_fixes.hpp
+	<cmath>
+
+1389479879 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view with quaternions\glm\fwd.hpp
+	"detail/type_int.hpp"
+	"detail/type_float.hpp"
+	"detail/type_vec.hpp"
+	"detail/type_mat.hpp"
+
+1389479879 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view with quaternions\glm\detail\type_int.hpp
+	"setup.hpp"
+	<cstdint>
+
+1403361214 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view with quaternions\glm\detail\setup.hpp
+	<cassert>
+	<cuda.h>
+	<intrin.h>
+	<immintrin.h>
+	<immintrin.h>
+	<smmintrin.h>
+	<pmmintrin.h>
+	<emmintrin.h>
+
+1389479879 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view with quaternions\glm\detail\type_float.hpp
+	"setup.hpp"
+
+1389479879 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view with quaternions\glm\detail\type_vec.hpp
+	"precision.hpp"
+	"type_int.hpp"
+
+1389479879 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view with quaternions\glm\detail\precision.hpp
+
+1389479879 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view with quaternions\glm\detail\type_mat.hpp
+	"precision.hpp"
+
+1389479879 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view with quaternions\glm\vec2.hpp
+	"detail/type_vec2.hpp"
+
+1403361214 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view with quaternions\glm\detail\type_vec2.hpp
+	"type_vec.hpp"
+	"_swizzle.hpp"
+	"_swizzle_func.hpp"
+	<cstddef>
+	"type_vec2.inl"
+
+1389479879 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view with quaternions\glm\detail\_swizzle.hpp
+
+1389479879 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view with quaternions\glm\detail\_swizzle_func.hpp
+
+1393354077 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view with quaternions\glm\detail\type_vec2.inl
+
+1389479879 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view with quaternions\glm\vec3.hpp
+	"detail/type_vec3.hpp"
+
+1403361214 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view with quaternions\glm\detail\type_vec3.hpp
+	"type_vec.hpp"
+	"_swizzle.hpp"
+	"_swizzle_func.hpp"
+	<cstddef>
+	"type_vec3.inl"
+
+1393354077 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view with quaternions\glm\detail\type_vec3.inl
+
+1389479879 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view with quaternions\glm\vec4.hpp
+	"detail/type_vec4.hpp"
+
+1403361214 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view with quaternions\glm\detail\type_vec4.hpp
+	"setup.hpp"
+	"type_vec.hpp"
+	"_swizzle.hpp"
+	"_swizzle_func.hpp"
+	<cstddef>
+	"type_vec4.inl"
+
+1403361214 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view with quaternions\glm\detail\type_vec4.inl
+
+1389479879 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view with quaternions\glm\mat2x2.hpp
+	"detail/type_mat2x2.hpp"
+
+1403361214 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view with quaternions\glm\detail\type_mat2x2.hpp
+	"../fwd.hpp"
+	"type_vec2.hpp"
+	"type_mat.hpp"
+	<limits>
+	"type_mat2x2.inl"
+
+1403361214 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view with quaternions\glm\detail\type_mat2x2.inl
+
+1389479879 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view with quaternions\glm\mat2x3.hpp
+	"detail/type_mat2x3.hpp"
+
+1403361214 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view with quaternions\glm\detail\type_mat2x3.hpp
+	"../fwd.hpp"
+	"type_vec2.hpp"
+	"type_vec3.hpp"
+	"type_mat.hpp"
+	<limits>
+	"type_mat2x3.inl"
+
+1393351993 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view with quaternions\glm\detail\type_mat2x3.inl
+
+1389479879 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view with quaternions\glm\mat2x4.hpp
+	"detail/type_mat2x4.hpp"
+
+1403361214 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view with quaternions\glm\detail\type_mat2x4.hpp
+	"../fwd.hpp"
+	"type_vec2.hpp"
+	"type_vec4.hpp"
+	"type_mat.hpp"
+	<limits>
+	"type_mat2x4.inl"
+
+1393351993 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view with quaternions\glm\detail\type_mat2x4.inl
+
+1389479879 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view with quaternions\glm\mat3x2.hpp
+	"detail/type_mat3x2.hpp"
+
+1403361214 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view with quaternions\glm\detail\type_mat3x2.hpp
+	"../fwd.hpp"
+	"type_vec2.hpp"
+	"type_vec3.hpp"
+	"type_mat.hpp"
+	<limits>
+	"type_mat3x2.inl"
+
+1393351993 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view with quaternions\glm\detail\type_mat3x2.inl
+
+1389479879 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view with quaternions\glm\mat3x3.hpp
+	"detail/type_mat3x3.hpp"
+
+1403361214 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view with quaternions\glm\detail\type_mat3x3.hpp
+	"../fwd.hpp"
+	"type_vec3.hpp"
+	"type_mat.hpp"
+	<limits>
+	"type_mat3x3.inl"
+
+1403361214 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view with quaternions\glm\detail\type_mat3x3.inl
+
+1389479879 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view with quaternions\glm\mat3x4.hpp
+	"detail/type_mat3x4.hpp"
+
+1403361214 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view with quaternions\glm\detail\type_mat3x4.hpp
+	"../fwd.hpp"
+	"type_vec3.hpp"
+	"type_vec4.hpp"
+	"type_mat.hpp"
+	<limits>
+	"type_mat3x4.inl"
+
+1393351993 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view with quaternions\glm\detail\type_mat3x4.inl
+
+1389479879 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view with quaternions\glm\mat4x2.hpp
+	"detail/type_mat4x2.hpp"
+
+1403361214 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view with quaternions\glm\detail\type_mat4x2.hpp
+	"../fwd.hpp"
+	"type_vec2.hpp"
+	"type_vec4.hpp"
+	"type_mat.hpp"
+	<limits>
+	"type_mat4x2.inl"
+
+1393351993 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view with quaternions\glm\detail\type_mat4x2.inl
+
+1389479879 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view with quaternions\glm\mat4x3.hpp
+	"detail/type_mat4x3.hpp"
+
+1403361214 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view with quaternions\glm\detail\type_mat4x3.hpp
+	"../fwd.hpp"
+	"type_vec3.hpp"
+	"type_vec4.hpp"
+	"type_mat.hpp"
+	<limits>
+	"type_mat4x3.inl"
+
+1393351993 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view with quaternions\glm\detail\type_mat4x3.inl
+
+1389479879 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view with quaternions\glm\mat4x4.hpp
+	"detail/type_mat4x4.hpp"
+
+1403361214 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view with quaternions\glm\detail\type_mat4x4.hpp
+	"../fwd.hpp"
+	"type_vec4.hpp"
+	"type_mat.hpp"
+	<limits>
+	<cstddef>
+	"type_mat4x4.inl"
+
+1393351993 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view with quaternions\glm\detail\type_mat4x4.inl
+
+1389479879 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view with quaternions\glm\trigonometric.hpp
+	"detail/func_trigonometric.hpp"
+
+1389479879 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view with quaternions\glm\detail\func_trigonometric.hpp
+	"func_trigonometric.inl"
+
+1389479879 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view with quaternions\glm\detail\func_trigonometric.inl
+	"_vectorize.hpp"
+	<cmath>
+	<limits>
+
+1393351993 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view with quaternions\glm\detail\_vectorize.hpp
+	"type_vec1.hpp"
+	"type_vec2.hpp"
+	"type_vec3.hpp"
+	"type_vec4.hpp"
+
+1403361214 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view with quaternions\glm\detail\type_vec1.hpp
+	"../fwd.hpp"
+	"type_vec.hpp"
+	"_swizzle.hpp"
+	"_swizzle_func.hpp"
+	<cstddef>
+	"type_vec1.inl"
+
+1393354077 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view with quaternions\glm\detail\type_vec1.inl
+
+1389479879 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view with quaternions\glm\exponential.hpp
+	"detail/func_exponential.hpp"
+
+1393351993 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view with quaternions\glm\detail\func_exponential.hpp
+	"type_vec1.hpp"
+	"type_vec2.hpp"
+	"type_vec3.hpp"
+	"type_vec4.hpp"
+	<cmath>
+	"func_exponential.inl"
+
+1396394862 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view with quaternions\glm\detail\func_exponential.inl
+	"func_vector_relational.hpp"
+	"_vectorize.hpp"
+	<limits>
+	<cassert>
+
+1389479879 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view with quaternions\glm\detail\func_vector_relational.hpp
+	"precision.hpp"
+	"setup.hpp"
+	"func_vector_relational.inl"
+
+1389479879 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view with quaternions\glm\detail\func_vector_relational.inl
+	<limits>
+
+1389479879 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view with quaternions\glm\common.hpp
+	"detail/func_common.hpp"
+
+1403361214 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view with quaternions\glm\detail\func_common.hpp
+	"setup.hpp"
+	"precision.hpp"
+	"type_int.hpp"
+	"_fixes.hpp"
+	"func_common.inl"
+
+1403287823 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view with quaternions\glm\detail\func_common.inl
+	"func_vector_relational.hpp"
+	"type_vec2.hpp"
+	"type_vec3.hpp"
+	"type_vec4.hpp"
+	"_vectorize.hpp"
+	<limits>
+
+1389479879 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view with quaternions\glm\packing.hpp
+	"detail/func_packing.hpp"
+
+1389479879 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view with quaternions\glm\detail\func_packing.hpp
+	"type_vec2.hpp"
+	"type_vec4.hpp"
+	"func_packing.inl"
+
+1403287823 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view with quaternions\glm\detail\func_packing.inl
+	"func_common.hpp"
+	"type_half.hpp"
+	"../fwd.hpp"
+
+1389479879 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view with quaternions\glm\detail\type_half.hpp
+	"setup.hpp"
+	"type_half.inl"
+
+1403287823 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view with quaternions\glm\detail\type_half.inl
+
+1389479879 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view with quaternions\glm\geometric.hpp
+	"detail/func_geometric.hpp"
+
+1389479879 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view with quaternions\glm\detail\func_geometric.hpp
+	"type_vec3.hpp"
+	"func_geometric.inl"
+
+1403287823 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view with quaternions\glm\detail\func_geometric.inl
+	"func_exponential.hpp"
+	"func_common.hpp"
+	"type_vec2.hpp"
+	"type_vec4.hpp"
+	"type_float.hpp"
+
+1389479879 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view with quaternions\glm\matrix.hpp
+	"detail/func_matrix.hpp"
+
+1389479879 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view with quaternions\glm\detail\func_matrix.hpp
+	"../detail/precision.hpp"
+	"../detail/setup.hpp"
+	"../detail/type_mat.hpp"
+	"../vec2.hpp"
+	"../vec3.hpp"
+	"../vec4.hpp"
+	"../mat2x2.hpp"
+	"../mat2x3.hpp"
+	"../mat2x4.hpp"
+	"../mat3x2.hpp"
+	"../mat3x3.hpp"
+	"../mat3x4.hpp"
+	"../mat4x2.hpp"
+	"../mat4x3.hpp"
+	"../mat4x4.hpp"
+	"func_matrix.inl"
+
+1403361214 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view with quaternions\glm\detail\func_matrix.inl
+	"../geometric.hpp"
+	<limits>
+
+1389479879 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view with quaternions\glm\vector_relational.hpp
+	"detail/func_vector_relational.hpp"
+
+1389479879 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view with quaternions\glm\integer.hpp
+	"detail/func_integer.hpp"
+
+1389479879 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view with quaternions\glm\detail\func_integer.hpp
+	"setup.hpp"
+	"func_integer.inl"
+
+1396394862 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view with quaternions\glm\detail\func_integer.inl
+	"type_vec2.hpp"
+	"type_vec3.hpp"
+	"type_vec4.hpp"
+	"type_int.hpp"
+	"_vectorize.hpp"
+	<intrin.h>
+	<limits>
+
+1415825098 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view with quaternions\eg_rendertechniques\eg_utility.h
+	<cstdlib>
+	<vector>
+	<iostream>
+	<sstream>
+	<string>
+	<algorithm>
+	<fstream>
+	<cstdio>
+	<GL/glew.h>
+	"shader.h"
+	<GL/glew.h>
+	"SDL/SDL.h"
+	"SDL/SDL_image.h"
+
+1416685837 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view with quaternions\thirdpersonpov_camera.h
+	<GL/glew.h>
+	<cmath>
+	<iostream>
+	<SDL/SDL.h>
+	"pipeline.h"
+	"define.h"
+
+1416686134 source:d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view with quaternions\thirdpersonpov_camera.cpp
+	"ThirdPersonPOV_camera.h"
+
+1416814696 d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view with quaternions\eg_camera.h
+	<GL/glew.h>
+	<cmath>
+	<iostream>
+	<SDL/SDL.h>
+	"pipeline.h"
+	"define.h"
+	"glm/glm.hpp"
+	"glm/gtc/matrix_transform.hpp"
+	"glm/gtx/transform.hpp"
+	"glm/gtc/quaternion.hpp"
+	"glm/gtx/quaternion.hpp"
+
+1416814733 source:d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view with quaternions\eg_camera.cpp
+	"EG_Camera.h"
+
+1416694119 source:d:\martin\programming\c and c++\sdl\explosion generator 2014 11 17 third person point of view with quaternions\orbit_camera.cpp
+
+1411152007 source:d:\martin\programming\c and c++\sdl\explosion generator\collisiondetection_hgrid.cpp
+	"CollisionDetection_HGrid.h"
+
+1411189847 d:\martin\programming\c and c++\sdl\explosion generator\collisiondetection_hgrid.h
+	"CollisionDetection_Interface.h"
+	"Particle.h"
+	"glm/glm.hpp"
+	<cstdlib>
+	<vector>
+	<stdint.h>
+	<iostream>
+	<algorithm>
+	<unordered_map>
+	<string>
+	<typeinfo>
+	<bitset>
+	<math.h>
+	"Random.h"
+	"gl/gl.h"
+	"gl/glu.h"
+
+1411189197 d:\martin\programming\c and c++\sdl\explosion generator\collisiondetection_interface.h
+	"glm/glm.hpp"
+	<cstdlib>
+	"WorldBox.h"
+	"WorldSphere.h"
+	"WorldObject.h"
+
+1359678220 d:\martin\programming\c and c++\sdl\explosion generator\glm\glm.hpp
+	"core/_fixes.hpp"
+	<cmath>
+	<climits>
+	<cfloat>
+	<limits>
+	<cstdio>
+	"core/setup.hpp"
+	"./core/_detail.hpp"
+	"./core/_vectorize.hpp"
+	"./core/type.hpp"
+	"./core/func_trigonometric.hpp"
+	"./core/func_exponential.hpp"
+	"./core/func_common.hpp"
+	"./core/func_packing.hpp"
+	"./core/func_geometric.hpp"
+	"./core/func_matrix.hpp"
+	"./core/func_vector_relational.hpp"
+	"./core/func_integer.hpp"
+	"./core/func_noise.hpp"
+	"./core/_swizzle.hpp"
+
+1359678220 d:\martin\programming\c and c++\sdl\explosion generator\glm\core\_fixes.hpp
+	<cmath>
+
+1359678218 d:\martin\programming\c and c++\sdl\explosion generator\glm\core\setup.hpp
+	<intrin.h>
+	<immintrin.h>
+	<immintrin.h>
+	<smmintrin.h>
+	<pmmintrin.h>
+	<emmintrin.h>
+
+1359678220 d:\martin\programming\c and c++\sdl\explosion generator\glm\core\_detail.hpp
+	"setup.hpp"
+	<cassert>
+	<cstdint>
+
+1359678220 d:\martin\programming\c and c++\sdl\explosion generator\glm\core\_vectorize.hpp
+
+1359678218 d:\martin\programming\c and c++\sdl\explosion generator\glm\core\type.hpp
+	"type_half.hpp"
+	"type_float.hpp"
+	"type_int.hpp"
+	"type_gentype.hpp"
+	"type_vec1.hpp"
+	"type_vec2.hpp"
+	"type_vec3.hpp"
+	"type_vec4.hpp"
+	"type_mat2x2.hpp"
+	"type_mat2x3.hpp"
+	"type_mat2x4.hpp"
+	"type_mat3x2.hpp"
+	"type_mat3x3.hpp"
+	"type_mat3x4.hpp"
+	"type_mat4x2.hpp"
+	"type_mat4x3.hpp"
+	"type_mat4x4.hpp"
+
+1359678218 d:\martin\programming\c and c++\sdl\explosion generator\glm\core\type_half.hpp
+	<cstdlib>
+	"type_half.inl"
+
+1359678218 d:\martin\programming\c and c++\sdl\explosion generator\glm\core\type_half.inl
+	"_detail.hpp"
+
+1359678218 d:\martin\programming\c and c++\sdl\explosion generator\glm\core\type_float.hpp
+	"type_half.hpp"
+	"setup.hpp"
+
+1359678218 d:\martin\programming\c and c++\sdl\explosion generator\glm\core\type_int.hpp
+	"setup.hpp"
+	"_detail.hpp"
+
+1359678218 d:\martin\programming\c and c++\sdl\explosion generator\glm\core\type_gentype.hpp
+	"type_size.hpp"
+
+1359678220 d:\martin\programming\c and c++\sdl\explosion generator\glm\core\type_size.hpp
+	<cstdlib>
+
+1359678220 d:\martin\programming\c and c++\sdl\explosion generator\glm\core\type_vec1.hpp
+	"type_vec.hpp"
+	"type_float.hpp"
+	"type_int.hpp"
+	"type_size.hpp"
+	"_swizzle.hpp"
+	"type_vec1.inl"
+
+1359678220 d:\martin\programming\c and c++\sdl\explosion generator\glm\core\type_vec.hpp
+	"type_gentype.hpp"
+
+1359678220 d:\martin\programming\c and c++\sdl\explosion generator\glm\core\_swizzle.hpp
+	"_swizzle_func.hpp"
+
+1359678220 d:\martin\programming\c and c++\sdl\explosion generator\glm\core\_swizzle_func.hpp
+
+1359678220 d:\martin\programming\c and c++\sdl\explosion generator\glm\core\type_vec1.inl
+
+1359678220 d:\martin\programming\c and c++\sdl\explosion generator\glm\core\type_vec2.hpp
+	"type_vec.hpp"
+	"type_float.hpp"
+	"type_int.hpp"
+	"type_size.hpp"
+	"_swizzle.hpp"
+	"type_vec2.inl"
+
+1359678220 d:\martin\programming\c and c++\sdl\explosion generator\glm\core\type_vec2.inl
+
+1359678220 d:\martin\programming\c and c++\sdl\explosion generator\glm\core\type_vec3.hpp
+	"type_vec.hpp"
+	"type_float.hpp"
+	"type_int.hpp"
+	"type_size.hpp"
+	"_swizzle.hpp"
+	"type_vec3.inl"
+
+1359678220 d:\martin\programming\c and c++\sdl\explosion generator\glm\core\type_vec3.inl
+
+1359678220 d:\martin\programming\c and c++\sdl\explosion generator\glm\core\type_vec4.hpp
+	"type_vec.hpp"
+	"type_float.hpp"
+	"type_int.hpp"
+	"type_size.hpp"
+	"_swizzle.hpp"
+	"type_vec4.inl"
+
+1359678220 d:\martin\programming\c and c++\sdl\explosion generator\glm\core\type_vec4.inl
+
+1359678218 d:\martin\programming\c and c++\sdl\explosion generator\glm\core\type_mat2x2.hpp
+	"type_mat.hpp"
+	"type_mat2x2.inl"
+
+1359678218 d:\martin\programming\c and c++\sdl\explosion generator\glm\core\type_mat.hpp
+	"type_gentype.hpp"
+
+1359678218 d:\martin\programming\c and c++\sdl\explosion generator\glm\core\type_mat2x2.inl
+
+1359678218 d:\martin\programming\c and c++\sdl\explosion generator\glm\core\type_mat2x3.hpp
+	"type_mat.hpp"
+	"type_mat2x3.inl"
+
+1359678218 d:\martin\programming\c and c++\sdl\explosion generator\glm\core\type_mat2x3.inl
+
+1359678218 d:\martin\programming\c and c++\sdl\explosion generator\glm\core\type_mat2x4.hpp
+	"type_mat.hpp"
+	"type_mat2x4.inl"
+
+1359678218 d:\martin\programming\c and c++\sdl\explosion generator\glm\core\type_mat2x4.inl
+
+1359678220 d:\martin\programming\c and c++\sdl\explosion generator\glm\core\type_mat3x2.hpp
+	"type_mat.hpp"
+	"type_mat3x2.inl"
+
+1359678220 d:\martin\programming\c and c++\sdl\explosion generator\glm\core\type_mat3x2.inl
+
+1359678220 d:\martin\programming\c and c++\sdl\explosion generator\glm\core\type_mat3x3.hpp
+	"type_mat.hpp"
+	"type_mat3x3.inl"
+
+1359678220 d:\martin\programming\c and c++\sdl\explosion generator\glm\core\type_mat3x3.inl
+
+1359678220 d:\martin\programming\c and c++\sdl\explosion generator\glm\core\type_mat3x4.hpp
+	"type_mat.hpp"
+	"type_mat3x4.inl"
+
+1359678220 d:\martin\programming\c and c++\sdl\explosion generator\glm\core\type_mat3x4.inl
+
+1359678220 d:\martin\programming\c and c++\sdl\explosion generator\glm\core\type_mat4x2.hpp
+	"type_mat.hpp"
+	"type_mat4x2.inl"
+
+1359678220 d:\martin\programming\c and c++\sdl\explosion generator\glm\core\type_mat4x2.inl
+
+1359678220 d:\martin\programming\c and c++\sdl\explosion generator\glm\core\type_mat4x3.hpp
+	"type_mat.hpp"
+	"type_mat4x3.inl"
+
+1359678220 d:\martin\programming\c and c++\sdl\explosion generator\glm\core\type_mat4x3.inl
+
+1359678220 d:\martin\programming\c and c++\sdl\explosion generator\glm\core\type_mat4x4.hpp
+	"type_mat.hpp"
+	"type_mat4x4.inl"
+
+1359678220 d:\martin\programming\c and c++\sdl\explosion generator\glm\core\type_mat4x4.inl
+
+1359678218 d:\martin\programming\c and c++\sdl\explosion generator\glm\core\func_trigonometric.hpp
+	"func_trigonometric.inl"
+
+1359678218 d:\martin\programming\c and c++\sdl\explosion generator\glm\core\func_trigonometric.inl
+
+1359678218 d:\martin\programming\c and c++\sdl\explosion generator\glm\core\func_exponential.hpp
+	"func_exponential.inl"
+
+1359678218 d:\martin\programming\c and c++\sdl\explosion generator\glm\core\func_exponential.inl
+
+1359678218 d:\martin\programming\c and c++\sdl\explosion generator\glm\core\func_common.hpp
+	"_fixes.hpp"
+	"func_common.inl"
+
+1359678218 d:\martin\programming\c and c++\sdl\explosion generator\glm\core\func_common.inl
+
+1359678218 d:\martin\programming\c and c++\sdl\explosion generator\glm\core\func_packing.hpp
+	"func_packing.inl"
+
+1359678218 d:\martin\programming\c and c++\sdl\explosion generator\glm\core\func_packing.inl
+
+1359678218 d:\martin\programming\c and c++\sdl\explosion generator\glm\core\func_geometric.hpp
+	"func_geometric.inl"
+
+1359678218 d:\martin\programming\c and c++\sdl\explosion generator\glm\core\func_geometric.inl
+
+1359678218 d:\martin\programming\c and c++\sdl\explosion generator\glm\core\func_matrix.hpp
+	"func_matrix.inl"
+
+1359678218 d:\martin\programming\c and c++\sdl\explosion generator\glm\core\func_matrix.inl
+
+1359678218 d:\martin\programming\c and c++\sdl\explosion generator\glm\core\func_vector_relational.hpp
+	"_detail.hpp"
+	"func_vector_relational.inl"
+
+1359678218 d:\martin\programming\c and c++\sdl\explosion generator\glm\core\func_vector_relational.inl
+
+1359678218 d:\martin\programming\c and c++\sdl\explosion generator\glm\core\func_integer.hpp
+	"func_integer.inl"
+
+1359678218 d:\martin\programming\c and c++\sdl\explosion generator\glm\core\func_integer.inl
+	<intrin.h>
+
+1359678218 d:\martin\programming\c and c++\sdl\explosion generator\glm\core\func_noise.hpp
+	"func_noise.inl"
+
+1359678218 d:\martin\programming\c and c++\sdl\explosion generator\glm\core\func_noise.inl
+
+1411632901 d:\martin\programming\c and c++\sdl\explosion generator\worldbox.h
+	"WorldObject.h"
+	<iostream>
+	<cstdlib>
+
+1413068393 d:\martin\programming\c and c++\sdl\explosion generator\worldobject.h
+	"glm/glm.hpp"
+	"glm/gtc/matrix_transform.hpp"
+	"glm/gtx/transform.hpp"
+	<cstdlib>
+	<stdint.h>
+	<vector>
+	"Particle.h"
+
+1359678220 d:\martin\programming\c and c++\sdl\explosion generator\glm\gtc\matrix_transform.hpp
+	"../glm.hpp"
+	"matrix_transform.inl"
+
+1359678220 d:\martin\programming\c and c++\sdl\explosion generator\glm\gtc\matrix_transform.inl
+
+1359678222 d:\martin\programming\c and c++\sdl\explosion generator\glm\gtx\transform.hpp
+	"../glm.hpp"
+	"../gtc/matrix_transform.hpp"
+	"transform.inl"
+
+1359678222 d:\martin\programming\c and c++\sdl\explosion generator\glm\gtx\transform.inl
+
+1411151009 d:\martin\programming\c and c++\sdl\explosion generator\particle.h
+	"glm/glm.hpp"
+	<cstdlib>
+	<stdint.h>
+	<vector>
+
+1411368856 d:\martin\programming\c and c++\sdl\explosion generator\worldsphere.h
+	"WorldObject.h"
+
+1403655018 d:\martin\programming\c and c++\sdl\explosion generator\random.h
+
+1413064622 source:d:\martin\programming\c and c++\sdl\explosion generator\collisiondetection_hgrid_new.cpp
+	"CollisionDetection_HGrid_new.h"
+
+1411406087 d:\martin\programming\c and c++\sdl\explosion generator\collisiondetection_hgrid_new.h
+	"CollisionDetection_Interface.h"
+	"Particle.h"
+	"glm/glm.hpp"
+	<cstdlib>
+	<vector>
+	<stdint.h>
+	<iostream>
+	<algorithm>
+	<unordered_map>
+	<string>
+	<typeinfo>
+	<bitset>
+	<math.h>
+	"Random.h"
+	"gl/gl.h"
+	"gl/glu.h"
+
+1416814733 source:d:\martin\programming\c and c++\sdl\explosion generator\eg_camera.cpp
+	"EG_Camera.h"
+
+1416814696 d:\martin\programming\c and c++\sdl\explosion generator\eg_camera.h
+	<GL/glew.h>
+	<cmath>
+	<iostream>
+	<SDL/SDL.h>
+	"pipeline.h"
+	"define.h"
+	"glm/glm.hpp"
+	"glm/gtc/matrix_transform.hpp"
+	"glm/gtx/transform.hpp"
+	"glm/gtc/quaternion.hpp"
+	"glm/gtx/quaternion.hpp"
+
+1416686102 d:\martin\programming\c and c++\sdl\explosion generator\pipeline.h
+	<iostream>
+	<vector>
+	"define.h"
+	"glm/glm.hpp"
+	"glm/gtc/matrix_transform.hpp"
+	"glm/gtx/transform.hpp"
+	"glm/gtc/quaternion.hpp"
+	"glm/gtx/quaternion.hpp"
+	<GL/glew.h>
+	<iostream>
+	<vector>
+	"glm/glm.hpp"
+	"glm/gtc/matrix_transform.hpp"
+	"glm/gtx/transform.hpp"
+	<GL/glew.h>
+
+1409331678 d:\martin\programming\c and c++\sdl\explosion generator\define.h
+	<string>
+	<iostream>
+	<ctime>
+	<vector>
+	<map>
+	<math.h>
+	"glm/glm.hpp"
+	"glm/gtc/type_ptr.hpp"
+	"glm/gtc/quaternion.hpp"
+	"glm/gtx/vector_angle.hpp"
+	"glm/gtx/compatibility.hpp"
+	"glm/gtx/matrix_operation.hpp"
+	"glm/gtx/transform.hpp"
+	"glm/gtx/quaternion.hpp"
+	"glm/gtx/euler_angles.hpp"
+	"glm/gtx/norm.hpp"
+	"SOIL.h"
+
+1359678220 d:\martin\programming\c and c++\sdl\explosion generator\glm\gtc\type_ptr.hpp
+	"../glm.hpp"
+	"../gtc/half_float.hpp"
+	"../gtc/quaternion.hpp"
+	<cstring>
+	"type_ptr.inl"
+
+1359678220 d:\martin\programming\c and c++\sdl\explosion generator\glm\gtc\half_float.hpp
+	"../glm.hpp"
+	"half_float.inl"
+
+1359678220 d:\martin\programming\c and c++\sdl\explosion generator\glm\gtc\half_float.inl
+
+1359678220 d:\martin\programming\c and c++\sdl\explosion generator\glm\gtc\quaternion.hpp
+	"../glm.hpp"
+	"../gtc/half_float.hpp"
+	"../gtc/constants.hpp"
+	"quaternion.inl"
+
+1359678220 d:\martin\programming\c and c++\sdl\explosion generator\glm\gtc\constants.hpp
+	"../glm.hpp"
+	"../gtc/half_float.hpp"
+	"constants.inl"
+
+1359678220 d:\martin\programming\c and c++\sdl\explosion generator\glm\gtc\constants.inl
+
+1359678220 d:\martin\programming\c and c++\sdl\explosion generator\glm\gtc\quaternion.inl
+	<limits>
+
+1359678220 d:\martin\programming\c and c++\sdl\explosion generator\glm\gtc\type_ptr.inl
+
+1359678224 d:\martin\programming\c and c++\sdl\explosion generator\glm\gtx\vector_angle.hpp
+	"../glm.hpp"
+	"../gtc/epsilon.hpp"
+	"../gtx/quaternion.hpp"
+	"../gtx/rotate_vector.hpp"
+	"vector_angle.inl"
+
+1359678220 d:\martin\programming\c and c++\sdl\explosion generator\glm\gtc\epsilon.hpp
+	"../glm.hpp"
+	"../gtc/half_float.hpp"
+	"../gtc/quaternion.hpp"
+	"epsilon.inl"
+
+1359678220 d:\martin\programming\c and c++\sdl\explosion generator\glm\gtc\epsilon.inl
+
+1359678222 d:\martin\programming\c and c++\sdl\explosion generator\glm\gtx\quaternion.hpp
+	"../glm.hpp"
+	"../gtc/quaternion.hpp"
+	"quaternion.inl"
+
+1359678222 d:\martin\programming\c and c++\sdl\explosion generator\glm\gtx\quaternion.inl
+	<limits>
+
+1359678222 d:\martin\programming\c and c++\sdl\explosion generator\glm\gtx\rotate_vector.hpp
+	"../glm.hpp"
+	"../gtx/transform.hpp"
+	"rotate_vector.inl"
+
+1359678222 d:\martin\programming\c and c++\sdl\explosion generator\glm\gtx\rotate_vector.inl
+
+1359678224 d:\martin\programming\c and c++\sdl\explosion generator\glm\gtx\vector_angle.inl
+
+1359678220 d:\martin\programming\c and c++\sdl\explosion generator\glm\gtx\compatibility.hpp
+	"../glm.hpp"
+	"../gtc/half_float.hpp"
+	"../gtc/quaternion.hpp"
+	<cfloat>
+	<cmath>
+	"compatibility.inl"
+
+1359678220 d:\martin\programming\c and c++\sdl\explosion generator\glm\gtx\compatibility.inl
+
+1359678222 d:\martin\programming\c and c++\sdl\explosion generator\glm\gtx\matrix_operation.hpp
+	"../glm.hpp"
+	"matrix_operation.inl"
+
+1359678222 d:\martin\programming\c and c++\sdl\explosion generator\glm\gtx\matrix_operation.inl
+
+1359678222 d:\martin\programming\c and c++\sdl\explosion generator\glm\gtx\euler_angles.hpp
+	"../glm.hpp"
+	"../gtc/half_float.hpp"
+	"euler_angles.inl"
+
+1359678222 d:\martin\programming\c and c++\sdl\explosion generator\glm\gtx\euler_angles.inl
+
+1359678222 d:\martin\programming\c and c++\sdl\explosion generator\glm\gtx\norm.hpp
+	"../glm.hpp"
+	"../gtx/quaternion.hpp"
+	"norm.inl"
+
+1359678222 d:\martin\programming\c and c++\sdl\explosion generator\glm\gtx\norm.inl
+
+1416812811 source:d:\martin\programming\c and c++\sdl\explosion generator\eg_rendertechniques\eg_skybox.cpp
+	"EG_Skybox.h"
+
+1416721770 d:\martin\programming\c and c++\sdl\explosion generator\eg_rendertechniques\eg_skybox.h
+	<cstdlib>
+	<vector>
+	<iostream>
+	<sstream>
+	<string>
+	<algorithm>
+	<fstream>
+	<cstdio>
+	"EG_utility.h"
+	"shader.h"
+	"sceneLoader.h"
+	"pipeline.h"
+	"EG_Technique.h"
+	<GL/glew.h>
+	"SDL/SDL.h"
+	"SDL/SDL_image.h"
+
+1415839037 d:\martin\programming\c and c++\sdl\explosion generator\eg_rendertechniques\eg_technique.h
+	"define.h"
+	"shader.h"
+	"pipeline.h"
+
+1415838917 source:d:\martin\programming\c and c++\sdl\explosion generator\eg_rendertechniques\eg_technique.cpp
+	"EG_Technique.h"
+
+1415836815 source:d:\martin\programming\c and c++\sdl\explosion generator\eg_rendertechniques\eg_technique_depthtexture_render.cpp
+	"EG_Technique_DepthTexture_Render.h"
+
+1415835715 d:\martin\programming\c and c++\sdl\explosion generator\eg_rendertechniques\eg_technique_depthtexture_render.h
+	"pipeline.h"
+	<GL/glew.h>
+	<cstdlib>
+	<iostream>
+	<stdio.h>
+	<string>
+	<sstream>
+	"EG_Technique.h"
+
+1415839654 source:d:\martin\programming\c and c++\sdl\explosion generator\eg_rendertechniques\eg_technique_reflection.cpp
+	"EG_Technique_Reflection.h"
+
+1415839650 d:\martin\programming\c and c++\sdl\explosion generator\eg_rendertechniques\eg_technique_reflection.h
+	"pipeline.h"
+	<GL/glew.h>
+	<cstdlib>
+	<iostream>
+	<stdio.h>
+	<string>
+	<sstream>
+	"EG_Technique.h"
+
+1415836885 source:d:\martin\programming\c and c++\sdl\explosion generator\eg_rendertechniques\eg_technique_shadow_render.cpp
+	"EG_Technique_Shadow_Render.h"
+
+1415836160 d:\martin\programming\c and c++\sdl\explosion generator\eg_rendertechniques\eg_technique_shadow_render.h
+	"pipeline.h"
+	<GL/glew.h>
+	<cstdlib>
+	<iostream>
+	<stdio.h>
+	<string>
+	<sstream>
+	"EG_Technique.h"
+
+1415836793 source:d:\martin\programming\c and c++\sdl\explosion generator\eg_rendertechniques\eg_technique_twopass_raycasting.cpp
+	"EG_Technique_TwoPass_RayCasting.h"
+
+1415837026 d:\martin\programming\c and c++\sdl\explosion generator\eg_rendertechniques\eg_technique_twopass_raycasting.h
+	"Smoke_struct.h"
+	"pipeline.h"
+	<GL/glew.h>
+	<cstdlib>
+	<iostream>
+	<stdio.h>
+	<string>
+	<sstream>
+	"EG_Technique.h"
+
+1415825128 source:d:\martin\programming\c and c++\sdl\explosion generator\eg_utility.cpp
+	"EG_utility.h"
+
+1416394258 d:\martin\programming\c and c++\sdl\explosion generator\eg_utility.h
+	<cstdlib>
+	<vector>
+	<iostream>
+	<sstream>
+	<string>
+	<algorithm>
+	<fstream>
+	<cstdio>
+	<GL/glew.h>
+	"shader.h"
+	<GL/glew.h>
+	"SDL/SDL.h"
+	"SDL/SDL_image.h"
+
+1408181344 d:\martin\programming\c and c++\sdl\explosion generator\shader.h
+	<GL/glew.h>
+	<string>
+	<vector>
+	<fstream>
+	<iostream>
+	<stdio.h>
+
+1409357051 source:d:\martin\programming\c and c++\sdl\explosion generator\elapsedtime.cpp
+	"define.h"
+	"ElapsedTime.h"
+	<algorithm>
+
+1413931435 d:\martin\programming\c and c++\sdl\explosion generator\elapsedtime.h
+
+1411638663 source:d:\martin\programming\c and c++\sdl\explosion generator\l_cube_sphere_particleeffect.cpp
+	"L_Cube_Sphere_ParticleEffect.h"
+
+1411328540 d:\martin\programming\c and c++\sdl\explosion generator\l_cube_sphere_particleeffect.h
+	<GL/glew.h>
+	"WorldBox.h"
+	"WorldSphere.h"
+	"pipeline.h"
+	"sceneLoader.h"
+	"L_ParticleEffect_Interface.h"
+	<cstdlib>
+	<iostream>
+	<algorithm>
+	"CollisionDetection_HGrid_new.h"
+	"Random.h"
+
+1415254258 d:\martin\programming\c and c++\sdl\explosion generator\sceneloader.h
+	<vector>
+	<assimp/cimport.h>
+	<assimp/scene.h>
+	<assimp/postprocess.h>
+	<SDL/SDL_image.h>
+	"mesh.h"
+
+1415254205 d:\martin\programming\c and c++\sdl\explosion generator\mesh.h
+	<iostream>
+	"meshData.h"
+	<GL/glew.h>
+	"SDL/SDL_opengl.h"
+	<vector>
+	<string>
+
+1410747814 d:\martin\programming\c and c++\sdl\explosion generator\meshdata.h
+	"vector3d.h"
+
+1403655039 d:\martin\programming\c and c++\sdl\explosion generator\vector3d.h
+	<iostream>
+	<cmath>
+
+1411324028 d:\martin\programming\c and c++\sdl\explosion generator\l_particleeffect_interface.h
+	"Particle.h"
+	<cstdlib>
+	<cstdlib>
+	<vector>
+	<iostream>
+	<sstream>
+	<string>
+	<algorithm>
+	<fstream>
+	<cstdio>
+	"glm/glm.hpp"
+
+1415833161 source:d:\martin\programming\c and c++\sdl\explosion generator\l_sphereparticleeffect.cpp
+	"L_SphereParticleEffect.h"
+	"gl/gl.h"
+	"gl/glu.h"
+
+1415509956 d:\martin\programming\c and c++\sdl\explosion generator\l_sphereparticleeffect.h
+	"pipeline.h"
+	"EG_Technique.h"
+	"EG_Technique_Shadow_Render.h"
+	"EG_Technique_TwoPass_RayCasting.h"
+	"sceneLoader.h"
+	"L_ParticleEffect_Interface.h"
+	<cstdlib>
+	<iostream>
+	<algorithm>
+	"CollisionDetection_HGrid.h"
+	"Random.h"
+
+1416814750 source:d:\martin\programming\c and c++\sdl\explosion generator\main.cpp
+	"main.h"
+	"gl/gl.h"
+	"gl/glu.h"
+	"SDL\SDL.h"
+
+1416704406 d:\martin\programming\c and c++\sdl\explosion generator\main.h
+	<cstdlib>
+	<iostream>
+	<stdio.h>
+	<string>
+	<sstream>
+	"define.h"
+	"EG_Camera.h"
+	"ThirdPersonPOV_camera.h"
+	"EG_utility.h"
+	"EG_RenderTechniques/EG_Skybox.h"
+	"shader.h"
+	"sceneLoader.h"
+	"EG_Technique_DepthTexture_Render.h"
+	"EG_Technique_TwoPass_RayCasting.h"
+	"EG_Technique_Shadow_Render.h"
+	"EG_Technique_Reflection.h"
+	"WorldBox.h"
+	"WorldSphere.h"
+	"pipeline.h"
+	"L_SphereParticleEffect.h"
+	"L_Cube_Sphere_ParticleEffect.h"
+	<GL/glew.h>
+	"SDL/SDL_opengl.h"
+	"SDL/SDL.h"
+	"SDL/SDL_image.h"
+	"ElapsedTime.h"
+	"L_ParticleEffect_Interface.h"
+	"Smoke.h"
+	"CollisionDetection_HGrid.h"
+	"t_camera.h"
+
+1416685837 d:\martin\programming\c and c++\sdl\explosion generator\thirdpersonpov_camera.h
+	<GL/glew.h>
+	<cmath>
+	<iostream>
+	<SDL/SDL.h>
+	"pipeline.h"
+	"define.h"
+
+1415510612 d:\martin\programming\c and c++\sdl\explosion generator\smoke.h
+	"shader.h"
+	"EG_Technique_TwoPass_RayCasting.h"
+	"Smoke_struct.h"
+	<GL/glew.h>
+	<vector>
+	<iostream>
+	<sstream>
+	<string>
+	<algorithm>
+	<fstream>
+	<cstdio>
+	"L_ParticleEffect_Interface.h"
+	"define.h"
+
+1415432244 d:\martin\programming\c and c++\sdl\explosion generator\smoke_struct.h
+	"define.h"
+	<GL/glew.h>
+
+1416689937 d:\martin\programming\c and c++\sdl\explosion generator\t_camera.h
+	<cmath>
+	<iostream>
+	<SDL/SDL.h>
+	"pipeline.h"
+	"gl/gl.h"
+	"gl/glu.h"
+	"vector3d.h"
+	"define.h"
+
+1415486326 source:d:\martin\programming\c and c++\sdl\explosion generator\mesh.cpp
+	"mesh.h"
+
+1416694119 source:d:\martin\programming\c and c++\sdl\explosion generator\orbit_camera.cpp
+
+1416686076 source:d:\martin\programming\c and c++\sdl\explosion generator\pipeline.cpp
+	"pipeline.h"
+	"glm/gtx/quaternion.hpp"
+	"pipeline.h"
+	"pipeline.h"
+
+1415254225 source:d:\martin\programming\c and c++\sdl\explosion generator\sceneloader.cpp
+	"sceneLoader.h"
+
+1408785599 source:d:\martin\programming\c and c++\sdl\explosion generator\shader.cpp
+	"shader.h"
+	<stdio.h>
+	<string.h>
+
+1415510618 source:d:\martin\programming\c and c++\sdl\explosion generator\smoke.cpp
+	"Smoke.h"
+
+1416726851 source:d:\martin\programming\c and c++\sdl\explosion generator\t_camera.cpp
+	"t_camera.h"
+
+1416686134 source:d:\martin\programming\c and c++\sdl\explosion generator\thirdpersonpov_camera.cpp
+	"ThirdPersonPOV_camera.h"
+
+1403654959 source:d:\martin\programming\c and c++\sdl\explosion generator\vector3d.cpp
+	"vector3d.h"
+
+1411638571 source:d:\martin\programming\c and c++\sdl\explosion generator\worldbox.cpp
+	"WorldBox.h"
+
+1411368904 source:d:\martin\programming\c and c++\sdl\explosion generator\worldobject.cpp
+	"WorldObject.h"
+
+1411368920 source:d:\martin\programming\c and c++\sdl\explosion generator\worldsphere.cpp
+	"WorldSphere.h"
 

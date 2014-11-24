@@ -1,5 +1,7 @@
 #if 1
+
 #include "pipeline.h"
+#include "glm/gtx/quaternion.hpp"
 
 pipeline::pipeline()
 {
@@ -100,6 +102,44 @@ void pipeline::rotateZ(float angle)
 		viewMatrix[viewMatrix.size()-1]*=glm::rotate(-angle,0.0f,0.0f,1.0f);
 	matricesReady=false;
 }
+
+
+void pipeline::Rotate(float angle, float x, float y, float z)
+{
+	if(currentMatrix==MODEL_MATRIX)
+		modelMatrix[modelMatrix.size()-1]*=glm::rotate(angle,x,y,z);
+	else if(currentMatrix==VIEW_MATRIX)
+		viewMatrix[viewMatrix.size()-1]*=glm::rotate(-angle,x,y,z);
+	matricesReady=false;
+}
+
+
+void pipeline::Rotate(glm::quat q_rotation)
+{
+    glm::mat4 RotationMatrix = glm::toMat4(q_rotation);
+
+	if(currentMatrix==MODEL_MATRIX)
+		modelMatrix[modelMatrix.size()-1]*=RotationMatrix;
+	else if(currentMatrix==VIEW_MATRIX)
+		viewMatrix[viewMatrix.size()-1]*=RotationMatrix;
+	matricesReady=false;
+}
+
+void pipeline::LoadMatrix(glm::mat4 m_Matrix)
+{
+    if(currentMatrix==MODEL_MATRIX)
+		modelMatrix[modelMatrix.size()-1]*=m_Matrix;
+	else if(currentMatrix==VIEW_MATRIX)
+		viewMatrix[viewMatrix.size()-1]*=m_Matrix;
+	matricesReady=false;
+}
+
+/*
+void pipeline::ABC()
+{
+
+}
+*/
 
 		//projection
 void pipeline::ortho(float left,float right,float bottom,float top,float near,float far) //==glOrtho

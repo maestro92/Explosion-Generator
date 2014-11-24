@@ -14,6 +14,14 @@ using namespace std;
 #define SPHERE_EFFECT2 1
 #define CUBE_SPHERE_EFFECT2 0
 #define SMOKE_EFFECT2 1
+
+
+#define USING_INVERSE_MATRIX 0
+
+
+#define SKY_BOX 1
+
+
 glm::vec3 ImpulsePosition1( GridWidth / 2.0f, GridHeight - (int) SplatRadius / 2.0f, GridDepth / 2.0f);
 
 //Screen dimension constants
@@ -48,10 +56,10 @@ glm::vec2 g_MouseDelta = glm::vec2(0);
 
 // -10.4551 7.70642 15.5772
 //vector3d camPosition(-10.4551, 7.70642, 15.5772);
-vector3d camPosition(0, 5, 10);
+vector3d camPosition(0, 5, 20);
 //vector3d camPosition(0, 0, 0);
 
-
+glm::quat g_meshOrientation;
 
 //glm::vec3 g_DefaultCameraTranslate( 0, 0, 400 );
 glm::vec3 g_DefaultCameraTranslate( 0, 0, 0 );
@@ -91,6 +99,7 @@ ExplosionGenerator::ExplosionGenerator()
     init_OpenGL();
 
     init_Shader();
+    myOrbitCamera.init();
 
 
 //    init_Lighting();
@@ -119,6 +128,7 @@ ExplosionGenerator::ExplosionGenerator()
 #endif
 
     SDL_WM_SetCaption("Template", NULL);
+ //   myOrbitCamera.lookAt(m_pipeline);
 }
 
 
@@ -345,6 +355,7 @@ void ExplosionGenerator::init_Models()
     smooth_sphere = new meshLoader("./Sphere/sphere_grey.obj");
     cube = new meshLoader("cube.obj");
     monkey = new meshLoader("monkey.obj");
+    MainCharacter = new meshLoader("./Characters/LEGO_Man.obj");
 //    cube = new meshLoader("./Sphere/sphere10_grey_flat.obj");
 }
 
@@ -391,6 +402,8 @@ void ExplosionGenerator::start()
 
                 case SDL_MOUSEBUTTONDOWN:
                     cam.mouseIn(true);
+                    myOrbitCamera.mouseIn(true);
+
                     cam.lookAt(lightDirection.x, lightDirection.y);
 
                     switch(event.button.button)
@@ -424,6 +437,11 @@ void ExplosionGenerator::start()
                     switch (event.key.keysym.sym)
                     {
                         case SDLK_x:   addSmoke = false;    break;
+                        case SDLK_w:   addSmoke = false;    break;
+                        case SDLK_s:   addSmoke = false;    break;
+                        case SDLK_a:   addSmoke = false;    break;
+                        case SDLK_d:   addSmoke = false;    break;
+
                     }
                     break;
 
@@ -450,6 +468,7 @@ void ExplosionGenerator::start()
                             break;
                         case SDLK_p:
                             cam.mouseIn(false);
+                            myOrbitCamera.mouseIn(false);
                             break;
                         case SDLK_x:
                             cout << "here" << endl;
@@ -676,7 +695,7 @@ void ExplosionGenerator::update()
 
 void ExplosionGenerator::show()
 {
-    Render_to_CubeMapTexture2();
+ //   Render_to_CubeMapTexture2();
 
 #if 1
     m_pipeline.perspective(45,SCREEN_WIDTH/SCREEN_HEIGHT, 0.5, 1000.0);
@@ -691,11 +710,61 @@ void ExplosionGenerator::show()
 	m_pipeline.matrixMode(VIEW_MATRIX);
 	m_pipeline.loadIdentity();
 
+
+/*
     cam.Control(SCREEN_WIDTH/2, SCREEN_HEIGHT/2);
     cam.UpdateCamera();
     cam.UpdateCamera_Rotation(m_pipeline);
+#if SKY_BOX
     m_skybox.UpdateRotationOnly_View_Pipeline(m_pipeline);
+#endif
     cam.UpdateCamera_Translation(m_pipeline);
+*/
+
+
+
+
+  //  myOrbitCamera.lookAt(m_pipeline);
+  //  myOrbitCamera.Control(m_pipeline, SCREEN_WIDTH/2, SCREEN_HEIGHT/2);
+
+
+    glm::vec3 o_eye = glm::vec3(0,5,15);
+    glm::vec3 o_at = glm::vec3(0,0,0);
+    glm::vec3 o_up = glm::vec3(0,1,0);
+
+    myOrbitCamera.lookAt(m_pipeline, o_eye, o_at, o_up);
+
+
+
+//    myOrbitCamera.Control(m_pipeline);
+
+//    m_skybox.UpdateRotationOnly_View_Pipeline(m_pipeline, myOrbitCamera.m_RotateViewMatrix1);
+
+    myOrbitCamera.Control(m_pipeline, SCREEN_WIDTH/2, SCREEN_HEIGHT/2);
+
+    m_skybox.UpdateRotationOnly_View_Pipeline(myOrbitCamera.m_skyboxRotate);
+
+//    m_pipeline.Rotate()
+
+//    m_skybox.UpdateRotationOnly_View_Pipeline(m_pipeline);
+#if SKY_BOX
+//    m_skybox.UpdateRotationOnly_View_Pipeline(myOrbitCamera.m_skyboxRotate);
+
+
+ //   m_skybox.UpdateRotationOnly_View_Pipeline(m_pipeline, myOrbitCamera.m_RotateViewMatrix, myOrbitCamera.m_PitchDegrees, myOrbitCamera.m_YawDegrees);
+ //   m_skybox.UpdateRotationOnly_View_Pipeline(m_pipeline, myOrbitCamera.m_RotateViewMatrix);
+ //   m_skybox.UpdateRotationOnly_View_Pipeline(m_pipeline);
+#endif
+
+
+
+
+/*
+    cam.Control(SCREEN_WIDTH/2, SCREEN_HEIGHT/2);
+  //  cam.Control_MatrixBased(m_pipeline, SCREEN_WIDTH/2, SCREEN_HEIGHT/2);
+    cam.UpdateCamera();
+    cam.UpdateCamera(m_pipeline);
+*/
 
 
     r_Technique = &r_DepthTexture_Render;
@@ -740,8 +809,10 @@ void ExplosionGenerator::show()
     /// sets the color
     glClearColor(0,0,0.5,1);    glClear(GL_COLOR_BUFFER_BIT); // clears the buffer
     glDisable(GL_DEPTH_TEST);   glDisable(GL_CULL_FACE);
-    m_skybox.RenderSkyBox(SkyboxShader);
 
+#if SKY_BOX
+    m_skybox.RenderSkyBox(SkyboxShader);
+#endif
     glEnable(GL_CULL_FACE);
     glEnable(GL_DEPTH_TEST);    glClear(GL_DEPTH_BUFFER_BIT);
 
@@ -750,6 +821,8 @@ void ExplosionGenerator::show()
     RenderScene();
 #endif
     RenderReflectiveObjects();
+
+
     DrawAxis(20, glm::vec3(0,0,0));
 
 
@@ -760,6 +833,14 @@ void ExplosionGenerator::show()
  //   Matrices.View = glm::mat4(1.0);
 
     m_pipeline.pushMatrix();
+
+#if USING_INVERSE_MATRIX
+    g_meshOrientation = myOrbitCamera.m_orientation;
+    g_meshOrientation = glm::inverse(g_meshOrientation);
+    glm::mat4 m = glm::toMat4(g_meshOrientation);
+    m_pipeline.LoadMatrix(m);
+#endif
+
         m_pipeline.translate(0,5,0);
         m_pipeline.rotateZ(180);
         m_pipeline.scale(5);
@@ -1006,7 +1087,16 @@ void ExplosionGenerator::RenderScene()
 
 
 
+
     m_pipeline.pushMatrix();
+
+#if USING_INVERSE_MATRIX
+    g_meshOrientation = myOrbitCamera.m_orientation;
+    g_meshOrientation = glm::inverse(g_meshOrientation);
+    glm::mat4 m = glm::toMat4(g_meshOrientation);
+    m_pipeline.LoadMatrix(m);
+#endif
+
     r_Shadow_Render.EnableShader(RENDER_PASS2);
 
         glActiveTexture(GL_TEXTURE0);
@@ -1023,9 +1113,23 @@ void ExplosionGenerator::RenderScene()
 		glUniform3f(r_Shadow_Render.CameraPosition_UniLoc,cam.getLocation().x,cam.getLocation().y,cam.getLocation().z);
 
         r_Shadow_Render.Setup_ShadowMatrix_forRender(m_pipeline, RENDER_PASS2);
-        r_Shadow_Render.Load_glUniform(m_pipeline, RENDER_PASS2);
 
+    //    m_pipeline.pushMatrix();
+      //  glm::vec3 EulerAngles(45, 45, 0);
+      //  glm::quat rotation_quaternion = glm::quat(EulerAngles);
+      //  m_pipeline.Rotate(rotation_quaternion);
+
+//        m_pipeline.Rotate(22.5, 1, 1, 0);
+
+        r_Shadow_Render.Load_glUniform(m_pipeline, RENDER_PASS2);
         ground->draw();
+      //  m_pipeline.popMatrix();
+//        m_pipeline.pushMatrix();
+//            m_pipeline.rotateX(45);
+//            m_pipeline.rotateY(45);
+//            r_Shadow_Render.Load_glUniform(m_pipeline, RENDER_PASS2);
+//            ground->draw();
+//        m_pipeline.popMatrix();
 
 #if SPHERE_EFFECT
         r_Technique = &r_Shadow_Render;
@@ -1040,8 +1144,23 @@ void ExplosionGenerator::RenderScene()
         l_Cube_SphereEffect.DrawMyHgridFrames();
 #endif
 
+//
+
+/*
+        m_pipeline.pushMatrix();
+//            m_pipeline.translate(-ReflectiveSphere_Pos.z,0,ReflectiveSphere_Pos.z);
+
+            m_pipeline.translate(cam.getLocation().x,0,cam.getLocation().z-15);
+            r_Shadow_Render.Load_glUniform(m_pipeline, RENDER_PASS2);
+            MainCharacter->draw();
+//            MainCharacter->draw(r_Shadow_Render.ProgShaders[RENDER_PASS2]->getProgramId());
+        m_pipeline.popMatrix();
+*/
 
         r_Shadow_Render.DisableShader(RENDER_PASS2);
+
+
+
     m_pipeline.popMatrix();
 
 

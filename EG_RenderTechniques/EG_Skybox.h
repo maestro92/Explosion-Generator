@@ -44,8 +44,8 @@ class EG_SkyBox : public Technique
         void Render_to_CubeMapFace();
         void Render_to_CubeMapTexture();
         void UpdateRotationOnly_View_Pipeline(pipeline& m_pipeline);
-
-
+        void UpdateRotationOnly_View_Pipeline(pipeline& m_pipeline, glm::mat4 myMatrix);
+        void UpdateRotationOnly_View_Pipeline(pipeline& m_pipeline, glm::mat4 myMatrix, float m_pitch, float m_Yaw);
 
         EG_utility utility_function;
         unsigned int Static_CubeMap_ColorTextureID;

@@ -50,6 +50,8 @@
 		<Unit filename="CollisionDetection_HGrid_new.cpp" />
 		<Unit filename="CollisionDetection_HGrid_new.h" />
 		<Unit filename="CollisionDetection_Interface.h" />
+		<Unit filename="EG_Camera.cpp" />
+		<Unit filename="EG_Camera.h" />
 		<Unit filename="EG_RenderTechniques/EG_Skybox.cpp" />
 		<Unit filename="EG_RenderTechniques/EG_Skybox.h" />
 		<Unit filename="EG_RenderTechniques/EG_Technique.cpp" />
@@ -71,11 +73,15 @@
 		<Unit filename="L_ParticleEffect_Interface.h" />
 		<Unit filename="L_SphereParticleEffect.cpp" />
 		<Unit filename="L_SphereParticleEffect.h" />
+		<Unit filename="Orbit_Camera.cpp" />
+		<Unit filename="Orbit_Camera.h" />
 		<Unit filename="Particle.h" />
 		<Unit filename="Random.h" />
 		<Unit filename="Smoke.cpp" />
 		<Unit filename="Smoke.h" />
 		<Unit filename="Smoke_struct.h" />
+		<Unit filename="ThirdPersonPOV_camera.cpp" />
+		<Unit filename="ThirdPersonPOV_camera.h" />
 		<Unit filename="WorldBox.cpp" />
 		<Unit filename="WorldBox.h" />
 		<Unit filename="WorldObject.cpp" />

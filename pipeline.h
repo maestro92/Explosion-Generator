@@ -4,9 +4,12 @@
 #include <iostream>
 #include <vector>
 
+#include "define.h"
 #include "glm/glm.hpp"
 #include "glm/gtc/matrix_transform.hpp"
 #include "glm/gtx/transform.hpp"
+#include "glm/gtc/quaternion.hpp"
+#include "glm/gtx/quaternion.hpp"
 
 #define NO_SDL_GLEXT
 #include <GL/glew.h>
@@ -70,6 +73,12 @@ class pipeline
 		void rotateX(float angle);
 		void rotateY(float angle);
 		void rotateZ(float angle);
+        void Rotate(float angle, float x, float y, float z);
+        void Rotate(glm::quat q_rotation);
+
+        void LoadMatrix(glm::mat4 m_Matrix);
+   //     void Rotate1(float angle, float x, float y, float z);
+   //     void Rotate1(glm::quat q_rotation);
 
 
 		//projection
