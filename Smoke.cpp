@@ -562,7 +562,7 @@ void Smoke::Advect3D_SameFBO(SurfacePod velocity, SurfacePod source, SurfacePod 
     SetUniform(Advect3D_Location.SourceTexture, 1);
     SetUniform(Advect3D_Location.Obstacles, 2);
 
-    cout << "advecting" << endl;
+//    cout << "advecting" << endl;
 
     glFramebufferTexture(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, dest.ColorTexture ,0);
     if (GL_NO_ERROR != glGetError())

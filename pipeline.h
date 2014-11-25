@@ -67,6 +67,7 @@ class pipeline
 
 		//modelview
 		void translate(float x,float y,float z);
+        void translate(glm::vec3 trans_matrix);
 		glm::mat4 translateNoRotate(float x,float y,float z);
 		void scale(float x,float y,float z);
 		void scale(float v);

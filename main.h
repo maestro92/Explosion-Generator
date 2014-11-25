@@ -9,6 +9,7 @@
 #include <sstream>
 #include "define.h"
 
+#include "FirstPersonPOV_QuaternionCamera.h"
 #include "EG_Camera.h"
 #include "ThirdPersonPOV_camera.h"
 #include "EG_utility.h"
@@ -79,6 +80,7 @@ class ExplosionGenerator
 
         t_camera cam;
         EG_Camera myOrbitCamera;
+        Third_Person_POV_Camera myThirdPOV_camera;
 
         // models
         meshLoader* scene;
@@ -167,8 +169,9 @@ class ExplosionGenerator
 
         void MotionGL();
 
-
+        void SetupRenderStage();
         void getDepthTexture_FromLightPosion();
+        void getDepthTexture_FromLightPosion(pipeline temp_pipeline);
 
         void start();
         void update();

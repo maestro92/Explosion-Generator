@@ -68,6 +68,8 @@
 		<Unit filename="EG_utility.h" />
 		<Unit filename="ElapsedTime.cpp" />
 		<Unit filename="ElapsedTime.h" />
+		<Unit filename="FirstPersonPOV_QuaternionCamera.cpp" />
+		<Unit filename="FirstPersonPOV_QuaternionCamera.h" />
 		<Unit filename="L_Cube_Sphere_ParticleEffect.cpp" />
 		<Unit filename="L_Cube_Sphere_ParticleEffect.h" />
 		<Unit filename="L_ParticleEffect_Interface.h" />

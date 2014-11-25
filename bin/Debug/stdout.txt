@@ -165,243 +165,443 @@ start_x is -2
 start_y is 0
 start_z is -2
 Checking
+model_path ./models/
+m_str ./models/./Characters/LEGO_Man.obj
+m_eye 0, 13, 25
 Start
-advecting
-advecting
-advecting
-delay is 89
-advecting
-advecting
-advecting
-delay is 3
-advecting
-advecting
-advecting
-delay is 0
-advecting
-advecting
-advecting
-delay is 1
-advecting
-advecting
-advecting
-delay is 59
-advecting
-advecting
-advecting
-delay is 54
-advecting
-advecting
-advecting
-delay is 50
-advecting
-advecting
-advecting
-delay is 43
-advecting
-advecting
-advecting
-delay is 42
-advecting
-advecting
-advecting
-delay is 38
-advecting
-advecting
-advecting
-delay is 39
-advecting
-advecting
-advecting
-delay is 37
-advecting
-advecting
-advecting
-delay is 38
-advecting
-advecting
-advecting
-delay is 38
+Character Position is 0 0 0
+Advect3D Unable to attach color buffer
+0
+Character Position is 0 0 0
+Advect3D Unable to attach color buffer
+0
+Character Position is 0 0 0
+Advect3D Unable to attach color buffer
+0
+Character Position is 0 0 0
+Advect3D Unable to attach color buffer
+0
+Character Position is 0 0 0
+Advect3D Unable to attach color buffer
+0
+Character Position is 0 0 0
+Advect3D Unable to attach color buffer
+0
+Character Position is 0 0 0
+Advect3D Unable to attach color buffer
+0
+Character Position is 0 0 0
+Advect3D Unable to attach color buffer
+0
+Character Position is 0 0 0
 clicking left
-advecting
-advecting
-advecting
-delay is 37
-advecting
-advecting
-advecting
-delay is 37
-advecting
-advecting
-advecting
-delay is 38
+Advect3D Unable to attach color buffer
+0
+TotalEulerOrient.y 0
+total_YawDegrees 0
+m_eye 0, 13, 25
+Character Position is 0 0 0
+Advect3D Unable to attach color buffer
+0
+TotalEulerOrient.y 0
+total_YawDegrees 0
+m_eye 0, 13, 25
+Character Position is 0 0 0
 clicking Up left
-advecting
-advecting
-advecting
-delay is 39
-advecting
-advecting
-advecting
-delay is 39
-advecting
-advecting
-advecting
-delay is 40
-advecting
-advecting
-advecting
-delay is 39
-advecting
-advecting
-advecting
-delay is 40
-advecting
-advecting
-advecting
-delay is 38
-advecting
-advecting
-advecting
-delay is 39
-advecting
-advecting
-advecting
-delay is 39
-advecting
-advecting
-advecting
-delay is 39
-advecting
-advecting
-advecting
-delay is 39
-advecting
-advecting
-advecting
-delay is 38
-advecting
-advecting
-advecting
-delay is 39
-advecting
-advecting
-advecting
-delay is 38
-advecting
-advecting
-advecting
-delay is 39
-advecting
-advecting
-advecting
-delay is 38
-advecting
-advecting
-advecting
-delay is 38
-advecting
-advecting
-advecting
-delay is 39
-advecting
-advecting
-advecting
-delay is 38
-advecting
-advecting
-advecting
-delay is 38
-advecting
-advecting
-advecting
-delay is 38
-advecting
-advecting
-advecting
-delay is 37
-advecting
-advecting
-advecting
-delay is 36
-advecting
-advecting
-advecting
-delay is 34
-advecting
-advecting
-advecting
-delay is 35
-advecting
-advecting
-advecting
-delay is 34
-advecting
-advecting
-advecting
-delay is 34
-advecting
-advecting
-advecting
-delay is 34
-advecting
-advecting
-advecting
-delay is 35
-advecting
-advecting
-advecting
-delay is 34
-advecting
-advecting
-advecting
-delay is 35
-advecting
-advecting
-advecting
-delay is 34
-advecting
-advecting
-advecting
-delay is 34
-advecting
-advecting
-advecting
-delay is 34
-advecting
-advecting
-advecting
-delay is 35
-advecting
-advecting
-advecting
-delay is 34
-advecting
-advecting
-advecting
-delay is 34
-advecting
-advecting
-advecting
-delay is 34
-advecting
-advecting
-advecting
-delay is 34
-advecting
-advecting
-advecting
-delay is 34
-advecting
-advecting
-advecting
-delay is 34
-advecting
-advecting
-advecting
-delay is 34
-advecting
-advecting
-advecting
-delay is 34
+Advect3D Unable to attach color buffer
+0
+TotalEulerOrient.y 0
+total_YawDegrees 0
+m_eye 0, 13, 25
+Character Position is 0 0 0
+Advect3D Unable to attach color buffer
+0
+TotalEulerOrient.y 0
+total_YawDegrees 0
+m_eye 0, 13, 25
+Character Position is 0 0 0
+Advect3D Unable to attach color buffer
+0
+TotalEulerOrient.y 0
+total_YawDegrees 0
+m_eye 0, 13, 25
+Character Position is 0 0 0
+Advect3D Unable to attach color buffer
+0
+TotalEulerOrient.y 0
+total_YawDegrees 0
+m_eye 0, 13, 25
+Character Position is 0 0 0
+Advect3D Unable to attach color buffer
+0
+TotalEulerOrient.y 0
+total_YawDegrees 0
+m_eye 0, 13, 25
+Character Position is 0 0 0
+Advect3D Unable to attach color buffer
+0
+TotalEulerOrient.y 0
+total_YawDegrees 0
+m_eye 0, 13, 25
+Character Position is 0 0 0
+Advect3D Unable to attach color buffer
+0
+TotalEulerOrient.y 0
+total_YawDegrees 0
+m_eye 0, 13, 25
+Character Position is 0 0 0
+Advect3D Unable to attach color buffer
+0
+TotalEulerOrient.y 0
+total_YawDegrees 0
+m_eye 0, 13, 25
+Character Position is 0 0 0
+Advect3D Unable to attach color buffer
+0
+TotalEulerOrient.y 0
+total_YawDegrees 0
+m_eye 0, 13, 25
+Character Position is 0 0 0
+Advect3D Unable to attach color buffer
+0
+TotalEulerOrient.y 0
+total_YawDegrees 0
+m_eye 0, 13, 25
+Character Position is 0 0 0
+Advect3D Unable to attach color buffer
+0
+TotalEulerOrient.y 0
+total_YawDegrees 0
+m_eye 0, 13, 25
+Character Position is 0 0 0
+Advect3D Unable to attach color buffer
+0
+TotalEulerOrient.y 0
+total_YawDegrees 0
+m_eye 0, 13, 25
+Character Position is 0 0 0
+Advect3D Unable to attach color buffer
+0
+TotalEulerOrient.y 0
+total_YawDegrees 0
+m_eye 0, 13, 27
+Character Position is 0 0 2
+Advect3D Unable to attach color buffer
+0
+TotalEulerOrient.y 0
+total_YawDegrees 0
+m_eye 0, 13, 29
+Character Position is 0 0 4
+Advect3D Unable to attach color buffer
+0
+TotalEulerOrient.y 0
+total_YawDegrees 0
+m_eye 0, 13, 31
+Character Position is 0 0 6
+Advect3D Unable to attach color buffer
+0
+TotalEulerOrient.y 0
+total_YawDegrees 0
+m_eye 0, 13, 33
+Character Position is 0 0 8
+Advect3D Unable to attach color buffer
+0
+TotalEulerOrient.y 0
+total_YawDegrees 0
+m_eye 0, 13, 35
+Character Position is 0 0 10
+Advect3D Unable to attach color buffer
+0
+TotalEulerOrient.y 0
+total_YawDegrees 0
+m_eye 0, 13, 37
+Character Position is 0 0 12
+Advect3D Unable to attach color buffer
+0
+TotalEulerOrient.y 0
+total_YawDegrees 0
+m_eye 0, 13, 39
+Character Position is 0 0 14
+Advect3D Unable to attach color buffer
+0
+TotalEulerOrient.y 0
+total_YawDegrees 0
+m_eye 0, 13, 41
+Character Position is 0 0 16
+Advect3D Unable to attach color buffer
+0
+TotalEulerOrient.y 0
+total_YawDegrees 0
+m_eye 0, 13, 43
+Character Position is 0 0 18
+Advect3D Unable to attach color buffer
+0
+TotalEulerOrient.y 0
+total_YawDegrees 0
+m_eye 0, 13, 43
+Character Position is 0 0 18
+Advect3D Unable to attach color buffer
+0
+TotalEulerOrient.y 0
+total_YawDegrees 0
+m_eye 0, 13, 43
+Character Position is 0 0 18
+Advect3D Unable to attach color buffer
+0
+TotalEulerOrient.y 0
+total_YawDegrees 0
+m_eye 0, 13, 43
+Character Position is 0 0 18
+Advect3D Unable to attach color buffer
+0
+TotalEulerOrient.y 0
+total_YawDegrees 0
+m_eye 0, 13, 43
+Character Position is 0 0 18
+Advect3D Unable to attach color buffer
+0
+TotalEulerOrient.y 0
+total_YawDegrees 0
+m_eye 0, 13, 43
+Character Position is 0 0 18
+Advect3D Unable to attach color buffer
+0
+TotalEulerOrient.y 0
+total_YawDegrees 0
+m_eye 0, 13, 43
+Character Position is 0 0 18
+Advect3D Unable to attach color buffer
+0
+TotalEulerOrient.y 0
+total_YawDegrees 0
+m_eye 0, 13, 43
+Character Position is 0 0 18
+Advect3D Unable to attach color buffer
+0
+TotalEulerOrient.y 0
+total_YawDegrees 0
+m_eye 0, 13, 43
+Character Position is 0 0 18
+Advect3D Unable to attach color buffer
+0
+TotalEulerOrient.y 0
+total_YawDegrees 0
+m_eye 0, 13, 43
+Character Position is 0 0 18
+Advect3D Unable to attach color buffer
+0
+TotalEulerOrient.y 0
+total_YawDegrees 0
+m_eye 0, 13, 43
+Character Position is 0 0 18
+Advect3D Unable to attach color buffer
+0
+TotalEulerOrient.y 0
+total_YawDegrees 0
+m_eye 0, 13, 41
+Character Position is 0 0 16
+Advect3D Unable to attach color buffer
+0
+TotalEulerOrient.y 0
+total_YawDegrees 0
+m_eye 0, 13, 39
+Character Position is 0 0 14
+Advect3D Unable to attach color buffer
+0
+TotalEulerOrient.y 0
+total_YawDegrees 0
+m_eye 0, 13, 37
+Character Position is 0 0 12
+Advect3D Unable to attach color buffer
+0
+TotalEulerOrient.y 0
+total_YawDegrees 0
+m_eye 0, 13, 35
+Character Position is 0 0 10
+Advect3D Unable to attach color buffer
+0
+TotalEulerOrient.y 0
+total_YawDegrees 0
+m_eye 0, 13, 33
+Character Position is 0 0 8
+Advect3D Unable to attach color buffer
+0
+TotalEulerOrient.y 0
+total_YawDegrees 0
+m_eye 0, 13, 31
+Character Position is 0 0 6
+Advect3D Unable to attach color buffer
+0
+TotalEulerOrient.y 0
+total_YawDegrees 0
+m_eye 0, 13, 29
+Character Position is 0 0 4
+Advect3D Unable to attach color buffer
+0
+TotalEulerOrient.y 0
+total_YawDegrees 0
+m_eye 0, 13, 29
+Character Position is 0 0 4
+Advect3D Unable to attach color buffer
+0
+TotalEulerOrient.y 0
+total_YawDegrees 0
+m_eye 0, 13, 29
+Character Position is 0 0 4
+Advect3D Unable to attach color buffer
+0
+TotalEulerOrient.y 2
+total_YawDegrees -0.0348889
+m_eye 0.872045, 13, 28.9848
+Character Position is 0 0 4
+Advect3D Unable to attach color buffer
+0
+TotalEulerOrient.y 2
+total_YawDegrees -0.0348889
+m_eye 1.74303, 13, 28.9392
+Character Position is 0 0 4
+Advect3D Unable to attach color buffer
+0
+TotalEulerOrient.y 2
+total_YawDegrees -0.0348889
+m_eye 2.61189, 13, 28.8632
+Character Position is 0 0 4
+Advect3D Unable to attach color buffer
+0
+TotalEulerOrient.y 2
+total_YawDegrees -0.0348889
+m_eye 3.47757, 13, 28.7569
+Character Position is 0 0 4
+Advect3D Unable to attach color buffer
+0
+TotalEulerOrient.y 2
+total_YawDegrees -0.0348889
+m_eye 4.33903, 13, 28.6206
+Character Position is 0 0 4
+Advect3D Unable to attach color buffer
+0
+TotalEulerOrient.y 2
+total_YawDegrees -0.0348889
+m_eye 5.19519, 13, 28.4542
+Character Position is 0 0 4
+Advect3D Unable to attach color buffer
+0
+TotalEulerOrient.y 2
+total_YawDegrees -0.0348889
+m_eye 6.04504, 13, 28.2581
+Character Position is 0 0 4
+Advect3D Unable to attach color buffer
+0
+TotalEulerOrient.y 2
+total_YawDegrees -0.0348889
+m_eye 6.88753, 13, 28.0325
+Character Position is 0 0 4
+Advect3D Unable to attach color buffer
+0
+TotalEulerOrient.y 2
+total_YawDegrees -0.0348889
+m_eye 7.72163, 13, 27.7776
+Character Position is 0 0 4
+Advect3D Unable to attach color buffer
+0
+TotalEulerOrient.y 2
+total_YawDegrees -0.0348889
+m_eye 8.54634, 13, 27.4938
+Character Position is 0 0 4
+Advect3D Unable to attach color buffer
+0
+TotalEulerOrient.y 2
+total_YawDegrees -0.0348889
+m_eye 9.36065, 13, 27.1814
+Character Position is 0 0 4
+Advect3D Unable to attach color buffer
+0
+TotalEulerOrient.y 2
+total_YawDegrees -0.0348889
+m_eye 10.1636, 13, 26.8408
+Character Position is 0 0 4
+Advect3D Unable to attach color buffer
+0
+TotalEulerOrient.y 2
+total_YawDegrees -0.0348889
+m_eye 10.9541, 13, 26.4724
+Character Position is 0 0 4
+Advect3D Unable to attach color buffer
+0
+TotalEulerOrient.y 2
+total_YawDegrees 0.0348889
+m_eye 11.0403, 13, 28.6384
+Character Position is 0.876742 0 5.79759
+Advect3D Unable to attach color buffer
+0
+TotalEulerOrient.y 2
+total_YawDegrees 0.0348889
+m_eye 11.0509, 13, 30.8061
+Character Position is 1.69022 0 7.62468
+Advect3D Unable to attach color buffer
+0
+TotalEulerOrient.y 2
+total_YawDegrees 0.0348889
+m_eye 10.9858, 13, 32.9729
+Character Position is 2.43943 0 9.47905
+Advect3D Unable to attach color buffer
+0
+TotalEulerOrient.y 2
+total_YawDegrees 0.0348889
+m_eye 10.8451, 13, 35.1361
+Character Position is 3.12347 0 11.3584
+Advect3D Unable to attach color buffer
+0
+TotalEulerOrient.y 2
+total_YawDegrees 0.0348889
+m_eye 10.629, 13, 37.293
+Character Position is 3.7415 0 13.2605
+Advect3D Unable to attach color buffer
+0
+TotalEulerOrient.y 2
+total_YawDegrees 0.0348889
+m_eye 10.3378, 13, 39.4412
+Character Position is 4.29278 0 15.1831
+Advect3D Unable to attach color buffer
+0
+TotalEulerOrient.y 2
+total_YawDegrees 0.0348889
+m_eye 9.97181, 13, 41.5779
+Character Position is 4.77662 0 17.1237
+Advect3D Unable to attach color buffer
+0
+TotalEulerOrient.y 2
+total_YawDegrees -0.0348889
+m_eye 10.8217, 13, 41.3818
+Character Position is 4.77662 0 17.1237
+Advect3D Unable to attach color buffer
+0
+TotalEulerOrient.y 2
+total_YawDegrees -0.0348889
+m_eye 11.6641, 13, 41.1562
+Character Position is 4.77662 0 17.1237
+Advect3D Unable to attach color buffer
+0
+TotalEulerOrient.y 0
+total_YawDegrees 0
+m_eye 11.6641, 13, 41.1562
+Character Position is 4.77662 0 17.1237
+Advect3D Unable to attach color buffer
+0
+TotalEulerOrient.y 0
+total_YawDegrees 0
+m_eye 11.6641, 13, 41.1562
+Character Position is 4.77662 0 17.1237
+Advect3D Unable to attach color buffer
+0
+TotalEulerOrient.y 0
+total_YawDegrees 0
+m_eye 11.6641, 13, 41.1562
+Character Position is 4.77662 0 17.1237
+Advect3D Unable to attach color buffer
+0
+TotalEulerOrient.y 0
+total_YawDegrees 0
+m_eye 11.6641, 13, 41.1562
+Character Position is 4.77662 0 17.1237
 Terminating normally.

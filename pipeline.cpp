@@ -52,6 +52,17 @@ void pipeline::translate(float x,float y,float z)
 	matricesReady=false;
 }
 
+
+void pipeline::translate(glm::vec3 trans_matrix)
+{
+	if(currentMatrix==MODEL_MATRIX)
+		modelMatrix[modelMatrix.size()-1]*=glm::translate(trans_matrix.x,trans_matrix.y,trans_matrix.z);
+	else if(currentMatrix==VIEW_MATRIX)
+		viewMatrix[viewMatrix.size()-1]*=glm::translate(-trans_matrix.x,-trans_matrix.y,-trans_matrix.z);
+	matricesReady=false;
+}
+
+
 glm::mat4 pipeline::translateNoRotate(float x,float y,float z)
 {
     return (viewMatrix[viewMatrix.size()-1]*glm::translate(-x,-y,-z));
