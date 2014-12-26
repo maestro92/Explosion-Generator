@@ -485,7 +485,7 @@ hash_t CollisionDetection_HGrid::ComputeHashBucketIndex(int x, int y, int z, int
 }
 
 
-void CollisionDetection_HGrid::AddParticleToHGrid( h_Particle * h_par )
+void CollisionDetection_HGrid::addParticleToHGrid( h_Particle * h_par )
 {
 
     // Compute the hashvalue
@@ -612,7 +612,7 @@ void CollisionDetection_HGrid::Test_AddParticle( h_Particle * h_par )
 }
 
 
-void CollisionDetection_HGrid::RemoveParticleFromHGrid( h_Particle *h_par )
+void CollisionDetection_HGrid::removeParticleFromHGrid( h_Particle *h_par )
 {
     // Compute the hashvalue
     hash_t hash;
@@ -657,7 +657,7 @@ void CollisionDetection_HGrid::RemoveParticleFromHGrid( h_Particle *h_par )
 
 void CollisionDetection_HGrid::rehash( h_Particle *h_par )
 {
-    RemoveParticleFromHGrid(h_par);
+    removeParticleFromHGrid(h_par);
     /*
     float dt = 0.031;
 
@@ -672,7 +672,7 @@ void CollisionDetection_HGrid::rehash( h_Particle *h_par )
 */
 
 
-    AddParticleToHGrid(h_par);
+    addParticleToHGrid(h_par);
 
 }
 
@@ -708,7 +708,7 @@ void CollisionDetection_HGrid::CheckParticleAgainstGrid(h_Particle *h_par,
 
 
 
-void CollisionDetection_HGrid::Draw()
+void CollisionDetection_HGrid::draw()
 {
     int i = 0;
     for (auto it = myMap.begin(); it != myMap.end(); it++)

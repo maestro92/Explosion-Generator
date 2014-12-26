@@ -134,15 +134,15 @@ class CollisionDetection_HGrid : public CollisionDetection_Interface
         ~CollisionDetection_HGrid();
 
 
-        void AddParticleToHGrid(  h_Particle * h_par  );
+        void addParticleToHGrid(  h_Particle * h_par  );
 
-        void RemoveParticleFromHGrid( h_Particle *h_par );
+        void removeParticleFromHGrid( h_Particle *h_par );
 
-        void CheckObjAgainstObjects(h_Particle * h_par, vector<h_Particle*>& neighbors);
+        void checkObjAgainstObjects(h_Particle * h_par, vector<h_Particle*>& neighbors);
 
         void rehash( h_Particle *h_par );
 
-        void Draw();
+        void draw();
         void drawCubeFrame(float size);
 
 

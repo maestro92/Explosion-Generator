@@ -81,8 +81,8 @@ class Technique_Shadow_Render : public Technique
 
 
         // Shaders
-        shader* FirstPass_LightPOV;
-        shader* SecondPass_CameraPOV;
+        Shader* FirstPass_LightPOV;
+        Shader* SecondPass_CameraPOV;
 
 
 

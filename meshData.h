@@ -1,14 +1,15 @@
 #ifndef MESHDATA_H_
 #define MESHDATA_H_
 
-#include "vector3d.h"
+// #include "vector3d.h"
+#include "define.h"
 
 struct vertexData
 {
-    vector3d position;
-    vector3d normal;
-    vector3d tangent;
-    vector3d color;
+    glm::vec3 position;
+    glm::vec3 normal;
+    glm::vec3 tangent;
+    glm::vec3 color;
     float U,V;  // we want the UV coordinates
 };
 

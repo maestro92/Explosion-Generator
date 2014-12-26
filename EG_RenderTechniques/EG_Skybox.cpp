@@ -17,7 +17,7 @@ void EG_SkyBox::init()
 
 //    SkyboxShader = new shader("skybox.vs", "skybox.frag");
 //    Init_Shader_GL_Location(SkyboxShader, Matrices_UniLoc[RENDER_PASS1]);
-    ProgShaders[RENDER_PASS1] = new shader("skybox.vs", "skybox.frag");
+    ProgShaders[RENDER_PASS1] = new Shader("skybox.vs", "skybox.frag");
 
 
     init_memberVariables();
@@ -28,28 +28,28 @@ void EG_SkyBox::init()
 		std::vector<unsigned int> indices;
 		std::vector<vertexData> vertices;
 		vertexData tmp;
-		tmp.position.change(-1.0,1.0,1.0);  tmp.color.change(1.0,0.0,0.0);
+        tmp.position = glm::vec3(-1.0,1.0,1.0);  tmp.color = glm::vec3(1.0,0.0,0.0);
 		vertices.push_back(tmp);
 
-		tmp.position.change(-1.0,-1.0,1.0);	tmp.color.change(0.0,1.0,0.0);
+		tmp.position = glm::vec3(-1.0,-1.0,1.0);	tmp.color = glm::vec3(0.0,1.0,0.0);
 		vertices.push_back(tmp);
 
-		tmp.position.change(1.0,-1.0,1.0);	tmp.color.change(0.0,0.0,1.0);
+		tmp.position = glm::vec3(1.0,-1.0,1.0);	tmp.color = glm::vec3(0.0,0.0,1.0);
 		vertices.push_back(tmp);
 
-		tmp.position.change(1.0,1.0,1.0);	tmp.color.change(1.0,1.0,0.0);
+		tmp.position = glm::vec3(1.0,1.0,1.0);	tmp.color = glm::vec3(1.0,1.0,0.0);
 		vertices.push_back(tmp);
 
-		tmp.position.change(-1.0,1.0,-1.0); tmp.color.change(1.0,0.0,1.0);
+		tmp.position = glm::vec3(-1.0,1.0,-1.0); tmp.color = glm::vec3(1.0,0.0,1.0);
 		vertices.push_back(tmp);
 
-		tmp.position.change(-1.0,-1.0,-1.0);tmp.color.change(1.0,0.0,0.0);
+		tmp.position = glm::vec3(-1.0,-1.0,-1.0);tmp.color = glm::vec3(1.0,0.0,0.0);
 		vertices.push_back(tmp);
 
-		tmp.position.change(1.0,-1.0,-1.0);	tmp.color.change(1.0,1.0,1.0);
+		tmp.position = glm::vec3(1.0,-1.0,-1.0);	tmp.color = glm::vec3(1.0,1.0,1.0);
 		vertices.push_back(tmp);
 
-		tmp.position.change(1.0,1.0,-1.0);	tmp.color.change(0.0,1.0,1.0);
+		tmp.position = glm::vec3(1.0,1.0,-1.0);	tmp.color = glm::vec3(0.0,1.0,1.0);
 		vertices.push_back(tmp);
 
 		//front face
@@ -104,7 +104,7 @@ void EG_SkyBox::init()
 }
 
 
-void EG_SkyBox::RenderSkyBox(shader* skybox_shader)
+void EG_SkyBox::RenderSkyBox(Shader* skybox_shader)
 {
     RotationOnly_View_pipeline.matrixMode(MODEL_MATRIX);
 
@@ -124,7 +124,7 @@ void EG_SkyBox::RenderSkyBox(shader* skybox_shader)
     skybox_shader->delShader();
 }
 
-void EG_SkyBox::RenderSkyBox(shader* skybox_shader, pipeline& m_pipeline)
+void EG_SkyBox::RenderSkyBox(Shader* skybox_shader, pipeline& m_pipeline)
 {
     m_pipeline.matrixMode(MODEL_MATRIX);
 

@@ -54,9 +54,9 @@ class Technique_TwoPass_Raycasting : public Technique
         GLuint Depth_TwoPassLocation_Back2;
 
         // Shaders
-        shader* TwoPassIntervals;
-        shader* TwoPassRaycast;
-        shader* TwoPass_CubeDepth;
+        Shader* TwoPassIntervals;
+        Shader* TwoPassRaycast;
+        Shader* TwoPass_CubeDepth;
 
 
 

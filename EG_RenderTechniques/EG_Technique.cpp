@@ -23,7 +23,7 @@ void Technique::allocate_memberVariables(int Shader_Num)
 {
     shader_num = Shader_Num;
     Matrices_UniLoc = new Matrices_Location[Shader_Num];
-    ProgShaders = new shader*[Shader_Num];
+    ProgShaders = new Shader*[Shader_Num];
 }
 
 
@@ -35,7 +35,7 @@ void Technique::init_memberVariables()
 }
 
 
-GLuint Technique::GetUniformLocation(shader* s, const char* UniformName)
+GLuint Technique::GetUniformLocation(Shader* s, const char* UniformName)
 {
     unsigned int shaderID = s->getProgramId();
 
@@ -50,7 +50,7 @@ GLuint Technique::GetUniformLocation(shader* s, const char* UniformName)
 
 
 // assign GL location
-bool Technique::Init_Shader_GL_Location(shader* s, Matrices_Location& Mat)
+bool Technique::Init_Shader_GL_Location(Shader* s, Matrices_Location& Mat)
 {
     unsigned int shaderID = s->getProgramId();
 

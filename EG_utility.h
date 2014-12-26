@@ -1,5 +1,5 @@
-#ifndef EG_UTILITY_H
-#define EG_UTILITY_H
+#ifndef EG_Utility_H
+#define EG_Utility_H
 
 #include <cstdlib>
 #include <vector>
@@ -14,7 +14,7 @@
 #define NO_SDL_GLEXT
 #include <GL/glew.h>
 
-#include "shader.h"
+#include "EG_Shader.h"
 
 #define NO_SDL_GLEXT
 #include <GL/glew.h>
@@ -24,11 +24,11 @@
 
 using namespace std;
 
-class EG_utility
+class EG_Utility
 {
     public:
-        EG_utility();
-        ~EG_utility();
+        EG_Utility();
+        ~EG_Utility();
 
         /// texture related
         unsigned int Load_Texture(string filename, int background = 0, bool generate=false);

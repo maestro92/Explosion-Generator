@@ -2,7 +2,7 @@
 #define WORLD_CUBE
 
 
-#include "WorldObject.h"
+#include "EG_WorldObject.h"
 
 #include <iostream>
 #include <cstdlib>

@@ -93,7 +93,7 @@ void L_SphereParticleEffect::InitParticle(bool reset)
 
 
                 if (!reset)
-                    myHgrid.AddParticleToHGrid( &e_ParticleBuffer[Index]);
+                    myHgrid.addParticleToHGrid( &e_ParticleBuffer[Index]);
                 else
                     myHgrid.rehash(&e_ParticleBuffer[Index]);
             }
@@ -125,7 +125,7 @@ void L_SphereParticleEffect::InitParticle(bool reset)
 
         if (!reset)
         {
-            myHgrid.AddParticleToHGrid( &e_ParticleBuffer[Index]);
+            myHgrid.addParticleToHGrid( &e_ParticleBuffer[Index]);
             myHgrid.ParticleCollisionPairList.clear();
         }
 
@@ -287,7 +287,7 @@ void L_SphereParticleEffect::UpdateParticleEffect(float dt)
         e_ParticleBuffer[i].m_fAge += dt;
 
 
-        myHgrid.RemoveParticleFromHGrid(&e_ParticleBuffer[i]);
+        myHgrid.removeParticleFromHGrid(&e_ParticleBuffer[i]);
 
         // check collision here?
         // check collision with the plane
@@ -323,7 +323,7 @@ void L_SphereParticleEffect::UpdateParticleEffect(float dt)
         e_ParticleBuffer[i].m_Velocity += ExternalForce_neg*dt;
 */
 
-        myHgrid.AddParticleToHGrid(&e_ParticleBuffer[i]);
+        myHgrid.addParticleToHGrid(&e_ParticleBuffer[i]);
 
 
 

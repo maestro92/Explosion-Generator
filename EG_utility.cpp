@@ -1,14 +1,14 @@
 
-#include "EG_utility.h"
+#include "EG_Utility.h"
 
-EG_utility::EG_utility()
+EG_Utility::EG_Utility()
 {
 
 }
 
 
 
-EG_utility::~EG_utility()
+EG_Utility::~EG_Utility()
 {
 
 }
@@ -17,7 +17,7 @@ EG_utility::~EG_utility()
 
 
 
-SDL_Surface* EG_utility::Load_CubeMapTexture(string filename)
+SDL_Surface* EG_Utility::Load_CubeMapTexture(string filename)
 {
     std::ifstream in(filename.c_str());
 
@@ -69,7 +69,7 @@ SDL_Surface* EG_utility::Load_CubeMapTexture(string filename)
 
 
 // bool isDepth: true if it's depth texture
-unsigned int EG_utility::Create_Texture(int w, int h, bool isDepth)
+unsigned int EG_Utility::Create_Texture(int w, int h, bool isDepth)
 {
     unsigned int textureID;
 
@@ -94,7 +94,7 @@ unsigned int EG_utility::Create_Texture(int w, int h, bool isDepth)
 }
 
 
-unsigned int EG_utility::Create_CubemapTexture()
+unsigned int EG_Utility::Create_CubemapTexture()
 {
     /// need to pass in the pictures in the following order
     /// left, right, top, bottom, near, far
@@ -119,7 +119,7 @@ unsigned int EG_utility::Create_CubemapTexture()
 }
 
 
-unsigned int EG_utility::Create_CubemapTexture(string* filenames)
+unsigned int EG_Utility::Create_CubemapTexture(string* filenames)
 {
     /// need to pass in the pictures in the following order
     /// left, right, top, bottom, near, far
@@ -148,7 +148,7 @@ unsigned int EG_utility::Create_CubemapTexture(string* filenames)
 }
 
 
-unsigned int EG_utility::Load_Texture(string filename, int background, bool generate)
+unsigned int EG_Utility::Load_Texture(string filename, int background, bool generate)
 {
     std::ifstream in(filename.c_str());
 

@@ -32,6 +32,6 @@ class Technique_DepthTexture_Render : public Technique
 
 
         // Shaders
-        shader* Depth_CameraRender;
+        Shader* Depth_CameraRender;
 };
 #endif

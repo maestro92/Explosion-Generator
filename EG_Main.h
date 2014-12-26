@@ -9,20 +9,21 @@
 #include <sstream>
 #include "define.h"
 
-#include "FirstPersonPOV_QuaternionCamera.h"
 #include "EG_Camera.h"
-#include "ThirdPersonPOV_camera.h"
+#include "EG_FirstPersonPovCamera.h"
+#include "EG_ThirdPersonPovCamera.h"
+
 #include "EG_utility.h"
 #include "EG_RenderTechniques/EG_Skybox.h"
-#include "shader.h"
+#include "EG_Shader.h"
 #include "sceneLoader.h"
 #include "EG_Technique_DepthTexture_Render.h"
 #include "EG_Technique_TwoPass_RayCasting.h"
 #include "EG_Technique_Shadow_Render.h"
 #include "EG_Technique_Reflection.h"
 
-#include "WorldBox.h"
-#include "WorldSphere.h"
+#include "EG_WorldBox.h"
+#include "EG_WorldSphere.h"
 
 #include "pipeline.h"
 #include "L_SphereParticleEffect.h"
@@ -38,9 +39,8 @@
 
 #include "L_ParticleEffect_Interface.h"
 
-#include "Smoke.h"
+#include "EG_Smoke.h"
 #include "CollisionDetection_HGrid.h"
-#include "t_camera.h"
 
 
 using namespace std;
@@ -60,8 +60,8 @@ class ExplosionGenerator
         pipeline m_pipeline;
 
         // Material Property
-        float Specular_Intensity;
-        float Specular_Power;
+        float specularIntensity;
+        float specularPower;
 
     /*
         // Lighting
@@ -69,7 +69,7 @@ class ExplosionGenerator
         PointLight pl[2];
         SpotLight sl[1];
     */
-        EG_utility utility_function;
+        EG_Utility utilityFunction;
 
         EG_SkyBox m_skybox;
 
@@ -78,22 +78,23 @@ class ExplosionGenerator
 
         Smoke smoke;
 
-        t_camera cam;
-        EG_Camera myOrbitCamera;
-        Third_Person_POV_Camera myThirdPOV_camera;
+
+        EG_FirstPersonPovCamera firstPersonPovCamera;
+        EG_ThirdPersonPovCamera thirdPersonPovCamera;
 
         // models
         meshLoader* scene;
         meshLoader* ground;
         meshLoader* ground1;
         meshLoader* sphere;
-        meshLoader* smooth_sphere;
+        meshLoader* smoothSphere;
         meshLoader* cube;
         meshLoader* monkey;
-        meshLoader* MainCharacter;
+        meshLoader* mainCharacter;
         mesh* quad;
 
-        bool running;
+        bool isRunning;
+        bool isFirstPersonCamera;
         bool dvel;
         bool addSmoke;
 
@@ -115,13 +116,13 @@ class ExplosionGenerator
 
 
         /// shaders
-        shader* shadow_FirstRender;
-        shader* shadow_SecondRender;
-        shader* quadRenderShader;   // for rendering the texture into a quad, then displaying the quad into the screen under a orthographic view
-        shader* Depth_CameraRender;
-        shader* ReflectionShader;
-        shader* RefractionShader;
-        shader* SkyboxShader;
+        Shader* shadow_FirstRender;
+        Shader* shadow_SecondRender;
+        Shader* quadRenderShader;   // for rendering the texture into a quad, then displaying the quad into the screen under a orthographic view
+        Shader* Depth_CameraRender;
+        Shader* reflectionShader;
+        Shader* refractionShader;
+        Shader* skyboxShader;
 
         /// Matrices
         glm::mat4 Light_ModelMatrix;
@@ -167,8 +168,6 @@ class ExplosionGenerator
         void init_Lighting();
         void init_Texture_and_FrameBuffer();
 
-        void MotionGL();
-
         void SetupRenderStage();
         void getDepthTexture_FromLightPosion();
         void getDepthTexture_FromLightPosion(pipeline temp_pipeline);
@@ -191,8 +190,8 @@ class ExplosionGenerator
 
 
         /// Basic Drawing functions
-        void DrawAxis(float fScale, glm::vec3 translate = glm::vec3(0));
-        void DrawAxis(float fScale, pipeline& m_pipeline, glm::vec3 translate = glm::vec3(0));
+        void drawAxis(float fScale, glm::vec3 translate = glm::vec3(0));
+        void drawAxis(float fScale, pipeline& m_pipeline, glm::vec3 translate = glm::vec3(0));
         void drawCube(float size);
         void drawCubeFrame(float size, int offset);
         void drawGround(float size, unsigned int textureId);

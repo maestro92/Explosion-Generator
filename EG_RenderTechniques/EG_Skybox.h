@@ -12,7 +12,7 @@
 #include <cstdio>
 
 #include "EG_utility.h"
-#include "shader.h"
+#include "EG_Shader.h"
 #include "sceneLoader.h"
 #include "pipeline.h"
 #include "EG_Technique.h"
@@ -29,7 +29,7 @@ class EG_SkyBox : public Technique
 {
     public:
 
-        shader* SkyboxShader;
+        Shader* SkyboxShader;
 
         EG_SkyBox();
         ~EG_SkyBox();
@@ -37,8 +37,8 @@ class EG_SkyBox : public Technique
         GLuint Cubemap_UniLoc;
 
         void init();
-        void RenderSkyBox(shader* skybox_shader);
-        void RenderSkyBox(shader* skybox_shader, pipeline& m_pipeline);
+        void RenderSkyBox(Shader* skybox_shader);
+        void RenderSkyBox(Shader* skybox_shader, pipeline& m_pipeline);
   //      void RenderSkyBox_Dynamic(shader* skybox_shader, pipeline& m_pipeline);
 
         void Render_to_CubeMapFace();
@@ -47,7 +47,7 @@ class EG_SkyBox : public Technique
         void UpdateRotationOnly_View_Pipeline(pipeline& m_pipeline, glm::mat4 myMatrix);
         void UpdateRotationOnly_View_Pipeline(pipeline& m_pipeline, glm::mat4 myMatrix, float m_pitch, float m_Yaw);
 
-        EG_utility utility_function;
+        EG_Utility utility_function;
         unsigned int Static_CubeMap_ColorTextureID;
         unsigned int Dynamic_CubeMap_ColorTextureID;
         unsigned int Dynamic_CubeMap_DepthTextureID;

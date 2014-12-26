@@ -28,13 +28,13 @@ void meshLoader::processMesh(aiMesh* m,const aiScene* scene)
 	aiColor4D col;
 	aiMaterial* mat=scene->mMaterials[m->mMaterialIndex];
 	aiGetMaterialColor(mat,AI_MATKEY_COLOR_DIFFUSE,&col);
-	vector3d defaultColor(col.r,col.g,col.b);
+	glm::vec3 defaultColor(col.r,col.g,col.b);
 
 
 	for(int i=0;i<m->mNumVertices;i++)
 	{
 			vertexData tmp;
-			vector3d tmpVec;
+			glm::vec3 tmpVec;
 
 			//position
 			tmpVec.x=m->mVertices[i].x;

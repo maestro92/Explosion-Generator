@@ -7,16 +7,21 @@
 #include "pipeline.h"
 #include "gl/gl.h"
 #include "gl/glu.h"
-#include "vector3d.h"
 #include "define.h"
 
-class t_camera{
-	vector3d loc;
 
+
+class EG_FirstPersonPovCamera{
+//	glm::vec3 loc;
+    private:
+    glm::vec3 m_eye;
     glm::quat rotation_quaternion;
 
 
-	float camPitch,camYaw;
+    float m_pitchDegrees;
+    float m_yawDegrees;
+
+//	float camPitch,camYaw;
 	float movevel;
 	float mousevel;
 	bool mi,ismoved;
@@ -24,15 +29,13 @@ class t_camera{
 	void moveCamera(float dir);
 	void moveCameraUp(float dir);
 	public:
-		t_camera();
-		t_camera(vector3d loc);
-		t_camera(vector3d loc,float yaw,float pitch);
-		t_camera(vector3d loc,float yaw,float pitch,float mv,float mov);
+		EG_FirstPersonPovCamera();
+		EG_FirstPersonPovCamera(glm::vec3 eye);
+		EG_FirstPersonPovCamera(glm::vec3 eye, float yaw,float pitch);
+		EG_FirstPersonPovCamera(glm::vec3 eye, float yaw,float pitch,float mv,float mov);
 
 
-		void Control();
         void Control(int mid_x, int mid_y);
-		void Control(pipeline& m_pipeline);
 		void Control(pipeline& m_pipeline, int mid_x, int mid_y);
         void Control_MatrixBased(pipeline& m_pipeline, int mid_x, int mid_y);
 
@@ -45,7 +48,7 @@ class t_camera{
 		glm::mat4 UpdateCamera_NoRotate(pipeline& m_pipeline);
 
 
-        glm::vec3 m_eye;
+
         glm::vec3 m_xAxis;
         glm::vec3 m_yAxis;
         glm::vec3 m_zAxis;
@@ -55,15 +58,23 @@ class t_camera{
         void UpdateCamera_MatrixBased(glm::vec3& eye, glm::vec3& target, glm::vec3& up);
         void UpdateCamera_MatrixBased(pipeline& m_pipeline, glm::vec3& eye, glm::vec3& target, glm::vec3& up);
 
-		vector3d getVector();
-		vector3d getLocation();
-		float getPitch();
-		float getYaw();
+		glm::vec3 getVector();
+		glm::vec3 getLocation();
+
 		float getMovevel();
 		float getMousevel();
 		bool isMouseIn();
 
-		void setLocation(vector3d vec);
+		float getPitch();
+		float getYaw();
+        void setPitch(float pitch);
+        void setYaw(float yaw);
+
+
+		void setEyePoint(glm::vec3 eye);
+        void setEyePoint(float x, float y, float z);
+		glm::vec3 getEyePoint();
+
 		void lookAt(float pitch,float yaw);
 		void mouseIn(bool b);
 		void setSpeed(float mv,float mov);

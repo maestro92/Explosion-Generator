@@ -1,5 +1,5 @@
 
-#include "WorldObject.h"
+#include "EG_WorldObject.h"
 
 
 WorldObject::WorldObject()

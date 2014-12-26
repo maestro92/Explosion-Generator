@@ -28,8 +28,8 @@ void Technique_Shadow_Render::init(int w, int h, int Shader_Num)
 
     /// FirstPass_LightPOV
     /// SecondPass_CameraPOV
-    ProgShaders[RENDER_PASS1] = new shader("shadow_FirstRender.vs", "shadow_FirstRender.fs");
-    ProgShaders[RENDER_PASS2] = new shader("shadow_SecondRender.vs", "shadow_SecondRender.fs");
+    ProgShaders[RENDER_PASS1] = new Shader("shadow_FirstRender.vs", "shadow_FirstRender.fs");
+    ProgShaders[RENDER_PASS2] = new Shader("shadow_SecondRender.vs", "shadow_SecondRender.fs");
 
 
     ShadowMatrix_UniLoc[RENDER_PASS1] = GetUniformLocation(ProgShaders[RENDER_PASS1], "lightModelViewProjectionMatrix");

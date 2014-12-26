@@ -1,7 +1,7 @@
 #ifndef WORLD_SPHERE
 #define WORLD_SPHERE
 
-#include "WorldObject.h"
+#include "EG_WorldObject.h"
 
 class WorldSphere : public WorldObject
 {

@@ -5,8 +5,8 @@
 #include <GL/glew.h>
 
 
-#include "WorldBox.h"
-#include "WorldSphere.h"
+#include "EG_WorldBox.h"
+#include "EG_WorldSphere.h"
 
 #include "pipeline.h"
 #include "sceneLoader.h"

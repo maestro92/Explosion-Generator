@@ -4,9 +4,9 @@
 
 #include "glm/glm.hpp"
 #include <cstdlib>
-#include "WorldBox.h"
-#include "WorldSphere.h"
-#include "WorldObject.h"
+#include "EG_WorldBox.h"
+#include "EG_WorldSphere.h"
+#include "EG_WorldObject.h"
 
 
 using namespace std;

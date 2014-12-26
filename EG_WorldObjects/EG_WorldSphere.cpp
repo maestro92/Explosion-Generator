@@ -2,7 +2,7 @@
 
 
 
-#include "WorldSphere.h"
+#include "EG_WorldSphere.h"
 
 
 WorldSphere::WorldSphere()

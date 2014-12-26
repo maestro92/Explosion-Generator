@@ -1,7 +1,7 @@
 #ifndef TECHNIQUE_H
 #define TECHNIQUE_H
 #include "define.h"
-#include "shader.h"
+#include "EG_Shader.h"
 #include "pipeline.h"
 using namespace std;
 
@@ -51,8 +51,8 @@ class Technique
         void DisableShader(int RenderPassID);
 
 
-        GLuint GetUniformLocation(shader* s, const char* UniformName);
-        bool Init_Shader_GL_Location(shader* s, Matrices_Location& Mat);
+        GLuint GetUniformLocation(Shader* s, const char* UniformName);
+        bool Init_Shader_GL_Location(Shader* s, Matrices_Location& Mat);
 
         void Load_glUniform(pipeline& p, int RenderPassID);
 
@@ -61,7 +61,7 @@ class Technique
 
     public:
         Matrices_Location* Matrices_UniLoc;
-        shader** ProgShaders;
+        Shader** ProgShaders;
         int shader_num;
 
 };

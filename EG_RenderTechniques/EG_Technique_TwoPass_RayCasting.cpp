@@ -71,15 +71,15 @@ void Technique_TwoPass_Raycasting::init(int w, int h, int Shader_Num)
 
 
     /// Interval
-    TwoPassIntervals = new shader("TwoPass.vs", "TwoPass.Cube", "TwoPass.Intervals");
-    ProgShaders[RENDER_PASS1] = new shader("TwoPass.vs", "TwoPass.Cube", "TwoPass.Intervals");
+    TwoPassIntervals = new Shader("TwoPass.vs", "TwoPass.Cube", "TwoPass.Intervals");
+    ProgShaders[RENDER_PASS1] = new Shader("TwoPass.vs", "TwoPass.Cube", "TwoPass.Intervals");
 
     /// Cube depth
-    TwoPass_CubeDepth = new shader("TwoPass.vs", "TwoPass.Cube", "TwoPass_Depth.fs");
+    TwoPass_CubeDepth = new Shader("TwoPass.vs", "TwoPass.Cube", "TwoPass_Depth.fs");
 
     /// Raycast
-    TwoPassRaycast = new shader("TwoPass.vs", "TwoPass.Fullscreen", "TwoPass.Raycast");
-    ProgShaders[RENDER_PASS2] = new shader("TwoPass.vs", "TwoPass.Cube", "TwoPass.Intervals");
+    TwoPassRaycast = new Shader("TwoPass.vs", "TwoPass.Fullscreen", "TwoPass.Raycast");
+    ProgShaders[RENDER_PASS2] = new Shader("TwoPass.vs", "TwoPass.Cube", "TwoPass.Intervals");
 
 
     init_memberVariables();
@@ -196,7 +196,6 @@ void Technique_TwoPass_Raycasting::Render_TwoPass_RayCasting_2(Matrices_t& Mat, 
         glUniform1i(Depth_Location2, 3);
         glUniform1i(Depth_TwoPassLocation_Front2, 4);
         glUniform1i(Depth_TwoPassLocation_Back2, 5);
-
 
         glActiveTexture(GL_TEXTURE1);
         glBindTexture(GL_TEXTURE_2D, TextureFbo1);

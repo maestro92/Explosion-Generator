@@ -1,4 +1,4 @@
-#include "shader.h"
+#include "EG_Shader.h"
 
 #include <stdio.h>
 #include <string.h>
@@ -6,8 +6,7 @@
 string dir_path = "./shaders/";
 string p_str;
 
-
-void shader::loadFile(const char* fn, string & str)
+void Shader::loadFile(const char* fn, string & str)
 {
     p_str = dir_path;
     string mstr(fn);
@@ -34,18 +33,18 @@ void shader::loadFile(const char* fn, string & str)
 }
 
 // need glew to run Shader
-unsigned int shader::loadShader(string& source, unsigned int shaderType)
+unsigned int Shader::loadShader(string& source, unsigned int ShaderType)
 {
-    // id of current shader
+    // id of current Shader
     unsigned int id;
 
-    // Specifices the type of shader to be created
-    id = glCreateShader(shaderType);
+    // Specifices the type of Shader to be created
+    id = glCreateShader(ShaderType);
 
     const char* csource = source.c_str();
 
 
-    // replace the source code in a shader object
+    // replace the source code in a Shader object
     // 1: number of elements in the string and length arrays
     glShaderSource(id, 1, &csource, NULL);
     glCompileShader(id);
@@ -59,7 +58,7 @@ unsigned int shader::loadShader(string& source, unsigned int shaderType)
 }
 
 
-shader::shader(const char* vs_source, const char* fs_source)
+Shader::Shader(const char* vs_source, const char* fs_source)
 {
     string source;
     cout << "vs: " << vs_source << ", fs: " << fs_source << endl;
@@ -69,7 +68,7 @@ shader::shader(const char* vs_source, const char* fs_source)
     vs = loadShader(source, GL_VERTEX_SHADER);
 
     source = "";
-    // load the fragment shader
+    // load the fragment Shader
     loadFile(fs_source, source);
     fs = loadShader(source, GL_FRAGMENT_SHADER);
 
@@ -79,7 +78,7 @@ shader::shader(const char* vs_source, const char* fs_source)
 
     // links the program object
     glLinkProgram(program);
-    // this will use this shader program
+    // this will use this Shader program
     glUseProgram(program);
 
 
@@ -89,7 +88,7 @@ shader::shader(const char* vs_source, const char* fs_source)
 
 
 
-shader::shader(const char* vs_source, const char* gs_source, const char* fs_source)
+Shader::Shader(const char* vs_source, const char* gs_source, const char* fs_source)
 {
     string source;
     cout << "vs: " << vs_source << ", gs:" << gs_source << ", fs: " << fs_source << endl;
@@ -99,13 +98,13 @@ shader::shader(const char* vs_source, const char* gs_source, const char* fs_sour
 
 
     source = "";
-    // load the geometry shader
+    // load the geometry Shader
     loadFile(gs_source, source);
     gs = loadShader(source, GL_GEOMETRY_SHADER);
 
 
     source = "";
-    // load the fragment shader
+    // load the fragment Shader
     loadFile(fs_source, source);
     fs = loadShader(source, GL_FRAGMENT_SHADER);
 
@@ -120,14 +119,14 @@ shader::shader(const char* vs_source, const char* gs_source, const char* fs_sour
     glBindAttribLocation(program, SlotTexCoord, "TexCoord");
     // links the program object
     glLinkProgram(program);
-    // this will use this shader program
+    // this will use this Shader program
     glUseProgram(program);
 }
 
 
 
-// deletes the shader
-shader::~shader()
+// deletes the Shader
+Shader::~Shader()
 {
     glDetachShader(program, vs);
     glDetachShader(program, gs);
@@ -139,7 +138,7 @@ shader::~shader()
     glDeleteProgram(program);
 }
 
-void shader::linkShader()
+void Shader::linkShader()
 {
     // links the program object
     glLinkProgram(program);
@@ -147,19 +146,19 @@ void shader::linkShader()
 
 
 
-void shader::useShader()
+void Shader::useShader()
 {
 	glUseProgram(program);
 }
 
 
-unsigned int shader::getProgramId()
+unsigned int Shader::getProgramId()
 {
 	return program;
 }
 
 
-void shader::delShader()
+void Shader::delShader()
 {
 	glUseProgram(0);
 }

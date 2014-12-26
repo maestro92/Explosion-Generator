@@ -1,7 +1,7 @@
 #ifndef _SMOKE_H_
 #define _SMOKE_H_
 
-#include "shader.h"
+#include "EG_Shader.h"
 
 #include "EG_Technique_TwoPass_RayCasting.h"
 #include "Smoke_struct.h"
@@ -26,7 +26,7 @@
 const int ViewportWidth = 320;
 const int ViewportHeight = ViewportWidth;
 
-const int GridWidth = 64;
+const int GridWidth = 40;
 const int GridHeight = GridWidth;
 const int GridDepth = GridWidth;
 
@@ -135,14 +135,14 @@ class Smoke //: public L_ParticleEffect_Interface
         void Reset();
 
 
-        GLuint GetUniform(shader* s, const char* name);
-        GLuint GetUniform(GLuint programID, const char* name);
+        GLuint getUniform(Shader* s, const char* name);
+        GLuint getUniform(GLuint programID, const char* name);
 
-        void SetUniform(GLuint location, int value);
-        void SetUniform(GLuint location, float value);
-        void SetUniform(GLuint location, float x, float y);
-        void SetUniform(GLuint location, glm::vec3 value);
-        void SetUniform(GLuint location, glm::mat4 value);
+        void setUniform(GLuint location, int value);
+        void setUniform(GLuint location, float value);
+        void setUniform(GLuint location, float x, float y);
+        void setUniform(GLuint location, glm::vec3 value);
+        void setUniform(GLuint location, glm::mat4 value);
 /*
         void SetUniform(GLuint programID, const char* name, int value);
         void SetUniform(GLuint programID, const char* name, float value);
@@ -179,15 +179,15 @@ class Smoke //: public L_ParticleEffect_Interface
     private:
         GLuint fbo;
 
-        shader* Eulerian3D_Raycast;
-        shader* Eulerian3D_Advect;
-        shader* Eulerian3D_Fill;
+        Shader* Eulerian3D_Raycast;
+        Shader* Eulerian3D_Advect;
+        Shader* Eulerian3D_Fill;
 
-        shader* Eulerian3D_Jacobi;
-        shader* Eulerian3D_SubtractGradient;
-        shader* Eulerian3D_ComputeDivergence;
-        shader* Eulerian3D_ApplyImpulse;
-        shader* Eulerian3D_ApplyBuoyancy;
+        Shader* Eulerian3D_Jacobi;
+        Shader* Eulerian3D_SubtractGradient;
+        Shader* Eulerian3D_ComputeDivergence;
+        Shader* Eulerian3D_ApplyImpulse;
+        Shader* Eulerian3D_ApplyBuoyancy;
 
 
 };
