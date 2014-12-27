@@ -5,8 +5,8 @@
 static bool first = true;
 
 
-const float EG_ThirdPersonPovCamera::DEFAULT_SPRING_CONSTANT = 64.0f;
-const float EG_ThirdPersonPovCamera::DEFAULT_DAMPING_CONSTANT = 2.0f;
+const float EG_ThirdPersonPovCamera::DEFAULT_SPRING_CONSTANT = 16.0f;
+const float EG_ThirdPersonPovCamera::DEFAULT_DAMPING_CONSTANT = 8.0f;
 
 
 EG_ThirdPersonPovCamera::EG_ThirdPersonPovCamera()
@@ -24,10 +24,12 @@ EG_ThirdPersonPovCamera::EG_ThirdPersonPovCamera()
 	m_eye = glm::vec3(0.0f, 0.0f, 0.0f);
 	m_target = glm::vec3(0.0f, 0.0f, 0.0f);
     m_offset = glm::vec3(0.0f, 0.0f, 0.0f);
+    m_offsetDistance = glm::length(m_offset);
 
 	m_xAxis = glm::vec3(1.0f, 0.0f, 0.0f);
 	m_yAxis = glm::vec3(0.0f, 1.0f, 0.0f);
 	m_zAxis = glm::vec3(0.0f, 0.0f, 1.0f);
+	m_velocity = glm::vec3(0.0f, 0.0f, 0.0f);
 	m_viewDir = glm::vec3(0.0f, 0.0f, -1.0f);
 
     m_viewMatrix = glm::mat4(1.0);
@@ -132,6 +134,7 @@ void EG_ThirdPersonPovCamera::lookAt(pipeline& m_pipeline, glm::vec3& eye, glm::
 //    newTarget = m_eye;
 
     m_offset = m_zAxis = eye - target;
+    m_offsetDistance = glm::length(m_offset);
     m_zAxis = glm::normalize(m_zAxis);
 
     m_viewDir = -m_zAxis;
@@ -343,18 +346,37 @@ void EG_ThirdPersonPovCamera::update2(pipeline& m_pipeline, float elapsedTimeSec
     m_yAxis = set(m_viewMatrix[0][1], m_viewMatrix[1][1], m_viewMatrix[2][1]);
     m_zAxis = set(m_viewMatrix[0][2], m_viewMatrix[1][2], m_viewMatrix[2][2]);
 
-    glm::vec3 idealPosition = m_target + m_zAxis * glm::length(m_offset);
+//    glm::vec3 idealPosition = m_target + m_zAxis * glm::length(m_offset);
+    glm::vec3 idealPosition = m_target + m_zAxis * m_offsetDistance;
     glm::vec3 displacement = m_eye - idealPosition;
 
     /// spring force F = kx
     /// ma = kx - damping * v
     glm::vec3 springAcceleration = (-m_springConstant * displacement) -
+                            (m_dampingConstant * m_velocity);
+
+    cout << "m_velocity is " << m_velocity.x << ", " << m_velocity.y << ", " << m_velocity.z << endl;
+
+/*
+    velocity = accel * dt
+    position = velocity * dt
+*/
+    m_velocity += springAcceleration * elapsedTimeSec;
+    m_eye += m_velocity * elapsedTimeSec;
+
+    cout << "m_velocity is " << m_velocity.x << ", " << m_velocity.y << ", " << m_velocity.z << endl;
+
+/*
+    glm::vec3 springAcceleration = (-m_springConstant * displacement) -
                             (m_dampingConstant * c_velocity);
+
+    cout << "c_velocity is " << c_velocity.x << ", " << c_velocity.y << ", " << c_velocity.z << endl;
 
     c_velocity += springAcceleration * elapsedTimeSec;
     m_eye += c_velocity * elapsedTimeSec;
 
     cout << "c_velocity is " << c_velocity.x << ", " << c_velocity.y << ", " << c_velocity.z << endl;
+*/
 
     m_zAxis = m_eye - m_target;
     m_zAxis = glm::normalize(m_zAxis);
@@ -422,6 +444,13 @@ void EG_ThirdPersonPovCamera::Control(pipeline& m_pipeline)
 		{
             yawChange = BALL_HEADING_SPEED;
 		}
+
+
+        /// mouse wheel input
+
+
+        ///
+
 
     /// update the character first
     c_velocity.x = 0.0f;
@@ -660,6 +689,41 @@ void EG_ThirdPersonPovCamera::updateCharacterRotation(float pitchChange, float y
 
     if (c_eulerRotate.z < -360.0f)
         c_eulerRotate.z += 360.0f;
+}
+/*
+void EG_ThirdPersonPovCamera::increaseOffsetDistance()
+{
+    if( (m_offsetDistance+1.0f) > MAX_CAMERA_OFFSET)
+        m_offsetDistance = MAX_CAMERA_OFFSET;
+    else
+        m_offsetDistance+=(1.0f);
+
+}
+
+void EG_ThirdPersonPovCamera::decreaseOffsetDistance()
+{
+    if( (m_offsetDistance-1.0f)< MIN_CAMERA_OFFSET)
+        m_offsetDistance = MIN_CAMERA_OFFSET;
+    else
+        m_offsetDistance-=(1.0f);
+}
+*/
+
+void EG_ThirdPersonPovCamera::increaseOffsetDistance()
+{
+    if( (m_offsetDistance+CAMERA_ZOOM_DEGREE) > MAX_CAMERA_OFFSET)
+        m_offsetDistance = MAX_CAMERA_OFFSET;
+    else
+        m_offsetDistance+=(CAMERA_ZOOM_DEGREE);
+
+}
+
+void EG_ThirdPersonPovCamera::decreaseOffsetDistance()
+{
+    if( (m_offsetDistance-CAMERA_ZOOM_DEGREE)< MIN_CAMERA_OFFSET)
+        m_offsetDistance = MIN_CAMERA_OFFSET;
+    else
+        m_offsetDistance-=(CAMERA_ZOOM_DEGREE);
 }
 
 

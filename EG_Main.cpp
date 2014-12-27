@@ -435,9 +435,13 @@ void ExplosionGenerator::start()
                             break;
 
                         case SDL_BUTTON_WHEELUP:
+                            thirdPersonPovCamera.decreaseOffsetDistance();
+                            cout << "wheel up" << endl;
                             break;
 
                         case SDL_BUTTON_WHEELDOWN:
+                            thirdPersonPovCamera.increaseOffsetDistance();
+                            cout << "wheel down" << endl;
                             break;
                     }
                     break;
@@ -508,6 +512,9 @@ void ExplosionGenerator::start()
                             l_SphereEffect.myHgrid.removeParticleFromHGrid(&l_SphereEffect.e_ParticleBuffer[3]);
 #endif
                             break;
+
+
+
                     }
                     break;
 			}

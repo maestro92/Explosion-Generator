@@ -50,6 +50,8 @@ const float BALL_ROLLING_SPEED = 140.0f;
     const float BALL_FORWARD_SPEED = 1.0f;
     const float BALL_HEADING_SPEED = 3.0f;
     const float BALL_ROLLING_SPEED = 10.0f;
+    const float MAX_CAMERA_OFFSET = 50.0f;
+    const float MIN_CAMERA_OFFSET = 20.0f;
 
 
     static const float DEFAULT_SPRING_CONSTANT;
@@ -107,6 +109,9 @@ const float BALL_ROLLING_SPEED = 140.0f;
 
 
         /// Get methods
+        void increaseOffsetDistance();
+        void decreaseOffsetDistance();
+
         float getDampingConstant() const;
         float getOffsetDistance() const;
         const glm::quat &getOrientation() const;
@@ -135,7 +140,6 @@ const float BALL_ROLLING_SPEED = 140.0f;
         glm::vec3 m_eye;
         glm::vec3 m_target;
         glm::vec3 m_offset;
-
         glm::vec3 m_xAxis;
         glm::vec3 m_yAxis;
         glm::vec3 m_zAxis;
@@ -168,6 +172,9 @@ const float BALL_ROLLING_SPEED = 140.0f;
         float m_dampingConstant;
         bool  m_enableSpringSystem;
 
+        const float CAMERA_ZOOM_DEGREE = 3.0f;
+        glm::vec3 m_velocity;
+        float m_offsetDistance;
         glm::mat4 beautiful2;
         glm::mat4 beautiful3;
         glm::mat4 beautiful4;
