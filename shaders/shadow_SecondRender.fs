@@ -1,16 +1,16 @@
 #version 330
  
 uniform sampler2DShadow shadowMap;
-uniform vec3 cameraPosition;
-uniform vec3 LightPosition;         //Light's actual position
+uniform vec3 lightPosition_ObjectSpace;         //Light's actual position
 in vec4 lightVertexPosition;        // vertex seen in light's clip space
- 
+
+in vec3 position;
 in vec3 outNormal;
 in vec3 outTangent;
 in vec3 outColor;
+
 in vec3 LightPosition_EyeSpace;
-in vec3 position;
-in mat3 outNormal_Matrix;
+in mat3 l_normalMatrix;
  
 out vec4 FragColor;
  
@@ -45,6 +45,7 @@ vec4 CalcLightPerFragment(vec3 LightDirection, vec3 normal)
     return (AmbientColor + DiffuseColor + SpecularColor);
 }
  
+#if 1
 void main()
 {
     // assume everything not in shadow at first
@@ -54,10 +55,10 @@ void main()
     vec3 light2surf = normalize(position - LightPosition_EyeSpace);
  
     // light direction
-    vec3 L_direction = normalize(-LightPosition);
+    vec3 L_direction = normalize(-lightPosition_ObjectSpace);
  
     // need to multiply the normal matrix to accommodate for the modelview matrix
-    L_direction = outNormal_Matrix * L_direction;
+    L_direction = l_normalMatrix * L_direction;
  
     float SpotFactor = dot(light2surf, L_direction);
     vec4 Color = vec4(0.0,0.0,0.0,0.0);
@@ -80,3 +81,23 @@ void main()
     else    // we give the supposed spotlight color
         FragColor = Color;
 }
+
+#else
+void main()
+{
+    // assume everything not in shadow at first
+ 
+    vec3 normal=normalize(outNormal);
+    vec3 light2surf = normalize(position - LightPosition_EyeSpace);
+ 
+    // light direction
+    vec3 L_direction = normalize(-lightPosition_ObjectSpace);
+ 
+    // need to multiply the normal matrix to accommodate for the modelview matrix
+    L_direction = l_normalMatrix * L_direction;
+ 
+    float SpotFactor = dot(light2surf, L_direction);
+    
+    FragColor = CalcLightPerFragment(-light2surf, normal);
+}
+#endif

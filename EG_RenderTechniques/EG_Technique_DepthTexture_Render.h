@@ -12,13 +12,13 @@
 #include <string>
 #include <sstream>
 
-#include "EG_Technique.h"
+#include "EG_RenderTechnique.h"
 
 
 
 /// LightPOV    render1
 /// CameraPOV   render2
-class Technique_DepthTexture_Render : public Technique
+class Technique_DepthTexture_Render : public EG_RenderTechnique
 {
     public:
 
@@ -30,8 +30,5 @@ class Technique_DepthTexture_Render : public Technique
 
         void init(int Shader_Num);
 
-
-        // Shaders
-        Shader* Depth_CameraRender;
 };
 #endif

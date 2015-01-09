@@ -13,15 +13,15 @@ EG_SkyBox::~EG_SkyBox()
 
 void EG_SkyBox::init()
 {
-    allocate_memberVariables(1);
+    allocateMemberVariables(1);
 
 //    SkyboxShader = new shader("skybox.vs", "skybox.frag");
 //    Init_Shader_GL_Location(SkyboxShader, Matrices_UniLoc[RENDER_PASS1]);
-    ProgShaders[RENDER_PASS1] = new Shader("skybox.vs", "skybox.frag");
+    progShaders[RENDER_PASS1] = new Shader("skybox.vs", "skybox.frag");
 
 
-    init_memberVariables();
-    Cubemap_UniLoc = GetUniformLocation(ProgShaders[RENDER_PASS1], "cubeMap");
+    initMemberVariables();
+    Cubemap_UniLoc = GetUniformLocation(progShaders[RENDER_PASS1], "cubeMap");
 
     /// load the model
 	{
@@ -116,7 +116,7 @@ void EG_SkyBox::RenderSkyBox(Shader* skybox_shader)
 
 
         glUniform1i(Cubemap_UniLoc,0);
-        Load_glUniform(RotationOnly_View_pipeline, RENDER_PASS1);
+        loadUniformLocations(RotationOnly_View_pipeline, RENDER_PASS1);
 
    //     .(RotationOnly_View_pipeline);
 
@@ -134,7 +134,7 @@ void EG_SkyBox::RenderSkyBox(Shader* skybox_shader, pipeline& m_pipeline)
 
 
         glUniform1i(Cubemap_UniLoc,0);
-        Load_glUniform(m_pipeline, RENDER_PASS1);
+        loadUniformLocations(m_pipeline, RENDER_PASS1);
 
 
         Skybox_Cube->draw(skybox_shader->getProgramId());

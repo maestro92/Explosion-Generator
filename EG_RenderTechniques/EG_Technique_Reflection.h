@@ -13,13 +13,15 @@
 #include <string>
 #include <sstream>
 
-#include "EG_Technique.h"
+#include "EG_RenderTechnique.h"
+
+
 
 
 
 /// LightPOV    render1
 /// CameraPOV   render2
-class Technique_Reflection : public Technique
+class Technique_Reflection : public EG_RenderTechnique
 {
     public:
         GLuint CameraPosition_UniformLocation;

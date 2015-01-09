@@ -1,4 +1,3 @@
-
 #ifndef _MAIN_H_
 #define _MAIN_H_
 
@@ -9,9 +8,19 @@
 #include <sstream>
 #include "define.h"
 
+#include "EG_PointLight.h"
+#include "EG_SpotLight.h"
+#include "EG_DirectionalLight.h"
+
+#include "EG_DeferredShadingDirectionalLightPass.h"
+
 #include "EG_Camera.h"
 #include "EG_FirstPersonPovCamera.h"
 #include "EG_ThirdPersonPovCamera.h"
+
+#include "EG_DeferredShading.h"
+#include "EG_DeferredShading2.h"
+#include "EG_GBuffer.h"
 
 #include "EG_utility.h"
 #include "EG_RenderTechniques/EG_Skybox.h"
@@ -45,15 +54,44 @@
 
 using namespace std;
 
+/// For style
+/// use http://google-styleguide.googlecode.com/svn/trunk/cppguide.html#Function_Names
+
+
+/// C++ style
+/// http://geosoft.no/development/cppstyle.html
+
+
+/// http://stackoverflow.com/questions/1228161/why-use-prefixes-on-member-variables-in-c-classes
+///
+/*
+I use:
+
+m for members
+c for constants/readonlys
+p for pointer (and pp for pointer to pointer)
+v for volatile
+s for static
+i for indexes and iterators
+e for events
+
+
+*/
+
+
 
 class ExplosionGenerator
 {
     private:
-        Technique* r_Technique;
+        EG_RenderTechnique* r_Technique;
         Technique_Reflection r_Reflection_Render;
         Technique_Shadow_Render r_Shadow_Render;
         Technique_TwoPass_Raycasting r_TwoPass_Render;
         Technique_DepthTexture_Render r_DepthTexture_Render;
+    //    EG_DeferredShading r_deferredShadingRenderTechnique;
+        EG_DeferredShading2 r_deferredShadingRenderTechnique;
+        EG_DeferredShadingDirectionalLightPass r_directionalLightPass;
+        EG_GBuffer gbuffer;
 
         GLuint VBO;
         GLuint FBO;
@@ -86,11 +124,19 @@ class ExplosionGenerator
         meshLoader* scene;
         meshLoader* ground;
         meshLoader* ground1;
+        meshLoader* wall_negative_x;
+        meshLoader* wall_positive_x;
+
+        meshLoader* wall_negative_z;
+        meshLoader* wall_positive_z;
+
+
         meshLoader* sphere;
         meshLoader* smoothSphere;
         meshLoader* cube;
         meshLoader* monkey;
         meshLoader* mainCharacter;
+        meshLoader* light;
         mesh* quad;
 
         bool isRunning;
@@ -116,12 +162,8 @@ class ExplosionGenerator
 
 
         /// shaders
-        Shader* shadow_FirstRender;
-        Shader* shadow_SecondRender;
         Shader* quadRenderShader;   // for rendering the texture into a quad, then displaying the quad into the screen under a orthographic view
         Shader* Depth_CameraRender;
-        Shader* reflectionShader;
-        Shader* refractionShader;
         Shader* skyboxShader;
 
         /// Matrices
@@ -140,7 +182,9 @@ class ExplosionGenerator
         glm::mat4 LightPos_modelMatrix;
         glm::mat4 LightPos_modelViewMatrix;
 
-
+        EG_SpotLight spotLight;
+        EG_DirectionalLight directionalLight;
+        EG_PointLight pointLights[3];
 
 
         // buttons
@@ -161,11 +205,13 @@ class ExplosionGenerator
         void init_SDL_GLEW();
         void init_OpenGL();
 
-        void init_Shader();
-        void init_Models();
+        void initShader();
+        void initModels();
+        void initLights();
+
         void setupCamera();
         void setupColor_Texture();
-        void init_Lighting();
+
         void init_Texture_and_FrameBuffer();
 
         void SetupRenderStage();
@@ -178,7 +224,8 @@ class ExplosionGenerator
         void RenderTexture(GLuint TextureId);
         void RenderScene();
         void RenderReflectiveObjects();
-        void RenderSmoke();
+//        void RenderSmoke();
+        void RenderSmoke(bool pass1, bool pass2, Matrices_t& Mat, unsigned int depthTextureId);
 
 
         void Render_to_CubeMapTexture();
@@ -187,6 +234,17 @@ class ExplosionGenerator
 
         void Render_to_CubeMapTexture2();
         void Render_to_CubeMapFace2(int face);
+
+        void deferredShadingGeometryPass();
+        void deferredShadingMrtDemoPass();
+        void deferredShadingLightPass();
+
+
+   //     void deferredShadingStencilPass();
+        void beginDeferredShadingLightPass();
+        void deferredShadingPointLightPass();
+        void deferredShadingDirectionalLightPass();
+   //     void deferredShadingFinalPass();
 
 
         /// Basic Drawing functions

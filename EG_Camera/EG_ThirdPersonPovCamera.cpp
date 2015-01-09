@@ -355,7 +355,7 @@ void EG_ThirdPersonPovCamera::update2(pipeline& m_pipeline, float elapsedTimeSec
     glm::vec3 springAcceleration = (-m_springConstant * displacement) -
                             (m_dampingConstant * m_velocity);
 
-    cout << "m_velocity is " << m_velocity.x << ", " << m_velocity.y << ", " << m_velocity.z << endl;
+//    cout << "m_velocity is " << m_velocity.x << ", " << m_velocity.y << ", " << m_velocity.z << endl;
 
 /*
     velocity = accel * dt
@@ -364,7 +364,7 @@ void EG_ThirdPersonPovCamera::update2(pipeline& m_pipeline, float elapsedTimeSec
     m_velocity += springAcceleration * elapsedTimeSec;
     m_eye += m_velocity * elapsedTimeSec;
 
-    cout << "m_velocity is " << m_velocity.x << ", " << m_velocity.y << ", " << m_velocity.z << endl;
+//    cout << "m_velocity is " << m_velocity.x << ", " << m_velocity.y << ", " << m_velocity.z << endl;
 
 /*
     glm::vec3 springAcceleration = (-m_springConstant * displacement) -
@@ -462,7 +462,6 @@ void EG_ThirdPersonPovCamera::Control(pipeline& m_pipeline)
  //   CharacterRotate(pitch, 0.0f, 0.0f);
     updateCharacter(0.0f, -yawChange, 0.0f);
  //   CharacterUpdate(0.0f, heading, 0.0f);
-
 
  //   rotate(m_pipeline,  0.0f, (forwardSpeed >= 0.0f) ? yawChange : -yawChange);
     setTarget(c_position);
@@ -715,7 +714,6 @@ void EG_ThirdPersonPovCamera::increaseOffsetDistance()
         m_offsetDistance = MAX_CAMERA_OFFSET;
     else
         m_offsetDistance+=(CAMERA_ZOOM_DEGREE);
-
 }
 
 void EG_ThirdPersonPovCamera::decreaseOffsetDistance()

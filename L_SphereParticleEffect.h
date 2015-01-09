@@ -2,7 +2,7 @@
 #define _L_SPHERE_PARTICLE_EFFECT_H_
 
 #include "pipeline.h"
-#include "EG_Technique.h"
+#include "EG_RenderTechnique.h"
 #include "EG_Technique_Shadow_Render.h"
 #include "EG_Technique_TwoPass_RayCasting.h"
 #include "sceneLoader.h"
@@ -45,7 +45,8 @@ class L_SphereParticleEffect : public L_ParticleEffect_Interface
 
         void update(bool toggle = false);
         void show(bool toggle = false);
-        void show(pipeline &m_pipeline, Technique* RenderTechnique, int RenderTypeID, int RenderPassID, meshLoader* mymesh);
+     //   void show(pipeline &m_pipeline, EG_RenderTechnique* RenderTechnique, int RenderTypeID, int RenderPassID, meshLoader* mymesh);
+        void show(pipeline &m_pipeline, EG_RenderTechnique* RenderTechnique, int RenderTypeID, meshLoader* mymesh);
         void show(pipeline &m_pipeline,  unsigned int shaderID , meshLoader* mymesh);
 
         void Reset();

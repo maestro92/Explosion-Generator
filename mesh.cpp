@@ -48,6 +48,7 @@ The input in shaders is defined using the layout statement
 
 void mesh::draw()
 {
+
 	int vertex=0;
 	int normal=1;
 	int tangent=2; //2
@@ -116,7 +117,7 @@ void mesh::draw(unsigned int programId)
 {
 
 	//attribute vec3 vertex
-	/*
+
 	/// this is similar to the glGetuniform location
 	int vertex=glGetAttribLocation(programId,"vertex"); //0
 	int normal=glGetAttribLocation(programId,"normal"); //1
@@ -124,15 +125,19 @@ void mesh::draw(unsigned int programId)
 	int color=glGetAttribLocation(programId,"color"); //3
 	int UV=glGetAttribLocation(programId,"UV"); //4
 
+    cout << "vertex is " << vertex << endl;
+    cout << "normal is " << normal << endl;
+    cout << "tangent is " << tangent << endl;
     cout << "color is " << color << endl;
-*/
+    cout << "UV is " << UV << endl << endl;
 
+/*
 	int vertex=0;
 	int normal=1;
 	int tangent=2; //2
 	int color=3; //3
 	int UV=4; //4
-
+*/
 	//texture0
 	//texture1...
 	string str="texture";

@@ -24,6 +24,7 @@
 
 using namespace std;
 
+
 class EG_Utility
 {
     public:

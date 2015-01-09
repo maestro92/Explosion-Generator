@@ -12,13 +12,13 @@
 #include <string>
 #include <sstream>
 
-#include "EG_Technique.h"
+#include "EG_RenderTechnique.h"
 
 
 
 /// LightPOV    render1
 /// CameraPOV   render2
-class Technique_Shadow_Render : public Technique
+class Technique_Shadow_Render : public EG_RenderTechnique
 {
 
         /// first pass for depth in Light's point of View
@@ -64,13 +64,14 @@ class Technique_Shadow_Render : public Technique
 
       //  void init(int w, int h);
         void init(int w, int h, int Shader_Num);
+        void loadUniformLocations(pipeline& p, int RenderPassID);
    //     void Setup_Matrix_forRender(pipeline& p, int RenderPassID);
    //     void Setup_Matrix_forRender1(pipeline& p);
    //     void Setup_Matrix_forRender2(pipeline& p);
 
   //      void Setup_Matrix_forRender(pipeline& p, int RenderPassID);
-        void Setup_ShadowMatrix_forRender(pipeline& p, int RenderPassID);
-
+  //      void Setup_ShadowMatrix_forRender(pipeline& p, int RenderPassID);
+  //      void loadSpecialUniformLocation(pipeline& p, int RenderPassID);
 
         GLuint ShadowMap;
         GLuint DepthTexture_LightPOV;

@@ -17,7 +17,7 @@ Technique_TwoPass_Raycasting::~Technique_TwoPass_Raycasting()
 
 void Technique_TwoPass_Raycasting::init(int w, int h, int Shader_Num)
 {
-    allocate_memberVariables(Shader_Num);
+    allocateMemberVariables(Shader_Num);
 
     // generate a frame buffer
     glGenFramebuffers(1, &IntervalsFbo1);
@@ -72,17 +72,17 @@ void Technique_TwoPass_Raycasting::init(int w, int h, int Shader_Num)
 
     /// Interval
     TwoPassIntervals = new Shader("TwoPass.vs", "TwoPass.Cube", "TwoPass.Intervals");
-    ProgShaders[RENDER_PASS1] = new Shader("TwoPass.vs", "TwoPass.Cube", "TwoPass.Intervals");
+    progShaders[RENDER_PASS1] = new Shader("TwoPass.vs", "TwoPass.Cube", "TwoPass.Intervals");
 
     /// Cube depth
     TwoPass_CubeDepth = new Shader("TwoPass.vs", "TwoPass.Cube", "TwoPass_Depth.fs");
 
     /// Raycast
     TwoPassRaycast = new Shader("TwoPass.vs", "TwoPass.Fullscreen", "TwoPass.Raycast");
-    ProgShaders[RENDER_PASS2] = new Shader("TwoPass.vs", "TwoPass.Cube", "TwoPass.Intervals");
+    progShaders[RENDER_PASS2] = new Shader("TwoPass.vs", "TwoPass.Cube", "TwoPass.Intervals");
 
 
-    init_memberVariables();
+    initMemberVariables();
 
 
     if (Matrices_UniLoc[RENDER_PASS2].ModelviewProjection == -1)
@@ -188,6 +188,7 @@ void Technique_TwoPass_Raycasting::Render_TwoPass_RayCasting_CubeDepth(Matrices_
 void Technique_TwoPass_Raycasting::Render_TwoPass_RayCasting_2(Matrices_t& Mat, GLuint depthTexture)
 {
     glEnable(GL_BLEND);
+    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
     TwoPassRaycast->useShader();
 //        Load_glUniform(Matrices_Loc2, Mat);
         Load_glUniform(Matrices_UniLoc[RENDER_PASS2], Mat);

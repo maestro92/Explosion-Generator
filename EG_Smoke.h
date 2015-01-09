@@ -26,7 +26,7 @@
 const int ViewportWidth = 320;
 const int ViewportHeight = ViewportWidth;
 
-const int GridWidth = 40;
+const int GridWidth = 32;
 const int GridHeight = GridWidth;
 const int GridDepth = GridWidth;
 

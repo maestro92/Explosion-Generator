@@ -15,7 +15,7 @@
 #include "EG_Shader.h"
 #include "sceneLoader.h"
 #include "pipeline.h"
-#include "EG_Technique.h"
+#include "EG_RenderTechnique.h"
 
 #define NO_SDL_GLEXT
 #include <GL/glew.h>
@@ -25,7 +25,7 @@
 
 using namespace std;
 
-class EG_SkyBox : public Technique
+class EG_SkyBox : public EG_RenderTechnique
 {
     public:
 

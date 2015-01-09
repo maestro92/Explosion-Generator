@@ -13,12 +13,12 @@
 #include <string>
 #include <sstream>
 
-#include "EG_Technique.h"
+#include "EG_RenderTechnique.h"
 
 
 
 
-class Technique_TwoPass_Raycasting : public Technique
+class Technique_TwoPass_Raycasting : public EG_RenderTechnique
 {
     public:
 
