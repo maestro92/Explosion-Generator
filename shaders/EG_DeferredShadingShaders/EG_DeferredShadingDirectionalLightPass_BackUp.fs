@@ -170,7 +170,7 @@ vec4 CalcDirectionalLight(vec3 WorldPos, vec3 Normal)
 {
 
     vec3 lightDirection = mat3(m_ViewMatrix) * gDirectionalLight.direction;
-    lightDirection = -normalize(lightDirection);
+    lightDirection = normalize(lightDirection);
 
     return CalcLightInternal(gDirectionalLight.base,
                              lightDirection,
@@ -223,14 +223,16 @@ void main()
     // vec3 light2surf = normalize(outVertex - lightPosition_CameraEyeSpace);
   //  light2surf = normalize(outVertex - lightPosition_CameraEyeSpace);
 
-    vec3 light2surf = mat3(m_ViewMatrix) * gDirectionalLight.direction;
-    light2surf = normalize(light2surf);
+ //   vec3 light2surf = mat3(m_ViewMatrix) * gDirectionalLight.direction;
+ //   light2surf = normalize(light2surf);
  //   vec4 Color = CalcLightPerFragment(-light2surf, normal);
 
  //   FragColor = vec4(colorValue,1.0) * CalcLightPerFragment(light2surf, normal);
+        // the view matrix doesn't work here
     FragColor = vec4(colorValue,1.0) * CalcDirectionalLight(worldPos, normal);
 
- //   FragColor = vec4(1.0,0.0,0.0,0.0);
+ //   FragColor = vec4(colorValue,1.0);
+ //   FragColor = vec4(normal,1.0);
 
  //   FragColor = CalcLightPerFragment(-light2surf, normal);
 }

@@ -117,7 +117,7 @@ void Technique_TwoPass_Raycasting::init(int w, int h, int Shader_Num)
     glBindTexture(GL_TEXTURE_2D, TwoPass_CubeDepthTexture_Back);
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_COMPARE_MODE, GL_COMPARE_R_TO_TEXTURE);
     glBindTexture(GL_TEXTURE_2D, 0);
-
+    glDisable(GL_BLEND);
 }
 
 

@@ -14,8 +14,8 @@ void EG_DeferredShadingDirectionalLightPass::init(int shaderCount)
 {
     allocateMemberVariables(shaderCount);
 
-    progShaders[RENDER_PASS1] = new Shader("/EG_DeferredShadingShaders/EG_DeferredShadingDirectionalLightPass2.vs",
-                                           "/EG_DeferredShadingShaders/EG_DeferredShadingDirectionalLightPass2.fs");
+    progShaders[RENDER_PASS1] = new Shader("/EG_DeferredShadingShaders/EG_DeferredShadingDirectionalLightPass_ModelMatrixBased.vs",
+                                           "/EG_DeferredShadingShaders/EG_DeferredShadingDirectionalLightPass_ModelMatrixBased.fs");
 
     m_dirLightLocation.color                = GetUniformLocation( progShaders[RENDER_PASS1], "gDirectionalLight.base.color");
     m_dirLightLocation.ambientIntensity     = GetUniformLocation( progShaders[RENDER_PASS1], "gDirectionalLight.base.ambientIntensity");

@@ -23,8 +23,13 @@ void EG_DeferredShading2::init(int shaderCount)
 {
     allocateMemberVariables(shaderCount);
 //    string path = "/EG_DeferredShadingShaders/";
-    progShaders[RENDER_PASS1] = new Shader("/EG_DeferredShadingShaders/EG_DeferredShadingGeometryPass.vs",
-                                           "/EG_DeferredShadingShaders/EG_DeferredShadingGeometryPass.fs");
+  //  progShaders[RENDER_PASS1] = new Shader("/EG_DeferredShadingShaders/EG_DeferredShadingGeometryPass.vs",
+  //                                         "/EG_DeferredShadingShaders/EG_DeferredShadingGeometryPass.fs");
+
+    progShaders[RENDER_PASS1] = new Shader("/EG_DeferredShadingShaders/EG_DeferredShadingGeometryPass_ModelMatrixBased.vs",
+                                           "/EG_DeferredShadingShaders/EG_DeferredShadingGeometryPass_ModelMatrixBased.fs");
+
+
     m_colorTextureUnitLocation_ = glGetUniformLocation( progShaders[RENDER_PASS1]->getProgramId(), "gColorMap");
 
     progShaders[RENDER_PASS2] = new Shader("EG_Shader_DeferredShadingLightingPass.vs",

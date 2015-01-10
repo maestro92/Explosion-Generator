@@ -138,6 +138,7 @@ class ExplosionGenerator
         meshLoader* mainCharacter;
         meshLoader* light;
         mesh* quad;
+        meshLoader* deferredShadingQuad;
 
         bool isRunning;
         bool isFirstPersonCamera;
@@ -222,6 +223,7 @@ class ExplosionGenerator
         void update();
         void show();
         void RenderTexture(GLuint TextureId);
+        void RenderTexture2(GLuint TextureId);
         void RenderScene();
         void RenderReflectiveObjects();
 //        void RenderSmoke();
@@ -239,11 +241,12 @@ class ExplosionGenerator
         void deferredShadingMrtDemoPass();
         void deferredShadingLightPass();
 
-
+        void deferredShadingGeometryPass36();
    //     void deferredShadingStencilPass();
         void beginDeferredShadingLightPass();
         void deferredShadingPointLightPass();
         void deferredShadingDirectionalLightPass();
+        void deferredShadingDirectionalLightPass36();
    //     void deferredShadingFinalPass();
 
 

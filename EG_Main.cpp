@@ -10,15 +10,8 @@ using namespace std;
 #define CUBE_SPHERE_EFFECT 0
 
 #define DEFERRED_SHADING 1
-#define SMOKE_EFFECT 1
-#define REFLECTION_EFFECT 1
-
-
-/*
-#define SPHERE_EFFECT2 1
-#define CUBE_SPHERE_EFFECT2 0
-*/
-
+#define SMOKE_EFFECT 0
+#define REFLECTION_EFFECT 0
 
 #define USING_INVERSE_MATRIX 0
 
@@ -340,8 +333,8 @@ void ExplosionGenerator::initLights()
 //    directionalLight.color = COLOR_CYAN;
     directionalLight.color = COLOR_WHITE;
     directionalLight.diffuseIntensity = 0.9f;
-//    directionalLight.direction = glm::vec3(1.0f, 0.0f, 0.0f);
-    directionalLight.direction = glm::vec3(-19.1004, 28.881, 40.5246);
+    directionalLight.direction = glm::vec3(1.0f, -1.0f, 0.0f);
+//    directionalLight.direction = glm::vec3(-19.1004, 28.881, 40.5246);
 
     pointLights[0].diffuseIntensity = 0.2f;
     pointLights[0].color = COLOR_GREEN;
@@ -420,6 +413,8 @@ void ExplosionGenerator::initModels()
     ground = new meshLoader("ground1.obj");
     wall_negative_z = new meshLoader("Wall_NZ.obj");
     wall_positive_x = new meshLoader("Wall_PX.obj");
+
+    deferredShadingQuad = new meshLoader("./Content/quad.obj");
 
     sphere = new meshLoader("./Sphere/sphere10_grey_flat.obj");
 //    sphere = new meshLoader("./Content/phoenix_ugv.md2");
@@ -978,11 +973,13 @@ void ExplosionGenerator::show()
 
 
 #if DEFERRED_SHADING
-    deferredShadingGeometryPass();
+//    deferredShadingGeometryPass36();
+    deferredShadingGeometryPass36();
  //   deferredShadingMrtDemoPass();
 //    deferredShadingLightPass();
-    beginDeferredShadingLightPass();
-    deferredShadingDirectionalLightPass();
+//    beginDeferredShadingLightPass();
+//    deferredShadingDirectionalLightPass();
+    deferredShadingDirectionalLightPass36();
     glDisable(GL_BLEND);
 #else
     RenderScene();
@@ -995,7 +992,7 @@ void ExplosionGenerator::show()
     RenderReflectiveObjects();
 #endif
 
-    drawAxis(20, glm::vec3(0,0,0));
+//    drawAxis(20, glm::vec3(0,0,0));
 
 #if SMOKE_EFFECT
 //    RenderSmoke(true, true, Matrices, gbuffer.get_depth_texture());
@@ -1195,66 +1192,33 @@ void ExplosionGenerator::deferredShadingLightPass()
 
 
 
-void ExplosionGenerator::beginDeferredShadingLightPass()
+
+
+void ExplosionGenerator::deferredShadingGeometryPass36()
 {
-/*
-    glEnable(GL_BLEND);
-    /// the GPU will simply add the source and the destination
-    glBlendEquation(GL_FUNC_ADD);
-    /// we want true addition, so we set it to GL_ONE, which means (1*src + 1*dst)
-    glBlendFunc(GL_ONE, GL_ONE);
-
-    // you start rendering to the screen and turn all the relevant textures active
-    gbuffer.bindForReading36();
-    glClear(GL_COLOR_BUFFER_BIT);
-*/
-}
-
-void ExplosionGenerator::deferredShadingPointLightPass()
-{
-
-}
-
-
-
-/*
-void ExplosionGenerator::deferredShadingDirectionalLightPass()
-{
-
-    glBindFramebuffer(GL_DRAW_FRAMEBUFFER, 0);
-
-    gbuffer.bindForReadingLightPass();
-
-    m_pipeline.matrixMode(MODEL_MATRIX);
-    GetLightPos_ModelView_Matrix();
-
     /// 2nd Render pass of shadowMapping: camera's point of view
-    m_pipeline.matrixMode(MODEL_MATRIX);
+    r_deferredShadingRenderTechnique.enableShader(RENDER_PASS1);
 
+    gbuffer.bindForWriting();
+
+
+    m_pipeline.matrixMode(MODEL_MATRIX);
+ //   glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT);
     m_pipeline.pushMatrix();
 
-
-    r_directionalLightPass.enableShader(RENDER_PASS1);
-
-        glActiveTexture(GL_TEXTURE3);
-        glBindTexture(GL_TEXTURE_2D, shadow_depthTexture);
+    glEnable(GL_DEPTH_TEST);
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 
-        glUniformMatrix4fv(r_directionalLightPass.lightPosition_ModelViewMatrix_UniLoc_,1,GL_FALSE,&LightPos_modelViewMatrix[0][0]);
-		glUniform3f(r_directionalLightPass.lightPosition_ObjectSpace_UniLoc_,
-                        lightPosition.x,
-                        lightPosition.y,
-                        lightPosition.z);
-
-        glUniform2f(r_directionalLightPass.screenSize_UniLoc_, (float)SCREEN_WIDTH, (float)SCREEN_HEIGHT);
-
-		glUniform1i(r_directionalLightPass.positionMap_UniLoc_,0);
-		glUniform1i(r_directionalLightPass.colorMap_UniLoc_,1);
-		glUniform1i(r_directionalLightPass.normalMap_UniLoc_,2);
-		glUniform1i(r_directionalLightPass.shadowMap_UniLoc_,3);
 
 
-        r_directionalLightPass.loadUniformLocations(m_pipeline, RENDER_PASS1);
+        glDepthMask(GL_TRUE);
+        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+        glEnable(GL_DEPTH_TEST);
+        glDisable(GL_BLEND);
+
+        r_deferredShadingRenderTechnique.loadUniformLocations(m_pipeline, RENDER_PASS1);
         ground->draw();
 
 
@@ -1265,21 +1229,9 @@ void ExplosionGenerator::deferredShadingDirectionalLightPass()
 
 
 #if SPHERE_EFFECT
-        r_Technique = &r_directionalLightPass;
-        l_SphereEffect.show(m_pipeline, r_Technique, SHADOW_RENDER, RENDER_PASS1, sphere);
+        r_Technique = &r_deferredShadingRenderTechnique;
+        l_SphereEffect.show(m_pipeline, r_Technique, RENDER_PASS1, sphere);
 #endif
-#if CUBE_SPHERE_EFFECT
-        l_Cube_SphereEffect.show(m_pipeline, shadow_SecondRender->getProgramId(), cube);
-#endif
-
-        for(int i=0; i<10; i++)
-        {
-            m_pipeline.pushMatrix();
-                m_pipeline.translate(-(float)(i*2), 12.5f, -25.0f);
-                r_directionalLightPass.loadUniformLocations(m_pipeline, RENDER_PASS1);
-                light->draw();
-            m_pipeline.popMatrix();
-        }
 
         {
             m_pipeline.pushMatrix();
@@ -1287,25 +1239,46 @@ void ExplosionGenerator::deferredShadingDirectionalLightPass()
                 m_pipeline.LoadMatrix(thirdPersonPovCamera.c_worldMatrix);
             //    m_pipeline.Rotate(myThirdPOV_camera);
                 m_pipeline.Rotate(180.0f, 0.0f, 1.0f, 0.0f);
-                r_directionalLightPass.loadUniformLocations(m_pipeline, RENDER_PASS1);
+                r_deferredShadingRenderTechnique.loadUniformLocations(m_pipeline, RENDER_PASS1);
                 thirdPersonPovCamera.m_character->draw();
             m_pipeline.popMatrix();
         }
 
-#if CUBE_SPHERE_EFFECT
-        l_Cube_SphereEffect.DrawMyHgridFrames();
-#endif
-
-        r_directionalLightPass.disableShader(RENDER_PASS1);
+        glDepthMask(GL_FALSE);
+        glDisable(GL_DEPTH_TEST);
+        r_deferredShadingRenderTechnique.disableShader(RENDER_PASS1);
     m_pipeline.popMatrix();
 }
 
-*/
+void ExplosionGenerator::beginDeferredShadingLightPass()
+{
+
+    glEnable(GL_BLEND);
+    /// the GPU will simply add the source and the destination
+    glBlendEquation(GL_FUNC_ADD);
+    /// we want true addition, so we set it to GL_ONE, which means (1*src + 1*dst)
+    glBlendFunc(GL_ONE, GL_ONE);
+
+    // you start rendering to the screen and turn all the relevant textures active
+    gbuffer.bindForReading36();
+    glClear(GL_COLOR_BUFFER_BIT);
+
+}
+
+void ExplosionGenerator::deferredShadingPointLightPass()
+{
+
+}
+
 
 
 void ExplosionGenerator::deferredShadingDirectionalLightPass()
 {
   //  glDisable(GL_DEPTH_TEST);
+
+    glEnable(GL_DEPTH_TEST);
+    glDepthMask(GL_TRUE);
+
     glBindFramebuffer(GL_DRAW_FRAMEBUFFER, 0);
 
     gbuffer.bindForReadingLightPass();
@@ -1333,7 +1306,9 @@ void ExplosionGenerator::deferredShadingDirectionalLightPass()
 
 		glUniform1i(r_directionalLightPass.shadowMap_UniLoc_,3);
 
-
+        r_directionalLightPass.SetEyeWorldPos(  glm::vec3(thirdPersonPovCamera.m_eye.x,
+                                                            thirdPersonPovCamera.m_eye.y,
+                                                            thirdPersonPovCamera.m_eye.z));
         r_directionalLightPass.loadUniformLocations(m_pipeline, RENDER_PASS1);
         ground->draw();
 
@@ -1383,6 +1358,38 @@ void ExplosionGenerator::deferredShadingDirectionalLightPass()
 
 
 
+void ExplosionGenerator::deferredShadingDirectionalLightPass36()
+{
+#if 0
+    glDisable(GL_DEPTH_TEST);
+  //  glDisable(GL_CULL_FACE);
+    r_directionalLightPass.enableShader(RENDER_PASS1);
+ //   m_pipeline.pushMatrix();
+    glBindFramebuffer(GL_DRAW_FRAMEBUFFER, 0);
+	m_pipeline.loadIdentity();
+	m_pipeline.ortho(-1,1,-1,1,-1,1);
+
+/*
+        m_pipeline.matrixMode(PROJECTION_MATRIX);
+        m_pipeline.loadIdentity();
+        m_pipeline.matrixMode(VIEW_MATRIX);
+        m_pipeline.loadIdentity();
+        m_pipeline.matrixMode(MODEL_MATRIX);
+        m_pipeline.loadIdentity();
+*/
+        r_directionalLightPass.loadUniformLocations(m_pipeline, RENDER_PASS1);
+    //    deferredShadingQuad->draw();
+        quad->draw();
+//    m_pipeline.popMatrix();
+    r_directionalLightPass.disableShader(RENDER_PASS1);
+    glEnable(GL_DEPTH_TEST);
+#endif
+//     RenderTexture2(gbuffer.m_textures[2]);
+     RenderTexture2(gbuffer.m_textures[2]);
+}
+
+
+
 
 
 
@@ -1405,6 +1412,7 @@ int main(int argc, char *argv[])
 ///************************Helper Functions**************************///
 void ExplosionGenerator::RenderTexture(GLuint TextureId)
 {
+
     glDisable(GL_DEPTH_TEST);
     //render texture to screen
 	m_pipeline.loadIdentity();
@@ -1419,10 +1427,59 @@ void ExplosionGenerator::RenderTexture(GLuint TextureId)
 	glUniform2f(glGetUniformLocation(quadRenderShader->getProgramId(),"pixelSize"),1.0/SCREEN_WIDTH, 1.0/SCREEN_HEIGHT);
 	m_pipeline.updateMatrices(quadRenderShader->getProgramId());
 	quad->draw(quadRenderShader->getProgramId());
+//    deferredShadingQuad->draw(quadRenderShader->getProgramId());
 	quadRenderShader->delShader();
 
     glEnable(GL_DEPTH_TEST);
 }
+
+
+
+void ExplosionGenerator::RenderTexture2(GLuint TextureId)
+{
+
+  //  m_pipeline.pushMatrix();
+    glDisable(GL_DEPTH_TEST);
+    glDisable(GL_CULL_FACE);
+    //render texture to screen
+	m_pipeline.loadIdentity();
+
+    m_pipeline.matrixMode(PROJECTION_MATRIX);
+	m_pipeline.pushMatrix();
+	m_pipeline.ortho(-1,1,-1,1,-1,1);
+
+    glBindFramebuffer(GL_FRAMEBUFFER, 0);
+	glClear(GL_COLOR_BUFFER_BIT);
+	r_directionalLightPass.progShaders[RENDER_PASS1]->useShader();
+    gbuffer.bindForReadingLightPass();
+//	glActiveTexture(GL_TEXTURE0);
+//	glBindTexture(GL_TEXTURE_2D,TextureId);
+//	glUniform1i(glGetUniformLocation(r_directionalLightPass.progShaders[RENDER_PASS1]->getProgramId(),"texture1"),0);
+
+    r_directionalLightPass.SetEyeWorldPos(  glm::vec3(thirdPersonPovCamera.m_eye.x,
+                                                    thirdPersonPovCamera.m_eye.y,
+                                                    thirdPersonPovCamera.m_eye.z));
+
+
+//	m_pipeline.updateMatrices(r_directionalLightPass.progShaders[RENDER_PASS1]->getProgramId());
+    r_directionalLightPass.loadUniformLocations(m_pipeline, RENDER_PASS1);
+
+	quad->draw(r_directionalLightPass.progShaders[RENDER_PASS1]->getProgramId());
+    m_pipeline.popMatrix();
+
+
+    /// this deferredShading Quad is motherFxxking from the OpenGL UK, so it's reversed.. so you have to have
+//    glDisable(GL_CULL_FACE);
+//    deferredShadingQuad->draw(r_directionalLightPass.progShaders[RENDER_PASS1]->getProgramId());
+
+
+	r_directionalLightPass.progShaders[RENDER_PASS1]->delShader();
+
+
+    glEnable(GL_DEPTH_TEST);
+ //   m_pipeline.popMatrix();
+}
+
 
 
 void ExplosionGenerator::setupCamera()
@@ -1495,19 +1552,7 @@ void ExplosionGenerator::RenderReflectiveObjects()
 
 }
 
-/*
-void ExplosionGenerator::RenderSmoke(bool pass1, bool pass2, unsigned int depthTextureId)
-{
-    /// Second pass of the RayCasting
-    glBindBuffer(GL_ARRAY_BUFFER, smoke.myVbos.CubeCenter);
-    glEnableVertexAttribArray(SlotPosition);
-    glVertexAttribPointer(SlotPosition, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), 0);
-    glBindTexture(GL_TEXTURE_3D, smoke.f_Slab.Density.Ping.ColorTexture);
 
-    /// the volume RayCasting part
-    r_TwoPass_Render.Render_TwoPass_RayCasting_2(ReflectionSmoke, m_skybox.Dynamic_CubeMap_DepthTextureID);
-}
-*/
 
 void ExplosionGenerator::RenderSmoke(bool pass1, bool pass2, Matrices_t& Mat, unsigned int depthTextureId)
 {

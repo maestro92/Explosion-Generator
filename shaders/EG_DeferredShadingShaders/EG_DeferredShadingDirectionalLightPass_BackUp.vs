@@ -18,7 +18,7 @@ uniform mat4 m_ViewMatrix;
 uniform mat4 m_ProjectionMatrix;
 uniform mat4 m_ModelMatrix;
 uniform mat4 m_ViewNoRotateMatrix;
-uniform mat3 m_normalMatrix;   
+uniform mat3 m_normalMatrix;  
 uniform mat4 l_modelViewProjectionMatrix;
 
     
@@ -46,6 +46,7 @@ out mat3 l_normalMatrix;
 void main()
 {
 	gl_Position = m_ModelviewProjection*vec4(vertex,1.0);
+	/*
 	vertexPosition_LightEyeSpace = l_modelViewProjectionMatrix * vec4(vertex,1.0);
 
 	// per-fragment shading part
@@ -56,5 +57,6 @@ void main()
 
 	lightPosition_CameraEyeSpace = vec3(lightPosition_ModelViewMatrix * vec4(lightPosition_ObjectSpace,1.0));
 	l_normalMatrix = mat3(lightPosition_ModelViewMatrix);
+*/
 }
 

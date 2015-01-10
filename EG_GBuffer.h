@@ -44,7 +44,7 @@ class EG_GBuffer
         GLuint get_depth_texture();
 
 
-    private:
+   // private:
         GLuint m_fbo;
         GLuint m_textures[GBUFFER_NUM_TEXTURES];
         GLuint m_depthTexture;

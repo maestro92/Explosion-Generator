@@ -129,7 +129,7 @@ Shader Compile Status:
 Shader Compile Status: 
 
 Error in Init_Shader
-vs: /EG_DeferredShadingShaders/EG_DeferredShadingGeometryPass.vs, fs: /EG_DeferredShadingShaders/EG_DeferredShadingGeometryPass.fs
+vs: /EG_DeferredShadingShaders/EG_DeferredShadingGeometryPass_ModelMatrixBased.vs, fs: /EG_DeferredShadingShaders/EG_DeferredShadingGeometryPass_ModelMatrixBased.fs
 Shader Compile Status: 
 
 Shader Compile Status: 
@@ -150,7 +150,11 @@ Shader Compile Status:
 Shader Compile Status: 
 
 vs: /EG_DeferredShadingShaders/EG_DeferredShadingDirectionalLightPass2.vs, fs: /EG_DeferredShadingShaders/EG_DeferredShadingDirectionalLightPass2.fs
+The file /EG_DeferredShadingShaders/EG_DeferredShadingDirectionalLightPass2.vscannot be openned
+
 Shader Compile Status: 
+
+The file /EG_DeferredShadingShaders/EG_DeferredShadingDirectionalLightPass2.fscannot be openned
 
 Shader Compile Status: 
 
@@ -166,11 +170,22 @@ Error in Init_Shader
 Error in Init_Shader
 Error in Init_Shader
 Error in Init_Shader
-vs: /EG_DeferredShadingShaders/EG_DeferredShadingDirectionalLightPass2.vs, fs: /EG_DeferredShadingShaders/EG_DeferredShadingDirectionalLightPass2.fs
+Error in Init_Shader
+Error in Init_Shader
+Error in Init_Shader
+Error in Init_Shader
+Error in Init_Shader
+Error in Init_Shader
+Error in Init_Shader
+Error in Init_Shader
+Error in Init_Shader
+vs: /EG_DeferredShadingShaders/EG_DeferredShadingDirectionalLightPass_ModelMatrixBased.vs, fs: /EG_DeferredShadingShaders/EG_DeferredShadingDirectionalLightPass_ModelMatrixBased.fs
 Shader Compile Status: 
 
 Shader Compile Status: 
 
+Error in Init_Shader
+Error in Init_Shader
 Error in Init_Shader
 Error in Init_Shader
 Error in Init_Shader
@@ -184,6 +199,7 @@ Shader Compile Status:
 Shader Compile Status: 
 
 Error in Init_Shader
+Error happened while loading the texture: 1282
 model_path ./models/
 m_str ./models/shadow.obj
 model_path ./models/
@@ -192,6 +208,8 @@ model_path ./models/
 m_str ./models/Wall_NZ.obj
 model_path ./models/
 m_str ./models/Wall_PX.obj
+model_path ./models/
+m_str ./models/./Content/quad.obj
 model_path ./models/
 m_str ./models/./Sphere/sphere10_grey_flat.obj
 model_path ./models/
@@ -218,534 +236,10 @@ color is 3
 UV is 4
 
 vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
-
-vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
-
-vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
-
-vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
-
-vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
-
-vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
-
-vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
-
-Advect3D Unable to attach color buffer
-0
-vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
-
-vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
-
-vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
-
-vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
-
-vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
-
-vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
-
-vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
-
-vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
-
-Advect3D Unable to attach color buffer
-0
-vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
-
-vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
-
-vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
-
-vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
-
-vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
-
-vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
-
-vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
-
-vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
-
-Advect3D Unable to attach color buffer
-0
-vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
-
-vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
-
-vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
-
-vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
-
-vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
-
-vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
-
-vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
-
-vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
-
-Advect3D Unable to attach color buffer
-0
-vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
-
-vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
-
-vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
-
-vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
-
-vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
-
-vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
-
-vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
-
-vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
-
-Advect3D Unable to attach color buffer
-0
-vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
-
-vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
-
-vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
-
-vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
-
-vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
-
-vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
-
-vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
-
-vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
-
-Advect3D Unable to attach color buffer
-0
-vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
-
-vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
-
-vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
-
-vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
-
-vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
-
-vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
-
-vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
-
-vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
-
-Advect3D Unable to attach color buffer
-0
-vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
-
-vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
-
-vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
-
-vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
-
-vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
-
-vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
-
-vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
-
-vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
-
-Advect3D Unable to attach color buffer
-0
-vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
-
-vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
-
-vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
-
-vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
-
-vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
-
-vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
-
-vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
-
-vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
-
-Advect3D Unable to attach color buffer
-0
-vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
-
-vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
-
-vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
-
-vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
-
-vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
-
-vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
-
-vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
-
-vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
-
-Advect3D Unable to attach color buffer
-0
-vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
-
-vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
-
-vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
-
-vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
-
-vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
-
-vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
+normal is -1
+tangent is -1
+color is -1
+UV is -1
 
 vertex is 0
 normal is 1
@@ -754,13 +248,11 @@ color is 3
 UV is 4
 
 vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
+normal is -1
+tangent is -1
+color is -1
+UV is -1
 
-Advect3D Unable to attach color buffer
-0
 vertex is 0
 normal is 1
 tangent is 2
@@ -768,10 +260,10 @@ color is 3
 UV is 4
 
 vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
+normal is -1
+tangent is -1
+color is -1
+UV is -1
 
 vertex is 0
 normal is 1
@@ -780,10 +272,10 @@ color is 3
 UV is 4
 
 vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
+normal is -1
+tangent is -1
+color is -1
+UV is -1
 
 vertex is 0
 normal is 1
@@ -792,10 +284,10 @@ color is 3
 UV is 4
 
 vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
+normal is -1
+tangent is -1
+color is -1
+UV is -1
 
 vertex is 0
 normal is 1
@@ -804,13 +296,11 @@ color is 3
 UV is 4
 
 vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
+normal is -1
+tangent is -1
+color is -1
+UV is -1
 
-Advect3D Unable to attach color buffer
-0
 vertex is 0
 normal is 1
 tangent is 2
@@ -818,10 +308,10 @@ color is 3
 UV is 4
 
 vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
+normal is -1
+tangent is -1
+color is -1
+UV is -1
 
 vertex is 0
 normal is 1
@@ -830,10 +320,10 @@ color is 3
 UV is 4
 
 vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
+normal is -1
+tangent is -1
+color is -1
+UV is -1
 
 vertex is 0
 normal is 1
@@ -842,10 +332,10 @@ color is 3
 UV is 4
 
 vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
+normal is -1
+tangent is -1
+color is -1
+UV is -1
 
 vertex is 0
 normal is 1
@@ -854,13 +344,11 @@ color is 3
 UV is 4
 
 vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
+normal is -1
+tangent is -1
+color is -1
+UV is -1
 
-Advect3D Unable to attach color buffer
-0
 vertex is 0
 normal is 1
 tangent is 2
@@ -868,10 +356,10 @@ color is 3
 UV is 4
 
 vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
+normal is -1
+tangent is -1
+color is -1
+UV is -1
 
 vertex is 0
 normal is 1
@@ -880,10 +368,10 @@ color is 3
 UV is 4
 
 vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
+normal is -1
+tangent is -1
+color is -1
+UV is -1
 
 vertex is 0
 normal is 1
@@ -892,10 +380,10 @@ color is 3
 UV is 4
 
 vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
+normal is -1
+tangent is -1
+color is -1
+UV is -1
 
 vertex is 0
 normal is 1
@@ -904,19 +392,23 @@ color is 3
 UV is 4
 
 vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
+normal is -1
+tangent is -1
+color is -1
+UV is -1
 
 clicking left
-Advect3D Unable to attach color buffer
-0
 vertex is 0
 normal is 1
 tangent is 2
 color is 3
 UV is 4
+
+vertex is 0
+normal is -1
+tangent is -1
+color is -1
+UV is -1
 
 vertex is 0
 normal is 1
@@ -925,10 +417,10 @@ color is 3
 UV is 4
 
 vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
+normal is -1
+tangent is -1
+color is -1
+UV is -1
 
 vertex is 0
 normal is 1
@@ -937,10 +429,10 @@ color is 3
 UV is 4
 
 vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
+normal is -1
+tangent is -1
+color is -1
+UV is -1
 
 vertex is 0
 normal is 1
@@ -949,24 +441,10 @@ color is 3
 UV is 4
 
 vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
-
-vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
-
-Advect3D Unable to attach color buffer
-0
-vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
+normal is -1
+tangent is -1
+color is -1
+UV is -1
 
 vertex is 0
 normal is 1
@@ -975,10 +453,10 @@ color is 3
 UV is 4
 
 vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
+normal is -1
+tangent is -1
+color is -1
+UV is -1
 
 vertex is 0
 normal is 1
@@ -987,10 +465,10 @@ color is 3
 UV is 4
 
 vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
+normal is -1
+tangent is -1
+color is -1
+UV is -1
 
 vertex is 0
 normal is 1
@@ -999,120 +477,12 @@ color is 3
 UV is 4
 
 vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
-
-vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
-
-Advect3D Unable to attach color buffer
-0
-vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
-
-vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
-
-vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
-
-vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
-
-vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
-
-vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
-
-vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
-
-vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
-
-Advect3D Unable to attach color buffer
-0
-vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
-
-vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
-
-vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
-
-vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
-
-vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
-
-vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
-
-vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
-
-vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
+normal is -1
+tangent is -1
+color is -1
+UV is -1
 
 clicking Up left
-Advect3D Unable to attach color buffer
-0
 vertex is 0
 normal is 1
 tangent is 2
@@ -1120,1110 +490,10 @@ color is 3
 UV is 4
 
 vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
-
-vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
-
-vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
-
-vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
-
-vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
-
-vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
-
-vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
-
-Advect3D Unable to attach color buffer
-0
-vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
-
-vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
-
-vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
-
-vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
-
-vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
-
-vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
-
-vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
-
-vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
-
-Advect3D Unable to attach color buffer
-0
-vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
-
-vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
-
-vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
-
-vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
-
-vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
-
-vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
-
-vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
-
-vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
-
-Advect3D Unable to attach color buffer
-0
-vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
-
-vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
-
-vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
-
-vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
-
-vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
-
-vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
-
-vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
-
-vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
-
-Advect3D Unable to attach color buffer
-0
-vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
-
-vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
-
-vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
-
-vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
-
-vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
-
-vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
-
-vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
-
-vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
-
-Advect3D Unable to attach color buffer
-0
-vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
-
-vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
-
-vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
-
-vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
-
-vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
-
-vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
-
-vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
-
-vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
-
-Advect3D Unable to attach color buffer
-0
-vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
-
-vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
-
-vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
-
-vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
-
-vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
-
-vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
-
-vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
-
-vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
-
-Advect3D Unable to attach color buffer
-0
-vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
-
-vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
-
-vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
-
-vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
-
-vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
-
-vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
-
-vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
-
-vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
-
-Advect3D Unable to attach color buffer
-0
-vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
-
-vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
-
-vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
-
-vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
-
-vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
-
-vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
-
-vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
-
-vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
-
-Advect3D Unable to attach color buffer
-0
-vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
-
-vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
-
-vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
-
-vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
-
-vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
-
-vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
-
-vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
-
-vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
-
-Advect3D Unable to attach color buffer
-0
-vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
-
-vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
-
-vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
-
-vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
-
-vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
-
-vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
-
-vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
-
-vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
-
-Advect3D Unable to attach color buffer
-0
-vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
-
-vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
-
-vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
-
-vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
-
-vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
-
-vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
-
-vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
-
-vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
-
-Advect3D Unable to attach color buffer
-0
-vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
-
-vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
-
-vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
-
-vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
-
-vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
-
-vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
-
-vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
-
-vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
-
-Advect3D Unable to attach color buffer
-0
-vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
-
-vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
-
-vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
-
-vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
-
-vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
-
-vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
-
-vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
-
-vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
-
-Advect3D Unable to attach color buffer
-0
-vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
-
-vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
-
-vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
-
-vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
-
-vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
-
-vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
-
-vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
-
-vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
-
-Advect3D Unable to attach color buffer
-0
-vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
-
-vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
-
-vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
-
-vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
-
-vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
-
-vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
-
-vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
-
-vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
-
-Advect3D Unable to attach color buffer
-0
-vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
-
-vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
-
-vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
-
-vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
-
-vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
-
-vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
-
-vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
-
-vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
-
-Advect3D Unable to attach color buffer
-0
-vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
-
-vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
-
-vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
-
-vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
-
-vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
-
-vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
-
-vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
-
-vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
-
-Advect3D Unable to attach color buffer
-0
-vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
-
-vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
-
-vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
-
-vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
-
-vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
-
-vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
-
-vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
-
-vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
-
-Advect3D Unable to attach color buffer
-0
-vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
-
-vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
-
-vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
-
-vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
-
-vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
-
-vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
-
-vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
-
-vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
-
-Advect3D Unable to attach color buffer
-0
-vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
-
-vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
-
-vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
-
-vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
-
-vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
-
-vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
-
-vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
-
-vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
-
-Advect3D Unable to attach color buffer
-0
-vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
-
-vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
-
-vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
-
-vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
-
-vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
-
-vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
-
-vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
-
-vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
-
-Advect3D Unable to attach color buffer
-0
-vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
-
-vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
+normal is -1
+tangent is -1
+color is -1
+UV is -1
 
 vertex is 0
 normal is 1
@@ -2232,10 +502,10 @@ color is 3
 UV is 4
 
 vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
+normal is -1
+tangent is -1
+color is -1
+UV is -1
 
 vertex is 0
 normal is 1
@@ -2244,10 +514,10 @@ color is 3
 UV is 4
 
 vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
+normal is -1
+tangent is -1
+color is -1
+UV is -1
 
 vertex is 0
 normal is 1
@@ -2256,13 +526,11 @@ color is 3
 UV is 4
 
 vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
+normal is -1
+tangent is -1
+color is -1
+UV is -1
 
-Advect3D Unable to attach color buffer
-0
 vertex is 0
 normal is 1
 tangent is 2
@@ -2270,10 +538,10 @@ color is 3
 UV is 4
 
 vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
+normal is -1
+tangent is -1
+color is -1
+UV is -1
 
 vertex is 0
 normal is 1
@@ -2282,10 +550,10 @@ color is 3
 UV is 4
 
 vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
+normal is -1
+tangent is -1
+color is -1
+UV is -1
 
 vertex is 0
 normal is 1
@@ -2294,10 +562,10 @@ color is 3
 UV is 4
 
 vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
+normal is -1
+tangent is -1
+color is -1
+UV is -1
 
 vertex is 0
 normal is 1
@@ -2306,13 +574,11 @@ color is 3
 UV is 4
 
 vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
+normal is -1
+tangent is -1
+color is -1
+UV is -1
 
-Advect3D Unable to attach color buffer
-0
 vertex is 0
 normal is 1
 tangent is 2
@@ -2320,10 +586,10 @@ color is 3
 UV is 4
 
 vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
+normal is -1
+tangent is -1
+color is -1
+UV is -1
 
 vertex is 0
 normal is 1
@@ -2332,10 +598,10 @@ color is 3
 UV is 4
 
 vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
+normal is -1
+tangent is -1
+color is -1
+UV is -1
 
 vertex is 0
 normal is 1
@@ -2344,10 +610,10 @@ color is 3
 UV is 4
 
 vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
+normal is -1
+tangent is -1
+color is -1
+UV is -1
 
 vertex is 0
 normal is 1
@@ -2356,13 +622,11 @@ color is 3
 UV is 4
 
 vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
+normal is -1
+tangent is -1
+color is -1
+UV is -1
 
-Advect3D Unable to attach color buffer
-0
 vertex is 0
 normal is 1
 tangent is 2
@@ -2370,10 +634,10 @@ color is 3
 UV is 4
 
 vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
+normal is -1
+tangent is -1
+color is -1
+UV is -1
 
 vertex is 0
 normal is 1
@@ -2382,10 +646,10 @@ color is 3
 UV is 4
 
 vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
+normal is -1
+tangent is -1
+color is -1
+UV is -1
 
 vertex is 0
 normal is 1
@@ -2394,10 +658,10 @@ color is 3
 UV is 4
 
 vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
+normal is -1
+tangent is -1
+color is -1
+UV is -1
 
 vertex is 0
 normal is 1
@@ -2406,13 +670,11 @@ color is 3
 UV is 4
 
 vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
+normal is -1
+tangent is -1
+color is -1
+UV is -1
 
-Advect3D Unable to attach color buffer
-0
 vertex is 0
 normal is 1
 tangent is 2
@@ -2420,10 +682,10 @@ color is 3
 UV is 4
 
 vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
+normal is -1
+tangent is -1
+color is -1
+UV is -1
 
 vertex is 0
 normal is 1
@@ -2432,10 +694,10 @@ color is 3
 UV is 4
 
 vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
+normal is -1
+tangent is -1
+color is -1
+UV is -1
 
 vertex is 0
 normal is 1
@@ -2444,10 +706,10 @@ color is 3
 UV is 4
 
 vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
+normal is -1
+tangent is -1
+color is -1
+UV is -1
 
 vertex is 0
 normal is 1
@@ -2456,13 +718,11 @@ color is 3
 UV is 4
 
 vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
+normal is -1
+tangent is -1
+color is -1
+UV is -1
 
-Advect3D Unable to attach color buffer
-0
 vertex is 0
 normal is 1
 tangent is 2
@@ -2470,10 +730,10 @@ color is 3
 UV is 4
 
 vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
+normal is -1
+tangent is -1
+color is -1
+UV is -1
 
 vertex is 0
 normal is 1
@@ -2482,10 +742,10 @@ color is 3
 UV is 4
 
 vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
+normal is -1
+tangent is -1
+color is -1
+UV is -1
 
 vertex is 0
 normal is 1
@@ -2494,10 +754,10 @@ color is 3
 UV is 4
 
 vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
+normal is -1
+tangent is -1
+color is -1
+UV is -1
 
 vertex is 0
 normal is 1
@@ -2506,9 +766,9 @@ color is 3
 UV is 4
 
 vertex is 0
-normal is 1
-tangent is 2
-color is 3
-UV is 4
+normal is -1
+tangent is -1
+color is -1
+UV is -1
 
 Terminating normally.

@@ -24060,7 +24060,7 @@
 1420714997 source:d:\martin\programming\c and c++\sdl\explosion generator 2015 01 09 deferred shading with multiple lights (unfinished)\eg_gbuffer.cpp
 	"EG_GBuffer.h"
 
-1420715072 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 09 deferred shading with multiple lights (unfinished)\eg_gbuffer.h
+1420814257 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 09 deferred shading with multiple lights (unfinished)\eg_gbuffer.h
 	"define.h"
 	<GL/glew.h>
 
@@ -24217,13 +24217,13 @@
 	"EG_BaseLight.h"
 	"EG_PointLight.h"
 
-1420795008 source:d:\martin\programming\c and c++\sdl\explosion generator 2015 01 09 deferred shading with multiple lights (unfinished)\eg_main.cpp
+1420907307 source:d:\martin\programming\c and c++\sdl\explosion generator 2015 01 09 deferred shading with multiple lights (unfinished)\eg_main.cpp
 	"EG_Main.h"
 	"gl/gl.h"
 	"gl/glu.h"
 	"SDL\SDL.h"
 
-1420723812 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 09 deferred shading with multiple lights (unfinished)\eg_main.h
+1420904640 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 09 deferred shading with multiple lights (unfinished)\eg_main.h
 	<cstdlib>
 	<iostream>
 	<stdio.h>
@@ -24410,7 +24410,7 @@
 1420559183 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 09 deferred shading with multiple lights (unfinished)\eg_rendertechniques\eg_deferredshading.h
 	"EG_RenderTechnique.h"
 
-1420728325 source:d:\martin\programming\c and c++\sdl\explosion generator 2015 01 09 deferred shading with multiple lights (unfinished)\eg_rendertechniques\eg_deferredshading2.cpp
+1420905339 source:d:\martin\programming\c and c++\sdl\explosion generator 2015 01 09 deferred shading with multiple lights (unfinished)\eg_rendertechniques\eg_deferredshading2.cpp
 	"EG_DeferredShading2.h"
 
 1420718968 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 09 deferred shading with multiple lights (unfinished)\eg_rendertechniques\eg_deferredshading2.h
@@ -24418,7 +24418,7 @@
 	"EG_DirectionalLight.h"
 	"EG_PointLight.h"
 
-1420729521 source:d:\martin\programming\c and c++\sdl\explosion generator 2015 01 09 deferred shading with multiple lights (unfinished)\eg_rendertechniques\eg_deferredshading\eg_deferredshadingdirectionallightpass.cpp
+1420905115 source:d:\martin\programming\c and c++\sdl\explosion generator 2015 01 09 deferred shading with multiple lights (unfinished)\eg_rendertechniques\eg_deferredshading\eg_deferredshadingdirectionallightpass.cpp
 	"EG_DeferredShadingDirectionalLightPass.h"
 
 1420729515 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 09 deferred shading with multiple lights (unfinished)\eg_rendertechniques\eg_deferredshading\eg_deferredshadingdirectionallightpass.h
@@ -24480,7 +24480,7 @@
 	<sstream>
 	"EG_RenderTechnique.h"
 
-1420786694 source:d:\martin\programming\c and c++\sdl\explosion generator 2015 01 09 deferred shading with multiple lights (unfinished)\eg_rendertechniques\eg_technique_twopass_raycasting.cpp
+1420807097 source:d:\martin\programming\c and c++\sdl\explosion generator 2015 01 09 deferred shading with multiple lights (unfinished)\eg_rendertechniques\eg_technique_twopass_raycasting.cpp
 	"EG_Technique_TwoPass_RayCasting.h"
 
 1420558077 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 09 deferred shading with multiple lights (unfinished)\eg_rendertechniques\eg_technique_twopass_raycasting.h
