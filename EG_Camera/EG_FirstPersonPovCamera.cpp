@@ -100,13 +100,13 @@ void EG_FirstPersonPovCamera::Control(int mid_x, int mid_y)
 			ismoved=true;
 			if(m_pitchDegrees!=90 && m_pitchDegrees!=-90)
 				moveCamera(0.0);
-	//		moveCameraUp(0.0);
+			moveCameraUp(0.0);
 		}else if(state[SDLK_s])
 		{
 			ismoved=true;
 			if(m_pitchDegrees!=90 && m_pitchDegrees!=-90)
 				moveCamera(180.0);
-	//		moveCameraUp(180.0);
+			moveCameraUp(180.0);
 		}
 		if(state[SDLK_a])
 		{

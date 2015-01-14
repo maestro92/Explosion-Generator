@@ -67,7 +67,7 @@ class EG_RenderTechnique
         bool Init_Shader_GL_Location(Shader* s, Matrices_Location& Mat);
 
         virtual void loadUniformLocations(pipeline& p, int RenderPassID);
-
+        virtual void render();
 //        void loadSpecialUniformLocation(pipeline& p, int RenderPassID);
 //        void Setup_Special_glUniform(pipeline& p, int RenderPassID);
 //        void Setup_ShadowMatrix_forRender(pipeline& p, int RenderPassID);

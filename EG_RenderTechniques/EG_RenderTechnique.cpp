@@ -126,3 +126,8 @@ void EG_RenderTechnique::disableShader(int RenderPassID)
 {
     progShaders[RenderPassID]->delShader();
 }
+
+void EG_RenderTechnique::render()
+{
+
+}

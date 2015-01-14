@@ -11,8 +11,14 @@
 #include "EG_PointLight.h"
 #include "EG_SpotLight.h"
 #include "EG_DirectionalLight.h"
+#include "EG_AllLights.h"
 
+
+#include "EG_DeferredShadingGeometryPass.h"
+#include "EG_DeferredShadingStencilPass.h"
+#include "EG_DeferredShadingPointLightPass.h"
 #include "EG_DeferredShadingDirectionalLightPass.h"
+
 
 #include "EG_Camera.h"
 #include "EG_FirstPersonPovCamera.h"
@@ -90,8 +96,15 @@ class ExplosionGenerator
         Technique_DepthTexture_Render r_DepthTexture_Render;
     //    EG_DeferredShading r_deferredShadingRenderTechnique;
         EG_DeferredShading2 r_deferredShadingRenderTechnique;
-        EG_DeferredShadingDirectionalLightPass r_directionalLightPass;
+
+        EG_DeferredShadingGeometryPass  r_deferredShadingGeometryPass;
+        EG_DeferredShadingStencilPass   r_deferredShadingStencilPass;
+        EG_DeferredShadingPointLightPass r_deferredShadingPointLightPass;
+        EG_DeferredShadingDirectionalLightPass r_deferredShadingDirectionalLightPass;
+
+
         EG_GBuffer gbuffer;
+        EG_AllLights allLights;
 
         GLuint VBO;
         GLuint FBO;
@@ -101,12 +114,7 @@ class ExplosionGenerator
         float specularIntensity;
         float specularPower;
 
-    /*
-        // Lighting
-        DirectionalLight m_directionalLight;
-        PointLight pl[2];
-        SpotLight sl[1];
-    */
+
         EG_Utility utilityFunction;
 
         EG_SkyBox m_skybox;
@@ -137,6 +145,8 @@ class ExplosionGenerator
         meshLoader* monkey;
         meshLoader* mainCharacter;
         meshLoader* light;
+        meshLoader* pointLightSphere;
+        meshLoader* m_box;
         mesh* quad;
         meshLoader* deferredShadingQuad;
 
@@ -186,7 +196,7 @@ class ExplosionGenerator
         EG_SpotLight spotLight;
         EG_DirectionalLight directionalLight;
         EG_PointLight pointLights[3];
-
+        glm::vec3 m_boxPositions[15];
 
         // buttons
         bool g_bLeftMouseDown;
@@ -223,7 +233,7 @@ class ExplosionGenerator
         void update();
         void show();
         void RenderTexture(GLuint TextureId);
-        void RenderTexture2(GLuint TextureId);
+        void RenderTexture2();
         void RenderScene();
         void RenderReflectiveObjects();
 //        void RenderSmoke();
@@ -246,8 +256,16 @@ class ExplosionGenerator
         void beginDeferredShadingLightPass();
         void deferredShadingPointLightPass();
         void deferredShadingDirectionalLightPass();
+
+        void deferredShadingPointLightPass36();
         void deferredShadingDirectionalLightPass36();
-   //     void deferredShadingFinalPass();
+
+
+        void deferredShadingGeometryPass37();
+        void deferredShadingStencilPass37(int index);
+        void deferredShadingPointLightPass37(int index);
+        void deferredShadingDirectionalLightPass37();
+        void deferredShadingFinalPass37();
 
 
         /// Basic Drawing functions

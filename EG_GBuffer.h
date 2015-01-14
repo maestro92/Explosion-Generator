@@ -41,6 +41,20 @@ class EG_GBuffer
 
         void bindForReading36();
 
+
+
+
+
+        void init37(unsigned int width, unsigned int height);
+        void StartFrame37();
+        void BindForGeomPass37();
+        void BindForStencilPass37();
+        void BindForLightPass37();
+        void BindForFinalPass37();
+
+
+
+
         GLuint get_depth_texture();
 
 

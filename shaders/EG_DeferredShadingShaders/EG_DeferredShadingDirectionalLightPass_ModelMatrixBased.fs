@@ -14,6 +14,34 @@ struct DirectionalLight
     vec3 direction;
 };
 
+/*
+struct Attenuation
+{
+    float constant;
+    float linear;
+    float exp;
+};
+
+struct PointLight
+{
+    BaseLight base;
+    vec3 position;
+    Attenuation atten;
+};
+
+
+struct SpotLight
+{
+    BaseLight Base;
+    vec3 position;
+    vec3 direction;
+    float cutoff;
+    Attenuation atten;
+};
+*/
+
+
+
 uniform DirectionalLight gDirectionalLight;
 
 

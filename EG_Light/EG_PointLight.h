@@ -6,7 +6,7 @@
 #include "EG_BaseLight.h"
 
 
-struct Attenuation_t
+struct Attenuation
 {
     float constant;
     float linear;
@@ -17,7 +17,7 @@ struct Attenuation_t
 struct EG_PointLight : public EG_BaseLight
 {
     glm::vec3 position;
-    Attenuation_t Attenuation;
+    Attenuation attenuation;
     EG_PointLight();
 };
 

@@ -14,7 +14,7 @@ struct EG_SpotLight : public EG_BaseLight
     float cutoff;
     glm::vec3 position;
 
-    Attenuation_t Attenuation;
+    Attenuation attenuation;
 
     EG_SpotLight();
 };
