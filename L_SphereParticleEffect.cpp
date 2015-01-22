@@ -435,7 +435,6 @@ void L_SphereParticleEffect::show(pipeline &m_pipeline, Technique* RenderTechniq
 */
 
 
-
 void L_SphereParticleEffect::show(pipeline &m_pipeline, EG_RenderTechnique* RenderTechnique, int RenderPassID, meshLoader* mymesh)
 {
     m_pipeline.matrixMode(MODEL_MATRIX);
@@ -459,6 +458,19 @@ void L_SphereParticleEffect::show(pipeline &m_pipeline, EG_RenderTechnique* Rend
 */
             mymesh->draw();
 //          mymesh->draw(RenderTechnique->progShaders[RenderPassID]->getProgramId());
+        m_pipeline.popMatrix();
+    }
+}
+
+void L_SphereParticleEffect::render(pipeline &m_pipeline, EG_RenderTechnique* RenderTechnique, int RenderPassID, meshLoader* mymesh)
+{
+    for(int i = 0; i < e_ParticleBuffer.size(); i++)
+    {
+        m_pipeline.pushMatrix();
+            m_pipeline.translate(e_ParticleBuffer[i].m_Position.x, e_ParticleBuffer[i].m_Position.y, e_ParticleBuffer[i].m_Position.z);
+            m_pipeline.scale(e_ParticleBuffer[i].m_fRadius);
+            RenderTechnique->loadUniformLocations(m_pipeline, RenderPassID);
+            mymesh->draw();
         m_pipeline.popMatrix();
     }
 

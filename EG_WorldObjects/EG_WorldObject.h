@@ -54,6 +54,7 @@ class WorldObject
 
         // default constructor
         WorldObject();
+        virtual ~WorldObject();
 
         virtual void setPosition(glm::vec3 pos);
         void setVelocity(glm::vec3 vel);
@@ -66,7 +67,13 @@ class WorldObject
         // for sphere
         virtual void setSize(float x, float y, float z);
         // destructor
-        virtual ~WorldObject();
+        /*
+        virtual void render(pipeline& m_pipeline,
+                            EG_DeferredShading* RenderTechnique,
+                            int RenderPassID,
+                            unsigned int textureId,
+                            meshLoader* model);
+*/
 };
 
 

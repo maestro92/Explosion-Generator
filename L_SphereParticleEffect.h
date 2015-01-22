@@ -45,8 +45,10 @@ class L_SphereParticleEffect : public L_ParticleEffect_Interface
 
         void update(bool toggle = false);
         void show(bool toggle = false);
-     //   void show(pipeline &m_pipeline, EG_RenderTechnique* RenderTechnique, int RenderTypeID, int RenderPassID, meshLoader* mymesh);
+
         void show(pipeline &m_pipeline, EG_RenderTechnique* RenderTechnique, int RenderTypeID, meshLoader* mymesh);
+        void render(pipeline &m_pipeline, EG_RenderTechnique* RenderTechnique, int RenderTypeID, meshLoader* mymesh);
+
         void show(pipeline &m_pipeline,  unsigned int shaderID , meshLoader* mymesh);
 
         void Reset();

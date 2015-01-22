@@ -21,6 +21,9 @@ class meshLoader{
 		~meshLoader();
         void draw();
 		void draw(unsigned int programId);
+
+        void drawLines();
+
 		std::vector<mesh*>& getMeshes();
 };
 

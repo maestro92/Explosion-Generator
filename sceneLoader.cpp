@@ -209,6 +209,13 @@ void meshLoader::draw()
 }
 
 
+void meshLoader::drawLines()
+{
+	for(int i=0;i<meshes.size();i++)
+		meshes[i]->drawLines();
+}
+
+
 void meshLoader::draw(unsigned int programId)
 {
 	for(int i=0;i<meshes.size();i++)

@@ -27,5 +27,6 @@ class mesh{
 		~mesh();
 		void draw();
 		void draw(unsigned int programId);
+        void drawLines();
 };
 #endif

@@ -1,7 +1,6 @@
 #ifndef MESHDATA_H_
 #define MESHDATA_H_
 
-// #include "vector3d.h"
 #include "define.h"
 
 struct vertexData

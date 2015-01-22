@@ -19,8 +19,14 @@ class WorldSphere : public WorldObject
         virtual bool CheckObjGroundCollision(float dt);
 
         virtual float getBoundingVolumeSize();
-
-    float w_radius;
+    /*
+        virtual void render(pipeline &m_pipeline,
+                            EG_DeferredShading* RenderTechnique,
+                            int RenderPassID,
+                            unsigned int textureId,
+                            meshLoader* model);
+*/
+        float w_radius;
 
 };
 

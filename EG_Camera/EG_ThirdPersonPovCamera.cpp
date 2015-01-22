@@ -407,6 +407,90 @@ void EG_ThirdPersonPovCamera::update2(pipeline& m_pipeline, float elapsedTimeSec
 }
 
 
+void EG_ThirdPersonPovCamera::update2(pipeline& m_pipeline, float elapsedTimeSec, float pitchChange, float yawChange, EG_SkyBox& skybox)
+{
+    glm::quat rot;
+
+    /// imagine the sequence of Model View Projection Matrix
+    /// it will be projectionMatrix * viewMatrix * modelMatrix
+    /// in this case, it will be
+    /// projectionMatrix * (m_orientation * rot) * modelMatrix
+    /// so by selecting
+    ///         rot = glm::angleAxis(yawChange, glm::vec3(0,1,0));
+    /// we're essentially turning the world first, then rotating our camera, then move our camera along our camera orientation
+    if (yawChange != 0.0f)
+    {
+        rot = glm::angleAxis(yawChange, glm::vec3(0,1,0));
+        m_orientation = m_orientation * rot;
+    }
+
+    if (pitchChange != 0.0f)
+    {
+        rot = glm::angleAxis(pitchChange, glm::vec3(1,0,0));
+        m_orientation = rot * m_orientation;
+    }
+
+    /// constructing the my camera-viewMatrix, which is the inverse of the modelMatrix for the camera
+    /// therefore my m_viewMatrix and m_orientation always stores my viewMatrix / inverse of (modelMatrix of camera)
+    m_viewMatrix = glm::toMat4(m_orientation);
+
+    /// that's why the x,y,z axis are extracted in this pattern
+    m_xAxis = set(m_viewMatrix[0][0], m_viewMatrix[1][0], m_viewMatrix[2][0]);
+    m_yAxis = set(m_viewMatrix[0][1], m_viewMatrix[1][1], m_viewMatrix[2][1]);
+    m_zAxis = set(m_viewMatrix[0][2], m_viewMatrix[1][2], m_viewMatrix[2][2]);
+
+//    glm::vec3 idealPosition = m_target + m_zAxis * glm::length(m_offset);
+    glm::vec3 idealPosition = m_target + m_zAxis * m_offsetDistance;
+    glm::vec3 displacement = m_eye - idealPosition;
+
+    /// spring force F = kx
+    /// ma = kx - damping * v
+    glm::vec3 springAcceleration = (-m_springConstant * displacement) -
+                            (m_dampingConstant * m_velocity);
+
+
+    m_velocity += springAcceleration * elapsedTimeSec;
+    m_eye += m_velocity * elapsedTimeSec;
+
+
+    m_zAxis = m_eye - m_target;
+    m_zAxis = glm::normalize(m_zAxis);
+
+    m_xAxis = glm::cross(glm::vec3(0.0f,1.0f,0.0f), m_zAxis);
+    m_xAxis = glm::normalize(m_xAxis);
+
+    m_yAxis = glm::cross(m_zAxis, m_xAxis);
+    m_yAxis = glm::normalize(m_yAxis);
+
+    m_viewMatrix[0][0] = m_xAxis.x;
+    m_viewMatrix[1][0] = m_xAxis.y;
+    m_viewMatrix[2][0] = m_xAxis.z;
+    m_viewMatrix[3][0] = 0.0f;
+
+    m_viewMatrix[0][1] = m_yAxis.x;
+    m_viewMatrix[1][1] = m_yAxis.y;
+    m_viewMatrix[2][1] = m_yAxis.z;
+    m_viewMatrix[3][1] = 0.0f;
+
+    m_viewMatrix[0][2] = m_zAxis.x;
+    m_viewMatrix[1][2] = m_zAxis.y;
+    m_viewMatrix[2][2] = m_zAxis.z;
+    m_viewMatrix[3][2] = 0.0f;
+
+
+
+    m_pipeline.pushMatrix();
+        updateViewMatrix(m_pipeline);
+        skybox.UpdateRotationOnly_View_Pipeline(m_pipeline);
+    m_pipeline.popMatrix();
+
+    m_viewMatrix[3][0] = -glm::dot(m_xAxis, m_eye);
+    m_viewMatrix[3][1] = -glm::dot(m_yAxis, m_eye);
+    m_viewMatrix[3][2] = -glm::dot(m_zAxis, m_eye);
+
+    m_viewDir = -m_zAxis;
+	updateViewMatrix(m_pipeline);
+}
 
 
 
@@ -476,6 +560,63 @@ void EG_ThirdPersonPovCamera::Control(pipeline& m_pipeline)
 
     }
 }
+
+
+
+void EG_ThirdPersonPovCamera::Control(pipeline& m_pipeline, EG_SkyBox& skybox)
+{
+    float pitchChange = 0.0f;
+    float yawChange = 0.0f;
+    float forwardSpeed = 0.0f;
+
+	if(mouse_in)
+	{
+		SDL_ShowCursor(SDL_DISABLE);
+
+		Uint8* state=SDL_GetKeyState(NULL);
+
+        if(state[SDLK_w])
+		{
+            forwardSpeed = BALL_FORWARD_SPEED;
+            pitchChange = -BALL_ROLLING_SPEED;
+		}
+		if(state[SDLK_s])
+		{
+            forwardSpeed = -BALL_FORWARD_SPEED;
+            pitchChange = BALL_ROLLING_SPEED;
+		}
+
+        if(state[SDLK_a])
+            yawChange = -BALL_HEADING_SPEED;
+
+		if(state[SDLK_d])
+            yawChange = BALL_HEADING_SPEED;
+
+
+
+        /// update the character first
+        c_velocity.x = 0.0f;
+        c_velocity.y = 0.0f;
+        c_velocity.z = forwardSpeed;
+
+
+        updateCharacterOrientation(0.0f, -yawChange, 0.0f);
+        updateCharacter(0.0f, -yawChange, 0.0f);
+
+        setTarget(c_position);
+        update2(m_pipeline, 0.031f, 0.0f, (forwardSpeed >= 0.0f) ? yawChange : -yawChange, skybox);
+    }
+}
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -570,6 +711,20 @@ void EG_ThirdPersonPovCamera::updateCharacter(float pitchChange, float yawChange
 //    c_eulerOrient.x = 0.0f;    c_eulerOrient.y = 0.0f;    c_eulerOrient.z = 0.0f;
 //    c_eulerRotate.x = 0.0f;    c_eulerRotate.y = 0.0f;    c_eulerRotate.z = 0.0f;
 }
+
+
+
+void EG_ThirdPersonPovCamera::render(pipeline &m_pipeline, EG_RenderTechnique* RenderTechnique, int RenderPassID)
+{
+    m_pipeline.pushMatrix();
+        m_pipeline.LoadMatrix(c_worldMatrix);
+        m_pipeline.Rotate(180.0f, 0.0f, 1.0f, 0.0f);
+        RenderTechnique->loadUniformLocations(m_pipeline, RENDER_PASS1);
+        m_character->draw();
+    m_pipeline.popMatrix();
+}
+
+
 
 
 glm::quat EG_ThirdPersonPovCamera::computeOrientationChange(glm::vec3 localXAxis, glm::vec3 localYAxis, glm::vec3 localZAxis,

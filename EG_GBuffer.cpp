@@ -166,7 +166,7 @@ void EG_GBuffer::init37(unsigned int width, unsigned int height)
 	// final
 	glBindTexture(GL_TEXTURE_2D, m_finalTexture);
 	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGB, GL_FLOAT, NULL);
-	glFramebufferTexture2D(GL_DRAW_FRAMEBUFFER, GL_COLOR_ATTACHMENT4, GL_TEXTURE_2D, m_finalTexture, 0);
+	glFramebufferTexture2D(GL_DRAW_FRAMEBUFFER, GL_COLOR_ATTACHMENT7, GL_TEXTURE_2D, m_finalTexture, 0);
 
 /*
     /// the glDrawBuffers command makes rendering to multiple destinations possible
@@ -193,7 +193,7 @@ void EG_GBuffer::init37(unsigned int width, unsigned int height)
 void EG_GBuffer::StartFrame37()
 {
 	glBindFramebuffer(GL_DRAW_FRAMEBUFFER, m_fbo);
-	glDrawBuffer(GL_COLOR_ATTACHMENT4);
+	glDrawBuffer(GL_COLOR_ATTACHMENT7);
 	glClear(GL_COLOR_BUFFER_BIT);
 }
 
@@ -205,7 +205,9 @@ void EG_GBuffer::BindForGeomPass37()
 	GLenum DrawBuffers[] = { GL_COLOR_ATTACHMENT0,
 						     GL_COLOR_ATTACHMENT1,
 						     GL_COLOR_ATTACHMENT2,
-						     GL_COLOR_ATTACHMENT3 };
+						     GL_COLOR_ATTACHMENT3,
+						     GL_COLOR_ATTACHMENT4,
+						     GL_COLOR_ATTACHMENT5 };
     glDrawBuffers(ARRAY_SIZE_IN_ELEMENTS(DrawBuffers), DrawBuffers);
 }
 
@@ -219,7 +221,7 @@ void EG_GBuffer::BindForStencilPass37()
 void EG_GBuffer::BindForLightPass37()
 {
     // we set the target to be the final buffer and bind the attribute buffers as a source
-	glDrawBuffer(GL_COLOR_ATTACHMENT4);
+	glDrawBuffer(GL_COLOR_ATTACHMENT7);
 
 	for (unsigned int i = 0 ; i < ARRAY_SIZE_IN_ELEMENTS(m_textures); i++) {
 		glActiveTexture(GL_TEXTURE0 + i);
@@ -234,5 +236,5 @@ void EG_GBuffer::BindForFinalPass37()
 
 	// set our G_Buffer as the source
     glBindFramebuffer(GL_READ_FRAMEBUFFER, m_fbo);
-    glReadBuffer(GL_COLOR_ATTACHMENT4);
+    glReadBuffer(GL_COLOR_ATTACHMENT7);
 }

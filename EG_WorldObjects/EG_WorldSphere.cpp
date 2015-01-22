@@ -1,7 +1,3 @@
-
-
-
-
 #include "EG_WorldSphere.h"
 
 
@@ -41,3 +37,14 @@ float WorldSphere::getBoundingVolumeSize()
 {
 
 }
+
+/*
+void WorldSphere::render(pipeline &m_pipeline,
+                          EG_DeferredShading* RenderTechnique,
+                          int RenderPassID,
+                          unsigned int textureId,
+                          meshLoader* model)
+{
+    WorldObject::render(m_pipeline, RenderTechnique, RenderPassID, textureId, model);
+}
+*/

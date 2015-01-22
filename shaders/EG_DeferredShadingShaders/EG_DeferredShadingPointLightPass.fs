@@ -53,7 +53,7 @@ uniform PointLight gPointLight;
 uniform sampler2D gPositionMap;
 uniform sampler2D gColorMap;
 uniform sampler2D gNormalMap;
-
+uniform sampler2D gStencilMap;
 
 uniform vec3 gEyeWorldPos;
 uniform float gMatSpecularIntensity;
@@ -150,5 +150,7 @@ void main()
     vec3 colorValue = texture(gColorMap, texCoord).xyz;
     vec3 normal = texture(gNormalMap, texCoord).xyz;
     FragColor = vec4(colorValue,1.0) * CalcPointLight(worldPos, normal);        
-//    FragColor = vec4(1.0,0.0,0.0,1.0);
+ //   FragColor = vec4(colorValue,1.0);
+ //   FragColor = vec4(gScreenSize.x/1024.0,0.0,0.0,1.0);
+
 }

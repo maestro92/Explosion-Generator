@@ -30,17 +30,24 @@ class EG_AllLights
 
         vector<EG_SpotLight> getSpotLights();
         EG_SpotLight getSpotLight(int index);
+        int getSpotLightsCount();
 
         vector<EG_DirectionalLight> getDirectionalLights();
-        EG_DirectionalLight getDirectionalLight(int index);
+        EG_DirectionalLight& getDirectionalLight(int index);
+        int getDirecitonalLightsCount();
 
         vector<EG_PointLight> getPointLights();
-        EG_PointLight getPointLights(int index);
+        EG_PointLight& getPointLight(int index);
+        int getPointLightsCount();
 
     private:
         vector<EG_SpotLight> spotLights;
         vector<EG_DirectionalLight> directionalLights;
         vector<EG_PointLight> pointLights;
+
+        int spotLightsCount;
+        int directionalLightsCount;
+        int pointLightsCount;
 /*
         EG_SpotLight* spotLights;
         EG_DirectionalLight* directionalLights;

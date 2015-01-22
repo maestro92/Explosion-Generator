@@ -10,5 +10,10 @@ class EG_DeferredShadingGeometryPass : public EG_RenderTechnique
         ~EG_DeferredShadingGeometryPass();
 
         void init(int shaderCount);
+
+        GLuint m_stencilFlagUniformLocation;
+        glm::vec3 m_stencilFlag;
+        void setStencilFlag(glm::vec3 stencilFlag);
+        void loadUniformLocations(pipeline& p, int RenderPassID);
 };
 #endif

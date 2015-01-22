@@ -53,6 +53,7 @@ uniform DirectionalLight gDirectionalLight;
 uniform sampler2D gPositionMap;  
 uniform sampler2D gColorMap;
 uniform sampler2D gNormalMap;
+uniform sampler2D gStencilMap;
 uniform sampler2DShadow shadowMap;
 
 
@@ -174,14 +175,17 @@ void main()
 {
     // assume everything not in shadow at first
   //  return;
+
     vec2 texCoord = CalcTexCoord();
     vec3 worldPos = texture(gPositionMap, texCoord).xyz;
     vec3 colorValue = texture(gColorMap, texCoord).xyz;
   
     // remember to check the normal map from the Geometry Pass
     vec3 normal = texture(gNormalMap, texCoord).xyz;
+
   //  normal = normalize(normal);
-  
+    vec3 stencilValue = texture(gStencilMap, texCoord).xyz;
+
     // vec3 light2surf = normalize(outVertex - lightPosition_CameraEyeSpace);
   //  light2surf = normalize(outVertex - lightPosition_CameraEyeSpace);
 
@@ -191,10 +195,15 @@ void main()
 
  //   FragColor = vec4(colorValue,1.0) * CalcLightPerFragment(light2surf, normal);
         // the view matrix doesn't work here
-   
-   
-    FragColor = vec4(colorValue,1.0) * CalcDirectionalLight(worldPos, normal);
 
+    FragColor = (stencilValue.x == 1.0) ?  vec4(colorValue,1.0) : (vec4(colorValue,1.0) * CalcDirectionalLight(worldPos, normal));
+/*
+    if(stencilValue.x == 1.0)
+        FragColor = vec4(colorValue,1.0);
+    else    
+        FragColor = vec4(colorValue,1.0) * CalcDirectionalLight(worldPos, normal);
+*/
+//    FragColor = vec4(colorValue.1.0);
 //    FragColor = vec4(colorValue,1.0);
 //    FragColor = vec4(normal,1.0);
  

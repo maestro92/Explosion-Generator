@@ -13,7 +13,23 @@ EG_DeferredShadingGeometryPass::~EG_DeferredShadingGeometryPass()
 void EG_DeferredShadingGeometryPass::init(int shaderCount)
 {
     allocateMemberVariables(shaderCount);
-    progShaders[RENDER_PASS1] = new Shader("/EG_DeferredShadingShaders/EG_DeferredShadingGeometryPass.vs",
-                                           "/EG_DeferredShadingShaders/EG_DeferredShadingGeometryPass.fs");
+//    progShaders[RENDER_PASS1] = new Shader("/EG_DeferredShadingShaders/EG_DeferredShadingGeometryPass_ModelMatrixBased.vs",
+//                                           "/EG_DeferredShadingShaders/EG_DeferredShadingGeometryPass_ModelMatrixBased.fs");
+
+    progShaders[RENDER_PASS1] = new Shader("/EG_DeferredShadingShaders/EG_DeferredShadingGeometryPass_ModelMatrixBased_WidthDepth.vs",
+                                           "/EG_DeferredShadingShaders/EG_DeferredShadingGeometryPass_ModelMatrixBased_WidthDepth.fs");
+
+    m_stencilFlagUniformLocation = GetUniformLocation( progShaders[RENDER_PASS1], "stencilFlag");
     initMemberVariables();
+}
+
+void EG_DeferredShadingGeometryPass::setStencilFlag(glm::vec3 stencilFlag)
+{
+    m_stencilFlag = stencilFlag;
+}
+
+void EG_DeferredShadingGeometryPass::loadUniformLocations(pipeline& p, int RenderPassID)
+{
+    glUniform3f(m_stencilFlagUniformLocation, m_stencilFlag.x, m_stencilFlag.y, m_stencilFlag.z);
+    EG_RenderTechnique::loadUniformLocations(p, RenderPassID);
 }

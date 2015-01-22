@@ -15,6 +15,9 @@
 
 
 #include "EG_DeferredShadingGeometryPass.h"
+#include "EG_DeferredShadingSkybox.h"
+#include "EG_DeferredShadingReflection.h"
+
 #include "EG_DeferredShadingStencilPass.h"
 #include "EG_DeferredShadingPointLightPass.h"
 #include "EG_DeferredShadingDirectionalLightPass.h"
@@ -25,20 +28,25 @@
 #include "EG_ThirdPersonPovCamera.h"
 
 #include "EG_DeferredShading.h"
-#include "EG_DeferredShading2.h"
 #include "EG_GBuffer.h"
 
 #include "EG_utility.h"
-#include "EG_RenderTechniques/EG_Skybox.h"
+//#include "EG_RenderTechniques/EG_Skybox.h"
+#include "EG_Skybox.h"
 #include "EG_Shader.h"
 #include "sceneLoader.h"
 #include "EG_Technique_DepthTexture_Render.h"
 #include "EG_Technique_TwoPass_RayCasting.h"
 #include "EG_Technique_Shadow_Render.h"
 #include "EG_Technique_Reflection.h"
+#include "EG_RenderTechniqueRenderTexture.h"
 
+
+#include "EG_WorldAxis.h"
 #include "EG_WorldBox.h"
 #include "EG_WorldSphere.h"
+#include "EG_WorldReflectiveSphere.h"
+#include "EG_Quad.h"
 
 #include "pipeline.h"
 #include "L_SphereParticleEffect.h"
@@ -89,22 +97,34 @@ e for events
 class ExplosionGenerator
 {
     private:
-        EG_RenderTechnique* r_Technique;
-        Technique_Reflection r_Reflection_Render;
-        Technique_Shadow_Render r_Shadow_Render;
-        Technique_TwoPass_Raycasting r_TwoPass_Render;
-        Technique_DepthTexture_Render r_DepthTexture_Render;
+        EG_RenderTechnique*             r_Technique;
+        EG_DeferredShading*             r_deferredShading;
+        Technique_Reflection            r_Reflection_Render;
+        Technique_Shadow_Render         r_Shadow_Render;
+        Technique_TwoPass_Raycasting    r_TwoPass_Render;
+        Technique_DepthTexture_Render   r_DepthTexture_Render;
     //    EG_DeferredShading r_deferredShadingRenderTechnique;
-        EG_DeferredShading2 r_deferredShadingRenderTechnique;
+    //    EG_DeferredShading2 r_deferredShadingRenderTechnique;
 
-        EG_DeferredShadingGeometryPass  r_deferredShadingGeometryPass;
-        EG_DeferredShadingStencilPass   r_deferredShadingStencilPass;
-        EG_DeferredShadingPointLightPass r_deferredShadingPointLightPass;
-        EG_DeferredShadingDirectionalLightPass r_deferredShadingDirectionalLightPass;
+        EG_DeferredShadingGeometryPass          r_deferredShadingGeometryPass;
+        EG_DeferredShadingSkybox                r_deferredShadingSkybox;
+        EG_DeferredShadingReflection            r_deferredShadingReflection;
+        EG_DeferredShadingStencilPass           r_deferredShadingStencilPass;
+
+        EG_DeferredShadingPointLightPass        r_deferredShadingPointLightPass;
+        EG_DeferredShadingPointLightPass        r_deferredShadingPointLightPass_Skybox;
+
+        EG_DeferredShadingDirectionalLightPass  r_deferredShadingDirectionalLightPass;
+        EG_DeferredShadingDirectionalLightPass  r_deferredShadingDirectionalLightPass_Skybox;
+        EG_RenderTechniqueRenderTexture         r_renderTexture;
 
 
         EG_GBuffer gbuffer;
+        EG_GBuffer skyboxGBuffer;
         EG_AllLights allLights;
+
+        EG_WorldReflectiveSphere o_reflectiveSphere;
+
 
         GLuint VBO;
         GLuint FBO;
@@ -147,13 +167,19 @@ class ExplosionGenerator
         meshLoader* light;
         meshLoader* pointLightSphere;
         meshLoader* m_box;
-        mesh* quad;
+//        mesh* quad;
+
+
+        EG_WorldAxis o_worldAxis;
+        EG_Quad o_fullScreenQuad;
         meshLoader* deferredShadingQuad;
 
         bool isRunning;
         bool isFirstPersonCamera;
         bool dvel;
         bool addSmoke;
+        bool isStencilTextureMode;
+        bool isDepthTextureMode;
 
         /// textures
         unsigned int textureID;
@@ -193,10 +219,11 @@ class ExplosionGenerator
         glm::mat4 LightPos_modelMatrix;
         glm::mat4 LightPos_modelViewMatrix;
 
+
         EG_SpotLight spotLight;
         EG_DirectionalLight directionalLight;
         EG_PointLight pointLights[3];
-        glm::vec3 m_boxPositions[15];
+//        glm::vec3 m_boxPositions[15];
 
         // buttons
         bool g_bLeftMouseDown;
@@ -231,41 +258,47 @@ class ExplosionGenerator
 
         void start();
         void update();
-        void show();
+
+        void forwardRender();
+        void deferredShadingShow();
+
         void RenderTexture(GLuint TextureId);
         void RenderTexture2();
         void RenderScene();
         void RenderReflectiveObjects();
 //        void RenderSmoke();
         void RenderSmoke(bool pass1, bool pass2, Matrices_t& Mat, unsigned int depthTextureId);
-
-
-        void Render_to_CubeMapTexture();
-        void Render_to_CubeMapFace(int face);
+        void RenderQuad(GLuint TextureId);
 
 
         void Render_to_CubeMapTexture2();
         void Render_to_CubeMapFace2(int face);
 
-        void deferredShadingGeometryPass();
+
         void deferredShadingMrtDemoPass();
-        void deferredShadingLightPass();
 
-        void deferredShadingGeometryPass36();
-   //     void deferredShadingStencilPass();
-        void beginDeferredShadingLightPass();
-        void deferredShadingPointLightPass();
-        void deferredShadingDirectionalLightPass();
-
-        void deferredShadingPointLightPass36();
-        void deferredShadingDirectionalLightPass36();
-
-
+/*
         void deferredShadingGeometryPass37();
         void deferredShadingStencilPass37(int index);
         void deferredShadingPointLightPass37(int index);
         void deferredShadingDirectionalLightPass37();
         void deferredShadingFinalPass37();
+*/
+        void deferredShadingGeometryPass37(EG_GBuffer& GBuffer);
+        void deferredShadingStencilPass37(int index, EG_GBuffer& GBuffer);
+        void deferredShadingPointLightPass37(int index, EG_GBuffer& GBuffer);
+        void deferredShadingDirectionalLightPass37(EG_GBuffer& GBuffer);
+        void deferredShadingFinalPass37(EG_GBuffer& GBuffer);
+
+        void deferredShadingGeometryPass37_Skybox(EG_GBuffer& GBuffer);
+        void deferredShadingGeometryPass37_Skybox(EG_GBuffer& GBuffer, pipeline tempPipeline);
+
+        void deferredShadingPointLightPass37_Skybox(int index, EG_GBuffer& GBuffer);
+        void deferredShadingDirectionalLightPass37_Skybox(EG_GBuffer& GBuffer);
+
+
+        void deferredShadingRenderToCubeMapTexture();
+        void deferredShadingRenderToCubeMapTextureFace(int face);
 
 
         /// Basic Drawing functions

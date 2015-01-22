@@ -5,6 +5,7 @@
 #include <GL/glew.h>
 
 #include "EG_Camera.h"
+#include "EG_Skybox.h"
 #include "sceneLoader.h"
 #include <cmath>
 #include <iostream>
@@ -16,7 +17,7 @@
 #include "glm/gtx/transform.hpp"
 #include "glm/gtc/quaternion.hpp"
 #include "glm/gtx/quaternion.hpp"
-
+#include "EG_RenderTechnique.h"
 
 /*
 
@@ -50,8 +51,8 @@ const float BALL_ROLLING_SPEED = 140.0f;
     const float BALL_FORWARD_SPEED = 1.0f;
     const float BALL_HEADING_SPEED = 3.0f;
     const float BALL_ROLLING_SPEED = 10.0f;
-    const float MAX_CAMERA_OFFSET = 50.0f;
-    const float MIN_CAMERA_OFFSET = 20.0f;
+    const float MAX_CAMERA_OFFSET = 100.0f;
+    const float MIN_CAMERA_OFFSET = 5.0f;
 
 
     static const float DEFAULT_SPRING_CONSTANT;
@@ -79,7 +80,7 @@ const float BALL_ROLLING_SPEED = 140.0f;
         /// from GLThirdPersonCamera2
         void update2(pipeline& m_pipeline, float pitchChange, float yawChange);
         void update2(pipeline& m_pipeline, float elapsedTimeSec, float pitchChange, float yawChange);
-
+        void update2(pipeline& m_pipeline, float elapsedTimeSec, float pitchChange, float yawChange, EG_SkyBox& skybox);
 
 
         void setTarget(glm::vec3& target);
@@ -87,7 +88,7 @@ const float BALL_ROLLING_SPEED = 140.0f;
 
       //  void RotateOrbit(pipeline& m_pipeline);
         void Control(pipeline& m_pipeline);
-        void Control(pipeline& m_pipeline, int mid_x, int mid_y);
+        void Control(pipeline& m_pipeline, EG_SkyBox& skybox);
         void updateViewMatrix(pipeline& m_pipeline);
 
         void enableSpringSystem(bool enableSpringSystem);
@@ -106,6 +107,9 @@ const float BALL_ROLLING_SPEED = 140.0f;
                                             float pitch, float yaw, float roll);
 
     //    glm::quat eulerToQuaternion(glm::mat4 m, float pitch, float yaw, float roll);
+
+
+        void render(pipeline &m_pipeline, EG_RenderTechnique* RenderTechnique, int RenderPassID);
 
 
         /// Get methods

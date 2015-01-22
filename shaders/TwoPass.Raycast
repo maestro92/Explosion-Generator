@@ -20,6 +20,7 @@ const float densityFactor = 10;
 
 int TestFlag = 1;
 
+// http://web.archive.org/web/20130416194336/http://olivers.posterous.com/linear-depth-in-glsl-for-real
 float CalcDepthValue(vec3 Depth_Vertex)
 {
     vec4 Clip_DepthPosition = m_ModelviewProjection * vec4(Depth_Vertex,1.0);

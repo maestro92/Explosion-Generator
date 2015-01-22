@@ -43,7 +43,7 @@ GLuint EG_RenderTechnique::GetUniformLocation(Shader* s, const char* UniformName
 
     if(Location == -1)
     {
-        cout << "Error in Init_Shader" << endl;
+        cout << "Error in Init_Shader with " << UniformName << endl;
     }
     return Location;
 }

@@ -23,6 +23,8 @@ class EG_GBuffer
             GBUFFER_TEXTURE_TYPE_DIFFUSE,   // 1
             GBUFFER_TEXTURE_TYPE_NORMAL,    // 2
             GBUFFER_TEXTURE_TYPE_TEXCOORD,  // 3
+            GBUFFER_TEXTURE_TYPE_STENCIL,   // 4
+            GBUFFER_TEXTURE_TYPE_DEPTH,     // 5
             GBUFFER_NUM_TEXTURES
         };
 
