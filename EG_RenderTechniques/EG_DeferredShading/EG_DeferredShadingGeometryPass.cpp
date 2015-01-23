@@ -13,11 +13,9 @@ EG_DeferredShadingGeometryPass::~EG_DeferredShadingGeometryPass()
 void EG_DeferredShadingGeometryPass::init(int shaderCount)
 {
     allocateMemberVariables(shaderCount);
-//    progShaders[RENDER_PASS1] = new Shader("/EG_DeferredShadingShaders/EG_DeferredShadingGeometryPass_ModelMatrixBased.vs",
-//                                           "/EG_DeferredShadingShaders/EG_DeferredShadingGeometryPass_ModelMatrixBased.fs");
 
-    progShaders[RENDER_PASS1] = new Shader("/EG_DeferredShadingShaders/EG_DeferredShadingGeometryPass_ModelMatrixBased_WidthDepth.vs",
-                                           "/EG_DeferredShadingShaders/EG_DeferredShadingGeometryPass_ModelMatrixBased_WidthDepth.fs");
+    progShaders[RENDER_PASS1] = new Shader("/EG_DeferredShadingShaders/EG_DeferredShadingGeometryPass.vs",
+                                           "/EG_DeferredShadingShaders/EG_DeferredShadingGeometryPass.fs");
 
     m_stencilFlagUniformLocation = GetUniformLocation( progShaders[RENDER_PASS1], "stencilFlag");
     initMemberVariables();

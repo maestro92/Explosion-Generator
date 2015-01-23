@@ -107,7 +107,7 @@ float EG_DeferredShadingPointLightPass::computePointLightBoundingSphere(EG_Point
                 /
                 2 * Light.attenuation.exp;
     return ret;
-
+//    return 50;
 //    return 0;
 }
 

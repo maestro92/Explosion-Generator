@@ -45,11 +45,6 @@ struct SpotLight
 uniform DirectionalLight gDirectionalLight;
 
 
-//uniform sampler2D positionMap;  
-//uniform sampler2D colorMap;
-//uniform sampler2D normalMap;
-
-
 uniform sampler2D gPositionMap;  
 uniform sampler2D gColorMap;
 uniform sampler2D gNormalMap;
@@ -197,6 +192,7 @@ void main()
         // the view matrix doesn't work here
 
     FragColor = (stencilValue.x == 1.0) ?  vec4(colorValue,1.0) : (vec4(colorValue,1.0) * CalcDirectionalLight(worldPos, normal));
+//    FragColor = (vec4(colorValue,1.0) * CalcDirectionalLight(worldPos, normal));
 //    FragColor = vec4(0.0,0.0,1.0,1.0);
 /*
     if(stencilValue.x == 1.0)

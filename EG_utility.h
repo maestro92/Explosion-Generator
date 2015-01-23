@@ -35,6 +35,7 @@ class EG_Utility
         unsigned int Load_Texture(string filename, int background = 0, bool generate=false);
         SDL_Surface* Load_CubeMapTexture(string filename);
         unsigned int Create_Texture(int w, int h, bool isDepth);
+        GLuint CreateTexture(int w, int h, bool isDepth);
         unsigned int Create_CubemapTexture();
         unsigned int Create_CubemapTexture(string* filenames);
 

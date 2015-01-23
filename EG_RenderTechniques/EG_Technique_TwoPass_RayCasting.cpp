@@ -187,6 +187,8 @@ void Technique_TwoPass_Raycasting::Render_TwoPass_RayCasting_CubeDepth(Matrices_
 
 void Technique_TwoPass_Raycasting::Render_TwoPass_RayCasting_2(Matrices_t& Mat, GLuint depthTexture)
 {
+ //   glActiveTexture(GL_TEXTURE0);
+
     glEnable(GL_BLEND);
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
     TwoPassRaycast->useShader();
@@ -197,6 +199,8 @@ void Technique_TwoPass_Raycasting::Render_TwoPass_RayCasting_2(Matrices_t& Mat, 
         glUniform1i(Depth_Location2, 3);
         glUniform1i(Depth_TwoPassLocation_Front2, 4);
         glUniform1i(Depth_TwoPassLocation_Back2, 5);
+
+//        glActiveTexture(GL_TEXTURE0);
 
         glActiveTexture(GL_TEXTURE1);
         glBindTexture(GL_TEXTURE_2D, TextureFbo1);

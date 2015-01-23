@@ -122,6 +122,7 @@ vec4 CalcPointLight(vec3 WorldPos, vec3 Normal)
     Attenuation = max(1.0, Attenuation);
 
     return Color / Attenuation;
+//    return Color;
 }
 
 
@@ -150,6 +151,7 @@ void main()
     vec3 colorValue = texture(gColorMap, texCoord).xyz;
     vec3 normal = texture(gNormalMap, texCoord).xyz;
     FragColor = vec4(colorValue,1.0) * CalcPointLight(worldPos, normal);        
+    
  //   FragColor = vec4(colorValue,1.0);
  //   FragColor = vec4(gScreenSize.x/1024.0,0.0,0.0,1.0);
 

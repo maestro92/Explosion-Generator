@@ -54,8 +54,10 @@ uniform sampler2D gPositionMap;
 uniform sampler2D gColorMap;
 uniform sampler2D gNormalMap;
 uniform sampler2D gStencilMap;
-uniform sampler2DShadow shadowMap;
+uniform sampler2DShadow gShadowMap;
 
+uniform vec2 gScreenSize;
+ 
 
 uniform vec3 gEyeWorldPos;
 uniform float gMatSpecularIntensity;
@@ -68,14 +70,8 @@ uniform mat4 m_ProjectionMatrix;
 uniform mat4 m_ModelMatrix;
 uniform mat4 m_ViewNoRotateMatrix;
 uniform mat3 m_normalMatrix;   
+uniform mat4 l_modelViewProjectionMatrix;
 
-
-uniform sampler2D texture1;
-
-uniform vec3 lightPosition_ObjectSpace;         //Light's actual outVertex
-in vec4 vertexPosition_LightEyeSpace;        // vertex seen in light's clip space
-in vec3 lightPosition_CameraEyeSpace;
-in mat3 l_normalMatrix;
 
 in vec3 outVertex;
 in vec3 outNormal;
@@ -84,9 +80,6 @@ in vec3 outColor;
 in vec2 outUV;
 
 
-
-uniform vec2 gScreenSize;
- 
 out vec4 FragColor;
  
 const vec3 ambientColor=vec3(0.01,0.01,0.01);
@@ -124,8 +117,7 @@ vec4 CalcLightInternal(BaseLight Light,
         SpecularFactor = pow(SpecularFactor, gSpecularPower);
         
         if (SpecularFactor > 0.0) 
-            SpecularColor = vec4(Light.color, 1.0) * gMatSpecularIntensity * SpecularFactor;
-        
+            SpecularColor = vec4(Light.color, 1.0) * gMatSpecularIntensity * SpecularFactor;   
     }
 
     return (AmbientColor + DiffuseColor + SpecularColor);
@@ -196,19 +188,94 @@ void main()
  //   FragColor = vec4(colorValue,1.0) * CalcLightPerFragment(light2surf, normal);
         // the view matrix doesn't work here
 
-    FragColor = (stencilValue.x == 1.0) ?  vec4(colorValue,1.0) : (vec4(colorValue,1.0) * CalcDirectionalLight(worldPos, normal));
-//    FragColor = vec4(0.0,0.0,1.0,1.0);
+    //    FragColor = (stencilValue.x == 1.0) ?  vec4(colorValue,1.0) : (vec4(colorValue,1.0) * CalcDirectionalLight(worldPos, normal));
+
+    vec4 vertexPosition_LightEyeSpace = l_modelViewProjectionMatrix * vec4(worldPos,1.0);
+    float shadowValue = 1.0;
+    shadowValue = shadow2DProj(gShadowMap, vertexPosition_LightEyeSpace).r;
+
 /*
+    if(shadowValue == 0)
+        FragColor = vec4(shadowValue, 0.0,0.0,1.0);
+    else
+        FragColor = (stencilValue.x == 1.0) ?  vec4(colorValue,1.0) : (vec4(colorValue,1.0) * CalcDirectionalLight(worldPos, normal));
+*/
+
     if(stencilValue.x == 1.0)
         FragColor = vec4(colorValue,1.0);
-    else    
-        FragColor = vec4(colorValue,1.0) * CalcDirectionalLight(worldPos, normal);
-*/
-//    FragColor = vec4(colorValue.1.0);
-//    FragColor = vec4(colorValue,1.0);
-//    FragColor = vec4(normal,1.0);
+    else
+        FragColor = (shadowValue == 0.0) ?  vec4(0.0,0.0,0.0,1.0) : vec4(colorValue,1.0) * CalcDirectionalLight(worldPos, normal);
+
+//        if (shadowValue == 1)
+ //           FragColor = vec4(colorValue,1.0) * CalcDirectionalLight(worldPos, normal);
+        
+
+
+
+
+
 }
 
+
+#if 0
+void main()
+{
+    // assume everything not in shadow at first
+    float shadowValue = 1.0;
+
+    vec2 texCoord = CalcTexCoord();
+ //   vec3 worldPos = texture(gPositionMap, texCoord).xyz;
+    vec3 colorValue = texture(gColorMap, texCoord).xyz;
+  
+    // remember to check the normal map from the Geometry Pass
+    vec3 normal = texture(gNormalMap, texCoord).xyz;
+    normal = normalize(normal);
+  
+//    vec3 light2surf = normalize(outVertex - lightPosition_CameraEyeSpace);
+    vec3 light2surf = normalize(outVertex - lightPosition_CameraEyeSpace);
+
+    // light direction
+    vec3 l_direction = normalize(-lightPosition_ObjectSpace);
+ 
+    // need to multiply the normal matrix to accommodate for the modelview matrix
+    l_direction = l_normalMatrix * l_direction;
+
+#if 0
+//////////
+// if we want pure directional light, these two are equivalent
+//////////
+  
+    light2surf = l_direction;
+
+    or
+
+    light2surf = -lightPosition_ObjectSpace;
+    light2surf = mat3(m_ViewMatrix) * light2surf;
+    light2surf = normalize(light2surf);
+#endif
+
+    float SpotFactor = dot(light2surf, l_direction);
+    vec4 Color = vec4(0.0,0.0,0.0,0.0);
+
+    // determine lit region
+    if(SpotFactor > Cutoff)
+    {
+        // determine whether pixel is in shadow
+        shadowValue = shadow2DProj(shadowMap, vertexPosition_LightEyeSpace).r;
+ 
+        // calculate spotlight color
+        Color = CalcLightPerFragment(-light2surf, normal);
+        Color = Color * (1.0 - (1.0 - SpotFactor) * 1.0/(1.0 - Cutoff));
+    }
+ 
+    // if pixel in shadows, we give black
+    if (shadowValue == 0)
+        FragColor = vec4(0.0,0.0,0.0,0.0);
+ 
+    else    // we give the supposed spotlight color
+        FragColor = Color;
+}
+#endif
 
 
 

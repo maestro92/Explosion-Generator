@@ -1,59 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <CodeBlocks_layout_file>
 	<ActiveTarget name="Debug" />
-	<File name="EG_Camera\EG_Camera.cpp" open="0" top="0" tabpos="34" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="sceneLoader.h" open="0" top="0" tabpos="15" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="721" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="EG_Main.cpp" open="1" top="1" tabpos="2" split="0" active="1" splitpos="0" zoom_1="-1" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="42258" topLine="1232" />
-		</Cursor>
-	</File>
-	<File name="EG_RenderTechniques\EG_DeferredShading\EG_DeferredShadingStencilPass.cpp" open="0" top="0" tabpos="9" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="543" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="ElapsedTime.h" open="0" top="0" tabpos="8" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="230" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="EG_Main.h" open="1" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="8383" topLine="276" />
-		</Cursor>
-	</File>
-	<File name="EG_RenderTechniques\EG_DeferredShading\EG_DeferredShadingSkybox.h" open="0" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="749" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="Random.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="130" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="CollisionDetection_HGrid_new.cpp" open="0" top="0" tabpos="9" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="2255" topLine="45" />
-		</Cursor>
-	</File>
-	<File name="EG_RenderTechniques\EG_DeferredShadingLightPass\EG_DeferredShadingDirectionalLightPass.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="774" topLine="5" />
-		</Cursor>
-	</File>
-	<File name="EG_RenderTechniques\EG_Technique_Shadow_Render.cpp" open="0" top="0" tabpos="16" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="1807" topLine="24" />
-		</Cursor>
-	</File>
-	<File name="define.h" open="0" top="0" tabpos="12" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="635" topLine="12" />
+			<Cursor1 position="485" topLine="0" />
 		</Cursor>
 	</File>
 	<File name="EG_Light\EG_DirectionalLight.cpp" open="0" top="0" tabpos="10" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
@@ -61,174 +11,14 @@
 			<Cursor1 position="32" topLine="0" />
 		</Cursor>
 	</File>
-	<File name="EG_RenderTechniques\EG_Technique_DepthTexture_Render.h" open="0" top="0" tabpos="21" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="pipeline.cpp" open="0" top="0" tabpos="11" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="408" topLine="0" />
+			<Cursor1 position="9571" topLine="286" />
 		</Cursor>
 	</File>
-	<File name="sceneLoader.h" open="0" top="0" tabpos="15" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="EG_RenderTechniques\EG_DeferredShading\EG_DeferredShadingGeometryPass.h" open="0" top="0" tabpos="8" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="485" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="CollisionDetection_HGrid_new.h" open="0" top="0" tabpos="8" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="2442" topLine="65" />
-		</Cursor>
-	</File>
-	<File name="EG_RenderTechniques\EG_DeferredShadingLightPass\EG_DeferredShadingLightPass.h" open="0" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="695" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="EG_RenderTechniques\EG_RenderTechnique.h" open="0" top="0" tabpos="8" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="152" topLine="33" />
-		</Cursor>
-	</File>
-	<File name="EG_Camera\EG_Camera.h" open="0" top="0" tabpos="35" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="1430" topLine="30" />
-		</Cursor>
-	</File>
-	<File name="EG_WorldObjects\EG_WorldReflectiveSphere.cpp" open="0" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="535" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="EG_RenderTechniques\EG_DeferredShadingLightPass\EG_DeferredShadingPointLightPass.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="3364" topLine="39" />
-		</Cursor>
-	</File>
-	<File name="EG_RenderTechniques\EG_Technique_Reflection.h" open="0" top="0" tabpos="24" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="203" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="EG_Camera\EG_ThirdPersonPovCamera.h" open="0" top="0" tabpos="7" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="2023" topLine="132" />
-		</Cursor>
-	</File>
-	<File name="EG_WorldObjects\EG_WorldReflectiveSphere.h" open="0" top="0" tabpos="12" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="290" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="EG_RenderTechniques\EG_DeferredShadingLightPass\EG_DeferredShadingDirectionalLightPass.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="2750" topLine="26" />
-		</Cursor>
-	</File>
-	<File name="EG_RenderTechniques\EG_Technique_Shadow_Render.h" open="0" top="0" tabpos="23" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="1838" topLine="51" />
-		</Cursor>
-	</File>
-	<File name="L_SphereParticleEffect.cpp" open="0" top="0" tabpos="6" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="13816" topLine="449" />
-		</Cursor>
-	</File>
-	<File name="EG_RenderTechniques\EG_DeferredShadingLightPass\EG_DeferredShadingPointLightPass.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="466" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="EG_Utility.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="441" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="L_Cube_Sphere_ParticleEffect.cpp" open="0" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="6913" topLine="252" />
-		</Cursor>
-	</File>
-	<File name="EG_RenderTechniques\EG_RenderTechniqueRenderTexture.h" open="0" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="863" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="ElapsedTime.cpp" open="0" top="0" tabpos="9" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="204" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="EG_RenderTechniques\EG_Technique_Reflection.cpp" open="0" top="0" tabpos="13" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="42" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="mesh.cpp" open="0" top="0" tabpos="7" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="916" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="EG_Shader.h" open="0" top="0" tabpos="6" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="556" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="CollisionDetection_Interface.h" open="0" top="0" tabpos="26" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="559" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="mesh.h" open="0" top="0" tabpos="8" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="15" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="EG_Utility.cpp" open="0" top="0" tabpos="6" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="2878" topLine="79" />
-		</Cursor>
-	</File>
-	<File name="EG_Camera\EG_FirstPersonPovCamera.h" open="0" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="-1" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="1810" topLine="54" />
-		</Cursor>
-	</File>
-	<File name="EG_Shader.cpp" open="0" top="0" tabpos="32" split="0" active="1" splitpos="0" zoom_1="-1" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="826" topLine="18" />
-		</Cursor>
-	</File>
-	<File name="pipeline.cpp" open="0" top="0" tabpos="5" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="1546" topLine="27" />
-		</Cursor>
-	</File>
-	<File name="EG_GBuffer.cpp" open="0" top="0" tabpos="7" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="5632" topLine="181" />
-		</Cursor>
-	</File>
-	<File name="EG_RenderTechniques\EG_DeferredShading\EG_DeferredShadingReflection.cpp" open="0" top="0" tabpos="10" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="235" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="L_ParticleEffect_Interface.h" open="0" top="0" tabpos="8" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="1031" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="EG_WorldObjects\EG_Skybox.h" open="1" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="428" topLine="32" />
-		</Cursor>
-	</File>
-	<File name="CollisionDetection_HGrid.cpp" open="0" top="0" tabpos="9" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="22282" topLine="691" />
-		</Cursor>
-	</File>
-	<File name="EG_WorldObjects\EG_Quad.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="464" topLine="14" />
+			<Cursor1 position="551" topLine="0" />
 		</Cursor>
 	</File>
 	<File name="meshData.h" open="0" top="0" tabpos="7" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
@@ -236,9 +26,9 @@
 			<Cursor1 position="256" topLine="0" />
 		</Cursor>
 	</File>
-	<File name="EG_WorldObjects\EG_WorldAxis.cpp" open="0" top="0" tabpos="14" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="EG_Light\EG_SpotLight.h" open="0" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="1827" topLine="46" />
+			<Cursor1 position="284" topLine="0" />
 		</Cursor>
 	</File>
 	<File name="L_Cube_Sphere_ParticleEffect.h" open="0" top="0" tabpos="27" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
@@ -246,9 +36,69 @@
 			<Cursor1 position="606" topLine="0" />
 		</Cursor>
 	</File>
-	<File name="EG_RenderTechniques\EG_RenderTechniqueRenderTexture.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="-1" zoom_2="0">
+	<File name="EG_RenderTechniques\EG_RenderTechnique.cpp" open="0" top="0" tabpos="6" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="1632" topLine="26" />
+			<Cursor1 position="923" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="EG_WorldObjects\EG_WorldBox.cpp" open="0" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="321" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="CollisionDetection_HGrid_new.h" open="0" top="0" tabpos="8" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="2442" topLine="65" />
+		</Cursor>
+	</File>
+	<File name="ElapsedTime.cpp" open="0" top="0" tabpos="9" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="204" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="EG_RenderTechniques\EG_RenderTechnique_RenderDepthToTexture.h" open="0" top="0" tabpos="15" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="374" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="EG_WorldObjects\EG_WorldBox.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="1685" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="CollisionDetection_Interface.h" open="0" top="0" tabpos="26" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="559" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="EG_Light\EG_PointLight.h" open="1" top="0" tabpos="6" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="290" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="EG_RenderTechniques\EG_RenderTechnique_RenderTexture.cpp" open="0" top="0" tabpos="14" split="0" active="1" splitpos="0" zoom_1="-1" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="818" topLine="28" />
+		</Cursor>
+	</File>
+	<File name="EG_WorldObjects\EG_WorldSphere.cpp" open="0" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="862" topLine="7" />
+		</Cursor>
+	</File>
+	<File name="EG_Camera\EG_ThirdPersonPovCamera.cpp" open="0" top="0" tabpos="6" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="14614" topLine="441" />
+		</Cursor>
+	</File>
+	<File name="EG_RenderTechniques\EG_DeferredShading\EG_DeferredShadingSkybox.h" open="0" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="749" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="EG_RenderTechniques\EG_RenderTechnique_RenderTexture.h" open="0" top="0" tabpos="5" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="324" topLine="0" />
 		</Cursor>
 	</File>
 	<File name="EG_WorldObjects\EG_WorldAxis.h" open="0" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
@@ -256,39 +106,24 @@
 			<Cursor1 position="21" topLine="0" />
 		</Cursor>
 	</File>
-	<File name="CollisionDetection_HGrid.h" open="0" top="0" tabpos="7" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="CollisionDetection_HGrid.cpp" open="0" top="0" tabpos="9" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="2855" topLine="121" />
+			<Cursor1 position="22282" topLine="691" />
 		</Cursor>
 	</File>
-	<File name="EG_WorldObjects\EG_Skybox.cpp" open="1" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="EG_RenderTechniques\EG_RenderTechnique.h" open="0" top="0" tabpos="8" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="5795" topLine="146" />
+			<Cursor1 position="152" topLine="33" />
 		</Cursor>
 	</File>
-	<File name="EG_WorldObjects\EG_WorldSphere.h" open="0" top="0" tabpos="8" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="EG_RenderTechniques\EG_DeferredShading\EG_DeferredShadingLightPos.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="736" topLine="0" />
+			<Cursor1 position="804" topLine="0" />
 		</Cursor>
 	</File>
-	<File name="EG_GBuffer.h" open="0" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="EG_WorldObjects\EG_WorldReflectiveSphere.h" open="0" top="0" tabpos="12" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="652" topLine="35" />
-		</Cursor>
-	</File>
-	<File name="EG_Camera\EG_ThirdPersonPovCamera.cpp" open="0" top="0" tabpos="6" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="22975" topLine="847" />
-		</Cursor>
-	</File>
-	<File name="EG_RenderTechniques\EG_DeferredShading\EG_DeferredShadingGeometryPass.cpp" open="0" top="0" tabpos="6" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="1347" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="L_SphereParticleEffect.h" open="0" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="1594" topLine="23" />
+			<Cursor1 position="290" topLine="0" />
 		</Cursor>
 	</File>
 	<File name="EG_Camera\EG_FirstPersonPovCamera.cpp" open="0" top="0" tabpos="5" split="0" active="1" splitpos="0" zoom_1="-1" zoom_2="0">
@@ -296,79 +131,59 @@
 			<Cursor1 position="5882" topLine="247" />
 		</Cursor>
 	</File>
-	<File name="EG_Light\EG_PointLight.cpp" open="0" top="0" tabpos="8" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="EG_RenderTechniques\EG_DeferredShadingLightPass\EG_DeferredShadingDirectionalLightPass.cpp" open="0" top="0" tabpos="19" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="181" topLine="0" />
+			<Cursor1 position="4577" topLine="66" />
 		</Cursor>
 	</File>
-	<File name="EG_RenderTechniques\EG_Technique_TwoPass_RayCasting.cpp" open="0" top="0" tabpos="10" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="EG_RenderTechniques\EG_DeferredShading\EG_DeferredShadingStencilPass.cpp" open="0" top="0" tabpos="9" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="3880" topLine="90" />
+			<Cursor1 position="543" topLine="0" />
 		</Cursor>
 	</File>
-	<File name="Smoke_struct.h" open="0" top="0" tabpos="42" split="0" active="1" splitpos="0" zoom_1="-1" zoom_2="0">
+	<File name="L_Cube_Sphere_ParticleEffect.cpp" open="0" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="1043" topLine="27" />
+			<Cursor1 position="6913" topLine="252" />
 		</Cursor>
 	</File>
-	<File name="EG_Light\EG_AllLights.cpp" open="0" top="0" tabpos="13" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="CollisionDetection_HGrid.h" open="0" top="0" tabpos="7" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="3190" topLine="92" />
+			<Cursor1 position="2855" topLine="121" />
 		</Cursor>
 	</File>
-	<File name="EG_Light\EG_SpotLight.h" open="0" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="EG_RenderTechniques\EG_DeferredShadingLightPass\EG_DeferredShadingLightPass.h" open="0" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="284" topLine="0" />
+			<Cursor1 position="940" topLine="0" />
 		</Cursor>
 	</File>
-	<File name="EG_RenderTechniques\EG_DeferredShading\EG_DeferredShadingStencilPass.h" open="0" top="0" tabpos="7" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="define.h" open="0" top="0" tabpos="12" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="387" topLine="0" />
+			<Cursor1 position="635" topLine="12" />
 		</Cursor>
 	</File>
-	<File name="Particle.h" open="0" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="EG_Camera\EG_ThirdPersonPovCamera.h" open="0" top="0" tabpos="7" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="1804" topLine="68" />
+			<Cursor1 position="2023" topLine="132" />
 		</Cursor>
 	</File>
-	<File name="EG_RenderTechniques\EG_DeferredShadingLightPass\EG_DeferredShadingLightPass.cpp" open="0" top="0" tabpos="14" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="EG_RenderTechniques\EG_DeferredShadingLightPass\EG_DeferredShadingPointLightPass.cpp" open="1" top="0" tabpos="7" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="4934" topLine="93" />
+			<Cursor1 position="4615" topLine="0" />
 		</Cursor>
 	</File>
-	<File name="EG_RenderTechniques\EG_Technique_DepthTexture_Render.cpp" open="0" top="0" tabpos="15" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="mesh.cpp" open="0" top="0" tabpos="18" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="322" topLine="0" />
+			<Cursor1 position="6677" topLine="174" />
 		</Cursor>
 	</File>
-	<File name="pipeline.h" open="0" top="0" tabpos="7" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="EG_Light\EG_AllLights.cpp" open="1" top="1" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="2129" topLine="60" />
+			<Cursor1 position="6692" topLine="217" />
 		</Cursor>
 	</File>
-	<File name="EG_Light\EG_AllLights.h" open="0" top="0" tabpos="14" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="EG_Light\EG_DirectionalLight.h" open="0" top="0" tabpos="41" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="285" topLine="9" />
-		</Cursor>
-	</File>
-	<File name="EG_Light\EG_BaseLight.cpp" open="0" top="0" tabpos="15" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="169" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="EG_RenderTechniques\EG_RenderTechnique.cpp" open="0" top="0" tabpos="6" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="923" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="EG_WorldObjects\EG_WorldObject.cpp" open="0" top="0" tabpos="10" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="1623" topLine="44" />
-		</Cursor>
-	</File>
-	<File name="EG_RenderTechniques\EG_DeferredShading\EG_DeferredShading.cpp" open="0" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="665" topLine="0" />
+			<Cursor1 position="254" topLine="0" />
 		</Cursor>
 	</File>
 	<File name="EG_RenderTechniques\EG_Technique_TwoPass_RayCasting.h" open="0" top="0" tabpos="22" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
@@ -381,9 +196,99 @@
 			<Cursor1 position="5099" topLine="188" />
 		</Cursor>
 	</File>
-	<File name="EG_Light\EG_SpotLight.cpp" open="0" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="EG_Light\EG_BaseLight.h" open="0" top="0" tabpos="16" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="246" topLine="0" />
+			<Cursor1 position="711" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="EG_RenderTechniques\EG_DeferredShadingLightPass\EG_DeferredShadingDirectionalLightPass.h" open="0" top="0" tabpos="21" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="857" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="EG_WorldObjects\EG_Skybox.h" open="0" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="428" topLine="25" />
+		</Cursor>
+	</File>
+	<File name="EG_Camera\EG_Camera.cpp" open="0" top="0" tabpos="34" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="721" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="EG_RenderTechniques\EG_DeferredShadingLightPass\EG_DeferredShadingLightPass.cpp" open="1" top="0" tabpos="8" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="910" topLine="81" />
+		</Cursor>
+	</File>
+	<File name="EG_RenderTechniques\EG_Technique_Shadow_Render.cpp" open="0" top="0" tabpos="13" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="1486" topLine="24" />
+		</Cursor>
+	</File>
+	<File name="EG_Camera\EG_Camera.h" open="0" top="0" tabpos="35" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="1430" topLine="30" />
+		</Cursor>
+	</File>
+	<File name="EG_RenderTechniques\EG_DeferredShadingLightPass\EG_DeferredShadingPointLightPass.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="466" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="EG_RenderTechniques\EG_Technique_TwoPass_RayCasting.cpp" open="0" top="0" tabpos="10" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="1009" topLine="12" />
+		</Cursor>
+	</File>
+	<File name="EG_WorldObjects\EG_WorldSphere.h" open="0" top="0" tabpos="8" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="736" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="EG_Camera\EG_FirstPersonPovCamera.h" open="0" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="-1" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="1810" topLine="54" />
+		</Cursor>
+	</File>
+	<File name="EG_RenderTechniques\EG_DeferredShading\EG_DeferredShading.cpp" open="0" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="665" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="EG_Utility.cpp" open="0" top="0" tabpos="6" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="2872" topLine="84" />
+		</Cursor>
+	</File>
+	<File name="L_ParticleEffect_Interface.h" open="0" top="0" tabpos="8" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="1031" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="EG_GBuffer.h" open="0" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="662" topLine="12" />
+		</Cursor>
+	</File>
+	<File name="EG_Main.cpp" open="1" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="555" topLine="105" />
+		</Cursor>
+	</File>
+	<File name="EG_Shader.cpp" open="0" top="0" tabpos="32" split="0" active="1" splitpos="0" zoom_1="-1" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="826" topLine="18" />
+		</Cursor>
+	</File>
+	<File name="Smoke_struct.h" open="0" top="0" tabpos="42" split="0" active="1" splitpos="0" zoom_1="-1" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="1043" topLine="27" />
+		</Cursor>
+	</File>
+	<File name="EG_Light\EG_AllLights.h" open="0" top="0" tabpos="8" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="548" topLine="0" />
 		</Cursor>
 	</File>
 	<File name="EG_RenderTechniques\EG_DeferredShading\EG_DeferredShading.h" open="0" top="0" tabpos="11" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
@@ -391,29 +296,59 @@
 			<Cursor1 position="282" topLine="0" />
 		</Cursor>
 	</File>
-	<File name="EG_WorldObjects\EG_WorldBox.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="EG_Utility.h" open="0" top="0" tabpos="7" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="1685" topLine="0" />
+			<Cursor1 position="860" topLine="6" />
 		</Cursor>
 	</File>
-	<File name="EG_Light\EG_BaseLight.h" open="0" top="0" tabpos="16" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="EG_WorldObjects\EG_WorldObject.cpp" open="0" top="0" tabpos="10" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="585" topLine="0" />
+			<Cursor1 position="1623" topLine="44" />
 		</Cursor>
 	</File>
-	<File name="EG_RenderTechniques\EG_DeferredShading\EG_DeferredShadingGeometryPass.h" open="0" top="0" tabpos="8" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="CollisionDetection_HGrid_new.cpp" open="0" top="0" tabpos="9" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="551" topLine="0" />
+			<Cursor1 position="2255" topLine="45" />
 		</Cursor>
 	</File>
-	<File name="EG_WorldObjects\EG_WorldObject.h" open="0" top="0" tabpos="9" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="EG_RenderTechniques\EG_DeferredShading\EG_DeferredShadingLightPos.h" open="1" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="2022" topLine="38" />
+			<Cursor1 position="431" topLine="0" />
 		</Cursor>
 	</File>
-	<File name="EG_Light\EG_DirectionalLight.h" open="0" top="0" tabpos="41" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="EG_RenderTechniques\EG_Technique_Reflection.h" open="0" top="0" tabpos="24" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="254" topLine="0" />
+			<Cursor1 position="203" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="L_SphereParticleEffect.h" open="0" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="415" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="EG_Light\EG_BaseLight.cpp" open="0" top="0" tabpos="15" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="169" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="EG_RenderTechniques\EG_DeferredShading\EG_DeferredShadingReflection.cpp" open="0" top="0" tabpos="23" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="807" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="EG_RenderTechniques\EG_Technique_Reflection.cpp" open="0" top="0" tabpos="13" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="42" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="EG_WorldObjects\EG_WorldReflectiveSphere.cpp" open="0" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="207" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="EG_GBuffer.cpp" open="1" top="0" tabpos="9" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="6369" topLine="12" />
 		</Cursor>
 	</File>
 	<File name="EG_RenderTechniques\EG_DeferredShading\EG_DeferredShadingReflection.h" open="0" top="0" tabpos="9" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
@@ -421,24 +356,99 @@
 			<Cursor1 position="539" topLine="0" />
 		</Cursor>
 	</File>
-	<File name="EG_WorldObjects\EG_WorldSphere.cpp" open="0" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="EG_RenderTechniques\EG_Technique_Shadow_Render.h" open="0" top="0" tabpos="23" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="862" topLine="7" />
+			<Cursor1 position="1838" topLine="51" />
 		</Cursor>
 	</File>
-	<File name="EG_Light\EG_PointLight.h" open="0" top="0" tabpos="37" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="Random.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="190" topLine="0" />
+			<Cursor1 position="145" topLine="0" />
 		</Cursor>
 	</File>
-	<File name="EG_RenderTechniques\EG_DeferredShading\EG_DeferredShadingSkybox.cpp" open="0" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="EG_RenderTechniques\EG_DeferredShading\EG_DeferredShadingSkybox.cpp" open="0" top="0" tabpos="22" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="1294" topLine="3" />
+			<Cursor1 position="737" topLine="6" />
 		</Cursor>
 	</File>
-	<File name="EG_WorldObjects\EG_WorldBox.cpp" open="0" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="EG_Shader.h" open="0" top="0" tabpos="6" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="321" topLine="0" />
+			<Cursor1 position="556" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="ElapsedTime.h" open="0" top="0" tabpos="8" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="230" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="EG_RenderTechniques\EG_DeferredShading\EG_DeferredShadingStencilPass.h" open="0" top="0" tabpos="7" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="387" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="EG_WorldObjects\EG_Quad.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="464" topLine="14" />
+		</Cursor>
+	</File>
+	<File name="pipeline.h" open="0" top="0" tabpos="12" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="433" topLine="3" />
+		</Cursor>
+	</File>
+	<File name="EG_Light\EG_PointLight.cpp" open="1" top="0" tabpos="5" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="636" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="EG_WorldObjects\EG_Skybox.cpp" open="0" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="5550" topLine="146" />
+		</Cursor>
+	</File>
+	<File name="EG_WorldObjects\EG_WorldObject.h" open="0" top="0" tabpos="9" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="2022" topLine="38" />
+		</Cursor>
+	</File>
+	<File name="EG_RenderTechniques\EG_DeferredShading\EG_DeferredShadingGeometryPass.cpp" open="0" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="196" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="L_SphereParticleEffect.cpp" open="0" top="0" tabpos="6" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="227" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="EG_RenderTechniques\EG_RenderTechnique_RenderDepthToTexture.cpp" open="0" top="0" tabpos="16" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="54" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="EG_WorldObjects\EG_WorldAxis.cpp" open="0" top="0" tabpos="14" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="1827" topLine="46" />
+		</Cursor>
+	</File>
+	<File name="Particle.h" open="0" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="1804" topLine="68" />
+		</Cursor>
+	</File>
+	<File name="EG_Light\EG_SpotLight.cpp" open="0" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="246" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="mesh.h" open="0" top="0" tabpos="8" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="15" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="EG_Main.h" open="1" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="566" topLine="24" />
 		</Cursor>
 	</File>
 </CodeBlocks_layout_file>

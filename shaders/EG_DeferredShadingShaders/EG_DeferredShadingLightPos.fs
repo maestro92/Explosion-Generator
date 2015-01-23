@@ -15,6 +15,7 @@ layout (location = 4) out vec3 StencilOut;
 layout (location = 5) out vec3 DepthOut;
 
 
+uniform vec3 gLightColor;
 uniform vec3 stencilFlag;
 uniform mat4 m_ModelviewProjection;
 
@@ -32,19 +33,15 @@ float CalcDepthValue(vec3 worldPos)
 void main()									
 {								
 
+//	stencilFlag = vec3(1.0,0.0,0.0);
+
 	float depthValue = CalcDepthValue(outVertex);
 			
 	WorldPosOut     = WorldPos0;	
 	
-	
-	// depends if you had texture or color
-	// when we saved our spheres from blender, we also had color values saved in the obj file
-	// so that's what color/outColor is about
-	// texture is something separate.
-					
-//	DiffuseOut      = texture(gColorMap, TexCoord0).xyz;	
-	DiffuseOut      = outColor;	
-//	DiffuseOut		= vec3(1.0,0.0,0.0);
+//	DiffuseOut      = outColor;	
+	DiffuseOut      = gLightColor;	
+
 	NormalOut       = normalize(Normal0);					
 	TexCoordOut     = vec3(TexCoord0, 0.0);	
 

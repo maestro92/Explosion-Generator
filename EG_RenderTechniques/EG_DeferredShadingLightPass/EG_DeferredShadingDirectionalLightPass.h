@@ -11,13 +11,8 @@ class EG_DeferredShadingDirectionalLightPass : public EG_DeferredShadingLightPas
 
         GLuint l_modelViewProjectionMatrix_UniLoc_;
         GLuint lightPosition_ModelViewMatrix_UniLoc_;
-        GLuint positionMap_UniLoc_;
-        GLuint screenSize_UniLoc_;
-        GLuint shadowMap_UniLoc_;
-        GLuint colorMap_UniLoc_;
-        GLuint normalMap_UniLoc_;
-        GLuint m_colorTextureUnitLocation_;
-     //
+
+        GLuint m_shadowMapTextureUnitLocation;
 
         EG_DeferredShadingDirectionalLightPass();
         ~EG_DeferredShadingDirectionalLightPass();
@@ -26,6 +21,7 @@ class EG_DeferredShadingDirectionalLightPass : public EG_DeferredShadingLightPas
         void init(int shaderCount, char* vsSource, char* fsSource);
         void setDirectionalLight(EG_DirectionalLight& Light);
         void loadUniformLocations(pipeline& p, int RenderPassID);
+        void setShadowMapTextureUnit(unsigned int TextureUnit);
 
         GLuint lightPosition_ObjectSpace_UniLoc_;
 

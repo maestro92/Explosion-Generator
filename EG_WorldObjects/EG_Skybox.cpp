@@ -94,8 +94,8 @@ void EG_SkyBox::init()
     glGenFramebuffers(1,&CubeMapFBO);
     glBindFramebuffer(GL_FRAMEBUFFER, CubeMapFBO);
 
-    Dynamic_CubeMap_ColorTextureID = utility_function.Create_CubemapTexture();
-//    Dynamic_CubeMap_ColorTextureID = utility_function.Create_CubemapTexture(cube_filename);
+//    Dynamic_CubeMap_ColorTextureID = utility_function.Create_CubemapTexture();
+    Dynamic_CubeMap_ColorTextureID = utility_function.Create_CubemapTexture(cube_filename);
 
     /// create the uniform depth buffer
     Dynamic_CubeMap_DepthTextureID = utility_function.Create_Texture(512, 512, true);
@@ -193,8 +193,8 @@ void EG_SkyBox::render(pipeline &m_pipeline, EG_RenderTechnique* RenderTechnique
 //        glUniform1i(tempCubemap_UniLoc,0);
 
         glActiveTexture(GL_TEXTURE0);
-        // glBindTexture(GL_TEXTURE_CUBE_MAP, Static_CubeMap_ColorTextureID);
-        glBindTexture(GL_TEXTURE_CUBE_MAP, Dynamic_CubeMap_ColorTextureID);
+        glBindTexture(GL_TEXTURE_CUBE_MAP, Static_CubeMap_ColorTextureID);
+        // glBindTexture(GL_TEXTURE_CUBE_MAP, Dynamic_CubeMap_ColorTextureID);
         RenderTechnique->loadUniformLocations(RotationOnly_View_pipeline, RenderPassID);
 
         Skybox_Cube->draw();

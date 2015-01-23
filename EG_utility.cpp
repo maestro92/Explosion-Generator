@@ -94,6 +94,31 @@ unsigned int EG_Utility::Create_Texture(int w, int h, bool isDepth)
 }
 
 
+GLuint EG_Utility::CreateTexture(int w, int h, bool isDepth)
+{
+    GLuint textureID;
+
+    glGenTextures(1,&textureID);
+	glBindTexture(GL_TEXTURE_2D,textureID);
+	glTexImage2D(GL_TEXTURE_2D,0,(!isDepth ? GL_RGBA8 : GL_DEPTH_COMPONENT),w,h,0,isDepth ? GL_DEPTH_COMPONENT : GL_RGBA,GL_FLOAT,NULL);
+	glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MAG_FILTER,GL_NEAREST);
+	glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MIN_FILTER,GL_NEAREST);
+	glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_WRAP_S,GL_CLAMP_TO_BORDER);
+	glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_WRAP_T,GL_CLAMP_TO_BORDER);
+//	glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_WRAP_S,GL_CLAMP_TO_EDGE);
+//	glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_WRAP_T,GL_CLAMP_TO_EDGE);
+    int i;
+    i = glGetError();
+    if(i!=0)
+    {
+        std::cout << "Error happened while loading the texture: " << i << std::endl;
+    }
+    // unbind the texture
+    glBindTexture(GL_TEXTURE_2D,0);
+    return textureID;
+}
+
+
 unsigned int EG_Utility::Create_CubemapTexture()
 {
     /// need to pass in the pictures in the following order

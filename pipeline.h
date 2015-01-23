@@ -24,6 +24,16 @@ enum matrixModes
     PROJECTION_MATRIX
 };
 
+const static glm::mat4 lightBiasMatrix = glm::mat4( 0.5, 0.0, 0.0, 0.0,
+                                                    0.0, 0.5, 0.0, 0.0,
+                                                    0.0, 0.0, 0.5, 0.0,
+                                                    0.5, 0.5, 0.5, 1.0);
+/*
+    Light_BiasMatrix[0][0]=0.5;Light_BiasMatrix[0][1]=0.0;Light_BiasMatrix[0][2]=0.0;Light_BiasMatrix[0][3]=0.0;
+	Light_BiasMatrix[1][0]=0.0;Light_BiasMatrix[1][1]=0.5;Light_BiasMatrix[1][2]=0.0;Light_BiasMatrix[1][3]=0.0;
+	Light_BiasMatrix[2][0]=0.0;Light_BiasMatrix[2][1]=0.0;Light_BiasMatrix[2][2]=0.5;Light_BiasMatrix[2][3]=0.0;
+	Light_BiasMatrix[3][0]=0.5;Light_BiasMatrix[3][1]=0.5;Light_BiasMatrix[3][2]=0.5;Light_BiasMatrix[3][3]=1.0;
+*/
 /*
 http://www.geeksforgeeks.org/assignment-operator-overloading-in-c/
 

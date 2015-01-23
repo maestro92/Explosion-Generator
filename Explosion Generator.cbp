@@ -80,6 +80,8 @@
 		<Unit filename="EG_RenderTechniques/EG_DeferredShading/EG_DeferredShading.h" />
 		<Unit filename="EG_RenderTechniques/EG_DeferredShading/EG_DeferredShadingGeometryPass.cpp" />
 		<Unit filename="EG_RenderTechniques/EG_DeferredShading/EG_DeferredShadingGeometryPass.h" />
+		<Unit filename="EG_RenderTechniques/EG_DeferredShading/EG_DeferredShadingLightPos.cpp" />
+		<Unit filename="EG_RenderTechniques/EG_DeferredShading/EG_DeferredShadingLightPos.h" />
 		<Unit filename="EG_RenderTechniques/EG_DeferredShading/EG_DeferredShadingReflection.cpp" />
 		<Unit filename="EG_RenderTechniques/EG_DeferredShading/EG_DeferredShadingReflection.h" />
 		<Unit filename="EG_RenderTechniques/EG_DeferredShading/EG_DeferredShadingSkybox.cpp" />
@@ -88,10 +90,10 @@
 		<Unit filename="EG_RenderTechniques/EG_DeferredShading/EG_DeferredShadingStencilPass.h" />
 		<Unit filename="EG_RenderTechniques/EG_RenderTechnique.cpp" />
 		<Unit filename="EG_RenderTechniques/EG_RenderTechnique.h" />
-		<Unit filename="EG_RenderTechniques/EG_RenderTechniqueRenderTexture.cpp" />
-		<Unit filename="EG_RenderTechniques/EG_RenderTechniqueRenderTexture.h" />
-		<Unit filename="EG_RenderTechniques/EG_Technique_DepthTexture_Render.cpp" />
-		<Unit filename="EG_RenderTechniques/EG_Technique_DepthTexture_Render.h" />
+		<Unit filename="EG_RenderTechniques/EG_RenderTechnique_RenderDepthToTexture.cpp" />
+		<Unit filename="EG_RenderTechniques/EG_RenderTechnique_RenderDepthToTexture.h" />
+		<Unit filename="EG_RenderTechniques/EG_RenderTechnique_RenderTexture.cpp" />
+		<Unit filename="EG_RenderTechniques/EG_RenderTechnique_RenderTexture.h" />
 		<Unit filename="EG_RenderTechniques/EG_Technique_Reflection.cpp" />
 		<Unit filename="EG_RenderTechniques/EG_Technique_Reflection.h" />
 		<Unit filename="EG_RenderTechniques/EG_Technique_Shadow_Render.cpp" />

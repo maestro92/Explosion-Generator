@@ -85,6 +85,13 @@ void EG_ThirdPersonPovCamera::init(pipeline& m_pipeline)
 */
 
 //    glm::vec3 eye_p = glm::vec3(0.0f, 13.0f, 25.0f);
+
+//    glm::vec3 eye_p = glm::vec3(0.0f, 13.0f, 30.0f);
+//    glm::vec3 target_p = glm::vec3(0.0f, 4.0f, 0.0f);
+
+//    glm::vec3 eye_p = glm::vec3(0.0f, 43.0f, 30.0f);
+//    glm::vec3 target_p = glm::vec3(0.0f, 14.0f, 0.0f);
+
     glm::vec3 eye_p = glm::vec3(0.0f, 13.0f, 30.0f);
     glm::vec3 target_p = glm::vec3(0.0f, 4.0f, 0.0f);
     glm::vec3 up_p = glm::vec3(0.0f, 1.0f, 0.0f);

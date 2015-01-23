@@ -17,8 +17,11 @@ void EG_DeferredShadingDirectionalLightPass::init(int shaderCount)
 //    progShaders[RENDER_PASS1] = new Shader("/EG_DeferredShadingShaders/EG_DeferredShadingDirectionalLightPass_ModelMatrixBased.vs",
 //                                           "/EG_DeferredShadingShaders/EG_DeferredShadingDirectionalLightPass_ModelMatrixBased.fs");
 
-    progShaders[RENDER_PASS1] = new Shader("/EG_DeferredShadingShaders/EG_DeferredShadingDirectionalLightPassWithShadow_ModelMatrixBased.vs",
-                                           "/EG_DeferredShadingShaders/EG_DeferredShadingDirectionalLightPassWithShadow_ModelMatrixBased.fs");
+//    progShaders[RENDER_PASS1] = new Shader("/EG_DeferredShadingShaders/EG_DeferredShadingDirectionalLightPass.vs",
+//                                           "/EG_DeferredShadingShaders/EG_DeferredShadingDirectionalLightPass.fs");
+
+    progShaders[RENDER_PASS1] = new Shader("/EG_DeferredShadingShaders/EG_DeferredShadingDirectionalLightPass_WithShadows.vs",
+                                           "/EG_DeferredShadingShaders/EG_DeferredShadingDirectionalLightPass_WithShadows.fs");
 
 
     m_dirLightLocation.color                = GetUniformLocation( progShaders[RENDER_PASS1], "gDirectionalLight.base.color");
@@ -30,13 +33,8 @@ void EG_DeferredShadingDirectionalLightPass::init(int shaderCount)
     l_modelViewProjectionMatrix_UniLoc_ =       GetUniformLocation(progShaders[RENDER_PASS1], "l_modelViewProjectionMatrix");
     lightPosition_ModelViewMatrix_UniLoc_ =     GetUniformLocation(progShaders[RENDER_PASS1], "lightPosition_ModelViewMatrix");
     lightPosition_ObjectSpace_UniLoc_ =         GetUniformLocation(progShaders[RENDER_PASS1], "lightPosition_ObjectSpace");
-    screenSize_UniLoc_                =         GetUniformLocation(progShaders[RENDER_PASS1], "gScreenSize");
 
-
-    positionMap_UniLoc_ =         GetUniformLocation(progShaders[RENDER_PASS1], "positionMap");
-    colorMap_UniLoc_    =         GetUniformLocation(progShaders[RENDER_PASS1], "colorMap");
-    normalMap_UniLoc_   =         GetUniformLocation(progShaders[RENDER_PASS1], "normalMap");
-    shadowMap_UniLoc_   =         GetUniformLocation(progShaders[RENDER_PASS1], "shadowMap");
+    m_shadowMapTextureUnitLocation  =   GetUniformLocation(progShaders[RENDER_PASS1], "gShadowMap");
 
 /*
 	if (m_dirLightLocation.ambientIntensity == INVALID_UNIFORM_LOCATION ||
@@ -70,15 +68,12 @@ void EG_DeferredShadingDirectionalLightPass::init(int shaderCount, char* vsSourc
 
 
     l_modelViewProjectionMatrix_UniLoc_ =       GetUniformLocation(progShaders[RENDER_PASS1], "l_modelViewProjectionMatrix");
-    lightPosition_ModelViewMatrix_UniLoc_ =     GetUniformLocation(progShaders[RENDER_PASS1], "lightPosition_ModelViewMatrix");
-    lightPosition_ObjectSpace_UniLoc_ =         GetUniformLocation(progShaders[RENDER_PASS1], "lightPosition_ObjectSpace");
-    screenSize_UniLoc_                =         GetUniformLocation(progShaders[RENDER_PASS1], "gScreenSize");
+//    lightPosition_ModelViewMatrix_UniLoc_ =     GetUniformLocation(progShaders[RENDER_PASS1], "lightPosition_ModelViewMatrix");
+    lightPosition_ObjectSpace_UniLoc_ =         GetUniformLocation(progShaders[RENDER_PASS1], "lightPosition");
 
+    m_shadowMapTextureUnitLocation  =       GetUniformLocation(progShaders[RENDER_PASS1], "gShadowMap");
 
-    positionMap_UniLoc_ =         GetUniformLocation(progShaders[RENDER_PASS1], "positionMap");
-    colorMap_UniLoc_    =         GetUniformLocation(progShaders[RENDER_PASS1], "colorMap");
-    normalMap_UniLoc_   =         GetUniformLocation(progShaders[RENDER_PASS1], "normalMap");
-    shadowMap_UniLoc_   =         GetUniformLocation(progShaders[RENDER_PASS1], "shadowMap");
+//    shadowMap_UniLoc_   =         GetUniformLocation(progShaders[RENDER_PASS1], "shadowMap");
 
 /*
 	if (m_dirLightLocation.ambientIntensity == INVALID_UNIFORM_LOCATION ||
@@ -93,10 +88,12 @@ void EG_DeferredShadingDirectionalLightPass::init(int shaderCount, char* vsSourc
     initMemberVariables();
 }
 
+
 void EG_DeferredShadingDirectionalLightPass::loadUniformLocations(pipeline& p, int RenderPassID)
 {
     p.shadowMatrix = p.Light_BiasMatrix * p.Light_ProjectionMatrix * p.Light_ViewMatrix * p.modelMatrix[p.modelMatrix.size()-1];
     glUniformMatrix4fv(l_modelViewProjectionMatrix_UniLoc_,1,GL_FALSE,&p.shadowMatrix[0][0]);
+ //   glUniform3f(lightPosition_ObjectSpace_UniLoc_, EyePos.x, EyePos.y, EyePos.z);
     EG_RenderTechnique::loadUniformLocations(p, RenderPassID);
 }
 
@@ -112,3 +109,7 @@ void EG_DeferredShadingDirectionalLightPass::setDirectionalLight(EG_DirectionalL
 }
 
 
+void EG_DeferredShadingDirectionalLightPass::setShadowMapTextureUnit(unsigned int TextureUnit)
+{
+    glUniform1i(m_shadowMapTextureUnitLocation, TextureUnit);
+}

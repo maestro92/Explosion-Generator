@@ -30498,13 +30498,13 @@
 1421081666 source:d:\martin\programming\c and c++\sdl\explosion generator 2015 01 21 deferred shading with smoke working\eg_light\eg_spotlight.cpp
 	"EG_SpotLight.h"
 
-1421943450 source:d:\martin\programming\c and c++\sdl\explosion generator 2015 01 21 deferred shading with smoke working\eg_main.cpp
+1421967701 source:d:\martin\programming\c and c++\sdl\explosion generator 2015 01 21 deferred shading with smoke working\eg_main.cpp
 	"EG_Main.h"
 	"gl/gl.h"
 	"gl/glu.h"
 	"SDL\SDL.h"
 
-1421943169 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 21 deferred shading with smoke working\eg_main.h
+1421969256 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 21 deferred shading with smoke working\eg_main.h
 	<cstdlib>
 	<iostream>
 	<stdio.h>
@@ -30918,6 +30918,922 @@
 	<sstream>
 	"EG_Quad.h"
 	"EG_RenderTechnique.h"
+
+1419235118 source:d:\martin\programming\c and c++\sdl\explosion generator 2015 01 21 deferred shading with smoke working - copy (3)\collisiondetection_hgrid.cpp
+	"CollisionDetection_HGrid.h"
+
+1419235098 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 21 deferred shading with smoke working - copy (3)\collisiondetection_hgrid.h
+	"CollisionDetection_Interface.h"
+	"Particle.h"
+	"glm/glm.hpp"
+	<cstdlib>
+	<vector>
+	<stdint.h>
+	<iostream>
+	<algorithm>
+	<unordered_map>
+	<string>
+	<typeinfo>
+	<bitset>
+	<math.h>
+	"Random.h"
+	"gl/gl.h"
+	"gl/glu.h"
+
+1419238726 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 21 deferred shading with smoke working - copy (3)\collisiondetection_interface.h
+	"glm/glm.hpp"
+	<cstdlib>
+	"EG_WorldBox.h"
+	"EG_WorldSphere.h"
+	"EG_WorldObject.h"
+
+1359678220 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 21 deferred shading with smoke working - copy (3)\glm\glm.hpp
+	"core/_fixes.hpp"
+	<cmath>
+	<climits>
+	<cfloat>
+	<limits>
+	<cstdio>
+	"core/setup.hpp"
+	"./core/_detail.hpp"
+	"./core/_vectorize.hpp"
+	"./core/type.hpp"
+	"./core/func_trigonometric.hpp"
+	"./core/func_exponential.hpp"
+	"./core/func_common.hpp"
+	"./core/func_packing.hpp"
+	"./core/func_geometric.hpp"
+	"./core/func_matrix.hpp"
+	"./core/func_vector_relational.hpp"
+	"./core/func_integer.hpp"
+	"./core/func_noise.hpp"
+	"./core/_swizzle.hpp"
+
+1359678220 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 21 deferred shading with smoke working - copy (3)\glm\core\_fixes.hpp
+	<cmath>
+
+1359678218 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 21 deferred shading with smoke working - copy (3)\glm\core\setup.hpp
+	<intrin.h>
+	<immintrin.h>
+	<immintrin.h>
+	<smmintrin.h>
+	<pmmintrin.h>
+	<emmintrin.h>
+
+1359678220 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 21 deferred shading with smoke working - copy (3)\glm\core\_detail.hpp
+	"setup.hpp"
+	<cassert>
+	<cstdint>
+
+1359678220 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 21 deferred shading with smoke working - copy (3)\glm\core\_vectorize.hpp
+
+1359678218 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 21 deferred shading with smoke working - copy (3)\glm\core\type.hpp
+	"type_half.hpp"
+	"type_float.hpp"
+	"type_int.hpp"
+	"type_gentype.hpp"
+	"type_vec1.hpp"
+	"type_vec2.hpp"
+	"type_vec3.hpp"
+	"type_vec4.hpp"
+	"type_mat2x2.hpp"
+	"type_mat2x3.hpp"
+	"type_mat2x4.hpp"
+	"type_mat3x2.hpp"
+	"type_mat3x3.hpp"
+	"type_mat3x4.hpp"
+	"type_mat4x2.hpp"
+	"type_mat4x3.hpp"
+	"type_mat4x4.hpp"
+
+1359678218 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 21 deferred shading with smoke working - copy (3)\glm\core\type_half.hpp
+	<cstdlib>
+	"type_half.inl"
+
+1359678218 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 21 deferred shading with smoke working - copy (3)\glm\core\type_half.inl
+	"_detail.hpp"
+
+1359678218 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 21 deferred shading with smoke working - copy (3)\glm\core\type_float.hpp
+	"type_half.hpp"
+	"setup.hpp"
+
+1359678218 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 21 deferred shading with smoke working - copy (3)\glm\core\type_int.hpp
+	"setup.hpp"
+	"_detail.hpp"
+
+1359678218 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 21 deferred shading with smoke working - copy (3)\glm\core\type_gentype.hpp
+	"type_size.hpp"
+
+1359678220 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 21 deferred shading with smoke working - copy (3)\glm\core\type_size.hpp
+	<cstdlib>
+
+1359678220 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 21 deferred shading with smoke working - copy (3)\glm\core\type_vec1.hpp
+	"type_vec.hpp"
+	"type_float.hpp"
+	"type_int.hpp"
+	"type_size.hpp"
+	"_swizzle.hpp"
+	"type_vec1.inl"
+
+1359678220 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 21 deferred shading with smoke working - copy (3)\glm\core\type_vec.hpp
+	"type_gentype.hpp"
+
+1359678220 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 21 deferred shading with smoke working - copy (3)\glm\core\_swizzle.hpp
+	"_swizzle_func.hpp"
+
+1359678220 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 21 deferred shading with smoke working - copy (3)\glm\core\_swizzle_func.hpp
+
+1359678220 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 21 deferred shading with smoke working - copy (3)\glm\core\type_vec1.inl
+
+1359678220 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 21 deferred shading with smoke working - copy (3)\glm\core\type_vec2.hpp
+	"type_vec.hpp"
+	"type_float.hpp"
+	"type_int.hpp"
+	"type_size.hpp"
+	"_swizzle.hpp"
+	"type_vec2.inl"
+
+1359678220 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 21 deferred shading with smoke working - copy (3)\glm\core\type_vec2.inl
+
+1359678220 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 21 deferred shading with smoke working - copy (3)\glm\core\type_vec3.hpp
+	"type_vec.hpp"
+	"type_float.hpp"
+	"type_int.hpp"
+	"type_size.hpp"
+	"_swizzle.hpp"
+	"type_vec3.inl"
+
+1359678220 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 21 deferred shading with smoke working - copy (3)\glm\core\type_vec3.inl
+
+1359678220 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 21 deferred shading with smoke working - copy (3)\glm\core\type_vec4.hpp
+	"type_vec.hpp"
+	"type_float.hpp"
+	"type_int.hpp"
+	"type_size.hpp"
+	"_swizzle.hpp"
+	"type_vec4.inl"
+
+1359678220 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 21 deferred shading with smoke working - copy (3)\glm\core\type_vec4.inl
+
+1359678218 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 21 deferred shading with smoke working - copy (3)\glm\core\type_mat2x2.hpp
+	"type_mat.hpp"
+	"type_mat2x2.inl"
+
+1359678218 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 21 deferred shading with smoke working - copy (3)\glm\core\type_mat.hpp
+	"type_gentype.hpp"
+
+1359678218 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 21 deferred shading with smoke working - copy (3)\glm\core\type_mat2x2.inl
+
+1359678218 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 21 deferred shading with smoke working - copy (3)\glm\core\type_mat2x3.hpp
+	"type_mat.hpp"
+	"type_mat2x3.inl"
+
+1359678218 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 21 deferred shading with smoke working - copy (3)\glm\core\type_mat2x3.inl
+
+1359678218 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 21 deferred shading with smoke working - copy (3)\glm\core\type_mat2x4.hpp
+	"type_mat.hpp"
+	"type_mat2x4.inl"
+
+1359678218 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 21 deferred shading with smoke working - copy (3)\glm\core\type_mat2x4.inl
+
+1359678220 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 21 deferred shading with smoke working - copy (3)\glm\core\type_mat3x2.hpp
+	"type_mat.hpp"
+	"type_mat3x2.inl"
+
+1359678220 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 21 deferred shading with smoke working - copy (3)\glm\core\type_mat3x2.inl
+
+1359678220 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 21 deferred shading with smoke working - copy (3)\glm\core\type_mat3x3.hpp
+	"type_mat.hpp"
+	"type_mat3x3.inl"
+
+1359678220 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 21 deferred shading with smoke working - copy (3)\glm\core\type_mat3x3.inl
+
+1359678220 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 21 deferred shading with smoke working - copy (3)\glm\core\type_mat3x4.hpp
+	"type_mat.hpp"
+	"type_mat3x4.inl"
+
+1359678220 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 21 deferred shading with smoke working - copy (3)\glm\core\type_mat3x4.inl
+
+1359678220 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 21 deferred shading with smoke working - copy (3)\glm\core\type_mat4x2.hpp
+	"type_mat.hpp"
+	"type_mat4x2.inl"
+
+1359678220 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 21 deferred shading with smoke working - copy (3)\glm\core\type_mat4x2.inl
+
+1359678220 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 21 deferred shading with smoke working - copy (3)\glm\core\type_mat4x3.hpp
+	"type_mat.hpp"
+	"type_mat4x3.inl"
+
+1359678220 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 21 deferred shading with smoke working - copy (3)\glm\core\type_mat4x3.inl
+
+1359678220 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 21 deferred shading with smoke working - copy (3)\glm\core\type_mat4x4.hpp
+	"type_mat.hpp"
+	"type_mat4x4.inl"
+
+1359678220 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 21 deferred shading with smoke working - copy (3)\glm\core\type_mat4x4.inl
+
+1359678218 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 21 deferred shading with smoke working - copy (3)\glm\core\func_trigonometric.hpp
+	"func_trigonometric.inl"
+
+1359678218 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 21 deferred shading with smoke working - copy (3)\glm\core\func_trigonometric.inl
+
+1359678218 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 21 deferred shading with smoke working - copy (3)\glm\core\func_exponential.hpp
+	"func_exponential.inl"
+
+1359678218 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 21 deferred shading with smoke working - copy (3)\glm\core\func_exponential.inl
+
+1359678218 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 21 deferred shading with smoke working - copy (3)\glm\core\func_common.hpp
+	"_fixes.hpp"
+	"func_common.inl"
+
+1359678218 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 21 deferred shading with smoke working - copy (3)\glm\core\func_common.inl
+
+1359678218 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 21 deferred shading with smoke working - copy (3)\glm\core\func_packing.hpp
+	"func_packing.inl"
+
+1359678218 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 21 deferred shading with smoke working - copy (3)\glm\core\func_packing.inl
+
+1359678218 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 21 deferred shading with smoke working - copy (3)\glm\core\func_geometric.hpp
+	"func_geometric.inl"
+
+1359678218 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 21 deferred shading with smoke working - copy (3)\glm\core\func_geometric.inl
+
+1359678218 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 21 deferred shading with smoke working - copy (3)\glm\core\func_matrix.hpp
+	"func_matrix.inl"
+
+1359678218 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 21 deferred shading with smoke working - copy (3)\glm\core\func_matrix.inl
+
+1359678218 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 21 deferred shading with smoke working - copy (3)\glm\core\func_vector_relational.hpp
+	"_detail.hpp"
+	"func_vector_relational.inl"
+
+1359678218 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 21 deferred shading with smoke working - copy (3)\glm\core\func_vector_relational.inl
+
+1359678218 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 21 deferred shading with smoke working - copy (3)\glm\core\func_integer.hpp
+	"func_integer.inl"
+
+1359678218 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 21 deferred shading with smoke working - copy (3)\glm\core\func_integer.inl
+	<intrin.h>
+
+1359678218 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 21 deferred shading with smoke working - copy (3)\glm\core\func_noise.hpp
+	"func_noise.inl"
+
+1359678218 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 21 deferred shading with smoke working - copy (3)\glm\core\func_noise.inl
+
+1411151009 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 21 deferred shading with smoke working - copy (3)\particle.h
+	"glm/glm.hpp"
+	<cstdlib>
+	<stdint.h>
+	<vector>
+
+1403655018 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 21 deferred shading with smoke working - copy (3)\random.h
+
+1413064622 source:d:\martin\programming\c and c++\sdl\explosion generator 2015 01 21 deferred shading with smoke working - copy (3)\collisiondetection_hgrid_new.cpp
+	"CollisionDetection_HGrid_new.h"
+
+1411406087 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 21 deferred shading with smoke working - copy (3)\collisiondetection_hgrid_new.h
+	"CollisionDetection_Interface.h"
+	"Particle.h"
+	"glm/glm.hpp"
+	<cstdlib>
+	<vector>
+	<stdint.h>
+	<iostream>
+	<algorithm>
+	<unordered_map>
+	<string>
+	<typeinfo>
+	<bitset>
+	<math.h>
+	"Random.h"
+	"gl/gl.h"
+	"gl/glu.h"
+
+1416814733 source:d:\martin\programming\c and c++\sdl\explosion generator 2015 01 21 deferred shading with smoke working - copy (3)\eg_camera\eg_camera.cpp
+	"EG_Camera.h"
+
+1419238170 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 21 deferred shading with smoke working - copy (3)\eg_camera\eg_camera.h
+	<GL/glew.h>
+	<cmath>
+	<iostream>
+	<SDL/SDL.h>
+	"pipeline.h"
+	"define.h"
+	"glm/glm.hpp"
+	"glm/gtc/matrix_transform.hpp"
+	"glm/gtx/transform.hpp"
+	"glm/gtc/quaternion.hpp"
+	"glm/gtx/quaternion.hpp"
+
+1421246092 source:d:\martin\programming\c and c++\sdl\explosion generator 2015 01 21 deferred shading with smoke working - copy (3)\eg_camera\eg_firstpersonpovcamera.cpp
+	"EG_FirstPersonPovCamera.h"
+
+1419561591 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 21 deferred shading with smoke working - copy (3)\eg_camera\eg_firstpersonpovcamera.h
+	<cmath>
+	<iostream>
+	<SDL/SDL.h>
+	"pipeline.h"
+	"gl/gl.h"
+	"gl/glu.h"
+	"define.h"
+
+1421339223 source:d:\martin\programming\c and c++\sdl\explosion generator 2015 01 21 deferred shading with smoke working - copy (3)\eg_camera\eg_thirdpersonpovcamera.cpp
+	"EG_ThirdPersonPovCamera.h"
+
+1421936947 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 21 deferred shading with smoke working - copy (3)\eg_camera\eg_thirdpersonpovcamera.h
+	<GL/glew.h>
+	"EG_Camera.h"
+	"EG_Skybox.h"
+	"sceneLoader.h"
+	<cmath>
+	<iostream>
+	<SDL/SDL.h>
+	"pipeline.h"
+	"define.h"
+	"glm/glm.hpp"
+	"glm/gtc/matrix_transform.hpp"
+	"glm/gtx/transform.hpp"
+	"glm/gtc/quaternion.hpp"
+	"glm/gtx/quaternion.hpp"
+	"EG_RenderTechnique.h"
+
+1421868820 source:d:\martin\programming\c and c++\sdl\explosion generator 2015 01 21 deferred shading with smoke working - copy (3)\eg_gbuffer.cpp
+	"EG_GBuffer.h"
+
+1421866816 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 21 deferred shading with smoke working - copy (3)\eg_gbuffer.h
+	"define.h"
+	<GL/glew.h>
+
+1419817464 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 21 deferred shading with smoke working - copy (3)\define.h
+	<string>
+	<iostream>
+	<ctime>
+	<vector>
+	<map>
+	<math.h>
+	"glm/glm.hpp"
+	"glm/gtc/type_ptr.hpp"
+	"glm/gtc/quaternion.hpp"
+	"glm/gtx/vector_angle.hpp"
+	"glm/gtx/compatibility.hpp"
+	"glm/gtx/matrix_operation.hpp"
+	"glm/gtx/transform.hpp"
+	"glm/gtx/quaternion.hpp"
+	"glm/gtx/euler_angles.hpp"
+	"glm/gtx/norm.hpp"
+	"SOIL.h"
+
+1359678220 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 21 deferred shading with smoke working - copy (3)\glm\gtc\type_ptr.hpp
+	"../glm.hpp"
+	"../gtc/half_float.hpp"
+	"../gtc/quaternion.hpp"
+	<cstring>
+	"type_ptr.inl"
+
+1359678220 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 21 deferred shading with smoke working - copy (3)\glm\gtc\half_float.hpp
+	"../glm.hpp"
+	"half_float.inl"
+
+1359678220 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 21 deferred shading with smoke working - copy (3)\glm\gtc\half_float.inl
+
+1359678220 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 21 deferred shading with smoke working - copy (3)\glm\gtc\quaternion.hpp
+	"../glm.hpp"
+	"../gtc/half_float.hpp"
+	"../gtc/constants.hpp"
+	"quaternion.inl"
+
+1359678220 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 21 deferred shading with smoke working - copy (3)\glm\gtc\constants.hpp
+	"../glm.hpp"
+	"../gtc/half_float.hpp"
+	"constants.inl"
+
+1359678220 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 21 deferred shading with smoke working - copy (3)\glm\gtc\constants.inl
+
+1359678220 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 21 deferred shading with smoke working - copy (3)\glm\gtc\quaternion.inl
+	<limits>
+
+1359678220 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 21 deferred shading with smoke working - copy (3)\glm\gtc\type_ptr.inl
+
+1359678224 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 21 deferred shading with smoke working - copy (3)\glm\gtx\vector_angle.hpp
+	"../glm.hpp"
+	"../gtc/epsilon.hpp"
+	"../gtx/quaternion.hpp"
+	"../gtx/rotate_vector.hpp"
+	"vector_angle.inl"
+
+1359678220 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 21 deferred shading with smoke working - copy (3)\glm\gtc\epsilon.hpp
+	"../glm.hpp"
+	"../gtc/half_float.hpp"
+	"../gtc/quaternion.hpp"
+	"epsilon.inl"
+
+1359678220 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 21 deferred shading with smoke working - copy (3)\glm\gtc\epsilon.inl
+
+1359678222 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 21 deferred shading with smoke working - copy (3)\glm\gtx\quaternion.hpp
+	"../glm.hpp"
+	"../gtc/quaternion.hpp"
+	"quaternion.inl"
+
+1359678222 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 21 deferred shading with smoke working - copy (3)\glm\gtx\quaternion.inl
+	<limits>
+
+1359678222 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 21 deferred shading with smoke working - copy (3)\glm\gtx\rotate_vector.hpp
+	"../glm.hpp"
+	"../gtx/transform.hpp"
+	"rotate_vector.inl"
+
+1359678222 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 21 deferred shading with smoke working - copy (3)\glm\gtx\transform.hpp
+	"../glm.hpp"
+	"../gtc/matrix_transform.hpp"
+	"transform.inl"
+
+1359678220 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 21 deferred shading with smoke working - copy (3)\glm\gtc\matrix_transform.hpp
+	"../glm.hpp"
+	"matrix_transform.inl"
+
+1359678220 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 21 deferred shading with smoke working - copy (3)\glm\gtc\matrix_transform.inl
+
+1359678222 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 21 deferred shading with smoke working - copy (3)\glm\gtx\transform.inl
+
+1359678222 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 21 deferred shading with smoke working - copy (3)\glm\gtx\rotate_vector.inl
+
+1359678224 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 21 deferred shading with smoke working - copy (3)\glm\gtx\vector_angle.inl
+
+1359678220 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 21 deferred shading with smoke working - copy (3)\glm\gtx\compatibility.hpp
+	"../glm.hpp"
+	"../gtc/half_float.hpp"
+	"../gtc/quaternion.hpp"
+	<cfloat>
+	<cmath>
+	"compatibility.inl"
+
+1359678220 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 21 deferred shading with smoke working - copy (3)\glm\gtx\compatibility.inl
+
+1359678222 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 21 deferred shading with smoke working - copy (3)\glm\gtx\matrix_operation.hpp
+	"../glm.hpp"
+	"matrix_operation.inl"
+
+1359678222 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 21 deferred shading with smoke working - copy (3)\glm\gtx\matrix_operation.inl
+
+1359678222 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 21 deferred shading with smoke working - copy (3)\glm\gtx\euler_angles.hpp
+	"../glm.hpp"
+	"../gtc/half_float.hpp"
+	"euler_angles.inl"
+
+1359678222 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 21 deferred shading with smoke working - copy (3)\glm\gtx\euler_angles.inl
+
+1359678222 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 21 deferred shading with smoke working - copy (3)\glm\gtx\norm.hpp
+	"../glm.hpp"
+	"../gtx/quaternion.hpp"
+	"norm.inl"
+
+1359678222 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 21 deferred shading with smoke working - copy (3)\glm\gtx\norm.inl
+
+1421852437 source:d:\martin\programming\c and c++\sdl\explosion generator 2015 01 21 deferred shading with smoke working - copy (3)\eg_light\eg_alllights.cpp
+	"EG_AllLights.h"
+
+1421399580 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 21 deferred shading with smoke working - copy (3)\eg_light\eg_alllights.h
+	<cstdlib>
+	<iostream>
+	<stdio.h>
+	<string>
+	<sstream>
+	<vector>
+	"define.h"
+	"EG_DirectionalLight.h"
+	"EG_PointLight.h"
+	"EG_SpotLight.h"
+
+1420699886 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 21 deferred shading with smoke working - copy (3)\eg_light\eg_directionallight.h
+	"define.h"
+	"EG_BaseLight.h"
+
+1421865917 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 21 deferred shading with smoke working - copy (3)\eg_light\eg_baselight.h
+	"define.h"
+
+1421081649 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 21 deferred shading with smoke working - copy (3)\eg_light\eg_pointlight.h
+	"define.h"
+	"EG_BaseLight.h"
+
+1421081661 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 21 deferred shading with smoke working - copy (3)\eg_light\eg_spotlight.h
+	"define.h"
+	"EG_BaseLight.h"
+	"EG_PointLight.h"
+
+1420698836 source:d:\martin\programming\c and c++\sdl\explosion generator 2015 01 21 deferred shading with smoke working - copy (3)\eg_light\eg_baselight.cpp
+	"EG_BaseLight.h"
+
+1420699208 source:d:\martin\programming\c and c++\sdl\explosion generator 2015 01 21 deferred shading with smoke working - copy (3)\eg_light\eg_directionallight.cpp
+	"EG_DirectionalLight.h"
+
+1421081609 source:d:\martin\programming\c and c++\sdl\explosion generator 2015 01 21 deferred shading with smoke working - copy (3)\eg_light\eg_pointlight.cpp
+	"EG_PointLight.h"
+
+1421081666 source:d:\martin\programming\c and c++\sdl\explosion generator 2015 01 21 deferred shading with smoke working - copy (3)\eg_light\eg_spotlight.cpp
+	"EG_SpotLight.h"
+
+1421967701 source:d:\martin\programming\c and c++\sdl\explosion generator 2015 01 21 deferred shading with smoke working - copy (3)\eg_main.cpp
+	"EG_Main.h"
+	"gl/gl.h"
+	"gl/glu.h"
+	"SDL\SDL.h"
+
+1421969300 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 21 deferred shading with smoke working - copy (3)\eg_main.h
+	<cstdlib>
+	<iostream>
+	<stdio.h>
+	<string>
+	<sstream>
+	"define.h"
+	"EG_PointLight.h"
+	"EG_SpotLight.h"
+	"EG_DirectionalLight.h"
+	"EG_AllLights.h"
+	"EG_DeferredShadingGeometryPass.h"
+	"EG_DeferredShadingSkybox.h"
+	"EG_DeferredShadingReflection.h"
+	"EG_DeferredShadingStencilPass.h"
+	"EG_DeferredShadingPointLightPass.h"
+	"EG_DeferredShadingDirectionalLightPass.h"
+	"EG_Camera.h"
+	"EG_FirstPersonPovCamera.h"
+	"EG_ThirdPersonPovCamera.h"
+	"EG_DeferredShading.h"
+	"EG_GBuffer.h"
+	"EG_utility.h"
+	"EG_Skybox.h"
+	"EG_Shader.h"
+	"sceneLoader.h"
+	"EG_Technique_DepthTexture_Render.h"
+	"EG_Technique_TwoPass_RayCasting.h"
+	"EG_Technique_Shadow_Render.h"
+	"EG_Technique_Reflection.h"
+	"EG_RenderTechniqueRenderTexture.h"
+	"EG_WorldAxis.h"
+	"EG_WorldBox.h"
+	"EG_WorldSphere.h"
+	"EG_WorldReflectiveSphere.h"
+	"EG_Quad.h"
+	"pipeline.h"
+	"L_SphereParticleEffect.h"
+	"L_Cube_Sphere_ParticleEffect.h"
+	<GL/glew.h>
+	"SDL/SDL_opengl.h"
+	"SDL/SDL.h"
+	"SDL/SDL_image.h"
+	"ElapsedTime.h"
+	"L_ParticleEffect_Interface.h"
+	"EG_Smoke.h"
+	"CollisionDetection_HGrid.h"
+
+1420554003 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 21 deferred shading with smoke working - copy (3)\eg_utility.h
+	<cstdlib>
+	<vector>
+	<iostream>
+	<sstream>
+	<string>
+	<algorithm>
+	<fstream>
+	<cstdio>
+	<GL/glew.h>
+	"EG_Shader.h"
+	<GL/glew.h>
+	"SDL/SDL.h"
+	"SDL/SDL_image.h"
+
+1419236633 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 21 deferred shading with smoke working - copy (3)\eg_shader.h
+	<GL/glew.h>
+	<string>
+	<vector>
+	<fstream>
+	<iostream>
+	<stdio.h>
+
+1421302638 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 21 deferred shading with smoke working - copy (3)\sceneloader.h
+	<vector>
+	<assimp/cimport.h>
+	<assimp/scene.h>
+	<assimp/postprocess.h>
+	<SDL/SDL_image.h>
+	"mesh.h"
+
+1421302535 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 21 deferred shading with smoke working - copy (3)\mesh.h
+	<iostream>
+	"meshData.h"
+	<GL/glew.h>
+	"SDL/SDL_opengl.h"
+	<vector>
+	<string>
+
+1421301257 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 21 deferred shading with smoke working - copy (3)\meshdata.h
+	"define.h"
+
+1416849218 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 21 deferred shading with smoke working - copy (3)\pipeline.h
+	<iostream>
+	<vector>
+	"define.h"
+	"glm/glm.hpp"
+	"glm/gtc/matrix_transform.hpp"
+	"glm/gtx/transform.hpp"
+	"glm/gtc/quaternion.hpp"
+	"glm/gtx/quaternion.hpp"
+	<GL/glew.h>
+	<iostream>
+	<vector>
+	"glm/glm.hpp"
+	"glm/gtc/matrix_transform.hpp"
+	"glm/gtx/transform.hpp"
+	<GL/glew.h>
+
+1421336442 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 21 deferred shading with smoke working - copy (3)\l_sphereparticleeffect.h
+	"pipeline.h"
+	"EG_RenderTechnique.h"
+	"EG_Technique_Shadow_Render.h"
+	"EG_Technique_TwoPass_RayCasting.h"
+	"sceneLoader.h"
+	"L_ParticleEffect_Interface.h"
+	<cstdlib>
+	<iostream>
+	<algorithm>
+	"CollisionDetection_HGrid.h"
+	"Random.h"
+
+1411324028 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 21 deferred shading with smoke working - copy (3)\l_particleeffect_interface.h
+	"Particle.h"
+	<cstdlib>
+	<cstdlib>
+	<vector>
+	<iostream>
+	<sstream>
+	<string>
+	<algorithm>
+	<fstream>
+	<cstdio>
+	"glm/glm.hpp"
+
+1419238737 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 21 deferred shading with smoke working - copy (3)\l_cube_sphere_particleeffect.h
+	<GL/glew.h>
+	"EG_WorldBox.h"
+	"EG_WorldSphere.h"
+	"pipeline.h"
+	"sceneLoader.h"
+	"L_ParticleEffect_Interface.h"
+	<cstdlib>
+	<iostream>
+	<algorithm>
+	"CollisionDetection_HGrid_new.h"
+	"Random.h"
+
+1413931435 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 21 deferred shading with smoke working - copy (3)\elapsedtime.h
+
+1421416399 source:d:\martin\programming\c and c++\sdl\explosion generator 2015 01 21 deferred shading with smoke working - copy (3)\eg_rendertechniques\eg_deferredshading\eg_deferredshading.cpp
+	"EG_DeferredShading.h"
+
+1421417021 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 21 deferred shading with smoke working - copy (3)\eg_rendertechniques\eg_deferredshading\eg_deferredshading.h
+	"EG_RenderTechnique.h"
+
+1421867789 source:d:\martin\programming\c and c++\sdl\explosion generator 2015 01 21 deferred shading with smoke working - copy (3)\eg_rendertechniques\eg_deferredshading\eg_deferredshadinggeometrypass.cpp
+	"EG_DeferredShadingGeometryPass.h"
+
+1421396250 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 21 deferred shading with smoke working - copy (3)\eg_rendertechniques\eg_deferredshading\eg_deferredshadinggeometrypass.h
+	"EG_RenderTechnique.h"
+
+1421421389 source:d:\martin\programming\c and c++\sdl\explosion generator 2015 01 21 deferred shading with smoke working - copy (3)\eg_rendertechniques\eg_deferredshading\eg_deferredshadingreflection.cpp
+	"EG_DeferredShadingReflection.h"
+
+1421420549 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 21 deferred shading with smoke working - copy (3)\eg_rendertechniques\eg_deferredshading\eg_deferredshadingreflection.h
+	"EG_DeferredShading.h"
+
+1421416857 source:d:\martin\programming\c and c++\sdl\explosion generator 2015 01 21 deferred shading with smoke working - copy (3)\eg_rendertechniques\eg_deferredshading\eg_deferredshadingskybox.cpp
+	"EG_DeferredShadingSkybox.h"
+
+1421417081 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 21 deferred shading with smoke working - copy (3)\eg_rendertechniques\eg_deferredshading\eg_deferredshadingskybox.h
+	"EG_DeferredShading.h"
+
+1421415825 source:d:\martin\programming\c and c++\sdl\explosion generator 2015 01 21 deferred shading with smoke working - copy (3)\eg_rendertechniques\eg_deferredshading\eg_deferredshadingstencilpass.cpp
+	"EG_DeferredShadingStencilPass.h"
+
+1421415817 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 21 deferred shading with smoke working - copy (3)\eg_rendertechniques\eg_deferredshading\eg_deferredshadingstencilpass.h
+	"EG_RenderTechnique.h"
+
+1421969584 source:d:\martin\programming\c and c++\sdl\explosion generator 2015 01 21 deferred shading with smoke working - copy (3)\eg_rendertechniques\eg_deferredshadinglightpass\eg_deferredshadingdirectionallightpass.cpp
+	"EG_DeferredShadingDirectionalLightPass.h"
+
+1421967427 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 21 deferred shading with smoke working - copy (3)\eg_rendertechniques\eg_deferredshadinglightpass\eg_deferredshadingdirectionallightpass.h
+	"EG_DirectionalLight.h"
+	"EG_DeferredShadingLightPass.h"
+
+1421396553 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 21 deferred shading with smoke working - copy (3)\eg_rendertechniques\eg_deferredshadinglightpass\eg_deferredshadinglightpass.h
+	"EG_RenderTechnique.h"
+
+1421416507 source:d:\martin\programming\c and c++\sdl\explosion generator 2015 01 21 deferred shading with smoke working - copy (3)\eg_rendertechniques\eg_deferredshadinglightpass\eg_deferredshadinglightpass.cpp
+	"EG_DeferredShadingLightPass.h"
+
+1421938959 source:d:\martin\programming\c and c++\sdl\explosion generator 2015 01 21 deferred shading with smoke working - copy (3)\eg_rendertechniques\eg_deferredshadinglightpass\eg_deferredshadingpointlightpass.cpp
+	"EG_DeferredShadingPointLightPass.h"
+
+1421939063 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 21 deferred shading with smoke working - copy (3)\eg_rendertechniques\eg_deferredshadinglightpass\eg_deferredshadingpointlightpass.h
+	"EG_PointLight.h"
+	"EG_DeferredShadingLightPass.h"
+
+1421938554 source:d:\martin\programming\c and c++\sdl\explosion generator 2015 01 21 deferred shading with smoke working - copy (3)\eg_rendertechniques\eg_rendertechnique.cpp
+	"EG_RenderTechnique.h"
+
+1421159396 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 21 deferred shading with smoke working - copy (3)\eg_rendertechniques\eg_rendertechnique.h
+	"define.h"
+	"EG_Shader.h"
+	"pipeline.h"
+
+1421966452 source:d:\martin\programming\c and c++\sdl\explosion generator 2015 01 21 deferred shading with smoke working - copy (3)\eg_rendertechniques\eg_rendertechniquerendertexture.cpp
+	"EG_RenderTechniqueRenderTexture.h"
+
+1421966340 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 21 deferred shading with smoke working - copy (3)\eg_rendertechniques\eg_rendertechniquerendertexture.h
+	"pipeline.h"
+	<GL/glew.h>
+	<cstdlib>
+	<iostream>
+	<stdio.h>
+	<string>
+	<sstream>
+	"EG_Quad.h"
+	"EG_RenderTechnique.h"
+
+1419849068 source:d:\martin\programming\c and c++\sdl\explosion generator 2015 01 21 deferred shading with smoke working - copy (3)\eg_rendertechniques\eg_technique_depthtexture_render.cpp
+	"EG_Technique_DepthTexture_Render.h"
+
+1420558063 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 21 deferred shading with smoke working - copy (3)\eg_rendertechniques\eg_technique_depthtexture_render.h
+	"pipeline.h"
+	<GL/glew.h>
+	<cstdlib>
+	<iostream>
+	<stdio.h>
+	<string>
+	<sstream>
+	"EG_RenderTechnique.h"
+
+1419849087 source:d:\martin\programming\c and c++\sdl\explosion generator 2015 01 21 deferred shading with smoke working - copy (3)\eg_rendertechniques\eg_technique_reflection.cpp
+	"EG_Technique_Reflection.h"
+
+1420698524 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 21 deferred shading with smoke working - copy (3)\eg_rendertechniques\eg_technique_reflection.h
+	"pipeline.h"
+	<GL/glew.h>
+	<cstdlib>
+	<iostream>
+	<stdio.h>
+	<string>
+	<sstream>
+	"EG_RenderTechnique.h"
+
+1420701583 source:d:\martin\programming\c and c++\sdl\explosion generator 2015 01 21 deferred shading with smoke working - copy (3)\eg_rendertechniques\eg_technique_shadow_render.cpp
+	"EG_Technique_Shadow_Render.h"
+
+1420701589 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 21 deferred shading with smoke working - copy (3)\eg_rendertechniques\eg_technique_shadow_render.h
+	"pipeline.h"
+	<GL/glew.h>
+	<cstdlib>
+	<iostream>
+	<stdio.h>
+	<string>
+	<sstream>
+	"EG_RenderTechnique.h"
+
+1421955313 source:d:\martin\programming\c and c++\sdl\explosion generator 2015 01 21 deferred shading with smoke working - copy (3)\eg_rendertechniques\eg_technique_twopass_raycasting.cpp
+	"EG_Technique_TwoPass_RayCasting.h"
+
+1420558077 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 21 deferred shading with smoke working - copy (3)\eg_rendertechniques\eg_technique_twopass_raycasting.h
+	"Smoke_struct.h"
+	"pipeline.h"
+	<GL/glew.h>
+	<cstdlib>
+	<iostream>
+	<stdio.h>
+	<string>
+	<sstream>
+	"EG_RenderTechnique.h"
+
+1419539489 source:d:\martin\programming\c and c++\sdl\explosion generator 2015 01 21 deferred shading with smoke working - copy (3)\eg_shader.cpp
+	"EG_Shader.h"
+	<stdio.h>
+	<string.h>
+
+1419236356 source:d:\martin\programming\c and c++\sdl\explosion generator 2015 01 21 deferred shading with smoke working - copy (3)\eg_utility.cpp
+	"EG_Utility.h"
+
+1421846118 source:d:\martin\programming\c and c++\sdl\explosion generator 2015 01 21 deferred shading with smoke working - copy (3)\eg_worldobjects\eg_quad.cpp
+	"EG_Quad.h"
+
+1421846098 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 21 deferred shading with smoke working - copy (3)\eg_worldobjects\eg_quad.h
+	"sceneLoader.h"
+
+1421961284 source:d:\martin\programming\c and c++\sdl\explosion generator 2015 01 21 deferred shading with smoke working - copy (3)\eg_worldobjects\eg_skybox.cpp
+	"EG_Skybox.h"
+
+1421942481 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 21 deferred shading with smoke working - copy (3)\eg_worldobjects\eg_skybox.h
+	<cstdlib>
+	<vector>
+	<iostream>
+	<sstream>
+	<string>
+	<algorithm>
+	<fstream>
+	<cstdio>
+	"EG_utility.h"
+	"EG_Shader.h"
+	"sceneLoader.h"
+	"pipeline.h"
+	"EG_RenderTechnique.h"
+	<GL/glew.h>
+	"SDL/SDL.h"
+	"SDL/SDL_image.h"
+
+1419539796 source:d:\martin\programming\c and c++\sdl\explosion generator 2015 01 21 deferred shading with smoke working - copy (3)\eg_worldobjects\eg_smoke.cpp
+	"EG_Smoke.h"
+
+1420458903 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 21 deferred shading with smoke working - copy (3)\eg_worldobjects\eg_smoke.h
+	"EG_Shader.h"
+	"EG_Technique_TwoPass_RayCasting.h"
+	"Smoke_struct.h"
+	<GL/glew.h>
+	<vector>
+	<iostream>
+	<sstream>
+	<string>
+	<algorithm>
+	<fstream>
+	<cstdio>
+	"L_ParticleEffect_Interface.h"
+	"define.h"
+
+1421335992 source:d:\martin\programming\c and c++\sdl\explosion generator 2015 01 21 deferred shading with smoke working - copy (3)\eg_worldobjects\eg_worldaxis.cpp
+	"EG_WorldAxis.h"
+
+1421335605 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 21 deferred shading with smoke working - copy (3)\eg_worldobjects\eg_worldaxis.h
+	<iostream>
+	<cstdlib>
+	"pipeline.h"
+	"mesh.h"
+	"sceneLoader.h"
+	"EG_RenderTechnique.h"
+
+1419238412 source:d:\martin\programming\c and c++\sdl\explosion generator 2015 01 21 deferred shading with smoke working - copy (3)\eg_worldobjects\eg_worldbox.cpp
+	"EG_WorldBox.h"
+
+1419238415 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 21 deferred shading with smoke working - copy (3)\eg_worldobjects\eg_worldbox.h
+	"EG_WorldObject.h"
+	<iostream>
+	<cstdlib>
+
+1421424886 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 21 deferred shading with smoke working - copy (3)\eg_worldobjects\eg_worldobject.h
+	"glm/glm.hpp"
+	"glm/gtc/matrix_transform.hpp"
+	"glm/gtx/transform.hpp"
+	<cstdlib>
+	<stdint.h>
+	<vector>
+	"Particle.h"
+
+1421424875 source:d:\martin\programming\c and c++\sdl\explosion generator 2015 01 21 deferred shading with smoke working - copy (3)\eg_worldobjects\eg_worldobject.cpp
+	"EG_WorldObject.h"
+
+1421425463 source:d:\martin\programming\c and c++\sdl\explosion generator 2015 01 21 deferred shading with smoke working - copy (3)\eg_worldobjects\eg_worldreflectivesphere.cpp
+	"EG_WorldReflectiveSphere.h"
+
+1421425372 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 21 deferred shading with smoke working - copy (3)\eg_worldobjects\eg_worldreflectivesphere.h
+	"EG_WorldSphere.h"
+	"pipeline.h"
+	"sceneLoader.h"
+	"EG_DeferredShadingReflection.h"
+
+1421425152 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 21 deferred shading with smoke working - copy (3)\eg_worldobjects\eg_worldsphere.h
+	"EG_WorldObject.h"
+
+1421425158 source:d:\martin\programming\c and c++\sdl\explosion generator 2015 01 21 deferred shading with smoke working - copy (3)\eg_worldobjects\eg_worldsphere.cpp
+	"EG_WorldSphere.h"
+
+1409357051 source:d:\martin\programming\c and c++\sdl\explosion generator 2015 01 21 deferred shading with smoke working - copy (3)\elapsedtime.cpp
+	"define.h"
+	"ElapsedTime.h"
+	<algorithm>
+
+1411638663 source:d:\martin\programming\c and c++\sdl\explosion generator 2015 01 21 deferred shading with smoke working - copy (3)\l_cube_sphere_particleeffect.cpp
+	"L_Cube_Sphere_ParticleEffect.h"
+
+1421336480 source:d:\martin\programming\c and c++\sdl\explosion generator 2015 01 21 deferred shading with smoke working - copy (3)\l_sphereparticleeffect.cpp
+	"L_SphereParticleEffect.h"
+	"gl/gl.h"
+	"gl/glu.h"
+
+1421302963 source:d:\martin\programming\c and c++\sdl\explosion generator 2015 01 21 deferred shading with smoke working - copy (3)\mesh.cpp
+	"mesh.h"
+
+1416849279 source:d:\martin\programming\c and c++\sdl\explosion generator 2015 01 21 deferred shading with smoke working - copy (3)\pipeline.cpp
+	"pipeline.h"
+	"glm/gtx/quaternion.hpp"
+	"pipeline.h"
+	"pipeline.h"
+
+1421302693 source:d:\martin\programming\c and c++\sdl\explosion generator 2015 01 21 deferred shading with smoke working - copy (3)\sceneloader.cpp
+	"sceneLoader.h"
 
 1419235118 source:d:\martin\programming\c and c++\sdl\explosion generator 2015 01 22 deferred shading (working smoke, unfinished reflection)\collisiondetection_hgrid.cpp
 	"CollisionDetection_HGrid.h"
@@ -31432,160 +32348,6 @@
 1421081666 source:d:\martin\programming\c and c++\sdl\explosion generator 2015 01 22 deferred shading (working smoke, unfinished reflection)\eg_light\eg_spotlight.cpp
 	"EG_SpotLight.h"
 
-1421943580 source:d:\martin\programming\c and c++\sdl\explosion generator 2015 01 22 deferred shading (working smoke, unfinished reflection)\eg_main.cpp
-	"EG_Main.h"
-	"gl/gl.h"
-	"gl/glu.h"
-	"SDL\SDL.h"
-
-1421943169 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 22 deferred shading (working smoke, unfinished reflection)\eg_main.h
-	<cstdlib>
-	<iostream>
-	<stdio.h>
-	<string>
-	<sstream>
-	"define.h"
-	"EG_PointLight.h"
-	"EG_SpotLight.h"
-	"EG_DirectionalLight.h"
-	"EG_AllLights.h"
-	"EG_DeferredShadingGeometryPass.h"
-	"EG_DeferredShadingSkybox.h"
-	"EG_DeferredShadingReflection.h"
-	"EG_DeferredShadingStencilPass.h"
-	"EG_DeferredShadingPointLightPass.h"
-	"EG_DeferredShadingDirectionalLightPass.h"
-	"EG_Camera.h"
-	"EG_FirstPersonPovCamera.h"
-	"EG_ThirdPersonPovCamera.h"
-	"EG_DeferredShading.h"
-	"EG_GBuffer.h"
-	"EG_utility.h"
-	"EG_Skybox.h"
-	"EG_Shader.h"
-	"sceneLoader.h"
-	"EG_Technique_DepthTexture_Render.h"
-	"EG_Technique_TwoPass_RayCasting.h"
-	"EG_Technique_Shadow_Render.h"
-	"EG_Technique_Reflection.h"
-	"EG_RenderTechniqueRenderTexture.h"
-	"EG_WorldAxis.h"
-	"EG_WorldBox.h"
-	"EG_WorldSphere.h"
-	"EG_WorldReflectiveSphere.h"
-	"EG_Quad.h"
-	"pipeline.h"
-	"L_SphereParticleEffect.h"
-	"L_Cube_Sphere_ParticleEffect.h"
-	<GL/glew.h>
-	"SDL/SDL_opengl.h"
-	"SDL/SDL.h"
-	"SDL/SDL_image.h"
-	"ElapsedTime.h"
-	"L_ParticleEffect_Interface.h"
-	"EG_Smoke.h"
-	"CollisionDetection_HGrid.h"
-
-1420554003 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 22 deferred shading (working smoke, unfinished reflection)\eg_utility.h
-	<cstdlib>
-	<vector>
-	<iostream>
-	<sstream>
-	<string>
-	<algorithm>
-	<fstream>
-	<cstdio>
-	<GL/glew.h>
-	"EG_Shader.h"
-	<GL/glew.h>
-	"SDL/SDL.h"
-	"SDL/SDL_image.h"
-
-1419236633 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 22 deferred shading (working smoke, unfinished reflection)\eg_shader.h
-	<GL/glew.h>
-	<string>
-	<vector>
-	<fstream>
-	<iostream>
-	<stdio.h>
-
-1421302638 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 22 deferred shading (working smoke, unfinished reflection)\sceneloader.h
-	<vector>
-	<assimp/cimport.h>
-	<assimp/scene.h>
-	<assimp/postprocess.h>
-	<SDL/SDL_image.h>
-	"mesh.h"
-
-1421302535 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 22 deferred shading (working smoke, unfinished reflection)\mesh.h
-	<iostream>
-	"meshData.h"
-	<GL/glew.h>
-	"SDL/SDL_opengl.h"
-	<vector>
-	<string>
-
-1421301257 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 22 deferred shading (working smoke, unfinished reflection)\meshdata.h
-	"define.h"
-
-1416849218 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 22 deferred shading (working smoke, unfinished reflection)\pipeline.h
-	<iostream>
-	<vector>
-	"define.h"
-	"glm/glm.hpp"
-	"glm/gtc/matrix_transform.hpp"
-	"glm/gtx/transform.hpp"
-	"glm/gtc/quaternion.hpp"
-	"glm/gtx/quaternion.hpp"
-	<GL/glew.h>
-	<iostream>
-	<vector>
-	"glm/glm.hpp"
-	"glm/gtc/matrix_transform.hpp"
-	"glm/gtx/transform.hpp"
-	<GL/glew.h>
-
-1421336442 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 22 deferred shading (working smoke, unfinished reflection)\l_sphereparticleeffect.h
-	"pipeline.h"
-	"EG_RenderTechnique.h"
-	"EG_Technique_Shadow_Render.h"
-	"EG_Technique_TwoPass_RayCasting.h"
-	"sceneLoader.h"
-	"L_ParticleEffect_Interface.h"
-	<cstdlib>
-	<iostream>
-	<algorithm>
-	"CollisionDetection_HGrid.h"
-	"Random.h"
-
-1411324028 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 22 deferred shading (working smoke, unfinished reflection)\l_particleeffect_interface.h
-	"Particle.h"
-	<cstdlib>
-	<cstdlib>
-	<vector>
-	<iostream>
-	<sstream>
-	<string>
-	<algorithm>
-	<fstream>
-	<cstdio>
-	"glm/glm.hpp"
-
-1419238737 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 22 deferred shading (working smoke, unfinished reflection)\l_cube_sphere_particleeffect.h
-	<GL/glew.h>
-	"EG_WorldBox.h"
-	"EG_WorldSphere.h"
-	"pipeline.h"
-	"sceneLoader.h"
-	"L_ParticleEffect_Interface.h"
-	<cstdlib>
-	<iostream>
-	<algorithm>
-	"CollisionDetection_HGrid_new.h"
-	"Random.h"
-
-1413931435 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 22 deferred shading (working smoke, unfinished reflection)\elapsedtime.h
-
 1421416399 source:d:\martin\programming\c and c++\sdl\explosion generator 2015 01 22 deferred shading (working smoke, unfinished reflection)\eg_rendertechniques\eg_deferredshading\eg_deferredshading.cpp
 	"EG_DeferredShading.h"
 
@@ -31616,10 +32378,10 @@
 1421415817 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 22 deferred shading (working smoke, unfinished reflection)\eg_rendertechniques\eg_deferredshading\eg_deferredshadingstencilpass.h
 	"EG_RenderTechnique.h"
 
-1421899734 source:d:\martin\programming\c and c++\sdl\explosion generator 2015 01 22 deferred shading (working smoke, unfinished reflection)\eg_rendertechniques\eg_deferredshadinglightpass\eg_deferredshadingdirectionallightpass.cpp
+1421969584 source:d:\martin\programming\c and c++\sdl\explosion generator 2015 01 22 deferred shading (working smoke, unfinished reflection)\eg_rendertechniques\eg_deferredshadinglightpass\eg_deferredshadingdirectionallightpass.cpp
 	"EG_DeferredShadingDirectionalLightPass.h"
 
-1421899706 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 22 deferred shading (working smoke, unfinished reflection)\eg_rendertechniques\eg_deferredshadinglightpass\eg_deferredshadingdirectionallightpass.h
+1421967427 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 22 deferred shading (working smoke, unfinished reflection)\eg_rendertechniques\eg_deferredshadinglightpass\eg_deferredshadingdirectionallightpass.h
 	"EG_DirectionalLight.h"
 	"EG_DeferredShadingLightPass.h"
 
@@ -31644,10 +32406,10 @@
 	"EG_Shader.h"
 	"pipeline.h"
 
-1421901379 source:d:\martin\programming\c and c++\sdl\explosion generator 2015 01 22 deferred shading (working smoke, unfinished reflection)\eg_rendertechniques\eg_rendertechniquerendertexture.cpp
+1421966452 source:d:\martin\programming\c and c++\sdl\explosion generator 2015 01 22 deferred shading (working smoke, unfinished reflection)\eg_rendertechniques\eg_rendertechniquerendertexture.cpp
 	"EG_RenderTechniqueRenderTexture.h"
 
-1421901325 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 22 deferred shading (working smoke, unfinished reflection)\eg_rendertechniques\eg_rendertechniquerendertexture.h
+1421966340 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 22 deferred shading (working smoke, unfinished reflection)\eg_rendertechniques\eg_rendertechniquerendertexture.h
 	"pipeline.h"
 	<GL/glew.h>
 	<cstdlib>
@@ -31697,7 +32459,7 @@
 	<sstream>
 	"EG_RenderTechnique.h"
 
-1420807097 source:d:\martin\programming\c and c++\sdl\explosion generator 2015 01 22 deferred shading (working smoke, unfinished reflection)\eg_rendertechniques\eg_technique_twopass_raycasting.cpp
+1421955313 source:d:\martin\programming\c and c++\sdl\explosion generator 2015 01 22 deferred shading (working smoke, unfinished reflection)\eg_rendertechniques\eg_technique_twopass_raycasting.cpp
 	"EG_Technique_TwoPass_RayCasting.h"
 
 1420558077 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 22 deferred shading (working smoke, unfinished reflection)\eg_rendertechniques\eg_technique_twopass_raycasting.h
@@ -31716,8 +32478,31 @@
 	<stdio.h>
 	<string.h>
 
+1419236633 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 22 deferred shading (working smoke, unfinished reflection)\eg_shader.h
+	<GL/glew.h>
+	<string>
+	<vector>
+	<fstream>
+	<iostream>
+	<stdio.h>
+
 1419236356 source:d:\martin\programming\c and c++\sdl\explosion generator 2015 01 22 deferred shading (working smoke, unfinished reflection)\eg_utility.cpp
 	"EG_Utility.h"
+
+1420554003 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 22 deferred shading (working smoke, unfinished reflection)\eg_utility.h
+	<cstdlib>
+	<vector>
+	<iostream>
+	<sstream>
+	<string>
+	<algorithm>
+	<fstream>
+	<cstdio>
+	<GL/glew.h>
+	"EG_Shader.h"
+	<GL/glew.h>
+	"SDL/SDL.h"
+	"SDL/SDL_image.h"
 
 1421846118 source:d:\martin\programming\c and c++\sdl\explosion generator 2015 01 22 deferred shading (working smoke, unfinished reflection)\eg_worldobjects\eg_quad.cpp
 	"EG_Quad.h"
@@ -31725,7 +32510,7 @@
 1421846098 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 22 deferred shading (working smoke, unfinished reflection)\eg_worldobjects\eg_quad.h
 	"sceneLoader.h"
 
-1421943516 source:d:\martin\programming\c and c++\sdl\explosion generator 2015 01 22 deferred shading (working smoke, unfinished reflection)\eg_worldobjects\eg_skybox.cpp
+1421961284 source:d:\martin\programming\c and c++\sdl\explosion generator 2015 01 22 deferred shading (working smoke, unfinished reflection)\eg_worldobjects\eg_skybox.cpp
 	"EG_Skybox.h"
 
 1421942481 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 22 deferred shading (working smoke, unfinished reflection)\eg_worldobjects\eg_skybox.h
@@ -31815,13 +32600,90 @@
 	"ElapsedTime.h"
 	<algorithm>
 
+1413931435 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 22 deferred shading (working smoke, unfinished reflection)\elapsedtime.h
+
 1411638663 source:d:\martin\programming\c and c++\sdl\explosion generator 2015 01 22 deferred shading (working smoke, unfinished reflection)\l_cube_sphere_particleeffect.cpp
 	"L_Cube_Sphere_ParticleEffect.h"
+
+1419238737 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 22 deferred shading (working smoke, unfinished reflection)\l_cube_sphere_particleeffect.h
+	<GL/glew.h>
+	"EG_WorldBox.h"
+	"EG_WorldSphere.h"
+	"pipeline.h"
+	"sceneLoader.h"
+	"L_ParticleEffect_Interface.h"
+	<cstdlib>
+	<iostream>
+	<algorithm>
+	"CollisionDetection_HGrid_new.h"
+	"Random.h"
+
+1416849218 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 22 deferred shading (working smoke, unfinished reflection)\pipeline.h
+	<iostream>
+	<vector>
+	"define.h"
+	"glm/glm.hpp"
+	"glm/gtc/matrix_transform.hpp"
+	"glm/gtx/transform.hpp"
+	"glm/gtc/quaternion.hpp"
+	"glm/gtx/quaternion.hpp"
+	<GL/glew.h>
+	<iostream>
+	<vector>
+	"glm/glm.hpp"
+	"glm/gtc/matrix_transform.hpp"
+	"glm/gtx/transform.hpp"
+	<GL/glew.h>
+
+1421302638 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 22 deferred shading (working smoke, unfinished reflection)\sceneloader.h
+	<vector>
+	<assimp/cimport.h>
+	<assimp/scene.h>
+	<assimp/postprocess.h>
+	<SDL/SDL_image.h>
+	"mesh.h"
+
+1421302535 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 22 deferred shading (working smoke, unfinished reflection)\mesh.h
+	<iostream>
+	"meshData.h"
+	<GL/glew.h>
+	"SDL/SDL_opengl.h"
+	<vector>
+	<string>
+
+1421301257 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 22 deferred shading (working smoke, unfinished reflection)\meshdata.h
+	"define.h"
+
+1411324028 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 22 deferred shading (working smoke, unfinished reflection)\l_particleeffect_interface.h
+	"Particle.h"
+	<cstdlib>
+	<cstdlib>
+	<vector>
+	<iostream>
+	<sstream>
+	<string>
+	<algorithm>
+	<fstream>
+	<cstdio>
+	"glm/glm.hpp"
 
 1421336480 source:d:\martin\programming\c and c++\sdl\explosion generator 2015 01 22 deferred shading (working smoke, unfinished reflection)\l_sphereparticleeffect.cpp
 	"L_SphereParticleEffect.h"
 	"gl/gl.h"
 	"gl/glu.h"
+
+1421336442 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 22 deferred shading (working smoke, unfinished reflection)\l_sphereparticleeffect.h
+	"pipeline.h"
+	"EG_RenderTechnique.h"
+	"EG_Technique_Shadow_Render.h"
+	"EG_Technique_TwoPass_RayCasting.h"
+	"sceneLoader.h"
+	"L_ParticleEffect_Interface.h"
+	<cstdlib>
+	<iostream>
+	<algorithm>
+	"CollisionDetection_HGrid.h"
+	"Random.h"
 
 1421302963 source:d:\martin\programming\c and c++\sdl\explosion generator 2015 01 22 deferred shading (working smoke, unfinished reflection)\mesh.cpp
 	"mesh.h"
@@ -31834,4 +32696,2787 @@
 
 1421302693 source:d:\martin\programming\c and c++\sdl\explosion generator 2015 01 22 deferred shading (working smoke, unfinished reflection)\sceneloader.cpp
 	"sceneLoader.h"
+
+1419235118 source:d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (working smoke, unfinished reflection)\collisiondetection_hgrid.cpp
+	"CollisionDetection_HGrid.h"
+
+1419235098 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (working smoke, unfinished reflection)\collisiondetection_hgrid.h
+	"CollisionDetection_Interface.h"
+	"Particle.h"
+	"glm/glm.hpp"
+	<cstdlib>
+	<vector>
+	<stdint.h>
+	<iostream>
+	<algorithm>
+	<unordered_map>
+	<string>
+	<typeinfo>
+	<bitset>
+	<math.h>
+	"Random.h"
+	"gl/gl.h"
+	"gl/glu.h"
+
+1419238726 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (working smoke, unfinished reflection)\collisiondetection_interface.h
+	"glm/glm.hpp"
+	<cstdlib>
+	"EG_WorldBox.h"
+	"EG_WorldSphere.h"
+	"EG_WorldObject.h"
+
+1359678220 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (working smoke, unfinished reflection)\glm\glm.hpp
+	"core/_fixes.hpp"
+	<cmath>
+	<climits>
+	<cfloat>
+	<limits>
+	<cstdio>
+	"core/setup.hpp"
+	"./core/_detail.hpp"
+	"./core/_vectorize.hpp"
+	"./core/type.hpp"
+	"./core/func_trigonometric.hpp"
+	"./core/func_exponential.hpp"
+	"./core/func_common.hpp"
+	"./core/func_packing.hpp"
+	"./core/func_geometric.hpp"
+	"./core/func_matrix.hpp"
+	"./core/func_vector_relational.hpp"
+	"./core/func_integer.hpp"
+	"./core/func_noise.hpp"
+	"./core/_swizzle.hpp"
+
+1359678220 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (working smoke, unfinished reflection)\glm\core\_fixes.hpp
+	<cmath>
+
+1359678218 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (working smoke, unfinished reflection)\glm\core\setup.hpp
+	<intrin.h>
+	<immintrin.h>
+	<immintrin.h>
+	<smmintrin.h>
+	<pmmintrin.h>
+	<emmintrin.h>
+
+1359678220 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (working smoke, unfinished reflection)\glm\core\_detail.hpp
+	"setup.hpp"
+	<cassert>
+	<cstdint>
+
+1359678220 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (working smoke, unfinished reflection)\glm\core\_vectorize.hpp
+
+1359678218 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (working smoke, unfinished reflection)\glm\core\type.hpp
+	"type_half.hpp"
+	"type_float.hpp"
+	"type_int.hpp"
+	"type_gentype.hpp"
+	"type_vec1.hpp"
+	"type_vec2.hpp"
+	"type_vec3.hpp"
+	"type_vec4.hpp"
+	"type_mat2x2.hpp"
+	"type_mat2x3.hpp"
+	"type_mat2x4.hpp"
+	"type_mat3x2.hpp"
+	"type_mat3x3.hpp"
+	"type_mat3x4.hpp"
+	"type_mat4x2.hpp"
+	"type_mat4x3.hpp"
+	"type_mat4x4.hpp"
+
+1359678218 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (working smoke, unfinished reflection)\glm\core\type_half.hpp
+	<cstdlib>
+	"type_half.inl"
+
+1359678218 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (working smoke, unfinished reflection)\glm\core\type_half.inl
+	"_detail.hpp"
+
+1359678218 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (working smoke, unfinished reflection)\glm\core\type_float.hpp
+	"type_half.hpp"
+	"setup.hpp"
+
+1359678218 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (working smoke, unfinished reflection)\glm\core\type_int.hpp
+	"setup.hpp"
+	"_detail.hpp"
+
+1359678218 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (working smoke, unfinished reflection)\glm\core\type_gentype.hpp
+	"type_size.hpp"
+
+1359678220 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (working smoke, unfinished reflection)\glm\core\type_size.hpp
+	<cstdlib>
+
+1359678220 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (working smoke, unfinished reflection)\glm\core\type_vec1.hpp
+	"type_vec.hpp"
+	"type_float.hpp"
+	"type_int.hpp"
+	"type_size.hpp"
+	"_swizzle.hpp"
+	"type_vec1.inl"
+
+1359678220 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (working smoke, unfinished reflection)\glm\core\type_vec.hpp
+	"type_gentype.hpp"
+
+1359678220 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (working smoke, unfinished reflection)\glm\core\_swizzle.hpp
+	"_swizzle_func.hpp"
+
+1359678220 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (working smoke, unfinished reflection)\glm\core\_swizzle_func.hpp
+
+1359678220 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (working smoke, unfinished reflection)\glm\core\type_vec1.inl
+
+1359678220 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (working smoke, unfinished reflection)\glm\core\type_vec2.hpp
+	"type_vec.hpp"
+	"type_float.hpp"
+	"type_int.hpp"
+	"type_size.hpp"
+	"_swizzle.hpp"
+	"type_vec2.inl"
+
+1359678220 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (working smoke, unfinished reflection)\glm\core\type_vec2.inl
+
+1359678220 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (working smoke, unfinished reflection)\glm\core\type_vec3.hpp
+	"type_vec.hpp"
+	"type_float.hpp"
+	"type_int.hpp"
+	"type_size.hpp"
+	"_swizzle.hpp"
+	"type_vec3.inl"
+
+1359678220 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (working smoke, unfinished reflection)\glm\core\type_vec3.inl
+
+1359678220 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (working smoke, unfinished reflection)\glm\core\type_vec4.hpp
+	"type_vec.hpp"
+	"type_float.hpp"
+	"type_int.hpp"
+	"type_size.hpp"
+	"_swizzle.hpp"
+	"type_vec4.inl"
+
+1359678220 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (working smoke, unfinished reflection)\glm\core\type_vec4.inl
+
+1359678218 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (working smoke, unfinished reflection)\glm\core\type_mat2x2.hpp
+	"type_mat.hpp"
+	"type_mat2x2.inl"
+
+1359678218 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (working smoke, unfinished reflection)\glm\core\type_mat.hpp
+	"type_gentype.hpp"
+
+1359678218 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (working smoke, unfinished reflection)\glm\core\type_mat2x2.inl
+
+1359678218 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (working smoke, unfinished reflection)\glm\core\type_mat2x3.hpp
+	"type_mat.hpp"
+	"type_mat2x3.inl"
+
+1359678218 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (working smoke, unfinished reflection)\glm\core\type_mat2x3.inl
+
+1359678218 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (working smoke, unfinished reflection)\glm\core\type_mat2x4.hpp
+	"type_mat.hpp"
+	"type_mat2x4.inl"
+
+1359678218 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (working smoke, unfinished reflection)\glm\core\type_mat2x4.inl
+
+1359678220 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (working smoke, unfinished reflection)\glm\core\type_mat3x2.hpp
+	"type_mat.hpp"
+	"type_mat3x2.inl"
+
+1359678220 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (working smoke, unfinished reflection)\glm\core\type_mat3x2.inl
+
+1359678220 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (working smoke, unfinished reflection)\glm\core\type_mat3x3.hpp
+	"type_mat.hpp"
+	"type_mat3x3.inl"
+
+1359678220 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (working smoke, unfinished reflection)\glm\core\type_mat3x3.inl
+
+1359678220 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (working smoke, unfinished reflection)\glm\core\type_mat3x4.hpp
+	"type_mat.hpp"
+	"type_mat3x4.inl"
+
+1359678220 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (working smoke, unfinished reflection)\glm\core\type_mat3x4.inl
+
+1359678220 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (working smoke, unfinished reflection)\glm\core\type_mat4x2.hpp
+	"type_mat.hpp"
+	"type_mat4x2.inl"
+
+1359678220 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (working smoke, unfinished reflection)\glm\core\type_mat4x2.inl
+
+1359678220 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (working smoke, unfinished reflection)\glm\core\type_mat4x3.hpp
+	"type_mat.hpp"
+	"type_mat4x3.inl"
+
+1359678220 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (working smoke, unfinished reflection)\glm\core\type_mat4x3.inl
+
+1359678220 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (working smoke, unfinished reflection)\glm\core\type_mat4x4.hpp
+	"type_mat.hpp"
+	"type_mat4x4.inl"
+
+1359678220 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (working smoke, unfinished reflection)\glm\core\type_mat4x4.inl
+
+1359678218 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (working smoke, unfinished reflection)\glm\core\func_trigonometric.hpp
+	"func_trigonometric.inl"
+
+1359678218 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (working smoke, unfinished reflection)\glm\core\func_trigonometric.inl
+
+1359678218 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (working smoke, unfinished reflection)\glm\core\func_exponential.hpp
+	"func_exponential.inl"
+
+1359678218 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (working smoke, unfinished reflection)\glm\core\func_exponential.inl
+
+1359678218 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (working smoke, unfinished reflection)\glm\core\func_common.hpp
+	"_fixes.hpp"
+	"func_common.inl"
+
+1359678218 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (working smoke, unfinished reflection)\glm\core\func_common.inl
+
+1359678218 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (working smoke, unfinished reflection)\glm\core\func_packing.hpp
+	"func_packing.inl"
+
+1359678218 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (working smoke, unfinished reflection)\glm\core\func_packing.inl
+
+1359678218 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (working smoke, unfinished reflection)\glm\core\func_geometric.hpp
+	"func_geometric.inl"
+
+1359678218 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (working smoke, unfinished reflection)\glm\core\func_geometric.inl
+
+1359678218 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (working smoke, unfinished reflection)\glm\core\func_matrix.hpp
+	"func_matrix.inl"
+
+1359678218 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (working smoke, unfinished reflection)\glm\core\func_matrix.inl
+
+1359678218 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (working smoke, unfinished reflection)\glm\core\func_vector_relational.hpp
+	"_detail.hpp"
+	"func_vector_relational.inl"
+
+1359678218 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (working smoke, unfinished reflection)\glm\core\func_vector_relational.inl
+
+1359678218 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (working smoke, unfinished reflection)\glm\core\func_integer.hpp
+	"func_integer.inl"
+
+1359678218 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (working smoke, unfinished reflection)\glm\core\func_integer.inl
+	<intrin.h>
+
+1359678218 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (working smoke, unfinished reflection)\glm\core\func_noise.hpp
+	"func_noise.inl"
+
+1359678218 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (working smoke, unfinished reflection)\glm\core\func_noise.inl
+
+1411151009 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (working smoke, unfinished reflection)\particle.h
+	"glm/glm.hpp"
+	<cstdlib>
+	<stdint.h>
+	<vector>
+
+1403655018 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (working smoke, unfinished reflection)\random.h
+
+1413064622 source:d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (working smoke, unfinished reflection)\collisiondetection_hgrid_new.cpp
+	"CollisionDetection_HGrid_new.h"
+
+1411406087 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (working smoke, unfinished reflection)\collisiondetection_hgrid_new.h
+	"CollisionDetection_Interface.h"
+	"Particle.h"
+	"glm/glm.hpp"
+	<cstdlib>
+	<vector>
+	<stdint.h>
+	<iostream>
+	<algorithm>
+	<unordered_map>
+	<string>
+	<typeinfo>
+	<bitset>
+	<math.h>
+	"Random.h"
+	"gl/gl.h"
+	"gl/glu.h"
+
+1416814733 source:d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (working smoke, unfinished reflection)\eg_camera\eg_camera.cpp
+	"EG_Camera.h"
+
+1419238170 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (working smoke, unfinished reflection)\eg_camera\eg_camera.h
+	<GL/glew.h>
+	<cmath>
+	<iostream>
+	<SDL/SDL.h>
+	"pipeline.h"
+	"define.h"
+	"glm/glm.hpp"
+	"glm/gtc/matrix_transform.hpp"
+	"glm/gtx/transform.hpp"
+	"glm/gtc/quaternion.hpp"
+	"glm/gtx/quaternion.hpp"
+
+1421246092 source:d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (working smoke, unfinished reflection)\eg_camera\eg_firstpersonpovcamera.cpp
+	"EG_FirstPersonPovCamera.h"
+
+1419561591 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (working smoke, unfinished reflection)\eg_camera\eg_firstpersonpovcamera.h
+	<cmath>
+	<iostream>
+	<SDL/SDL.h>
+	"pipeline.h"
+	"gl/gl.h"
+	"gl/glu.h"
+	"define.h"
+
+1421339223 source:d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (working smoke, unfinished reflection)\eg_camera\eg_thirdpersonpovcamera.cpp
+	"EG_ThirdPersonPovCamera.h"
+
+1421936947 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (working smoke, unfinished reflection)\eg_camera\eg_thirdpersonpovcamera.h
+	<GL/glew.h>
+	"EG_Camera.h"
+	"EG_Skybox.h"
+	"sceneLoader.h"
+	<cmath>
+	<iostream>
+	<SDL/SDL.h>
+	"pipeline.h"
+	"define.h"
+	"glm/glm.hpp"
+	"glm/gtc/matrix_transform.hpp"
+	"glm/gtx/transform.hpp"
+	"glm/gtc/quaternion.hpp"
+	"glm/gtx/quaternion.hpp"
+	"EG_RenderTechnique.h"
+
+1421868820 source:d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (working smoke, unfinished reflection)\eg_gbuffer.cpp
+	"EG_GBuffer.h"
+
+1421866816 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (working smoke, unfinished reflection)\eg_gbuffer.h
+	"define.h"
+	<GL/glew.h>
+
+1419817464 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (working smoke, unfinished reflection)\define.h
+	<string>
+	<iostream>
+	<ctime>
+	<vector>
+	<map>
+	<math.h>
+	"glm/glm.hpp"
+	"glm/gtc/type_ptr.hpp"
+	"glm/gtc/quaternion.hpp"
+	"glm/gtx/vector_angle.hpp"
+	"glm/gtx/compatibility.hpp"
+	"glm/gtx/matrix_operation.hpp"
+	"glm/gtx/transform.hpp"
+	"glm/gtx/quaternion.hpp"
+	"glm/gtx/euler_angles.hpp"
+	"glm/gtx/norm.hpp"
+	"SOIL.h"
+
+1359678220 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (working smoke, unfinished reflection)\glm\gtc\type_ptr.hpp
+	"../glm.hpp"
+	"../gtc/half_float.hpp"
+	"../gtc/quaternion.hpp"
+	<cstring>
+	"type_ptr.inl"
+
+1359678220 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (working smoke, unfinished reflection)\glm\gtc\half_float.hpp
+	"../glm.hpp"
+	"half_float.inl"
+
+1359678220 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (working smoke, unfinished reflection)\glm\gtc\half_float.inl
+
+1359678220 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (working smoke, unfinished reflection)\glm\gtc\quaternion.hpp
+	"../glm.hpp"
+	"../gtc/half_float.hpp"
+	"../gtc/constants.hpp"
+	"quaternion.inl"
+
+1359678220 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (working smoke, unfinished reflection)\glm\gtc\constants.hpp
+	"../glm.hpp"
+	"../gtc/half_float.hpp"
+	"constants.inl"
+
+1359678220 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (working smoke, unfinished reflection)\glm\gtc\constants.inl
+
+1359678220 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (working smoke, unfinished reflection)\glm\gtc\quaternion.inl
+	<limits>
+
+1359678220 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (working smoke, unfinished reflection)\glm\gtc\type_ptr.inl
+
+1359678224 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (working smoke, unfinished reflection)\glm\gtx\vector_angle.hpp
+	"../glm.hpp"
+	"../gtc/epsilon.hpp"
+	"../gtx/quaternion.hpp"
+	"../gtx/rotate_vector.hpp"
+	"vector_angle.inl"
+
+1359678220 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (working smoke, unfinished reflection)\glm\gtc\epsilon.hpp
+	"../glm.hpp"
+	"../gtc/half_float.hpp"
+	"../gtc/quaternion.hpp"
+	"epsilon.inl"
+
+1359678220 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (working smoke, unfinished reflection)\glm\gtc\epsilon.inl
+
+1359678222 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (working smoke, unfinished reflection)\glm\gtx\quaternion.hpp
+	"../glm.hpp"
+	"../gtc/quaternion.hpp"
+	"quaternion.inl"
+
+1359678222 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (working smoke, unfinished reflection)\glm\gtx\quaternion.inl
+	<limits>
+
+1359678222 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (working smoke, unfinished reflection)\glm\gtx\rotate_vector.hpp
+	"../glm.hpp"
+	"../gtx/transform.hpp"
+	"rotate_vector.inl"
+
+1359678222 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (working smoke, unfinished reflection)\glm\gtx\transform.hpp
+	"../glm.hpp"
+	"../gtc/matrix_transform.hpp"
+	"transform.inl"
+
+1359678220 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (working smoke, unfinished reflection)\glm\gtc\matrix_transform.hpp
+	"../glm.hpp"
+	"matrix_transform.inl"
+
+1359678220 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (working smoke, unfinished reflection)\glm\gtc\matrix_transform.inl
+
+1359678222 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (working smoke, unfinished reflection)\glm\gtx\transform.inl
+
+1359678222 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (working smoke, unfinished reflection)\glm\gtx\rotate_vector.inl
+
+1359678224 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (working smoke, unfinished reflection)\glm\gtx\vector_angle.inl
+
+1359678220 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (working smoke, unfinished reflection)\glm\gtx\compatibility.hpp
+	"../glm.hpp"
+	"../gtc/half_float.hpp"
+	"../gtc/quaternion.hpp"
+	<cfloat>
+	<cmath>
+	"compatibility.inl"
+
+1359678220 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (working smoke, unfinished reflection)\glm\gtx\compatibility.inl
+
+1359678222 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (working smoke, unfinished reflection)\glm\gtx\matrix_operation.hpp
+	"../glm.hpp"
+	"matrix_operation.inl"
+
+1359678222 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (working smoke, unfinished reflection)\glm\gtx\matrix_operation.inl
+
+1359678222 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (working smoke, unfinished reflection)\glm\gtx\euler_angles.hpp
+	"../glm.hpp"
+	"../gtc/half_float.hpp"
+	"euler_angles.inl"
+
+1359678222 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (working smoke, unfinished reflection)\glm\gtx\euler_angles.inl
+
+1359678222 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (working smoke, unfinished reflection)\glm\gtx\norm.hpp
+	"../glm.hpp"
+	"../gtx/quaternion.hpp"
+	"norm.inl"
+
+1359678222 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (working smoke, unfinished reflection)\glm\gtx\norm.inl
+
+1421852437 source:d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (working smoke, unfinished reflection)\eg_light\eg_alllights.cpp
+	"EG_AllLights.h"
+
+1421399580 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (working smoke, unfinished reflection)\eg_light\eg_alllights.h
+	<cstdlib>
+	<iostream>
+	<stdio.h>
+	<string>
+	<sstream>
+	<vector>
+	"define.h"
+	"EG_DirectionalLight.h"
+	"EG_PointLight.h"
+	"EG_SpotLight.h"
+
+1420699886 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (working smoke, unfinished reflection)\eg_light\eg_directionallight.h
+	"define.h"
+	"EG_BaseLight.h"
+
+1421865917 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (working smoke, unfinished reflection)\eg_light\eg_baselight.h
+	"define.h"
+
+1421081649 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (working smoke, unfinished reflection)\eg_light\eg_pointlight.h
+	"define.h"
+	"EG_BaseLight.h"
+
+1421081661 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (working smoke, unfinished reflection)\eg_light\eg_spotlight.h
+	"define.h"
+	"EG_BaseLight.h"
+	"EG_PointLight.h"
+
+1420698836 source:d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (working smoke, unfinished reflection)\eg_light\eg_baselight.cpp
+	"EG_BaseLight.h"
+
+1420699208 source:d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (working smoke, unfinished reflection)\eg_light\eg_directionallight.cpp
+	"EG_DirectionalLight.h"
+
+1421081609 source:d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (working smoke, unfinished reflection)\eg_light\eg_pointlight.cpp
+	"EG_PointLight.h"
+
+1421081666 source:d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (working smoke, unfinished reflection)\eg_light\eg_spotlight.cpp
+	"EG_SpotLight.h"
+
+1421969891 source:d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (working smoke, unfinished reflection)\eg_main.cpp
+	"EG_Main.h"
+	"gl/gl.h"
+	"gl/glu.h"
+	"SDL\SDL.h"
+
+1421969624 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (working smoke, unfinished reflection)\eg_main.h
+	<cstdlib>
+	<iostream>
+	<stdio.h>
+	<string>
+	<sstream>
+	"define.h"
+	"EG_PointLight.h"
+	"EG_SpotLight.h"
+	"EG_DirectionalLight.h"
+	"EG_AllLights.h"
+	"EG_DeferredShadingGeometryPass.h"
+	"EG_DeferredShadingSkybox.h"
+	"EG_DeferredShadingReflection.h"
+	"EG_DeferredShadingStencilPass.h"
+	"EG_DeferredShadingPointLightPass.h"
+	"EG_DeferredShadingDirectionalLightPass.h"
+	"EG_Camera.h"
+	"EG_FirstPersonPovCamera.h"
+	"EG_ThirdPersonPovCamera.h"
+	"EG_DeferredShading.h"
+	"EG_GBuffer.h"
+	"EG_utility.h"
+	"EG_Skybox.h"
+	"EG_Shader.h"
+	"sceneLoader.h"
+	"EG_Technique_DepthTexture_Render.h"
+	"EG_Technique_TwoPass_RayCasting.h"
+	"EG_Technique_Shadow_Render.h"
+	"EG_Technique_Reflection.h"
+	"EG_RenderTechniqueRenderTexture.h"
+	"EG_WorldAxis.h"
+	"EG_WorldBox.h"
+	"EG_WorldSphere.h"
+	"EG_WorldReflectiveSphere.h"
+	"EG_Quad.h"
+	"pipeline.h"
+	"L_SphereParticleEffect.h"
+	"L_Cube_Sphere_ParticleEffect.h"
+	<GL/glew.h>
+	"SDL/SDL_opengl.h"
+	"SDL/SDL.h"
+	"SDL/SDL_image.h"
+	"ElapsedTime.h"
+	"L_ParticleEffect_Interface.h"
+	"EG_Smoke.h"
+	"CollisionDetection_HGrid.h"
+
+1420554003 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (working smoke, unfinished reflection)\eg_utility.h
+	<cstdlib>
+	<vector>
+	<iostream>
+	<sstream>
+	<string>
+	<algorithm>
+	<fstream>
+	<cstdio>
+	<GL/glew.h>
+	"EG_Shader.h"
+	<GL/glew.h>
+	"SDL/SDL.h"
+	"SDL/SDL_image.h"
+
+1419236633 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (working smoke, unfinished reflection)\eg_shader.h
+	<GL/glew.h>
+	<string>
+	<vector>
+	<fstream>
+	<iostream>
+	<stdio.h>
+
+1421302638 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (working smoke, unfinished reflection)\sceneloader.h
+	<vector>
+	<assimp/cimport.h>
+	<assimp/scene.h>
+	<assimp/postprocess.h>
+	<SDL/SDL_image.h>
+	"mesh.h"
+
+1421302535 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (working smoke, unfinished reflection)\mesh.h
+	<iostream>
+	"meshData.h"
+	<GL/glew.h>
+	"SDL/SDL_opengl.h"
+	<vector>
+	<string>
+
+1421301257 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (working smoke, unfinished reflection)\meshdata.h
+	"define.h"
+
+1416849218 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (working smoke, unfinished reflection)\pipeline.h
+	<iostream>
+	<vector>
+	"define.h"
+	"glm/glm.hpp"
+	"glm/gtc/matrix_transform.hpp"
+	"glm/gtx/transform.hpp"
+	"glm/gtc/quaternion.hpp"
+	"glm/gtx/quaternion.hpp"
+	<GL/glew.h>
+	<iostream>
+	<vector>
+	"glm/glm.hpp"
+	"glm/gtc/matrix_transform.hpp"
+	"glm/gtx/transform.hpp"
+	<GL/glew.h>
+
+1421336442 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (working smoke, unfinished reflection)\l_sphereparticleeffect.h
+	"pipeline.h"
+	"EG_RenderTechnique.h"
+	"EG_Technique_Shadow_Render.h"
+	"EG_Technique_TwoPass_RayCasting.h"
+	"sceneLoader.h"
+	"L_ParticleEffect_Interface.h"
+	<cstdlib>
+	<iostream>
+	<algorithm>
+	"CollisionDetection_HGrid.h"
+	"Random.h"
+
+1411324028 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (working smoke, unfinished reflection)\l_particleeffect_interface.h
+	"Particle.h"
+	<cstdlib>
+	<cstdlib>
+	<vector>
+	<iostream>
+	<sstream>
+	<string>
+	<algorithm>
+	<fstream>
+	<cstdio>
+	"glm/glm.hpp"
+
+1419238737 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (working smoke, unfinished reflection)\l_cube_sphere_particleeffect.h
+	<GL/glew.h>
+	"EG_WorldBox.h"
+	"EG_WorldSphere.h"
+	"pipeline.h"
+	"sceneLoader.h"
+	"L_ParticleEffect_Interface.h"
+	<cstdlib>
+	<iostream>
+	<algorithm>
+	"CollisionDetection_HGrid_new.h"
+	"Random.h"
+
+1413931435 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (working smoke, unfinished reflection)\elapsedtime.h
+
+1421416399 source:d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (working smoke, unfinished reflection)\eg_rendertechniques\eg_deferredshading\eg_deferredshading.cpp
+	"EG_DeferredShading.h"
+
+1421417021 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (working smoke, unfinished reflection)\eg_rendertechniques\eg_deferredshading\eg_deferredshading.h
+	"EG_RenderTechnique.h"
+
+1421867789 source:d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (working smoke, unfinished reflection)\eg_rendertechniques\eg_deferredshading\eg_deferredshadinggeometrypass.cpp
+	"EG_DeferredShadingGeometryPass.h"
+
+1421396250 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (working smoke, unfinished reflection)\eg_rendertechniques\eg_deferredshading\eg_deferredshadinggeometrypass.h
+	"EG_RenderTechnique.h"
+
+1421421389 source:d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (working smoke, unfinished reflection)\eg_rendertechniques\eg_deferredshading\eg_deferredshadingreflection.cpp
+	"EG_DeferredShadingReflection.h"
+
+1421420549 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (working smoke, unfinished reflection)\eg_rendertechniques\eg_deferredshading\eg_deferredshadingreflection.h
+	"EG_DeferredShading.h"
+
+1421416857 source:d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (working smoke, unfinished reflection)\eg_rendertechniques\eg_deferredshading\eg_deferredshadingskybox.cpp
+	"EG_DeferredShadingSkybox.h"
+
+1421417081 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (working smoke, unfinished reflection)\eg_rendertechniques\eg_deferredshading\eg_deferredshadingskybox.h
+	"EG_DeferredShading.h"
+
+1421415825 source:d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (working smoke, unfinished reflection)\eg_rendertechniques\eg_deferredshading\eg_deferredshadingstencilpass.cpp
+	"EG_DeferredShadingStencilPass.h"
+
+1421415817 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (working smoke, unfinished reflection)\eg_rendertechniques\eg_deferredshading\eg_deferredshadingstencilpass.h
+	"EG_RenderTechnique.h"
+
+1421969584 source:d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (working smoke, unfinished reflection)\eg_rendertechniques\eg_deferredshadinglightpass\eg_deferredshadingdirectionallightpass.cpp
+	"EG_DeferredShadingDirectionalLightPass.h"
+
+1421967427 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (working smoke, unfinished reflection)\eg_rendertechniques\eg_deferredshadinglightpass\eg_deferredshadingdirectionallightpass.h
+	"EG_DirectionalLight.h"
+	"EG_DeferredShadingLightPass.h"
+
+1421396553 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (working smoke, unfinished reflection)\eg_rendertechniques\eg_deferredshadinglightpass\eg_deferredshadinglightpass.h
+	"EG_RenderTechnique.h"
+
+1421416507 source:d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (working smoke, unfinished reflection)\eg_rendertechniques\eg_deferredshadinglightpass\eg_deferredshadinglightpass.cpp
+	"EG_DeferredShadingLightPass.h"
+
+1421938959 source:d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (working smoke, unfinished reflection)\eg_rendertechniques\eg_deferredshadinglightpass\eg_deferredshadingpointlightpass.cpp
+	"EG_DeferredShadingPointLightPass.h"
+
+1421939063 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (working smoke, unfinished reflection)\eg_rendertechniques\eg_deferredshadinglightpass\eg_deferredshadingpointlightpass.h
+	"EG_PointLight.h"
+	"EG_DeferredShadingLightPass.h"
+
+1421938554 source:d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (working smoke, unfinished reflection)\eg_rendertechniques\eg_rendertechnique.cpp
+	"EG_RenderTechnique.h"
+
+1421159396 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (working smoke, unfinished reflection)\eg_rendertechniques\eg_rendertechnique.h
+	"define.h"
+	"EG_Shader.h"
+	"pipeline.h"
+
+1421966452 source:d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (working smoke, unfinished reflection)\eg_rendertechniques\eg_rendertechniquerendertexture.cpp
+	"EG_RenderTechniqueRenderTexture.h"
+
+1421966340 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (working smoke, unfinished reflection)\eg_rendertechniques\eg_rendertechniquerendertexture.h
+	"pipeline.h"
+	<GL/glew.h>
+	<cstdlib>
+	<iostream>
+	<stdio.h>
+	<string>
+	<sstream>
+	"EG_Quad.h"
+	"EG_RenderTechnique.h"
+
+1419849068 source:d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (working smoke, unfinished reflection)\eg_rendertechniques\eg_technique_depthtexture_render.cpp
+	"EG_Technique_DepthTexture_Render.h"
+
+1420558063 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (working smoke, unfinished reflection)\eg_rendertechniques\eg_technique_depthtexture_render.h
+	"pipeline.h"
+	<GL/glew.h>
+	<cstdlib>
+	<iostream>
+	<stdio.h>
+	<string>
+	<sstream>
+	"EG_RenderTechnique.h"
+
+1419849087 source:d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (working smoke, unfinished reflection)\eg_rendertechniques\eg_technique_reflection.cpp
+	"EG_Technique_Reflection.h"
+
+1420698524 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (working smoke, unfinished reflection)\eg_rendertechniques\eg_technique_reflection.h
+	"pipeline.h"
+	<GL/glew.h>
+	<cstdlib>
+	<iostream>
+	<stdio.h>
+	<string>
+	<sstream>
+	"EG_RenderTechnique.h"
+
+1420701583 source:d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (working smoke, unfinished reflection)\eg_rendertechniques\eg_technique_shadow_render.cpp
+	"EG_Technique_Shadow_Render.h"
+
+1420701589 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (working smoke, unfinished reflection)\eg_rendertechniques\eg_technique_shadow_render.h
+	"pipeline.h"
+	<GL/glew.h>
+	<cstdlib>
+	<iostream>
+	<stdio.h>
+	<string>
+	<sstream>
+	"EG_RenderTechnique.h"
+
+1421955313 source:d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (working smoke, unfinished reflection)\eg_rendertechniques\eg_technique_twopass_raycasting.cpp
+	"EG_Technique_TwoPass_RayCasting.h"
+
+1420558077 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (working smoke, unfinished reflection)\eg_rendertechniques\eg_technique_twopass_raycasting.h
+	"Smoke_struct.h"
+	"pipeline.h"
+	<GL/glew.h>
+	<cstdlib>
+	<iostream>
+	<stdio.h>
+	<string>
+	<sstream>
+	"EG_RenderTechnique.h"
+
+1419539489 source:d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (working smoke, unfinished reflection)\eg_shader.cpp
+	"EG_Shader.h"
+	<stdio.h>
+	<string.h>
+
+1419236356 source:d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (working smoke, unfinished reflection)\eg_utility.cpp
+	"EG_Utility.h"
+
+1421846118 source:d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (working smoke, unfinished reflection)\eg_worldobjects\eg_quad.cpp
+	"EG_Quad.h"
+
+1421846098 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (working smoke, unfinished reflection)\eg_worldobjects\eg_quad.h
+	"sceneLoader.h"
+
+1421961284 source:d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (working smoke, unfinished reflection)\eg_worldobjects\eg_skybox.cpp
+	"EG_Skybox.h"
+
+1421942481 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (working smoke, unfinished reflection)\eg_worldobjects\eg_skybox.h
+	<cstdlib>
+	<vector>
+	<iostream>
+	<sstream>
+	<string>
+	<algorithm>
+	<fstream>
+	<cstdio>
+	"EG_utility.h"
+	"EG_Shader.h"
+	"sceneLoader.h"
+	"pipeline.h"
+	"EG_RenderTechnique.h"
+	<GL/glew.h>
+	"SDL/SDL.h"
+	"SDL/SDL_image.h"
+
+1419539796 source:d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (working smoke, unfinished reflection)\eg_worldobjects\eg_smoke.cpp
+	"EG_Smoke.h"
+
+1420458903 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (working smoke, unfinished reflection)\eg_worldobjects\eg_smoke.h
+	"EG_Shader.h"
+	"EG_Technique_TwoPass_RayCasting.h"
+	"Smoke_struct.h"
+	<GL/glew.h>
+	<vector>
+	<iostream>
+	<sstream>
+	<string>
+	<algorithm>
+	<fstream>
+	<cstdio>
+	"L_ParticleEffect_Interface.h"
+	"define.h"
+
+1421335992 source:d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (working smoke, unfinished reflection)\eg_worldobjects\eg_worldaxis.cpp
+	"EG_WorldAxis.h"
+
+1421335605 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (working smoke, unfinished reflection)\eg_worldobjects\eg_worldaxis.h
+	<iostream>
+	<cstdlib>
+	"pipeline.h"
+	"mesh.h"
+	"sceneLoader.h"
+	"EG_RenderTechnique.h"
+
+1419238412 source:d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (working smoke, unfinished reflection)\eg_worldobjects\eg_worldbox.cpp
+	"EG_WorldBox.h"
+
+1419238415 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (working smoke, unfinished reflection)\eg_worldobjects\eg_worldbox.h
+	"EG_WorldObject.h"
+	<iostream>
+	<cstdlib>
+
+1421424886 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (working smoke, unfinished reflection)\eg_worldobjects\eg_worldobject.h
+	"glm/glm.hpp"
+	"glm/gtc/matrix_transform.hpp"
+	"glm/gtx/transform.hpp"
+	<cstdlib>
+	<stdint.h>
+	<vector>
+	"Particle.h"
+
+1421424875 source:d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (working smoke, unfinished reflection)\eg_worldobjects\eg_worldobject.cpp
+	"EG_WorldObject.h"
+
+1421425463 source:d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (working smoke, unfinished reflection)\eg_worldobjects\eg_worldreflectivesphere.cpp
+	"EG_WorldReflectiveSphere.h"
+
+1421425372 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (working smoke, unfinished reflection)\eg_worldobjects\eg_worldreflectivesphere.h
+	"EG_WorldSphere.h"
+	"pipeline.h"
+	"sceneLoader.h"
+	"EG_DeferredShadingReflection.h"
+
+1421425152 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (working smoke, unfinished reflection)\eg_worldobjects\eg_worldsphere.h
+	"EG_WorldObject.h"
+
+1421425158 source:d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (working smoke, unfinished reflection)\eg_worldobjects\eg_worldsphere.cpp
+	"EG_WorldSphere.h"
+
+1409357051 source:d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (working smoke, unfinished reflection)\elapsedtime.cpp
+	"define.h"
+	"ElapsedTime.h"
+	<algorithm>
+
+1411638663 source:d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (working smoke, unfinished reflection)\l_cube_sphere_particleeffect.cpp
+	"L_Cube_Sphere_ParticleEffect.h"
+
+1421336480 source:d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (working smoke, unfinished reflection)\l_sphereparticleeffect.cpp
+	"L_SphereParticleEffect.h"
+	"gl/gl.h"
+	"gl/glu.h"
+
+1421302963 source:d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (working smoke, unfinished reflection)\mesh.cpp
+	"mesh.h"
+
+1416849279 source:d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (working smoke, unfinished reflection)\pipeline.cpp
+	"pipeline.h"
+	"glm/gtx/quaternion.hpp"
+	"pipeline.h"
+	"pipeline.h"
+
+1421302693 source:d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (working smoke, unfinished reflection)\sceneloader.cpp
+	"sceneLoader.h"
+
+1419235118 source:d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading\collisiondetection_hgrid.cpp
+	"CollisionDetection_HGrid.h"
+
+1419235098 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading\collisiondetection_hgrid.h
+	"CollisionDetection_Interface.h"
+	"Particle.h"
+	"glm/glm.hpp"
+	<cstdlib>
+	<vector>
+	<stdint.h>
+	<iostream>
+	<algorithm>
+	<unordered_map>
+	<string>
+	<typeinfo>
+	<bitset>
+	<math.h>
+	"Random.h"
+	"gl/gl.h"
+	"gl/glu.h"
+
+1419238726 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading\collisiondetection_interface.h
+	"glm/glm.hpp"
+	<cstdlib>
+	"EG_WorldBox.h"
+	"EG_WorldSphere.h"
+	"EG_WorldObject.h"
+
+1359678220 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading\glm\glm.hpp
+	"core/_fixes.hpp"
+	<cmath>
+	<climits>
+	<cfloat>
+	<limits>
+	<cstdio>
+	"core/setup.hpp"
+	"./core/_detail.hpp"
+	"./core/_vectorize.hpp"
+	"./core/type.hpp"
+	"./core/func_trigonometric.hpp"
+	"./core/func_exponential.hpp"
+	"./core/func_common.hpp"
+	"./core/func_packing.hpp"
+	"./core/func_geometric.hpp"
+	"./core/func_matrix.hpp"
+	"./core/func_vector_relational.hpp"
+	"./core/func_integer.hpp"
+	"./core/func_noise.hpp"
+	"./core/_swizzle.hpp"
+
+1359678220 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading\glm\core\_fixes.hpp
+	<cmath>
+
+1359678218 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading\glm\core\setup.hpp
+	<intrin.h>
+	<immintrin.h>
+	<immintrin.h>
+	<smmintrin.h>
+	<pmmintrin.h>
+	<emmintrin.h>
+
+1359678220 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading\glm\core\_detail.hpp
+	"setup.hpp"
+	<cassert>
+	<cstdint>
+
+1359678220 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading\glm\core\_vectorize.hpp
+
+1359678218 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading\glm\core\type.hpp
+	"type_half.hpp"
+	"type_float.hpp"
+	"type_int.hpp"
+	"type_gentype.hpp"
+	"type_vec1.hpp"
+	"type_vec2.hpp"
+	"type_vec3.hpp"
+	"type_vec4.hpp"
+	"type_mat2x2.hpp"
+	"type_mat2x3.hpp"
+	"type_mat2x4.hpp"
+	"type_mat3x2.hpp"
+	"type_mat3x3.hpp"
+	"type_mat3x4.hpp"
+	"type_mat4x2.hpp"
+	"type_mat4x3.hpp"
+	"type_mat4x4.hpp"
+
+1359678218 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading\glm\core\type_half.hpp
+	<cstdlib>
+	"type_half.inl"
+
+1359678218 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading\glm\core\type_half.inl
+	"_detail.hpp"
+
+1359678218 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading\glm\core\type_float.hpp
+	"type_half.hpp"
+	"setup.hpp"
+
+1359678218 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading\glm\core\type_int.hpp
+	"setup.hpp"
+	"_detail.hpp"
+
+1359678218 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading\glm\core\type_gentype.hpp
+	"type_size.hpp"
+
+1359678220 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading\glm\core\type_size.hpp
+	<cstdlib>
+
+1359678220 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading\glm\core\type_vec1.hpp
+	"type_vec.hpp"
+	"type_float.hpp"
+	"type_int.hpp"
+	"type_size.hpp"
+	"_swizzle.hpp"
+	"type_vec1.inl"
+
+1359678220 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading\glm\core\type_vec.hpp
+	"type_gentype.hpp"
+
+1359678220 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading\glm\core\_swizzle.hpp
+	"_swizzle_func.hpp"
+
+1359678220 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading\glm\core\_swizzle_func.hpp
+
+1359678220 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading\glm\core\type_vec1.inl
+
+1359678220 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading\glm\core\type_vec2.hpp
+	"type_vec.hpp"
+	"type_float.hpp"
+	"type_int.hpp"
+	"type_size.hpp"
+	"_swizzle.hpp"
+	"type_vec2.inl"
+
+1359678220 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading\glm\core\type_vec2.inl
+
+1359678220 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading\glm\core\type_vec3.hpp
+	"type_vec.hpp"
+	"type_float.hpp"
+	"type_int.hpp"
+	"type_size.hpp"
+	"_swizzle.hpp"
+	"type_vec3.inl"
+
+1359678220 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading\glm\core\type_vec3.inl
+
+1359678220 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading\glm\core\type_vec4.hpp
+	"type_vec.hpp"
+	"type_float.hpp"
+	"type_int.hpp"
+	"type_size.hpp"
+	"_swizzle.hpp"
+	"type_vec4.inl"
+
+1359678220 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading\glm\core\type_vec4.inl
+
+1359678218 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading\glm\core\type_mat2x2.hpp
+	"type_mat.hpp"
+	"type_mat2x2.inl"
+
+1359678218 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading\glm\core\type_mat.hpp
+	"type_gentype.hpp"
+
+1359678218 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading\glm\core\type_mat2x2.inl
+
+1359678218 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading\glm\core\type_mat2x3.hpp
+	"type_mat.hpp"
+	"type_mat2x3.inl"
+
+1359678218 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading\glm\core\type_mat2x3.inl
+
+1359678218 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading\glm\core\type_mat2x4.hpp
+	"type_mat.hpp"
+	"type_mat2x4.inl"
+
+1359678218 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading\glm\core\type_mat2x4.inl
+
+1359678220 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading\glm\core\type_mat3x2.hpp
+	"type_mat.hpp"
+	"type_mat3x2.inl"
+
+1359678220 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading\glm\core\type_mat3x2.inl
+
+1359678220 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading\glm\core\type_mat3x3.hpp
+	"type_mat.hpp"
+	"type_mat3x3.inl"
+
+1359678220 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading\glm\core\type_mat3x3.inl
+
+1359678220 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading\glm\core\type_mat3x4.hpp
+	"type_mat.hpp"
+	"type_mat3x4.inl"
+
+1359678220 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading\glm\core\type_mat3x4.inl
+
+1359678220 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading\glm\core\type_mat4x2.hpp
+	"type_mat.hpp"
+	"type_mat4x2.inl"
+
+1359678220 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading\glm\core\type_mat4x2.inl
+
+1359678220 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading\glm\core\type_mat4x3.hpp
+	"type_mat.hpp"
+	"type_mat4x3.inl"
+
+1359678220 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading\glm\core\type_mat4x3.inl
+
+1359678220 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading\glm\core\type_mat4x4.hpp
+	"type_mat.hpp"
+	"type_mat4x4.inl"
+
+1359678220 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading\glm\core\type_mat4x4.inl
+
+1359678218 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading\glm\core\func_trigonometric.hpp
+	"func_trigonometric.inl"
+
+1359678218 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading\glm\core\func_trigonometric.inl
+
+1359678218 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading\glm\core\func_exponential.hpp
+	"func_exponential.inl"
+
+1359678218 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading\glm\core\func_exponential.inl
+
+1359678218 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading\glm\core\func_common.hpp
+	"_fixes.hpp"
+	"func_common.inl"
+
+1359678218 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading\glm\core\func_common.inl
+
+1359678218 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading\glm\core\func_packing.hpp
+	"func_packing.inl"
+
+1359678218 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading\glm\core\func_packing.inl
+
+1359678218 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading\glm\core\func_geometric.hpp
+	"func_geometric.inl"
+
+1359678218 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading\glm\core\func_geometric.inl
+
+1359678218 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading\glm\core\func_matrix.hpp
+	"func_matrix.inl"
+
+1359678218 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading\glm\core\func_matrix.inl
+
+1359678218 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading\glm\core\func_vector_relational.hpp
+	"_detail.hpp"
+	"func_vector_relational.inl"
+
+1359678218 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading\glm\core\func_vector_relational.inl
+
+1359678218 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading\glm\core\func_integer.hpp
+	"func_integer.inl"
+
+1359678218 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading\glm\core\func_integer.inl
+	<intrin.h>
+
+1359678218 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading\glm\core\func_noise.hpp
+	"func_noise.inl"
+
+1359678218 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading\glm\core\func_noise.inl
+
+1411151009 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading\particle.h
+	"glm/glm.hpp"
+	<cstdlib>
+	<stdint.h>
+	<vector>
+
+1403655018 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading\random.h
+
+1413064622 source:d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading\collisiondetection_hgrid_new.cpp
+	"CollisionDetection_HGrid_new.h"
+
+1411406087 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading\collisiondetection_hgrid_new.h
+	"CollisionDetection_Interface.h"
+	"Particle.h"
+	"glm/glm.hpp"
+	<cstdlib>
+	<vector>
+	<stdint.h>
+	<iostream>
+	<algorithm>
+	<unordered_map>
+	<string>
+	<typeinfo>
+	<bitset>
+	<math.h>
+	"Random.h"
+	"gl/gl.h"
+	"gl/glu.h"
+
+1416814733 source:d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading\eg_camera\eg_camera.cpp
+	"EG_Camera.h"
+
+1419238170 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading\eg_camera\eg_camera.h
+	<GL/glew.h>
+	<cmath>
+	<iostream>
+	<SDL/SDL.h>
+	"pipeline.h"
+	"define.h"
+	"glm/glm.hpp"
+	"glm/gtc/matrix_transform.hpp"
+	"glm/gtx/transform.hpp"
+	"glm/gtc/quaternion.hpp"
+	"glm/gtx/quaternion.hpp"
+
+1421246092 source:d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading\eg_camera\eg_firstpersonpovcamera.cpp
+	"EG_FirstPersonPovCamera.h"
+
+1419561591 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading\eg_camera\eg_firstpersonpovcamera.h
+	<cmath>
+	<iostream>
+	<SDL/SDL.h>
+	"pipeline.h"
+	"gl/gl.h"
+	"gl/glu.h"
+	"define.h"
+
+1421339223 source:d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading\eg_camera\eg_thirdpersonpovcamera.cpp
+	"EG_ThirdPersonPovCamera.h"
+
+1421936947 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading\eg_camera\eg_thirdpersonpovcamera.h
+	<GL/glew.h>
+	"EG_Camera.h"
+	"EG_Skybox.h"
+	"sceneLoader.h"
+	<cmath>
+	<iostream>
+	<SDL/SDL.h>
+	"pipeline.h"
+	"define.h"
+	"glm/glm.hpp"
+	"glm/gtc/matrix_transform.hpp"
+	"glm/gtx/transform.hpp"
+	"glm/gtc/quaternion.hpp"
+	"glm/gtx/quaternion.hpp"
+	"EG_RenderTechnique.h"
+
+1421868820 source:d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading\eg_gbuffer.cpp
+	"EG_GBuffer.h"
+
+1421866816 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading\eg_gbuffer.h
+	"define.h"
+	<GL/glew.h>
+
+1419817464 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading\define.h
+	<string>
+	<iostream>
+	<ctime>
+	<vector>
+	<map>
+	<math.h>
+	"glm/glm.hpp"
+	"glm/gtc/type_ptr.hpp"
+	"glm/gtc/quaternion.hpp"
+	"glm/gtx/vector_angle.hpp"
+	"glm/gtx/compatibility.hpp"
+	"glm/gtx/matrix_operation.hpp"
+	"glm/gtx/transform.hpp"
+	"glm/gtx/quaternion.hpp"
+	"glm/gtx/euler_angles.hpp"
+	"glm/gtx/norm.hpp"
+	"SOIL.h"
+
+1359678220 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading\glm\gtc\type_ptr.hpp
+	"../glm.hpp"
+	"../gtc/half_float.hpp"
+	"../gtc/quaternion.hpp"
+	<cstring>
+	"type_ptr.inl"
+
+1359678220 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading\glm\gtc\half_float.hpp
+	"../glm.hpp"
+	"half_float.inl"
+
+1359678220 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading\glm\gtc\half_float.inl
+
+1359678220 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading\glm\gtc\quaternion.hpp
+	"../glm.hpp"
+	"../gtc/half_float.hpp"
+	"../gtc/constants.hpp"
+	"quaternion.inl"
+
+1359678220 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading\glm\gtc\constants.hpp
+	"../glm.hpp"
+	"../gtc/half_float.hpp"
+	"constants.inl"
+
+1359678220 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading\glm\gtc\constants.inl
+
+1359678220 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading\glm\gtc\quaternion.inl
+	<limits>
+
+1359678220 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading\glm\gtc\type_ptr.inl
+
+1359678224 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading\glm\gtx\vector_angle.hpp
+	"../glm.hpp"
+	"../gtc/epsilon.hpp"
+	"../gtx/quaternion.hpp"
+	"../gtx/rotate_vector.hpp"
+	"vector_angle.inl"
+
+1359678220 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading\glm\gtc\epsilon.hpp
+	"../glm.hpp"
+	"../gtc/half_float.hpp"
+	"../gtc/quaternion.hpp"
+	"epsilon.inl"
+
+1359678220 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading\glm\gtc\epsilon.inl
+
+1359678222 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading\glm\gtx\quaternion.hpp
+	"../glm.hpp"
+	"../gtc/quaternion.hpp"
+	"quaternion.inl"
+
+1359678222 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading\glm\gtx\quaternion.inl
+	<limits>
+
+1359678222 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading\glm\gtx\rotate_vector.hpp
+	"../glm.hpp"
+	"../gtx/transform.hpp"
+	"rotate_vector.inl"
+
+1359678222 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading\glm\gtx\transform.hpp
+	"../glm.hpp"
+	"../gtc/matrix_transform.hpp"
+	"transform.inl"
+
+1359678220 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading\glm\gtc\matrix_transform.hpp
+	"../glm.hpp"
+	"matrix_transform.inl"
+
+1359678220 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading\glm\gtc\matrix_transform.inl
+
+1359678222 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading\glm\gtx\transform.inl
+
+1359678222 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading\glm\gtx\rotate_vector.inl
+
+1359678224 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading\glm\gtx\vector_angle.inl
+
+1359678220 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading\glm\gtx\compatibility.hpp
+	"../glm.hpp"
+	"../gtc/half_float.hpp"
+	"../gtc/quaternion.hpp"
+	<cfloat>
+	<cmath>
+	"compatibility.inl"
+
+1359678220 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading\glm\gtx\compatibility.inl
+
+1359678222 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading\glm\gtx\matrix_operation.hpp
+	"../glm.hpp"
+	"matrix_operation.inl"
+
+1359678222 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading\glm\gtx\matrix_operation.inl
+
+1359678222 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading\glm\gtx\euler_angles.hpp
+	"../glm.hpp"
+	"../gtc/half_float.hpp"
+	"euler_angles.inl"
+
+1359678222 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading\glm\gtx\euler_angles.inl
+
+1359678222 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading\glm\gtx\norm.hpp
+	"../glm.hpp"
+	"../gtx/quaternion.hpp"
+	"norm.inl"
+
+1359678222 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading\glm\gtx\norm.inl
+
+1421852437 source:d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading\eg_light\eg_alllights.cpp
+	"EG_AllLights.h"
+
+1421399580 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading\eg_light\eg_alllights.h
+	<cstdlib>
+	<iostream>
+	<stdio.h>
+	<string>
+	<sstream>
+	<vector>
+	"define.h"
+	"EG_DirectionalLight.h"
+	"EG_PointLight.h"
+	"EG_SpotLight.h"
+
+1420699886 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading\eg_light\eg_directionallight.h
+	"define.h"
+	"EG_BaseLight.h"
+
+1421865917 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading\eg_light\eg_baselight.h
+	"define.h"
+
+1421081649 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading\eg_light\eg_pointlight.h
+	"define.h"
+	"EG_BaseLight.h"
+
+1421081661 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading\eg_light\eg_spotlight.h
+	"define.h"
+	"EG_BaseLight.h"
+	"EG_PointLight.h"
+
+1420698836 source:d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading\eg_light\eg_baselight.cpp
+	"EG_BaseLight.h"
+
+1420699208 source:d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading\eg_light\eg_directionallight.cpp
+	"EG_DirectionalLight.h"
+
+1421081609 source:d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading\eg_light\eg_pointlight.cpp
+	"EG_PointLight.h"
+
+1421081666 source:d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading\eg_light\eg_spotlight.cpp
+	"EG_SpotLight.h"
+
+1421416399 source:d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading\eg_rendertechniques\eg_deferredshading\eg_deferredshading.cpp
+	"EG_DeferredShading.h"
+
+1421417021 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading\eg_rendertechniques\eg_deferredshading\eg_deferredshading.h
+	"EG_RenderTechnique.h"
+
+1421972698 source:d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading\eg_rendertechniques\eg_deferredshading\eg_deferredshadinggeometrypass.cpp
+	"EG_DeferredShadingGeometryPass.h"
+
+1421396250 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading\eg_rendertechniques\eg_deferredshading\eg_deferredshadinggeometrypass.h
+	"EG_RenderTechnique.h"
+
+1421421389 source:d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading\eg_rendertechniques\eg_deferredshading\eg_deferredshadingreflection.cpp
+	"EG_DeferredShadingReflection.h"
+
+1421420549 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading\eg_rendertechniques\eg_deferredshading\eg_deferredshadingreflection.h
+	"EG_DeferredShading.h"
+
+1421416857 source:d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading\eg_rendertechniques\eg_deferredshading\eg_deferredshadingskybox.cpp
+	"EG_DeferredShadingSkybox.h"
+
+1421417081 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading\eg_rendertechniques\eg_deferredshading\eg_deferredshadingskybox.h
+	"EG_DeferredShading.h"
+
+1421415825 source:d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading\eg_rendertechniques\eg_deferredshading\eg_deferredshadingstencilpass.cpp
+	"EG_DeferredShadingStencilPass.h"
+
+1421415817 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading\eg_rendertechniques\eg_deferredshading\eg_deferredshadingstencilpass.h
+	"EG_RenderTechnique.h"
+
+1421980304 source:d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading\eg_rendertechniques\eg_deferredshadinglightpass\eg_deferredshadingdirectionallightpass.cpp
+	"EG_DeferredShadingDirectionalLightPass.h"
+
+1421978896 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading\eg_rendertechniques\eg_deferredshadinglightpass\eg_deferredshadingdirectionallightpass.h
+	"EG_DirectionalLight.h"
+	"EG_DeferredShadingLightPass.h"
+
+1421396553 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading\eg_rendertechniques\eg_deferredshadinglightpass\eg_deferredshadinglightpass.h
+	"EG_RenderTechnique.h"
+
+1421416507 source:d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading\eg_rendertechniques\eg_deferredshadinglightpass\eg_deferredshadinglightpass.cpp
+	"EG_DeferredShadingLightPass.h"
+
+1421938959 source:d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading\eg_rendertechniques\eg_deferredshadinglightpass\eg_deferredshadingpointlightpass.cpp
+	"EG_DeferredShadingPointLightPass.h"
+
+1421939063 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading\eg_rendertechniques\eg_deferredshadinglightpass\eg_deferredshadingpointlightpass.h
+	"EG_PointLight.h"
+	"EG_DeferredShadingLightPass.h"
+
+1421938554 source:d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading\eg_rendertechniques\eg_rendertechnique.cpp
+	"EG_RenderTechnique.h"
+
+1421159396 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading\eg_rendertechniques\eg_rendertechnique.h
+	"define.h"
+	"EG_Shader.h"
+	"pipeline.h"
+
+1421966452 source:d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading\eg_rendertechniques\eg_rendertechniquerendertexture.cpp
+	"EG_RenderTechniqueRenderTexture.h"
+
+1421966340 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading\eg_rendertechniques\eg_rendertechniquerendertexture.h
+	"pipeline.h"
+	<GL/glew.h>
+	<cstdlib>
+	<iostream>
+	<stdio.h>
+	<string>
+	<sstream>
+	"EG_Quad.h"
+	"EG_RenderTechnique.h"
+
+1421974312 source:d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading\eg_rendertechniques\eg_technique_depthtexture_render.cpp
+	"EG_Technique_DepthTexture_Render.h"
+
+1421974427 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading\eg_rendertechniques\eg_technique_depthtexture_render.h
+	"pipeline.h"
+	<GL/glew.h>
+	<cstdlib>
+	<iostream>
+	<stdio.h>
+	<string>
+	<sstream>
+	"EG_RenderTechnique.h"
+
+1419849087 source:d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading\eg_rendertechniques\eg_technique_reflection.cpp
+	"EG_Technique_Reflection.h"
+
+1420698524 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading\eg_rendertechniques\eg_technique_reflection.h
+	"pipeline.h"
+	<GL/glew.h>
+	<cstdlib>
+	<iostream>
+	<stdio.h>
+	<string>
+	<sstream>
+	"EG_RenderTechnique.h"
+
+1420701583 source:d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading\eg_rendertechniques\eg_technique_shadow_render.cpp
+	"EG_Technique_Shadow_Render.h"
+
+1420701589 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading\eg_rendertechniques\eg_technique_shadow_render.h
+	"pipeline.h"
+	<GL/glew.h>
+	<cstdlib>
+	<iostream>
+	<stdio.h>
+	<string>
+	<sstream>
+	"EG_RenderTechnique.h"
+
+1421955313 source:d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading\eg_rendertechniques\eg_technique_twopass_raycasting.cpp
+	"EG_Technique_TwoPass_RayCasting.h"
+
+1420558077 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading\eg_rendertechniques\eg_technique_twopass_raycasting.h
+	"Smoke_struct.h"
+	"pipeline.h"
+	<GL/glew.h>
+	<cstdlib>
+	<iostream>
+	<stdio.h>
+	<string>
+	<sstream>
+	"EG_RenderTechnique.h"
+
+1419539489 source:d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading\eg_shader.cpp
+	"EG_Shader.h"
+	<stdio.h>
+	<string.h>
+
+1419236633 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading\eg_shader.h
+	<GL/glew.h>
+	<string>
+	<vector>
+	<fstream>
+	<iostream>
+	<stdio.h>
+
+1421975600 source:d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading\eg_utility.cpp
+	"EG_Utility.h"
+
+1421976284 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading\eg_utility.h
+	<cstdlib>
+	<vector>
+	<iostream>
+	<sstream>
+	<string>
+	<algorithm>
+	<fstream>
+	<cstdio>
+	<GL/glew.h>
+	"EG_Shader.h"
+	<GL/glew.h>
+	"SDL/SDL.h"
+	"SDL/SDL_image.h"
+
+1421846118 source:d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading\eg_worldobjects\eg_quad.cpp
+	"EG_Quad.h"
+
+1421846098 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading\eg_worldobjects\eg_quad.h
+	"sceneLoader.h"
+
+1421961284 source:d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading\eg_worldobjects\eg_skybox.cpp
+	"EG_Skybox.h"
+
+1421942481 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading\eg_worldobjects\eg_skybox.h
+	<cstdlib>
+	<vector>
+	<iostream>
+	<sstream>
+	<string>
+	<algorithm>
+	<fstream>
+	<cstdio>
+	"EG_utility.h"
+	"EG_Shader.h"
+	"sceneLoader.h"
+	"pipeline.h"
+	"EG_RenderTechnique.h"
+	<GL/glew.h>
+	"SDL/SDL.h"
+	"SDL/SDL_image.h"
+
+1419539796 source:d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading\eg_worldobjects\eg_smoke.cpp
+	"EG_Smoke.h"
+
+1420458903 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading\eg_worldobjects\eg_smoke.h
+	"EG_Shader.h"
+	"EG_Technique_TwoPass_RayCasting.h"
+	"Smoke_struct.h"
+	<GL/glew.h>
+	<vector>
+	<iostream>
+	<sstream>
+	<string>
+	<algorithm>
+	<fstream>
+	<cstdio>
+	"L_ParticleEffect_Interface.h"
+	"define.h"
+
+1421335992 source:d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading\eg_worldobjects\eg_worldaxis.cpp
+	"EG_WorldAxis.h"
+
+1421335605 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading\eg_worldobjects\eg_worldaxis.h
+	<iostream>
+	<cstdlib>
+	"pipeline.h"
+	"mesh.h"
+	"sceneLoader.h"
+	"EG_RenderTechnique.h"
+
+1419238412 source:d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading\eg_worldobjects\eg_worldbox.cpp
+	"EG_WorldBox.h"
+
+1419238415 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading\eg_worldobjects\eg_worldbox.h
+	"EG_WorldObject.h"
+	<iostream>
+	<cstdlib>
+
+1421424886 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading\eg_worldobjects\eg_worldobject.h
+	"glm/glm.hpp"
+	"glm/gtc/matrix_transform.hpp"
+	"glm/gtx/transform.hpp"
+	<cstdlib>
+	<stdint.h>
+	<vector>
+	"Particle.h"
+
+1421424875 source:d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading\eg_worldobjects\eg_worldobject.cpp
+	"EG_WorldObject.h"
+
+1421425463 source:d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading\eg_worldobjects\eg_worldreflectivesphere.cpp
+	"EG_WorldReflectiveSphere.h"
+
+1421425372 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading\eg_worldobjects\eg_worldreflectivesphere.h
+	"EG_WorldSphere.h"
+	"pipeline.h"
+	"sceneLoader.h"
+	"EG_DeferredShadingReflection.h"
+
+1421425152 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading\eg_worldobjects\eg_worldsphere.h
+	"EG_WorldObject.h"
+
+1421425158 source:d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading\eg_worldobjects\eg_worldsphere.cpp
+	"EG_WorldSphere.h"
+
+1409357051 source:d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading\elapsedtime.cpp
+	"define.h"
+	"ElapsedTime.h"
+	<algorithm>
+
+1413931435 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading\elapsedtime.h
+
+1411638663 source:d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading\l_cube_sphere_particleeffect.cpp
+	"L_Cube_Sphere_ParticleEffect.h"
+
+1419238737 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading\l_cube_sphere_particleeffect.h
+	<GL/glew.h>
+	"EG_WorldBox.h"
+	"EG_WorldSphere.h"
+	"pipeline.h"
+	"sceneLoader.h"
+	"L_ParticleEffect_Interface.h"
+	<cstdlib>
+	<iostream>
+	<algorithm>
+	"CollisionDetection_HGrid_new.h"
+	"Random.h"
+
+1421977132 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading\pipeline.h
+	<iostream>
+	<vector>
+	"define.h"
+	"glm/glm.hpp"
+	"glm/gtc/matrix_transform.hpp"
+	"glm/gtx/transform.hpp"
+	"glm/gtc/quaternion.hpp"
+	"glm/gtx/quaternion.hpp"
+	<GL/glew.h>
+	<iostream>
+	<vector>
+	"glm/glm.hpp"
+	"glm/gtc/matrix_transform.hpp"
+	"glm/gtx/transform.hpp"
+	<GL/glew.h>
+
+1421302638 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading\sceneloader.h
+	<vector>
+	<assimp/cimport.h>
+	<assimp/scene.h>
+	<assimp/postprocess.h>
+	<SDL/SDL_image.h>
+	"mesh.h"
+
+1421302535 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading\mesh.h
+	<iostream>
+	"meshData.h"
+	<GL/glew.h>
+	"SDL/SDL_opengl.h"
+	<vector>
+	<string>
+
+1421301257 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading\meshdata.h
+	"define.h"
+
+1411324028 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading\l_particleeffect_interface.h
+	"Particle.h"
+	<cstdlib>
+	<cstdlib>
+	<vector>
+	<iostream>
+	<sstream>
+	<string>
+	<algorithm>
+	<fstream>
+	<cstdio>
+	"glm/glm.hpp"
+
+1421336480 source:d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading\l_sphereparticleeffect.cpp
+	"L_SphereParticleEffect.h"
+	"gl/gl.h"
+	"gl/glu.h"
+
+1421336442 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading\l_sphereparticleeffect.h
+	"pipeline.h"
+	"EG_RenderTechnique.h"
+	"EG_Technique_Shadow_Render.h"
+	"EG_Technique_TwoPass_RayCasting.h"
+	"sceneLoader.h"
+	"L_ParticleEffect_Interface.h"
+	<cstdlib>
+	<iostream>
+	<algorithm>
+	"CollisionDetection_HGrid.h"
+	"Random.h"
+
+1421302963 source:d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading\mesh.cpp
+	"mesh.h"
+
+1416849279 source:d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading\pipeline.cpp
+	"pipeline.h"
+	"glm/gtx/quaternion.hpp"
+	"pipeline.h"
+	"pipeline.h"
+
+1421302693 source:d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading\sceneloader.cpp
+	"sceneLoader.h"
+
+1421979967 source:d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading\eg_main.cpp
+	"EG_Main.h"
+	"gl/gl.h"
+	"gl/glu.h"
+	"SDL\SDL.h"
+
+1421978406 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading\eg_main.h
+	<cstdlib>
+	<iostream>
+	<stdio.h>
+	<string>
+	<sstream>
+	"define.h"
+	"EG_PointLight.h"
+	"EG_SpotLight.h"
+	"EG_DirectionalLight.h"
+	"EG_AllLights.h"
+	"EG_DeferredShadingGeometryPass.h"
+	"EG_DeferredShadingSkybox.h"
+	"EG_DeferredShadingReflection.h"
+	"EG_DeferredShadingStencilPass.h"
+	"EG_DeferredShadingPointLightPass.h"
+	"EG_DeferredShadingDirectionalLightPass.h"
+	"EG_Camera.h"
+	"EG_FirstPersonPovCamera.h"
+	"EG_ThirdPersonPovCamera.h"
+	"EG_DeferredShading.h"
+	"EG_GBuffer.h"
+	"EG_utility.h"
+	"EG_Skybox.h"
+	"EG_Shader.h"
+	"sceneLoader.h"
+	"EG_Technique_TwoPass_RayCasting.h"
+	"EG_Technique_Shadow_Render.h"
+	"EG_Technique_Reflection.h"
+	"EG_RenderTechnique_RenderTexture.h"
+	"EG_RenderTechnique_RenderDepthToTexture.h"
+	"EG_WorldAxis.h"
+	"EG_WorldBox.h"
+	"EG_WorldSphere.h"
+	"EG_WorldReflectiveSphere.h"
+	"EG_Quad.h"
+	"pipeline.h"
+	"L_SphereParticleEffect.h"
+	"L_Cube_Sphere_ParticleEffect.h"
+	<GL/glew.h>
+	"SDL/SDL_opengl.h"
+	"SDL/SDL.h"
+	"SDL/SDL_image.h"
+	"ElapsedTime.h"
+	"L_ParticleEffect_Interface.h"
+	"EG_Smoke.h"
+	"CollisionDetection_HGrid.h"
+
+1421978500 source:d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading\eg_rendertechniques\eg_rendertechnique_rendertexture.cpp
+	"EG_RenderTechnique_RenderTexture.h"
+
+1421974188 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading\eg_rendertechniques\eg_rendertechnique_rendertexture.h
+	"pipeline.h"
+	<GL/glew.h>
+	<cstdlib>
+	<iostream>
+	<stdio.h>
+	<string>
+	<sstream>
+	"EG_Quad.h"
+	"EG_RenderTechnique.h"
+
+1421978345 source:d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading\eg_rendertechniques\eg_rendertechnique_renderdepthtotexture.cpp
+	"EG_RenderTechnique_RenderDepthToTexture.h"
+
+1421974427 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading\eg_rendertechniques\eg_rendertechnique_renderdepthtotexture.h
+	"pipeline.h"
+	<GL/glew.h>
+	<cstdlib>
+	<iostream>
+	<stdio.h>
+	<string>
+	<sstream>
+	"EG_RenderTechnique.h"
+
+1419235118 source:d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (polished)\collisiondetection_hgrid.cpp
+	"CollisionDetection_HGrid.h"
+
+1419235098 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (polished)\collisiondetection_hgrid.h
+	"CollisionDetection_Interface.h"
+	"Particle.h"
+	"glm/glm.hpp"
+	<cstdlib>
+	<vector>
+	<stdint.h>
+	<iostream>
+	<algorithm>
+	<unordered_map>
+	<string>
+	<typeinfo>
+	<bitset>
+	<math.h>
+	"Random.h"
+	"gl/gl.h"
+	"gl/glu.h"
+
+1419238726 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (polished)\collisiondetection_interface.h
+	"glm/glm.hpp"
+	<cstdlib>
+	"EG_WorldBox.h"
+	"EG_WorldSphere.h"
+	"EG_WorldObject.h"
+
+1359678220 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (polished)\glm\glm.hpp
+	"core/_fixes.hpp"
+	<cmath>
+	<climits>
+	<cfloat>
+	<limits>
+	<cstdio>
+	"core/setup.hpp"
+	"./core/_detail.hpp"
+	"./core/_vectorize.hpp"
+	"./core/type.hpp"
+	"./core/func_trigonometric.hpp"
+	"./core/func_exponential.hpp"
+	"./core/func_common.hpp"
+	"./core/func_packing.hpp"
+	"./core/func_geometric.hpp"
+	"./core/func_matrix.hpp"
+	"./core/func_vector_relational.hpp"
+	"./core/func_integer.hpp"
+	"./core/func_noise.hpp"
+	"./core/_swizzle.hpp"
+
+1359678220 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (polished)\glm\core\_fixes.hpp
+	<cmath>
+
+1359678218 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (polished)\glm\core\setup.hpp
+	<intrin.h>
+	<immintrin.h>
+	<immintrin.h>
+	<smmintrin.h>
+	<pmmintrin.h>
+	<emmintrin.h>
+
+1359678220 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (polished)\glm\core\_detail.hpp
+	"setup.hpp"
+	<cassert>
+	<cstdint>
+
+1359678220 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (polished)\glm\core\_vectorize.hpp
+
+1359678218 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (polished)\glm\core\type.hpp
+	"type_half.hpp"
+	"type_float.hpp"
+	"type_int.hpp"
+	"type_gentype.hpp"
+	"type_vec1.hpp"
+	"type_vec2.hpp"
+	"type_vec3.hpp"
+	"type_vec4.hpp"
+	"type_mat2x2.hpp"
+	"type_mat2x3.hpp"
+	"type_mat2x4.hpp"
+	"type_mat3x2.hpp"
+	"type_mat3x3.hpp"
+	"type_mat3x4.hpp"
+	"type_mat4x2.hpp"
+	"type_mat4x3.hpp"
+	"type_mat4x4.hpp"
+
+1359678218 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (polished)\glm\core\type_half.hpp
+	<cstdlib>
+	"type_half.inl"
+
+1359678218 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (polished)\glm\core\type_half.inl
+	"_detail.hpp"
+
+1359678218 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (polished)\glm\core\type_float.hpp
+	"type_half.hpp"
+	"setup.hpp"
+
+1359678218 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (polished)\glm\core\type_int.hpp
+	"setup.hpp"
+	"_detail.hpp"
+
+1359678218 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (polished)\glm\core\type_gentype.hpp
+	"type_size.hpp"
+
+1359678220 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (polished)\glm\core\type_size.hpp
+	<cstdlib>
+
+1359678220 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (polished)\glm\core\type_vec1.hpp
+	"type_vec.hpp"
+	"type_float.hpp"
+	"type_int.hpp"
+	"type_size.hpp"
+	"_swizzle.hpp"
+	"type_vec1.inl"
+
+1359678220 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (polished)\glm\core\type_vec.hpp
+	"type_gentype.hpp"
+
+1359678220 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (polished)\glm\core\_swizzle.hpp
+	"_swizzle_func.hpp"
+
+1359678220 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (polished)\glm\core\_swizzle_func.hpp
+
+1359678220 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (polished)\glm\core\type_vec1.inl
+
+1359678220 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (polished)\glm\core\type_vec2.hpp
+	"type_vec.hpp"
+	"type_float.hpp"
+	"type_int.hpp"
+	"type_size.hpp"
+	"_swizzle.hpp"
+	"type_vec2.inl"
+
+1359678220 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (polished)\glm\core\type_vec2.inl
+
+1359678220 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (polished)\glm\core\type_vec3.hpp
+	"type_vec.hpp"
+	"type_float.hpp"
+	"type_int.hpp"
+	"type_size.hpp"
+	"_swizzle.hpp"
+	"type_vec3.inl"
+
+1359678220 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (polished)\glm\core\type_vec3.inl
+
+1359678220 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (polished)\glm\core\type_vec4.hpp
+	"type_vec.hpp"
+	"type_float.hpp"
+	"type_int.hpp"
+	"type_size.hpp"
+	"_swizzle.hpp"
+	"type_vec4.inl"
+
+1359678220 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (polished)\glm\core\type_vec4.inl
+
+1359678218 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (polished)\glm\core\type_mat2x2.hpp
+	"type_mat.hpp"
+	"type_mat2x2.inl"
+
+1359678218 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (polished)\glm\core\type_mat.hpp
+	"type_gentype.hpp"
+
+1359678218 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (polished)\glm\core\type_mat2x2.inl
+
+1359678218 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (polished)\glm\core\type_mat2x3.hpp
+	"type_mat.hpp"
+	"type_mat2x3.inl"
+
+1359678218 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (polished)\glm\core\type_mat2x3.inl
+
+1359678218 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (polished)\glm\core\type_mat2x4.hpp
+	"type_mat.hpp"
+	"type_mat2x4.inl"
+
+1359678218 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (polished)\glm\core\type_mat2x4.inl
+
+1359678220 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (polished)\glm\core\type_mat3x2.hpp
+	"type_mat.hpp"
+	"type_mat3x2.inl"
+
+1359678220 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (polished)\glm\core\type_mat3x2.inl
+
+1359678220 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (polished)\glm\core\type_mat3x3.hpp
+	"type_mat.hpp"
+	"type_mat3x3.inl"
+
+1359678220 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (polished)\glm\core\type_mat3x3.inl
+
+1359678220 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (polished)\glm\core\type_mat3x4.hpp
+	"type_mat.hpp"
+	"type_mat3x4.inl"
+
+1359678220 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (polished)\glm\core\type_mat3x4.inl
+
+1359678220 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (polished)\glm\core\type_mat4x2.hpp
+	"type_mat.hpp"
+	"type_mat4x2.inl"
+
+1359678220 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (polished)\glm\core\type_mat4x2.inl
+
+1359678220 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (polished)\glm\core\type_mat4x3.hpp
+	"type_mat.hpp"
+	"type_mat4x3.inl"
+
+1359678220 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (polished)\glm\core\type_mat4x3.inl
+
+1359678220 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (polished)\glm\core\type_mat4x4.hpp
+	"type_mat.hpp"
+	"type_mat4x4.inl"
+
+1359678220 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (polished)\glm\core\type_mat4x4.inl
+
+1359678218 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (polished)\glm\core\func_trigonometric.hpp
+	"func_trigonometric.inl"
+
+1359678218 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (polished)\glm\core\func_trigonometric.inl
+
+1359678218 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (polished)\glm\core\func_exponential.hpp
+	"func_exponential.inl"
+
+1359678218 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (polished)\glm\core\func_exponential.inl
+
+1359678218 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (polished)\glm\core\func_common.hpp
+	"_fixes.hpp"
+	"func_common.inl"
+
+1359678218 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (polished)\glm\core\func_common.inl
+
+1359678218 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (polished)\glm\core\func_packing.hpp
+	"func_packing.inl"
+
+1359678218 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (polished)\glm\core\func_packing.inl
+
+1359678218 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (polished)\glm\core\func_geometric.hpp
+	"func_geometric.inl"
+
+1359678218 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (polished)\glm\core\func_geometric.inl
+
+1359678218 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (polished)\glm\core\func_matrix.hpp
+	"func_matrix.inl"
+
+1359678218 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (polished)\glm\core\func_matrix.inl
+
+1359678218 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (polished)\glm\core\func_vector_relational.hpp
+	"_detail.hpp"
+	"func_vector_relational.inl"
+
+1359678218 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (polished)\glm\core\func_vector_relational.inl
+
+1359678218 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (polished)\glm\core\func_integer.hpp
+	"func_integer.inl"
+
+1359678218 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (polished)\glm\core\func_integer.inl
+	<intrin.h>
+
+1359678218 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (polished)\glm\core\func_noise.hpp
+	"func_noise.inl"
+
+1359678218 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (polished)\glm\core\func_noise.inl
+
+1411151009 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (polished)\particle.h
+	"glm/glm.hpp"
+	<cstdlib>
+	<stdint.h>
+	<vector>
+
+1403655018 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (polished)\random.h
+
+1413064622 source:d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (polished)\collisiondetection_hgrid_new.cpp
+	"CollisionDetection_HGrid_new.h"
+
+1411406087 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (polished)\collisiondetection_hgrid_new.h
+	"CollisionDetection_Interface.h"
+	"Particle.h"
+	"glm/glm.hpp"
+	<cstdlib>
+	<vector>
+	<stdint.h>
+	<iostream>
+	<algorithm>
+	<unordered_map>
+	<string>
+	<typeinfo>
+	<bitset>
+	<math.h>
+	"Random.h"
+	"gl/gl.h"
+	"gl/glu.h"
+
+1416814733 source:d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (polished)\eg_camera\eg_camera.cpp
+	"EG_Camera.h"
+
+1419238170 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (polished)\eg_camera\eg_camera.h
+	<GL/glew.h>
+	<cmath>
+	<iostream>
+	<SDL/SDL.h>
+	"pipeline.h"
+	"define.h"
+	"glm/glm.hpp"
+	"glm/gtc/matrix_transform.hpp"
+	"glm/gtx/transform.hpp"
+	"glm/gtc/quaternion.hpp"
+	"glm/gtx/quaternion.hpp"
+
+1421246092 source:d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (polished)\eg_camera\eg_firstpersonpovcamera.cpp
+	"EG_FirstPersonPovCamera.h"
+
+1419561591 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (polished)\eg_camera\eg_firstpersonpovcamera.h
+	<cmath>
+	<iostream>
+	<SDL/SDL.h>
+	"pipeline.h"
+	"gl/gl.h"
+	"gl/glu.h"
+	"define.h"
+
+1421989435 source:d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (polished)\eg_camera\eg_thirdpersonpovcamera.cpp
+	"EG_ThirdPersonPovCamera.h"
+
+1421936947 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (polished)\eg_camera\eg_thirdpersonpovcamera.h
+	<GL/glew.h>
+	"EG_Camera.h"
+	"EG_Skybox.h"
+	"sceneLoader.h"
+	<cmath>
+	<iostream>
+	<SDL/SDL.h>
+	"pipeline.h"
+	"define.h"
+	"glm/glm.hpp"
+	"glm/gtc/matrix_transform.hpp"
+	"glm/gtx/transform.hpp"
+	"glm/gtc/quaternion.hpp"
+	"glm/gtx/quaternion.hpp"
+	"EG_RenderTechnique.h"
+
+1421868820 source:d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (polished)\eg_gbuffer.cpp
+	"EG_GBuffer.h"
+
+1421866816 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (polished)\eg_gbuffer.h
+	"define.h"
+	<GL/glew.h>
+
+1419817464 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (polished)\define.h
+	<string>
+	<iostream>
+	<ctime>
+	<vector>
+	<map>
+	<math.h>
+	"glm/glm.hpp"
+	"glm/gtc/type_ptr.hpp"
+	"glm/gtc/quaternion.hpp"
+	"glm/gtx/vector_angle.hpp"
+	"glm/gtx/compatibility.hpp"
+	"glm/gtx/matrix_operation.hpp"
+	"glm/gtx/transform.hpp"
+	"glm/gtx/quaternion.hpp"
+	"glm/gtx/euler_angles.hpp"
+	"glm/gtx/norm.hpp"
+	"SOIL.h"
+
+1359678220 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (polished)\glm\gtc\type_ptr.hpp
+	"../glm.hpp"
+	"../gtc/half_float.hpp"
+	"../gtc/quaternion.hpp"
+	<cstring>
+	"type_ptr.inl"
+
+1359678220 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (polished)\glm\gtc\half_float.hpp
+	"../glm.hpp"
+	"half_float.inl"
+
+1359678220 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (polished)\glm\gtc\half_float.inl
+
+1359678220 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (polished)\glm\gtc\quaternion.hpp
+	"../glm.hpp"
+	"../gtc/half_float.hpp"
+	"../gtc/constants.hpp"
+	"quaternion.inl"
+
+1359678220 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (polished)\glm\gtc\constants.hpp
+	"../glm.hpp"
+	"../gtc/half_float.hpp"
+	"constants.inl"
+
+1359678220 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (polished)\glm\gtc\constants.inl
+
+1359678220 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (polished)\glm\gtc\quaternion.inl
+	<limits>
+
+1359678220 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (polished)\glm\gtc\type_ptr.inl
+
+1359678224 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (polished)\glm\gtx\vector_angle.hpp
+	"../glm.hpp"
+	"../gtc/epsilon.hpp"
+	"../gtx/quaternion.hpp"
+	"../gtx/rotate_vector.hpp"
+	"vector_angle.inl"
+
+1359678220 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (polished)\glm\gtc\epsilon.hpp
+	"../glm.hpp"
+	"../gtc/half_float.hpp"
+	"../gtc/quaternion.hpp"
+	"epsilon.inl"
+
+1359678220 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (polished)\glm\gtc\epsilon.inl
+
+1359678222 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (polished)\glm\gtx\quaternion.hpp
+	"../glm.hpp"
+	"../gtc/quaternion.hpp"
+	"quaternion.inl"
+
+1359678222 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (polished)\glm\gtx\quaternion.inl
+	<limits>
+
+1359678222 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (polished)\glm\gtx\rotate_vector.hpp
+	"../glm.hpp"
+	"../gtx/transform.hpp"
+	"rotate_vector.inl"
+
+1359678222 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (polished)\glm\gtx\transform.hpp
+	"../glm.hpp"
+	"../gtc/matrix_transform.hpp"
+	"transform.inl"
+
+1359678220 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (polished)\glm\gtc\matrix_transform.hpp
+	"../glm.hpp"
+	"matrix_transform.inl"
+
+1359678220 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (polished)\glm\gtc\matrix_transform.inl
+
+1359678222 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (polished)\glm\gtx\transform.inl
+
+1359678222 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (polished)\glm\gtx\rotate_vector.inl
+
+1359678224 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (polished)\glm\gtx\vector_angle.inl
+
+1359678220 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (polished)\glm\gtx\compatibility.hpp
+	"../glm.hpp"
+	"../gtc/half_float.hpp"
+	"../gtc/quaternion.hpp"
+	<cfloat>
+	<cmath>
+	"compatibility.inl"
+
+1359678220 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (polished)\glm\gtx\compatibility.inl
+
+1359678222 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (polished)\glm\gtx\matrix_operation.hpp
+	"../glm.hpp"
+	"matrix_operation.inl"
+
+1359678222 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (polished)\glm\gtx\matrix_operation.inl
+
+1359678222 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (polished)\glm\gtx\euler_angles.hpp
+	"../glm.hpp"
+	"../gtc/half_float.hpp"
+	"euler_angles.inl"
+
+1359678222 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (polished)\glm\gtx\euler_angles.inl
+
+1359678222 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (polished)\glm\gtx\norm.hpp
+	"../glm.hpp"
+	"../gtx/quaternion.hpp"
+	"norm.inl"
+
+1359678222 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (polished)\glm\gtx\norm.inl
+
+1422035613 source:d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (polished)\eg_light\eg_alllights.cpp
+	"EG_AllLights.h"
+
+1421992226 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (polished)\eg_light\eg_alllights.h
+	<cstdlib>
+	<iostream>
+	<stdio.h>
+	<string>
+	<sstream>
+	<vector>
+	"define.h"
+	"EG_DirectionalLight.h"
+	"EG_PointLight.h"
+	"EG_SpotLight.h"
+	"Random.h"
+
+1420699886 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (polished)\eg_light\eg_directionallight.h
+	"define.h"
+	"EG_BaseLight.h"
+
+1421991638 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (polished)\eg_light\eg_baselight.h
+	"define.h"
+
+1421990903 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (polished)\eg_light\eg_pointlight.h
+	"define.h"
+	"EG_BaseLight.h"
+
+1421081661 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (polished)\eg_light\eg_spotlight.h
+	"define.h"
+	"EG_BaseLight.h"
+	"EG_PointLight.h"
+
+1420698836 source:d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (polished)\eg_light\eg_baselight.cpp
+	"EG_BaseLight.h"
+
+1420699208 source:d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (polished)\eg_light\eg_directionallight.cpp
+	"EG_DirectionalLight.h"
+
+1421991169 source:d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (polished)\eg_light\eg_pointlight.cpp
+	"EG_PointLight.h"
+
+1421081666 source:d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (polished)\eg_light\eg_spotlight.cpp
+	"EG_SpotLight.h"
+
+1422035681 source:d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (polished)\eg_main.cpp
+	"EG_Main.h"
+	"gl/gl.h"
+	"gl/glu.h"
+	"SDL\SDL.h"
+
+1421996468 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (polished)\eg_main.h
+	<cstdlib>
+	<iostream>
+	<stdio.h>
+	<string>
+	<sstream>
+	"define.h"
+	"EG_PointLight.h"
+	"EG_SpotLight.h"
+	"EG_DirectionalLight.h"
+	"EG_AllLights.h"
+	"EG_DeferredShadingGeometryPass.h"
+	"EG_DeferredShadingSkybox.h"
+	"EG_DeferredShadingReflection.h"
+	"EG_DeferredShadingLightPos.h"
+	"EG_DeferredShadingStencilPass.h"
+	"EG_DeferredShadingPointLightPass.h"
+	"EG_DeferredShadingDirectionalLightPass.h"
+	"EG_Camera.h"
+	"EG_FirstPersonPovCamera.h"
+	"EG_ThirdPersonPovCamera.h"
+	"EG_DeferredShading.h"
+	"EG_GBuffer.h"
+	"EG_utility.h"
+	"EG_Skybox.h"
+	"EG_Shader.h"
+	"sceneLoader.h"
+	"EG_Technique_TwoPass_RayCasting.h"
+	"EG_Technique_Shadow_Render.h"
+	"EG_Technique_Reflection.h"
+	"EG_RenderTechnique_RenderTexture.h"
+	"EG_RenderTechnique_RenderDepthToTexture.h"
+	"EG_WorldAxis.h"
+	"EG_WorldBox.h"
+	"EG_WorldSphere.h"
+	"EG_WorldReflectiveSphere.h"
+	"EG_Quad.h"
+	"pipeline.h"
+	"L_SphereParticleEffect.h"
+	"L_Cube_Sphere_ParticleEffect.h"
+	<GL/glew.h>
+	"SDL/SDL_opengl.h"
+	"SDL/SDL.h"
+	"SDL/SDL_image.h"
+	"ElapsedTime.h"
+	"L_ParticleEffect_Interface.h"
+	"EG_Smoke.h"
+	"CollisionDetection_HGrid.h"
+
+1421976284 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (polished)\eg_utility.h
+	<cstdlib>
+	<vector>
+	<iostream>
+	<sstream>
+	<string>
+	<algorithm>
+	<fstream>
+	<cstdio>
+	<GL/glew.h>
+	"EG_Shader.h"
+	<GL/glew.h>
+	"SDL/SDL.h"
+	"SDL/SDL_image.h"
+
+1419236633 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (polished)\eg_shader.h
+	<GL/glew.h>
+	<string>
+	<vector>
+	<fstream>
+	<iostream>
+	<stdio.h>
+
+1421302638 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (polished)\sceneloader.h
+	<vector>
+	<assimp/cimport.h>
+	<assimp/scene.h>
+	<assimp/postprocess.h>
+	<SDL/SDL_image.h>
+	"mesh.h"
+
+1421302535 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (polished)\mesh.h
+	<iostream>
+	"meshData.h"
+	<GL/glew.h>
+	"SDL/SDL_opengl.h"
+	<vector>
+	<string>
+
+1421301257 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (polished)\meshdata.h
+	"define.h"
+
+1421977132 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (polished)\pipeline.h
+	<iostream>
+	<vector>
+	"define.h"
+	"glm/glm.hpp"
+	"glm/gtc/matrix_transform.hpp"
+	"glm/gtx/transform.hpp"
+	"glm/gtc/quaternion.hpp"
+	"glm/gtx/quaternion.hpp"
+	<GL/glew.h>
+	<iostream>
+	<vector>
+	"glm/glm.hpp"
+	"glm/gtc/matrix_transform.hpp"
+	"glm/gtx/transform.hpp"
+	<GL/glew.h>
+
+1421336442 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (polished)\l_sphereparticleeffect.h
+	"pipeline.h"
+	"EG_RenderTechnique.h"
+	"EG_Technique_Shadow_Render.h"
+	"EG_Technique_TwoPass_RayCasting.h"
+	"sceneLoader.h"
+	"L_ParticleEffect_Interface.h"
+	<cstdlib>
+	<iostream>
+	<algorithm>
+	"CollisionDetection_HGrid.h"
+	"Random.h"
+
+1411324028 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (polished)\l_particleeffect_interface.h
+	"Particle.h"
+	<cstdlib>
+	<cstdlib>
+	<vector>
+	<iostream>
+	<sstream>
+	<string>
+	<algorithm>
+	<fstream>
+	<cstdio>
+	"glm/glm.hpp"
+
+1419238737 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (polished)\l_cube_sphere_particleeffect.h
+	<GL/glew.h>
+	"EG_WorldBox.h"
+	"EG_WorldSphere.h"
+	"pipeline.h"
+	"sceneLoader.h"
+	"L_ParticleEffect_Interface.h"
+	<cstdlib>
+	<iostream>
+	<algorithm>
+	"CollisionDetection_HGrid_new.h"
+	"Random.h"
+
+1413931435 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (polished)\elapsedtime.h
+
+1421416399 source:d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (polished)\eg_rendertechniques\eg_deferredshading\eg_deferredshading.cpp
+	"EG_DeferredShading.h"
+
+1421417021 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (polished)\eg_rendertechniques\eg_deferredshading\eg_deferredshading.h
+	"EG_RenderTechnique.h"
+
+1421972698 source:d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (polished)\eg_rendertechniques\eg_deferredshading\eg_deferredshadinggeometrypass.cpp
+	"EG_DeferredShadingGeometryPass.h"
+
+1421396250 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (polished)\eg_rendertechniques\eg_deferredshading\eg_deferredshadinggeometrypass.h
+	"EG_RenderTechnique.h"
+
+1421421389 source:d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (polished)\eg_rendertechniques\eg_deferredshading\eg_deferredshadingreflection.cpp
+	"EG_DeferredShadingReflection.h"
+
+1421420549 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (polished)\eg_rendertechniques\eg_deferredshading\eg_deferredshadingreflection.h
+	"EG_DeferredShading.h"
+
+1421416857 source:d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (polished)\eg_rendertechniques\eg_deferredshading\eg_deferredshadingskybox.cpp
+	"EG_DeferredShadingSkybox.h"
+
+1421417081 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (polished)\eg_rendertechniques\eg_deferredshading\eg_deferredshadingskybox.h
+	"EG_DeferredShading.h"
+
+1421415825 source:d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (polished)\eg_rendertechniques\eg_deferredshading\eg_deferredshadingstencilpass.cpp
+	"EG_DeferredShadingStencilPass.h"
+
+1421415817 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (polished)\eg_rendertechniques\eg_deferredshading\eg_deferredshadingstencilpass.h
+	"EG_RenderTechnique.h"
+
+1421980304 source:d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (polished)\eg_rendertechniques\eg_deferredshadinglightpass\eg_deferredshadingdirectionallightpass.cpp
+	"EG_DeferredShadingDirectionalLightPass.h"
+
+1421978896 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (polished)\eg_rendertechniques\eg_deferredshadinglightpass\eg_deferredshadingdirectionallightpass.h
+	"EG_DirectionalLight.h"
+	"EG_DeferredShadingLightPass.h"
+
+1421396553 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (polished)\eg_rendertechniques\eg_deferredshadinglightpass\eg_deferredshadinglightpass.h
+	"EG_RenderTechnique.h"
+
+1421416507 source:d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (polished)\eg_rendertechniques\eg_deferredshadinglightpass\eg_deferredshadinglightpass.cpp
+	"EG_DeferredShadingLightPass.h"
+
+1422034757 source:d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (polished)\eg_rendertechniques\eg_deferredshadinglightpass\eg_deferredshadingpointlightpass.cpp
+	"EG_DeferredShadingPointLightPass.h"
+
+1421939063 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (polished)\eg_rendertechniques\eg_deferredshadinglightpass\eg_deferredshadingpointlightpass.h
+	"EG_PointLight.h"
+	"EG_DeferredShadingLightPass.h"
+
+1421938554 source:d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (polished)\eg_rendertechniques\eg_rendertechnique.cpp
+	"EG_RenderTechnique.h"
+
+1421159396 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (polished)\eg_rendertechniques\eg_rendertechnique.h
+	"define.h"
+	"EG_Shader.h"
+	"pipeline.h"
+
+1421978345 source:d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (polished)\eg_rendertechniques\eg_rendertechnique_renderdepthtotexture.cpp
+	"EG_RenderTechnique_RenderDepthToTexture.h"
+
+1421974427 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (polished)\eg_rendertechniques\eg_rendertechnique_renderdepthtotexture.h
+	"pipeline.h"
+	<GL/glew.h>
+	<cstdlib>
+	<iostream>
+	<stdio.h>
+	<string>
+	<sstream>
+	"EG_RenderTechnique.h"
+
+1421978500 source:d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (polished)\eg_rendertechniques\eg_rendertechnique_rendertexture.cpp
+	"EG_RenderTechnique_RenderTexture.h"
+
+1421974188 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (polished)\eg_rendertechniques\eg_rendertechnique_rendertexture.h
+	"pipeline.h"
+	<GL/glew.h>
+	<cstdlib>
+	<iostream>
+	<stdio.h>
+	<string>
+	<sstream>
+	"EG_Quad.h"
+	"EG_RenderTechnique.h"
+
+1419849087 source:d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (polished)\eg_rendertechniques\eg_technique_reflection.cpp
+	"EG_Technique_Reflection.h"
+
+1420698524 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (polished)\eg_rendertechniques\eg_technique_reflection.h
+	"pipeline.h"
+	<GL/glew.h>
+	<cstdlib>
+	<iostream>
+	<stdio.h>
+	<string>
+	<sstream>
+	"EG_RenderTechnique.h"
+
+1420701583 source:d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (polished)\eg_rendertechniques\eg_technique_shadow_render.cpp
+	"EG_Technique_Shadow_Render.h"
+
+1420701589 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (polished)\eg_rendertechniques\eg_technique_shadow_render.h
+	"pipeline.h"
+	<GL/glew.h>
+	<cstdlib>
+	<iostream>
+	<stdio.h>
+	<string>
+	<sstream>
+	"EG_RenderTechnique.h"
+
+1421955313 source:d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (polished)\eg_rendertechniques\eg_technique_twopass_raycasting.cpp
+	"EG_Technique_TwoPass_RayCasting.h"
+
+1420558077 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (polished)\eg_rendertechniques\eg_technique_twopass_raycasting.h
+	"Smoke_struct.h"
+	"pipeline.h"
+	<GL/glew.h>
+	<cstdlib>
+	<iostream>
+	<stdio.h>
+	<string>
+	<sstream>
+	"EG_RenderTechnique.h"
+
+1419539489 source:d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (polished)\eg_shader.cpp
+	"EG_Shader.h"
+	<stdio.h>
+	<string.h>
+
+1421975600 source:d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (polished)\eg_utility.cpp
+	"EG_Utility.h"
+
+1421846118 source:d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (polished)\eg_worldobjects\eg_quad.cpp
+	"EG_Quad.h"
+
+1421846098 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (polished)\eg_worldobjects\eg_quad.h
+	"sceneLoader.h"
+
+1421961284 source:d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (polished)\eg_worldobjects\eg_skybox.cpp
+	"EG_Skybox.h"
+
+1421942481 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (polished)\eg_worldobjects\eg_skybox.h
+	<cstdlib>
+	<vector>
+	<iostream>
+	<sstream>
+	<string>
+	<algorithm>
+	<fstream>
+	<cstdio>
+	"EG_utility.h"
+	"EG_Shader.h"
+	"sceneLoader.h"
+	"pipeline.h"
+	"EG_RenderTechnique.h"
+	<GL/glew.h>
+	"SDL/SDL.h"
+	"SDL/SDL_image.h"
+
+1419539796 source:d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (polished)\eg_worldobjects\eg_smoke.cpp
+	"EG_Smoke.h"
+
+1420458903 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (polished)\eg_worldobjects\eg_smoke.h
+	"EG_Shader.h"
+	"EG_Technique_TwoPass_RayCasting.h"
+	"Smoke_struct.h"
+	<GL/glew.h>
+	<vector>
+	<iostream>
+	<sstream>
+	<string>
+	<algorithm>
+	<fstream>
+	<cstdio>
+	"L_ParticleEffect_Interface.h"
+	"define.h"
+
+1421335992 source:d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (polished)\eg_worldobjects\eg_worldaxis.cpp
+	"EG_WorldAxis.h"
+
+1421335605 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (polished)\eg_worldobjects\eg_worldaxis.h
+	<iostream>
+	<cstdlib>
+	"pipeline.h"
+	"mesh.h"
+	"sceneLoader.h"
+	"EG_RenderTechnique.h"
+
+1419238412 source:d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (polished)\eg_worldobjects\eg_worldbox.cpp
+	"EG_WorldBox.h"
+
+1419238415 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (polished)\eg_worldobjects\eg_worldbox.h
+	"EG_WorldObject.h"
+	<iostream>
+	<cstdlib>
+
+1421424886 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (polished)\eg_worldobjects\eg_worldobject.h
+	"glm/glm.hpp"
+	"glm/gtc/matrix_transform.hpp"
+	"glm/gtx/transform.hpp"
+	<cstdlib>
+	<stdint.h>
+	<vector>
+	"Particle.h"
+
+1421424875 source:d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (polished)\eg_worldobjects\eg_worldobject.cpp
+	"EG_WorldObject.h"
+
+1421425463 source:d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (polished)\eg_worldobjects\eg_worldreflectivesphere.cpp
+	"EG_WorldReflectiveSphere.h"
+
+1421425372 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (polished)\eg_worldobjects\eg_worldreflectivesphere.h
+	"EG_WorldSphere.h"
+	"pipeline.h"
+	"sceneLoader.h"
+	"EG_DeferredShadingReflection.h"
+
+1421425152 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (polished)\eg_worldobjects\eg_worldsphere.h
+	"EG_WorldObject.h"
+
+1421425158 source:d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (polished)\eg_worldobjects\eg_worldsphere.cpp
+	"EG_WorldSphere.h"
+
+1409357051 source:d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (polished)\elapsedtime.cpp
+	"define.h"
+	"ElapsedTime.h"
+	<algorithm>
+
+1411638663 source:d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (polished)\l_cube_sphere_particleeffect.cpp
+	"L_Cube_Sphere_ParticleEffect.h"
+
+1421336480 source:d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (polished)\l_sphereparticleeffect.cpp
+	"L_SphereParticleEffect.h"
+	"gl/gl.h"
+	"gl/glu.h"
+
+1421302963 source:d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (polished)\mesh.cpp
+	"mesh.h"
+
+1416849279 source:d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (polished)\pipeline.cpp
+	"pipeline.h"
+	"glm/gtx/quaternion.hpp"
+	"pipeline.h"
+	"pipeline.h"
+
+1421302693 source:d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (polished)\sceneloader.cpp
+	"sceneLoader.h"
+
+1421997198 source:d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (polished)\eg_rendertechniques\eg_deferredshading\eg_deferredshadinglightpos.cpp
+	"EG_DeferredShadingLightPos.h"
+
+1421996824 d:\martin\programming\c and c++\sdl\explosion generator 2015 01 23 deferred shading (polished)\eg_rendertechniques\eg_deferredshading\eg_deferredshadinglightpos.h
+	"EG_DeferredShading.h"
 

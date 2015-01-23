@@ -13,6 +13,7 @@
 #include "EG_DirectionalLight.h"
 #include "EG_PointLight.h"
 #include "EG_SpotLight.h"
+#include "Random.h"
 
 using namespace std;
 
@@ -39,6 +40,8 @@ class EG_AllLights
         vector<EG_PointLight> getPointLights();
         EG_PointLight& getPointLight(int index);
         int getPointLightsCount();
+        void addPointLight();
+        void initPointLightWall();
 
     private:
         vector<EG_SpotLight> spotLights;
