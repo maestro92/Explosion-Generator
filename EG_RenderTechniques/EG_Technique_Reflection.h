@@ -23,12 +23,22 @@
 /// CameraPOV   render2
 class Technique_Reflection : public EG_RenderTechnique
 {
+    private:
+        glm::vec3   m_cameraPosition;
+        GLuint      m_reflectionTextureId;
+
     public:
-        GLuint CameraPosition_UniformLocation;
-        GLuint CubeMap_UniformLocation;
+        GLuint      m_cameraPositionUniLoc;
+        GLuint      m_reflectionTextureIdUniLoc;
+        int         m_reflectionTextureUnit;
+
         Technique_Reflection();
         ~Technique_Reflection();
         void init(int Shader_Num);
+
+        void setCameraPosition(glm::vec3 camPos);
+        void setReflectionTextureId(GLuint id);
+        void loadUniformLocations(pipeline& p, int RenderPassID);
 
 };
 

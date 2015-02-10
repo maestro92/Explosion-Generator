@@ -96,6 +96,7 @@ e for events
 
 class ExplosionGenerator
 {
+
     private:
         EG_RenderTechnique*             r_Technique;
         EG_DeferredShading*             r_deferredShading;
@@ -103,6 +104,7 @@ class ExplosionGenerator
         Technique_Shadow_Render         r_Shadow_Render;
         Technique_TwoPass_Raycasting    r_TwoPass_Render;
    //     Technique_DepthTexture_Render   r_DepthTexture_Render;
+        EG_RenderTechnique_RenderDepthToTexture   r_DepthTexture_Render;
 
         EG_RenderTechnique_RenderDepthToTexture   r_renderToDepthTexture;
     //    EG_DeferredShading r_deferredShadingRenderTechnique;
@@ -131,6 +133,7 @@ class ExplosionGenerator
 
         GLuint VBO;
         GLuint FBO;
+        GLuint FBO1;
         pipeline m_pipeline;
 
         // Material Property
@@ -160,7 +163,7 @@ class ExplosionGenerator
 
         meshLoader* wall_negative_z;
         meshLoader* wall_positive_z;
-
+        meshLoader* o_hugeWall;
 
         meshLoader* sphere;
         meshLoader* smoothSphere;
@@ -173,9 +176,15 @@ class ExplosionGenerator
 //        mesh* quad;
 
 
-        EG_WorldAxis o_worldAxis;
-        EG_Quad o_fullScreenQuad;
+        EG_WorldAxis    o_worldAxis;
+        WorldSphere     o_reflectionSphere;
+
+
+        EG_Quad         o_fullScreenQuad;
         meshLoader* deferredShadingQuad;
+
+        bool holdKeyFlag;
+        bool toggleFlag;
 
         bool isRunning;
         bool isFirstPersonCamera;
@@ -257,7 +266,6 @@ class ExplosionGenerator
         void init_Texture_and_FrameBuffer();
 
         void SetupRenderStage();
-        void getDepthTexture_FromLightPosion();
         void getDepthTexture_FromLightPosion(pipeline temp_pipeline);
 
         void start();

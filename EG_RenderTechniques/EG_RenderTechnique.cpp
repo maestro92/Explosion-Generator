@@ -127,6 +127,32 @@ void EG_RenderTechnique::disableShader(int RenderPassID)
     progShaders[RenderPassID]->delShader();
 }
 
+
+void EG_RenderTechnique::setUniformLocation(GLuint location, int value)
+{
+    glUniform1i(location, value);
+}
+
+void EG_RenderTechnique::setUniformLocation(GLuint location, float value)
+{
+    glUniform1f(location, value);
+}
+
+void EG_RenderTechnique::setUniformLocation(GLuint location, float x, float y)
+{
+    glUniform2f(location, x, y);
+}
+
+void EG_RenderTechnique::setUniformLocation(GLuint location, glm::vec3 value)
+{
+    glUniform3f(location, value.x, value.y, value.z);
+}
+
+void EG_RenderTechnique::setUniformLocation(GLuint location, glm::mat4 value)
+{
+    glUniformMatrix4fv(location, 1, GL_FALSE, &value[0][0]);
+}
+
 void EG_RenderTechnique::render()
 {
 

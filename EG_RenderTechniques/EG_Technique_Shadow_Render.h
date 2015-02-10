@@ -13,8 +13,8 @@
 #include <sstream>
 
 #include "EG_RenderTechnique.h"
-
-
+#include "EG_DirectionalLight.h"
+#include "EG_PointLight.h"
 
 /// LightPOV    render1
 /// CameraPOV   render2
@@ -27,32 +27,12 @@ class Technique_Shadow_Render : public EG_RenderTechnique
 
     public:
 
-/*
-        /// Matrix Locations
-        Matrices_Location Matrices_Loc1;        /// first pass for depth in Light's point of View
-        Matrices_Location Matrices_Loc2;        /// Second pass in Camera's point of View
-        GLuint egLoc_ShadowMatrix1;    /// This is for the ShadowMatrix
-        GLuint egLoc_ShadowMatrix2;    /// Bias Matrix * LightModelViewProjectionMatrix
-        /// Bias Matrix being NDC coordinates to Texture Coordinates
-*/
-
-    //    Matrices_Location Matrices_Loc1;
-    //    Matrices_Location Matrices_Loc2;
-
-/*
-        /// first pass for depth in Light's point of View
-        /// Second pass in Camera's point of View
-        Matrices_Location Matrices_UniLoc[2];
-*/
-
-        /// This is for the ShadowMatrix
-        /// Bias Matrix * LightModelViewProjectionMatrix
-        /// Bias Matrix being NDC coordinates to Texture Coordinates
         GLuint ShadowMatrix_UniLoc[2];
 
         Technique_Shadow_Render();
         ~Technique_Shadow_Render();
 
+        GLuint l_modelViewProjectionMatrix_UniLoc_;
 
         GLuint LightMVPmatrix_UniLoc;
         GLuint shadowMap_UniLoc;
@@ -60,18 +40,29 @@ class Technique_Shadow_Render : public EG_RenderTechnique
         GLuint LightPosition_UniLoc;
         GLuint CameraPosition_UniLoc;
 
-
+        GLuint gNumPointLights;
+        GLuint m_eyeWorldPosLocation;
+        GLuint m_matSpecularIntensityLocation;
+        GLuint m_matSpecularPowerLocation;
 
       //  void init(int w, int h);
         void init(int w, int h, int Shader_Num);
         void loadUniformLocations(pipeline& p, int RenderPassID);
-   //     void Setup_Matrix_forRender(pipeline& p, int RenderPassID);
-   //     void Setup_Matrix_forRender1(pipeline& p);
-   //     void Setup_Matrix_forRender2(pipeline& p);
 
-  //      void Setup_Matrix_forRender(pipeline& p, int RenderPassID);
-  //      void Setup_ShadowMatrix_forRender(pipeline& p, int RenderPassID);
-  //      void loadSpecialUniformLocation(pipeline& p, int RenderPassID);
+        void setDirectionalLight(EG_DirectionalLight& Light);
+        void setPointLight(int index, EG_PointLight& Light);
+        void setPointLightCount(int count);
+        float computePointLightBoundingSphere(EG_PointLight& Light);
+
+
+        void setEyeWorldPos(const glm::vec3& EyePos);
+        void setScreenSize(unsigned int Width, unsigned int Height);
+        void setMatSpecularIntensity(float Intensity);
+        void setMatSpecularPower(float Power);
+
+
+
+
 
         GLuint ShadowMap;
         GLuint DepthTexture_LightPOV;
@@ -86,7 +77,25 @@ class Technique_Shadow_Render : public EG_RenderTechnique
         Shader* SecondPass_CameraPOV;
 
 
+        struct {
+            GLuint color;
+            GLuint ambientIntensity;
+            GLuint diffuseIntensity;
+            GLuint direction;
+        } m_dirLightLocation;
 
+
+        struct
+        {
+            GLuint color;
+            GLuint ambientIntensity;
+            GLuint diffuseIntensity;
+            GLuint position;
+            Attenuation attenuation;
+            GLuint scale;
+        } m_pointLightsLocation[103];
+
+    //    m_pointLightUniformLocation m_pointLightUniformLocations[103];
 };
 
 #endif

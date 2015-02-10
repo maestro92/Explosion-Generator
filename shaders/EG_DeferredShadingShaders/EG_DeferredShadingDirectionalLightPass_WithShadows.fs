@@ -206,6 +206,12 @@ void main()
     else
         FragColor = (shadowValue == 0.0) ?  vec4(0.0,0.0,0.0,1.0) : vec4(colorValue,1.0) * CalcDirectionalLight(worldPos, normal);
 
+    
+    
+
+
+  //  FragColor = vec4(colorValue,1.0) * CalcDirectionalLight(worldPos, normal);
+
 //        if (shadowValue == 1)
  //           FragColor = vec4(colorValue,1.0) * CalcDirectionalLight(worldPos, normal);
         

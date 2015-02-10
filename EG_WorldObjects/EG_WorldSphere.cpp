@@ -11,9 +11,16 @@ WorldSphere::~WorldSphere()
 
 }
 
+
+void WorldSphere::init()
+{
+
+}
+
 void WorldSphere::setPosition(glm::vec3 pos)
 {
     w_Position = pos;
+    position = pos;
 }
 
 void WorldSphere::setSize(float x, float y, float z)

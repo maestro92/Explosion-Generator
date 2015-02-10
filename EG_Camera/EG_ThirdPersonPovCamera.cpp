@@ -887,6 +887,11 @@ void EG_ThirdPersonPovCamera::decreaseOffsetDistance()
 }
 
 
+glm::vec3 EG_ThirdPersonPovCamera::getEyePoint()
+{
+    return m_eye;
+}
+
 
 
 

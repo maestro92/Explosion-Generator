@@ -21,6 +21,8 @@ class WorldBox : public WorldObject
 
         // set position
         virtual void setPosition(glm::vec3 pos);
+
+
         virtual void setRotation(glm::vec3 rot);
         virtual void setAngularVelocity(glm::vec3 ang_vel); // this is gonna be the axis of rotation
 

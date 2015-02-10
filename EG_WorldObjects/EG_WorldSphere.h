@@ -9,8 +9,11 @@ class WorldSphere : public WorldObject
         // constructor
         WorldSphere();
 
+
         // Destructor
 		virtual ~WorldSphere();
+
+        virtual void init();
 
         virtual void setPosition(glm::vec3 pos);
         virtual void setAngularVelocity(glm::vec3 ang_vel);

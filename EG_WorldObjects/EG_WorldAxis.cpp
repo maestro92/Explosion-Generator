@@ -61,10 +61,26 @@ void EG_WorldAxis::init()
     axisIndices.push_back(5);
 
     worldAxis = new mesh(&axisVertices, &axisIndices);
+
 }
 
 
 
+
+void EG_WorldAxis::render(pipeline &m_pipeline, EG_RenderTechnique* RenderTechnique, int RenderPassID)
+{
+    RenderTechnique->enableShader(RenderPassID);
+    m_pipeline.pushMatrix();
+
+        m_pipeline.translate(position);
+        RenderTechnique->loadUniformLocations(m_pipeline, RENDER_PASS1);
+        worldAxis->drawLines();
+
+    m_pipeline.popMatrix();
+    RenderTechnique->disableShader(RenderPassID);
+}
+
+/*
 void EG_WorldAxis::render(pipeline &m_pipeline, EG_RenderTechnique* RenderTechnique, int RenderPassID)
 {
     m_pipeline.pushMatrix();
@@ -72,6 +88,8 @@ void EG_WorldAxis::render(pipeline &m_pipeline, EG_RenderTechnique* RenderTechni
         worldAxis->drawLines();
     m_pipeline.popMatrix();
 }
+*/
+
 
 /*
 

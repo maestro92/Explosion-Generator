@@ -145,7 +145,7 @@ void main()
 
     FragColor = vec4(Color, 1.0) * CalcPointLight(WorldPos, Normal);  
 */
-
+    
     vec2 texCoord = CalcTexCoord();
     vec3 worldPos = texture(gPositionMap, texCoord).xyz;
     vec3 colorValue = texture(gColorMap, texCoord).xyz;

@@ -102,6 +102,7 @@ const float BALL_ROLLING_SPEED = 140.0f;
         float setYaw(float yaw);
         float getPitch();
         float getYaw();
+        glm::vec3 getEyePoint();
 
         glm::quat computeOrientationChange(glm::vec3 localXAxis, glm::vec3 localYAxis, glm::vec3 localZAxis,
                                             float pitch, float yaw, float roll);

@@ -9,7 +9,7 @@ void main()
 	vec2 pos = gl_FragCoord.xy * gPixelSize;	
 
 // if it's a depth texture
-#if 0	
+#if 1	
 	vec4 value = texture2D(gTexture,pos);
 	value.x = pow(value.x,32);
 	value.y = pow(value.y,32);

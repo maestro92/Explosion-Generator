@@ -7,11 +7,15 @@
 #include "pipeline.h"
 #include "mesh.h"
 #include "sceneLoader.h"
+#include "EG_WorldObject.h"
 #include "EG_RenderTechnique.h"
+
+
 
 using namespace std;
 
-class EG_WorldAxis
+class EG_WorldAxis : public WorldObject
+// class EG_WorldAxis
 {
     public:
         // Constructor
@@ -22,6 +26,7 @@ class EG_WorldAxis
 
         void init();
         void render(pipeline &m_pipeline, EG_RenderTechnique* RenderTechnique, int RenderPassID);
+//        void render(pipeline &m_pipeline, EG_RenderTechnique* RenderTechnique, int RenderPassID);
    //     void buildAxisMesh();
 };
 

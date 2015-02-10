@@ -12,6 +12,7 @@ EG_AllLights::~EG_AllLights()
 
 }
 
+
 void EG_AllLights::init()
 {
     spotLights = vector<EG_SpotLight>(1, EG_SpotLight());
@@ -63,7 +64,7 @@ void EG_AllLights::init()
     pointLights[3].attenuation.exp = 0.5f;
 
 
-    initPointLightWall();
+ //   initPointLightWall();
 }
 
 void EG_AllLights::setSportLights()
@@ -107,8 +108,12 @@ void EG_AllLights::initPointLightWall()
 
     EG_PointLight pLight;
 
+    int iterations = 25;
+    float interval = 50/(float)iterations;
+
+
     /// -z side
-    for (int i=0; i<25; i++)
+    for (int i=0; i<iterations; i++)
 //    for (int i=0; i<6; i++)
     {
 
@@ -134,7 +139,7 @@ void EG_AllLights::initPointLightWall()
 
 
     //    float amount = -25.0f+i*10 - 0.5;
-        float amount = -25.0f+i*2 - 0.5;
+        float amount = -25.0f+i*interval  - 0.5;
         glm::vec3 pos(amount, 5.0f, -24.0f);
 //        glm::vec3 pos(amount, 5.0f, -25.0f + amount-2);
       //  float DiffuseInt = 10.0f;

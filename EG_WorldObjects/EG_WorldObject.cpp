@@ -14,6 +14,23 @@ WorldObject::~WorldObject()
 }
 
 
+
+
+glm::vec3 WorldObject::getPosition()
+{
+    return position;
+}
+
+glm::vec3 WorldObject::getRotation()
+{
+    return rotation;
+}
+
+glm::vec3 WorldObject::getVelocity()
+{
+    return velocity;
+}
+
 void WorldObject::setPosition(glm::vec3 pos)
 {
     w_Position = pos;
@@ -57,6 +74,37 @@ float WorldObject::getBoundingVolumeSize()
 
 }
 
+
+void WorldObject::render(   pipeline& m_pipeline,
+                            EG_RenderTechnique* RenderTechnique,
+                            int RenderPassID,
+                            meshLoader* model)
+{
+    RenderTechnique->enableShader(RenderPassID);
+    m_pipeline.pushMatrix();
+        m_pipeline.translate(position);
+        RenderTechnique->loadUniformLocations(m_pipeline, RenderPassID);
+        model->draw();
+    m_pipeline.popMatrix();
+    RenderTechnique->disableShader(RenderPassID);
+}
+
+
+
+void WorldObject::render(   pipeline& m_pipeline,
+                            EG_RenderTechnique* RenderTechnique,
+                            int RenderPassID,
+                            meshLoader* model,
+                            GLuint textureId)
+{
+    RenderTechnique->enableShader(RenderPassID);
+    m_pipeline.pushMatrix();
+        m_pipeline.translate(position);
+        RenderTechnique->loadUniformLocations(m_pipeline, RenderPassID);
+        model->draw();
+    m_pipeline.popMatrix();
+    RenderTechnique->disableShader(RenderPassID);
+}
 
 /*
 void WorldObject::render(pipeline &m_pipeline, EG_DeferredShading* RenderTechnique,

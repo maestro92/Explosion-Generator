@@ -11,6 +11,8 @@
 #include <vector>
 #include "Particle.h"
 
+#include "EG_DeferredShading.h"
+#include "sceneLoader.h"
 
 #define SPHERE  0
 #define BOX     1
@@ -30,8 +32,13 @@ class WorldObject
         WorldObject* pPrevObj;
         WorldObject* pNextObj;      // embedded link to next hgrid particle
 
+       // static meshLoader* model;
+
         /// Translational
         float   w_mass;
+
+
+
         vec3    w_Position;
         vec3    w_Velocity;
 
@@ -56,6 +63,16 @@ class WorldObject
         WorldObject();
         virtual ~WorldObject();
 
+
+        vec3    position;
+        vec3    velocity;
+        vec3    rotation;
+
+        glm::vec3 getPosition();
+        glm::vec3 getRotation();
+        glm::vec3 getVelocity();
+
+
         virtual void setPosition(glm::vec3 pos);
         void setVelocity(glm::vec3 vel);
         virtual void setRotation(glm::vec3 rot);
@@ -66,6 +83,19 @@ class WorldObject
         virtual float getBoundingVolumeSize();
         // for sphere
         virtual void setSize(float x, float y, float z);
+
+
+        virtual void render(pipeline& m_pipeline,
+                            EG_RenderTechnique* RenderTechnique,
+                            int RenderPassID,
+                            meshLoader* model);
+
+        virtual void render(pipeline& m_pipeline,
+                            EG_RenderTechnique* RenderTechnique,
+                            int RenderPassID,
+                            meshLoader* model,
+                            GLuint textureId);
+
         // destructor
         /*
         virtual void render(pipeline& m_pipeline,

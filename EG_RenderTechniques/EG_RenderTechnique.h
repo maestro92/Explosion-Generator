@@ -72,6 +72,11 @@ class EG_RenderTechnique
 //        void Setup_Special_glUniform(pipeline& p, int RenderPassID);
 //        void Setup_ShadowMatrix_forRender(pipeline& p, int RenderPassID);
 //        void loadShadowMatrix(pipeline& p, int RenderPassID);
+        void setUniformLocation(GLuint location, int value);
+        void setUniformLocation(GLuint location, float value);
+        void setUniformLocation(GLuint location, float x, float y);
+        void setUniformLocation(GLuint location, glm::vec3 value);
+        void setUniformLocation(GLuint location, glm::mat4 value);
 
     public:
         Matrices_Location* Matrices_UniLoc;

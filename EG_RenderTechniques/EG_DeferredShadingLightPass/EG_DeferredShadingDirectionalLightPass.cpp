@@ -93,7 +93,6 @@ void EG_DeferredShadingDirectionalLightPass::loadUniformLocations(pipeline& p, i
 {
     p.shadowMatrix = p.Light_BiasMatrix * p.Light_ProjectionMatrix * p.Light_ViewMatrix * p.modelMatrix[p.modelMatrix.size()-1];
     glUniformMatrix4fv(l_modelViewProjectionMatrix_UniLoc_,1,GL_FALSE,&p.shadowMatrix[0][0]);
- //   glUniform3f(lightPosition_ObjectSpace_UniLoc_, EyePos.x, EyePos.y, EyePos.z);
     EG_RenderTechnique::loadUniformLocations(p, RenderPassID);
 }
 
@@ -107,6 +106,9 @@ void EG_DeferredShadingDirectionalLightPass::setDirectionalLight(EG_DirectionalL
     glUniform3f(m_dirLightLocation.direction, direction.x, direction.y, direction.z);
     glUniform1f(m_dirLightLocation.diffuseIntensity, Light.diffuseIntensity);
 }
+
+
+
 
 
 void EG_DeferredShadingDirectionalLightPass::setShadowMapTextureUnit(unsigned int TextureUnit)
