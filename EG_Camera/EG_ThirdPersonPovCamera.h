@@ -18,6 +18,7 @@
 #include "glm/gtc/quaternion.hpp"
 #include "glm/gtx/quaternion.hpp"
 #include "EG_RenderTechnique.h"
+#include "EG_WorldObject.h"
 
 /*
 
@@ -157,6 +158,9 @@ const float BALL_ROLLING_SPEED = 140.0f;
 
         /// everything related to the character
         meshLoader* m_character;
+
+        static WorldObject characterObject;
+
         glm::vec3 c_position;
         glm::vec3 c_velocity;
 
@@ -180,24 +184,6 @@ const float BALL_ROLLING_SPEED = 140.0f;
         const float CAMERA_ZOOM_DEGREE = 3.0f;
         glm::vec3 m_velocity;
         float m_offsetDistance;
-        glm::mat4 beautiful2;
-        glm::mat4 beautiful3;
-        glm::mat4 beautiful4;
-        glm::mat4 beautiful5;
-        glm::mat4 beautiful6;
-        glm::mat4 beautiful17;
-
-        glm::mat4 beautiful21;
-        glm::mat4 beautiful31;
-        glm::mat4 beautiful41;
-        glm::mat4 beautiful51;
-        glm::mat4 beautiful112;
-        glm::mat4 beautiful1132;
-
-        glm::mat4 beautiful22222;
-        glm::mat4 beautiful333333;
-        glm::mat4 beautiful44444;
-        glm::mat4 beautiful555555;
 
 };
 

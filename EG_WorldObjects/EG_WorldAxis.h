@@ -25,6 +25,7 @@ class EG_WorldAxis : public WorldObject
         mesh* worldAxis;
 
         void init();
+        void renderSingle(pipeline &m_pipeline, EG_RenderTechnique* RenderTechnique, int RenderPassID);
         void render(pipeline &m_pipeline, EG_RenderTechnique* RenderTechnique, int RenderPassID);
 //        void render(pipeline &m_pipeline, EG_RenderTechnique* RenderTechnique, int RenderPassID);
    //     void buildAxisMesh();

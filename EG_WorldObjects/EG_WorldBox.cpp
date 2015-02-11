@@ -75,11 +75,7 @@ void WorldBox::setSize(float x, float y, float z)
 
 }
 
-void WorldBox::setPosition(glm::vec3 pos)
-{
-    w_Position = pos;
 
-}
 
 void WorldBox::setRotation(glm::vec3 rot)
 {

@@ -85,7 +85,7 @@ class WorldObject
         virtual void setSize(float x, float y, float z);
 
 
-        virtual void render(pipeline& m_pipeline,
+        virtual void renderSingle(pipeline& m_pipeline,
                             EG_RenderTechnique* RenderTechnique,
                             int RenderPassID,
                             meshLoader* model);
@@ -93,8 +93,12 @@ class WorldObject
         virtual void render(pipeline& m_pipeline,
                             EG_RenderTechnique* RenderTechnique,
                             int RenderPassID,
-                            meshLoader* model,
-                            GLuint textureId);
+                            meshLoader* model);
+
+        virtual void renderGroup(  pipeline& m_pipeline,
+                                    EG_RenderTechnique* RenderTechnique,
+                                    int RenderPassID,
+                                    meshLoader* model);
 
         // destructor
         /*

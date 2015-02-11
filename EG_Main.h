@@ -178,9 +178,9 @@ class ExplosionGenerator
 
         EG_WorldAxis    o_worldAxis;
         WorldSphere     o_reflectionSphere;
-
-
+        WorldBox        o_wall;
         EG_Quad         o_fullScreenQuad;
+
         meshLoader* deferredShadingQuad;
 
         bool holdKeyFlag;
@@ -277,7 +277,7 @@ class ExplosionGenerator
         void RenderTexture(GLuint TextureId);
         void RenderTexture2();
         void RenderScene();
-        void RenderReflectiveObjects();
+
 //        void RenderSmoke();
         void RenderSmoke(bool pass1, bool pass2, Matrices_t& Mat, unsigned int depthTextureId);
         void RenderQuad(GLuint TextureId);

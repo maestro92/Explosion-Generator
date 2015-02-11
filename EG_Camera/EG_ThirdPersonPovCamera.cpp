@@ -134,6 +134,30 @@ void EG_ThirdPersonPovCamera::setTarget(glm::vec3& target)
 // http://3dgep.com/understanding-the-view-matrix/
 void EG_ThirdPersonPovCamera::lookAt(pipeline& m_pipeline, glm::vec3& eye, glm::vec3& target, glm::vec3& up)
 {
+
+
+
+     //     Uint32 pre_show_time = SDL_GetTicks();
+       //     show();
+
+     //       SDL_GL_SwapBuffers();
+      //      cout << "delay is " << (SDL_GetTicks() - pre_show_time) << endl;
+
+/*
+            glm::mat4 myMatrix = glm::translate(10.0f, -10.0f, 5.0f);
+            cout << myMatrix[0][0] << " " << myMatrix[1][0] << " " << myMatrix[2][0] << " " << myMatrix[3][0] << " " << endl;
+            cout << myMatrix[0][1] << " " << myMatrix[1][1] << " " << myMatrix[2][1] << " " << myMatrix[3][1] << " " << endl;
+            cout << myMatrix[0][2] << " " << myMatrix[1][2] << " " << myMatrix[2][2] << " " << myMatrix[3][2] << " " << endl;
+            cout << myMatrix[0][3] << " " << myMatrix[1][3] << " " << myMatrix[2][3] << " " << myMatrix[3][3] << " " << endl;
+*/
+
+
+
+
+
+
+
+
     m_eye = eye;
     m_target = target;
 
@@ -617,6 +641,15 @@ void EG_ThirdPersonPovCamera::Control(pipeline& m_pipeline, EG_SkyBox& skybox)
 
 
 
+void EG_ThirdPersonPovCamera::render(pipeline &m_pipeline, EG_RenderTechnique* RenderTechnique, int RenderPassID)
+{
+    m_pipeline.pushMatrix();
+        m_pipeline.LoadMatrix(c_worldMatrix);
+        m_pipeline.Rotate(180.0f, 0.0f, 1.0f, 0.0f);
+        RenderTechnique->loadUniformLocations(m_pipeline, RenderPassID);
+        m_character->draw();
+    m_pipeline.popMatrix();
+}
 
 
 
@@ -721,15 +754,6 @@ void EG_ThirdPersonPovCamera::updateCharacter(float pitchChange, float yawChange
 
 
 
-void EG_ThirdPersonPovCamera::render(pipeline &m_pipeline, EG_RenderTechnique* RenderTechnique, int RenderPassID)
-{
-    m_pipeline.pushMatrix();
-        m_pipeline.LoadMatrix(c_worldMatrix);
-        m_pipeline.Rotate(180.0f, 0.0f, 1.0f, 0.0f);
-        RenderTechnique->loadUniformLocations(m_pipeline, RENDER_PASS1);
-        m_character->draw();
-    m_pipeline.popMatrix();
-}
 
 
 

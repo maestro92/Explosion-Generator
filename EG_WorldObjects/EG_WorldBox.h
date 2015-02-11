@@ -20,7 +20,7 @@ class WorldBox : public WorldObject
         virtual void setSize(float x, float y, float z);
 
         // set position
-        virtual void setPosition(glm::vec3 pos);
+
 
 
         virtual void setRotation(glm::vec3 rot);

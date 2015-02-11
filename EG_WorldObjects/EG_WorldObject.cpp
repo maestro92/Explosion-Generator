@@ -75,6 +75,20 @@ float WorldObject::getBoundingVolumeSize()
 }
 
 
+
+
+void WorldObject::renderSingle( pipeline& m_pipeline,
+                                EG_RenderTechnique* RenderTechnique,
+                                int RenderPassID,
+                                meshLoader* model)
+{
+    RenderTechnique->enableShader(RenderPassID);
+    render(m_pipeline, RenderTechnique, RenderPassID, model);
+    RenderTechnique->disableShader(RenderPassID);
+}
+
+
+
 void WorldObject::render(   pipeline& m_pipeline,
                             EG_RenderTechnique* RenderTechnique,
                             int RenderPassID,
@@ -90,21 +104,28 @@ void WorldObject::render(   pipeline& m_pipeline,
 }
 
 
-
-void WorldObject::render(   pipeline& m_pipeline,
-                            EG_RenderTechnique* RenderTechnique,
-                            int RenderPassID,
-                            meshLoader* model,
-                            GLuint textureId)
+void WorldObject::renderGroup(  pipeline& m_pipeline,
+                                EG_RenderTechnique* RenderTechnique,
+                                int RenderPassID,
+                                meshLoader* model)
 {
-    RenderTechnique->enableShader(RenderPassID);
     m_pipeline.pushMatrix();
         m_pipeline.translate(position);
         RenderTechnique->loadUniformLocations(m_pipeline, RenderPassID);
         model->draw();
     m_pipeline.popMatrix();
-    RenderTechnique->disableShader(RenderPassID);
 }
+
+
+
+
+
+
+
+
+
+
+
 
 /*
 void WorldObject::render(pipeline &m_pipeline, EG_DeferredShading* RenderTechnique,

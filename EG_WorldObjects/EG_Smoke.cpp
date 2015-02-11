@@ -23,7 +23,6 @@ void Smoke::init()
     glBindFramebuffer(GL_FRAMEBUFFER, fbo);
 
     Eulerian3D_Raycast = new Shader("3D_Eulerian_Raycast.vs", "3D_Eulerian_Raycast.gs", "3D_Eulerian_Raycast.fs");
-
     Eulerian3D_Fill = new Shader("3D_Eulerian_Vertex.vs", "3D_Eulerian_Fill.fs");
     Eulerian3D_Advect = new Shader("3D_Eulerian_Vertex.vs", "3D_Eulerian_PickLayer.gs", "3D_Eulerian_Advect.fs");
     Eulerian3D_Jacobi = new Shader("3D_Eulerian_Vertex.vs", "3D_Eulerian_PickLayer.gs", "3D_Eulerian_Jacobi.fs");

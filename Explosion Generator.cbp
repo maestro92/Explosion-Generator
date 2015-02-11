@@ -94,6 +94,8 @@
 		<Unit filename="EG_RenderTechniques/EG_RenderTechnique_RenderDepthToTexture.h" />
 		<Unit filename="EG_RenderTechniques/EG_RenderTechnique_RenderTexture.cpp" />
 		<Unit filename="EG_RenderTechniques/EG_RenderTechnique_RenderTexture.h" />
+		<Unit filename="EG_RenderTechniques/EG_RenderTechnique_Skybox.cpp" />
+		<Unit filename="EG_RenderTechniques/EG_RenderTechnique_Skybox.h" />
 		<Unit filename="EG_RenderTechniques/EG_Technique_Reflection.cpp" />
 		<Unit filename="EG_RenderTechniques/EG_Technique_Reflection.h" />
 		<Unit filename="EG_RenderTechniques/EG_Technique_Shadow_Render.cpp" />

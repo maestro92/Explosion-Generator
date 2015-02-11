@@ -1,7 +1,7 @@
 #version 330
 
-uniform samplerCube cubeMap;
-uniform vec3 cameraPosition;
+uniform samplerCube m_reflectionTexture;
+uniform vec3 		m_cameraPosition;
 
 
 in vec3 outColor;
@@ -15,10 +15,10 @@ in vec3 worldNormalDirection;
 out vec4 FragColor;
 void main()
 {
-	vec3 incident = normalize(worldVertexPosition - cameraPosition);
+	vec3 incident = normalize(worldVertexPosition - m_cameraPosition);
 	vec3 normal = normalize(worldNormalDirection);
 	vec3 reflected = reflect(incident,normal);
-	FragColor = texture(cubeMap, reflected);
+	FragColor = texture(m_reflectionTexture, reflected);
 
 }
 

@@ -18,10 +18,10 @@ Technique_Reflection::~Technique_Reflection()
 void Technique_Reflection::init(int Shader_Num)
 {
     allocateMemberVariables(Shader_Num);
-    progShaders[RENDER_PASS1] = new Shader("Reflection.vs", "Reflection.frag");
+    progShaders[RENDER_PASS1] = new Shader("Reflection.vs", "Reflection.fs");
 
-    m_cameraPositionUniLoc      = GetUniformLocation(progShaders[RENDER_PASS1], "cameraPosition");
-    m_reflectionTextureIdUniLoc = GetUniformLocation(progShaders[RENDER_PASS1], "cubeMap");
+    m_cameraPositionUniLoc      = GetUniformLocation(progShaders[RENDER_PASS1], "m_cameraPosition");
+    m_reflectionTextureIdUniLoc = GetUniformLocation(progShaders[RENDER_PASS1], "m_reflectionTexture");
 
     initMemberVariables();
 }

@@ -20,7 +20,7 @@
 #include "L_ParticleEffect_Interface.h"
 #include "define.h"
 
-
+#include "EG_WorldObject.h"
 
 
 const int ViewportWidth = 320;
@@ -106,7 +106,8 @@ static struct Vbos_t{
 
 
 
-class Smoke //: public L_ParticleEffect_Interface
+// class Smoke //: public L_ParticleEffect_Interface
+class Smoke : public WorldObject
 {
     public:
         // side size

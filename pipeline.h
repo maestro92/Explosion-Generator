@@ -120,6 +120,16 @@ class pipeline
 
         void pushMatrix();
 		void popMatrix();
+
+
+		void RotatePositiveX();
+		void RotateNegativeX();
+
+		void RotatePositiveY();
+		void RotateNegativeY();
+
+		void RotatePositiveZ();
+		void RotateNegativeZ();
 };
 
 #endif

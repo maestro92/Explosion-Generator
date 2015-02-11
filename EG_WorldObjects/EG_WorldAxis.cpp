@@ -65,11 +65,16 @@ void EG_WorldAxis::init()
 }
 
 
+void EG_WorldAxis::renderSingle(pipeline &m_pipeline, EG_RenderTechnique* RenderTechnique, int RenderPassID)
+{
+    RenderTechnique->enableShader(RenderPassID);
+    render(m_pipeline, RenderTechnique, RenderPassID);
+    RenderTechnique->disableShader(RenderPassID);
+}
 
 
 void EG_WorldAxis::render(pipeline &m_pipeline, EG_RenderTechnique* RenderTechnique, int RenderPassID)
 {
-    RenderTechnique->enableShader(RenderPassID);
     m_pipeline.pushMatrix();
 
         m_pipeline.translate(position);
@@ -77,7 +82,6 @@ void EG_WorldAxis::render(pipeline &m_pipeline, EG_RenderTechnique* RenderTechni
         worldAxis->drawLines();
 
     m_pipeline.popMatrix();
-    RenderTechnique->disableShader(RenderPassID);
 }
 
 /*
