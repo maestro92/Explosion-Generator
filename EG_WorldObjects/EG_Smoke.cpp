@@ -101,21 +101,6 @@ void Smoke::init()
 
 
 
-void Smoke::init2()
-{
-    glGenFramebuffers(1, &fbo);
-    glBindFramebuffer(GL_FRAMEBUFFER, fbo);
-
-    myVbos.CubeCenter = CreatePointVbo(0,0,0);
-    myVbos.FullscreenQuad = CreateQuadVbo();
-
-    glDisable(GL_DEPTH_TEST);
-    glEnable(GL_CULL_FACE);
-    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-    glEnableVertexAttribArray(SlotPosition);
-
-    Eulerian3D_ApplyBuoyancy->delShader();
-}
 
 
 void Smoke::update(bool toggle)

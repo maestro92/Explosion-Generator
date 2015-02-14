@@ -16,9 +16,6 @@ pipeline::pipeline()
 	currentMatrix=0;
 
 
-
-
-
     Light_BiasMatrix[0][0]=0.5;Light_BiasMatrix[0][1]=0.0;Light_BiasMatrix[0][2]=0.0;Light_BiasMatrix[0][3]=0.0;
 	Light_BiasMatrix[1][0]=0.0;Light_BiasMatrix[1][1]=0.5;Light_BiasMatrix[1][2]=0.0;Light_BiasMatrix[1][3]=0.0;
 	Light_BiasMatrix[2][0]=0.0;Light_BiasMatrix[2][1]=0.0;Light_BiasMatrix[2][2]=0.5;Light_BiasMatrix[2][3]=0.0;
@@ -338,6 +335,73 @@ void pipeline::updateCameraMatrix(unsigned int shaderId)
 }
 
 
+
+
+void pipeline::RotateForReflection(int face)
+{
+    switch (face)
+    {
+        case POSITIVE_X:
+            RotatePositiveX();
+            break;
+
+        case NEGATIVE_X:
+            RotateNegativeX();
+            break;
+
+        case POSITIVE_Y:
+            RotatePositiveY();
+            break;
+
+        case NEGATIVE_Y:
+            RotateNegativeY();
+            break;
+
+        case POSITIVE_Z:
+            RotatePositiveZ();
+            break;
+
+        case NEGATIVE_Z:
+            RotateNegativeZ();
+            break;
+        default:
+            break;
+    };
+}
+
+
+void pipeline::RotatePositiveX()
+{
+    rotateZ(180);
+    rotateY(-90);
+}
+
+void pipeline::RotateNegativeX()
+{
+    rotateZ(180);
+    rotateY(90);
+}
+
+void pipeline::RotatePositiveY()
+{
+    rotateX(90);
+}
+
+void pipeline::RotateNegativeY()
+{
+    rotateX(-90);
+}
+
+void pipeline::RotatePositiveZ()
+{
+    rotateZ(180);
+    rotateY(180);
+}
+
+void pipeline::RotateNegativeZ()
+{
+    rotateZ(180);
+}
 
 
 

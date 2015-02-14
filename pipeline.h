@@ -24,10 +24,17 @@ enum matrixModes
     PROJECTION_MATRIX
 };
 
+const static glm::mat4 LIGHT_BIAS_MATRIX = glm::mat4( 0.5, 0.0, 0.0, 0.0,
+                                                     0.0, 0.5, 0.0, 0.0,
+                                                     0.0, 0.0, 0.5, 0.0,
+                                                     0.5, 0.5, 0.5, 1.0);
+
+/*
 const static glm::mat4 lightBiasMatrix = glm::mat4( 0.5, 0.0, 0.0, 0.0,
                                                     0.0, 0.5, 0.0, 0.0,
                                                     0.0, 0.0, 0.5, 0.0,
                                                     0.5, 0.5, 0.5, 1.0);
+*/
 /*
     Light_BiasMatrix[0][0]=0.5;Light_BiasMatrix[0][1]=0.0;Light_BiasMatrix[0][2]=0.0;Light_BiasMatrix[0][3]=0.0;
 	Light_BiasMatrix[1][0]=0.0;Light_BiasMatrix[1][1]=0.5;Light_BiasMatrix[1][2]=0.0;Light_BiasMatrix[1][3]=0.0;
@@ -41,6 +48,9 @@ if a class doesn't contain pointers, then there is no need to write assignment o
 */
 class pipeline
 {
+
+
+
     public:
         int currentMatrix;
         //members
@@ -92,6 +102,8 @@ class pipeline
    //     void Rotate1(glm::quat q_rotation);
 
 
+  //      void setUpProjectionMatrix();
+
 		//projection
 		void ortho(float left,float right,float bottom,float top,float near,float far); //==glOrtho
 		void perspective(float angle,float aRatio,float near,float far);	//==gluPerspective
@@ -122,6 +134,13 @@ class pipeline
 		void popMatrix();
 
 
+        enum CubeMapOrientation
+        {
+            POSITIVE_X=0, NEGATIVE_X, POSITIVE_Y,
+            NEGATIVE_Y, POSITIVE_Z, NEGATIVE_Z
+        };
+
+        void RotateForReflection(int face);
 		void RotatePositiveX();
 		void RotateNegativeX();
 

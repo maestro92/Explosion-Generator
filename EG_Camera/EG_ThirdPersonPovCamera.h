@@ -59,7 +59,13 @@ const float BALL_ROLLING_SPEED = 140.0f;
     static const float DEFAULT_SPRING_CONSTANT;
     static const float DEFAULT_DAMPING_CONSTANT;
 
+/*
+reason why we need to separate the two is because
+using spring system, we will have different view matrix
+*/
     public:
+
+        int cameraMode;
 
         EG_ThirdPersonPovCamera();
         ~EG_ThirdPersonPovCamera();
@@ -79,8 +85,8 @@ const float BALL_ROLLING_SPEED = 140.0f;
         void update(pipeline& m_pipeline, float pitchChange, float yawChange);
 
         /// from GLThirdPersonCamera2
-        void update2(pipeline& m_pipeline, float pitchChange, float yawChange);
-        void update2(pipeline& m_pipeline, float elapsedTimeSec, float pitchChange, float yawChange);
+   //     void update2(pipeline& m_pipeline, float pitchChange, float yawChange);
+   //     void update2(pipeline& m_pipeline, float elapsedTimeSec, float pitchChange, float yawChange);
         void update2(pipeline& m_pipeline, float elapsedTimeSec, float pitchChange, float yawChange, EG_SkyBox& skybox);
 
 
@@ -88,7 +94,7 @@ const float BALL_ROLLING_SPEED = 140.0f;
 
 
       //  void RotateOrbit(pipeline& m_pipeline);
-        void Control(pipeline& m_pipeline);
+ //       void Control(pipeline& m_pipeline);
         void Control(pipeline& m_pipeline, EG_SkyBox& skybox);
         void updateViewMatrix(pipeline& m_pipeline);
 
@@ -113,6 +119,10 @@ const float BALL_ROLLING_SPEED = 140.0f;
 
         void render(pipeline &m_pipeline, EG_RenderTechnique* RenderTechnique, int RenderPassID);
 
+        void computeLocalAxisAndEyePosFromMatrix( glm::mat4& mat, int mat_type,
+                                                  glm::vec3& xAxis, glm::vec3& yAxis,
+                                                  glm::vec3& zAxis, glm::vec3& eye_pos);
+
 
         /// Get methods
         void increaseOffsetDistance();
@@ -131,8 +141,6 @@ const float BALL_ROLLING_SPEED = 140.0f;
         const glm::vec3 &getYAxis() const;
         const glm::vec3 &getZAxis() const;
         bool springSystemIsEnabled() const;
-
-        glm::vec3 set(float x, float y, float z);
 
  //   glm::
         bool mouse_in;
@@ -159,7 +167,7 @@ const float BALL_ROLLING_SPEED = 140.0f;
         /// everything related to the character
         meshLoader* m_character;
 
-        static WorldObject characterObject;
+        WorldObject characterObject;
 
         glm::vec3 c_position;
         glm::vec3 c_velocity;
@@ -171,9 +179,8 @@ const float BALL_ROLLING_SPEED = 140.0f;
         glm::vec3 c_up;
         glm::vec3 c_forward;
 
-        glm::quat c_orientation;
-        glm::quat c_rotation;
 
+        glm::quat c_orientation;
         glm::mat4 c_worldMatrix;
 
 
@@ -185,6 +192,8 @@ const float BALL_ROLLING_SPEED = 140.0f;
         glm::vec3 m_velocity;
         float m_offsetDistance;
 
+        void setViewMatrixRotation(glm::vec3 xAxis, glm::vec3 yAxis, glm::vec3 zAxis);
+        void setViewMatrixPosition(glm::vec3 eye_pos);
 };
 
 /*

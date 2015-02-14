@@ -45,7 +45,6 @@
 #include "EG_WorldAxis.h"
 #include "EG_WorldBox.h"
 #include "EG_WorldSphere.h"
-#include "EG_WorldReflectiveSphere.h"
 #include "EG_Quad.h"
 
 #include "pipeline.h"
@@ -127,8 +126,6 @@ class ExplosionGenerator
         EG_GBuffer gbuffer;
         EG_GBuffer skyboxGBuffer;
         EG_AllLights allLights;
-
-        EG_WorldReflectiveSphere o_reflectiveSphere;
 
 
         GLuint VBO;
@@ -259,9 +256,7 @@ class ExplosionGenerator
         void initShader();
         void initModels();
         void initLights();
-
-        void setupCamera();
-        void setupColor_Texture();
+        void initTempTexture();
 
         void init_Texture_and_FrameBuffer();
 
@@ -286,7 +281,9 @@ class ExplosionGenerator
         void Render_to_CubeMapTexture2();
         void Render_to_CubeMapFace2(int face);
 
-        void renderShadowMap(pipeline temp_pipeline);
+        // void renderShadowMap(pipeline temp_pipeline);
+        void renderShadowMap();
+
         void deferredShadingMrtDemoPass();
 
 /*
@@ -311,15 +308,6 @@ class ExplosionGenerator
 
         void deferredShadingRenderToCubeMapTexture();
         void deferredShadingRenderToCubeMapTextureFace(int face);
-
-
-        /// Basic Drawing functions
-        void drawAxis(float fScale, glm::vec3 translate = glm::vec3(0));
-        void drawAxis(float fScale, pipeline& m_pipeline, glm::vec3 translate = glm::vec3(0));
-        void drawCube(float size);
-        void drawCubeFrame(float size, int offset);
-        void drawGround(float size, unsigned int textureId);
-
 
 };
 

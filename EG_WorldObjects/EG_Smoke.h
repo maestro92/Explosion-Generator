@@ -128,8 +128,7 @@ class Smoke : public WorldObject
         ~Smoke();
 
         void init();
-        void init2();
-        void init3();
+
 
         void update(bool toggle = false);
         void show(bool toggle = false);

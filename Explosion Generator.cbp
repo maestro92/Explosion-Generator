@@ -118,8 +118,6 @@
 		<Unit filename="EG_WorldObjects/EG_WorldBox.h" />
 		<Unit filename="EG_WorldObjects/EG_WorldObject.cpp" />
 		<Unit filename="EG_WorldObjects/EG_WorldObject.h" />
-		<Unit filename="EG_WorldObjects/EG_WorldReflectiveSphere.cpp" />
-		<Unit filename="EG_WorldObjects/EG_WorldReflectiveSphere.h" />
 		<Unit filename="EG_WorldObjects/EG_WorldSphere.cpp" />
 		<Unit filename="EG_WorldObjects/EG_WorldSphere.h" />
 		<Unit filename="ElapsedTime.cpp" />

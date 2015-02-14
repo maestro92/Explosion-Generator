@@ -67,16 +67,27 @@ class WorldObject
         vec3    position;
         vec3    velocity;
         vec3    rotation;
+        vec3    angularVelocity;
 
         glm::vec3 getPosition();
         glm::vec3 getRotation();
         glm::vec3 getVelocity();
 
 
-        virtual void setPosition(glm::vec3 pos);
+        void setPosition(glm::vec3 pos);
+        void setPosition(float x, float y, float z);
         void setVelocity(glm::vec3 vel);
-        virtual void setRotation(glm::vec3 rot);
-        virtual void setAngularVelocity(glm::vec3 ang_vel);
+        void setVelocity(float x, float y, float z);
+        void updatePosition();
+
+        void setRotation(glm::vec3 rot);
+        void setRotation(float x, float y, float z);
+        void setAngularVelocity(glm::vec3 ang_vel);
+        void setAngularVelocity(float x, float y, float z);
+        void updateRotation();
+
+
+
 
         virtual void ReCalculateBoundingVolume();
         virtual bool CheckObjGroundCollision(float dt);

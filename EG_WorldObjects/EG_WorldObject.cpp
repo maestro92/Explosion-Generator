@@ -34,22 +34,66 @@ glm::vec3 WorldObject::getVelocity()
 void WorldObject::setPosition(glm::vec3 pos)
 {
     w_Position = pos;
+    position = pos;
+}
+
+void WorldObject::setPosition(float x, float y, float z)
+{
+    w_Position = glm::vec3(x, y, z);
+    position = glm::vec3(x, y, z);
+}
+
+void WorldObject::updatePosition()
+{
+    position += velocity;
 }
 
 void WorldObject::setVelocity(glm::vec3 vel)
 {
     w_Velocity = vel;
+    velocity = vel;
 }
+
+void WorldObject::setVelocity(float x, float y, float z)
+{
+    w_Velocity = glm::vec3(x, y, z);
+    velocity = glm::vec3(x, y, z);
+}
+
+
+
 
 void WorldObject::setRotation(glm::vec3 rot)
 {
     w_Rotation = rot;
+    rotation = rot;
+}
+
+void WorldObject::setRotation(float x, float y, float z)
+{
+    w_Rotation = glm::vec3(x, y, z);
+    rotation = glm::vec3(x, y, z);
 }
 
 void WorldObject::setAngularVelocity(glm::vec3 ang_vel)
 {
     w_AngularVelocity = ang_vel;
+    angularVelocity = ang_vel;
 }
+
+void WorldObject::setAngularVelocity(float x, float y, float z)
+{
+    w_AngularVelocity = glm::vec3(x, y, z);
+    angularVelocity = glm::vec3(x, y, z);
+}
+
+void WorldObject::updateRotation()
+{
+    w_Rotation += angularVelocity;
+    rotation += angularVelocity;
+}
+
+
 
 
 void WorldObject::setSize(float x, float y, float z)

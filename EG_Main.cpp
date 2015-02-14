@@ -138,13 +138,11 @@ ExplosionGenerator::ExplosionGenerator()
 #endif
     initLights();
 
-//    setupCamera();
-    setupColor_Texture();
 
     m_skybox.init();
+
     o_fullScreenQuad.init();
     o_worldAxis.init();
-
     o_reflectionSphere.setPosition(ReflectiveSphere_Pos);
 
     initModels();
@@ -548,8 +546,10 @@ void ExplosionGenerator::start()
 
 
 
-void ExplosionGenerator::renderShadowMap(pipeline temp_pipeline)
+void ExplosionGenerator::renderShadowMap()
 {
+    pipeline temp_pipeline;
+
     temp_pipeline.matrixMode(PROJECTION_MATRIX);
     temp_pipeline.loadIdentity();
     temp_pipeline.perspective(45,SCREEN_WIDTH/SCREEN_HEIGHT, 0.5, 1000.0);
@@ -574,7 +574,7 @@ void ExplosionGenerator::renderShadowMap(pipeline temp_pipeline)
 
     /// assign the Bias Matrix to convert from NDC coordinate [-1,1] to Texture coord [0,1]
 
-    shadowMatrix = lightBiasMatrix * Light_ModelViewProjectionMatrix;
+    shadowMatrix = LIGHT_BIAS_MATRIX * Light_ModelViewProjectionMatrix;
 
 
 
@@ -668,7 +668,7 @@ void ExplosionGenerator::update()
 ///************************Helper Functions**************************///
 
 
-void ExplosionGenerator::setupColor_Texture()
+void ExplosionGenerator::initTempTexture()
 {
     glShadeModel( GL_SMOOTH );
 
@@ -848,38 +848,7 @@ void ExplosionGenerator::Render_to_CubeMapFace2(int face)
     m_pipeline.matrixMode(VIEW_MATRIX);
     m_pipeline.loadIdentity();
 
-
-    switch (face)
-    {
-        case POSITIVE_X:
-            m_pipeline.rotateZ(180);
-            m_pipeline.rotateY(-90);
-            break;
-
-        case NEGATIVE_X:
-            m_pipeline.rotateZ(180);
-            m_pipeline.rotateY(90);
-            break;
-
-        case POSITIVE_Y:
-            m_pipeline.rotateX(90);
-            break;
-
-        case NEGATIVE_Y:
-            m_pipeline.rotateX(-90);
-            break;
-
-        case POSITIVE_Z:
-            m_pipeline.rotateZ(180);
-            m_pipeline.rotateY(180);
-            break;
-
-        case NEGATIVE_Z:
-            m_pipeline.rotateZ(180);
-            break;
-        default:
-            break;
-    };
+    m_pipeline.RotateForReflection(face);
 
 
     glViewport(0,0,SCREEN_WIDTH,SCREEN_HEIGHT);
@@ -954,20 +923,16 @@ void ExplosionGenerator::forwardRender()
     Render_to_CubeMapTexture2();
 #endif
 
-#if 1
 
+#if 1
     m_pipeline.matrixMode(PROJECTION_MATRIX);
     m_pipeline.loadIdentity();
     m_pipeline.perspective(45,SCREEN_WIDTH/SCREEN_HEIGHT, 0.5, 1000.0);
 
-///camera motion
-    glMatrixMode( GL_MODELVIEW );
-    glLoadIdentity();
 
+///camera motion
 	m_pipeline.matrixMode(VIEW_MATRIX);
 	m_pipeline.loadIdentity();
-
-
 
 
     if(isFirstPersonCamera)
@@ -1037,13 +1002,7 @@ void ExplosionGenerator::forwardRender()
 #endif
 
 
-
-
-    ///First render pass: light's point of view
-    pipeline temp_pipeline;
-    temp_pipeline.perspective(45, SCREEN_WIDTH/SCREEN_HEIGHT, 0.5,1000.0);
-    temp_pipeline.matrixMode(MODEL_MATRIX);
-    renderShadowMap(temp_pipeline);
+    renderShadowMap();
 
 
     glEnable(GL_CULL_FACE);
@@ -1060,6 +1019,7 @@ void ExplosionGenerator::forwardRender()
 #endif
     glEnable(GL_CULL_FACE);
     glEnable(GL_DEPTH_TEST);    glClear(GL_DEPTH_BUFFER_BIT);
+
 
     RenderScene();
 
@@ -1167,15 +1127,7 @@ void ExplosionGenerator::deferredShadingShow()
 
 
 
-
-
-    ///First render pass: light's point of view
-    pipeline temp_pipeline;
-    temp_pipeline.perspective(45, SCREEN_WIDTH/SCREEN_HEIGHT, 0.5,1000.0);
-    temp_pipeline.matrixMode(MODEL_MATRIX);
-    renderShadowMap(temp_pipeline);
-
-
+    renderShadowMap();
 
 
     glEnable(GL_CULL_FACE);
@@ -1309,20 +1261,19 @@ void ExplosionGenerator::deferredShadingGeometryPass37(EG_GBuffer& GBuffer)
     r_deferredShading = &r_deferredShadingReflection;
 
 
-    o_reflectiveSphere.setPosition(ReflectiveSphere_Pos);
     glm::vec3 eyePoint;
     if(isFirstPersonCamera)
         eyePoint = firstPersonPovCamera.getEyePoint();
     else
         eyePoint = thirdPersonPovCamera.m_eye;
-
+/*
     o_reflectiveSphere.render(m_pipeline,
                           r_deferredShadingReflection,
                           RENDER_PASS1,
                           m_skybox.Dynamic_CubeMap_ColorTextureID,
                           smoothSphere,
                           eyePoint);
-
+*/
 #if POINT_LIGHT_BULBS
     r_deferredShading = &r_deferredShadingLightPos;
     r_deferredShadingLightPos.enableShader(RENDER_PASS1);
@@ -1735,39 +1686,7 @@ void ExplosionGenerator::deferredShadingRenderToCubeMapTextureFace(int face)
     m_pipeline.matrixMode(VIEW_MATRIX);
     m_pipeline.loadIdentity();
 
-
-    switch (face)
-    {
-        case POSITIVE_X:
-            m_pipeline.rotateZ(180);
-            m_pipeline.rotateY(-90);
-            break;
-
-        case NEGATIVE_X:
-            m_pipeline.rotateZ(180);
-            m_pipeline.rotateY(90);
-            break;
-
-        case POSITIVE_Y:
-            m_pipeline.rotateX(90);
-            break;
-
-        case NEGATIVE_Y:
-            m_pipeline.rotateX(-90);
-            break;
-
-        case POSITIVE_Z:
-            m_pipeline.rotateZ(180);
-            m_pipeline.rotateY(180);
-            break;
-
-        case NEGATIVE_Z:
-            m_pipeline.rotateZ(180);
-            break;
-        default:
-            break;
-    };
-
+    m_pipeline.RotateForReflection(face);
 
     glViewport(0,0,SCREEN_WIDTH,SCREEN_HEIGHT);
 
