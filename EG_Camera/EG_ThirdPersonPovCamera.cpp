@@ -4,10 +4,8 @@
 
 static bool first = true;
 
-
 const float EG_ThirdPersonPovCamera::DEFAULT_SPRING_CONSTANT = 16.0f;
 const float EG_ThirdPersonPovCamera::DEFAULT_DAMPING_CONSTANT = 8.0f;
-
 
 EG_ThirdPersonPovCamera::EG_ThirdPersonPovCamera()
 {
@@ -17,8 +15,8 @@ EG_ThirdPersonPovCamera::EG_ThirdPersonPovCamera()
     m_dampingConstant = DEFAULT_DAMPING_CONSTANT;
     m_enableSpringSystem = true;
 
-    m_pitchDegrees = 0.0f;
-    m_yawDegrees = 0.0f;
+    pitchDegree = 0.0f;
+    yawDegree = 0.0f;
 
     mousevel = 1.0f;
     mouse_in = false;
@@ -36,24 +34,41 @@ EG_ThirdPersonPovCamera::EG_ThirdPersonPovCamera()
 
     m_viewMatrix = glm::mat4(1.0);
 
-    m_pitchDegrees = 0.0f;
-    m_pitchDegrees = 90.0f;
 }
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
 EG_ThirdPersonPovCamera::~EG_ThirdPersonPovCamera()
 {
 
-
 }
+
+
+void EG_ThirdPersonPovCamera::switchCameraMode()
+{
+    if(cameraMode == THIRD_PERSON_POV_CAMERA_MODE)
+        cameraMode = FIRST_PERSON_POV_CAMERA_MODE;
+    else
+        cameraMode = THIRD_PERSON_POV_CAMERA_MODE;
+}
+
 
 void EG_ThirdPersonPovCamera::init(pipeline& m_pipeline)
 {
     m_character = new meshLoader("./Characters/LEGO_Man.obj");
-    c_position      = glm::vec3(0.0f, 0.0f, 0.0f);
-    c_eulerOrient   = glm::vec3(0.0f, 0.0f, 0.0f);
-    c_eulerRotate   = glm::vec3(0.0f, 0.0f, 0.0f);
+    m_characterHeight = 3.0f;
 
     characterObject.setPosition(glm::vec3(0.0f, 0.0f, 0.0f));
     characterObject.setRotation(glm::vec3(0.0f, 0.0f, 0.0f));
@@ -68,6 +83,18 @@ void EG_ThirdPersonPovCamera::init(pipeline& m_pipeline)
 
     lookAt(m_pipeline, eye_p, target_p, up_p);
 }
+
+
+
+void EG_ThirdPersonPovCamera::initFirst(pipeline& m_pipeline)
+{
+
+
+}
+
+
+
+
 
 
 
@@ -96,7 +123,6 @@ void EG_ThirdPersonPovCamera::computeLocalAxisAndEyePosFromMatrix(glm::mat4& mat
 
 void EG_ThirdPersonPovCamera::lookAt(pipeline& m_pipeline, glm::vec3& eye, glm::vec3& target, glm::vec3& up)
 {
-
     m_eye = eye;
     m_target = target;
 
@@ -129,49 +155,9 @@ void EG_ThirdPersonPovCamera::lookAt(pipeline& m_pipeline, glm::vec3& eye, glm::
 
     m_viewMatrix = glm::inverse(m_viewMatrix);
 
-/*
-#if USING_INVERSE_VIEW_MATRIX
-    m_viewMatrix[0][0] = m_xAxis.x;
-    m_viewMatrix[1][0] = m_xAxis.y;
-    m_viewMatrix[2][0] = m_xAxis.z;
-    m_viewMatrix[3][0] = -glm::dot(m_xAxis, eye);
+    m_idealViewMatrix = m_viewMatrix;
 
-    m_viewMatrix[0][1] = m_yAxis.x;
-    m_viewMatrix[1][1] = m_yAxis.y;
-    m_viewMatrix[2][1] = m_yAxis.z;
-    m_viewMatrix[3][1] = -glm::dot(m_yAxis, eye);
-
-    m_viewMatrix[0][2] = m_zAxis.x;
-    m_viewMatrix[1][2] = m_zAxis.y;
-    m_viewMatrix[2][2] = m_zAxis.z;
-    m_viewMatrix[3][2] = -glm::dot(m_zAxis, eye);
-
-    /// these two are equivalent
-    /// see http://blog.hvidtfeldts.net/index.php/2014/01/combining-ray-tracing-and-polygons/
-#else
-    m_viewMatrix[0][0] = m_xAxis.x;
-    m_viewMatrix[0][1] = m_xAxis.y;
-    m_viewMatrix[0][2] = m_xAxis.z;
-    m_viewMatrix[3][0] = eye.x;
-
-    m_viewMatrix[1][0] = m_yAxis.x;
-    m_viewMatrix[1][1] = m_yAxis.y;
-    m_viewMatrix[1][2] = m_yAxis.z;
-    m_viewMatrix[3][1] = eye.y;
-
-    m_viewMatrix[2][0] = m_zAxis.x;
-    m_viewMatrix[2][1] = m_zAxis.y;
-    m_viewMatrix[2][2] = m_zAxis.z;
-    m_viewMatrix[3][2] = eye.z;
-
-    m_viewMatrix = glm::inverse(m_viewMatrix);
-#endif
-*/
-    m_orientation = glm::toQuat(m_viewMatrix);
 	updateViewMatrix(m_pipeline);
-
-
- //   cout << "m_eye " << m_eye.x << ", " << m_eye.y << ", " << m_eye.z << endl;
 }
 
 void EG_ThirdPersonPovCamera::enableSpringSystem(bool enableSpringSystem)
@@ -204,18 +190,30 @@ void EG_ThirdPersonPovCamera::setTarget(glm::vec3& target)
     m_target = target;
 }
 
-
-void EG_ThirdPersonPovCamera::rotate(pipeline& m_pipeline, float pitch, float yaw)
+void EG_ThirdPersonPovCamera::setTarget(glm::vec3 target)
 {
-    m_pitchDegrees += pitch;
-    m_yawDegrees += yaw;
+    m_target = target;
 }
 
 
 
+
+void EG_ThirdPersonPovCamera::debugVec3(glm::vec3 v, string s)
+{
+    cout << s << " " << v.x << " " << v.y << " " << v.z << endl;
+}
+
+
+
+
+
+#if 1
+
 void EG_ThirdPersonPovCamera::update2(pipeline& m_pipeline, float elapsedTimeSec, float pitchChange, float yawChange, EG_SkyBox& skybox)
 {
     glm::quat rot;
+
+
 
     /// imagine the sequence of Model View Projection Matrix
     /// it will be projectionMatrix * viewMatrix * modelMatrix
@@ -226,24 +224,120 @@ void EG_ThirdPersonPovCamera::update2(pipeline& m_pipeline, float elapsedTimeSec
     /// we're essentially turning the world first, then rotating our camera, then move our camera along our camera orientation
     if (yawChange != 0.0f)
     {
-        rot = glm::angleAxis(yawChange, glm::vec3(0,1,0));
-        m_orientation = m_orientation * rot;
+        glm::mat4 rot_temp = glm::rotate(yawChange, 0.0f, 1.0f, 0.0f);
+        m_idealViewMatrix = m_idealViewMatrix * rot_temp;
     }
 
     if (pitchChange != 0.0f)
     {
-        rot = glm::angleAxis(pitchChange, glm::vec3(1,0,0));
-        m_orientation = rot * m_orientation;
+        glm::mat4 rot_temp = glm::rotate(pitchChange, 1.0f,0.0f,0.0f);
+        m_idealViewMatrix = m_idealViewMatrix * rot_temp ;
     }
+
+    glm::vec3 m_idealXAxis;
+    glm::vec3 m_idealYAxis;
+    glm::vec3 m_idealZAxis;
+    glm::vec3 m_idealEye;
+
+    /// extracting x,y,z axis from viewMatrix
+    computeLocalAxisAndEyePosFromMatrix(m_idealViewMatrix, VIEW_MATRIX,
+                                          m_idealXAxis, m_idealYAxis,
+                                          m_idealZAxis, m_idealEye);
+
+
+    if (m_enableSpringSystem)
+    {
+        glm::vec3 idealPosition = m_target + m_idealZAxis * m_offsetDistance;
+        glm::vec3 displacement = m_eye - idealPosition;
+
+        /// spring force F = kx
+        /// ma = kx - damping * v
+        glm::vec3 springAcceleration = (-m_springConstant * displacement) -
+                                (m_dampingConstant * m_velocity);
+
+        m_velocity += springAcceleration * elapsedTimeSec;
+        m_eye += m_velocity * elapsedTimeSec;
+    }
+    else
+    {
+        /// if not using the spring system
+        m_eye = m_target + m_zAxis * m_offsetDistance;
+        debugVec3(m_eye, "m_eye");
+    }
+
+
+    m_zAxis = m_eye - m_target;
+    m_zAxis = glm::normalize(m_zAxis);
+
+    m_xAxis = glm::cross(glm::vec3(0.0f,1.0f,0.0f), m_zAxis);
+    m_xAxis = glm::normalize(m_xAxis);
+
+    m_yAxis = glm::cross(m_zAxis, m_xAxis);
+    m_yAxis = glm::normalize(m_yAxis);
+
+    setViewMatrixRotation(m_xAxis, m_yAxis, m_zAxis);
+
+    m_pipeline.pushMatrix();
+        updateViewMatrix(m_pipeline);
+        skybox.UpdateRotationOnly_View_Pipeline(m_pipeline);
+    m_pipeline.popMatrix();
+
+    setViewMatrixPosition(m_eye);
+
+
+    m_viewMatrix = m_viewMatrix * glm::translate(0.0f, -m_characterHeight, 0.0f);
+
+    m_viewDir = -m_zAxis;
+	updateViewMatrix(m_pipeline);
+  //  m_eye += m_characterHeight;
+}
+
+glm::vec3 EG_ThirdPersonPovCamera::getEyePoint()
+{
+    if (cameraMode == THIRD_PERSON_POV_CAMERA_MODE)
+        return glm::vec3(m_eye.x, m_eye.y+m_characterHeight, m_eye.z);
+    else
+        return m_eye;
+}
+
+
+#else
+void EG_ThirdPersonPovCamera::update2(pipeline& m_pipeline, float elapsedTimeSec, float pitchChange, float yawChange, EG_SkyBox& skybox)
+{
+    glm::quat rot;
+
 
     /// constructing the my camera-viewMatrix, which is the inverse of the modelMatrix for the camera
     /// therefore my m_viewMatrix and m_orientation always stores my viewMatrix / inverse of (modelMatrix of camera)
     m_viewMatrix = glm::toMat4(m_orientation);
 
     /// that's why the x,y,z axis are extracted in this pattern
-    m_xAxis = glm::vec3(m_viewMatrix[0][0], m_viewMatrix[1][0], m_viewMatrix[2][0]);
-    m_yAxis = glm::vec3(m_viewMatrix[0][1], m_viewMatrix[1][1], m_viewMatrix[2][1]);
-    m_zAxis = glm::vec3(m_viewMatrix[0][2], m_viewMatrix[1][2], m_viewMatrix[2][2]);
+    computeLocalAxisAndEyePosFromMatrix(m_viewMatrix, VIEW_MATRIX,
+                                          m_xAxis, m_yAxis,
+                                          m_zAxis, m_eye);
+
+
+    /// imagine the sequence of Model View Projection Matrix
+    /// it will be projectionMatrix * viewMatrix * modelMatrix
+    /// in this case, it will be
+    /// projectionMatrix * (m_orientation * rot) * modelMatrix
+    /// so by selecting
+    ///         rot = glm::angleAxis(yawChange, glm::vec3(0,1,0));
+    /// we're essentially turning the world first, then rotating our camera, then move our camera along our camera orientation
+
+
+    if (yawChange != 0.0f)
+    {
+        rot = glm::angleAxis(yawChange, glm::vec3(0,1,0));
+        m_orientation = m_orientation * rot;
+    }
+
+    if (pitchChange != 0.0f)
+    {
+        rot = glm::angleAxis(pitchChange, glm::vec3(1.0,0.0,0.0));
+        m_orientation = m_orientation * rot ;
+    }
+
 
 //    glm::vec3 idealPosition = m_target + m_zAxis * glm::length(m_offset);
     glm::vec3 idealPosition = m_target + m_zAxis * m_offsetDistance;
@@ -268,8 +362,8 @@ void EG_ThirdPersonPovCamera::update2(pipeline& m_pipeline, float elapsedTimeSec
     m_yAxis = glm::cross(m_zAxis, m_xAxis);
     m_yAxis = glm::normalize(m_yAxis);
 
-
     setViewMatrixRotation(m_xAxis, m_yAxis, m_zAxis);
+
 
     m_pipeline.pushMatrix();
         updateViewMatrix(m_pipeline);
@@ -281,6 +375,8 @@ void EG_ThirdPersonPovCamera::update2(pipeline& m_pipeline, float elapsedTimeSec
     m_viewDir = -m_zAxis;
 	updateViewMatrix(m_pipeline);
 }
+#endif
+
 
 
 
@@ -309,93 +405,6 @@ void EG_ThirdPersonPovCamera::setViewMatrixPosition(glm::vec3 eye_pos)
     m_viewMatrix[3][1] = -glm::dot(m_yAxis, eye_pos);
     m_viewMatrix[3][2] = -glm::dot(m_zAxis, eye_pos);
 }
-
-/*
-void EG_ThirdPersonPovCamera::update2(pipeline& m_pipeline, float elapsedTimeSec, float pitchChange, float yawChange, EG_SkyBox& skybox)
-{
-    glm::quat rot;
-
-    /// imagine the sequence of Model View Projection Matrix
-    /// it will be projectionMatrix * viewMatrix * modelMatrix
-    /// in this case, it will be
-    /// projectionMatrix * (m_orientation * rot) * modelMatrix
-    /// so by selecting
-    ///         rot = glm::angleAxis(yawChange, glm::vec3(0,1,0));
-    /// we're essentially turning the world first, then rotating our camera, then move our camera along our camera orientation
-    if (yawChange != 0.0f)
-    {
-        rot = glm::angleAxis(yawChange, glm::vec3(0,1,0));
-        m_orientation = m_orientation * rot;
-    }
-
-    if (pitchChange != 0.0f)
-    {
-        rot = glm::angleAxis(pitchChange, glm::vec3(1,0,0));
-        m_orientation = rot * m_orientation;
-    }
-
-    /// constructing the my camera-viewMatrix, which is the inverse of the modelMatrix for the camera
-    /// therefore my m_viewMatrix and m_orientation always stores my viewMatrix / inverse of (modelMatrix of camera)
-    m_viewMatrix = glm::toMat4(m_orientation);
-
-    /// that's why the x,y,z axis are extracted in this pattern
-    m_xAxis = set(m_viewMatrix[0][0], m_viewMatrix[1][0], m_viewMatrix[2][0]);
-    m_yAxis = set(m_viewMatrix[0][1], m_viewMatrix[1][1], m_viewMatrix[2][1]);
-    m_zAxis = set(m_viewMatrix[0][2], m_viewMatrix[1][2], m_viewMatrix[2][2]);
-
-//    glm::vec3 idealPosition = m_target + m_zAxis * glm::length(m_offset);
-    glm::vec3 idealPosition = m_target + m_zAxis * m_offsetDistance;
-    glm::vec3 displacement = m_eye - idealPosition;
-
-    /// spring force F = kx
-    /// ma = kx - damping * v
-    glm::vec3 springAcceleration = (-m_springConstant * displacement) -
-                            (m_dampingConstant * m_velocity);
-
-
-    m_velocity += springAcceleration * elapsedTimeSec;
-    m_eye += m_velocity * elapsedTimeSec;
-
-
-    m_zAxis = m_eye - m_target;
-    m_zAxis = glm::normalize(m_zAxis);
-
-    m_xAxis = glm::cross(glm::vec3(0.0f,1.0f,0.0f), m_zAxis);
-    m_xAxis = glm::normalize(m_xAxis);
-
-    m_yAxis = glm::cross(m_zAxis, m_xAxis);
-    m_yAxis = glm::normalize(m_yAxis);
-
-    m_viewMatrix[0][0] = m_xAxis.x;
-    m_viewMatrix[1][0] = m_xAxis.y;
-    m_viewMatrix[2][0] = m_xAxis.z;
-    m_viewMatrix[3][0] = 0.0f;
-
-    m_viewMatrix[0][1] = m_yAxis.x;
-    m_viewMatrix[1][1] = m_yAxis.y;
-    m_viewMatrix[2][1] = m_yAxis.z;
-    m_viewMatrix[3][1] = 0.0f;
-
-    m_viewMatrix[0][2] = m_zAxis.x;
-    m_viewMatrix[1][2] = m_zAxis.y;
-    m_viewMatrix[2][2] = m_zAxis.z;
-    m_viewMatrix[3][2] = 0.0f;
-
-
-
-    m_pipeline.pushMatrix();
-        updateViewMatrix(m_pipeline);
-        skybox.UpdateRotationOnly_View_Pipeline(m_pipeline);
-    m_pipeline.popMatrix();
-
-    m_viewMatrix[3][0] = -glm::dot(m_xAxis, m_eye);
-    m_viewMatrix[3][1] = -glm::dot(m_yAxis, m_eye);
-    m_viewMatrix[3][2] = -glm::dot(m_zAxis, m_eye);
-
-    m_viewDir = -m_zAxis;
-	updateViewMatrix(m_pipeline);
-}
-*/
 
 
 void EG_ThirdPersonPovCamera::Control(pipeline& m_pipeline, EG_SkyBox& skybox)
@@ -428,26 +437,21 @@ void EG_ThirdPersonPovCamera::Control(pipeline& m_pipeline, EG_SkyBox& skybox)
             yawChange = BALL_HEADING_SPEED;
 
 
-
         /// update the character first
-        c_velocity.x = 0.0f;
-        c_velocity.y = 0.0f;
-        c_velocity.z = forwardSpeed;
-
+        /// When moving backwards invert rotations to match direction of travel.
+        /// When we drive backwards, our car actually turn leftwards when we steer rightwards
         characterObject.setVelocity(0.0f, 0.0f, forwardSpeed);
         characterObject.setAngularVelocity(0.0f, -yawChange, 0.0f);
-     //   characterObject.updateRotation();
 
-        updateCharacterOrientation(0.0f, -yawChange, 0.0f);
-        updateCharacter(0.0f, -yawChange, 0.0f);
+        updateCharacterObject(0.0f, -yawChange, 0.0f);
 
-        setTarget(c_position);
+        setTarget(characterObject.getPosition());
         update2(m_pipeline, 0.031f, 0.0f, (forwardSpeed >= 0.0f) ? yawChange : -yawChange, skybox);
     }
 }
 
 
-
+/*
 void EG_ThirdPersonPovCamera::render(pipeline &m_pipeline, EG_RenderTechnique* RenderTechnique, int RenderPassID)
 {
     m_pipeline.pushMatrix();
@@ -457,14 +461,24 @@ void EG_ThirdPersonPovCamera::render(pipeline &m_pipeline, EG_RenderTechnique* R
         m_character->draw();
     m_pipeline.popMatrix();
 }
+*/
 
 
+void EG_ThirdPersonPovCamera::render(pipeline &m_pipeline, EG_RenderTechnique* RenderTechnique, int RenderPassID)
+{
+    m_pipeline.pushMatrix();
 
+//      these two are equivalent
+//      m_pipeline.LoadMatrix(c_worldMatrix);
 
+        m_pipeline.translate(characterObject.position);
+        m_pipeline.LoadMatrix(glm::toMat4(characterObject.rotation));
 
-
-
-
+        m_pipeline.Rotate(180.0f, 0.0f, 1.0f, 0.0f);
+        RenderTechnique->loadUniformLocations(m_pipeline, RenderPassID);
+        m_character->draw();
+    m_pipeline.popMatrix();
+}
 
 
 void EG_ThirdPersonPovCamera::updateViewMatrix(pipeline& m_pipeline)
@@ -474,40 +488,15 @@ void EG_ThirdPersonPovCamera::updateViewMatrix(pipeline& m_pipeline)
 }
 
 
-void EG_ThirdPersonPovCamera::updateCharacter(float pitchChange, float yawChange, float rollChange)
+void EG_ThirdPersonPovCamera::updateCharacterObject(float pitchChange, float yawChange, float rollChange)
 {
     glm::vec3 oldPosition, positionChange;
-    glm::quat orientationChange;
-    glm::vec3 TotalVelocity, TotaleulerRotate;
-
-    TotalVelocity.x = 1.0f * c_velocity.x;
-    TotalVelocity.y = 1.0f * c_velocity.y;
-    TotalVelocity.z = 1.0f * c_velocity.z;
-
-    TotaleulerRotate.x = 1.0f * c_eulerRotate.x;
-    TotaleulerRotate.y = 1.0f * c_eulerRotate.y;
-    TotaleulerRotate.z = 1.0f * c_eulerRotate.z;
-
-//    cout << "TotalEulerOrient.y " << TotaleulerOrient.y << endl;
 
     /// extract the axes, compute the local x,y,z axis
     /// http://www.songho.ca/opengl/gl_anglestoaxes.html    for more information on orientation
     /// c_orientation, we treat it as a model matrix, so we extract local axes this way. (different from our camera)
-    glm::mat4 m = glm::toMat4(c_orientation);
+    glm::mat4 m = glm::toMat4(characterObject.rotation);
 
-/*
-    /// +x direction
-    c_right.x = m[0][0];    c_right.y = m[0][1];   c_right.z = m[0][2];
-    c_right = glm::normalize(c_right);
-
-    /// +y direction
-    c_up.x = m[1][0];    c_up.y = m[1][1];   c_up.z = m[1][2];
-    c_up = glm::normalize(c_up);
-
-    /// -z direction
-    c_forward.x = -m[2][0];    c_forward.y = -m[2][1];   c_forward.z = -m[2][2];
-    c_forward = glm::normalize(c_forward);
-*/
     glm::vec3 temp;
     computeLocalAxisAndEyePosFromMatrix(m, MODEL_MATRIX,
                                         c_right, c_up,
@@ -515,190 +504,28 @@ void EG_ThirdPersonPovCamera::updateCharacter(float pitchChange, float yawChange
 
 
     /// update the entity's position
-    oldPosition = c_position;
-    c_position += c_right * TotalVelocity.x;
-    c_position += c_up * TotalVelocity.y;
-    c_position += c_forward * TotalVelocity.z;
+    oldPosition = characterObject.getPosition();
 
-    positionChange = c_position - oldPosition;
-    positionChange = glm::normalize(positionChange);
+    characterObject.updatePosition(c_right, c_up, c_forward);
 
 
     /// Update the entity's orientation
-    orientationChange = computeOrientationChange(c_right,       c_up,       -c_forward,
-                                                 pitchChange,   yawChange,  rollChange);
-
     /// When moving backwards invert rotations to match direction of travel.
+    /// When we drive backwards, our car actually turn leftwards when we steer rightwards
+    positionChange = characterObject.getPosition() - oldPosition;
+    positionChange = glm::normalize(positionChange);
     if (glm::dot(positionChange, c_forward) < 0.0f)
     {
-        orientationChange = glm::inverse(orientationChange);
-        cout << "i'm here inversing " << endl;
+        characterObject.setAngularVelocityY(-yawChange);
+        yawChange = -yawChange;
     }
 
-    /// c_orientation is the current orientation
-    c_orientation = orientationChange * c_orientation;
-    c_orientation = glm::normalize(c_orientation);
+    characterObject.updateRotation(c_right, c_up, -c_forward);
 
-
-    /// setting the modelmatrix of the main character
-    c_orientation = glm::normalize(c_orientation);
-    c_worldMatrix = glm::toMat4(c_orientation);
-    c_worldMatrix[3][0] = c_position.x;
-    c_worldMatrix[3][1] = c_position.y;
-    c_worldMatrix[3][2] = c_position.z;
-
-    c_velocity.x = 0.0f;    c_velocity.y = 0.0f;    c_velocity.z = 0.0f;
-//    c_eulerOrient.x = 0.0f;    c_eulerOrient.y = 0.0f;    c_eulerOrient.z = 0.0f;
-//    c_eulerRotate.x = 0.0f;    c_eulerRotate.y = 0.0f;    c_eulerRotate.z = 0.0f;
+    characterObject.setVelocity(glm::vec3(0.0f));
+    characterObject.setAngularVelocity(glm::vec3(0.0f));
 }
 
-
-
-
-
-
-
-glm::quat EG_ThirdPersonPovCamera::computeOrientationChange(glm::vec3 localXAxis, glm::vec3 localYAxis, glm::vec3 localZAxis,
-                                                            float pitch, float yaw, float roll)
-{
-    glm::quat result;
-    glm::quat rotation;
-
-    if (pitch != 0.0f)
-    {
-        rotation = glm::angleAxis(pitch, localXAxis);
-        result = rotation * result;
-    }
-
-    if (yaw != 0.0f)
-    {
-//        rotation = glm::angleAxis(yaw, glm::vec3(0.0f, 1.0f, 0.0f));
-        rotation = glm::angleAxis(yaw, localYAxis);
-        result = rotation * result;
-    }
-
-    if (roll != 0.0f)
-    {
-        rotation = glm::angleAxis(roll, localZAxis);
-        result = rotation * result;
-    }
-
-    return result;
-}
-
-
-glm::vec3 EG_ThirdPersonPovCamera::getCharacterPosition()
-{
-    return c_position;
-}
-
-void EG_ThirdPersonPovCamera::setCharacterPosition(glm::vec3 c_pos)
-{
-    c_position = c_pos;
-}
-
-void EG_ThirdPersonPovCamera::setCharacterPosition(float x, float y, float z)
-{
-    c_position.x = x; c_position.y = y; c_position.z = z;
-}
-
-
-float EG_ThirdPersonPovCamera::setPitch(float pitch)
-{
-    m_pitchDegrees = pitch;
-}
-
-float EG_ThirdPersonPovCamera::setYaw(float yaw)
-{
-    m_yawDegrees = yaw;
-}
-
-float EG_ThirdPersonPovCamera::getPitch()
-{
-    return m_pitchDegrees;
-}
-
-float EG_ThirdPersonPovCamera::getYaw()
-{
-    return m_yawDegrees;
-}
-
-
-
-
-/// changes the way the model is facing
-void EG_ThirdPersonPovCamera::updateCharacterOrientation(float pitchChange, float yawChange, float rollChange)
-{
-    c_eulerOrient.x += pitchChange;
-    c_eulerOrient.y += yawChange;
-    c_eulerOrient.z += rollChange;
-
-
-
-
-    if (c_eulerOrient.x > 360.0f)
-        c_eulerOrient.x -= 360.0f;
-
-    if (c_eulerOrient.x < -360.0f)
-        c_eulerOrient.x += 360.0f;
-
-    if (c_eulerOrient.y > 360.0f)
-        c_eulerOrient.y -= 360.0f;
-
-    if (c_eulerOrient.y < -360.0f)
-        c_eulerOrient.y += 360.0f;
-
-    if (c_eulerOrient.z > 360.0f)
-        c_eulerOrient.z -= 360.0f;
-
-    if (c_eulerOrient.z < -360.0f)
-        c_eulerOrient.z += 360.0f;
-}
-
-
-/// changes the way the model is facing
-void EG_ThirdPersonPovCamera::updateCharacterRotation(float pitchChange, float yawChange, float rollChange)
-{
-    c_eulerRotate.x += pitchChange;
-    c_eulerRotate.y += yawChange;
-    c_eulerRotate.z += rollChange;
-
-    if (c_eulerRotate.x > 360.0f)
-        c_eulerRotate.x -= 360.0f;
-
-    if (c_eulerRotate.x < -360.0f)
-        c_eulerRotate.x += 360.0f;
-
-    if (c_eulerRotate.y > 360.0f)
-        c_eulerRotate.y -= 360.0f;
-
-    if (c_eulerRotate.y < -360.0f)
-        c_eulerRotate.y += 360.0f;
-
-    if (c_eulerRotate.z > 360.0f)
-        c_eulerRotate.z -= 360.0f;
-
-    if (c_eulerRotate.z < -360.0f)
-        c_eulerRotate.z += 360.0f;
-}
-/*
-void EG_ThirdPersonPovCamera::increaseOffsetDistance()
-{
-    if( (m_offsetDistance+1.0f) > MAX_CAMERA_OFFSET)
-        m_offsetDistance = MAX_CAMERA_OFFSET;
-    else
-        m_offsetDistance+=(1.0f);
-
-}
-
-void EG_ThirdPersonPovCamera::decreaseOffsetDistance()
-{
-    if( (m_offsetDistance-1.0f)< MIN_CAMERA_OFFSET)
-        m_offsetDistance = MIN_CAMERA_OFFSET;
-    else
-        m_offsetDistance-=(1.0f);
-}
-*/
 
 void EG_ThirdPersonPovCamera::increaseOffsetDistance()
 {
@@ -717,25 +544,35 @@ void EG_ThirdPersonPovCamera::decreaseOffsetDistance()
 }
 
 
-glm::vec3 EG_ThirdPersonPovCamera::getEyePoint()
+
+
+
+
+
+
+
+
+
+
+
+/*
+void EG_ThirdPersonPovCamera::increaseOffsetDistance()
 {
-    return m_eye;
+    if( (m_offsetDistance+1.0f) > MAX_CAMERA_OFFSET)
+        m_offsetDistance = MAX_CAMERA_OFFSET;
+    else
+        m_offsetDistance+=(1.0f);
+
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+void EG_ThirdPersonPovCamera::decreaseOffsetDistance()
+{
+    if( (m_offsetDistance-1.0f)< MIN_CAMERA_OFFSET)
+        m_offsetDistance = MIN_CAMERA_OFFSET;
+    else
+        m_offsetDistance-=(1.0f);
+}
+*/
 
 #if 0
 // http://3dgep.com/understanding-the-view-matrix/
@@ -1133,3 +970,26 @@ void EG_ThirdPersonPovCamera::update(pipeline& m_pipeline, float pitchChange, fl
 
 
 #endif
+
+
+/*
+float EG_ThirdPersonPovCamera::setPitch(float pitch)
+{
+    m_pitchDegrees = pitch;
+}
+
+float EG_ThirdPersonPovCamera::setYaw(float yaw)
+{
+    m_yawDegrees = yaw;
+}
+
+float EG_ThirdPersonPovCamera::getPitch()
+{
+    return m_pitchDegrees;
+}
+
+float EG_ThirdPersonPovCamera::getYaw()
+{
+    return m_yawDegrees;
+}
+*/

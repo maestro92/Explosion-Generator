@@ -194,11 +194,14 @@ void mesh::draw(unsigned int programId)
 	int color=glGetAttribLocation(programId,"color"); //3
 	int UV=glGetAttribLocation(programId,"UV"); //4
 
+/*
     cout << "vertex is " << vertex << endl;
     cout << "normal is " << normal << endl;
     cout << "tangent is " << tangent << endl;
     cout << "color is " << color << endl;
     cout << "UV is " << UV << endl << endl;
+*/
+
 
 /*
 	int vertex=0;

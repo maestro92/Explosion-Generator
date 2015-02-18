@@ -1,7 +1,7 @@
 #ifndef WORLD_OBJECT
 #define WORLD_OBJECT
 
-
+#include "define.h"
 #include "glm/glm.hpp"
 #include "glm/gtc/matrix_transform.hpp"
 #include "glm/gtx/transform.hpp"
@@ -17,11 +17,16 @@
 #define SPHERE  0
 #define BOX     1
 
-
+/*
+const glm::vec3 WORLD_XAXIS(1.0f, 0.0f, 0.0f);
+const glm::vec3 WORLD_YAXIS(0.0f, 1.0f, 0.0f);
+const glm::vec3 WORLD_ZAXIS(0.0f, 0.0f, 1.0f);
+*/
 static glm::vec3 ExternalForce_neg1 = vec3(0,-9.8,0);
 static glm::vec3 ExternalForce_half_neg1 = vec3(0,9.8,0);
 static glm::vec3 ExternalForce_pos1 = vec3(0,-4.9,0);
 static glm::vec3 ExternalForce_half_pos1 = vec3(0,4.9,0);
+
 
 
 using namespace glm;
@@ -66,12 +71,17 @@ class WorldObject
 
         vec3    position;
         vec3    velocity;
-        vec3    rotation;
+   //     vec3    rotation;
+        glm::quat rotation;
         vec3    angularVelocity;
 
+
+
         glm::vec3 getPosition();
-        glm::vec3 getRotation();
+        glm::quat getRotation();
         glm::vec3 getVelocity();
+
+
 
 
         void setPosition(glm::vec3 pos);
@@ -79,13 +89,18 @@ class WorldObject
         void setVelocity(glm::vec3 vel);
         void setVelocity(float x, float y, float z);
         void updatePosition();
+        void updatePosition(glm::vec3 xAxis, glm::vec3 yAxis, glm::vec3 zAxis);
 
         void setRotation(glm::vec3 rot);
-        void setRotation(float x, float y, float z);
+        void setRotation(glm::vec3 rot, glm::vec3 xAxis, glm::vec3 yAxis, glm::vec3 zAxis);
+    //    void setRotation(float x, float y, float z);
+        void setAngularVelocityX(float x);
+        void setAngularVelocityY(float y);
+        void setAngularVelocityZ(float z);
         void setAngularVelocity(glm::vec3 ang_vel);
         void setAngularVelocity(float x, float y, float z);
         void updateRotation();
-
+        void updateRotation(glm::vec3 xAxis, glm::vec3 yAxis, glm::vec3 zAxis);
 
 
 

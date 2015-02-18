@@ -44,6 +44,7 @@ const float DEFAULT_ORBIT_MAX_ZOOM = DEFAULT_ZFAR * 0.5f;
 
 const float DEFAULT_ORBIT_OFFSET_DISTANCE = DEFAULT_ORBIT_MIN_ZOOM + (DEFAULT_ORBIT_MAX_ZOOM - DEFAULT_ORBIT_MIN_ZOOM) * 0.25f;
 
+
 const glm::vec3 WORLD_XAXIS(1.0f, 0.0f, 0.0f);
 const glm::vec3 WORLD_YAXIS(0.0f, 1.0f, 0.0f);
 const glm::vec3 WORLD_ZAXIS(0.0f, 0.0f, 1.0f);
@@ -51,6 +52,8 @@ const glm::vec3 WORLD_ZAXIS(0.0f, 0.0f, 1.0f);
 
 class EG_Camera
 {
+
+
     public:
 
         EG_Camera();

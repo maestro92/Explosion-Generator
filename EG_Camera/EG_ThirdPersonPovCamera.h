@@ -34,13 +34,12 @@
 */
 
 
+
+
+
+
 class EG_ThirdPersonPovCamera
 {
-/*
-const float BALL_FORWARD_SPEED = 60.0f;
-const float BALL_HEADING_SPEED = 60.0f;
-const float BALL_ROLLING_SPEED = 140.0f;
-*/
     public:
         enum CameraMode
         {
@@ -71,18 +70,18 @@ using spring system, we will have different view matrix
         ~EG_ThirdPersonPovCamera();
 
         void init(pipeline& m_pipeline);
+        void initFirst(pipeline& m_pipeline);
 
+        void debugVec3(glm::vec3 v, string s);
 
-        void lookAt(pipeline& m_pipeline, glm::vec3 target);
         void lookAt(pipeline& m_pipeline, glm::vec3& eye, glm::vec3& target, glm::vec3& up);
 
         void mouseIn(bool b);
 
-        void rotate(pipeline& m_pipeline, float pitch, float yaw);
-     //   void update(pipeline& m_pipeline);
+        void switchCameraMode();
 
-        /// from GLThirdPersonCamera1
-        void update(pipeline& m_pipeline, float pitchChange, float yawChange);
+//        /// from GLThirdPersonCamera1
+//        void update(pipeline& m_pipeline, float pitchChange, float yawChange);
 
         /// from GLThirdPersonCamera2
    //     void update2(pipeline& m_pipeline, float pitchChange, float yawChange);
@@ -91,9 +90,8 @@ using spring system, we will have different view matrix
 
 
         void setTarget(glm::vec3& target);
+        void setTarget(glm::vec3 target);
 
-
-      //  void RotateOrbit(pipeline& m_pipeline);
  //       void Control(pipeline& m_pipeline);
         void Control(pipeline& m_pipeline, EG_SkyBox& skybox);
         void updateViewMatrix(pipeline& m_pipeline);
@@ -101,28 +99,21 @@ using spring system, we will have different view matrix
         void enableSpringSystem(bool enableSpringSystem);
         void setSpringConstant(float springConstant);
 
-        void updateCharacterOrientation(float pitchChange, float yawChange, float rollChange);
-        void updateCharacterRotation(float pitchChange, float yawChange, float rollChange);
-        void updateCharacter(float pitchChange, float yawChange, float rollChange);
+        void updateCharacterObject(float pitchChange, float yawChange, float rollChange);
 
-        float setPitch(float pitch);
-        float setYaw(float yaw);
-        float getPitch();
-        float getYaw();
+
         glm::vec3 getEyePoint();
-
-        glm::quat computeOrientationChange(glm::vec3 localXAxis, glm::vec3 localYAxis, glm::vec3 localZAxis,
-                                            float pitch, float yaw, float roll);
-
-    //    glm::quat eulerToQuaternion(glm::mat4 m, float pitch, float yaw, float roll);
-
-
         void render(pipeline &m_pipeline, EG_RenderTechnique* RenderTechnique, int RenderPassID);
-
         void computeLocalAxisAndEyePosFromMatrix( glm::mat4& mat, int mat_type,
                                                   glm::vec3& xAxis, glm::vec3& yAxis,
                                                   glm::vec3& zAxis, glm::vec3& eye_pos);
 
+        float setPitchDegree(float pitch);
+        float setYawDegree(float yaw);
+        float getPitchDegree();
+        float getYawDegree();
+        float pitchDegree;
+        float yawDegree;
 
         /// Get methods
         void increaseOffsetDistance();
@@ -142,6 +133,8 @@ using spring system, we will have different view matrix
         const glm::vec3 &getZAxis() const;
         bool springSystemIsEnabled() const;
 
+
+
  //   glm::
         bool mouse_in;
         float mousevel;
@@ -151,37 +144,28 @@ using spring system, we will have different view matrix
         void setCharacterPosition(glm::vec3 c_pos);
         void setCharacterPosition(float x, float y, float z);
 
-        glm::vec3 m_eye;
-        glm::vec3 m_target;
-        glm::vec3 m_offset;
-        glm::vec3 m_xAxis;
-        glm::vec3 m_yAxis;
-        glm::vec3 m_zAxis;
-        glm::vec3 m_viewDir;
-        glm::mat4 m_viewMatrix;
-        glm::quat m_orientation;
+        private:
+            glm::vec3 m_eye;
+            glm::vec3 m_target;
+            glm::vec3 m_offset;
+            glm::vec3 m_xAxis;
+            glm::vec3 m_yAxis;
+            glm::vec3 m_zAxis;
+            glm::vec3 m_viewDir;
 
-        float m_pitchDegrees;
-        float m_yawDegrees;
+            glm::mat4 m_viewMatrix;
+            glm::mat4 m_idealViewMatrix;
 
         /// everything related to the character
         meshLoader* m_character;
+        float m_characterHeight;
 
         WorldObject characterObject;
 
-        glm::vec3 c_position;
-        glm::vec3 c_velocity;
-
-        glm::vec3 c_eulerOrient;
-        glm::vec3 c_eulerRotate;
 
         glm::vec3 c_right;
         glm::vec3 c_up;
         glm::vec3 c_forward;
-
-
-        glm::quat c_orientation;
-        glm::mat4 c_worldMatrix;
 
 
         float m_springConstant;

@@ -2,6 +2,7 @@
 #pragma once;
 
 
+
 #include <string>
 #include <iostream>
 #include <ctime>
@@ -17,6 +18,7 @@
 #include "glm/gtc/type_ptr.hpp"
 //#include "glm/gtc/swizzle.hpp"
 #include "glm/gtc/quaternion.hpp"
+#include "glm/gtx/quaternion.hpp"
 #include "glm/gtx/vector_angle.hpp"
 #include "glm/gtx/compatibility.hpp"
 #include "glm/gtx/matrix_operation.hpp"

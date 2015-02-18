@@ -36699,7 +36699,7 @@
 1416814733 source:d:\martin\programming\c and c++\sdl\explosion generator 2099 99 99 infinity\eg_camera\eg_camera.cpp
 	"EG_Camera.h"
 
-1419238170 d:\martin\programming\c and c++\sdl\explosion generator 2099 99 99 infinity\eg_camera\eg_camera.h
+1423925451 d:\martin\programming\c and c++\sdl\explosion generator 2099 99 99 infinity\eg_camera\eg_camera.h
 	<GL/glew.h>
 	<cmath>
 	<iostream>
@@ -36724,10 +36724,10 @@
 	"gl/glu.h"
 	"define.h"
 
-1423896337 source:d:\martin\programming\c and c++\sdl\explosion generator 2099 99 99 infinity\eg_camera\eg_thirdpersonpovcamera.cpp
+1424292713 source:d:\martin\programming\c and c++\sdl\explosion generator 2099 99 99 infinity\eg_camera\eg_thirdpersonpovcamera.cpp
 	"EG_ThirdPersonPovCamera.h"
 
-1423895290 d:\martin\programming\c and c++\sdl\explosion generator 2099 99 99 infinity\eg_camera\eg_thirdpersonpovcamera.h
+1424293351 d:\martin\programming\c and c++\sdl\explosion generator 2099 99 99 infinity\eg_camera\eg_thirdpersonpovcamera.h
 	<GL/glew.h>
 	"EG_Camera.h"
 	"EG_Skybox.h"
@@ -36752,7 +36752,7 @@
 	"define.h"
 	<GL/glew.h>
 
-1419817464 d:\martin\programming\c and c++\sdl\explosion generator 2099 99 99 infinity\define.h
+1424292936 d:\martin\programming\c and c++\sdl\explosion generator 2099 99 99 infinity\define.h
 	<string>
 	<iostream>
 	<ctime>
@@ -36762,6 +36762,7 @@
 	"glm/glm.hpp"
 	"glm/gtc/type_ptr.hpp"
 	"glm/gtc/quaternion.hpp"
+	"glm/gtx/quaternion.hpp"
 	"glm/gtx/vector_angle.hpp"
 	"glm/gtx/compatibility.hpp"
 	"glm/gtx/matrix_operation.hpp"
@@ -37151,7 +37152,8 @@
 	<iostream>
 	<cstdlib>
 
-1423896725 d:\martin\programming\c and c++\sdl\explosion generator 2099 99 99 infinity\eg_worldobjects\eg_worldobject.h
+1423932582 d:\martin\programming\c and c++\sdl\explosion generator 2099 99 99 infinity\eg_worldobjects\eg_worldobject.h
+	"define.h"
 	"glm/glm.hpp"
 	"glm/gtc/matrix_transform.hpp"
 	"glm/gtx/transform.hpp"
@@ -37162,7 +37164,7 @@
 	"EG_DeferredShading.h"
 	"sceneLoader.h"
 
-1423896710 source:d:\martin\programming\c and c++\sdl\explosion generator 2099 99 99 infinity\eg_worldobjects\eg_worldobject.cpp
+1423933602 source:d:\martin\programming\c and c++\sdl\explosion generator 2099 99 99 infinity\eg_worldobjects\eg_worldobject.cpp
 	"EG_WorldObject.h"
 
 1421425463 source:d:\martin\programming\c and c++\sdl\explosion generator 2099 99 99 infinity\eg_worldobjects\eg_worldreflectivesphere.cpp
@@ -37270,7 +37272,7 @@
 	"CollisionDetection_HGrid.h"
 	"Random.h"
 
-1421302963 source:d:\martin\programming\c and c++\sdl\explosion generator 2099 99 99 infinity\mesh.cpp
+1424286972 source:d:\martin\programming\c and c++\sdl\explosion generator 2099 99 99 infinity\mesh.cpp
 	"mesh.h"
 
 1423628175 source:d:\martin\programming\c and c++\sdl\explosion generator 2099 99 99 infinity\pipeline.cpp
@@ -37282,7 +37284,7 @@
 1421302693 source:d:\martin\programming\c and c++\sdl\explosion generator 2099 99 99 infinity\sceneloader.cpp
 	"sceneLoader.h"
 
-1423639743 source:d:\martin\programming\c and c++\sdl\explosion generator 2099 99 99 infinity\eg_main.cpp
+1424291446 source:d:\martin\programming\c and c++\sdl\explosion generator 2099 99 99 infinity\eg_main.cpp
 	"EG_Main.h"
 	"gl/gl.h"
 	"gl/glu.h"

@@ -782,7 +782,7 @@ void ExplosionGenerator::RenderScene()
         glBindTexture(GL_TEXTURE_2D, shadowMap);
 		glUniform1i(r_Shadow_Render.shadowMap_UniLoc,6);
 
-        r_Shadow_Render.setEyeWorldPos(thirdPersonPovCamera.m_eye);
+        r_Shadow_Render.setEyeWorldPos(thirdPersonPovCamera.getEyePoint());
 
 
         o_wall.renderGroup(m_pipeline, r_Technique, RENDER_PASS2, ground);
@@ -945,24 +945,29 @@ void ExplosionGenerator::forwardRender()
     #endif
         firstPersonPovCamera.UpdateCamera_Translation(m_pipeline);
        // thirdPersonPovCamera.c_position = firstPersonPovCamera.getEyePoint();
+
+
+        /*
         thirdPersonPovCamera.setCharacterPosition(firstPersonPovCamera.getEyePoint().x,
                                                   firstPersonPovCamera.getEyePoint().y-5,
                                                   firstPersonPovCamera.getEyePoint().z);
 
         thirdPersonPovCamera.setPitch(firstPersonPovCamera.getPitch());
         thirdPersonPovCamera.setYaw(firstPersonPovCamera.getYaw());
+  */
     }
 
     else
     {
         thirdPersonPovCamera.Control(m_pipeline, m_skybox);
-
+/*
         firstPersonPovCamera.setEyePoint(thirdPersonPovCamera.c_position.x,
                                          thirdPersonPovCamera.c_position.y + 5,
                                          thirdPersonPovCamera.c_position.z);
 
         firstPersonPovCamera.setPitch(thirdPersonPovCamera.m_pitchDegrees);
         firstPersonPovCamera.setYaw(thirdPersonPovCamera.m_yawDegrees);
+  */
     }
 
 
@@ -1105,24 +1110,27 @@ void ExplosionGenerator::deferredShadingShow()
     #endif
         firstPersonPovCamera.UpdateCamera_Translation(m_pipeline);
        // thirdPersonPovCamera.c_position = firstPersonPovCamera.getEyePoint();
+  /*
         thirdPersonPovCamera.setCharacterPosition(firstPersonPovCamera.getEyePoint().x,
                                                   firstPersonPovCamera.getEyePoint().y-5,
                                                   firstPersonPovCamera.getEyePoint().z);
 
         thirdPersonPovCamera.setPitch(firstPersonPovCamera.getPitch());
         thirdPersonPovCamera.setYaw(firstPersonPovCamera.getYaw());
+    */
     }
 
     else
     {
         thirdPersonPovCamera.Control(m_pipeline, m_skybox);
-
+/*
         firstPersonPovCamera.setEyePoint(thirdPersonPovCamera.c_position.x,
                                          thirdPersonPovCamera.c_position.y + 5,
                                          thirdPersonPovCamera.c_position.z);
 
         firstPersonPovCamera.setPitch(thirdPersonPovCamera.m_pitchDegrees);
         firstPersonPovCamera.setYaw(thirdPersonPovCamera.m_yawDegrees);
+  */
     }
 
 
@@ -1265,7 +1273,7 @@ void ExplosionGenerator::deferredShadingGeometryPass37(EG_GBuffer& GBuffer)
     if(isFirstPersonCamera)
         eyePoint = firstPersonPovCamera.getEyePoint();
     else
-        eyePoint = thirdPersonPovCamera.m_eye;
+        eyePoint = thirdPersonPovCamera.getEyePoint();
 /*
     o_reflectiveSphere.render(m_pipeline,
                           r_deferredShadingReflection,
@@ -1476,7 +1484,7 @@ void ExplosionGenerator::deferredShadingPointLightPass37(int index, EG_GBuffer& 
 
     r_deferredShadingPointLightPass.enableShader(RENDER_PASS1);
 
-        r_deferredShadingPointLightPass.setEyeWorldPos(thirdPersonPovCamera.m_eye);
+        r_deferredShadingPointLightPass.setEyeWorldPos(thirdPersonPovCamera.getEyePoint());
 
 
         glStencilFunc(GL_NOTEQUAL, 0, 0xFF);
@@ -1524,7 +1532,7 @@ void ExplosionGenerator::deferredShadingPointLightPass37_Skybox(int index, EG_GB
     GBuffer.BindForLightPass37();
 
     r_deferredShadingPointLightPass_Skybox.enableShader(RENDER_PASS1);
-        r_deferredShadingPointLightPass_Skybox.setEyeWorldPos(thirdPersonPovCamera.m_eye);
+        r_deferredShadingPointLightPass_Skybox.setEyeWorldPos(thirdPersonPovCamera.getEyePoint());
 
 //        glStencilFunc(GL_NOTEQUAL, 0, 0xFF);
         glStencilFunc(GL_NOTEQUAL, 0, 0xFF);
@@ -1577,7 +1585,7 @@ void ExplosionGenerator::deferredShadingDirectionalLightPass37(EG_GBuffer& GBuff
         tempPipeline.ortho(-1,1,-1,1,-1,1);
 
 
-        r_deferredShadingDirectionalLightPass.setEyeWorldPos(thirdPersonPovCamera.m_eye);
+        r_deferredShadingDirectionalLightPass.setEyeWorldPos(thirdPersonPovCamera.getEyePoint());
 
 
         glDisable(GL_DEPTH_TEST);
@@ -1614,7 +1622,7 @@ void ExplosionGenerator::deferredShadingDirectionalLightPass37_Skybox(EG_GBuffer
         tempPipeline.ortho(-1,1,-1,1,-1,1);
 
 
-        r_deferredShadingDirectionalLightPass_Skybox.setEyeWorldPos(thirdPersonPovCamera.m_eye);
+        r_deferredShadingDirectionalLightPass_Skybox.setEyeWorldPos(thirdPersonPovCamera.getEyePoint());
 
 
         glDisable(GL_DEPTH_TEST);
