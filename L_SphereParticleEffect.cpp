@@ -366,29 +366,6 @@ void L_SphereParticleEffect::DrawParticleCube(pipeline &m_pipeline,  unsigned in
 
 
 
-// http://stackoverflow.com/questions/8494942/why-does-my-color-go-away-when-i-enable-lighting-in-opengl
-void L_SphereParticleEffect::DrawParticleCube(pipeline &m_pipeline, meshLoader* mymesh)
-{
-    /*
-    m_pipeline.matrixMode(MODEL_MATRIX);
-
-    for(int i = 0; i < e_ParticleBuffer.size(); i++)
-    {
-
-        m_pipeline.pushMatrix();
-
-            m_pipeline.translate(e_ParticleBuffer[i].m_Position.x, e_ParticleBuffer[i].m_Position.y, e_ParticleBuffer[i].m_Position.z);
-            m_pipeline.scale(e_ParticleBuffer[i].m_fRadius);
-            m_pipeline.updateMatrices(shaderID);
-            m_pipeline.updateShadowMatrix(shaderID);
-            mymesh->draw(shaderID);
-        m_pipeline.popMatrix();
-    }
-*/
-}
-
-
-
 
 
 void L_SphereParticleEffect::update(bool toggle)
@@ -478,14 +455,23 @@ void L_SphereParticleEffect::render(pipeline &m_pipeline, EG_RenderTechnique* Re
 
 
 
-void L_SphereParticleEffect::show(pipeline &m_pipeline,  unsigned int shaderID , meshLoader* mymesh)
+void L_SphereParticleEffect::render(pipeline &m_pipeline, EG_RenderTechnique* RenderTechnique, int RenderPassID, EG_Model& model)
 {
-    DrawParticleCube(m_pipeline, shaderID, mymesh);
+    m_pipeline.matrixMode(MODEL_MATRIX);
+
+    for(int i = 0; i < e_ParticleBuffer.size(); i++)
+    {
+        m_pipeline.pushMatrix();
+            m_pipeline.translate(e_ParticleBuffer[i].m_Position.x, e_ParticleBuffer[i].m_Position.y, e_ParticleBuffer[i].m_Position.z);
+            m_pipeline.scale(e_ParticleBuffer[i].m_fRadius);
+            RenderTechnique->loadUniformLocations(m_pipeline, RenderPassID);
+            model.render();
+        m_pipeline.popMatrix();
+    }
 }
 
 
-void L_SphereParticleEffect::show(bool toggle)
-{
- //   DrawParticleCube();
-}
+
+
+
 

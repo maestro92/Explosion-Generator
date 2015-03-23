@@ -32,7 +32,7 @@ class L_ParticleEffect_Interface
    //     ~L_ParticleEffect_Interface();
   //      virtual ~ParticleEmitter() {}
         virtual void update(bool toggle = false) = 0;
-        virtual void show(bool toggle = false) = 0;
+  //      virtual void show(bool toggle = false) = 0;
  //       virtual void Reset() = 0;
 
 //        virtual void InitParticle(bool reset = false) = 0;

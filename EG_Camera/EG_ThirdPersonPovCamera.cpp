@@ -207,9 +207,9 @@ void EG_ThirdPersonPovCamera::debugVec3(glm::vec3 v, string s)
 
 
 
-#if 1
 
-void EG_ThirdPersonPovCamera::update2(pipeline& m_pipeline, float elapsedTimeSec, float pitchChange, float yawChange, EG_SkyBox& skybox)
+
+void EG_ThirdPersonPovCamera::update(pipeline& m_pipeline, float elapsedTimeSec, float pitchChange, float yawChange, EG_SkyBox& skybox)
 {
     glm::quat rot;
 
@@ -301,82 +301,6 @@ glm::vec3 EG_ThirdPersonPovCamera::getEyePoint()
 }
 
 
-#else
-void EG_ThirdPersonPovCamera::update2(pipeline& m_pipeline, float elapsedTimeSec, float pitchChange, float yawChange, EG_SkyBox& skybox)
-{
-    glm::quat rot;
-
-
-    /// constructing the my camera-viewMatrix, which is the inverse of the modelMatrix for the camera
-    /// therefore my m_viewMatrix and m_orientation always stores my viewMatrix / inverse of (modelMatrix of camera)
-    m_viewMatrix = glm::toMat4(m_orientation);
-
-    /// that's why the x,y,z axis are extracted in this pattern
-    computeLocalAxisAndEyePosFromMatrix(m_viewMatrix, VIEW_MATRIX,
-                                          m_xAxis, m_yAxis,
-                                          m_zAxis, m_eye);
-
-
-    /// imagine the sequence of Model View Projection Matrix
-    /// it will be projectionMatrix * viewMatrix * modelMatrix
-    /// in this case, it will be
-    /// projectionMatrix * (m_orientation * rot) * modelMatrix
-    /// so by selecting
-    ///         rot = glm::angleAxis(yawChange, glm::vec3(0,1,0));
-    /// we're essentially turning the world first, then rotating our camera, then move our camera along our camera orientation
-
-
-    if (yawChange != 0.0f)
-    {
-        rot = glm::angleAxis(yawChange, glm::vec3(0,1,0));
-        m_orientation = m_orientation * rot;
-    }
-
-    if (pitchChange != 0.0f)
-    {
-        rot = glm::angleAxis(pitchChange, glm::vec3(1.0,0.0,0.0));
-        m_orientation = m_orientation * rot ;
-    }
-
-
-//    glm::vec3 idealPosition = m_target + m_zAxis * glm::length(m_offset);
-    glm::vec3 idealPosition = m_target + m_zAxis * m_offsetDistance;
-    glm::vec3 displacement = m_eye - idealPosition;
-
-    /// spring force F = kx
-    /// ma = kx - damping * v
-    glm::vec3 springAcceleration = (-m_springConstant * displacement) -
-                            (m_dampingConstant * m_velocity);
-
-
-    m_velocity += springAcceleration * elapsedTimeSec;
-    m_eye += m_velocity * elapsedTimeSec;
-
-
-    m_zAxis = m_eye - m_target;
-    m_zAxis = glm::normalize(m_zAxis);
-
-    m_xAxis = glm::cross(glm::vec3(0.0f,1.0f,0.0f), m_zAxis);
-    m_xAxis = glm::normalize(m_xAxis);
-
-    m_yAxis = glm::cross(m_zAxis, m_xAxis);
-    m_yAxis = glm::normalize(m_yAxis);
-
-    setViewMatrixRotation(m_xAxis, m_yAxis, m_zAxis);
-
-
-    m_pipeline.pushMatrix();
-        updateViewMatrix(m_pipeline);
-        skybox.UpdateRotationOnly_View_Pipeline(m_pipeline);
-    m_pipeline.popMatrix();
-
-    setViewMatrixPosition(m_eye);
-
-    m_viewDir = -m_zAxis;
-	updateViewMatrix(m_pipeline);
-}
-#endif
-
 
 
 
@@ -446,7 +370,7 @@ void EG_ThirdPersonPovCamera::Control(pipeline& m_pipeline, EG_SkyBox& skybox)
         updateCharacterObject(0.0f, -yawChange, 0.0f);
 
         setTarget(characterObject.getPosition());
-        update2(m_pipeline, 0.031f, 0.0f, (forwardSpeed >= 0.0f) ? yawChange : -yawChange, skybox);
+        update(m_pipeline, 0.031f, 0.0f, (forwardSpeed >= 0.0f) ? yawChange : -yawChange, skybox);
     }
 }
 
@@ -551,8 +475,81 @@ void EG_ThirdPersonPovCamera::decreaseOffsetDistance()
 
 
 
+/*
+void EG_ThirdPersonPovCamera::update2(pipeline& m_pipeline, float elapsedTimeSec, float pitchChange, float yawChange, EG_SkyBox& skybox)
+{
+    glm::quat rot;
 
 
+    /// constructing the my camera-viewMatrix, which is the inverse of the modelMatrix for the camera
+    /// therefore my m_viewMatrix and m_orientation always stores my viewMatrix / inverse of (modelMatrix of camera)
+    m_viewMatrix = glm::toMat4(m_orientation);
+
+    /// that's why the x,y,z axis are extracted in this pattern
+    computeLocalAxisAndEyePosFromMatrix(m_viewMatrix, VIEW_MATRIX,
+                                          m_xAxis, m_yAxis,
+                                          m_zAxis, m_eye);
+
+
+    /// imagine the sequence of Model View Projection Matrix
+    /// it will be projectionMatrix * viewMatrix * modelMatrix
+    /// in this case, it will be
+    /// projectionMatrix * (m_orientation * rot) * modelMatrix
+    /// so by selecting
+    ///         rot = glm::angleAxis(yawChange, glm::vec3(0,1,0));
+    /// we're essentially turning the world first, then rotating our camera, then move our camera along our camera orientation
+
+
+    if (yawChange != 0.0f)
+    {
+        rot = glm::angleAxis(yawChange, glm::vec3(0,1,0));
+        m_orientation = m_orientation * rot;
+    }
+
+    if (pitchChange != 0.0f)
+    {
+        rot = glm::angleAxis(pitchChange, glm::vec3(1.0,0.0,0.0));
+        m_orientation = m_orientation * rot ;
+    }
+
+
+//    glm::vec3 idealPosition = m_target + m_zAxis * glm::length(m_offset);
+    glm::vec3 idealPosition = m_target + m_zAxis * m_offsetDistance;
+    glm::vec3 displacement = m_eye - idealPosition;
+
+    /// spring force F = kx
+    /// ma = kx - damping * v
+    glm::vec3 springAcceleration = (-m_springConstant * displacement) -
+                            (m_dampingConstant * m_velocity);
+
+
+    m_velocity += springAcceleration * elapsedTimeSec;
+    m_eye += m_velocity * elapsedTimeSec;
+
+
+    m_zAxis = m_eye - m_target;
+    m_zAxis = glm::normalize(m_zAxis);
+
+    m_xAxis = glm::cross(glm::vec3(0.0f,1.0f,0.0f), m_zAxis);
+    m_xAxis = glm::normalize(m_xAxis);
+
+    m_yAxis = glm::cross(m_zAxis, m_xAxis);
+    m_yAxis = glm::normalize(m_yAxis);
+
+    setViewMatrixRotation(m_xAxis, m_yAxis, m_zAxis);
+
+
+    m_pipeline.pushMatrix();
+        updateViewMatrix(m_pipeline);
+        skybox.UpdateRotationOnly_View_Pipeline(m_pipeline);
+    m_pipeline.popMatrix();
+
+    setViewMatrixPosition(m_eye);
+
+    m_viewDir = -m_zAxis;
+	updateViewMatrix(m_pipeline);
+}
+*/
 
 
 /*

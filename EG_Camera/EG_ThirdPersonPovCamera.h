@@ -86,7 +86,7 @@ using spring system, we will have different view matrix
         /// from GLThirdPersonCamera2
    //     void update2(pipeline& m_pipeline, float pitchChange, float yawChange);
    //     void update2(pipeline& m_pipeline, float elapsedTimeSec, float pitchChange, float yawChange);
-        void update2(pipeline& m_pipeline, float elapsedTimeSec, float pitchChange, float yawChange, EG_SkyBox& skybox);
+        void update(pipeline& m_pipeline, float elapsedTimeSec, float pitchChange, float yawChange, EG_SkyBox& skybox);
 
 
         void setTarget(glm::vec3& target);

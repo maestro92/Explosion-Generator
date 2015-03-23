@@ -330,6 +330,8 @@ void ExplosionGenerator::initModels()
 
     o_hugeWall        = new meshLoader("HugeWall.obj");
 
+    testSphere.loadModel("./models/Sphere/sphere10_grey_flat.obj");
+
 //    wall_positive_z = new meshLoader("Wall_PZ.obj");
 //    wall_negative_x = new meshLoader("Wall_NX.obj");
 //    wall_negative_z = new meshLoader("Wall_NZ.obj");
@@ -790,7 +792,8 @@ void ExplosionGenerator::RenderScene()
         o_wall.renderGroup(m_pipeline, r_Technique, RENDER_PASS2, wall_positive_x);
 
 #if SPHERE_EFFECT
-        l_SphereEffect.show(m_pipeline, r_Technique, RENDER_PASS2, sphere);
+     //   l_SphereEffect.show(m_pipeline, r_Technique, RENDER_PASS2, sphere);
+        l_SphereEffect.render(m_pipeline, r_Technique, RENDER_PASS2, testSphere);
 #endif
 
 #if CUBE_SPHERE_EFFECT
@@ -945,8 +948,6 @@ void ExplosionGenerator::forwardRender()
     #endif
         firstPersonPovCamera.UpdateCamera_Translation(m_pipeline);
        // thirdPersonPovCamera.c_position = firstPersonPovCamera.getEyePoint();
-
-
         /*
         thirdPersonPovCamera.setCharacterPosition(firstPersonPovCamera.getEyePoint().x,
                                                   firstPersonPovCamera.getEyePoint().y-5,
@@ -960,14 +961,6 @@ void ExplosionGenerator::forwardRender()
     else
     {
         thirdPersonPovCamera.Control(m_pipeline, m_skybox);
-/*
-        firstPersonPovCamera.setEyePoint(thirdPersonPovCamera.c_position.x,
-                                         thirdPersonPovCamera.c_position.y + 5,
-                                         thirdPersonPovCamera.c_position.z);
-
-        firstPersonPovCamera.setPitch(thirdPersonPovCamera.m_pitchDegrees);
-        firstPersonPovCamera.setYaw(thirdPersonPovCamera.m_yawDegrees);
-  */
     }
 
 

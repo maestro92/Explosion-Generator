@@ -39,6 +39,8 @@ class EG_Utility
         unsigned int Create_CubemapTexture();
         unsigned int Create_CubemapTexture(string* filenames);
 
+
+
     //    static GLuint GetUniformLocation(shader* s, const char* UniformName);
 
 

@@ -209,7 +209,6 @@ void main()
  //   FragColor = PtColor;
     FragColor = (shadowValue == 0.0) ? vec4(0.1,0.1,0.1,1.0) * TotalLight : vec4(outColor, 1.0) * TotalLight;
 
-  //  FragColor = vec4(1.0,0,0,0,0,0,0);
 
 
 //    FragColor = (shadowValue == 0.0) ? vec4(0.0,0.0,0.0,1.0) : vec4(1.0,0.0,0.0,1.0);// vec4(outColor, 1.0);

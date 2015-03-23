@@ -27,6 +27,8 @@
 #include "EG_FirstPersonPovCamera.h"
 #include "EG_ThirdPersonPovCamera.h"
 
+#include "EG_Model.h"
+
 #include "EG_DeferredShading.h"
 #include "EG_GBuffer.h"
 
@@ -171,6 +173,8 @@ class ExplosionGenerator
         meshLoader* pointLightSphere;
         meshLoader* m_box;
 //        mesh* quad;
+
+        EG_Model    testSphere;
 
 
         EG_WorldAxis    o_worldAxis;

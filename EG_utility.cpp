@@ -16,7 +16,6 @@ EG_Utility::~EG_Utility()
 
 
 
-
 SDL_Surface* EG_Utility::Load_CubeMapTexture(string filename)
 {
     std::ifstream in(filename.c_str());
