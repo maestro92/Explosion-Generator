@@ -32,6 +32,14 @@ using namespace std;
 #define INDEX_BUFFER 5
 #define BONE_VB 6
 
+#define POS_UNI_LOC 0
+#define NORMAL_UNI_LOC 1
+#define TANGENT_UNI_LOC 2
+#define COLOR_UNI_LOC 3
+#define UV_UNI_LOC 4
+#define BONE_ID_UNI_LOC 5
+#define BONE_WEIGHT_UNI_LOC 6
+
 
 struct Vertex
 {
@@ -83,9 +91,9 @@ class EG_Model
    //     static void genGLVertexBuffer(GLuint& id, vector<Vertex>& Vertices);
    //     static void genGLIndexBuffer(GLuint& id, vector<unsigned int>& Indices);
 
-        void transferDataToBuffer(vector<glm::vec3>& vec, unsigned id);
-        void transferDataToBuffer(vector<glm::vec2>& vec, unsigned id);
-        void transferDataToBuffer(vector<unsigned int>& vec, unsigned id);
+        void transferDataToBuffer(vector<glm::vec3>& vec, unsigned int bufferIndex, unsigned int location);
+        void transferDataToBuffer(vector<glm::vec2>& vec, unsigned int bufferIndex, unsigned int location);
+        void transferDataToBuffer(vector<unsigned int>& vec, unsigned int bufferIndex);
 
 
         virtual bool loadModel(string filename);
@@ -132,9 +140,20 @@ class EG_Model
                       vector<unsigned int>& Indices);
 
         void initMesh(unsigned int Index, const aiMesh* m, const aiScene* scene);
+
+        void initVertexVectors(const aiMesh* m,
+                          vector<glm::vec3>& Positions,
+                          vector<glm::vec3>& Normals,
+                          vector<glm::vec3>& Tangents,
+                          vector<glm::vec3>& Colors,
+                          vector<glm::vec2>& UVs,
+                          glm::vec3 defaultColor);
+
+        void initIndexVectors(const aiMesh* m, vector<unsigned int>& Indices);
+
         bool initMaterials(const aiScene* pScene, const std::string& Filename);
         void clear();
-
+        glm::vec3 getMaterialColor(const aiMesh* m, const aiScene* s);
 
 
 

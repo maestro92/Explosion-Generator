@@ -66,7 +66,7 @@ class EG_DynamicModel : public EG_Model
         bool loadModel(string filename);
         void render();
 
-
+        void transferDataToBuffer(vector<VertexBoneData>& vec, unsigned int bufferIndex, unsigned int location);
 
         void BoneTransform(float TimeInSeconds, vector<glm::mat4> Transforms);
 
@@ -84,14 +84,15 @@ class EG_DynamicModel : public EG_Model
         void readNodeHierarchy(float AnimationTime, const aiNode* pNode, const glm::mat4& ParentTransform);
         bool initFromAiScene(const aiScene* pScene, const std::string& Filename);
 
-        void initMesh(const aiMesh* m, const aiScene* s,
+        void initMesh(unsigned int MeshIndex, const aiMesh* m, const aiScene* s,
                       vector<glm::vec3>& Positions,
                       vector<glm::vec3>& Normals,
                       vector<glm::vec3>& Tangents,
                       vector<glm::vec3>& Colors,
                       vector<glm::vec2>& UVs,
-                      vector<VertexBoneData>& Bones,
-                      vector<unsigned int>& Indices);
+                      vector<unsigned int>& Indices,
+                      vector<VertexBoneData>& Bones);
+
 
         void loadBones(unsigned int MeshIndex, const aiMesh* paiMesh, vector<VertexBoneData>& Bones);
         bool initMaterials(const aiScene* pScene, const std::string& Filename);

@@ -16,6 +16,7 @@ EG_Model::EG_Model(int count)
     for(int i=0; i<count; i++)
         m_Buffers[i] = 0;
     m_VboCount = count;
+    m_Scene = NULL;
 }
 
 
@@ -82,28 +83,28 @@ bool EG_Model::loadModel(string filename)
 
 
 
-void EG_Model::transferDataToBuffer(vector<glm::vec3>& vec, unsigned id)
+void EG_Model::transferDataToBuffer(vector<glm::vec3>& vec, unsigned int bufferIndex, unsigned int location)
 {
     // Generate and populate the buffers with vertex attributes and the indices
-  	glBindBuffer(GL_ARRAY_BUFFER, m_Buffers[id]);
+  	glBindBuffer(GL_ARRAY_BUFFER, m_Buffers[bufferIndex]);
     glBufferData(GL_ARRAY_BUFFER, sizeof(vec[0]) * vec.size(), &vec[0], GL_STATIC_DRAW);
-    glEnableVertexAttribArray(id);
-    glVertexAttribPointer(id, 3, GL_FLOAT, GL_FALSE, 0, 0);
+    glEnableVertexAttribArray(location);
+    glVertexAttribPointer(location, 3, GL_FLOAT, GL_FALSE, 0, 0);
 }
 
-void EG_Model::transferDataToBuffer(vector<glm::vec2>& vec, unsigned id)
+void EG_Model::transferDataToBuffer(vector<glm::vec2>& vec, unsigned int bufferIndex, unsigned int location)
 {
     // Generate and populate the buffers with vertex attributes and the indices
-  	glBindBuffer(GL_ARRAY_BUFFER, m_Buffers[id]);
+  	glBindBuffer(GL_ARRAY_BUFFER, m_Buffers[bufferIndex]);
     glBufferData(GL_ARRAY_BUFFER, sizeof(vec[0]) * vec.size(), &vec[0], GL_STATIC_DRAW);
-    glEnableVertexAttribArray(id);
-    glVertexAttribPointer(id, 2, GL_FLOAT, GL_FALSE, 0, 0);
+    glEnableVertexAttribArray(location);
+    glVertexAttribPointer(location, 2, GL_FLOAT, GL_FALSE, 0, 0);
 }
 
-void EG_Model::transferDataToBuffer(vector<unsigned int>& vec, unsigned id)
+void EG_Model::transferDataToBuffer(vector<unsigned int>& vec, unsigned int bufferIndex)
 {
     // Generate and populate the buffers with vertex attributes and the indices
-  	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_Buffers[id]);
+  	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_Buffers[bufferIndex]);
     glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(vec[0]) * vec.size(), &vec[0], GL_STATIC_DRAW);
 }
 
@@ -113,15 +114,6 @@ bool EG_Model::initFromAiScene(const aiScene* s, const string& Filename)
     m_Textures.resize(s->mNumMaterials);
 
     // Count the number of vertices and indices
-
-/*
-    vector<glm::vec3> Positions;
-    vector<glm::vec3> Normals;
-    vector<glm::vec3> Tangents;
-    vector<glm::vec3> Colors;
-    vector<glm::vec2> UVs;
-    vector<unsigned int> Indices;
-*/
     unsigned int NumVertices = 0;
     unsigned int NumIndices = 0;
 
@@ -136,27 +128,12 @@ bool EG_Model::initFromAiScene(const aiScene* s, const string& Filename)
         NumIndices += m_Entries[i].NumIndices;
     }
 
-
-
     vector<glm::vec3> Positions     = EG_Utility::reserveVector<glm::vec3> (NumVertices);
     vector<glm::vec3> Normals       = EG_Utility::reserveVector<glm::vec3> (NumVertices);
     vector<glm::vec3> Tangents      = EG_Utility::reserveVector<glm::vec3> (NumVertices);
     vector<glm::vec3> Colors        = EG_Utility::reserveVector<glm::vec3> (NumVertices);
     vector<glm::vec2> UVs           = EG_Utility::reserveVector<glm::vec2> (NumVertices);
     vector<unsigned int> Indices    = EG_Utility::reserveVector<unsigned int> (NumIndices);
-
-
-/*
-    Positions.reserve(NumVertices);
-    Normals.reserve(NumVertices);
-    Tangents.reserve(NumVertices);
-    Colors.reserve(NumVertices);
-    UVs.reserve(NumVertices);
-    Indices.reserve(NumIndices);
-*/
-
-
-
 
 
     for (unsigned int i=0; i<m_Entries.size(); i++)
@@ -171,15 +148,24 @@ bool EG_Model::initFromAiScene(const aiScene* s, const string& Filename)
         return false;
     }
 
-    transferDataToBuffer(Positions, POS_VB);
-    transferDataToBuffer(Normals, NORMAL_VB);
-    transferDataToBuffer(Tangents, TANGENT_VB);
-    transferDataToBuffer(Colors, COLOR_VB);
-    transferDataToBuffer(UVs, UV_VB);
+    transferDataToBuffer(Positions, POS_VB, POS_UNI_LOC);
+    transferDataToBuffer(Normals, NORMAL_VB, NORMAL_UNI_LOC);
+    transferDataToBuffer(Tangents, TANGENT_VB, TANGENT_UNI_LOC);
+    transferDataToBuffer(Colors, COLOR_VB, COLOR_UNI_LOC);
+    transferDataToBuffer(UVs, UV_VB, UV_UNI_LOC);
     transferDataToBuffer(Indices, INDEX_BUFFER);
+
 }
 
 
+
+glm::vec3 EG_Model::getMaterialColor(const aiMesh* m, const aiScene* s)
+{
+	aiColor4D col;
+	aiMaterial* mat = s->mMaterials[m->mMaterialIndex];
+	aiGetMaterialColor(mat,AI_MATKEY_COLOR_DIFFUSE,&col);
+	return glm::vec3 (col.r,col.g,col.b);
+}
 
 
 void EG_Model::initMesh(const aiMesh* m, const aiScene* s,
@@ -190,13 +176,47 @@ void EG_Model::initMesh(const aiMesh* m, const aiScene* s,
                           vector<glm::vec2>& UVs,
                           vector<unsigned int>& Indices)
 {
-	aiColor4D col;
-	aiMaterial* mat=s->mMaterials[m->mMaterialIndex];
-	aiGetMaterialColor(mat,AI_MATKEY_COLOR_DIFFUSE,&col);
-	glm::vec3 defaultColor(col.r,col.g,col.b);
+    glm::vec3 defaultColor = getMaterialColor(m, s);
 
+    initVertexVectors(m, Positions, Normals, Tangents, Colors, UVs, defaultColor);
+
+    initIndexVectors(m, Indices);
+#if 0
     for (unsigned int i = 0 ; i < m->mNumVertices ; i++)
     {
+        /// position, normal, tangent, color, uv
+        glm::vec3 pos = EG_Utility::toGlmVec(m->mVertices[i]);
+        glm::vec3 norm = EG_Utility::toGlmVec(m->mNormals[i]);
+        glm::vec3 tang = glm::vec3(1.0, 0.0, 0.0);
+        glm::vec3 color = defaultColor;
+        glm::vec2 uv = glm::vec2(0.0f, 0.0f);
+
+        if(m->mTangents)
+            tang = EG_Utility::toGlmVec(m->mTangents[i]);
+
+        /// colors
+        if(m->mColors[0])
+        {
+            color.x = m->mColors[0][i].r;
+            color.y = m->mColors[0][i].g;
+            color.z = m->mColors[0][i].b;
+        }
+
+        /// UV
+        if(m->mTextureCoords[0])
+        {
+            uv.x=m->mTextureCoords[0][i].x;
+            uv.y=m->mTextureCoords[0][i].y;
+        }
+
+        Positions.push_back(pos);
+        Normals.push_back(norm);
+        Tangents.push_back(tang);
+        Colors.push_back(color);
+        UVs.push_back(uv);
+
+
+        /*
         glm::vec3 tVec3;
 
         /// Vertices
@@ -239,8 +259,60 @@ void EG_Model::initMesh(const aiMesh* m, const aiScene* s,
             tVec3 = glm::vec3(0.0f, 0.0f, 0.0f);
 
         UVs.push_back(glm::vec2(tVec3.x, tVec3.y));
+        */
     }
+#endif
 
+}
+
+
+
+void EG_Model::initVertexVectors(const aiMesh* m,
+                          vector<glm::vec3>& Positions,
+                          vector<glm::vec3>& Normals,
+                          vector<glm::vec3>& Tangents,
+                          vector<glm::vec3>& Colors,
+                          vector<glm::vec2>& UVs,
+                          glm::vec3 defaultColor)
+{
+    for (unsigned int i = 0 ; i < m->mNumVertices ; i++)
+    {
+        /// position, normal, tangent, color, uv
+        glm::vec3 pos = EG_Utility::toGlmVec(m->mVertices[i]);
+        glm::vec3 norm = EG_Utility::toGlmVec(m->mNormals[i]);
+        glm::vec3 tang = glm::vec3(1.0, 0.0, 0.0);
+        glm::vec3 color = defaultColor;
+        glm::vec2 uv = glm::vec2(0.0f, 0.0f);
+
+        if(m->mTangents)
+            tang = EG_Utility::toGlmVec(m->mTangents[i]);
+
+        /// colors
+        if(m->mColors[0])
+        {
+            color.x = m->mColors[0][i].r;
+            color.y = m->mColors[0][i].g;
+            color.z = m->mColors[0][i].b;
+        }
+
+        /// UV
+        if(m->mTextureCoords[0])
+        {
+            uv.x=m->mTextureCoords[0][i].x;
+            uv.y=m->mTextureCoords[0][i].y;
+        }
+
+        Positions.push_back(pos);
+        Normals.push_back(norm);
+        Tangents.push_back(tang);
+        Colors.push_back(color);
+        UVs.push_back(uv);
+    }
+}
+
+
+void EG_Model::initIndexVectors(const aiMesh* m, vector<unsigned int>& Indices)
+{
     for (unsigned int i = 0 ; i < m->mNumFaces ; i++)
     {
         const aiFace& Face = m->mFaces[i];
@@ -250,6 +322,7 @@ void EG_Model::initMesh(const aiMesh* m, const aiScene* s,
         Indices.push_back(Face.mIndices[2]);
     }
 }
+
 
 
 bool EG_Model::initMaterials(const aiScene* pScene, const std::string& Filename)
