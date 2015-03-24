@@ -141,8 +141,6 @@
 		<Unit filename="define.h" />
 		<Unit filename="mesh.cpp" />
 		<Unit filename="mesh.h" />
-		<Unit filename="mesh37.cpp" />
-		<Unit filename="mesh37.h" />
 		<Unit filename="meshData.h" />
 		<Unit filename="pipeline.cpp" />
 		<Unit filename="pipeline.h" />

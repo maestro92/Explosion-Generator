@@ -19,6 +19,18 @@
 #define NO_SDL_GLEXT
 #include <GL/glew.h>
 
+#include "define.h"
+#include <assimp/cimport.h>
+#include <assimp/Importer.hpp>      // C++ importer interface
+#include <assimp/scene.h>
+#include <assimp/postprocess.h>
+#include <cstdlib>
+#include <iostream>
+#include <stdio.h>
+#include <string>
+#include <sstream>
+#include <vector>
+
 #include "SDL/SDL.h"
 #include "SDL/SDL_image.h"
 
@@ -40,11 +52,28 @@ class EG_Utility
         unsigned int Create_CubemapTexture(string* filenames);
 
 
+        template<typename T>
+            static vector<T> reserveVector(int size);
+
+
+        static glm::vec3 toGlmVec(aiVector3D& v2);
+        static glm::mat4 toGlmMat(aiMatrix3x3& m2);
+        static glm::mat4 toGlmMat(aiMatrix4x4& m2);
 
     //    static GLuint GetUniformLocation(shader* s, const char* UniformName);
 
 
 };
+
+
+
+template<typename T>
+vector<T> EG_Utility::reserveVector(int size)
+{
+    vector<T> v;
+    v.reserve(size);
+    return v;
+}
 
 
 #endif

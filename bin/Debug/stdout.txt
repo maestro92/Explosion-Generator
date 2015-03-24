@@ -157,7 +157,7 @@ model_path ./models/
 m_str ./models/HugeWall.obj
 Nor oepened1
 Nor oepened1
-Ret is 131
+Ret is 232
 model_path ./models/
 m_str ./models/./Content/quad.obj
 model_path ./models/
@@ -203,10 +203,12 @@ Advect3D Unable to attach color buffer
 0
 Advect3D Unable to attach color buffer
 0
+clicking left
 Advect3D Unable to attach color buffer
 0
 Advect3D Unable to attach color buffer
 0
+clicking Up left
 Advect3D Unable to attach color buffer
 0
 Advect3D Unable to attach color buffer
@@ -229,12 +231,16 @@ Advect3D Unable to attach color buffer
 0
 Advect3D Unable to attach color buffer
 0
+wheel down
 Advect3D Unable to attach color buffer
 0
+wheel down
 Advect3D Unable to attach color buffer
 0
+wheel down
 Advect3D Unable to attach color buffer
 0
+wheel down
 Advect3D Unable to attach color buffer
 0
 Advect3D Unable to attach color buffer
@@ -255,193 +261,6 @@ Advect3D Unable to attach color buffer
 0
 Advect3D Unable to attach color buffer
 0
-Advect3D Unable to attach color buffer
-0
-Advect3D Unable to attach color buffer
-0
-Advect3D Unable to attach color buffer
-0
-Advect3D Unable to attach color buffer
-0
-Advect3D Unable to attach color buffer
-0
-Advect3D Unable to attach color buffer
-0
-Advect3D Unable to attach color buffer
-0
-Advect3D Unable to attach color buffer
-0
-Advect3D Unable to attach color buffer
-0
-Advect3D Unable to attach color buffer
-0
-Advect3D Unable to attach color buffer
-0
-Advect3D Unable to attach color buffer
-0
-Advect3D Unable to attach color buffer
-0
-Advect3D Unable to attach color buffer
-0
-Advect3D Unable to attach color buffer
-0
-Advect3D Unable to attach color buffer
-0
-Advect3D Unable to attach color buffer
-0
-Advect3D Unable to attach color buffer
-0
-Advect3D Unable to attach color buffer
-0
-Advect3D Unable to attach color buffer
-0
-Advect3D Unable to attach color buffer
-0
-Advect3D Unable to attach color buffer
-0
-Advect3D Unable to attach color buffer
-0
-Advect3D Unable to attach color buffer
-0
-Advect3D Unable to attach color buffer
-0
-Advect3D Unable to attach color buffer
-0
-Advect3D Unable to attach color buffer
-0
-Advect3D Unable to attach color buffer
-0
-Advect3D Unable to attach color buffer
-0
-Advect3D Unable to attach color buffer
-0
-Advect3D Unable to attach color buffer
-0
-Advect3D Unable to attach color buffer
-0
-Advect3D Unable to attach color buffer
-0
-Advect3D Unable to attach color buffer
-0
-Advect3D Unable to attach color buffer
-0
-Advect3D Unable to attach color buffer
-0
-Advect3D Unable to attach color buffer
-0
-Advect3D Unable to attach color buffer
-0
-Advect3D Unable to attach color buffer
-0
-Advect3D Unable to attach color buffer
-0
-Advect3D Unable to attach color buffer
-0
-Advect3D Unable to attach color buffer
-0
-Advect3D Unable to attach color buffer
-0
-Advect3D Unable to attach color buffer
-0
-Advect3D Unable to attach color buffer
-0
-Advect3D Unable to attach color buffer
-0
-Advect3D Unable to attach color buffer
-0
-Advect3D Unable to attach color buffer
-0
-Advect3D Unable to attach color buffer
-0
-Advect3D Unable to attach color buffer
-0
-Advect3D Unable to attach color buffer
-0
-Advect3D Unable to attach color buffer
-0
-Advect3D Unable to attach color buffer
-0
-Advect3D Unable to attach color buffer
-0
-Advect3D Unable to attach color buffer
-0
-Advect3D Unable to attach color buffer
-0
-Advect3D Unable to attach color buffer
-0
-Advect3D Unable to attach color buffer
-0
-Advect3D Unable to attach color buffer
-0
-Advect3D Unable to attach color buffer
-0
-Advect3D Unable to attach color buffer
-0
-Advect3D Unable to attach color buffer
-0
-Advect3D Unable to attach color buffer
-0
-Advect3D Unable to attach color buffer
-0
-Advect3D Unable to attach color buffer
-0
-Advect3D Unable to attach color buffer
-0
-Advect3D Unable to attach color buffer
-0
-Advect3D Unable to attach color buffer
-0
-Advect3D Unable to attach color buffer
-0
-Advect3D Unable to attach color buffer
-0
-Advect3D Unable to attach color buffer
-0
-Advect3D Unable to attach color buffer
-0
-Advect3D Unable to attach color buffer
-0
-Advect3D Unable to attach color buffer
-0
-Advect3D Unable to attach color buffer
-0
-Advect3D Unable to attach color buffer
-0
-Advect3D Unable to attach color buffer
-0
-Advect3D Unable to attach color buffer
-0
-Advect3D Unable to attach color buffer
-0
-Advect3D Unable to attach color buffer
-0
-Advect3D Unable to attach color buffer
-0
-Advect3D Unable to attach color buffer
-0
-Advect3D Unable to attach color buffer
-0
-Advect3D Unable to attach color buffer
-0
-Advect3D Unable to attach color buffer
-0
-Advect3D Unable to attach color buffer
-0
-Advect3D Unable to attach color buffer
-0
-Advect3D Unable to attach color buffer
-0
-Advect3D Unable to attach color buffer
-0
-Advect3D Unable to attach color buffer
-0
-Advect3D Unable to attach color buffer
-0
-Advect3D Unable to attach color buffer
-0
-Advect3D Unable to attach color buffer
-0
-quitting game
 Advect3D Unable to attach color buffer
 0
 Terminating normally.

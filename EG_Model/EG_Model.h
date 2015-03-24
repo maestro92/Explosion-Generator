@@ -6,6 +6,7 @@
 #include <GL/glew.h>
 
 #include "define.h"
+#include "EG_Utility.h"
 #include <cstdlib>
 #include <iostream>
 #include <stdio.h>
@@ -20,6 +21,17 @@
 
 using namespace std;
 
+#define INVALID_MATERIAL 0xFFFFFFFF
+#define INVALID_GL_VALUE -1
+
+#define POS_VB 0
+#define NORMAL_VB 1
+#define TANGENT_VB 2
+#define COLOR_VB 3
+#define UV_VB 4
+#define INDEX_BUFFER 5
+#define BONE_VB 6
+
 
 struct Vertex
 {
@@ -30,14 +42,7 @@ struct Vertex
     glm::vec2 m_UV;
 
     Vertex() {}
-/*
-    Vertex(const glm::vec3& pos, const glm::vec2& tex, const glm::vec3& normal)
-    {
-        m_pos    = pos;
-        m_tex    = tex;
-        m_normal = normal;
-    }
-*/
+
     Vertex(const glm::vec3& pos,
            const glm::vec3& normal,
            const glm::vec3& tangent,
@@ -56,6 +61,7 @@ struct Vertex
 class EG_Model
 {
 
+
     public:
 
         int VERTEX=0;
@@ -67,46 +73,24 @@ class EG_Model
 
         EG_Model();
 
+        EG_Model(int count);
+
+
+
+
         ~EG_Model();
 
-        static void genGLVertexBuffer(GLuint& id, vector<Vertex>& Vertices);
-        static void genGLIndexBuffer(GLuint& id, vector<unsigned int>& Indices);
-
-        void copyVec3(glm::vec3& v, aiVector3D& c);
-
-        bool loadModel(string filename);
-        void render();
-
-
-    private:
-        bool initFromAiScene(const aiScene* pScene, const std::string& Filename);
-
-        void initMesh(const aiMesh* m, const aiScene* s,
-                      vector<glm::vec3>& Positions,
-                      vector<glm::vec3>& Normals,
-                      vector<glm::vec3>& Tangents,
-                      vector<glm::vec3>& Colors,
-                      vector<glm::vec2>& UVs,
-                      vector<unsigned int>& Indices);
-
-        void initMesh(unsigned int Index, const aiMesh* m, const aiScene* scene);
-        bool initMaterials(const aiScene* pScene, const std::string& Filename);
-        void clear();
+   //     static void genGLVertexBuffer(GLuint& id, vector<Vertex>& Vertices);
+   //     static void genGLIndexBuffer(GLuint& id, vector<unsigned int>& Indices);
 
         void transferDataToBuffer(vector<glm::vec3>& vec, unsigned id);
         void transferDataToBuffer(vector<glm::vec2>& vec, unsigned id);
         void transferDataToBuffer(vector<unsigned int>& vec, unsigned id);
-#define INVALID_MATERIAL 0xFFFFFFFF
 
-#define POS_VB 0
-#define NORMAL_VB 1
-#define TANGENT_VB 2
-#define COLOR_VB 3
-#define UV_VB 4
-#define INDEX_BUFFER 5
 
-        GLuint m_VAO;
-        GLuint m_Buffers[4];
+        virtual bool loadModel(string filename);
+        void render();
+
 
         struct Mesh
         {
@@ -125,36 +109,37 @@ class EG_Model
 
         };
 
-        vector<Mesh> m_Entries;
-        vector<Texture*>  m_Textures;
-
-/*
         /// instead of having VB/IB (Vertex Buffer and Index Buffer) Objects, we
         /// have four buffers - index, position, normal and texture coordinates
         /// also a new member variable called m_VAO that stores the vertex array object
-        ///
+        const aiScene* m_Scene;
         GLuint m_VAO;
-        GLuint m_Buffers[6];
-*/
-
-/*
-        struct Mesh
-        {
-            Mesh();
-
-            ~Mesh();
-            void init(vector<Vertex>& Vertices, vector<unsigned int>& Indices);
-
-            GLuint VB;
-            GLuint IB;
-            unsigned int NumIndices;
-            unsigned int MaterialIndex;
-
-        };
+        GLuint* m_Buffers;
+        int m_VboCount;
 
         vector<Mesh> m_Entries;
         vector<Texture*>  m_Textures;
-*/
+
+    protected:
+        bool initFromAiScene(const aiScene* pScene, const std::string& Filename);
+
+        void initMesh(const aiMesh* m, const aiScene* s,
+                      vector<glm::vec3>& Positions,
+                      vector<glm::vec3>& Normals,
+                      vector<glm::vec3>& Tangents,
+                      vector<glm::vec3>& Colors,
+                      vector<glm::vec2>& UVs,
+                      vector<unsigned int>& Indices);
+
+        void initMesh(unsigned int Index, const aiMesh* m, const aiScene* scene);
+        bool initMaterials(const aiScene* pScene, const std::string& Filename);
+        void clear();
+
+
+
+
+
+
 };
 
 
