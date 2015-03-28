@@ -56,8 +56,9 @@ class EG_RenderTechnique
         virtual ~EG_RenderTechnique();
 
         virtual void init();
+     //   virtual void init(int nShaders);
 
-        void allocateMemberVariables(int numOfShaders);
+        void allocateMemberVariables(int nShaders);
         void initMemberVariables();
         void enableShader(int RenderPassID);
         void disableShader(int RenderPassID);
@@ -68,10 +69,7 @@ class EG_RenderTechnique
 
         virtual void loadUniformLocations(pipeline& p, int RenderPassID);
         virtual void render();
-//        void loadSpecialUniformLocation(pipeline& p, int RenderPassID);
-//        void Setup_Special_glUniform(pipeline& p, int RenderPassID);
-//        void Setup_ShadowMatrix_forRender(pipeline& p, int RenderPassID);
-//        void loadShadowMatrix(pipeline& p, int RenderPassID);
+
         void setUniformLocation(GLuint location, int value);
         void setUniformLocation(GLuint location, float value);
         void setUniformLocation(GLuint location, float x, float y);
@@ -80,9 +78,9 @@ class EG_RenderTechnique
 
     public:
         Matrices_Location* Matrices_UniLoc;
-        Shader** progShaders;
+        Shader** m_shaders;
     private:
-        int numOfShaders_;
+        int m_numShaders;
 
 };
 

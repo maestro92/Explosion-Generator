@@ -60,9 +60,9 @@ void Technique_Shadow_Render::init(int w, int h, int Shader_Num)
 
     /// FirstPass_LightPOV
     /// SecondPass_CameraPOV
-    progShaders[RENDER_PASS1] = new Shader("shadow_FirstRender.vs", "shadow_FirstRender.fs");
-    progShaders[RENDER_PASS2] = new Shader("shadow_SecondRender_WithManyLights.vs", "shadow_SecondRender_WithManyLights.fs");
-
+    m_shaders[RENDER_PASS1] = new Shader("shadow_FirstRender.vs", "shadow_FirstRender.fs");
+//    m_shaders[RENDER_PASS2] = new Shader("shadow_SecondRender_WithManyLights.vs", "shadow_SecondRender_WithManyLights.fs");
+    m_shaders[RENDER_PASS2] = new Shader("shadow_SecondRender_dir_pt_include.vs", "shadow_SecondRender_dir_pt_include.fs");
 
 //    l_modelViewProjectionMatrix_UniLoc_ =       GetUniformLocation(progShaders[RENDER_PASS1], "l_modelViewProjectionMatrix");
 //    lightPosition_ModelViewMatrix_UniLoc_ =     GetUniformLocation(progShaders[RENDER_PASS1], "lightPosition_ModelViewMatrix");
@@ -71,17 +71,16 @@ void Technique_Shadow_Render::init(int w, int h, int Shader_Num)
 //    m_shadowMapTextureUnitLocation  =       GetUniformLocation(progShaders[RENDER_PASS1], "gShadowMap");
 
 
-    m_dirLightLocation.color                = GetUniformLocation( progShaders[RENDER_PASS2], "gDirectionalLight.base.color");
-    m_dirLightLocation.ambientIntensity     = GetUniformLocation( progShaders[RENDER_PASS2], "gDirectionalLight.base.ambientIntensity");
-    m_dirLightLocation.diffuseIntensity     = GetUniformLocation( progShaders[RENDER_PASS2], "gDirectionalLight.base.diffuseIntensity");
-    m_dirLightLocation.direction            = GetUniformLocation( progShaders[RENDER_PASS2], "gDirectionalLight.direction");
+    m_dirLightLocation.color                = GetUniformLocation( m_shaders[RENDER_PASS2], "gDirectionalLight.base.color");
+    m_dirLightLocation.ambientIntensity     = GetUniformLocation( m_shaders[RENDER_PASS2], "gDirectionalLight.base.ambientIntensity");
+    m_dirLightLocation.diffuseIntensity     = GetUniformLocation( m_shaders[RENDER_PASS2], "gDirectionalLight.base.diffuseIntensity");
+    m_dirLightLocation.direction            = GetUniformLocation( m_shaders[RENDER_PASS2], "gDirectionalLight.direction");
 
+    m_eyeWorldPosLocation                   = GetUniformLocation( m_shaders[RENDER_PASS2], "gEyeWorldPos");
+    m_matSpecularIntensityLocation          = GetUniformLocation( m_shaders[RENDER_PASS2], "gMatSpecularIntensity");
+    m_matSpecularPowerLocation              = GetUniformLocation( m_shaders[RENDER_PASS2], "gSpecularPower");
 
-    m_eyeWorldPosLocation                   = GetUniformLocation( progShaders[RENDER_PASS2], "gEyeWorldPos");
-    m_matSpecularIntensityLocation          = GetUniformLocation( progShaders[RENDER_PASS2], "gMatSpecularIntensity");
-    m_matSpecularPowerLocation              = GetUniformLocation( progShaders[RENDER_PASS2], "gSpecularPower");
-
-    gNumPointLights                         = GetUniformLocation( progShaders[RENDER_PASS2], "gNumPointLights");
+    gNumPointLights                         = GetUniformLocation( m_shaders[RENDER_PASS2], "gNumPointLights");
 /*
     m_pointLightUniformLocation.color                = GetUniformLocation( progShaders[RENDER_PASS2], "gPointLight.base.color");
     m_pointLightUniformLocation.ambientIntensity     = GetUniformLocation( progShaders[RENDER_PASS2], "gPointLight.base.ambientIntensity");
@@ -101,33 +100,33 @@ void Technique_Shadow_Render::init(int w, int h, int Shader_Num)
         char Name[128];
         memset(Name, 0, sizeof(Name));
         snprintf(Name, sizeof(Name), "gPointLights[%d].base.color", i);
-        m_pointLightsLocation[i].color = GetUniformLocation( progShaders[RENDER_PASS2], Name);
+        m_pointLightsLocation[i].color = GetUniformLocation( m_shaders[RENDER_PASS2], Name);
 
         snprintf(Name, sizeof(Name), "gPointLights[%d].base.ambientIntensity", i);
-        m_pointLightsLocation[i].ambientIntensity = GetUniformLocation( progShaders[RENDER_PASS2], Name);
+        m_pointLightsLocation[i].ambientIntensity = GetUniformLocation( m_shaders[RENDER_PASS2], Name);
 
         snprintf(Name, sizeof(Name), "gPointLights[%d].position", i);
-        m_pointLightsLocation[i].position = GetUniformLocation( progShaders[RENDER_PASS2], Name);
+        m_pointLightsLocation[i].position = GetUniformLocation( m_shaders[RENDER_PASS2], Name);
 
         snprintf(Name, sizeof(Name), "gPointLights[%d].base.diffuseIntensity", i);
-        m_pointLightsLocation[i].diffuseIntensity = GetUniformLocation( progShaders[RENDER_PASS2], Name);
+        m_pointLightsLocation[i].diffuseIntensity = GetUniformLocation( m_shaders[RENDER_PASS2], Name);
 
         snprintf(Name, sizeof(Name), "gPointLights[%d].atten.constant", i);
-        m_pointLightsLocation[i].attenuation.constant = GetUniformLocation( progShaders[RENDER_PASS2], Name);
+        m_pointLightsLocation[i].attenuation.constant = GetUniformLocation( m_shaders[RENDER_PASS2], Name);
 
         snprintf(Name, sizeof(Name), "gPointLights[%d].atten.linear", i);
-        m_pointLightsLocation[i].attenuation.linear = GetUniformLocation( progShaders[RENDER_PASS2], Name);
+        m_pointLightsLocation[i].attenuation.linear = GetUniformLocation( m_shaders[RENDER_PASS2], Name);
 
         snprintf(Name, sizeof(Name), "gPointLights[%d].atten.exp", i);
-        m_pointLightsLocation[i].attenuation.exp = GetUniformLocation( progShaders[RENDER_PASS2], Name);
+        m_pointLightsLocation[i].attenuation.exp = GetUniformLocation( m_shaders[RENDER_PASS2], Name);
 
         snprintf(Name, sizeof(Name), "gPointLights[%d].scale", i);
-        m_pointLightsLocation[i].scale = GetUniformLocation( progShaders[RENDER_PASS2], Name);
+        m_pointLightsLocation[i].scale = GetUniformLocation( m_shaders[RENDER_PASS2], Name);
     }
 
 
-    l_modelViewProjectionMatrix_UniLoc_     = GetUniformLocation( progShaders[RENDER_PASS2], "l_modelViewProjectionMatrix");
-    shadowMap_UniLoc                        = GetUniformLocation( progShaders[RENDER_PASS2], "gShadowMap");
+    l_modelViewProjectionMatrix_UniLoc_     = GetUniformLocation( m_shaders[RENDER_PASS2], "l_modelViewProjectionMatrix");
+    shadowMap_UniLoc                        = GetUniformLocation( m_shaders[RENDER_PASS2], "gShadowMap");
 /*
     LightMVPmatrix_UniLoc =             GetUniformLocation(progShaders[RENDER_PASS2], "l_modelViewProjectionMatrix");
     shadowMap_UniLoc =                  GetUniformLocation(progShaders[RENDER_PASS2], "shadowMap");

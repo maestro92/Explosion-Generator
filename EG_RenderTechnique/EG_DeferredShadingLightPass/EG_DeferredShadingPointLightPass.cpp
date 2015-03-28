@@ -13,17 +13,18 @@ void EG_DeferredShadingPointLightPass::init(int shaderCount)
 {
     allocateMemberVariables(shaderCount);
 
-    progShaders[RENDER_PASS1] = new Shader("/EG_DeferredShadingShaders/EG_DeferredShadingPointLightPass.vs",
+    m_shaders[RENDER_PASS1] = new Shader("/EG_DeferredShadingShaders/EG_DeferredShadingPointLightPass.vs",
                                            "/EG_DeferredShadingShaders/EG_DeferredShadingPointLightPass.fs");
 
-    m_pointLightUniformLocation.color                = GetUniformLocation( progShaders[RENDER_PASS1], "gPointLight.base.color");
-    m_pointLightUniformLocation.ambientIntensity     = GetUniformLocation( progShaders[RENDER_PASS1], "gPointLight.base.ambientIntensity");
-    m_pointLightUniformLocation.diffuseIntensity     = GetUniformLocation( progShaders[RENDER_PASS1], "gPointLight.base.diffuseIntensity");
-    m_pointLightUniformLocation.position             = GetUniformLocation( progShaders[RENDER_PASS1], "gPointLight.position");
+    m_pointLightUniformLocation.color                = GetUniformLocation( m_shaders[RENDER_PASS1], "gPointLight.base.color");
+    m_pointLightUniformLocation.ambientIntensity     = GetUniformLocation( m_shaders[RENDER_PASS1], "gPointLight.base.ambientIntensity");
+    m_pointLightUniformLocation.diffuseIntensity     = GetUniformLocation( m_shaders[RENDER_PASS1], "gPointLight.base.diffuseIntensity");
+    m_pointLightUniformLocation.position             = GetUniformLocation( m_shaders[RENDER_PASS1], "gPointLight.position");
 
-    m_pointLightUniformLocation.attenuation.constant = GetUniformLocation( progShaders[RENDER_PASS1], "gPointLight.atten.constant");
-    m_pointLightUniformLocation.attenuation.linear   = GetUniformLocation( progShaders[RENDER_PASS1], "gPointLight.atten.linear");
-    m_pointLightUniformLocation.attenuation.exp      = GetUniformLocation( progShaders[RENDER_PASS1], "gPointLight.atten.exp");
+    m_pointLightUniformLocation.attenuation.constant = GetUniformLocation( m_shaders[RENDER_PASS1], "gPointLight.atten.constant");
+    m_pointLightUniformLocation.attenuation.linear   = GetUniformLocation( m_shaders[RENDER_PASS1], "gPointLight.atten.linear");
+    m_pointLightUniformLocation.attenuation.exp      = GetUniformLocation( m_shaders[RENDER_PASS1], "gPointLight.atten.exp");
+
 
 
 
@@ -47,17 +48,17 @@ void EG_DeferredShadingPointLightPass::init(int shaderCount, char* vsSource, cha
 {
     allocateMemberVariables(shaderCount);
 
-    progShaders[RENDER_PASS1] = new Shader(vsSource, fsSource);
+    m_shaders[RENDER_PASS1] = new Shader(vsSource, fsSource);
 
 
-    m_pointLightUniformLocation.color                = GetUniformLocation( progShaders[RENDER_PASS1], "gPointLight.base.color");
-    m_pointLightUniformLocation.ambientIntensity     = GetUniformLocation( progShaders[RENDER_PASS1], "gPointLight.base.ambientIntensity");
-    m_pointLightUniformLocation.diffuseIntensity     = GetUniformLocation( progShaders[RENDER_PASS1], "gPointLight.base.diffuseIntensity");
-    m_pointLightUniformLocation.position             = GetUniformLocation( progShaders[RENDER_PASS1], "gPointLight.position");
+    m_pointLightUniformLocation.color                = GetUniformLocation( m_shaders[RENDER_PASS1], "gPointLight.base.color");
+    m_pointLightUniformLocation.ambientIntensity     = GetUniformLocation( m_shaders[RENDER_PASS1], "gPointLight.base.ambientIntensity");
+    m_pointLightUniformLocation.diffuseIntensity     = GetUniformLocation( m_shaders[RENDER_PASS1], "gPointLight.base.diffuseIntensity");
+    m_pointLightUniformLocation.position             = GetUniformLocation( m_shaders[RENDER_PASS1], "gPointLight.position");
 
-    m_pointLightUniformLocation.attenuation.constant = GetUniformLocation( progShaders[RENDER_PASS1], "gPointLight.atten.constant");
-    m_pointLightUniformLocation.attenuation.linear   = GetUniformLocation( progShaders[RENDER_PASS1], "gPointLight.atten.linear");
-    m_pointLightUniformLocation.attenuation.exp      = GetUniformLocation( progShaders[RENDER_PASS1], "gPointLight.atten.exp");
+    m_pointLightUniformLocation.attenuation.constant = GetUniformLocation( m_shaders[RENDER_PASS1], "gPointLight.atten.constant");
+    m_pointLightUniformLocation.attenuation.linear   = GetUniformLocation( m_shaders[RENDER_PASS1], "gPointLight.atten.linear");
+    m_pointLightUniformLocation.attenuation.exp      = GetUniformLocation( m_shaders[RENDER_PASS1], "gPointLight.atten.exp");
 
 /*
 	if (m_dirLightLocation.ambientIntensity == INVALID_UNIFORM_LOCATION ||

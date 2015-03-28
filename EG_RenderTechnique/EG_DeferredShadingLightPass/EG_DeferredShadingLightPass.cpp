@@ -64,14 +64,14 @@ bool EG_DeferredShadingLightPass::init(int shaderCount)
 
 void EG_DeferredShadingLightPass::initLightPass(int shaderId)
 {
-	m_posTextureUnitLocation        = GetUniformLocation(progShaders[shaderId], "gPositionMap");
-	m_colorTextureUnitLocation      = GetUniformLocation(progShaders[shaderId], "gColorMap");
-	m_normalTextureUnitLocation     = GetUniformLocation(progShaders[shaderId], "gNormalMap");
-	m_stencilTextureUnitLocation    = GetUniformLocation(progShaders[shaderId], "gStencilMap");
-    m_eyeWorldPosLocation           = GetUniformLocation(progShaders[shaderId], "gEyeWorldPos");
-    m_matSpecularIntensityLocation  = GetUniformLocation(progShaders[shaderId], "gMatSpecularIntensity");
-    m_matSpecularPowerLocation      = GetUniformLocation(progShaders[shaderId], "gSpecularPower");
-    m_screenSizeLocation            = GetUniformLocation(progShaders[shaderId], "gScreenSize");
+	m_posTextureUnitLocation        = GetUniformLocation(m_shaders[shaderId], "gPositionMap");
+	m_colorTextureUnitLocation      = GetUniformLocation(m_shaders[shaderId], "gColorMap");
+	m_normalTextureUnitLocation     = GetUniformLocation(m_shaders[shaderId], "gNormalMap");
+	m_stencilTextureUnitLocation    = GetUniformLocation(m_shaders[shaderId], "gStencilMap");
+    m_eyeWorldPosLocation           = GetUniformLocation(m_shaders[shaderId], "gEyeWorldPos");
+    m_matSpecularIntensityLocation  = GetUniformLocation(m_shaders[shaderId], "gMatSpecularIntensity");
+    m_matSpecularPowerLocation      = GetUniformLocation(m_shaders[shaderId], "gSpecularPower");
+    m_screenSizeLocation            = GetUniformLocation(m_shaders[shaderId], "gScreenSize");
 /*
 	if (m_posTextureUnitLocation == INVALID_UNIFORM_LOCATION ||
         m_colorTextureUnitLocation == INVALID_UNIFORM_LOCATION ||

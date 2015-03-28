@@ -36878,7 +36878,7 @@
 
 1359681822 d:\martin\programming\c and c++\sdl\explosion generator 2099 99 99 infinity\glm\gtx\norm.inl
 
-1423303039 source:d:\martin\programming\c and c++\sdl\explosion generator 2099 99 99 infinity\eg_light\eg_alllights.cpp
+1427512159 source:d:\martin\programming\c and c++\sdl\explosion generator 2099 99 99 infinity\eg_light\eg_alllights.cpp
 	"EG_AllLights.h"
 
 1421995826 d:\martin\programming\c and c++\sdl\explosion generator 2099 99 99 infinity\eg_light\eg_alllights.h
@@ -37055,23 +37055,24 @@
 	<sstream>
 	"EG_RenderTechnique.h"
 
-1419543089 source:d:\martin\programming\c and c++\sdl\explosion generator 2099 99 99 infinity\eg_shader.cpp
+1427513692 source:d:\martin\programming\c and c++\sdl\explosion generator 2099 99 99 infinity\eg_shader.cpp
 	"EG_Shader.h"
 	<stdio.h>
 	<string.h>
 
-1419240233 d:\martin\programming\c and c++\sdl\explosion generator 2099 99 99 infinity\eg_shader.h
+1427512777 d:\martin\programming\c and c++\sdl\explosion generator 2099 99 99 infinity\eg_shader.h
 	<GL/glew.h>
 	<string>
 	<vector>
 	<fstream>
 	<iostream>
+	<sstream>
 	<stdio.h>
 
-1427188813 source:d:\martin\programming\c and c++\sdl\explosion generator 2099 99 99 infinity\eg_utility.cpp
+1427505256 source:d:\martin\programming\c and c++\sdl\explosion generator 2099 99 99 infinity\eg_utility.cpp
 	"EG_Utility.h"
 
-1427189893 d:\martin\programming\c and c++\sdl\explosion generator 2099 99 99 infinity\eg_utility.h
+1427499429 d:\martin\programming\c and c++\sdl\explosion generator 2099 99 99 infinity\eg_utility.h
 	<cstdlib>
 	<vector>
 	<iostream>
@@ -37296,7 +37297,7 @@
 1421306293 source:d:\martin\programming\c and c++\sdl\explosion generator 2099 99 99 infinity\sceneloader.cpp
 	"sceneLoader.h"
 
-1427073812 source:d:\martin\programming\c and c++\sdl\explosion generator 2099 99 99 infinity\eg_main.cpp
+1427512071 source:d:\martin\programming\c and c++\sdl\explosion generator 2099 99 99 infinity\eg_main.cpp
 	"EG_Main.h"
 	"gl/gl.h"
 	"gl/glu.h"
@@ -37419,11 +37420,11 @@
 	<assimp/postprocess.h>
 	"texture.h"
 
-1427226087 source:d:\martin\programming\c and c++\sdl\explosion generator 2099 99 99 infinity\eg_model\eg_model.cpp
+1427237070 source:d:\martin\programming\c and c++\sdl\explosion generator 2099 99 99 infinity\eg_model\eg_model.cpp
 	<assert.h>
 	"EG_Model.h"
 
-1427232371 d:\martin\programming\c and c++\sdl\explosion generator 2099 99 99 infinity\eg_model\eg_model.h
+1427236954 d:\martin\programming\c and c++\sdl\explosion generator 2099 99 99 infinity\eg_model\eg_model.h
 	<GL/glew.h>
 	"define.h"
 	"EG_Utility.h"
@@ -37439,43 +37440,43 @@
 	<assimp/postprocess.h>
 	"texture.h"
 
-1421419999 source:d:\martin\programming\c and c++\sdl\explosion generator 2099 99 99 infinity\eg_rendertechnique\eg_deferredshading\eg_deferredshading.cpp
+1427514161 source:d:\martin\programming\c and c++\sdl\explosion generator 2099 99 99 infinity\eg_rendertechnique\eg_deferredshading\eg_deferredshading.cpp
 	"EG_DeferredShading.h"
 
 1421420621 d:\martin\programming\c and c++\sdl\explosion generator 2099 99 99 infinity\eg_rendertechnique\eg_deferredshading\eg_deferredshading.h
 	"EG_RenderTechnique.h"
 
-1421976298 source:d:\martin\programming\c and c++\sdl\explosion generator 2099 99 99 infinity\eg_rendertechnique\eg_deferredshading\eg_deferredshadinggeometrypass.cpp
+1427514173 source:d:\martin\programming\c and c++\sdl\explosion generator 2099 99 99 infinity\eg_rendertechnique\eg_deferredshading\eg_deferredshadinggeometrypass.cpp
 	"EG_DeferredShadingGeometryPass.h"
 
 1421399850 d:\martin\programming\c and c++\sdl\explosion generator 2099 99 99 infinity\eg_rendertechnique\eg_deferredshading\eg_deferredshadinggeometrypass.h
 	"EG_RenderTechnique.h"
 
-1422000798 source:d:\martin\programming\c and c++\sdl\explosion generator 2099 99 99 infinity\eg_rendertechnique\eg_deferredshading\eg_deferredshadinglightpos.cpp
+1427514183 source:d:\martin\programming\c and c++\sdl\explosion generator 2099 99 99 infinity\eg_rendertechnique\eg_deferredshading\eg_deferredshadinglightpos.cpp
 	"EG_DeferredShadingLightPos.h"
 
 1422000424 d:\martin\programming\c and c++\sdl\explosion generator 2099 99 99 infinity\eg_rendertechnique\eg_deferredshading\eg_deferredshadinglightpos.h
 	"EG_DeferredShading.h"
 
-1421424989 source:d:\martin\programming\c and c++\sdl\explosion generator 2099 99 99 infinity\eg_rendertechnique\eg_deferredshading\eg_deferredshadingreflection.cpp
+1427514195 source:d:\martin\programming\c and c++\sdl\explosion generator 2099 99 99 infinity\eg_rendertechnique\eg_deferredshading\eg_deferredshadingreflection.cpp
 	"EG_DeferredShadingReflection.h"
 
 1421424149 d:\martin\programming\c and c++\sdl\explosion generator 2099 99 99 infinity\eg_rendertechnique\eg_deferredshading\eg_deferredshadingreflection.h
 	"EG_DeferredShading.h"
 
-1421420457 source:d:\martin\programming\c and c++\sdl\explosion generator 2099 99 99 infinity\eg_rendertechnique\eg_deferredshading\eg_deferredshadingskybox.cpp
+1427514205 source:d:\martin\programming\c and c++\sdl\explosion generator 2099 99 99 infinity\eg_rendertechnique\eg_deferredshading\eg_deferredshadingskybox.cpp
 	"EG_DeferredShadingSkybox.h"
 
 1421420681 d:\martin\programming\c and c++\sdl\explosion generator 2099 99 99 infinity\eg_rendertechnique\eg_deferredshading\eg_deferredshadingskybox.h
 	"EG_DeferredShading.h"
 
-1421419425 source:d:\martin\programming\c and c++\sdl\explosion generator 2099 99 99 infinity\eg_rendertechnique\eg_deferredshading\eg_deferredshadingstencilpass.cpp
+1427514213 source:d:\martin\programming\c and c++\sdl\explosion generator 2099 99 99 infinity\eg_rendertechnique\eg_deferredshading\eg_deferredshadingstencilpass.cpp
 	"EG_DeferredShadingStencilPass.h"
 
 1421419417 d:\martin\programming\c and c++\sdl\explosion generator 2099 99 99 infinity\eg_rendertechnique\eg_deferredshading\eg_deferredshadingstencilpass.h
 	"EG_RenderTechnique.h"
 
-1422744907 source:d:\martin\programming\c and c++\sdl\explosion generator 2099 99 99 infinity\eg_rendertechnique\eg_deferredshadinglightpass\eg_deferredshadingdirectionallightpass.cpp
+1427514279 source:d:\martin\programming\c and c++\sdl\explosion generator 2099 99 99 infinity\eg_rendertechnique\eg_deferredshadinglightpass\eg_deferredshadingdirectionallightpass.cpp
 	"EG_DeferredShadingDirectionalLightPass.h"
 
 1421982496 d:\martin\programming\c and c++\sdl\explosion generator 2099 99 99 infinity\eg_rendertechnique\eg_deferredshadinglightpass\eg_deferredshadingdirectionallightpass.h
@@ -37485,25 +37486,25 @@
 1421400153 d:\martin\programming\c and c++\sdl\explosion generator 2099 99 99 infinity\eg_rendertechnique\eg_deferredshadinglightpass\eg_deferredshadinglightpass.h
 	"EG_RenderTechnique.h"
 
-1421420107 source:d:\martin\programming\c and c++\sdl\explosion generator 2099 99 99 infinity\eg_rendertechnique\eg_deferredshadinglightpass\eg_deferredshadinglightpass.cpp
+1427514296 source:d:\martin\programming\c and c++\sdl\explosion generator 2099 99 99 infinity\eg_rendertechnique\eg_deferredshadinglightpass\eg_deferredshadinglightpass.cpp
 	"EG_DeferredShadingLightPass.h"
 
-1422145460 source:d:\martin\programming\c and c++\sdl\explosion generator 2099 99 99 infinity\eg_rendertechnique\eg_deferredshadinglightpass\eg_deferredshadingpointlightpass.cpp
+1427514332 source:d:\martin\programming\c and c++\sdl\explosion generator 2099 99 99 infinity\eg_rendertechnique\eg_deferredshadinglightpass\eg_deferredshadingpointlightpass.cpp
 	"EG_DeferredShadingPointLightPass.h"
 
 1421942663 d:\martin\programming\c and c++\sdl\explosion generator 2099 99 99 infinity\eg_rendertechnique\eg_deferredshadinglightpass\eg_deferredshadingpointlightpass.h
 	"EG_PointLight.h"
 	"EG_DeferredShadingLightPass.h"
 
-1423612128 source:d:\martin\programming\c and c++\sdl\explosion generator 2099 99 99 infinity\eg_rendertechnique\eg_rendertechnique.cpp
+1427508267 source:d:\martin\programming\c and c++\sdl\explosion generator 2099 99 99 infinity\eg_rendertechnique\eg_rendertechnique.cpp
 	"EG_RenderTechnique.h"
 
-1423612780 d:\martin\programming\c and c++\sdl\explosion generator 2099 99 99 infinity\eg_rendertechnique\eg_rendertechnique.h
+1427509185 d:\martin\programming\c and c++\sdl\explosion generator 2099 99 99 infinity\eg_rendertechnique\eg_rendertechnique.h
 	"define.h"
 	"EG_Shader.h"
 	"pipeline.h"
 
-1421981945 source:d:\martin\programming\c and c++\sdl\explosion generator 2099 99 99 infinity\eg_rendertechnique\eg_rendertechnique_renderdepthtotexture.cpp
+1427507943 source:d:\martin\programming\c and c++\sdl\explosion generator 2099 99 99 infinity\eg_rendertechnique\eg_rendertechnique_renderdepthtotexture.cpp
 	"EG_RenderTechnique_RenderDepthToTexture.h"
 
 1421978027 d:\martin\programming\c and c++\sdl\explosion generator 2099 99 99 infinity\eg_rendertechnique\eg_rendertechnique_renderdepthtotexture.h
@@ -37516,7 +37517,7 @@
 	<sstream>
 	"EG_RenderTechnique.h"
 
-1421982100 source:d:\martin\programming\c and c++\sdl\explosion generator 2099 99 99 infinity\eg_rendertechnique\eg_rendertechnique_rendertexture.cpp
+1427507977 source:d:\martin\programming\c and c++\sdl\explosion generator 2099 99 99 infinity\eg_rendertechnique\eg_rendertechnique_rendertexture.cpp
 	"EG_RenderTechnique_RenderTexture.h"
 
 1421977788 d:\martin\programming\c and c++\sdl\explosion generator 2099 99 99 infinity\eg_rendertechnique\eg_rendertechnique_rendertexture.h
@@ -37544,7 +37545,7 @@
 	"EG_Quad.h"
 	"EG_RenderTechnique.h"
 
-1423613451 source:d:\martin\programming\c and c++\sdl\explosion generator 2099 99 99 infinity\eg_rendertechnique\eg_technique_reflection.cpp
+1427507993 source:d:\martin\programming\c and c++\sdl\explosion generator 2099 99 99 infinity\eg_rendertechnique\eg_technique_reflection.cpp
 	"EG_Technique_Reflection.h"
 
 1423612484 d:\martin\programming\c and c++\sdl\explosion generator 2099 99 99 infinity\eg_rendertechnique\eg_technique_reflection.h
@@ -37557,7 +37558,7 @@
 	<sstream>
 	"EG_RenderTechnique.h"
 
-1427144787 source:d:\martin\programming\c and c++\sdl\explosion generator 2099 99 99 infinity\eg_rendertechnique\eg_technique_shadow_render.cpp
+1427510706 source:d:\martin\programming\c and c++\sdl\explosion generator 2099 99 99 infinity\eg_rendertechnique\eg_technique_shadow_render.cpp
 	"EG_Technique_Shadow_Render.h"
 
 1427144788 d:\martin\programming\c and c++\sdl\explosion generator 2099 99 99 infinity\eg_rendertechnique\eg_technique_shadow_render.h
@@ -37572,7 +37573,7 @@
 	"EG_DirectionalLight.h"
 	"EG_PointLight.h"
 
-1421958913 source:d:\martin\programming\c and c++\sdl\explosion generator 2099 99 99 infinity\eg_rendertechnique\eg_technique_twopass_raycasting.cpp
+1427508080 source:d:\martin\programming\c and c++\sdl\explosion generator 2099 99 99 infinity\eg_rendertechnique\eg_technique_twopass_raycasting.cpp
 	"EG_Technique_TwoPass_RayCasting.h"
 
 1420561677 d:\martin\programming\c and c++\sdl\explosion generator 2099 99 99 infinity\eg_rendertechnique\eg_technique_twopass_raycasting.h
@@ -37708,12 +37709,12 @@
 1423610503 source:d:\martin\programming\c and c++\sdl\explosion generator 2099 99 99 infinity\eg_worldobject\eg_worldsphere.cpp
 	"EG_WorldSphere.h"
 
-1427232349 source:d:\martin\programming\c and c++\sdl\explosion generator 2099 99 99 infinity\eg_model\eg_dynamicmodel.cpp
+1427505697 source:d:\martin\programming\c and c++\sdl\explosion generator 2099 99 99 infinity\eg_model\eg_dynamicmodel.cpp
 	"EG_DynamicModel.h"
 
 1427145375 source:d:\martin\programming\c and c++\sdl\explosion generator 2099 99 99 infinity\eg_model\eg_staticmodel.cpp
 
-1427231232 d:\martin\programming\c and c++\sdl\explosion generator 2099 99 99 infinity\eg_model\eg_dynamicmodel.h
+1427505422 d:\martin\programming\c and c++\sdl\explosion generator 2099 99 99 infinity\eg_model\eg_dynamicmodel.h
 	"EG_Model.h"
 	"define.h"
 	<cstdlib>
@@ -37722,4 +37723,20 @@
 	<string>
 	<sstream>
 	<vector>
+
+1427509386 source:d:\martin\programming\c and c++\sdl\explosion generator 2099 99 99 infinity\eg_rendertechnique\eg_rendertechnique_skinning.cpp
+	"EG_RenderTechnique_Skinning.h"
+
+1427507333 d:\martin\programming\c and c++\sdl\explosion generator 2099 99 99 infinity\eg_rendertechnique\eg_rendertechnique_skinning.h
+	"pipeline.h"
+	"define.h"
+	<GL/glew.h>
+	<cstdlib>
+	<iostream>
+	<stdio.h>
+	<string>
+	<sstream>
+	"EG_RenderTechnique.h"
+	"EG_DirectionalLight.h"
+	"EG_PointLight.h"
 

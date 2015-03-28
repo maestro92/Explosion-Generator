@@ -4,7 +4,11 @@
 
 EG_DynamicModel::EG_DynamicModel() : EG_Model(6)
 {
+    m_VAO = 0;
     m_NumBones = 0;
+    m_Scene = NULL;
+    m_TicksPerSecond = 0.0f;
+
 }
 
 
@@ -64,22 +68,24 @@ void EG_DynamicModel::transferDataToBuffer(vector<VertexBoneData>& vec, unsigned
 
 bool EG_DynamicModel::initFromAiScene(const aiScene* s, const string& Filename)
 {
-    m_Entries.resize(s->mNumMeshes);
+    m_Meshes.resize(s->mNumMeshes);
     m_Textures.resize(s->mNumMaterials);
+    m_TicksPerSecond = (float)(s->mAnimations[0]->mTicksPerSecond != 0 ? s->mAnimations[0]->mTicksPerSecond : 25.0f);
+    m_AnimFrameDuration = (float)s->mAnimations[0]->mDuration;
 
     // Count the number of vertices and indices
     unsigned int NumVertices = 0;
     unsigned int NumIndices = 0;
 
-    for (unsigned int i = 0; i < m_Entries.size(); i++)
+    for (unsigned int i = 0; i < m_Meshes.size(); i++)
     {
-        m_Entries[i].MaterialIndex = s->mMeshes[i]->mMaterialIndex;
-        m_Entries[i].NumIndices = s->mMeshes[i]->mNumFaces * 3;
-        m_Entries[i].BaseVertex = NumVertices;
-        m_Entries[i].BaseIndex = NumIndices;
+        m_Meshes[i].MaterialIndex = s->mMeshes[i]->mMaterialIndex;
+        m_Meshes[i].NumIndices = s->mMeshes[i]->mNumFaces * 3;
+        m_Meshes[i].BaseVertex = NumVertices;
+        m_Meshes[i].BaseIndex = NumIndices;
 
         NumVertices += s->mMeshes[i]->mNumVertices;
-        NumIndices += m_Entries[i].NumIndices;
+        NumIndices += m_Meshes[i].NumIndices;
     }
 
     vector<glm::vec3> Positions     = EG_Utility::reserveVector<glm::vec3> (NumVertices);
@@ -91,18 +97,17 @@ bool EG_DynamicModel::initFromAiScene(const aiScene* s, const string& Filename)
     vector<VertexBoneData> Bones    = EG_Utility::reserveVector<VertexBoneData> (NumVertices);
 
 
-    for (unsigned int i=0; i<m_Entries.size(); i++)
+    for (unsigned int i=0; i<m_Meshes.size(); i++)
     {
         const aiMesh* m = s->mMeshes[i];
-//        initMesh(i, m, s);
-//        initMesh(m, s, Positions, Normals, Tangents, Colors, UVs, Indices, Bones);
+        initMesh(i, m, s, Positions, Normals, Tangents, Colors, UVs, Indices, Bones);
     }
-/*
-    if (!initMaterials(s, Filename))
+
+    if (!EG_Model::initMaterials(s, Filename))
     {
         return false;
     }
-*/
+
 
     EG_Model::transferDataToBuffer(Positions, POS_VB, POS_UNI_LOC);
     EG_Model::transferDataToBuffer(Normals, NORMAL_VB, NORMAL_UNI_LOC);
@@ -127,44 +132,9 @@ void EG_DynamicModel::initMesh(unsigned int MeshIndex, const aiMesh* m, const ai
                                   vector<VertexBoneData>& Bones)
 {
     glm::vec3 defaultColor = EG_Model::getMaterialColor(m, s);
-/*
-    // Populate the vertex attribute vectors
-    for (unsigned int i = 0 ; i < m->mNumVertices ; i++)
-    {
-        /// position, normal, tangent, color, uv
-        glm::vec3 pos   = EG_Utility::toGlmVec(m->mVertices[i]);
-        glm::vec3 norm  = EG_Utility::toGlmVec(m->mNormals[i]);
-        glm::vec3 tang  = glm::vec3(1.0, 0.0, 0.0);
-        glm::vec3 color = defaultColor;
-        glm::vec2 uv    = glm::vec2(0.0f, 0.0f);
-
-        if(m->mTangents)
-            tang = EG_Utility::toGlmVec(m->mTangents[i]);
-
-        if(m->mColors[0])
-        {
-            color.x = m->mColors[0][i].r;
-            color.y = m->mColors[0][i].g;
-            color.z = m->mColors[0][i].b;
-        }
-
-        if(m->mTextureCoords[0])
-        {
-            uv.x=m->mTextureCoords[0][i].x;
-            uv.y=m->mTextureCoords[0][i].y;
-        }
-
-        Positions.push_back(pos);
-        Normals.push_back(norm);
-        Tangents.push_back(tang);
-        Colors.push_back(color);
-        UVs.push_back(uv);
-    }
-
-    loadBones(MeshIndex, paiMesmh, Bones);
-
+    EG_Model::initVertexVectors(m, Positions, Normals, Tangents, Colors, UVs, defaultColor);
+    loadBones(MeshIndex, m, Bones);
     EG_Model::initIndexVectors(m, Indices);
-    */
 }
 
 
@@ -174,28 +144,273 @@ void EG_DynamicModel::loadBones(unsigned int MeshIndex, const aiMesh* m, vector<
 {
     for (unsigned int i=0; i<m->mNumBones; i++)
     {
+        /// we first write down the bone's name
+        /// and it's index in the mesh?
         unsigned int BoneIndex = 0;
         string BoneName(m->mBones[i]->mName.data);
 
+        /// we store the bones according to names, so we can use it later when we traverse the tree
+
+
+        /// if it's a new bone
+        /// we push it in m_BoneInfo
         if (m_BoneMapping.find(BoneName) == m_BoneMapping.end())
         {
             BoneIndex = m_NumBones;
             m_NumBones++;
+
             BoneInfo bi;
-            bi.BoneOffset = EG_Utility::toGlmMat(m->mBones[i]->mOffsetMatrix);
+            bi.boneOffset = EG_Utility::toGlmMat(m->mBones[i]->mOffsetMatrix);
             m_BoneInfo.push_back(bi);
         }
         else
             BoneIndex = m_BoneMapping[BoneName];
 
 
+        /// for each bone, we go through the Vertex that it influences
+        /// then
         for(int j=0; j<m->mBones[i]->mNumWeights; j++)
         {
+            aiBone* b = m->mBones[i];
 
+            /// each mesh has vertices
+            /// VertexID is the mesh.index + vertex.index
+            /// for each bone, it influences different Vertex, so it's not in order
+            /// example: Bone1 - v1, v4, v123, v44
+            ///          Bone2 - v1, v4, v233, v43
+            /// for this reason, we had to do it this way, instead of Bones.push_back...
+            unsigned VertexID = m_Meshes[MeshIndex].BaseVertex + b->mWeights[j].mVertexId;
+            float Weight = b->mWeights[j].mWeight;
+            Bones[VertexID].AddBoneData(BoneIndex, Weight);
         }
     }
 
     /// iterating through weights
-
-
 }
+
+
+
+void EG_DynamicModel::boneTransform(float timeInSeconds, vector<glm::mat4>& transforms)
+{
+    glm::mat4 identity = glm::mat4(1.0f);
+    float timeInTicks = timeInSeconds * m_TicksPerSecond;
+    float animationTime = fmod(timeInTicks, m_AnimFrameDuration);
+
+    readNodeHierarchy(animationTime, m_Scene->mRootNode, identity);
+    transforms.resize(m_NumBones);
+
+    for(int i=0; i<m_NumBones; i++)
+        transforms[i] = m_BoneInfo[i].finalTransformation;
+}
+
+
+
+
+
+
+void EG_DynamicModel::readNodeHierarchy(float animationTime, const aiNode* node, const glm::mat4& parentTransform)
+{
+    string nodeName(node->mName.data);
+    const aiAnimation* animation = m_Scene->mAnimations[0];
+
+    glm::mat4 nodeTransformation = EG_Utility::toGlmMat(node->mTransformation);
+
+    const aiNodeAnim* nodeAnim = findNodeAnim(animation, nodeName);
+
+    if(node)
+    {
+        glm::mat4 scalingMat = computeInterpolatedScalingMatrix(animationTime, nodeAnim);
+        glm::mat4 rotationMat = computeInterpolatedRotationMatrix(animationTime, nodeAnim);
+        glm::mat4 translationMat = computeInterpolatedPositionMatrix(animationTime, nodeAnim);
+
+        nodeTransformation = scalingMat * rotationMat * translationMat;
+    }
+
+    glm::mat4 globalTransformation = nodeTransformation * parentTransform;
+
+    if(m_BoneMapping.find(nodeName) != m_BoneMapping.end())
+    {
+        unsigned int boneIndex = m_BoneMapping[nodeName];
+        m_BoneInfo[boneIndex].finalTransformation = m_BoneInfo[boneIndex].boneOffset * globalTransformation * m_GlobalInverseTransform;
+    }
+
+    for (unsigned int i=0; i < node->mNumChildren; i++)
+        readNodeHierarchy(animationTime, node->mChildren[i], globalTransformation);
+}
+
+
+
+glm::mat4 EG_DynamicModel::computeInterpolatedScalingMatrix(float animationTime, const aiNodeAnim* nodeAnim)
+{
+    int nKeys = nodeAnim->mNumScalingKeys;
+    glm::mat4 out;
+    if(nKeys == 1)
+    {
+        glm::vec3 v = EG_Utility::toGlmVec(nodeAnim->mScalingKeys[0].mValue);
+        out = glm::scale(v.x, v.y, v.z);
+        return out;
+    }
+
+    aiVectorKey* keys = nodeAnim->mScalingKeys;
+
+    unsigned int index1 = findScaling(animationTime, nodeAnim);
+    unsigned int index2 = index1 + 1;
+    assert(index2 < nKeys);
+
+    aiVectorKey key1 = keys[index1];
+    aiVectorKey key2 = keys[index2];
+
+    glm::vec3 v = computeInterpolatedVector(animationTime, key2, key1);
+    out = glm::scale(v.x, v.y, v.z);
+    return out;
+}
+
+
+
+glm::mat4 EG_DynamicModel::computeInterpolatedRotationMatrix(float animationTime, const aiNodeAnim* nodeAnim)
+{
+    int nKeys = nodeAnim->mNumRotationKeys;
+    glm::mat4 out;
+    if(nKeys == 1)
+    {
+        aiMatrix3x3 m = nodeAnim->mRotationKeys[0].mValue.GetMatrix();
+        out = EG_Utility::toGlmMat(m);
+        return out;
+    }
+
+    aiQuatKey* rotationKeys = nodeAnim->mRotationKeys;
+
+    unsigned int index1 = findRotation(animationTime, nodeAnim);
+    unsigned int index2 = index1 + 1;
+    assert(index2 < nKeys);
+
+    aiQuatKey key1 = rotationKeys[index1];
+    aiQuatKey key2 = rotationKeys[index2];
+
+    aiQuaternion q = computeInterpolatedQuaternion(animationTime, key2, key1);
+    aiMatrix3x3 m = q.GetMatrix();
+    out = EG_Utility::toGlmMat(m);
+    return out;
+}
+
+
+
+
+glm::mat4 EG_DynamicModel::computeInterpolatedPositionMatrix(float animationTime, const aiNodeAnim* nodeAnim)
+{
+    int nKeys = nodeAnim->mNumPositionKeys;
+    glm::mat4 out;
+    if(nKeys == 1)
+    {
+        glm::vec3 v = EG_Utility::toGlmVec(nodeAnim->mScalingKeys[0].mValue);
+        out = glm::transpose(glm::translate(v.x, v.y, v.z));
+        return out;
+    }
+
+    aiVectorKey* keys = nodeAnim->mScalingKeys;
+
+    unsigned int index1 = findPosition(animationTime, nodeAnim);
+    unsigned int index2 = index1 + 1;
+    assert(index2 < nKeys);
+
+    aiVectorKey key1 = keys[index1];
+    aiVectorKey key2 = keys[index2];
+
+    glm::vec3 v = computeInterpolatedVector(animationTime, key2, key1);
+    out = glm::transpose(glm::translate(v.x, v.y, v.z));
+    return out;
+}
+
+
+
+
+
+unsigned int EG_DynamicModel::findPosition(float animationTime, const aiNodeAnim* nodeAnim)
+{
+    for (unsigned int i = 0 ; i < nodeAnim->mNumPositionKeys - 1 ; i++)
+    {
+        if (animationTime < (float)nodeAnim->mPositionKeys[i + 1].mTime)
+            return i;
+    }
+
+    assert(0);
+    return 0;
+}
+
+
+unsigned int EG_DynamicModel::findRotation(float animationTime, const aiNodeAnim* nodeAnim)
+{
+    assert(nodeAnim->mNumRotationKeys > 0);
+
+    for (unsigned int i = 0 ; i < nodeAnim->mNumRotationKeys - 1 ; i++)
+    {
+        if (animationTime < (float)nodeAnim->mRotationKeys[i + 1].mTime)
+            return i;
+    }
+
+    assert(0);
+    return 0;
+}
+
+unsigned int EG_DynamicModel::findScaling(float animationTime, const aiNodeAnim* nodeAnim)
+{
+    assert(nodeAnim->mNumScalingKeys > 0);
+
+    for (unsigned int i = 0 ; i < nodeAnim->mNumScalingKeys - 1 ; i++)
+    {
+        if (animationTime < (float)nodeAnim->mScalingKeys[i + 1].mTime)
+            return i;
+    }
+
+    assert(0);
+    return 0;
+}
+
+
+float EG_DynamicModel::computeInterpolationTimeFactor(float animationTime, double t2, double t1)
+{
+    float deltaTime = (float)(t2 - t1);
+    float factor = (animationTime - (float)t1) / deltaTime;
+    assert(factor >= 0.0f && 0.0f <= 1.0f);
+    return factor;
+}
+
+
+glm::vec3 EG_DynamicModel::computeInterpolatedVector(float animationTime, aiVectorKey& k2, aiVectorKey& k1)
+{
+    float factor = computeInterpolationTimeFactor(animationTime, k2.mTime, k1.mTime);
+
+    glm::vec3 start = EG_Utility::toGlmVec(k1.mValue);
+    glm::vec3 end = EG_Utility::toGlmVec(k2.mValue);
+    glm::vec3 delta = end - start;
+
+    glm::vec3 out = start + factor * delta;
+    return out;
+}
+
+
+aiQuaternion EG_DynamicModel::computeInterpolatedQuaternion(float animationTime, aiQuatKey& k2, aiQuatKey& k1)
+{
+    float factor = computeInterpolationTimeFactor(animationTime, k2.mTime, k1.mTime);
+    aiQuaternion out;
+
+    const aiQuaternion& quat1 = k1.mValue;
+    const aiQuaternion& quat2 = k2.mValue;
+    aiQuaternion::Interpolate(out, quat1, quat2, factor);
+
+    out = out.Normalize();
+    return out;
+}
+
+
+const aiNodeAnim* EG_DynamicModel::findNodeAnim(const aiAnimation* animation, const string nodeName)
+{
+    for(unsigned int i=0; i< animation->mNumChannels; i++)
+    {
+        const aiNodeAnim* nodeAnim = animation->mChannels[i];
+        if( string(nodeAnim->mNodeName.data) == nodeName )
+            return nodeAnim;
+    }
+    return NULL;
+}
+

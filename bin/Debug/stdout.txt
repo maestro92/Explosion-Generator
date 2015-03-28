@@ -1,147 +1,274 @@
 nice
 vs: quadRender2.vs, fs: quadRender2.fs
+p_str is 
+./shaders/quadRender2.vs
 Shader Compile Status: 
 
+p_str is 
+./shaders/quadRender2.fs
 Shader Compile Status: 
 
 vs: skybox.vs, fs: skybox.frag
+p_str is 
+./shaders/skybox.vs
 Shader Compile Status: 
 
+p_str is 
+./shaders/skybox.frag
 Shader Compile Status: 
 
 Framebuffer is not OK, status=36055
 vs: 3D_Eulerian_Raycast.vs, gs:3D_Eulerian_Raycast.gs, fs: 3D_Eulerian_Raycast.fs
+p_str is 
+./shaders/3D_Eulerian_Raycast.vs
 Shader Compile Status: 
 
+p_str is 
+./shaders/3D_Eulerian_Raycast.gs
 Shader Compile Status: 
 
+p_str is 
+./shaders/3D_Eulerian_Raycast.fs
 Shader Compile Status: 
 
 vs: 3D_Eulerian_Vertex.vs, fs: 3D_Eulerian_Fill.fs
+p_str is 
+./shaders/3D_Eulerian_Vertex.vs
 Shader Compile Status: 
 
+p_str is 
+./shaders/3D_Eulerian_Fill.fs
 Shader Compile Status: 
 
 vs: 3D_Eulerian_Vertex.vs, gs:3D_Eulerian_PickLayer.gs, fs: 3D_Eulerian_Advect.fs
+p_str is 
+./shaders/3D_Eulerian_Vertex.vs
 Shader Compile Status: 
 
+p_str is 
+./shaders/3D_Eulerian_PickLayer.gs
 Shader Compile Status: 
 
+p_str is 
+./shaders/3D_Eulerian_Advect.fs
 Shader Compile Status: 
 
 vs: 3D_Eulerian_Vertex.vs, gs:3D_Eulerian_PickLayer.gs, fs: 3D_Eulerian_Jacobi.fs
+p_str is 
+./shaders/3D_Eulerian_Vertex.vs
 Shader Compile Status: 
 
+p_str is 
+./shaders/3D_Eulerian_PickLayer.gs
 Shader Compile Status: 
 
+p_str is 
+./shaders/3D_Eulerian_Jacobi.fs
 Shader Compile Status: 
 
 vs: 3D_Eulerian_Vertex.vs, gs:3D_Eulerian_PickLayer.gs, fs: 3D_Eulerian_SubtractGradient.fs
+p_str is 
+./shaders/3D_Eulerian_Vertex.vs
 Shader Compile Status: 
 
+p_str is 
+./shaders/3D_Eulerian_PickLayer.gs
 Shader Compile Status: 
 
+p_str is 
+./shaders/3D_Eulerian_SubtractGradient.fs
 Shader Compile Status: 
 
 vs: 3D_Eulerian_Vertex.vs, gs:3D_Eulerian_PickLayer.gs, fs: 3D_Eulerian_ComputeDivergence.fs
+p_str is 
+./shaders/3D_Eulerian_Vertex.vs
 Shader Compile Status: 
 
+p_str is 
+./shaders/3D_Eulerian_PickLayer.gs
 Shader Compile Status: 
 
+p_str is 
+./shaders/3D_Eulerian_ComputeDivergence.fs
 Shader Compile Status: 
 
 vs: 3D_Eulerian_Vertex.vs, gs:3D_Eulerian_PickLayer.gs, fs: 3D_Eulerian_ApplyImpulse.fs
+p_str is 
+./shaders/3D_Eulerian_Vertex.vs
 Shader Compile Status: 
 
+p_str is 
+./shaders/3D_Eulerian_PickLayer.gs
 Shader Compile Status: 
 
+p_str is 
+./shaders/3D_Eulerian_ApplyImpulse.fs
 Shader Compile Status: 
 
 vs: 3D_Eulerian_Vertex.vs, gs:3D_Eulerian_PickLayer.gs, fs: 3D_Eulerian_Buoyancy.fs
+p_str is 
+./shaders/3D_Eulerian_Vertex.vs
 Shader Compile Status: 
 
+p_str is 
+./shaders/3D_Eulerian_PickLayer.gs
 Shader Compile Status: 
 
+p_str is 
+./shaders/3D_Eulerian_Buoyancy.fs
 Shader Compile Status: 
 
 in CreatePointVbo
 vs: EG_RenderDepthToTexture.vs, fs: EG_RenderDepthToTexture.fs
+p_str is 
+./shaders/EG_RenderDepthToTexture.vs
 Shader Compile Status: 
 
+p_str is 
+./shaders/EG_RenderDepthToTexture.fs
 Shader Compile Status: 
 
 Error in Init_Shader
 vs: shadow_FirstRender.vs, fs: shadow_FirstRender.fs
+p_str is 
+./shaders/shadow_FirstRender.vs
 Shader Compile Status: 
 
+p_str is 
+./shaders/shadow_FirstRender.fs
 Shader Compile Status: 
 
-vs: shadow_SecondRender_WithManyLights.vs, fs: shadow_SecondRender_WithManyLights.fs
+vs: shadow_SecondRender_dir_pt_include.vs, fs: shadow_SecondRender_dir_pt_include.fs
+p_str is 
+./shaders/shadow_SecondRender_dir_pt_include.vs
 Shader Compile Status: 
+
+p_str is 
+./shaders/shadow_SecondRender_dir_pt_include.fs
+BaseLight.hs
+p_str is 
+./shaders/BaseLight.hs
+#version 330
+ 
+
+
+struct BaseLight
+{
+    vec3 color;
+    float ambientIntensity;
+    float diffuseIntensity;
+};
+
 
 Shader Compile Status: 
 
 Error in Init_Shader
 Error in Init_Shader
 vs: TwoPass.vs, gs:TwoPass.Cube, fs: TwoPass.Intervals
+p_str is 
+./shaders/TwoPass.vs
 Shader Compile Status: 
 
+p_str is 
+./shaders/TwoPass.Cube
 Shader Compile Status: 
 
+p_str is 
+./shaders/TwoPass.Intervals
 Shader Compile Status: 
 
 vs: TwoPass.vs, gs:TwoPass.Cube, fs: TwoPass.Intervals
+p_str is 
+./shaders/TwoPass.vs
 Shader Compile Status: 
 
+p_str is 
+./shaders/TwoPass.Cube
 Shader Compile Status: 
 
+p_str is 
+./shaders/TwoPass.Intervals
 Shader Compile Status: 
 
 vs: TwoPass.vs, gs:TwoPass.Cube, fs: TwoPass_Depth.fs
+p_str is 
+./shaders/TwoPass.vs
 Shader Compile Status: 
 
+p_str is 
+./shaders/TwoPass.Cube
 Shader Compile Status: 
 
+p_str is 
+./shaders/TwoPass_Depth.fs
 Shader Compile Status: 
 
 vs: TwoPass.vs, gs:TwoPass.Fullscreen, fs: TwoPass.Raycast
+p_str is 
+./shaders/TwoPass.vs
 Shader Compile Status: 
 
+p_str is 
+./shaders/TwoPass.Fullscreen
 Shader Compile Status: 
 
+p_str is 
+./shaders/TwoPass.Raycast
 Shader Compile Status: 
 
 vs: TwoPass.vs, gs:TwoPass.Cube, fs: TwoPass.Intervals
+p_str is 
+./shaders/TwoPass.vs
 Shader Compile Status: 
 
+p_str is 
+./shaders/TwoPass.Cube
 Shader Compile Status: 
 
+p_str is 
+./shaders/TwoPass.Intervals
 Shader Compile Status: 
 
 Error in Init_Shader
 Error in Init_Shader
 Error happened while loading the texture: 1286
 vs: Reflection.vs, fs: Reflection.fs
+p_str is 
+./shaders/Reflection.vs
 Shader Compile Status: 
 
+p_str is 
+./shaders/Reflection.fs
 Shader Compile Status: 
 
 Error in Init_Shader
 vs: EG_RenderTexture.vs, fs: EG_RenderTexture.fs
+p_str is 
+./shaders/EG_RenderTexture.vs
 Shader Compile Status: 
 
+p_str is 
+./shaders/EG_RenderTexture.fs
 Shader Compile Status: 
 
 Error in Init_Shader
 vs: EG_RenderDepthToTexture.vs, fs: EG_RenderDepthToTexture.fs
+p_str is 
+./shaders/EG_RenderDepthToTexture.vs
 Shader Compile Status: 
 
+p_str is 
+./shaders/EG_RenderDepthToTexture.fs
 Shader Compile Status: 
 
 Error in Init_Shader
 vs: skybox.vs, fs: skybox.frag
+p_str is 
+./shaders/skybox.vs
 Shader Compile Status: 
 
+p_str is 
+./shaders/skybox.frag
 Shader Compile Status: 
 
 Error in Init_Shader
@@ -157,7 +284,7 @@ model_path ./models/
 m_str ./models/HugeWall.obj
 Nor oepened1
 Nor oepened1
-Ret is 232
+Ret is 45
 model_path ./models/
 m_str ./models/./Content/quad.obj
 model_path ./models/
@@ -203,7 +330,15 @@ Advect3D Unable to attach color buffer
 0
 Advect3D Unable to attach color buffer
 0
+Advect3D Unable to attach color buffer
+0
+Advect3D Unable to attach color buffer
+0
+Advect3D Unable to attach color buffer
+0
 clicking left
+Advect3D Unable to attach color buffer
+0
 Advect3D Unable to attach color buffer
 0
 Advect3D Unable to attach color buffer
@@ -231,7 +366,22 @@ Advect3D Unable to attach color buffer
 0
 Advect3D Unable to attach color buffer
 0
-wheel down
+Advect3D Unable to attach color buffer
+0
+Advect3D Unable to attach color buffer
+0
+Advect3D Unable to attach color buffer
+0
+Advect3D Unable to attach color buffer
+0
+Advect3D Unable to attach color buffer
+0
+Advect3D Unable to attach color buffer
+0
+Advect3D Unable to attach color buffer
+0
+Advect3D Unable to attach color buffer
+0
 Advect3D Unable to attach color buffer
 0
 wheel down
@@ -241,6 +391,29 @@ wheel down
 Advect3D Unable to attach color buffer
 0
 wheel down
+Advect3D Unable to attach color buffer
+0
+wheel down
+Advect3D Unable to attach color buffer
+0
+Advect3D Unable to attach color buffer
+0
+Advect3D Unable to attach color buffer
+0
+Advect3D Unable to attach color buffer
+0
+Advect3D Unable to attach color buffer
+0
+Advect3D Unable to attach color buffer
+0
+Advect3D Unable to attach color buffer
+0
+Advect3D Unable to attach color buffer
+0
+Advect3D Unable to attach color buffer
+0
+Advect3D Unable to attach color buffer
+0
 Advect3D Unable to attach color buffer
 0
 Advect3D Unable to attach color buffer

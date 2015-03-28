@@ -18,10 +18,10 @@ void EG_RenderTechnique_RenderTexture::init(int Shader_Num)
 {
     m_quad.init();
     allocateMemberVariables(Shader_Num);
-    progShaders[RENDER_PASS1] = new Shader("EG_RenderTexture.vs", "EG_RenderTexture.fs");
+    m_shaders[RENDER_PASS1] = new Shader("EG_RenderTexture.vs", "EG_RenderTexture.fs");
 
-    m_textureUnitUniformLocation    = GetUniformLocation(progShaders[RENDER_PASS1], "gTexture");
-    m_pixelSizeUniformLocation      = GetUniformLocation(progShaders[RENDER_PASS1], "gPixelSize");
+    m_textureUnitUniformLocation    = GetUniformLocation(m_shaders[RENDER_PASS1], "gTexture");
+    m_pixelSizeUniformLocation      = GetUniformLocation(m_shaders[RENDER_PASS1], "gPixelSize");
 
     initMemberVariables();
 }
@@ -49,16 +49,16 @@ void EG_RenderTechnique_RenderTexture::renderFullScreen(unsigned int TextureId, 
 
     glBindFramebuffer(GL_FRAMEBUFFER, FboTarget);
 	glClear(GL_COLOR_BUFFER_BIT);
-	progShaders[RENDER_PASS1]->useShader();
+	m_shaders[RENDER_PASS1]->useShader();
 
         glActiveTexture(GL_TEXTURE0);
         glBindTexture(GL_TEXTURE_2D, TextureId);
         setPixelSize(Width, Height);
         setTextureUnit(0);
         EG_RenderTechnique::loadUniformLocations(m_pipeline, RENDER_PASS1);
-        m_quad.quad->draw(progShaders[RENDER_PASS1]->getProgramId());
+        m_quad.quad->draw(m_shaders[RENDER_PASS1]->getProgramId());
 
-	progShaders[RENDER_PASS1]->delShader();
+	m_shaders[RENDER_PASS1]->delShader();
 
     glEnable(GL_DEPTH_TEST);
 }
@@ -71,16 +71,16 @@ void EG_RenderTechnique_RenderTexture::render(unsigned int TextureId, GLuint Fbo
 
     glBindFramebuffer(GL_FRAMEBUFFER, FboTarget);
 	glClear(GL_COLOR_BUFFER_BIT);
-	progShaders[RENDER_PASS1]->useShader();
+	m_shaders[RENDER_PASS1]->useShader();
 
         glActiveTexture(GL_TEXTURE0);
         glBindTexture(GL_TEXTURE_2D, TextureId);
         setPixelSize(Width, Height);
         setTextureUnit(0);
         EG_RenderTechnique::loadUniformLocations(m_pipeline, RENDER_PASS1);
-        m_quad.quad->draw(progShaders[RENDER_PASS1]->getProgramId());
+        m_quad.quad->draw(m_shaders[RENDER_PASS1]->getProgramId());
 
-	progShaders[RENDER_PASS1]->delShader();
+	m_shaders[RENDER_PASS1]->delShader();
 }
 
 /*

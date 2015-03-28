@@ -19,18 +19,18 @@ void EG_RenderTechnique::init()
 }
 
 
-void EG_RenderTechnique::allocateMemberVariables(int numOfShaders)
+void EG_RenderTechnique::allocateMemberVariables(int nShaders)
 {
-    numOfShaders_ = numOfShaders;
-    Matrices_UniLoc = new Matrices_Location[numOfShaders_];
-    progShaders = new Shader*[numOfShaders_];
+    m_numShaders = nShaders;
+    Matrices_UniLoc = new Matrices_Location[m_numShaders];
+    m_shaders = new Shader*[m_numShaders];
 }
 
 
 void EG_RenderTechnique::initMemberVariables()
 {
-    for(int i=0; i<numOfShaders_; i++)
-        Init_Shader_GL_Location(progShaders[i], Matrices_UniLoc[i]);
+    for(int i=0; i<m_numShaders; i++)
+        Init_Shader_GL_Location(m_shaders[i], Matrices_UniLoc[i]);
 
 }
 
@@ -97,34 +97,16 @@ void EG_RenderTechnique::loadUniformLocations(pipeline& p, int RenderPassID)
 }
 
 
-/*
-void EG_RenderTechnique::Setup_ShadowMatrix_forRender(pipeline& p, int RenderPassID)
-{
-
-}
-
-
-void EG_RenderTechnique::Setup_Special_glUniform(pipeline& p, int RenderPassID)
-{
-
-}
-*/
-/*
-void EG_RenderTechnique::loadSpecialUniformLocation(pipeline& p, int RenderPassID)
-{
-
-}
-*/
 
 void EG_RenderTechnique::enableShader(int RenderPassID)
 {
-    progShaders[RenderPassID]->useShader();
+    m_shaders[RenderPassID]->useShader();
 }
 
 
 void EG_RenderTechnique::disableShader(int RenderPassID)
 {
-    progShaders[RenderPassID]->delShader();
+    m_shaders[RenderPassID]->delShader();
 }
 
 

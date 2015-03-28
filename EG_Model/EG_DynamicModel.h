@@ -14,19 +14,21 @@
 
 struct BoneInfo
 {
-    glm::mat4 BoneOffset;
-    glm::mat4 FinalTransformation;
+    glm::mat4 boneOffset;
+    glm::mat4 finalTransformation;
 
     BoneInfo()
     {
-        BoneOffset = glm::mat4(0.0f);
-        FinalTransformation = glm::mat4(0.0f);
+        boneOffset = glm::mat4(0.0f);
+        finalTransformation = glm::mat4(0.0f);
     }
 };
 
-
+/// The Bone Influence information for each Vertex
 struct VertexBoneData
 {
+    /// number of bones that will influence this Vertex
+    /// Bone IDs are indices into an array of bone transformations
     unsigned int IDs[NUM_BONES_PER_VERTEX];
     float Weights[NUM_BONES_PER_VERTEX];
 
@@ -41,6 +43,15 @@ struct VertexBoneData
         ZERO_MEM(Weights);
     }
 
+
+
+    /// called in initMesh->loadBones
+    /// it finds a free slot in the IDs and Weights and adds the bone in it
+    /// it's initialized to zero, therefore it finds a free slot by
+    /// going through "if(Weights[i] == 0.0)"
+
+    /// BoneID is the index of the bone in m_BoneInfo
+    /// so we can get the transformation information from there
     void AddBoneData(unsigned int BoneID, float Weight)
     {
         for (unsigned int i = 0; i < ARRAY_SIZE_IN_ELEMENTS(IDs); i++)
@@ -68,17 +79,25 @@ class EG_DynamicModel : public EG_Model
 
         void transferDataToBuffer(vector<VertexBoneData>& vec, unsigned int bufferIndex, unsigned int location);
 
-        void BoneTransform(float TimeInSeconds, vector<glm::mat4> Transforms);
+        void boneTransform(float timeInSeconds, vector<glm::mat4>& transforms);
 
     private:
+/*
+        glm::mat4 computeInterpolatedScaling(aiVector3D& Out, float animationTime, const aiNodeAnim* nodeAnim);
+        glm::mat4 computeInterpolatedRotation(aiQuaternion& Out, float animationTime, const aiNodeAnim* nodeAnim);
+        glm::mat4 computeInterpolatedPosition(aiVector3D&, float animationTime, const aiNodeAnim* nodeAnim);
+*/
+        float computeInterpolationTimeFactor(float animationTime, double t2, double t1);
+        glm::vec3 computeInterpolatedVector(float animationTime, aiVectorKey& k2, aiVectorKey& k1);
+        aiQuaternion computeInterpolatedQuaternion(float animationTime, aiQuatKey& k2, aiQuatKey& k1);
 
-        void computeInterpolatedScaling(aiVector3D& Out, float AnimationTime, const aiNodeAnim* pNodeAnim);
-        void computeInterpolatedRotation(aiQuaternion& Out, float AnimationTime, const aiNodeAnim* pNodeAnim);
-        void computeInterpolatedPosition(aiVector3D&, float AnimationTime, const aiNodeAnim* pNodeAnim);
+        glm::mat4 computeInterpolatedScalingMatrix(float animationTime, const aiNodeAnim* nodeAnim);
+        glm::mat4 computeInterpolatedRotationMatrix(float animationTime, const aiNodeAnim* nodeAnim);
+        glm::mat4 computeInterpolatedPositionMatrix(float animationTime, const aiNodeAnim* nodeAnim);
 
-        unsigned int findScaling(float AnimationTime, const aiNodeAnim* pNodeAnim);
-        unsigned int findRotation(float AnimationTime, const aiNodeAnim* pNodeAnim);
-        unsigned int findPosition(float AnimationTime, const aiNodeAnim* pNodeAnim);
+        unsigned int findScaling(float animationTime, const aiNodeAnim* nodeAnim);
+        unsigned int findRotation(float animationTime, const aiNodeAnim* nodeAnim);
+        unsigned int findPosition(float animationTime, const aiNodeAnim* nodeAnim);
 
         const aiNodeAnim* findNodeAnim(const aiAnimation* pAnimation, const string NodeName);
         void readNodeHierarchy(float AnimationTime, const aiNode* pNode, const glm::mat4& ParentTransform);
@@ -99,9 +118,18 @@ class EG_DynamicModel : public EG_Model
 
 
 
-        map<string, unsigned int> m_BoneMapping;
+
+        /// Total Number of bones from all of the meshes
         unsigned int m_NumBones;
+
+        /// this keeps track of whether if we have a new incoming bone or an already existing bone
+        map<string, unsigned int> m_BoneMapping;
+        /// the vector that holds all the each bone's transformation
         vector<BoneInfo> m_BoneInfo;
+
+        float m_TicksPerSecond;
+        float m_TimeInTicks;
+        float m_AnimFrameDuration;
 
         glm::mat4 m_GlobalInverseTransform;
 };

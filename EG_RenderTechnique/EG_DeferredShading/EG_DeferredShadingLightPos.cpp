@@ -14,9 +14,9 @@ EG_DeferredShadingLightPos::~EG_DeferredShadingLightPos()
 void EG_DeferredShadingLightPos::init(int shaderCount)
 {
     allocateMemberVariables(shaderCount);
-    progShaders[RENDER_PASS1] = new Shader("/EG_DeferredShadingShaders/EG_DeferredShadingLightPos.vs",
+    m_shaders[RENDER_PASS1] = new Shader("/EG_DeferredShadingShaders/EG_DeferredShadingLightPos.vs",
                                            "/EG_DeferredShadingShaders/EG_DeferredShadingLightPos.fs");
-    m_lightColor = GetUniformLocation(progShaders[RENDER_PASS1], "gLightColor");
+    m_lightColor = GetUniformLocation(m_shaders[RENDER_PASS1], "gLightColor");
     EG_DeferredShading::initStencilUniformLocation(RENDER_PASS1);
     initMemberVariables();
 }

@@ -72,14 +72,14 @@ void Technique_TwoPass_Raycasting::init(int w, int h, int Shader_Num)
 
     /// Interval
     TwoPassIntervals = new Shader("TwoPass.vs", "TwoPass.Cube", "TwoPass.Intervals");
-    progShaders[RENDER_PASS1] = new Shader("TwoPass.vs", "TwoPass.Cube", "TwoPass.Intervals");
+    m_shaders[RENDER_PASS1] = new Shader("TwoPass.vs", "TwoPass.Cube", "TwoPass.Intervals");
 
     /// Cube depth
     TwoPass_CubeDepth = new Shader("TwoPass.vs", "TwoPass.Cube", "TwoPass_Depth.fs");
 
     /// Raycast
     TwoPassRaycast = new Shader("TwoPass.vs", "TwoPass.Fullscreen", "TwoPass.Raycast");
-    progShaders[RENDER_PASS2] = new Shader("TwoPass.vs", "TwoPass.Cube", "TwoPass.Intervals");
+    m_shaders[RENDER_PASS2] = new Shader("TwoPass.vs", "TwoPass.Cube", "TwoPass.Intervals");
 
 
     initMemberVariables();

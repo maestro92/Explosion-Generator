@@ -17,11 +17,11 @@ void EG_SkyBox::init()
 
 //    SkyboxShader = new shader("skybox.vs", "skybox.frag");
 //    Init_Shader_GL_Location(SkyboxShader, Matrices_UniLoc[RENDER_PASS1]);
-    progShaders[RENDER_PASS1] = new Shader("skybox.vs", "skybox.frag");
+    m_shaders[RENDER_PASS1] = new Shader("skybox.vs", "skybox.frag");
 
 
     initMemberVariables();
-    Cubemap_UniLoc = GetUniformLocation(progShaders[RENDER_PASS1], "cubeMap");
+    Cubemap_UniLoc = GetUniformLocation(m_shaders[RENDER_PASS1], "cubeMap");
 
     /// load the model
 	{

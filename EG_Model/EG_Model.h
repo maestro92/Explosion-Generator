@@ -125,7 +125,7 @@ class EG_Model
         GLuint* m_Buffers;
         int m_VboCount;
 
-        vector<Mesh> m_Entries;
+        vector<Mesh> m_Meshes;
         vector<Texture*>  m_Textures;
 
     protected:

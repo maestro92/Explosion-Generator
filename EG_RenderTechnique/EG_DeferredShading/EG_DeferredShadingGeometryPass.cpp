@@ -14,10 +14,10 @@ void EG_DeferredShadingGeometryPass::init(int shaderCount)
 {
     allocateMemberVariables(shaderCount);
 
-    progShaders[RENDER_PASS1] = new Shader("/EG_DeferredShadingShaders/EG_DeferredShadingGeometryPass.vs",
+    m_shaders[RENDER_PASS1] = new Shader("/EG_DeferredShadingShaders/EG_DeferredShadingGeometryPass.vs",
                                            "/EG_DeferredShadingShaders/EG_DeferredShadingGeometryPass.fs");
 
-    m_stencilFlagUniformLocation = GetUniformLocation( progShaders[RENDER_PASS1], "stencilFlag");
+    m_stencilFlagUniformLocation = GetUniformLocation( m_shaders[RENDER_PASS1], "stencilFlag");
     initMemberVariables();
 }
 

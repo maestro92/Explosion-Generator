@@ -7,6 +7,7 @@
 #include <vector>
 #include <fstream>
 #include <iostream>
+#include <sstream>
 #include <stdio.h>
 
 enum AttributeSlot {
@@ -21,6 +22,7 @@ class Shader{
     unsigned int gs;
     string path;
     void loadFile(const char* fn, string & str);
+    bool loadIncludeFiles(string & str, string newLine);
     unsigned int loadShader(string& source, unsigned int ShaderType);
 
 

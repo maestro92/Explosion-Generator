@@ -29,7 +29,7 @@ void EG_AllLights::init()
 
     directionalLights[0].ambientIntensity = 0.01f;
     directionalLights[0].color = COLOR_WHITE;
-    directionalLights[0].diffuseIntensity = 0.2f;
+    directionalLights[0].diffuseIntensity = 0.5f;
 //    directionalLights[0].direction = glm::vec3(1.0f, -1.0f, 0.0f);
     directionalLights[0].direction = glm::vec3(19.1004, -28.881, -40.5246) * 2.0f;
 

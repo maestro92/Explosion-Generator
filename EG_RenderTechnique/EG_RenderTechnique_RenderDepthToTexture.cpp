@@ -21,7 +21,7 @@ EG_RenderTechnique_RenderDepthToTexture::~EG_RenderTechnique_RenderDepthToTextur
 void EG_RenderTechnique_RenderDepthToTexture::init(int Shader_Num)
 {
     allocateMemberVariables(Shader_Num);
-    progShaders[RENDER_PASS1] = new Shader("EG_RenderDepthToTexture.vs", "EG_RenderDepthToTexture.fs");
+    m_shaders[RENDER_PASS1] = new Shader("EG_RenderDepthToTexture.vs", "EG_RenderDepthToTexture.fs");
     initMemberVariables();
 }
 

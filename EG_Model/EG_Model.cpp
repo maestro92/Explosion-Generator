@@ -110,22 +110,22 @@ void EG_Model::transferDataToBuffer(vector<unsigned int>& vec, unsigned int buff
 
 bool EG_Model::initFromAiScene(const aiScene* s, const string& Filename)
 {
-    m_Entries.resize(s->mNumMeshes);
+    m_Meshes.resize(s->mNumMeshes);
     m_Textures.resize(s->mNumMaterials);
 
     // Count the number of vertices and indices
     unsigned int NumVertices = 0;
     unsigned int NumIndices = 0;
 
-    for (unsigned int i = 0; i < m_Entries.size(); i++)
+    for (unsigned int i = 0; i < m_Meshes.size(); i++)
     {
-        m_Entries[i].MaterialIndex = s->mMeshes[i]->mMaterialIndex;
-        m_Entries[i].NumIndices = s->mMeshes[i]->mNumFaces * 3;
-        m_Entries[i].BaseVertex = NumVertices;
-        m_Entries[i].BaseIndex = NumIndices;
+        m_Meshes[i].MaterialIndex = s->mMeshes[i]->mMaterialIndex;
+        m_Meshes[i].NumIndices = s->mMeshes[i]->mNumFaces * 3;
+        m_Meshes[i].BaseVertex = NumVertices;
+        m_Meshes[i].BaseIndex = NumIndices;
 
         NumVertices += s->mMeshes[i]->mNumVertices;
-        NumIndices += m_Entries[i].NumIndices;
+        NumIndices += m_Meshes[i].NumIndices;
     }
 
     vector<glm::vec3> Positions     = EG_Utility::reserveVector<glm::vec3> (NumVertices);
@@ -136,7 +136,7 @@ bool EG_Model::initFromAiScene(const aiScene* s, const string& Filename)
     vector<unsigned int> Indices    = EG_Utility::reserveVector<unsigned int> (NumIndices);
 
 
-    for (unsigned int i=0; i<m_Entries.size(); i++)
+    for (unsigned int i=0; i<m_Meshes.size(); i++)
     {
         const aiMesh* m = s->mMeshes[i];
 //        initMesh(i, m, s);
@@ -177,92 +177,8 @@ void EG_Model::initMesh(const aiMesh* m, const aiScene* s,
                           vector<unsigned int>& Indices)
 {
     glm::vec3 defaultColor = getMaterialColor(m, s);
-
     initVertexVectors(m, Positions, Normals, Tangents, Colors, UVs, defaultColor);
-
     initIndexVectors(m, Indices);
-#if 0
-    for (unsigned int i = 0 ; i < m->mNumVertices ; i++)
-    {
-        /// position, normal, tangent, color, uv
-        glm::vec3 pos = EG_Utility::toGlmVec(m->mVertices[i]);
-        glm::vec3 norm = EG_Utility::toGlmVec(m->mNormals[i]);
-        glm::vec3 tang = glm::vec3(1.0, 0.0, 0.0);
-        glm::vec3 color = defaultColor;
-        glm::vec2 uv = glm::vec2(0.0f, 0.0f);
-
-        if(m->mTangents)
-            tang = EG_Utility::toGlmVec(m->mTangents[i]);
-
-        /// colors
-        if(m->mColors[0])
-        {
-            color.x = m->mColors[0][i].r;
-            color.y = m->mColors[0][i].g;
-            color.z = m->mColors[0][i].b;
-        }
-
-        /// UV
-        if(m->mTextureCoords[0])
-        {
-            uv.x=m->mTextureCoords[0][i].x;
-            uv.y=m->mTextureCoords[0][i].y;
-        }
-
-        Positions.push_back(pos);
-        Normals.push_back(norm);
-        Tangents.push_back(tang);
-        Colors.push_back(color);
-        UVs.push_back(uv);
-
-
-        /*
-        glm::vec3 tVec3;
-
-        /// Vertices
-   //     copyVec3(tVec3, m->mVertices[i]);
-        tVec3 = EG_Utility::toGlmVec(m->mVertices[i]);
-        Positions.push_back(tVec3);
-
-        /// normal
-   //     copyVec3(tVec3, m->mNormals[i]);
-        tVec3 = EG_Utility::toGlmVec(m->mNormals[i]);
-        Normals.push_back(tVec3);
-
-        /// tangent
-        if(m->mTangents)
-            tVec3 = EG_Utility::toGlmVec(m->mTangents[i]);
-//            copyVec3(tVec3, m->mTangents[i]);
-        else
-            tVec3 = glm::vec3(1.0, 0.0, 0.0);
-        Tangents.push_back(tVec3);
-
-
-        /// colors
-        if(m->mColors[0])
-        {
-            tVec3.x = m->mColors[0][i].r;
-            tVec3.y = m->mColors[0][i].g;
-            tVec3.z = m->mColors[0][i].b;
-        }
-        else
-            tVec3 = defaultColor;
-        Colors.push_back(tVec3);
-
-        /// UV
-        if(m->mTextureCoords[0])
-        {
-            tVec3.x=m->mTextureCoords[0][i].x;
-            tVec3.y=m->mTextureCoords[0][i].y;
-        }
-        else
-            tVec3 = glm::vec3(0.0f, 0.0f, 0.0f);
-
-        UVs.push_back(glm::vec2(tVec3.x, tVec3.y));
-        */
-    }
-#endif
-
 }
 
 
@@ -387,9 +303,9 @@ void EG_Model::render()
 {
     glBindVertexArray(m_VAO);
 
-    for(unsigned int i=0; i < m_Entries.size(); i++)
+    for(unsigned int i=0; i < m_Meshes.size(); i++)
     {
-        const unsigned int MaterialIndex = m_Entries[i].MaterialIndex;
+        const unsigned int MaterialIndex = m_Meshes[i].MaterialIndex;
 
         assert(MaterialIndex < m_Textures.size());
 
@@ -397,10 +313,10 @@ void EG_Model::render()
             m_Textures[MaterialIndex]->Bind(GL_TEXTURE0);
 
         glDrawElementsBaseVertex(GL_TRIANGLES,
-                                 m_Entries[i].NumIndices,
+                                 m_Meshes[i].NumIndices,
                                  GL_UNSIGNED_INT,
-                                 (void*)(sizeof(unsigned int) * m_Entries[i].BaseIndex),
-                                 m_Entries[i].BaseVertex);
+                                 (void*)(sizeof(unsigned int) * m_Meshes[i].BaseIndex),
+                                 m_Meshes[i].BaseVertex);
     }
     glBindVertexArray(0);
 }
