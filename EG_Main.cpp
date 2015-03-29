@@ -1074,6 +1074,7 @@ void ExplosionGenerator::forwardRender()
 
 
 
+
             r_Technique = &r_skinning;
             modelPtr = &mainAvatar;
             m_pipeline.pushMatrix();
