@@ -41,43 +41,19 @@ using namespace std;
 #define BONE_WEIGHT_UNI_LOC 6
 
 
-struct Vertex
-{
-    glm::vec3 m_pos;
-    glm::vec3 m_normal;
-    glm::vec3 m_tangent;
-    glm::vec3 m_color;
-    glm::vec2 m_UV;
-
-    Vertex() {}
-
-    Vertex(const glm::vec3& pos,
-           const glm::vec3& normal,
-           const glm::vec3& tangent,
-           const glm::vec3& color,
-           const glm::vec2& UV)
-    {
-        m_pos       = pos;
-        m_normal    = normal;
-        m_tangent   = tangent;
-        m_color     = color;
-        m_UV       = UV;
-    }
-};
-
 
 class EG_Model
 {
 
 
     public:
-
+/*
         int VERTEX=0;
         int NORMAL=1;
         int TANGENT=2; //2
         int COLOR=3; //3
         int UV=4; //4
-
+*/
 
         EG_Model();
 
@@ -98,6 +74,7 @@ class EG_Model
 
         virtual bool loadModel(string filename);
         void render();
+
 
 
         struct Mesh

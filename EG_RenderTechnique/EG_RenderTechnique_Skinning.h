@@ -13,12 +13,10 @@
 #include <string>
 #include <sstream>
 
-#include "EG_RenderTechnique.h"
-#include "EG_DirectionalLight.h"
-#include "EG_PointLight.h"
 
+#include "EG_Technique_Shadow_Render.h"
 
-class EG_RenderTechnique_Skinning : public EG_RenderTechnique
+class EG_RenderTechnique_Skinning : public Technique_Shadow_Render
 {
     public:
         static const unsigned int MAX_BONES = 100;

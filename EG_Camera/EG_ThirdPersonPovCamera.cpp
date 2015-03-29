@@ -398,7 +398,7 @@ void EG_ThirdPersonPovCamera::render(pipeline &m_pipeline, EG_RenderTechnique* R
         m_pipeline.translate(characterObject.position);
         m_pipeline.LoadMatrix(glm::toMat4(characterObject.rotation));
 
-        m_pipeline.Rotate(180.0f, 0.0f, 1.0f, 0.0f);
+        m_pipeline.rotate(180.0f, 0.0f, 1.0f, 0.0f);
         RenderTechnique->loadUniformLocations(m_pipeline, RenderPassID);
         m_character->draw();
     m_pipeline.popMatrix();

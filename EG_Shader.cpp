@@ -40,7 +40,7 @@ Shader::Shader(const char* vs_source, const char* fs_source)
 Shader::Shader(const char* vs_source, const char* gs_source, const char* fs_source)
 {
     string source;
-    cout << "vs: " << vs_source << ", gs:" << gs_source << ", fs: " << fs_source << endl;
+    cout << "vs: " << vs_source << ", gs:" << gs_source << ", fs: " << fs_source << endl << endl;
     loadFile(vs_source, source);
     // source code and Mode
     vs = loadShader(source, GL_VERTEX_SHADER);
@@ -93,7 +93,7 @@ void Shader::loadFile(const char* fn, string & str)
     p_str = dir_path;
     string mstr(fn);
     p_str = p_str + mstr;
-    cout << "p_str is " << endl << p_str << endl;
+ //   cout << "p_str is " << endl << p_str << endl;
 
 
     ifstream in(p_str);
@@ -186,7 +186,7 @@ bool Shader::loadIncludeFiles(string & str, string newLine)
 
             const char* f = includeFileName.c_str();
             loadFile(f, str);
-            cout << str << endl;
+ //           cout << str << endl;
         }
         i++;
     }
@@ -229,7 +229,10 @@ unsigned int Shader::loadShader(string& source, unsigned int ShaderType)
     char error[1000];
     glGetShaderInfoLog(id, 1000, NULL, error);
 
-    cout << "Shader Compile Status: \n" << error << endl;
+   // if(strlen(error) != 0)
+   // {
+        cout << "Shader Compile Status: \n" << error << endl;
+   // }
 
     return id;
 }

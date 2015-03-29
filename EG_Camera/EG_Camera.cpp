@@ -198,8 +198,8 @@ void EG_Camera::Control(pipeline& m_pipeline)
             m_YawDegrees -= mousevel;
 		}
 
-    m_pipeline.Rotate(-m_PitchDegrees, 1.0f, 0.0f, 0.0f);
-    m_pipeline.Rotate(-m_YawDegrees, 0.0f, 1.0f, 0.0f);
+    m_pipeline.rotate(-m_PitchDegrees, 1.0f, 0.0f, 0.0f);
+    m_pipeline.rotate(-m_YawDegrees, 0.0f, 1.0f, 0.0f);
 
 //        RotateOrbit(m_pipeline);
 //	m_pipeline.rotateX(camPitch);
@@ -237,11 +237,11 @@ void EG_Camera::Control(pipeline& m_pipeline, int mid_x, int mid_y)
 		SDL_WarpMouse(MidX,MidY);
  //       RotateOrbit(m_pipeline);
 
-        m_pipeline.Rotate(-m_PitchDegrees, 1.0f, 0.0f, 0.0f);
-        m_pipeline.Rotate(-m_YawDegrees, 0.0f, 1.0f, 0.0f);
+        m_pipeline.rotate(-m_PitchDegrees, 1.0f, 0.0f, 0.0f);
+        m_pipeline.rotate(-m_YawDegrees, 0.0f, 1.0f, 0.0f);
 
-        m_skyboxRotate.Rotate(-m_PitchDegrees, 1.0f, 0.0f, 0.0f);
-        m_skyboxRotate.Rotate(-m_YawDegrees, 0.0f, 1.0f, 0.0f);
+        m_skyboxRotate.rotate(-m_PitchDegrees, 1.0f, 0.0f, 0.0f);
+        m_skyboxRotate.rotate(-m_YawDegrees, 0.0f, 1.0f, 0.0f);
     //
    //     m_skyboxRotate = m_pipeline;
    //     m_skyboxRotate.translate(-m_eye.x, -m_eye.y, -m_eye.z);

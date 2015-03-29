@@ -112,7 +112,7 @@ void pipeline::rotateZ(float angle)
 }
 
 
-void pipeline::Rotate(float angle, float x, float y, float z)
+void pipeline::rotate(float angle, float x, float y, float z)
 {
 	if(currentMatrix==MODEL_MATRIX)
 		modelMatrix[modelMatrix.size()-1]*=glm::rotate(angle,x,y,z);
@@ -122,7 +122,7 @@ void pipeline::Rotate(float angle, float x, float y, float z)
 }
 
 
-void pipeline::Rotate(glm::quat q_rotation)
+void pipeline::rotate(glm::quat q_rotation)
 {
     glm::mat4 RotationMatrix = glm::toMat4(q_rotation);
 

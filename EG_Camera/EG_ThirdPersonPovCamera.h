@@ -7,6 +7,7 @@
 #include "EG_Camera.h"
 #include "EG_Skybox.h"
 #include "sceneLoader.h"
+
 #include <cmath>
 #include <iostream>
 #include <SDL/SDL.h>

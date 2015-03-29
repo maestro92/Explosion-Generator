@@ -118,6 +118,8 @@ ExplosionGenerator::ExplosionGenerator()
     r_renderTexture.init(1);
     r_renderToDepthTexture.init(1);
 
+    r_skinning.init(1);
+
 #if DEFERRED_SHADING
     r_deferredShadingGeometryPass.init(1);
     r_deferredShadingSkybox.init(1);
@@ -295,6 +297,14 @@ void ExplosionGenerator::initLights()
         }
   */
     r_Shadow_Render.disableShader(RENDER_PASS2);
+
+
+
+    r_skinning.enableShader(RENDER_PASS1);
+        r_skinning.setMatSpecularIntensity(1.0f);
+        r_skinning.setMatSpecularPower(32.0f);
+        r_skinning.setDirectionalLight(allLights.getDirectionalLight(0));
+    r_skinning.disableShader(RENDER_PASS1);
 #endif
 
 
@@ -333,6 +343,12 @@ void ExplosionGenerator::initModels()
     o_hugeWall        = new meshLoader("HugeWall.obj");
 
     testSphere.loadModel("./models/Sphere/sphere10_grey_flat.obj");
+    mainAvatar.loadModel("./models/Characters/boblampclean.md5mesh");
+
+//    mainAvatar.loadModel("./models/Characters/miracle3.md5mesh");
+
+ //   mainAvatar = new EG_DynamicModel();
+ //   mainAvatar->loadModel("./models/Content/boblampclean.md5mesh");
 
 //    wall_positive_z = new meshLoader("Wall_PZ.obj");
 //    wall_negative_x = new meshLoader("Wall_NX.obj");
@@ -361,6 +377,8 @@ void ExplosionGenerator::initModels()
     cube = new meshLoader("cube.obj");
     monkey = new meshLoader("monkey.obj");
     mainCharacter = new meshLoader("./Characters/LEGO_Man.obj");
+
+
 //    cube = new meshLoader("./Sphere/sphere10_grey_flat.obj");
 //    meshLoader("./Content/phoenix_ugv.md2");
 }
@@ -372,6 +390,9 @@ void ExplosionGenerator::start()
     Uint32 startTime = SDL_GetTicks();
     Uint32 next_game_tick = 0;
     Uint32 delay_time = 0;
+
+    m_startTime = SDL_GetTicks();
+
     while(isRunning)
     {
         startTime = SDL_GetTicks();
@@ -627,8 +648,7 @@ void ExplosionGenerator::renderShadowMap()
 
 void ExplosionGenerator::update()
 {
-    static ElapsedTime elapsedTime;
-    float fDeltaTime = elapsedTime.GetElapsedTime();
+    float fDeltaTime = m_elapsedTime.GetElapsedTime();
     angle+=0.05f;
 
 
@@ -1023,7 +1043,27 @@ void ExplosionGenerator::forwardRender()
 
     RenderScene();
 
+    float runningTime = (float)((double)SDL_GetTicks() - (double)m_startTime) / 1000.0f;
+    r_skinning.enableShader(RENDER_PASS1);
+        vector<glm::mat4> transforms;
+        r_Technique = &r_skinning;
 
+        mainAvatar.boneTransform(runningTime, transforms);
+
+
+        for(unsigned int i = 0; i < transforms.size(); i++)
+        {
+            EG_Utility::printGlmMat(transforms[i]);
+            r_skinning.setBoneTransform(i, transforms[i]);
+        }
+        m_pipeline.pushMatrix();
+            m_pipeline.rotateX(270);
+            m_pipeline.scale(0.1);
+
+            r_skinning.loadUniformLocations(m_pipeline, RENDER_PASS1);
+            mainAvatar.render();
+        m_pipeline.popMatrix();
+    r_skinning.disableShader(RENDER_PASS1);
 
 
 #if REFLECTION_EFFECT

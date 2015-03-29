@@ -10,7 +10,7 @@ struct BaseLight
     float ambientIntensity;
     float diffuseIntensity;
 };
-*/
+
 struct Attenuation
 {
     float constant;
@@ -31,7 +31,7 @@ struct PointLight
     Attenuation atten;
     float scale;
 };
-
+*/
 
 const int MAX_POINT_LIGHTS = 103;  
 
@@ -154,10 +154,7 @@ void main()
 
     vec3 normal = normalize(outNormal);
  
-
     float shadowValue = 0.0;
-  //  vec4 vertexPosition_LightEyeSpace = l_modelViewProjectionMatrix * vec4(outVertex1,1.0);
- //   shadowValue = shadow2DProj(gShadowMap, lightVertexPosition).r;
 
 
     vec4 lightVertexPosition2 = lightVertexPosition;
@@ -167,14 +164,7 @@ void main()
         shadowValue = 1.0;
 
 
-
-/*
-    vec4 TotalLight = CalcDirectionalLight(outVertex, normal);                           
-    for (int i = 0 ; i < gNumPointLights ; i++) 
-        TotalLight += CalcPointLight(i, normal);                                                                                              
-    FragColor = (shadowValue == 0.0) ? vec4(0.1,0.1,0.1,1.0) * TotalLight : vec4(outColor, 1.0) * TotalLight;                                                                                   
-  */                                                  
-                         
+               
                                                      
     vec4 DirColor = vec4(outColor, 1.0) * CalcDirectionalLight(outVertex, normal); 
    
@@ -188,40 +178,7 @@ void main()
     PtColor = vec4(outColor,1.0) * PtColor;
     
       
-  
-  /*    
-    if(shadowValue == 0.0)
-    {
-        FragColor = vec4(0.0,0.0,0.0,1.0) * (DirColor + PtColor);
-        
-    }
-
-
-    else
-    {
-     
-       if (flag == true)
-        FragColor = vec4(0.0,0.0,0.0,1.0) * (DirColor + PtColor);
-       else
-        FragColor = vec4(outColor, 1.0) * (DirColor + PtColor);
-    }
-*/
-
- //   FragColor = DirColor;                                                                                                      
- //   FragColor = PtColor;
     FragColor = (shadowValue == 0.0) ? vec4(0.1,0.1,0.1,1.0) * TotalLight : vec4(outColor, 1.0) * TotalLight;
-
-  //  FragColor = vec4(1.0,0,0,0,0,0,0);
-
-
-//    FragColor = (shadowValue == 0.0) ? vec4(0.0,0.0,0.0,1.0) : vec4(1.0,0.0,0.0,1.0);// vec4(outColor, 1.0);
-
-
-// 
- 
-//    FragColor = (shadowValue == 0.0) ? vec4(0.0,0.0,0.0,1.0) * 0.5 + PtColor * 0.5  : vec4(outColor,0.0)* TotalLight;
-//    FragColor = (shadowValue == 0.0) ? vec4(0.0,0.0,0.0,1.0) : vec4(outColor,1.0) * DirColor;
-
 }
 
 

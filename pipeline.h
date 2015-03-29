@@ -94,8 +94,8 @@ class pipeline
 		void rotateX(float angle);
 		void rotateY(float angle);
 		void rotateZ(float angle);
-        void Rotate(float angle, float x, float y, float z);
-        void Rotate(glm::quat q_rotation);
+        void rotate(float angle, float x, float y, float z);
+        void rotate(glm::quat q_rotation);
 
         void LoadMatrix(glm::mat4 m_Matrix);
    //     void Rotate1(float angle, float x, float y, float z);

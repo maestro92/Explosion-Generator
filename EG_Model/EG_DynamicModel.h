@@ -10,8 +10,8 @@
 #include <sstream>
 #include <vector>
 
-#define NUM_BONES_PER_VERTEX 4
 
+#define NUM_BONES_PER_VERTEX 4
 struct BoneInfo
 {
     glm::mat4 boneOffset;
@@ -54,18 +54,33 @@ struct VertexBoneData
     /// so we can get the transformation information from there
     void AddBoneData(unsigned int BoneID, float Weight)
     {
+/*
+        cout << "BoneID" << BoneID << endl;
+
         for (unsigned int i = 0; i < ARRAY_SIZE_IN_ELEMENTS(IDs); i++)
         {
-            if (Weights[i] == 0.0)
+            cout << Weights[i] << " ";
+        }
+        cout << endl;
+*/
+
+        for (unsigned int i = 0; i < ARRAY_SIZE_IN_ELEMENTS(IDs); i++)
+        {
+            if (Weights[i] < 0.00001)
             {
                 IDs[i]      = BoneID;
                 Weights[i]  = Weight;
                 return;
             }
         }
+    //    cout << "here" << endl;
+
         assert(0);
     }
 };
+
+
+
 
 
 class EG_DynamicModel : public EG_Model
@@ -75,7 +90,7 @@ class EG_DynamicModel : public EG_Model
         ~EG_DynamicModel();
 
         bool loadModel(string filename);
-        void render();
+//        void render();
 
         void transferDataToBuffer(vector<VertexBoneData>& vec, unsigned int bufferIndex, unsigned int location);
 
@@ -87,9 +102,24 @@ class EG_DynamicModel : public EG_Model
         glm::mat4 computeInterpolatedRotation(aiQuaternion& Out, float animationTime, const aiNodeAnim* nodeAnim);
         glm::mat4 computeInterpolatedPosition(aiVector3D&, float animationTime, const aiNodeAnim* nodeAnim);
 */
+
+
+
+        void CalcInterpolatedScaling(aiVector3D& Out, float AnimationTime, const aiNodeAnim* pNodeAnim);
+        void CalcInterpolatedRotation(aiQuaternion& Out, float AnimationTime, const aiNodeAnim* pNodeAnim);
+        void CalcInterpolatedPosition(aiVector3D& Out, float AnimationTime, const aiNodeAnim* pNodeAnim);
+        unsigned int FindScaling(float AnimationTime, const aiNodeAnim* pNodeAnim);
+        unsigned int FindRotation(float AnimationTime, const aiNodeAnim* pNodeAnim);
+        unsigned int FindPosition(float AnimationTime, const aiNodeAnim* pNodeAnim);
+
+
+
+
         float computeInterpolationTimeFactor(float animationTime, double t2, double t1);
         glm::vec3 computeInterpolatedVector(float animationTime, aiVectorKey& k2, aiVectorKey& k1);
         aiQuaternion computeInterpolatedQuaternion(float animationTime, aiQuatKey& k2, aiQuatKey& k1);
+
+
 
         glm::mat4 computeInterpolatedScalingMatrix(float animationTime, const aiNodeAnim* nodeAnim);
         glm::mat4 computeInterpolatedRotationMatrix(float animationTime, const aiNodeAnim* nodeAnim);
@@ -113,7 +143,9 @@ class EG_DynamicModel : public EG_Model
                       vector<VertexBoneData>& Bones);
 
 
-        void loadBones(unsigned int MeshIndex, const aiMesh* paiMesh, vector<VertexBoneData>& Bones);
+   //     void loadBones(unsigned int MeshIndex, const aiMesh* paiMesh, vector<VertexBoneData>& Bones);
+        void loadBones(unsigned int MeshIndex, const aiMesh* pMesh, vector<VertexBoneData>& Bones);
+
         bool initMaterials(const aiScene* pScene, const std::string& Filename);
 
 
@@ -128,7 +160,6 @@ class EG_DynamicModel : public EG_Model
         vector<BoneInfo> m_BoneInfo;
 
         float m_TicksPerSecond;
-        float m_TimeInTicks;
         float m_AnimFrameDuration;
 
         glm::mat4 m_GlobalInverseTransform;

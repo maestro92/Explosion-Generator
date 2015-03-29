@@ -12,7 +12,7 @@
 #include "EG_SpotLight.h"
 #include "EG_DirectionalLight.h"
 #include "EG_AllLights.h"
-
+#include "EG_DynamicModel.h"
 
 #include "EG_DeferredShadingGeometryPass.h"
 #include "EG_DeferredShadingSkybox.h"
@@ -43,6 +43,8 @@
 #include "EG_Technique_Reflection.h"
 #include "EG_RenderTechnique_RenderTexture.h"
 #include "EG_RenderTechnique_RenderDepthToTexture.h"
+#include "EG_RenderTechnique_Skinning.h"
+
 
 #include "EG_WorldAxis.h"
 #include "EG_WorldBox.h"
@@ -111,6 +113,8 @@ class ExplosionGenerator
     //    EG_DeferredShading r_deferredShadingRenderTechnique;
     //    EG_DeferredShading2 r_deferredShadingRenderTechnique;
 
+        EG_RenderTechnique_Skinning             r_skinning;
+
         EG_DeferredShadingGeometryPass          r_deferredShadingGeometryPass;
         EG_DeferredShadingSkybox                r_deferredShadingSkybox;
         EG_DeferredShadingReflection            r_deferredShadingReflection;
@@ -124,6 +128,8 @@ class ExplosionGenerator
         EG_DeferredShadingDirectionalLightPass  r_deferredShadingDirectionalLightPass_Skybox;
         EG_RenderTechnique_RenderTexture        r_renderTexture;
 
+        ElapsedTime m_elapsedTime;
+        long long m_startTime;
 
         EG_GBuffer gbuffer;
         EG_GBuffer skyboxGBuffer;
@@ -175,6 +181,10 @@ class ExplosionGenerator
 //        mesh* quad;
 
         EG_Model    testSphere;
+        EG_DynamicModel mainAvatar;
+
+//        EG_DynamicModel* mainAvatar;
+
 
 
         EG_WorldAxis    o_worldAxis;
