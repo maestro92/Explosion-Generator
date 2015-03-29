@@ -61,7 +61,9 @@ class Technique_Shadow_Render : public EG_RenderTechnique
         void setMatSpecularPower(float Power);
 
 
-
+        void initDirLightUniformLocations(int pass);
+        void initPointLightUniformLocations(int pass);
+        void initSpotLightUniformLocations(int pass);
 
 
         GLuint ShadowMap;

@@ -135,6 +135,11 @@ void EG_RenderTechnique::setUniformLocation(GLuint location, glm::mat4 value)
     glUniformMatrix4fv(location, 1, GL_FALSE, &value[0][0]);
 }
 
+void EG_RenderTechnique::setUniformLocationTranspose(GLuint location, glm::mat4 value)
+{
+    glUniformMatrix4fv(location, 1, GL_TRUE, &value[0][0]);
+}
+
 void EG_RenderTechnique::render()
 {
 

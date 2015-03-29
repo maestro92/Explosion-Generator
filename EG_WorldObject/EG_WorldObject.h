@@ -11,6 +11,7 @@
 #include <vector>
 #include "Particle.h"
 
+#include "EG_Model.h"
 #include "EG_DeferredShading.h"
 #include "sceneLoader.h"
 
@@ -75,7 +76,7 @@ class WorldObject
         glm::quat rotation;
         vec3    angularVelocity;
 
-
+        vec3    m_scale;
 
         glm::vec3 getPosition();
         glm::quat getRotation();
@@ -125,6 +126,11 @@ class WorldObject
                                     EG_RenderTechnique* RenderTechnique,
                                     int RenderPassID,
                                     meshLoader* model);
+
+        virtual void renderSingle(  pipeline& m_pipeline,
+                                    EG_RenderTechnique* RenderTechnique,
+                                    int RenderPassID,
+                                    EG_Model* model);
 
         // destructor
         /*

@@ -61,13 +61,10 @@ class EG_Utility
         static glm::mat4 toGlmMat(aiMatrix3x3 m2);
         static glm::mat4 toGlmMat(aiMatrix4x4& m2);
         static glm::mat4 toGlmMat(const aiMatrix4x4& m2);
+
+        static void printGlmVec3(glm::vec3 v);
         static void printGlmMat(glm::mat4 m);
     //    static GLuint GetUniformLocation(shader* s, const char* UniformName);
-
-
-        static void copyAiMatToGlmMat(glm::mat4& m1, aiMatrix3x3 m2);
-        static void copyAiMatToGlmMat(glm::mat4& m1, aiMatrix4x4 m2);
-
 
 };
 

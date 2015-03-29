@@ -61,7 +61,7 @@
 
 #include "SDL/SDL.h"
 #include "SDL/SDL_image.h"
-#include "ElapsedTime.h"
+#include "EG_TimeManager.h"
 
 #include "L_ParticleEffect_Interface.h"
 
@@ -128,8 +128,8 @@ class ExplosionGenerator
         EG_DeferredShadingDirectionalLightPass  r_deferredShadingDirectionalLightPass_Skybox;
         EG_RenderTechnique_RenderTexture        r_renderTexture;
 
-        ElapsedTime m_elapsedTime;
-        long long m_startTime;
+        EG_TimeManager m_timeManager;
+        long long m_runningTime;
 
         EG_GBuffer gbuffer;
         EG_GBuffer skyboxGBuffer;
@@ -182,11 +182,13 @@ class ExplosionGenerator
 
         EG_Model    testSphere;
         EG_DynamicModel mainAvatar;
+        EG_Model*   modelPtr;
+
 
 //        EG_DynamicModel* mainAvatar;
 
 
-
+        WorldObject     o_animationObject;
         EG_WorldAxis    o_worldAxis;
         WorldSphere     o_reflectionSphere;
         WorldBox        o_wall;

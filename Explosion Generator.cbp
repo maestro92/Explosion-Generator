@@ -114,6 +114,8 @@
 		<Unit filename="EG_RenderTechnique/EG_Technique_TwoPass_RayCasting.h" />
 		<Unit filename="EG_Shader.cpp" />
 		<Unit filename="EG_Shader.h" />
+		<Unit filename="EG_TimeManager.cpp" />
+		<Unit filename="EG_TimeManager.h" />
 		<Unit filename="EG_Utility.cpp" />
 		<Unit filename="EG_Utility.h" />
 		<Unit filename="EG_WorldObject/EG_Quad.cpp" />
@@ -130,8 +132,6 @@
 		<Unit filename="EG_WorldObject/EG_WorldObject.h" />
 		<Unit filename="EG_WorldObject/EG_WorldSphere.cpp" />
 		<Unit filename="EG_WorldObject/EG_WorldSphere.h" />
-		<Unit filename="ElapsedTime.cpp" />
-		<Unit filename="ElapsedTime.h" />
 		<Unit filename="L_Cube_Sphere_ParticleEffect.cpp" />
 		<Unit filename="L_Cube_Sphere_ParticleEffect.h" />
 		<Unit filename="L_ParticleEffect_Interface.h" />

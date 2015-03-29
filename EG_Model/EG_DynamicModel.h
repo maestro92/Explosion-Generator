@@ -161,6 +161,8 @@ class EG_DynamicModel : public EG_Model
 
         float m_TicksPerSecond;
         float m_AnimFrameDuration;
+//        float m_transforms;
+
 
         glm::mat4 m_GlobalInverseTransform;
 };

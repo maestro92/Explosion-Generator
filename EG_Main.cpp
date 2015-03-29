@@ -118,7 +118,7 @@ ExplosionGenerator::ExplosionGenerator()
     r_renderTexture.init(1);
     r_renderToDepthTexture.init(1);
 
-    r_skinning.init(1);
+    r_skinning.init(2);
 
 #if DEFERRED_SHADING
     r_deferredShadingGeometryPass.init(1);
@@ -300,11 +300,11 @@ void ExplosionGenerator::initLights()
 
 
 
-    r_skinning.enableShader(RENDER_PASS1);
+    r_skinning.enableShader(RENDER_PASS2);
         r_skinning.setMatSpecularIntensity(1.0f);
         r_skinning.setMatSpecularPower(32.0f);
         r_skinning.setDirectionalLight(allLights.getDirectionalLight(0));
-    r_skinning.disableShader(RENDER_PASS1);
+    r_skinning.disableShader(RENDER_PASS2);
 #endif
 
 
@@ -391,7 +391,9 @@ void ExplosionGenerator::start()
     Uint32 next_game_tick = 0;
     Uint32 delay_time = 0;
 
-    m_startTime = SDL_GetTicks();
+ //   m_timeManager.m_startTime = SDL_GetTicks();
+    m_timeManager.setStartTime(SDL_GetTicks());
+//    m_startTime = SDL_GetTicks();
 
     while(isRunning)
     {
@@ -639,6 +641,27 @@ void ExplosionGenerator::renderShadowMap()
 
     r_Technique->disableShader(RENDER_PASS1);
 
+
+    r_Technique = &r_skinning;
+    modelPtr = &mainAvatar;
+
+        temp_pipeline.pushMatrix();
+
+            temp_pipeline.translate(0,0,5);
+            temp_pipeline.rotateX(270);
+            temp_pipeline.scale(0.1);
+            o_animationObject.renderSingle(temp_pipeline, r_Technique, RENDER_PASS1, modelPtr);
+/*
+            m_pipeline.translate(0,0,5);
+            m_pipeline.rotateX(270);
+            m_pipeline.scale(0.1);
+            o_animationObject.renderSingle(m_pipeline, r_Technique, RENDER_PASS1, modelPtr);
+*/
+        temp_pipeline.popMatrix();
+ //   r_skinning.renewVector();
+
+
+
     glBindFramebuffer(GL_FRAMEBUFFER, 0);
     glDisable(GL_CULL_FACE);
     glViewport(0,0,SCREEN_WIDTH, SCREEN_HEIGHT);
@@ -648,7 +671,7 @@ void ExplosionGenerator::renderShadowMap()
 
 void ExplosionGenerator::update()
 {
-    float fDeltaTime = m_elapsedTime.GetElapsedTime();
+    float fDeltaTime = m_timeManager.GetElapsedTime();
     angle+=0.05f;
 
 
@@ -682,6 +705,37 @@ void ExplosionGenerator::update()
         l_Cube_SphereEffect.update();
 #endif
     }
+
+
+
+
+
+    float runningTime = (float)((double)SDL_GetTicks() - (double)m_timeManager.getStartTime()) / 1000.0f;
+    mainAvatar.boneTransform(runningTime, r_skinning.m_boneTransforms);
+
+/*
+    float runningTime = (float)((double)SDL_GetTicks() - (double)m_timeManager.getStartTime()) / 1000.0f;
+
+    r_skinning.enableShader(RENDER_PASS1);
+        vector<glm::mat4> transforms;
+        r_Technique = &r_skinning;
+
+    //    mainAvatar.boneTransform(runningTime, transforms);
+        mainAvatar.boneTransform(runningTime, transforms);
+
+        for(unsigned int i = 0; i < transforms.size(); i++)
+            r_skinning.setBoneTransform(i, transforms[i]);
+
+        m_pipeline.pushMatrix();
+            m_pipeline.translate(0,0,5);
+            m_pipeline.rotateX(270);
+            m_pipeline.scale(0.1);
+
+            r_skinning.loadUniformLocations(m_pipeline, RENDER_PASS1);
+            mainAvatar.render();
+        m_pipeline.popMatrix();
+    r_skinning.disableShader(RENDER_PASS1);
+    */
 }
 
 
@@ -1017,6 +1071,18 @@ void ExplosionGenerator::forwardRender()
             thirdPersonPovCamera.render(m_pipeline, r_Technique, RENDER_PASS1);
 
         r_Technique->disableShader(RENDER_PASS1);
+
+
+
+            r_Technique = &r_skinning;
+            modelPtr = &mainAvatar;
+            m_pipeline.pushMatrix();
+                m_pipeline.translate(0,0,5);
+                m_pipeline.rotateX(270);
+                m_pipeline.scale(0.1);
+                o_animationObject.renderSingle(m_pipeline, r_Technique, RENDER_PASS1, modelPtr);
+            m_pipeline.popMatrix();
+
         m_pipeline.popMatrix();
     glBindFramebuffer(GL_FRAMEBUFFER, 0);
 #endif
@@ -1043,27 +1109,35 @@ void ExplosionGenerator::forwardRender()
 
     RenderScene();
 
-    float runningTime = (float)((double)SDL_GetTicks() - (double)m_startTime) / 1000.0f;
-    r_skinning.enableShader(RENDER_PASS1);
-        vector<glm::mat4> transforms;
-        r_Technique = &r_skinning;
 
-        mainAvatar.boneTransform(runningTime, transforms);
-
-
-        for(unsigned int i = 0; i < transforms.size(); i++)
-        {
-            EG_Utility::printGlmMat(transforms[i]);
-            r_skinning.setBoneTransform(i, transforms[i]);
-        }
+    r_Technique = &r_skinning;
+    modelPtr = &mainAvatar;
         m_pipeline.pushMatrix();
+            m_pipeline.translate(0,0,5);
+            m_pipeline.rotateX(270);
+            m_pipeline.scale(0.1);
+            o_animationObject.renderSingle(m_pipeline, r_Technique, RENDER_PASS2, modelPtr);
+        m_pipeline.popMatrix();
+    r_skinning.renewVector();
+
+/*
+    r_skinning.enableShader(RENDER_PASS2);
+        for(unsigned int i = 0; i < r_skinning.m_boneTransforms.size(); i++)
+            r_skinning.setBoneTransform(RENDER_PASS2, i, r_skinning.m_boneTransforms[i]);
+
+        m_pipeline.pushMatrix();
+            m_pipeline.translate(0,0,5);
             m_pipeline.rotateX(270);
             m_pipeline.scale(0.1);
 
-            r_skinning.loadUniformLocations(m_pipeline, RENDER_PASS1);
+            r_skinning.loadUniformLocations(m_pipeline, RENDER_PASS2);
             mainAvatar.render();
         m_pipeline.popMatrix();
-    r_skinning.disableShader(RENDER_PASS1);
+    r_skinning.disableShader(RENDER_PASS2);
+    r_skinning.renewVector();
+*/
+
+
 
 
 #if REFLECTION_EFFECT
@@ -1097,6 +1171,34 @@ void ExplosionGenerator::forwardRender()
 
 
 
+/*
+    float runningTime = (float)((double)SDL_GetTicks() - (double)m_timeManager.getStartTime()) / 1000.0f;
+
+ //   m_timeManager.setRunningTime((float)((double)SDL_GetTicks() - (double)m_timeManager.getStartTime()) / 1000.0f);
+//    float runningTime = m_timeManager.getRunningTime();
+
+    r_skinning.enableShader(RENDER_PASS1);
+   //     vector<glm::mat4> transforms;
+
+        r_Technique = &r_skinning;
+
+//        mainAvatar.boneTransform(runningTime, transforms);
+//        mainAvatar.boneTransform(runningTime, r_skinning.m_boneTransforms);
+
+        for(unsigned int i = 0; i < r_skinning.m_boneTransforms.size(); i++)
+            r_skinning.setBoneTransform(i, r_skinning.m_boneTransforms[i]);
+
+        m_pipeline.pushMatrix();
+            m_pipeline.translate(0,0,5);
+            m_pipeline.rotateX(270);
+            m_pipeline.scale(0.1);
+
+            r_skinning.loadUniformLocations(m_pipeline, RENDER_PASS1);
+            mainAvatar.render();
+        m_pipeline.popMatrix();
+    r_skinning.disableShader(RENDER_PASS1);
+    r_skinning.renewVector();
+*/
 
 
 

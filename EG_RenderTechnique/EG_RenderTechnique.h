@@ -75,7 +75,7 @@ class EG_RenderTechnique
         void setUniformLocation(GLuint location, float x, float y);
         void setUniformLocation(GLuint location, glm::vec3 value);
         void setUniformLocation(GLuint location, glm::mat4 value);
-
+        void setUniformLocationTranspose(GLuint location, glm::mat4 value);
     public:
         Matrices_Location* Matrices_UniLoc;
         Shader** m_shaders;

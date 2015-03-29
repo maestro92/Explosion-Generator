@@ -18,6 +18,7 @@
 
 class EG_RenderTechnique_Skinning : public Technique_Shadow_Render
 {
+
     public:
         static const unsigned int MAX_BONES = 100;
 
@@ -25,11 +26,16 @@ class EG_RenderTechnique_Skinning : public Technique_Shadow_Render
     ~EG_RenderTechnique_Skinning();
 
     void init(int nShaders);
-    void setBoneTransform(unsigned int index, const glm::mat4& transform);
+    void setBoneTransform(unsigned int pass, unsigned int index, const glm::mat4& transform);
 
-    GLuint m_boneLocation[MAX_BONES];
+    void loadUniformLocations(pipeline& p, int RenderPassID);
 
+  //  GLuint m_boneLocation[MAX_BONES];
 
+    vector< vector<GLuint> > m_boneUniformLocations;
+
+    void renewVector();
+    vector<glm::mat4> m_boneTransforms;
 
 };
 #endif

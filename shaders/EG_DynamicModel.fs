@@ -48,7 +48,6 @@ float Cutoff = 0.9857;  // spotlight region cutoff value
 // float Cutoff = 0.9917;  // spotlight region cutoff value    
 // float Cutoff = 0.9517;  // spotlight region cutoff value     
 
-bool flag = false;
 
 vec4 CalcLightInternal(BaseLight Light,
                        vec3 LightDirection,
@@ -80,8 +79,6 @@ vec4 CalcLightInternal(BaseLight Light,
         if (SpecularFactor > 0.0) 
             SpecularColor = vec4(Light.color, 1.0) * gMatSpecularIntensity * SpecularFactor;   
     }
-    else
-        flag = true;
 
     return (AmbientColor + DiffuseColor + SpecularColor);
 }
@@ -97,7 +94,7 @@ vec4 CalcDirectionalLight(vec3 WorldPos, vec3 Normal)
 }
 
 
-
+/*
 vec4 CalcPointLight(int Index, vec3 Normal)                                                 
 {                                                                                           
     vec3 LightDirection = outVertex - gPointLights[Index].position;                         
@@ -115,9 +112,8 @@ vec4 CalcPointLight(int Index, vec3 Normal)
                          gPointLights[Index].atten.exp * distance * distance;               
                                                                                             
     return Color / Attenuation;                                                             
-}                                                                                           
-   
-
+}                                                                                            
+*/
 
 
 void main()
@@ -128,7 +124,7 @@ void main()
 
 	vec4 TotalLight = CalcDirectionalLight(outVertex, normal);
 
-    FragColor = vec4(1.0,0.0,0.0,0.0);
+    FragColor = TotalLight;
 
 //	FragColor = vec4(outColor, 1.0) * TotalLight;
 /*

@@ -109,23 +109,27 @@ void EG_DeferredShadingLightPass::setStencilTextureUnit(unsigned int TextureUnit
 
 void EG_DeferredShadingLightPass::setEyeWorldPos(const glm::vec3& EyePos)
 {
-	glUniform3f(m_eyeWorldPosLocation, EyePos.x, EyePos.y, EyePos.z);
+//	glUniform3f(m_eyeWorldPosLocation, EyePos.x, EyePos.y, EyePos.z);
+	setUniformLocation(m_eyeWorldPosLocation, EyePos);
 }
 
 
 void EG_DeferredShadingLightPass::setScreenSize(unsigned int Width, unsigned int Height)
 {
-    glUniform2f(m_screenSizeLocation, (float)Width, (float)Height);
+//    glUniform2f(m_screenSizeLocation, (float)Width, (float)Height);
+    setUniformLocation(m_screenSizeLocation, (float)Width, (float)Height);
 }
 
 void EG_DeferredShadingLightPass::setMatSpecularIntensity(float Intensity)
 {
-    glUniform1f(m_matSpecularIntensityLocation, Intensity);
+    // glUniform1f(m_matSpecularIntensityLocation, Intensity);
+    setUniformLocation(m_screenSizeLocation, Intensity);
 }
 
 void EG_DeferredShadingLightPass::setMatSpecularPower(float Power)
 {
-    glUniform1f(m_matSpecularPowerLocation, Power);
+//    glUniform1f(m_matSpecularPowerLocation, Power);
+    setUniformLocation(m_screenSizeLocation, Power);
 }
 
 

@@ -224,6 +224,19 @@ void WorldObject::renderGroup(  pipeline& m_pipeline,
 
 
 
+void WorldObject::renderSingle( pipeline& m_pipeline,
+                                EG_RenderTechnique* RenderTechnique,
+                                int RenderPassID,
+                                EG_Model* model)
+{
+    RenderTechnique->enableShader(RenderPassID);
+    m_pipeline.pushMatrix();
+        m_pipeline.translate(position);
+        RenderTechnique->loadUniformLocations(m_pipeline, RenderPassID);
+        model->render();
+    m_pipeline.popMatrix();
+    RenderTechnique->disableShader(RenderPassID);
+}
 
 
 
