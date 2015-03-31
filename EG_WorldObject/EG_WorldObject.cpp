@@ -4,7 +4,11 @@
 
 WorldObject::WorldObject()
 {
+    m_position = glm::vec3(0.0, 0.0, 0.0);
+    m_velocity = glm::vec3(0.0, 0.0, 0.0);
+    m_scale = glm::vec3(1.0, 1.0, 1.0);
 
+    m_orientation = glm::toQuat(glm::mat4(1.0));
 }
 
 
@@ -18,7 +22,7 @@ WorldObject::~WorldObject()
 
 glm::vec3 WorldObject::getPosition()
 {
-    return position;
+    return m_position;
 }
 
 /*
@@ -29,12 +33,12 @@ glm::vec3 WorldObject::getRotation()
 */
 glm::quat WorldObject::getRotation()
 {
-    return rotation;
+    return m_rotation;
 }
 
 glm::vec3 WorldObject::getVelocity()
 {
-    return velocity;
+    return m_velocity;
 }
 
 
@@ -44,70 +48,73 @@ glm::vec3 WorldObject::getVelocity()
 void WorldObject::setPosition(glm::vec3 pos)
 {
     w_Position = pos;
-    position = pos;
+    m_position = pos;
 }
 
 void WorldObject::setPosition(float x, float y, float z)
 {
     w_Position = glm::vec3(x, y, z);
-    position = glm::vec3(x, y, z);
+    m_position = glm::vec3(x, y, z);
 }
+
 
 void WorldObject::updatePosition(glm::vec3 xAxis, glm::vec3 yAxis, glm::vec3 zAxis)
 {
-    position += xAxis * velocity.x;
-    position += yAxis * velocity.y;
-    position += zAxis * velocity.z;
+    m_position += xAxis * m_velocity.x;
+    m_position += yAxis * m_velocity.y;
+    m_position += zAxis * m_velocity.z;
 }
+
+
 
 void WorldObject::updatePosition()
 {
-    position += velocity;
+    m_position += m_velocity;
 }
 
 void WorldObject::setVelocity(glm::vec3 vel)
 {
     w_Velocity = vel;
-    velocity = vel;
+    m_velocity = vel;
 }
 
 void WorldObject::setVelocity(float x, float y, float z)
 {
     w_Velocity = glm::vec3(x, y, z);
-    velocity = glm::vec3(x, y, z);
+    m_velocity = glm::vec3(x, y, z);
 }
 
 void WorldObject::setAngularVelocityX(float x)
 {
-    angularVelocity.x = x;
+    m_angularVelocity.x = x;
 }
 
 void WorldObject::setAngularVelocityY(float y)
 {
-    angularVelocity.y = y;
+    m_angularVelocity.y = y;
 }
 
 void WorldObject::setAngularVelocityZ(float z)
 {
-    angularVelocity.z = z;
+    m_angularVelocity.z = z;
 }
 
 
 
 void WorldObject::setRotation(glm::vec3 rot)
 {
-    rotation = glm::quat(glm::mat4(1.0f));
+    m_rotation = glm::quat(glm::mat4(1.0f));
     setRotation(rot, glm::vec3(1.0f,0.0f,0.0f), glm::vec3(0.0f,1.0f,0.0f), glm::vec3(0.0f,0.0f,1.0f));
 }
 
 void WorldObject::setAngularVelocity(glm::vec3 ang_vel)
 {
-    angularVelocity = ang_vel;
+    m_angularVelocity = ang_vel;
 }
 
 void WorldObject::setAngularVelocity(float x, float y, float z)
 {
-    angularVelocity = glm::vec3(x, y, z);
+    m_angularVelocity = glm::vec3(x, y, z);
 }
 
 void WorldObject::updateRotation()
@@ -117,24 +124,24 @@ void WorldObject::updateRotation()
 
 void WorldObject::updateRotation(glm::vec3 xAxis, glm::vec3 yAxis, glm::vec3 zAxis)
 {
-    setRotation(angularVelocity, xAxis, yAxis, zAxis);
+    setRotation(m_angularVelocity, xAxis, yAxis, zAxis);
 }
 
 void WorldObject::setRotation(glm::vec3 rot, glm::vec3 xAxis, glm::vec3 yAxis, glm::vec3 zAxis)
 {
     /// yaw
     glm::quat yawChange = glm::angleAxis(rot.y, yAxis);
-    rotation = yawChange * rotation;
+    m_rotation = yawChange * m_rotation;
 
     /// pitch
     glm::quat pitchChange = glm::angleAxis(rot.x, xAxis);
-    rotation = pitchChange * rotation;
+    m_rotation = pitchChange * m_rotation;
 
     /// roll
     glm::quat rollChange = glm::angleAxis(rot.z, zAxis);
-    rotation = rollChange * rotation;
+    m_rotation = rollChange * m_rotation;
 
- //   rotation = glm::normalize(rotation);
+ //   m_rotation = glm::normalize(m_rotation);
 
 }
 
@@ -156,11 +163,26 @@ void WorldObject::updateRotation(glm::vec3 xAxis, glm::vec3 yAxis, glm::vec3 zAx
     rotation = rollChange * rotation;
 }
 */
+void WorldObject::setOrientation(float angle, glm::vec3 axis)
+{
+    m_orientation = glm::angleAxis(angle, axis.x, axis.y, axis.z);
+}
 
 
 void WorldObject::setSize(float x, float y, float z)
 {
 
+}
+
+
+void WorldObject::setScale(glm::vec3 scale)
+{
+    m_scale = scale;
+}
+
+void WorldObject::setScale(float x, float y, float z)
+{
+    m_scale = glm::vec3(x,y,z);
 }
 
 void WorldObject::ReCalculateBoundingVolume()
@@ -202,7 +224,8 @@ void WorldObject::render(   pipeline& m_pipeline,
 {
     RenderTechnique->enableShader(RenderPassID);
     m_pipeline.pushMatrix();
-        m_pipeline.translate(position);
+        m_pipeline.translate(m_position);
+        m_pipeline.scale(m_scale);
         RenderTechnique->loadUniformLocations(m_pipeline, RenderPassID);
         model->draw();
     m_pipeline.popMatrix();
@@ -216,9 +239,30 @@ void WorldObject::renderGroup(  pipeline& m_pipeline,
                                 meshLoader* model)
 {
     m_pipeline.pushMatrix();
-        m_pipeline.translate(position);
+        m_pipeline.translate(m_position);
+        m_pipeline.scale(m_scale);
         RenderTechnique->loadUniformLocations(m_pipeline, RenderPassID);
         model->draw();
+    m_pipeline.popMatrix();
+}
+
+
+
+
+
+
+
+void WorldObject::renderGroup( pipeline& m_pipeline,
+                                EG_RenderTechnique* RenderTechnique,
+                                int RenderPassID,
+                                EG_Model* model)
+{
+    m_pipeline.pushMatrix();
+        m_pipeline.translate(m_position);
+        m_pipeline.loadMatrix(glm::toMat4(m_orientation));
+        m_pipeline.scale(m_scale);
+        RenderTechnique->loadUniformLocations(m_pipeline, RenderPassID);
+        model->render();
     m_pipeline.popMatrix();
 }
 
@@ -230,14 +274,29 @@ void WorldObject::renderSingle( pipeline& m_pipeline,
                                 EG_Model* model)
 {
     RenderTechnique->enableShader(RenderPassID);
+    renderGroup(m_pipeline, RenderTechnique, RenderPassID, model);
+    RenderTechnique->disableShader(RenderPassID);
+}
+
+
+/*
+void WorldObject::renderSingle( pipeline& m_pipeline,
+                                EG_RenderTechnique* RenderTechnique,
+                                int RenderPassID,
+                                EG_Model* model)
+{
+    RenderTechnique->enableShader(RenderPassID);
     m_pipeline.pushMatrix();
-        m_pipeline.translate(position);
+        m_pipeline.translate(m_position);
+  //      m_pipeline.rotateX(270);
+        m_pipeline.loadMatrix(glm::toMat4(m_orientation));
+        m_pipeline.scale(m_scale);
         RenderTechnique->loadUniformLocations(m_pipeline, RenderPassID);
         model->render();
     m_pipeline.popMatrix();
     RenderTechnique->disableShader(RenderPassID);
 }
-
+*/
 
 
 /*

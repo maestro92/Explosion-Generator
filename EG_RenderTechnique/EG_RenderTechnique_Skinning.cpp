@@ -75,17 +75,19 @@ void EG_RenderTechnique_Skinning::loadUniformLocations(pipeline& p, int RenderPa
     EG_RenderTechnique::loadUniformLocations(p, RenderPassID);
 
     for(unsigned int i = 0; i < m_boneTransforms.size(); i++)
-        setBoneTransform(RenderPassID, i, m_boneTransforms[i]);
+    {
+        assert(i < MAX_BONES);
+        setUniformLocationTranspose(m_boneUniformLocations[RenderPassID][i], m_boneTransforms[i]);
+    }
+
+//    for(unsigned int i = 0; i < m_boneTransforms.size(); i++)
+//        setBoneTransform(RenderPassID, i, m_boneTransforms[i]);
 }
 
 
-void EG_RenderTechnique_Skinning::setBoneTransform(unsigned int pass, unsigned int index, const glm::mat4& transform)
+void EG_RenderTechnique_Skinning::setBoneTransforms(vector<glm::mat4>& transforms)
 {
-    assert(index < MAX_BONES);
-//    glUniformMatrix4fv(m_boneLocation[index], 1, GL_TRUE, &transform[0][0]);
-    // setUniformLocationTranspose(m_boneLocation[index], transform);
-  //  setUniformLocationTranspose(m_boneLocation[index], transform);
-    setUniformLocationTranspose(m_boneUniformLocations[pass][index], transform);
+    m_boneTransforms = transforms;
 }
 
 

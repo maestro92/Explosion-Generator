@@ -91,13 +91,15 @@ class pipeline
 		glm::mat4 translateNoRotate(float x,float y,float z);
 		void scale(float x,float y,float z);
 		void scale(float v);
+		void scale(glm::vec3 v);
 		void rotateX(float angle);
 		void rotateY(float angle);
 		void rotateZ(float angle);
         void rotate(float angle, float x, float y, float z);
         void rotate(glm::quat q_rotation);
 
-        void LoadMatrix(glm::mat4 m_Matrix);
+   //     void LoadMatrix(glm::mat4 m_Matrix);
+        void loadMatrix(glm::mat4 m);
    //     void Rotate1(float angle, float x, float y, float z);
    //     void Rotate1(glm::quat q_rotation);
 

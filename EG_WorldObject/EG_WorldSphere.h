@@ -15,7 +15,7 @@ class WorldSphere : public WorldObject
 
         virtual void init();
 
-        virtual void setPosition(glm::vec3 pos);
+   //     virtual void setPosition(glm::vec3 pos);
         virtual void setAngularVelocity(glm::vec3 ang_vel);
         virtual void setSize(float x, float y, float z);
 

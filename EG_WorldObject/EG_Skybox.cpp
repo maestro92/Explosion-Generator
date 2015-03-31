@@ -223,7 +223,7 @@ void EG_SkyBox::RenderSkyBox_Dynamic(shader* skybox_shader, pipeline& m_pipeline
 void EG_SkyBox::UpdateRotationOnly_View_Pipeline(pipeline& m_pipeline, glm::mat4 myMatrix)
 {
     m_pipeline.pushMatrix();
-        m_pipeline.LoadMatrix(myMatrix);
+        m_pipeline.loadMatrix(myMatrix);
         RotationOnly_View_pipeline = m_pipeline;
     m_pipeline.popMatrix();
 }

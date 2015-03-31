@@ -347,7 +347,7 @@ void EG_Camera::updateViewMatrix(pipeline& m_pipeline)
 
     m_skyboxRotate = m_pipeline;
     m_skyboxRotate.matrixMode(VIEW_MATRIX);
-    m_skyboxRotate.LoadMatrix(m_viewMatrix);
+    m_skyboxRotate.loadMatrix(m_viewMatrix);
 
  //   ROT_matrix = glm::toMat4(ROT);
  //   m_RotateViewMatrix = glm::toMat4(ROT);
@@ -366,7 +366,7 @@ void EG_Camera::updateViewMatrix(pipeline& m_pipeline)
 */
 
     m_pipeline.matrixMode(VIEW_MATRIX);
-    m_pipeline.LoadMatrix(m_viewMatrix);
+    m_pipeline.loadMatrix(m_viewMatrix);
 }
 
 

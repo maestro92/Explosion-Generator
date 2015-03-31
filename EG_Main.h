@@ -45,7 +45,7 @@
 #include "EG_RenderTechnique_RenderDepthToTexture.h"
 #include "EG_RenderTechnique_Skinning.h"
 
-
+#include "EG_WorldAnimatedObject.h"
 #include "EG_WorldAxis.h"
 #include "EG_WorldBox.h"
 #include "EG_WorldSphere.h"
@@ -181,14 +181,18 @@ class ExplosionGenerator
 //        mesh* quad;
 
         EG_Model    testSphere;
-        EG_DynamicModel mainAvatar;
+        EG_DynamicModel legoMan;
+        EG_DynamicModel bob;
         EG_Model*   modelPtr;
 
 
 //        EG_DynamicModel* mainAvatar;
 
+//        WorldObject     o_animationObject;
+        EG_WorldAnimatedObject  o_animatedLegoMan;
+        EG_WorldAnimatedObject  o_animatedBob;
 
-        WorldObject     o_animationObject;
+
         EG_WorldAxis    o_worldAxis;
         WorldSphere     o_reflectionSphere;
         WorldBox        o_wall;
@@ -265,12 +269,15 @@ class ExplosionGenerator
         ExplosionGenerator();
         ~ExplosionGenerator();
 
+        void renderAnimatedObject(pipeline& p, int pass);
+
         /// init functions
         void init_SDL_GLEW();
         void init_OpenGL();
 
         void initShader();
         void initModels();
+        void initObjects();
         void initLights();
         void initTempTexture();
 

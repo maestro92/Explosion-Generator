@@ -77,7 +77,8 @@ void EG_WorldAxis::render(pipeline &m_pipeline, EG_RenderTechnique* RenderTechni
 {
     m_pipeline.pushMatrix();
 
-        m_pipeline.translate(position);
+        m_pipeline.translate(m_position);
+        m_pipeline.scale(m_scale);
         RenderTechnique->loadUniformLocations(m_pipeline, RENDER_PASS1);
         worldAxis->drawLines();
 

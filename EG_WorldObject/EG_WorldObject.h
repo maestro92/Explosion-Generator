@@ -30,7 +30,7 @@ static glm::vec3 ExternalForce_half_pos1 = vec3(0,4.9,0);
 
 
 
-using namespace glm;
+using namespace std;
 class WorldObject
 {
     public:
@@ -45,16 +45,16 @@ class WorldObject
 
 
 
-        vec3    w_Position;
-        vec3    w_Velocity;
+        glm::vec3    w_Position;
+        glm::vec3    w_Velocity;
 
         /// Rotational
         glm::mat3 w_InertiaTensor;
         glm::mat3 w_InverseInertiaTensor;
 
-        vec3    w_Rotation;
-        vec3    w_AngularVelocity;
-        vec3    w_AngularAcceleration;
+        glm::vec3    w_Rotation;
+        glm::vec3    w_AngularVelocity;
+        glm::vec3    w_AngularAcceleration;
 
         vec4    w_Color;
         int     obj_type;
@@ -70,25 +70,29 @@ class WorldObject
         virtual ~WorldObject();
 
 
-        vec3    position;
-        vec3    velocity;
-   //     vec3    rotation;
-        glm::quat rotation;
-        vec3    angularVelocity;
 
+        vec3    m_position;
+        vec3    m_velocity;
+        glm::quat m_orientation;
+        glm::quat m_rotation;
+        vec3    m_angularVelocity;
         vec3    m_scale;
 
         glm::vec3 getPosition();
         glm::quat getRotation();
+        glm::vec3 getScale();
         glm::vec3 getVelocity();
 
 
-
+        void setScale(glm::vec3 scale);
+        void setScale(float x, float y, float z);
 
         void setPosition(glm::vec3 pos);
         void setPosition(float x, float y, float z);
+
         void setVelocity(glm::vec3 vel);
         void setVelocity(float x, float y, float z);
+
         void updatePosition();
         void updatePosition(glm::vec3 xAxis, glm::vec3 yAxis, glm::vec3 zAxis);
 
@@ -103,7 +107,7 @@ class WorldObject
         void updateRotation();
         void updateRotation(glm::vec3 xAxis, glm::vec3 yAxis, glm::vec3 zAxis);
 
-
+        void setOrientation(float angle, glm::vec3 axis);
 
         virtual void ReCalculateBoundingVolume();
         virtual bool CheckObjGroundCollision(float dt);
@@ -127,7 +131,13 @@ class WorldObject
                                     int RenderPassID,
                                     meshLoader* model);
 
-        virtual void renderSingle(  pipeline& m_pipeline,
+
+        void renderGroup(   pipeline& m_pipeline,
+                                    EG_RenderTechnique* RenderTechnique,
+                                    int RenderPassID,
+                                    EG_Model* model);
+
+        void renderSingle(  pipeline& m_pipeline,
                                     EG_RenderTechnique* RenderTechnique,
                                     int RenderPassID,
                                     EG_Model* model);

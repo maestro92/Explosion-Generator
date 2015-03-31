@@ -94,27 +94,10 @@ class EG_DynamicModel : public EG_Model
 
         void transferDataToBuffer(vector<VertexBoneData>& vec, unsigned int bufferIndex, unsigned int location);
 
+        void boneTransform(float timeInSeconds);
         void boneTransform(float timeInSeconds, vector<glm::mat4>& transforms);
-
+        void boneTransformTranspose(float timeInSeconds, vector<glm::mat4>& transforms);
     private:
-/*
-        glm::mat4 computeInterpolatedScaling(aiVector3D& Out, float animationTime, const aiNodeAnim* nodeAnim);
-        glm::mat4 computeInterpolatedRotation(aiQuaternion& Out, float animationTime, const aiNodeAnim* nodeAnim);
-        glm::mat4 computeInterpolatedPosition(aiVector3D&, float animationTime, const aiNodeAnim* nodeAnim);
-*/
-
-
-
-        void CalcInterpolatedScaling(aiVector3D& Out, float AnimationTime, const aiNodeAnim* pNodeAnim);
-        void CalcInterpolatedRotation(aiQuaternion& Out, float AnimationTime, const aiNodeAnim* pNodeAnim);
-        void CalcInterpolatedPosition(aiVector3D& Out, float AnimationTime, const aiNodeAnim* pNodeAnim);
-        unsigned int FindScaling(float AnimationTime, const aiNodeAnim* pNodeAnim);
-        unsigned int FindRotation(float AnimationTime, const aiNodeAnim* pNodeAnim);
-        unsigned int FindPosition(float AnimationTime, const aiNodeAnim* pNodeAnim);
-
-
-
-
         float computeInterpolationTimeFactor(float animationTime, double t2, double t1);
         glm::vec3 computeInterpolatedVector(float animationTime, aiVectorKey& k2, aiVectorKey& k1);
         aiQuaternion computeInterpolatedQuaternion(float animationTime, aiQuatKey& k2, aiQuatKey& k1);
@@ -130,7 +113,12 @@ class EG_DynamicModel : public EG_Model
         unsigned int findPosition(float animationTime, const aiNodeAnim* nodeAnim);
 
         const aiNodeAnim* findNodeAnim(const aiAnimation* pAnimation, const string NodeName);
+
         void readNodeHierarchy(float AnimationTime, const aiNode* pNode, const glm::mat4& ParentTransform);
+        void readNodeHierarchyTranspose(float animationTime, const aiNode* node, const glm::mat4& parentTransform);
+
+
+
         bool initFromAiScene(const aiScene* pScene, const std::string& Filename);
 
         void initMesh(unsigned int MeshIndex, const aiMesh* m, const aiScene* s,
@@ -155,9 +143,14 @@ class EG_DynamicModel : public EG_Model
         unsigned int m_NumBones;
 
         /// this keeps track of whether if we have a new incoming bone or an already existing bone
+        /// once we keep track of all the bones, in the boneTransform function, whenever we have node
+        /// we check if this node corresponds to a bone. If so, we store the final transformation in m_BoneInfo vector
         map<string, unsigned int> m_BoneMapping;
+
         /// the vector that holds all the each bone's transformation
         vector<BoneInfo> m_BoneInfo;
+
+        vector<glm::mat4> m_boneTransforms;
 
         float m_TicksPerSecond;
         float m_AnimFrameDuration;

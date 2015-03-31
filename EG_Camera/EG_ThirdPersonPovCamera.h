@@ -19,8 +19,9 @@
 #include "glm/gtc/quaternion.hpp"
 #include "glm/gtx/quaternion.hpp"
 #include "EG_RenderTechnique.h"
-#include "EG_WorldObject.h"
-
+#include "EG_WorldAnimatedObject.h"
+#include "EG_Model.h"
+#include "EG_DynamicModel.h"
 /*
 
 // Orbit mode rotates the camera around a target position. This mode can be
@@ -49,7 +50,7 @@ class EG_ThirdPersonPovCamera
         };
 
 
-    const float BALL_FORWARD_SPEED = 1.0f;
+    const float BALL_FORWARD_SPEED = 0.5f;
     const float BALL_HEADING_SPEED = 3.0f;
     const float BALL_ROLLING_SPEED = 10.0f;
     const float MAX_CAMERA_OFFSET = 100.0f;
@@ -65,6 +66,7 @@ using spring system, we will have different view matrix
 */
     public:
 
+        EG_WorldAnimatedObject m_characterObject;
         int cameraMode;
 
         EG_ThirdPersonPovCamera();
@@ -105,6 +107,8 @@ using spring system, we will have different view matrix
 
         glm::vec3 getEyePoint();
         void render(pipeline &m_pipeline, EG_RenderTechnique* RenderTechnique, int RenderPassID);
+        void render1(pipeline &m_pipeline, EG_RenderTechnique* RenderTechnique, int RenderPassID, EG_Model* m);
+
         void computeLocalAxisAndEyePosFromMatrix( glm::mat4& mat, int mat_type,
                                                   glm::vec3& xAxis, glm::vec3& yAxis,
                                                   glm::vec3& zAxis, glm::vec3& eye_pos);
@@ -145,6 +149,8 @@ using spring system, we will have different view matrix
         void setCharacterPosition(glm::vec3 c_pos);
         void setCharacterPosition(float x, float y, float z);
 
+        EG_DynamicModel m_mainAvatar;
+
         private:
             glm::vec3 m_eye;
             glm::vec3 m_target;
@@ -159,9 +165,11 @@ using spring system, we will have different view matrix
 
         /// everything related to the character
         meshLoader* m_character;
+
+
         float m_characterHeight;
 
-        WorldObject characterObject;
+
 
 
         glm::vec3 c_right;

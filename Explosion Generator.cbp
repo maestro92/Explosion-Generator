@@ -124,6 +124,8 @@
 		<Unit filename="EG_WorldObject/EG_Skybox.h" />
 		<Unit filename="EG_WorldObject/EG_Smoke.cpp" />
 		<Unit filename="EG_WorldObject/EG_Smoke.h" />
+		<Unit filename="EG_WorldObject/EG_WorldAnimatedObject.cpp" />
+		<Unit filename="EG_WorldObject/EG_WorldAnimatedObject.h" />
 		<Unit filename="EG_WorldObject/EG_WorldAxis.cpp" />
 		<Unit filename="EG_WorldObject/EG_WorldAxis.h" />
 		<Unit filename="EG_WorldObject/EG_WorldBox.cpp" />

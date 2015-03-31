@@ -148,6 +148,7 @@ ExplosionGenerator::ExplosionGenerator()
     o_reflectionSphere.setPosition(ReflectiveSphere_Pos);
 
     initModels();
+    initObjects();
 #if SPHERE_EFFECT
     l_SphereEffect.InitParticle();
 #endif
@@ -343,7 +344,10 @@ void ExplosionGenerator::initModels()
     o_hugeWall        = new meshLoader("HugeWall.obj");
 
     testSphere.loadModel("./models/Sphere/sphere10_grey_flat.obj");
-    mainAvatar.loadModel("./models/Characters/boblampclean.md5mesh");
+
+    bob.loadModel("./models/Characters/boblampclean.md5mesh");
+    legoMan.loadModel("./models/Characters/Walking Lego.md5mesh");
+
 
 //    mainAvatar.loadModel("./models/Characters/miracle3.md5mesh");
 
@@ -382,6 +386,20 @@ void ExplosionGenerator::initModels()
 //    cube = new meshLoader("./Sphere/sphere10_grey_flat.obj");
 //    meshLoader("./Content/phoenix_ugv.md2");
 }
+
+
+void ExplosionGenerator::initObjects()
+{
+    o_animatedLegoMan.setPosition(0,0,5);
+  //  o_animationObject.setScale(0.1, 0.1, 0.1);
+  //  o_animationObject.setOrientation(180, glm::vec3(0.0,1.0,0.0));
+    o_animatedLegoMan.setOrientation(-90, glm::vec3(1.0,0.0,0.0));
+
+    o_animatedBob.setPosition(0,0,0);
+    o_animatedBob.setScale(0.1, 0.1, 0.1);
+    o_animatedBob.setOrientation(-90, glm::vec3(1.0,0.0,0.0));
+}
+
 
 void ExplosionGenerator::start()
 {
@@ -637,27 +655,32 @@ void ExplosionGenerator::renderShadowMap()
 #endif
 
         o_reflectionSphere.renderGroup(temp_pipeline, r_Technique, RENDER_PASS1, smoothSphere);
-        thirdPersonPovCamera.render(temp_pipeline, r_Technique, RENDER_PASS1);
+     //   thirdPersonPovCamera.render(temp_pipeline, r_Technique, RENDER_PASS1);
 
     r_Technique->disableShader(RENDER_PASS1);
 
-
+/*
     r_Technique = &r_skinning;
     modelPtr = &mainAvatar;
 
-        temp_pipeline.pushMatrix();
+    //    temp_pipeline.pushMatrix();
 
-            temp_pipeline.translate(0,0,5);
-            temp_pipeline.rotateX(270);
-            temp_pipeline.scale(0.1);
-            o_animationObject.renderSingle(temp_pipeline, r_Technique, RENDER_PASS1, modelPtr);
+   //         temp_pipeline.translate(0,0,5);
+  //          temp_pipeline.rotateX(270);
+   //         temp_pipeline.scale(0.1);
+            r_skinning.setBoneTransforms(o_animatedLegoMan.m_boneTransforms);
+            o_animatedLegoMan.renderSingle(temp_pipeline, r_Technique, RENDER_PASS1, modelPtr);
+*/
+
+        renderAnimatedObject(temp_pipeline, RENDER_PASS1);
+
 /*
             m_pipeline.translate(0,0,5);
             m_pipeline.rotateX(270);
             m_pipeline.scale(0.1);
             o_animationObject.renderSingle(m_pipeline, r_Technique, RENDER_PASS1, modelPtr);
 */
-        temp_pipeline.popMatrix();
+     //   temp_pipeline.popMatrix();
  //   r_skinning.renewVector();
 
 
@@ -711,31 +734,13 @@ void ExplosionGenerator::update()
 
 
     float runningTime = (float)((double)SDL_GetTicks() - (double)m_timeManager.getStartTime()) / 1000.0f;
-    mainAvatar.boneTransform(runningTime, r_skinning.m_boneTransforms);
+    legoMan.boneTransform(runningTime, o_animatedLegoMan.m_boneTransforms);
+    bob.boneTransform(runningTime, o_animatedBob.m_boneTransforms);
 
-/*
-    float runningTime = (float)((double)SDL_GetTicks() - (double)m_timeManager.getStartTime()) / 1000.0f;
+//    mainAvatar.boneTransform(runningTime);
+//    bob.boneTransform(runningTime, r_skinning)
+//    thirdPersonPovCamera.m_mainAvatar.boneTransform(runningTime, r_skinning.m_boneTransforms);
 
-    r_skinning.enableShader(RENDER_PASS1);
-        vector<glm::mat4> transforms;
-        r_Technique = &r_skinning;
-
-    //    mainAvatar.boneTransform(runningTime, transforms);
-        mainAvatar.boneTransform(runningTime, transforms);
-
-        for(unsigned int i = 0; i < transforms.size(); i++)
-            r_skinning.setBoneTransform(i, transforms[i]);
-
-        m_pipeline.pushMatrix();
-            m_pipeline.translate(0,0,5);
-            m_pipeline.rotateX(270);
-            m_pipeline.scale(0.1);
-
-            r_skinning.loadUniformLocations(m_pipeline, RENDER_PASS1);
-            mainAvatar.render();
-        m_pipeline.popMatrix();
-    r_skinning.disableShader(RENDER_PASS1);
-    */
 }
 
 
@@ -841,7 +846,22 @@ int main(int argc, char *argv[])
 }
 
 
+void ExplosionGenerator::renderAnimatedObject(pipeline& p, int pass)
+{
+    r_Technique = &r_skinning;
+    modelPtr = &legoMan;
+        r_skinning.setBoneTransforms(o_animatedLegoMan.m_boneTransforms);
+    //    o_animatedLegoMan.renderSingle(p, r_Technique, pass, modelPtr);
 
+        // if(!isFirstPersonCamera)
+    //    r_skinning.setBoneTransforms(thirdPersonPovCamera.m_characterObject.m_boneTransforms);
+        thirdPersonPovCamera.render1(p, r_Technique, pass, modelPtr);
+
+
+  //  modelPtr = &bob;
+    //    r_skinning.setBoneTransforms(o_animatedBob.m_boneTransforms);
+    //    o_animatedBob.renderSingle(p, r_Technique, pass, modelPtr);
+}
 
 void ExplosionGenerator::RenderScene()
 {
@@ -877,8 +897,10 @@ void ExplosionGenerator::RenderScene()
         l_Cube_SphereEffect.DrawMyHgridFrames();
 #endif
 
-        thirdPersonPovCamera.render(m_pipeline, r_Technique, RENDER_PASS2);
+//        thirdPersonPovCamera.render(m_pipeline, r_Technique, RENDER_PASS2);
 
+
+     //   thirdPersonPovCamera.render(m_pipeline, r_Technique, RENDER_PASS2);
 
         r_Shadow_Render.disableShader(RENDER_PASS2);
     m_pipeline.popMatrix();
@@ -898,6 +920,7 @@ void ExplosionGenerator::Render_to_CubeMapTexture2()
     {
         Render_to_CubeMapFace2(i);
         RenderScene();
+        renderAnimatedObject(m_pipeline, RENDER_PASS2);
   //      glDisable(GL_DEPTH_TEST);
 
     #if SMOKE_EFFECT
@@ -1003,6 +1026,7 @@ void ExplosionGenerator::forwardRender()
 #endif
 
 
+
 #if 1
     m_pipeline.matrixMode(PROJECTION_MATRIX);
     m_pipeline.loadIdentity();
@@ -1067,24 +1091,23 @@ void ExplosionGenerator::forwardRender()
 
         o_reflectionSphere.renderGroup(m_pipeline, r_Technique, RENDER_PASS1, smoothSphere);
 
-        if(!isFirstPersonCamera)
-            thirdPersonPovCamera.render(m_pipeline, r_Technique, RENDER_PASS1);
+      //  if(!isFirstPersonCamera)
+      //      thirdPersonPovCamera.render(m_pipeline, r_Technique, RENDER_PASS1);
 
         r_Technique->disableShader(RENDER_PASS1);
 
 
+ //   r_skinning.m_boneTransforms = mainAvatar.m_boneTransforms;
+/*
+    r_Technique = &r_skinning;
+    modelPtr = &mainAvatar;
+        r_skinning.setBoneTransforms(o_animatedLegoMan.m_boneTransforms);
+        o_animatedLegoMan.renderSingle(m_pipeline, r_Technique, RENDER_PASS1, modelPtr);
+*/
 
+        renderAnimatedObject(m_pipeline, RENDER_PASS1);
 
-            r_Technique = &r_skinning;
-            modelPtr = &mainAvatar;
-            m_pipeline.pushMatrix();
-                m_pipeline.translate(0,0,5);
-                m_pipeline.rotateX(270);
-                m_pipeline.scale(0.1);
-                o_animationObject.renderSingle(m_pipeline, r_Technique, RENDER_PASS1, modelPtr);
-            m_pipeline.popMatrix();
-
-        m_pipeline.popMatrix();
+    m_pipeline.popMatrix();
     glBindFramebuffer(GL_FRAMEBUFFER, 0);
 #endif
 
@@ -1110,34 +1133,15 @@ void ExplosionGenerator::forwardRender()
 
     RenderScene();
 
-
+/*
     r_Technique = &r_skinning;
     modelPtr = &mainAvatar;
-        m_pipeline.pushMatrix();
-            m_pipeline.translate(0,0,5);
-            m_pipeline.rotateX(270);
-            m_pipeline.scale(0.1);
-            o_animationObject.renderSingle(m_pipeline, r_Technique, RENDER_PASS2, modelPtr);
-        m_pipeline.popMatrix();
+        r_skinning.setBoneTransforms(o_animatedLegoMan.m_boneTransforms);
+        o_animatedLegoMan.renderSingle(m_pipeline, r_Technique, RENDER_PASS2, modelPtr);
+ */
+    renderAnimatedObject(m_pipeline, RENDER_PASS2);
+
     r_skinning.renewVector();
-
-/*
-    r_skinning.enableShader(RENDER_PASS2);
-        for(unsigned int i = 0; i < r_skinning.m_boneTransforms.size(); i++)
-            r_skinning.setBoneTransform(RENDER_PASS2, i, r_skinning.m_boneTransforms[i]);
-
-        m_pipeline.pushMatrix();
-            m_pipeline.translate(0,0,5);
-            m_pipeline.rotateX(270);
-            m_pipeline.scale(0.1);
-
-            r_skinning.loadUniformLocations(m_pipeline, RENDER_PASS2);
-            mainAvatar.render();
-        m_pipeline.popMatrix();
-    r_skinning.disableShader(RENDER_PASS2);
-    r_skinning.renewVector();
-*/
-
 
 
 
@@ -1164,51 +1168,6 @@ void ExplosionGenerator::forwardRender()
 
 #endif
 }
-
-
-
-
-
-
-
-
-/*
-    float runningTime = (float)((double)SDL_GetTicks() - (double)m_timeManager.getStartTime()) / 1000.0f;
-
- //   m_timeManager.setRunningTime((float)((double)SDL_GetTicks() - (double)m_timeManager.getStartTime()) / 1000.0f);
-//    float runningTime = m_timeManager.getRunningTime();
-
-    r_skinning.enableShader(RENDER_PASS1);
-   //     vector<glm::mat4> transforms;
-
-        r_Technique = &r_skinning;
-
-//        mainAvatar.boneTransform(runningTime, transforms);
-//        mainAvatar.boneTransform(runningTime, r_skinning.m_boneTransforms);
-
-        for(unsigned int i = 0; i < r_skinning.m_boneTransforms.size(); i++)
-            r_skinning.setBoneTransform(i, r_skinning.m_boneTransforms[i]);
-
-        m_pipeline.pushMatrix();
-            m_pipeline.translate(0,0,5);
-            m_pipeline.rotateX(270);
-            m_pipeline.scale(0.1);
-
-            r_skinning.loadUniformLocations(m_pipeline, RENDER_PASS1);
-            mainAvatar.render();
-        m_pipeline.popMatrix();
-    r_skinning.disableShader(RENDER_PASS1);
-    r_skinning.renewVector();
-*/
-
-
-
-
-
-
-
-
-
 
 
 
@@ -1480,7 +1439,7 @@ void ExplosionGenerator::deferredShadingGeometryPass37(EG_GBuffer& GBuffer)
         l_SphereEffect.render(m_pipeline, r_Technique, RENDER_PASS1, sphere);
 #endif
 
-        thirdPersonPovCamera.render(m_pipeline, r_Technique, RENDER_PASS1);
+      //  thirdPersonPovCamera.render(m_pipeline, r_Technique, RENDER_PASS1);
 
         r_deferredShadingGeometryPass.setStencilFlag(glm::vec3(1.0,0.0,0.0));
         o_worldAxis.render(m_pipeline, r_Technique, RENDER_PASS1);
@@ -1549,7 +1508,7 @@ void ExplosionGenerator::deferredShadingGeometryPass37_Skybox(EG_GBuffer& GBuffe
         l_SphereEffect.render(m_pipeline, r_Technique, RENDER_PASS1, sphere);
 #endif
 
-        thirdPersonPovCamera.render(m_pipeline, r_Technique, RENDER_PASS1);
+    //    thirdPersonPovCamera.render(m_pipeline, r_Technique, RENDER_PASS1);
 
         r_deferredShadingGeometryPass.setStencilFlag(glm::vec3(1.0,0.0,0.0));
         o_worldAxis.render(m_pipeline, r_Technique, RENDER_PASS1);

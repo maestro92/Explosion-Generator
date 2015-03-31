@@ -163,7 +163,7 @@ void EG_DynamicModel::initMesh(unsigned int MeshIndex, const aiMesh* m, const ai
 /// loads the vertex bone information for a single mesh object
 void EG_DynamicModel::loadBones(unsigned int MeshIndex, const aiMesh* m, vector<VertexBoneData>& Bones)
 {
-
+    m_boneTransforms.resize(m_NumBones);
 
     for (unsigned int i=0; i<m->mNumBones; i++)
     {
@@ -244,12 +244,75 @@ void EG_DynamicModel::boneTransform(float timeInSeconds, vector<glm::mat4>& tran
         transforms[i] = m_BoneInfo[i].finalTransformation;
 }
 
+void EG_DynamicModel::boneTransform(float timeInSeconds)
+{
+    glm::mat4 identity = glm::mat4(1.0f);
+    float timeInTicks = timeInSeconds * m_TicksPerSecond;
+    float animationTime = fmod(timeInTicks, m_AnimFrameDuration);
 
+    readNodeHierarchy(animationTime, m_Scene->mRootNode, identity);
 
+    for(int i=0; i<m_NumBones; i++)
+        m_boneTransforms[i] = m_BoneInfo[i].finalTransformation;
+}
 
 
 
 void EG_DynamicModel::readNodeHierarchy(float animationTime, const aiNode* node, const glm::mat4& parentTransform)
+{
+    string nodeName(node->mName.data);
+    const aiAnimation* animation = m_Scene->mAnimations[0];
+
+    glm::mat4 nodeTransformation = EG_Utility::toGlmMat(node->mTransformation);
+
+    const aiNodeAnim* nodeAnim = findNodeAnim(animation, nodeName);
+
+    /// from http://assimp.sourceforge.net/lib_html/structai_node_anim.html
+    /// he name specifies the bone/node which is affected by this animation channel.
+    /// The keyframes are given in three separate series of values, one each for position, rotation and scaling.
+    /// The transformation matrix computed from these values replaces the node's original transformation matrix at a specific time.
+    if(nodeAnim)
+    {
+        glm::mat4 scalingMat = computeInterpolatedScalingMatrix(animationTime, nodeAnim);
+        glm::mat4 rotationMat = computeInterpolatedRotationMatrix(animationTime, nodeAnim);
+        glm::mat4 translationMat = computeInterpolatedPositionMatrix(animationTime, nodeAnim);
+
+        nodeTransformation = scalingMat * rotationMat * translationMat;
+//        nodeTransformation = translationMat * rotationMat * scalingMat;
+    }
+
+  //  glm::mat4 globalTransformation = parentTransform * nodeTransformation;
+    glm::mat4 globalTransformation = nodeTransformation * parentTransform;
+
+    if(m_BoneMapping.find(nodeName) != m_BoneMapping.end())
+    {
+        unsigned int boneIndex = m_BoneMapping[nodeName];
+
+        // m_BoneInfo[boneIndex].finalTransformation = m_GlobalInverseTransform * globalTransformation * m_BoneInfo[boneIndex].boneOffset;
+        m_BoneInfo[boneIndex].finalTransformation = m_BoneInfo[boneIndex].boneOffset * globalTransformation * m_GlobalInverseTransform;
+    }
+
+    for (unsigned int i=0; i < node->mNumChildren; i++)
+        readNodeHierarchy(animationTime, node->mChildren[i], globalTransformation);
+}
+
+
+void EG_DynamicModel::boneTransformTranspose(float timeInSeconds, vector<glm::mat4>& transforms)
+{
+    glm::mat4 identity = glm::mat4(1.0f);
+    float timeInTicks = timeInSeconds * m_TicksPerSecond;
+    float animationTime = fmod(timeInTicks, m_AnimFrameDuration);
+
+    readNodeHierarchy(animationTime, m_Scene->mRootNode, identity);
+    transforms.resize(m_NumBones);
+
+    for(int i=0; i<m_NumBones; i++)
+        transforms[i] = m_BoneInfo[i].finalTransformation;
+}
+
+
+
+void EG_DynamicModel::readNodeHierarchyTranspose(float animationTime, const aiNode* node, const glm::mat4& parentTransform)
 {
     string nodeName(node->mName.data);
     const aiAnimation* animation = m_Scene->mAnimations[0];
@@ -279,7 +342,6 @@ void EG_DynamicModel::readNodeHierarchy(float animationTime, const aiNode* node,
     for (unsigned int i=0; i < node->mNumChildren; i++)
         readNodeHierarchy(animationTime, node->mChildren[i], globalTransformation);
 }
-
 
 
 glm::mat4 EG_DynamicModel::computeInterpolatedScalingMatrix(float animationTime, const aiNodeAnim* nodeAnim)

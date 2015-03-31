@@ -84,6 +84,16 @@ void pipeline::scale(float v)
 	matricesReady=false;
 }
 
+void pipeline::scale(glm::vec3 v)
+{
+	if(currentMatrix==MODEL_MATRIX)
+		modelMatrix[modelMatrix.size()-1]*=glm::scale(v.x, v.y, v.z);
+	else if(currentMatrix==VIEW_MATRIX)
+		viewMatrix[viewMatrix.size()-1]*=glm::scale(v.x, v.y, v.z);
+	matricesReady=false;
+}
+
+
 void pipeline::rotateX(float angle)
 {
 	if(currentMatrix==MODEL_MATRIX)
@@ -133,6 +143,7 @@ void pipeline::rotate(glm::quat q_rotation)
 	matricesReady=false;
 }
 
+/*
 void pipeline::LoadMatrix(glm::mat4 m_Matrix)
 {
     if(currentMatrix==MODEL_MATRIX)
@@ -141,7 +152,16 @@ void pipeline::LoadMatrix(glm::mat4 m_Matrix)
 		viewMatrix[viewMatrix.size()-1]*=m_Matrix;
 	matricesReady=false;
 }
+*/
 
+void pipeline::loadMatrix(glm::mat4 m)
+{
+    if(currentMatrix==MODEL_MATRIX)
+		modelMatrix[modelMatrix.size()-1]*=m;
+	else if(currentMatrix==VIEW_MATRIX)
+		viewMatrix[viewMatrix.size()-1]*=m;
+	matricesReady=false;
+}
 /*
 void pipeline::ABC()
 {

@@ -26,7 +26,8 @@ class EG_RenderTechnique_Skinning : public Technique_Shadow_Render
     ~EG_RenderTechnique_Skinning();
 
     void init(int nShaders);
-    void setBoneTransform(unsigned int pass, unsigned int index, const glm::mat4& transform);
+//    void setBoneTransform(unsigned int pass, unsigned int index, const glm::mat4& transform);
+    void setBoneTransforms(vector<glm::mat4>& transforms);
 
     void loadUniformLocations(pipeline& p, int RenderPassID);
 
