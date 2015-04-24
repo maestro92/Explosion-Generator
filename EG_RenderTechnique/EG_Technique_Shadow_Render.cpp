@@ -50,7 +50,10 @@ void Technique_Shadow_Render::init(int w, int h, int Shader_Num)
 */
 
 
+void Technique_Shadow_Render::init(int nShaders)
+{
 
+}
 
 
 void Technique_Shadow_Render::init(int w, int h, int Shader_Num)

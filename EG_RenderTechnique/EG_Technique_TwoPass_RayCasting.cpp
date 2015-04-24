@@ -14,6 +14,11 @@ Technique_TwoPass_Raycasting::~Technique_TwoPass_Raycasting()
 
 }
 
+void Technique_TwoPass_Raycasting::init(int nShaders)
+{
+
+}
+
 
 void Technique_TwoPass_Raycasting::init(int w, int h, int Shader_Num)
 {

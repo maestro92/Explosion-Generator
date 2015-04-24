@@ -11,6 +11,11 @@ EG_SkyBox::~EG_SkyBox()
     delete Skybox_Cube;
 }
 
+void EG_SkyBox::init(int nShaders)
+{
+
+}
+
 void EG_SkyBox::init()
 {
     allocateMemberVariables(1);
@@ -80,14 +85,15 @@ void EG_SkyBox::init()
 
 
     /// init skybox textures
-    std::string cube_filename[6];
-    cube_filename[0]="./images/Skybox pictures/Skybox_Moon_Right.png";   /// positive x
-	cube_filename[1]="./images/Skybox pictures/Skybox_Moon_Left.png";    /// negative x
-    cube_filename[2]="./images/Skybox pictures/Skybox_Moon_Top.png";     /// positive y
-	cube_filename[3]="./images/Skybox pictures/Skybox_Moon_Bottom.png";     /// negative y
-	cube_filename[4]="./images/Skybox pictures/Skybox_Moon_Front.png";   /// positive z
-	cube_filename[5]="./images/Skybox pictures/Skybox_Moon_Back.png";    /// negative z
-    Static_CubeMap_ColorTextureID = utility_function.Create_CubemapTexture(cube_filename);
+    std::string cube_filenames[6];
+    cube_filenames[0]="./images/Skybox pictures/Skybox_Moon_Right.png";   /// positive x
+	cube_filenames[1]="./images/Skybox pictures/Skybox_Moon_Left.png";    /// negative x
+    cube_filenames[2]="./images/Skybox pictures/Skybox_Moon_Top.png";     /// positive y
+	cube_filenames[3]="./images/Skybox pictures/Skybox_Moon_Bottom.png";     /// negative y
+	cube_filenames[4]="./images/Skybox pictures/Skybox_Moon_Front.png";   /// positive z
+	cube_filenames[5]="./images/Skybox pictures/Skybox_Moon_Back.png";    /// negative z
+//    Static_CubeMap_ColorTextureID = utility_function.Create_CubemapTexture(cube_filenames);
+    Static_CubeMap_ColorTextureID = utility_function.createCubemapTexture(cube_filenames);
 
     /// create the fbo
     /// 1 is to specify the number of framebuffer objects to be specified
@@ -95,10 +101,15 @@ void EG_SkyBox::init()
     glBindFramebuffer(GL_FRAMEBUFFER, CubeMapFBO);
 
 //    Dynamic_CubeMap_ColorTextureID = utility_function.Create_CubemapTexture();
-    Dynamic_CubeMap_ColorTextureID = utility_function.Create_CubemapTexture(cube_filename);
+//    Dynamic_CubeMap_ColorTextureID = utility_function.Create_CubemapTexture(cube_filename);
+    Dynamic_CubeMap_ColorTextureID = utility_function.createCubemapTexture(cube_filenames);
+
 
     /// create the uniform depth buffer
-    Dynamic_CubeMap_DepthTextureID = utility_function.Create_Texture(512, 512, true);
+    // Dynamic_CubeMap_DepthTextureID = utility_function.CreateTexture(512, 512, true);
+    Dynamic_CubeMap_DepthTextureID = utility_function.createDepthTexture(512, 512);
+
+
     glBindTexture(GL_TEXTURE_2D, Dynamic_CubeMap_DepthTextureID);
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_COMPARE_MODE, GL_COMPARE_R_TO_TEXTURE);
     glBindTexture(GL_TEXTURE_2D, 0);

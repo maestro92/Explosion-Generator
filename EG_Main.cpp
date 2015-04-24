@@ -6,6 +6,8 @@
 using namespace std;
 
 
+
+
 #define SPHERE_EFFECT 1
 #define CUBE_SPHERE_EFFECT 0
 
@@ -149,6 +151,8 @@ ExplosionGenerator::ExplosionGenerator()
 
     initModels();
     initObjects();
+    initGUI();
+
 #if SPHERE_EFFECT
     l_SphereEffect.InitParticle();
 #endif
@@ -206,7 +210,9 @@ void ExplosionGenerator::init_Texture_and_FrameBuffer()
     glGenFramebuffers(1,&FBO);
 	glBindFramebuffer(GL_FRAMEBUFFER,FBO);
 
-    shadowMap = utilityFunction.CreateTexture(shadowMapWidth, shadowMapheight, true);
+    // shadowMap = utilityFunction.CreateTexture(shadowMapWidth, shadowMapheight, true);
+    shadowMap = utilityFunction.createDepthTexture(shadowMapWidth, shadowMapheight);
+
     glBindTexture(GL_TEXTURE_2D, shadowMap);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_COMPARE_MODE, GL_COMPARE_R_TO_TEXTURE);
     glFramebufferTexture2D(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_TEXTURE_2D, shadowMap, 0);
@@ -224,7 +230,8 @@ void ExplosionGenerator::init_Texture_and_FrameBuffer()
     glGenFramebuffers(1,&FBO1);
 	glBindFramebuffer(GL_FRAMEBUFFER,FBO1);
     /// depthTexture
-    depthTexture = utilityFunction.CreateTexture(SCREEN_WIDTH, SCREEN_HEIGHT, true);
+//    depthTexture = utilityFunction.CreateTexture(SCREEN_WIDTH, SCREEN_HEIGHT, true);
+    depthTexture = utilityFunction.createDepthTexture(SCREEN_WIDTH, SCREEN_HEIGHT);
 
 
     i=glCheckFramebufferStatus(GL_FRAMEBUFFER);
@@ -344,6 +351,8 @@ void ExplosionGenerator::initModels()
     o_hugeWall        = new meshLoader("HugeWall.obj");
 
     testSphere.loadModel("./models/Sphere/sphere10_grey_flat.obj");
+    // testSphere.loadModel("./models/Sphere.ctm");
+
 
     bob.loadModel("./models/Characters/boblampclean.md5mesh");
     legoMan.loadModel("./models/Characters/Walking Lego.md5mesh");
@@ -400,6 +409,13 @@ void ExplosionGenerator::initObjects()
     o_animatedBob.setOrientation(-90, glm::vec3(1.0,0.0,0.0));
 }
 
+
+
+void ExplosionGenerator::initGUI()
+{
+    EG_Control::m_textRenderer.initialize();
+    m_lb.init();
+}
 
 void ExplosionGenerator::start()
 {
@@ -751,18 +767,6 @@ void ExplosionGenerator::update()
 ///************************Helper Functions**************************///
 
 
-void ExplosionGenerator::initTempTexture()
-{
-    glShadeModel( GL_SMOOTH );
-
-    glEnable(GL_TEXTURE_2D);
-    textureID = utilityFunction.Load_Texture("red clay.jpg");
-    if(textureID == false)
-    {
-        cout << "textureID is NULL" << glGetError << endl;
-        exit(1);
-    }
-}
 
 
 void ExplosionGenerator::GetLightPos_ModelView_Matrix()
@@ -858,9 +862,9 @@ void ExplosionGenerator::renderAnimatedObject(pipeline& p, int pass)
         thirdPersonPovCamera.render1(p, r_Technique, pass, modelPtr);
 
 
-  //  modelPtr = &bob;
-    //    r_skinning.setBoneTransforms(o_animatedBob.m_boneTransforms);
-    //    o_animatedBob.renderSingle(p, r_Technique, pass, modelPtr);
+    modelPtr = &bob;
+        r_skinning.setBoneTransforms(o_animatedBob.m_boneTransforms);
+        o_animatedBob.renderSingle(p, r_Technique, pass, modelPtr);
 }
 
 void ExplosionGenerator::RenderScene()

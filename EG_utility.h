@@ -27,9 +27,7 @@
 #include <cstdlib>
 #include <iostream>
 #include <stdio.h>
-#include <string>
-#include <sstream>
-#include <vector>
+
 
 #include "SDL/SDL.h"
 #include "SDL/SDL_image.h"
@@ -43,18 +41,23 @@ class EG_Utility
         EG_Utility();
         ~EG_Utility();
 
+        static void errorCheck();
+
         /// texture related
-        unsigned int Load_Texture(string filename, int background = 0, bool generate=false);
-        SDL_Surface* Load_CubeMapTexture(string filename);
-        unsigned int Create_Texture(int w, int h, bool isDepth);
-        GLuint CreateTexture(int w, int h, bool isDepth);
-        unsigned int Create_CubemapTexture();
-        unsigned int Create_CubemapTexture(string* filenames);
+        static SDL_Surface* loadRawImage(string filename);
+        static SDL_Surface* loadSDLImage(string filename);
+
+        static GLuint loadTexture(string filename);
+        static GLuint createTexture(int w, int h);
+        static GLuint createDepthTexture(int, int h);
+        static GLuint createCubemapTexture();
+        static GLuint createCubemapTexture(string* filenames);
+        static void setTextureParameters(int w, int h, int format);
+        static void setCubemapTextureParameters();
 
 
         template<typename T>
             static vector<T> reserveVector(int size);
-
 
         static glm::vec3 toGlmVec(aiVector3D& v2);
 //        static glm::mat4 toGlmMat(aiMatrix3x3& m2);

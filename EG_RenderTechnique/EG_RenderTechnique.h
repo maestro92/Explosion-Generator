@@ -56,7 +56,7 @@ class EG_RenderTechnique
         virtual ~EG_RenderTechnique();
 
         virtual void init();
-     //   virtual void init(int nShaders);
+        virtual void init(int nShaders) = 0;
 
         void allocateMemberVariables(int nShaders);
         void initMemberVariables();

@@ -9,7 +9,9 @@ class EG_DeferredShadingLightPass : public EG_RenderTechnique
     public:
         EG_DeferredShadingLightPass();
         ~EG_DeferredShadingLightPass();
-        void init(int shaderCount);
+ //       void init(int shaderCount);
+        void init(int nShaders);
+
         void initLightPass(int shaderId);
         void setColorTextureUnit(unsigned int TextureUnit);
         void setPositionTextureUnit(unsigned int TextureUnit);

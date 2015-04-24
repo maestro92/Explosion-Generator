@@ -13,7 +13,8 @@ class EG_Quad
 		~EG_Quad();
         mesh* quad;
         void init();
-
+        void init(int w, int h);
+        void init(int w, int h, float cx, float cy, float cw);
 };
 
 

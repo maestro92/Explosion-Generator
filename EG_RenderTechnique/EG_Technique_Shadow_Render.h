@@ -46,6 +46,7 @@ class Technique_Shadow_Render : public EG_RenderTechnique
         GLuint m_matSpecularPowerLocation;
 
       //  void init(int w, int h);
+        void init(int nShaders);
         void init(int w, int h, int Shader_Num);
         void loadUniformLocations(pipeline& p, int RenderPassID);
 

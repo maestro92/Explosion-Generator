@@ -62,6 +62,15 @@ bool EG_DeferredShadingLightPass::init(int shaderCount)
 }
 #endif
 
+
+void EG_DeferredShadingLightPass::init(int nShaders)
+{
+
+}
+
+
+
+
 void EG_DeferredShadingLightPass::initLightPass(int shaderId)
 {
 	m_posTextureUnitLocation        = GetUniformLocation(m_shaders[shaderId], "gPositionMap");

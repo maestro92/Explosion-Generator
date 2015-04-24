@@ -37,6 +37,7 @@ class EG_SkyBox : public EG_RenderTechnique
         GLuint Cubemap_UniLoc;
 
         void init();
+        void init(int nShaders);
         void RenderSkyBox(Shader* skybox_shader);
         void RenderSkyBox(Shader* skybox_shader, pipeline& m_pipeline);
         void render(Shader* skybox_shader);

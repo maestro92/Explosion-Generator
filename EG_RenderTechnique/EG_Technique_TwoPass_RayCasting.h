@@ -26,6 +26,7 @@ class Technique_TwoPass_Raycasting : public EG_RenderTechnique
         Technique_TwoPass_Raycasting();
         ~Technique_TwoPass_Raycasting();
 
+        virtual void init(int nShaders);
         void init(int w, int h, int Shader_Num);
 
         void Load_glUniform(Matrices_Location& Mat_Loc, Matrices_t& Mat);

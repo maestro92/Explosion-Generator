@@ -58,6 +58,16 @@
 		<Unit filename="EG_Camera/EG_ThirdPersonPovCamera.h" />
 		<Unit filename="EG_GBuffer.cpp" />
 		<Unit filename="EG_GBuffer.h" />
+		<Unit filename="EG_GUI/EG_Button.cpp" />
+		<Unit filename="EG_GUI/EG_Button.h" />
+		<Unit filename="EG_GUI/EG_Control.cpp" />
+		<Unit filename="EG_GUI/EG_Control.h" />
+		<Unit filename="EG_GUI/EG_Label.cpp" />
+		<Unit filename="EG_GUI/EG_Label.h" />
+		<Unit filename="EG_GUI/EG_ListBox.cpp" />
+		<Unit filename="EG_GUI/EG_ListBox.h" />
+		<Unit filename="EG_GUI/EG_Text.cpp" />
+		<Unit filename="EG_GUI/EG_Text.h" />
 		<Unit filename="EG_Light/EG_AllLights.cpp" />
 		<Unit filename="EG_Light/EG_AllLights.h" />
 		<Unit filename="EG_Light/EG_BaseLight.cpp" />
@@ -76,8 +86,6 @@
 		<Unit filename="EG_Model/EG_DynamicModel.h" />
 		<Unit filename="EG_Model/EG_Model.cpp" />
 		<Unit filename="EG_Model/EG_Model.h" />
-		<Unit filename="EG_Model/EG_StaticModel.cpp" />
-		<Unit filename="EG_Model/EG_StaticModel.h" />
 		<Unit filename="EG_RenderTechnique/EG_DeferredShadingLightPass/EG_DeferredShadingDirectionalLightPass.cpp" />
 		<Unit filename="EG_RenderTechnique/EG_DeferredShadingLightPass/EG_DeferredShadingDirectionalLightPass.h" />
 		<Unit filename="EG_RenderTechnique/EG_DeferredShadingLightPass/EG_DeferredShadingLightPass.cpp" />
@@ -98,6 +106,8 @@
 		<Unit filename="EG_RenderTechnique/EG_DeferredShading/EG_DeferredShadingStencilPass.h" />
 		<Unit filename="EG_RenderTechnique/EG_RenderTechnique.cpp" />
 		<Unit filename="EG_RenderTechnique/EG_RenderTechnique.h" />
+		<Unit filename="EG_RenderTechnique/EG_RenderTechnique_FullColor.cpp" />
+		<Unit filename="EG_RenderTechnique/EG_RenderTechnique_FullColor.h" />
 		<Unit filename="EG_RenderTechnique/EG_RenderTechnique_RenderDepthToTexture.cpp" />
 		<Unit filename="EG_RenderTechnique/EG_RenderTechnique_RenderDepthToTexture.h" />
 		<Unit filename="EG_RenderTechnique/EG_RenderTechnique_RenderTexture.cpp" />
@@ -106,6 +116,10 @@
 		<Unit filename="EG_RenderTechnique/EG_RenderTechnique_Skinning.h" />
 		<Unit filename="EG_RenderTechnique/EG_RenderTechnique_Skybox.cpp" />
 		<Unit filename="EG_RenderTechnique/EG_RenderTechnique_Skybox.h" />
+		<Unit filename="EG_RenderTechnique/EG_Renderer_GUI/EG_Renderer_Label.cpp" />
+		<Unit filename="EG_RenderTechnique/EG_Renderer_GUI/EG_Renderer_Label.h" />
+		<Unit filename="EG_RenderTechnique/EG_Renderer_GUI/EG_Renderer_Text.cpp" />
+		<Unit filename="EG_RenderTechnique/EG_Renderer_GUI/EG_Renderer_Text.h" />
 		<Unit filename="EG_RenderTechnique/EG_Technique_Reflection.cpp" />
 		<Unit filename="EG_RenderTechnique/EG_Technique_Reflection.h" />
 		<Unit filename="EG_RenderTechnique/EG_Technique_Shadow_Render.cpp" />

@@ -18,6 +18,11 @@ void EG_RenderTechnique::init()
 
 }
 
+void EG_RenderTechnique::init(int nShaders)
+{
+
+}
+
 
 void EG_RenderTechnique::allocateMemberVariables(int nShaders)
 {

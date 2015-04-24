@@ -12,6 +12,13 @@ EG_DeferredShading::~EG_DeferredShading()
 
 }
 
+
+void EG_DeferredShading::init(int nShaders)
+{
+
+}
+
+
 void EG_DeferredShading::initStencilUniformLocation(int shaderId)
 {
 	m_stencilFlagUniformLocation = GetUniformLocation(m_shaders[shaderId], "stencilFlag");

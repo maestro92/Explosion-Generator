@@ -12,6 +12,7 @@ class EG_DeferredShading : public EG_RenderTechnique
         EG_DeferredShading();
         ~EG_DeferredShading();
 
+        virtual void init(int nShaders);
         virtual void initStencilUniformLocation(int shaderId);
         virtual void setStencilFlag(glm::vec3 stencilFlag);
         void loadUniformLocations(pipeline& p, int RenderPassID);

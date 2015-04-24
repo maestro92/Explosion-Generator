@@ -33,6 +33,25 @@ void pipeline::loadIdentity()
 	matricesReady=false;
 }
 
+
+void pipeline::reset()
+{
+    modelMatrix.clear();
+	viewMatrix.clear();
+	projectionMatrix.clear();
+
+	modelMatrix.push_back(glm::mat4(1.0));
+	viewMatrix.push_back(glm::mat4(1.0));
+	projectionMatrix.push_back(glm::mat4(1.0));
+
+	modelViewMatrix=glm::mat4(1.0);
+	modelViewProjectionMatrix=glm::mat4(1.0);
+	normalMatrix=glm::mat3(1.0);
+	matricesReady=true;
+	currentMatrix=0;
+}
+
+
 bool pipeline::matrixMode(int m)
 {
 	if(m==MODEL_MATRIX || m==VIEW_MATRIX || m==PROJECTION_MATRIX)
@@ -215,6 +234,39 @@ glm::mat4 pipeline::getModelViewProjectionMatrix()
 }
 
 
+
+
+
+void pipeline::pushMatrix()      // glPushMatrix()
+{
+    glm::mat4 matrix;
+
+    if ( currentMatrix == MODEL_MATRIX )
+    {
+        if(modelMatrix.size() < 1)
+            return;
+        matrix = modelMatrix[modelMatrix.size()-1];
+        modelMatrix.push_back(matrix);
+    }
+
+    else if ( currentMatrix == VIEW_MATRIX )
+    {
+        if(viewMatrix.size() < 1)
+            return;
+        matrix = viewMatrix[modelMatrix.size()-1];
+        viewMatrix.push_back(matrix);
+    }
+    else
+    {
+        if(projectionMatrix.size() < 1)
+            return;
+        matrix = projectionMatrix[projectionMatrix.size()-1];
+        projectionMatrix.push_back(matrix);
+    }
+
+}
+
+/*
 void pipeline::pushMatrix()      // glPushMatrix()
 {
     glm::mat4 matrix;
@@ -235,8 +287,10 @@ void pipeline::pushMatrix()      // glPushMatrix()
         matrix = projectionMatrix[projectionMatrix.size()-1];
         projectionMatrix.push_back(matrix);
     }
-
 }
+*/
+
+
 
 void pipeline::popMatrix()       // glPopMatrix()
 {

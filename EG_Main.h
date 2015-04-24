@@ -38,6 +38,12 @@
 #include "EG_Shader.h"
 #include "sceneLoader.h"
 
+
+/// GUI
+#include "EG_Label.h"
+
+
+/// Render Techniques
 #include "EG_Technique_TwoPass_RayCasting.h"
 #include "EG_Technique_Shadow_Render.h"
 #include "EG_Technique_Reflection.h"
@@ -263,7 +269,7 @@ class ExplosionGenerator
 
         Matrices_t ReflectionSmoke;
 
-
+        EG_Label m_lb;
     public:
 
         ExplosionGenerator();
@@ -279,7 +285,8 @@ class ExplosionGenerator
         void initModels();
         void initObjects();
         void initLights();
-        void initTempTexture();
+
+        void initGUI();
 
         void init_Texture_and_FrameBuffer();
 

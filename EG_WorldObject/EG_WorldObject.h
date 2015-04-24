@@ -126,21 +126,21 @@ class WorldObject
                             int RenderPassID,
                             meshLoader* model);
 
-        virtual void renderGroup(  pipeline& m_pipeline,
+        virtual void renderGroup(   pipeline& m_pipeline,
                                     EG_RenderTechnique* RenderTechnique,
                                     int RenderPassID,
                                     meshLoader* model);
 
 
         void renderGroup(   pipeline& m_pipeline,
-                                    EG_RenderTechnique* RenderTechnique,
-                                    int RenderPassID,
-                                    EG_Model* model);
+                            EG_RenderTechnique* RenderTechnique,
+                            int RenderPassID,
+                            EG_Model* model);
 
         void renderSingle(  pipeline& m_pipeline,
-                                    EG_RenderTechnique* RenderTechnique,
-                                    int RenderPassID,
-                                    EG_Model* model);
+                            EG_RenderTechnique* RenderTechnique,
+                            int RenderPassID,
+                            EG_Model* model);
 
         // destructor
         /*
