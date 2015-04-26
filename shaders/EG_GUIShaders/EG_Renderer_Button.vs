@@ -2,18 +2,15 @@
 
 uniform mat4 m_ModelviewProjection;
 
-
 layout (location = 0) in vec3 vertex;
-layout (location = 1) in vec2 UV;
+layout (location = 2) in vec3 color;
 
-out vec2 outUV;
-
+out vec3 outColor;
 
 void main()
 {
-	outUV = UV;
+	outColor = color;
 	gl_Position= m_ModelviewProjection*vec4(vertex,1.0);
-//	gl_Position = vec4(vertex, 1.0);
 }
 
 

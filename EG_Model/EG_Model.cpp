@@ -20,26 +20,14 @@ EG_Model::EG_Model(int count)
 }
 
 
+
+
+
 EG_Model::~EG_Model()
 {
     clear();
 }
 
-/*
-void EG_Model::genGLVertexBuffer(GLuint& id, vector<Vertex>& Vertices)
-{
-    glGenBuffers(1, &id);
-  	glBindBuffer(GL_ARRAY_BUFFER, id);
-	glBufferData(GL_ARRAY_BUFFER, sizeof(Vertex) * Vertices.size(), &Vertices[0], GL_STATIC_DRAW);
-}
-
-void EG_Model::genGLIndexBuffer(GLuint& id, vector<unsigned int>& Indices)
-{
-    glGenBuffers(1, &id);
-    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, id);
-    glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(unsigned int) * Indices.size(), &Indices[0], GL_STATIC_DRAW);
-}
-*/
 
 void EG_Model::clear()
 {
@@ -297,7 +285,10 @@ bool EG_Model::initMaterials(const aiScene* pScene, const std::string& Filename)
 }
 
 
-
+/*
+Vertex Array Performance
+http://www.openglsuperbible.com/2013/12/09/vertex-array-performance/
+*/
 
 void EG_Model::render()
 {
@@ -312,6 +303,7 @@ void EG_Model::render()
         if(m_Textures[MaterialIndex])
             m_Textures[MaterialIndex]->Bind(GL_TEXTURE0);
 
+        /// m_Meshes[i].BaseVertex is the indices offset
         glDrawElementsBaseVertex(GL_TRIANGLES,
                                  m_Meshes[i].NumIndices,
                                  GL_UNSIGNED_INT,

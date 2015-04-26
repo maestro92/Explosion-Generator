@@ -13907,7 +13907,7 @@
 	<SDL/SDL_image.h>
 	"mesh.h"
 
-1421306135 d:\martin\programming\c and c++\sdl\explosion generator\mesh.h
+1429920519 d:\martin\programming\c and c++\sdl\explosion generator\mesh.h
 	<iostream>
 	"meshData.h"
 	<GL/glew.h>
@@ -13935,13 +13935,14 @@
 	<cstdio>
 	"glm/glm.hpp"
 
-1427052257 source:d:\martin\programming\c and c++\sdl\explosion generator\l_sphereparticleeffect.cpp
+1430020017 source:d:\martin\programming\c and c++\sdl\explosion generator\l_sphereparticleeffect.cpp
 	"L_SphereParticleEffect.h"
 	"gl/gl.h"
 	"gl/glu.h"
 
-1427051927 d:\martin\programming\c and c++\sdl\explosion generator\l_sphereparticleeffect.h
+1430018182 d:\martin\programming\c and c++\sdl\explosion generator\l_sphereparticleeffect.h
 	"EG_Model.h"
+	"EG_Model/EG_ModelABS.h"
 	"pipeline.h"
 	"EG_RenderTechnique.h"
 	"EG_Technique_Shadow_Render.h"
@@ -14035,7 +14036,7 @@
 	"vector3d.h"
 	"define.h"
 
-1427053232 source:d:\martin\programming\c and c++\sdl\explosion generator\mesh.cpp
+1430016594 source:d:\martin\programming\c and c++\sdl\explosion generator\mesh.cpp
 	"mesh.h"
 
 1416694119 source:d:\martin\programming\c and c++\sdl\explosion generator\orbit_camera.cpp
@@ -36737,7 +36738,7 @@
 1427764371 source:d:\martin\programming\c and c++\sdl\explosion generator 2099 99 99 infinity\eg_camera\eg_thirdpersonpovcamera.cpp
 	"EG_ThirdPersonPovCamera.h"
 
-1427765226 d:\martin\programming\c and c++\sdl\explosion generator 2099 99 99 infinity\eg_camera\eg_thirdpersonpovcamera.h
+1429988148 d:\martin\programming\c and c++\sdl\explosion generator 2099 99 99 infinity\eg_camera\eg_thirdpersonpovcamera.h
 	<GL/glew.h>
 	"EG_Camera.h"
 	"EG_Skybox.h"
@@ -36755,7 +36756,7 @@
 	"EG_RenderTechnique.h"
 	"EG_WorldAnimatedObject.h"
 	"EG_Model.h"
-	"EG_DynamicModel.h"
+	"EG_ImportedAnimatedModel.h"
 
 1421872420 source:d:\martin\programming\c and c++\sdl\explosion generator 2099 99 99 infinity\eg_gbuffer.cpp
 	"EG_GBuffer.h"
@@ -37251,7 +37252,7 @@
 	<SDL/SDL_image.h>
 	"mesh.h"
 
-1421306135 d:\martin\programming\c and c++\sdl\explosion generator 2099 99 99 infinity\mesh.h
+1429920519 d:\martin\programming\c and c++\sdl\explosion generator 2099 99 99 infinity\mesh.h
 	<iostream>
 	"meshData.h"
 	<GL/glew.h>
@@ -37275,13 +37276,14 @@
 	<cstdio>
 	"glm/glm.hpp"
 
-1427052257 source:d:\martin\programming\c and c++\sdl\explosion generator 2099 99 99 infinity\l_sphereparticleeffect.cpp
+1430020017 source:d:\martin\programming\c and c++\sdl\explosion generator 2099 99 99 infinity\l_sphereparticleeffect.cpp
 	"L_SphereParticleEffect.h"
 	"gl/gl.h"
 	"gl/glu.h"
 
-1427051927 d:\martin\programming\c and c++\sdl\explosion generator 2099 99 99 infinity\l_sphereparticleeffect.h
+1430018182 d:\martin\programming\c and c++\sdl\explosion generator 2099 99 99 infinity\l_sphereparticleeffect.h
 	"EG_Model.h"
+	"EG_Model/EG_ModelABS.h"
 	"pipeline.h"
 	"EG_RenderTechnique.h"
 	"EG_Technique_Shadow_Render.h"
@@ -37294,7 +37296,7 @@
 	"CollisionDetection_HGrid.h"
 	"Random.h"
 
-1427053232 source:d:\martin\programming\c and c++\sdl\explosion generator 2099 99 99 infinity\mesh.cpp
+1430016594 source:d:\martin\programming\c and c++\sdl\explosion generator 2099 99 99 infinity\mesh.cpp
 	"mesh.h"
 
 1429908366 source:d:\martin\programming\c and c++\sdl\explosion generator 2099 99 99 infinity\pipeline.cpp
@@ -37306,13 +37308,13 @@
 1421306293 source:d:\martin\programming\c and c++\sdl\explosion generator 2099 99 99 infinity\sceneloader.cpp
 	"sceneLoader.h"
 
-1429913907 source:d:\martin\programming\c and c++\sdl\explosion generator 2099 99 99 infinity\eg_main.cpp
+1430042305 source:d:\martin\programming\c and c++\sdl\explosion generator 2099 99 99 infinity\eg_main.cpp
 	"EG_Main.h"
 	"gl/gl.h"
 	"gl/glu.h"
 	"SDL\SDL.h"
 
-1429913896 d:\martin\programming\c and c++\sdl\explosion generator 2099 99 99 infinity\eg_main.h
+1430040783 d:\martin\programming\c and c++\sdl\explosion generator 2099 99 99 infinity\eg_main.h
 	<cstdlib>
 	<iostream>
 	<stdio.h>
@@ -37323,7 +37325,7 @@
 	"EG_SpotLight.h"
 	"EG_DirectionalLight.h"
 	"EG_AllLights.h"
-	"EG_DynamicModel.h"
+	"EG_ImportedAnimatedModel.h"
 	"EG_DeferredShadingGeometryPass.h"
 	"EG_DeferredShadingSkybox.h"
 	"EG_DeferredShadingReflection.h"
@@ -37335,6 +37337,7 @@
 	"EG_FirstPersonPovCamera.h"
 	"EG_ThirdPersonPovCamera.h"
 	"EG_Model.h"
+	"EG_ImportedModel.h"
 	"EG_DeferredShading.h"
 	"EG_GBuffer.h"
 	"EG_utility.h"
@@ -37348,11 +37351,14 @@
 	"EG_RenderTechnique_RenderTexture.h"
 	"EG_RenderTechnique_RenderDepthToTexture.h"
 	"EG_RenderTechnique_Skinning.h"
+	"EG_Renderer_Text.h"
+	"EG_Renderer_Button.h"
+	"EG_Button.h"
 	"EG_WorldAnimatedObject.h"
-	"EG_WorldAxis.h"
+	"EG_XYZAxis.h"
 	"EG_WorldBox.h"
 	"EG_WorldSphere.h"
-	"EG_Quad.h"
+	"EG_QuadModel.h"
 	"pipeline.h"
 	"L_SphereParticleEffect.h"
 	"L_Cube_Sphere_ParticleEffect.h"
@@ -37433,11 +37439,11 @@
 	<assimp/postprocess.h>
 	"texture.h"
 
-1427597649 source:d:\martin\programming\c and c++\sdl\explosion generator 2099 99 99 infinity\eg_model\eg_model.cpp
+1429952408 source:d:\martin\programming\c and c++\sdl\explosion generator 2099 99 99 infinity\eg_model\eg_model.cpp
 	<assert.h>
 	"EG_Model.h"
 
-1427590991 d:\martin\programming\c and c++\sdl\explosion generator 2099 99 99 infinity\eg_model\eg_model.h
+1429925671 d:\martin\programming\c and c++\sdl\explosion generator 2099 99 99 infinity\eg_model\eg_model.h
 	<GL/glew.h>
 	"define.h"
 	"EG_Utility.h"
@@ -37499,7 +37505,7 @@
 1429915976 d:\martin\programming\c and c++\sdl\explosion generator 2099 99 99 infinity\eg_rendertechnique\eg_deferredshadinglightpass\eg_deferredshadinglightpass.h
 	"EG_RenderTechnique.h"
 
-1427640765 source:d:\martin\programming\c and c++\sdl\explosion generator 2099 99 99 infinity\eg_rendertechnique\eg_deferredshadinglightpass\eg_deferredshadinglightpass.cpp
+1429915953 source:d:\martin\programming\c and c++\sdl\explosion generator 2099 99 99 infinity\eg_rendertechnique\eg_deferredshadinglightpass\eg_deferredshadinglightpass.cpp
 	"EG_DeferredShadingLightPass.h"
 
 1427514332 source:d:\martin\programming\c and c++\sdl\explosion generator 2099 99 99 infinity\eg_rendertechnique\eg_deferredshadinglightpass\eg_deferredshadingpointlightpass.cpp
@@ -37533,7 +37539,7 @@
 1427507977 source:d:\martin\programming\c and c++\sdl\explosion generator 2099 99 99 infinity\eg_rendertechnique\eg_rendertechnique_rendertexture.cpp
 	"EG_RenderTechnique_RenderTexture.h"
 
-1421977788 d:\martin\programming\c and c++\sdl\explosion generator 2099 99 99 infinity\eg_rendertechnique\eg_rendertechnique_rendertexture.h
+1429951384 d:\martin\programming\c and c++\sdl\explosion generator 2099 99 99 infinity\eg_rendertechnique\eg_rendertechnique_rendertexture.h
 	"pipeline.h"
 	<GL/glew.h>
 	<cstdlib>
@@ -37541,7 +37547,7 @@
 	<stdio.h>
 	<string>
 	<sstream>
-	"EG_Quad.h"
+	"EG_QuadModel.h"
 	"EG_RenderTechnique.h"
 
 1423621415 source:d:\martin\programming\c and c++\sdl\explosion generator 2099 99 99 infinity\eg_rendertechnique\eg_rendertechnique_skybox.cpp
@@ -37769,13 +37775,13 @@
 1427788035 source:d:\martin\programming\c and c++\sdl\explosion generator 2099 99 99 infinity\eg_rendertechnique\eg_rendertechnique_fullcolor.cpp
 	"EG_RenderTechnique.h"
 
-1429908192 source:d:\martin\programming\c and c++\sdl\explosion generator 2099 99 99 infinity\eg_gui\eg_button.cpp
+1430043254 source:d:\martin\programming\c and c++\sdl\explosion generator 2099 99 99 infinity\eg_gui\eg_button.cpp
 	"EG_Button.h"
 
-1429908172 d:\martin\programming\c and c++\sdl\explosion generator 2099 99 99 infinity\eg_gui\eg_button.h
+1430042316 d:\martin\programming\c and c++\sdl\explosion generator 2099 99 99 infinity\eg_gui\eg_button.h
 	"EG_Control.h"
 
-1429913786 d:\martin\programming\c and c++\sdl\explosion generator 2099 99 99 infinity\eg_gui\eg_control.h
+1430043021 d:\martin\programming\c and c++\sdl\explosion generator 2099 99 99 infinity\eg_gui\eg_control.h
 	"pipeline.h"
 	"define.h"
 	"EG_Utility.h"
@@ -37786,12 +37792,14 @@
 	<iostream>
 	<string>
 
-1429909632 d:\martin\programming\c and c++\sdl\explosion generator 2099 99 99 infinity\eg_gui\eg_text.h
+1430043198 d:\martin\programming\c and c++\sdl\explosion generator 2099 99 99 infinity\eg_gui\eg_text.h
 	"pipeline.h"
 	"define.h"
 	"EG_Utility.h"
-	"EG_Quad.h"
+	"EG_QuadModel.h"
+	"EG_QuadModelABS.h"
 	"EG_RenderTechnique.h"
+	"EG_Renderer_text.h"
 	<GL/glew.h>
 	"SDL/SDL_opengl.h"
 	<vector>
@@ -37799,10 +37807,10 @@
 	<string>
 	<unordered_map>
 
-1429913790 source:d:\martin\programming\c and c++\sdl\explosion generator 2099 99 99 infinity\eg_gui\eg_control.cpp
+1430043362 source:d:\martin\programming\c and c++\sdl\explosion generator 2099 99 99 infinity\eg_gui\eg_control.cpp
 	"EG_Control.h"
 
-1429914339 source:d:\martin\programming\c and c++\sdl\explosion generator 2099 99 99 infinity\eg_gui\eg_label.cpp
+1429919724 source:d:\martin\programming\c and c++\sdl\explosion generator 2099 99 99 infinity\eg_gui\eg_label.cpp
 	"EG_Label.h"
 
 1429912214 d:\martin\programming\c and c++\sdl\explosion generator 2099 99 99 infinity\eg_gui\eg_label.h
@@ -37825,13 +37833,13 @@
 	<vector>
 	"EG_Control.h"
 
-1429909655 source:d:\martin\programming\c and c++\sdl\explosion generator 2099 99 99 infinity\eg_gui\eg_text.cpp
+1430043185 source:d:\martin\programming\c and c++\sdl\explosion generator 2099 99 99 infinity\eg_gui\eg_text.cpp
 	"EG_Text.h"
 
 1429915422 source:d:\martin\programming\c and c++\sdl\explosion generator 2099 99 99 infinity\eg_rendertechnique\eg_renderer_gui\eg_renderer_label.cpp
 	"EG_Renderer_Label.h"
 
-1429915594 source:d:\martin\programming\c and c++\sdl\explosion generator 2099 99 99 infinity\eg_rendertechnique\eg_renderer_gui\eg_renderer_text.cpp
+1429921055 source:d:\martin\programming\c and c++\sdl\explosion generator 2099 99 99 infinity\eg_rendertechnique\eg_renderer_gui\eg_renderer_text.cpp
 	"EG_Renderer_Text.h"
 
 1429915488 d:\martin\programming\c and c++\sdl\explosion generator 2099 99 99 infinity\eg_rendertechnique\eg_renderer_gui\eg_renderer_label.h
@@ -37845,7 +37853,108 @@
 	"EG_Quad.h"
 	"EG_RenderTechnique.h"
 
-1429915246 d:\martin\programming\c and c++\sdl\explosion generator 2099 99 99 infinity\eg_rendertechnique\eg_renderer_gui\eg_renderer_text.h
+1429919262 d:\martin\programming\c and c++\sdl\explosion generator 2099 99 99 infinity\eg_rendertechnique\eg_renderer_gui\eg_renderer_text.h
+	"pipeline.h"
+	<GL/glew.h>
+	<cstdlib>
+	<iostream>
+	<stdio.h>
+	<string>
+	<sstream>
+	"EG_Quad.h"
+	"EG_RenderTechnique.h"
+
+1429917135 source:d:\martin\programming\c and c++\sdl\explosion generator 2099 99 99 infinity\eg_rendertechnique\eg_renderer_gui\eg_renderer_control.cpp
+
+1429908540 source:d:\martin\programming\c and c++\sdl\explosion generator 2099 99 99 infinity\eg_model\eg_quad.cpp
+	"EG_Quad.h"
+
+1429908515 d:\martin\programming\c and c++\sdl\explosion generator 2099 99 99 infinity\eg_model\eg_quad.h
+	"sceneLoader.h"
+
+1429924015 source:d:\martin\programming\c and c++\sdl\explosion generator 2099 99 99 infinity\eg_model\eg_cube.cpp
+
+1429950900 source:d:\martin\programming\c and c++\sdl\explosion generator 2099 99 99 infinity\eg_model\eg_xyzaxis.cpp
+	"EG_XYZAxis.h"
+	"EG_WorldXYZAxis.h"
+
+1429924918 d:\martin\programming\c and c++\sdl\explosion generator 2099 99 99 infinity\eg_model\eg_xyzaxis.h
+	<iostream>
+	<cstdlib>
+	"pipeline.h"
+	"mesh.h"
+	"sceneLoader.h"
+	"EG_WorldObject.h"
+	"EG_RenderTechnique.h"
+
+1429924015 source:d:\martin\programming\c and c++\sdl\explosion generator 2099 99 99 infinity\eg_model\eg_cubemodel.cpp
+
+1429951085 source:d:\martin\programming\c and c++\sdl\explosion generator 2099 99 99 infinity\eg_model\eg_quadmodel.cpp
+	"EG_QuadModel.h"
+
+1429951261 d:\martin\programming\c and c++\sdl\explosion generator 2099 99 99 infinity\eg_model\eg_quadmodel.h
+	"sceneLoader.h"
+
+1429987381 source:d:\martin\programming\c and c++\sdl\explosion generator 2099 99 99 infinity\eg_model\eg_importedanimatedmodel.cpp
+	"EG_ImportedAnimatedModel.h"
+
+1429987359 d:\martin\programming\c and c++\sdl\explosion generator 2099 99 99 infinity\eg_model\eg_importedanimatedmodel.h
+	"EG_Model.h"
+	"define.h"
+	<cstdlib>
+	<iostream>
+	<stdio.h>
+	<string>
+	<sstream>
+	<vector>
+
+1429951516 source:d:\martin\programming\c and c++\sdl\explosion generator 2099 99 99 infinity\eg_model\eg_importedmodel.cpp
+
+1429997797 source:d:\martin\programming\c and c++\sdl\explosion generator 2099 99 99 infinity\eg_model\eg_mesh.cpp
+	"EG_Mesh.h"
+
+1429997939 d:\martin\programming\c and c++\sdl\explosion generator 2099 99 99 infinity\eg_model\eg_mesh.h
+	"EG_VertexData.h"
+	<GL/glew.h>
+	"SDL/SDL_opengl.h"
+	<vector>
+	<string>
+
+1429998027 d:\martin\programming\c and c++\sdl\explosion generator 2099 99 99 infinity\eg_model\eg_vertexdata.h
+	"define.h"
+	<GL/glew.h>
+
+1430016705 source:d:\martin\programming\c and c++\sdl\explosion generator 2099 99 99 infinity\eg_model\eg_modelabs.cpp
+	<assert.h>
+	"EG_ModelABS.h"
+
+1429998157 d:\martin\programming\c and c++\sdl\explosion generator 2099 99 99 infinity\eg_model\eg_modelabs.h
+	<GL/glew.h>
+	"define.h"
+	"EG_Utility.h"
+	<cstdlib>
+	<iostream>
+	<stdio.h>
+	<string>
+	<sstream>
+	<vector>
+	<assimp/cimport.h>
+	<assimp/Importer.hpp>
+	<assimp/scene.h>
+	<assimp/postprocess.h>
+	"texture.h"
+	"EG_Mesh.h"
+
+1430025185 source:d:\martin\programming\c and c++\sdl\explosion generator 2099 99 99 infinity\eg_model\eg_quadmodelabs.cpp
+	"EG_QuadModelABS.h"
+
+1430025000 d:\martin\programming\c and c++\sdl\explosion generator 2099 99 99 infinity\eg_model\eg_quadmodelabs.h
+	"EG_ModelABS.h"
+
+1430040645 source:d:\martin\programming\c and c++\sdl\explosion generator 2099 99 99 infinity\eg_rendertechnique\eg_renderer_gui\eg_renderer_button.cpp
+	"EG_Renderer_Button.h"
+
+1430041758 d:\martin\programming\c and c++\sdl\explosion generator 2099 99 99 infinity\eg_rendertechnique\eg_renderer_gui\eg_renderer_button.h
 	"pipeline.h"
 	<GL/glew.h>
 	<cstdlib>
@@ -37887,7 +37996,7 @@
 1427764371 source:d:\martin\programming\c and c++\sdl\explosion generator\eg_camera\eg_thirdpersonpovcamera.cpp
 	"EG_ThirdPersonPovCamera.h"
 
-1427765226 d:\martin\programming\c and c++\sdl\explosion generator\eg_camera\eg_thirdpersonpovcamera.h
+1429988148 d:\martin\programming\c and c++\sdl\explosion generator\eg_camera\eg_thirdpersonpovcamera.h
 	<GL/glew.h>
 	"EG_Camera.h"
 	"EG_Skybox.h"
@@ -37905,7 +38014,7 @@
 	"EG_RenderTechnique.h"
 	"EG_WorldAnimatedObject.h"
 	"EG_Model.h"
-	"EG_DynamicModel.h"
+	"EG_ImportedAnimatedModel.h"
 
 1421872420 source:d:\martin\programming\c and c++\sdl\explosion generator\eg_gbuffer.cpp
 	"EG_GBuffer.h"
@@ -37914,13 +38023,13 @@
 	"define.h"
 	<GL/glew.h>
 
-1429908192 source:d:\martin\programming\c and c++\sdl\explosion generator\eg_gui\eg_button.cpp
+1430043429 source:d:\martin\programming\c and c++\sdl\explosion generator\eg_gui\eg_button.cpp
 	"EG_Button.h"
 
-1429908172 d:\martin\programming\c and c++\sdl\explosion generator\eg_gui\eg_button.h
+1430042316 d:\martin\programming\c and c++\sdl\explosion generator\eg_gui\eg_button.h
 	"EG_Control.h"
 
-1429913786 d:\martin\programming\c and c++\sdl\explosion generator\eg_gui\eg_control.h
+1430043021 d:\martin\programming\c and c++\sdl\explosion generator\eg_gui\eg_control.h
 	"pipeline.h"
 	"define.h"
 	"EG_Utility.h"
@@ -37931,12 +38040,14 @@
 	<iostream>
 	<string>
 
-1429909632 d:\martin\programming\c and c++\sdl\explosion generator\eg_gui\eg_text.h
+1430043198 d:\martin\programming\c and c++\sdl\explosion generator\eg_gui\eg_text.h
 	"pipeline.h"
 	"define.h"
 	"EG_Utility.h"
-	"EG_Quad.h"
+	"EG_QuadModel.h"
+	"EG_QuadModelABS.h"
 	"EG_RenderTechnique.h"
+	"EG_Renderer_text.h"
 	<GL/glew.h>
 	"SDL/SDL_opengl.h"
 	<vector>
@@ -37944,10 +38055,10 @@
 	<string>
 	<unordered_map>
 
-1429913790 source:d:\martin\programming\c and c++\sdl\explosion generator\eg_gui\eg_control.cpp
+1430043362 source:d:\martin\programming\c and c++\sdl\explosion generator\eg_gui\eg_control.cpp
 	"EG_Control.h"
 
-1429914339 source:d:\martin\programming\c and c++\sdl\explosion generator\eg_gui\eg_label.cpp
+1429919724 source:d:\martin\programming\c and c++\sdl\explosion generator\eg_gui\eg_label.cpp
 	"EG_Label.h"
 
 1429912214 d:\martin\programming\c and c++\sdl\explosion generator\eg_gui\eg_label.h
@@ -37970,7 +38081,7 @@
 	<vector>
 	"EG_Control.h"
 
-1429909655 source:d:\martin\programming\c and c++\sdl\explosion generator\eg_gui\eg_text.cpp
+1430043185 source:d:\martin\programming\c and c++\sdl\explosion generator\eg_gui\eg_text.cpp
 	"EG_Text.h"
 
 1427512159 source:d:\martin\programming\c and c++\sdl\explosion generator\eg_light\eg_alllights.cpp
@@ -38017,13 +38128,13 @@
 1421085266 source:d:\martin\programming\c and c++\sdl\explosion generator\eg_light\eg_spotlight.cpp
 	"EG_SpotLight.h"
 
-1429913907 source:d:\martin\programming\c and c++\sdl\explosion generator\eg_main.cpp
+1430042305 source:d:\martin\programming\c and c++\sdl\explosion generator\eg_main.cpp
 	"EG_Main.h"
 	"gl/gl.h"
 	"gl/glu.h"
 	"SDL\SDL.h"
 
-1429913896 d:\martin\programming\c and c++\sdl\explosion generator\eg_main.h
+1430040783 d:\martin\programming\c and c++\sdl\explosion generator\eg_main.h
 	<cstdlib>
 	<iostream>
 	<stdio.h>
@@ -38034,7 +38145,7 @@
 	"EG_SpotLight.h"
 	"EG_DirectionalLight.h"
 	"EG_AllLights.h"
-	"EG_DynamicModel.h"
+	"EG_ImportedAnimatedModel.h"
 	"EG_DeferredShadingGeometryPass.h"
 	"EG_DeferredShadingSkybox.h"
 	"EG_DeferredShadingReflection.h"
@@ -38046,6 +38157,7 @@
 	"EG_FirstPersonPovCamera.h"
 	"EG_ThirdPersonPovCamera.h"
 	"EG_Model.h"
+	"EG_ImportedModel.h"
 	"EG_DeferredShading.h"
 	"EG_GBuffer.h"
 	"EG_utility.h"
@@ -38059,11 +38171,14 @@
 	"EG_RenderTechnique_RenderTexture.h"
 	"EG_RenderTechnique_RenderDepthToTexture.h"
 	"EG_RenderTechnique_Skinning.h"
+	"EG_Renderer_Text.h"
+	"EG_Renderer_Button.h"
+	"EG_Button.h"
 	"EG_WorldAnimatedObject.h"
-	"EG_WorldAxis.h"
+	"EG_XYZAxis.h"
 	"EG_WorldBox.h"
 	"EG_WorldSphere.h"
-	"EG_Quad.h"
+	"EG_QuadModel.h"
 	"pipeline.h"
 	"L_SphereParticleEffect.h"
 	"L_Cube_Sphere_ParticleEffect.h"
@@ -38085,13 +38200,43 @@
 	<sstream>
 	<stdio.h>
 
+1429998157 d:\martin\programming\c and c++\sdl\explosion generator\eg_model\eg_modelabs.h
+	<GL/glew.h>
+	"define.h"
+	"EG_Utility.h"
+	<cstdlib>
+	<iostream>
+	<stdio.h>
+	<string>
+	<sstream>
+	<vector>
+	<assimp/cimport.h>
+	<assimp/Importer.hpp>
+	<assimp/scene.h>
+	<assimp/postprocess.h>
+	"texture.h"
+	"EG_Mesh.h"
+
+1429997939 d:\martin\programming\c and c++\sdl\explosion generator\eg_model\eg_mesh.h
+	"EG_VertexData.h"
+	<GL/glew.h>
+	"SDL/SDL_opengl.h"
+	<vector>
+	<string>
+
+1429998027 d:\martin\programming\c and c++\sdl\explosion generator\eg_model\eg_vertexdata.h
+	"define.h"
+	<GL/glew.h>
+
 1427638346 d:\martin\programming\c and c++\sdl\explosion generator\eg_timemanager.h
 	"SDL/SDL.h"
 
-1427755832 source:d:\martin\programming\c and c++\sdl\explosion generator\eg_model\eg_dynamicmodel.cpp
-	"EG_DynamicModel.h"
+1429924015 source:d:\martin\programming\c and c++\sdl\explosion generator\eg_model\eg_cubemodel.cpp
 
-1427744049 d:\martin\programming\c and c++\sdl\explosion generator\eg_model\eg_dynamicmodel.h
+1429987381 source:d:\martin\programming\c and c++\sdl\explosion generator\eg_model\eg_importedanimatedmodel.cpp
+	"EG_ImportedAnimatedModel.h"
+
+1429987359 d:\martin\programming\c and c++\sdl\explosion generator\eg_model\eg_importedanimatedmodel.h
 	"EG_Model.h"
 	"define.h"
 	<cstdlib>
@@ -38101,7 +38246,7 @@
 	<sstream>
 	<vector>
 
-1427590991 d:\martin\programming\c and c++\sdl\explosion generator\eg_model\eg_model.h
+1429925671 d:\martin\programming\c and c++\sdl\explosion generator\eg_model\eg_model.h
 	<GL/glew.h>
 	"define.h"
 	"EG_Utility.h"
@@ -38117,9 +38262,43 @@
 	<assimp/postprocess.h>
 	"texture.h"
 
-1427597649 source:d:\martin\programming\c and c++\sdl\explosion generator\eg_model\eg_model.cpp
+1429951516 source:d:\martin\programming\c and c++\sdl\explosion generator\eg_model\eg_importedmodel.cpp
+
+1429997797 source:d:\martin\programming\c and c++\sdl\explosion generator\eg_model\eg_mesh.cpp
+	"EG_Mesh.h"
+
+1429952408 source:d:\martin\programming\c and c++\sdl\explosion generator\eg_model\eg_model.cpp
 	<assert.h>
 	"EG_Model.h"
+
+1430016705 source:d:\martin\programming\c and c++\sdl\explosion generator\eg_model\eg_modelabs.cpp
+	<assert.h>
+	"EG_ModelABS.h"
+
+1429951085 source:d:\martin\programming\c and c++\sdl\explosion generator\eg_model\eg_quadmodel.cpp
+	"EG_QuadModel.h"
+
+1429951261 d:\martin\programming\c and c++\sdl\explosion generator\eg_model\eg_quadmodel.h
+	"sceneLoader.h"
+
+1430025185 source:d:\martin\programming\c and c++\sdl\explosion generator\eg_model\eg_quadmodelabs.cpp
+	"EG_QuadModelABS.h"
+
+1430025000 d:\martin\programming\c and c++\sdl\explosion generator\eg_model\eg_quadmodelabs.h
+	"EG_ModelABS.h"
+
+1429950900 source:d:\martin\programming\c and c++\sdl\explosion generator\eg_model\eg_xyzaxis.cpp
+	"EG_XYZAxis.h"
+	"EG_WorldXYZAxis.h"
+
+1429924918 d:\martin\programming\c and c++\sdl\explosion generator\eg_model\eg_xyzaxis.h
+	<iostream>
+	<cstdlib>
+	"pipeline.h"
+	"mesh.h"
+	"sceneLoader.h"
+	"EG_WorldObject.h"
+	"EG_RenderTechnique.h"
 
 1429915924 source:d:\martin\programming\c and c++\sdl\explosion generator\eg_rendertechnique\eg_deferredshading\eg_deferredshading.cpp
 	"EG_DeferredShading.h"
@@ -38177,6 +38356,22 @@
 	"EG_PointLight.h"
 	"EG_DeferredShadingLightPass.h"
 
+1430040645 source:d:\martin\programming\c and c++\sdl\explosion generator\eg_rendertechnique\eg_renderer_gui\eg_renderer_button.cpp
+	"EG_Renderer_Button.h"
+
+1430041758 d:\martin\programming\c and c++\sdl\explosion generator\eg_rendertechnique\eg_renderer_gui\eg_renderer_button.h
+	"pipeline.h"
+	<GL/glew.h>
+	<cstdlib>
+	<iostream>
+	<stdio.h>
+	<string>
+	<sstream>
+	"EG_Quad.h"
+	"EG_RenderTechnique.h"
+
+1429917135 source:d:\martin\programming\c and c++\sdl\explosion generator\eg_rendertechnique\eg_renderer_gui\eg_renderer_control.cpp
+
 1429915422 source:d:\martin\programming\c and c++\sdl\explosion generator\eg_rendertechnique\eg_renderer_gui\eg_renderer_label.cpp
 	"EG_Renderer_Label.h"
 
@@ -38191,10 +38386,10 @@
 	"EG_Quad.h"
 	"EG_RenderTechnique.h"
 
-1429915594 source:d:\martin\programming\c and c++\sdl\explosion generator\eg_rendertechnique\eg_renderer_gui\eg_renderer_text.cpp
+1429921055 source:d:\martin\programming\c and c++\sdl\explosion generator\eg_rendertechnique\eg_renderer_gui\eg_renderer_text.cpp
 	"EG_Renderer_Text.h"
 
-1429915246 d:\martin\programming\c and c++\sdl\explosion generator\eg_rendertechnique\eg_renderer_gui\eg_renderer_text.h
+1429919262 d:\martin\programming\c and c++\sdl\explosion generator\eg_rendertechnique\eg_renderer_gui\eg_renderer_text.h
 	"pipeline.h"
 	<GL/glew.h>
 	<cstdlib>
@@ -38232,7 +38427,7 @@
 1427507977 source:d:\martin\programming\c and c++\sdl\explosion generator\eg_rendertechnique\eg_rendertechnique_rendertexture.cpp
 	"EG_RenderTechnique_RenderTexture.h"
 
-1421977788 d:\martin\programming\c and c++\sdl\explosion generator\eg_rendertechnique\eg_rendertechnique_rendertexture.h
+1429951384 d:\martin\programming\c and c++\sdl\explosion generator\eg_rendertechnique\eg_rendertechnique_rendertexture.h
 	"pipeline.h"
 	<GL/glew.h>
 	<cstdlib>
@@ -38240,7 +38435,7 @@
 	<stdio.h>
 	<string>
 	<sstream>
-	"EG_Quad.h"
+	"EG_QuadModel.h"
 	"EG_RenderTechnique.h"
 
 1427759030 source:d:\martin\programming\c and c++\sdl\explosion generator\eg_rendertechnique\eg_rendertechnique_skinning.cpp
@@ -38323,12 +38518,6 @@
 	"EG_TimeManager.h"
 	<algorithm>
 
-1429908540 source:d:\martin\programming\c and c++\sdl\explosion generator\eg_worldobject\eg_quad.cpp
-	"EG_Quad.h"
-
-1429908515 d:\martin\programming\c and c++\sdl\explosion generator\eg_worldobject\eg_quad.h
-	"sceneLoader.h"
-
 1429915821 source:d:\martin\programming\c and c++\sdl\explosion generator\eg_worldobject\eg_skybox.cpp
 	"EG_Skybox.h"
 
@@ -38387,18 +38576,6 @@
 
 1427760138 d:\martin\programming\c and c++\sdl\explosion generator\eg_worldobject\eg_worldanimatedobject.h
 	"EG_WorldObject.h"
-
-1427662190 source:d:\martin\programming\c and c++\sdl\explosion generator\eg_worldobject\eg_worldaxis.cpp
-	"EG_WorldAxis.h"
-
-1423615049 d:\martin\programming\c and c++\sdl\explosion generator\eg_worldobject\eg_worldaxis.h
-	<iostream>
-	<cstdlib>
-	"pipeline.h"
-	"mesh.h"
-	"sceneLoader.h"
-	"EG_WorldObject.h"
-	"EG_RenderTechnique.h"
 
 1427667605 source:d:\martin\programming\c and c++\sdl\explosion generator\eg_worldobject\eg_worldbox.cpp
 	"EG_WorldBox.h"

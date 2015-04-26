@@ -18,6 +18,9 @@ void EG_Text::initialize()
 
 
   //  m_fontQuads.resize(256);
+  //  fontQuad.init(50,50);
+    r_textRenderer.init(1);
+
     buildCharToIndexMapping();
     buildTextureFont();
 }
@@ -91,14 +94,19 @@ void EG_Text::buildTextureFont()
 
 //        cout << i << " cx is " << cx << "cy is " << cy << endl;
 
-        EG_Quad tempQuad;
+        EG_QuadModel tempQuad;
         tempQuad.init(fontSize, fontSize, cx, cy, 0.0625);
  //       tempQuad.init(fontSize, cx, cy);
         m_fontQuads.push_back(tempQuad);
+
+        EG_QuadModelABS tempQuadABS;
+        tempQuadABS.init(fontSize, fontSize, cx, cy, 0.0625);
+        m_fontQuadsABS.push_back(tempQuadABS);
+
     }
 }
 
-
+/*
 void EG_Text::render(pipeline& m_pipeline, int x, int y, const char *in_text, ...)
 {
 
@@ -114,18 +122,30 @@ void EG_Text::render(pipeline& m_pipeline, int x, int y, const char *in_text, ..
     glEnable(GL_BLEND);
     glBlendFunc(GL_SRC_ALPHA, GL_ONE);
 
+  //  cout << m_fontQuads.size() << endl;
 
 
+    r_textRenderer.enableShader(RENDER_PASS1);
+    r_textRenderer.setTextureUnit(0);
+
+    glActiveTexture(GL_TEXTURE0);
     glBindTexture(GL_TEXTURE_2D, fontTexture);
+
     m_pipeline.pushMatrix();
-//        m_pipeline.matrixMode(MODEL_MATRIX);
-  //      m_pipeline.loadIdentity();
 
         m_pipeline.translate(x,y,0);
 
         int length = strlen(in_text);
-        cout << "length " << length << endl;
-        // for(int i=0; i<length; i++)
+
+   //     r_textRenderer.loadUniformLocations(m_pipeline, RENDER_PASS1);
+
+     //   glDisable(GL_BLEND);
+//        fontQuad.quad->drawSpecial();
+    //    m_fontQuads[5].quad->drawSpecial();
+
+      //  m_fontQuads[5].quad->drawSpecial();
+ //       fontQuad.quad->draw(r_textRenderer.m_shaders[RENDER_PASS1]->getProgramId());
+
         for(int i=0; i<length; i++)
         {
             m_pipeline.pushMatrix();
@@ -138,18 +158,91 @@ void EG_Text::render(pipeline& m_pipeline, int x, int y, const char *in_text, ..
       //          cout << "c is " << c << endl;
       //          cout << "mapping is " << m_charToIndexMapping[c] << endl << endl;
                 int index = m_charToIndexMapping[c];
+//
+                r_textRenderer.loadUniformLocations(m_pipeline, RENDER_PASS1);
 
-                m_fontQuads[index].quad->draw();
+         //       m_fontQuads[6].quad->drawSpecial();
+                  m_fontQuads[index].quad->drawSpecial();
             m_pipeline.popMatrix();
         }
 
     m_pipeline.popMatrix();
+    r_textRenderer.disableShader(RENDER_PASS1);
+
+}
+*/
+
+
+
+
+
+
+
+
+
+void EG_Text::render(pipeline& m_pipeline, int x, int y, const char *in_text, ...)
+{
+
+    char text[256];
+
+    va_list ap;
+
+    va_start(ap, in_text);
+        vsprintf(text, in_text, ap);
+    va_end(ap);
+
+
+
+
+  //  cout << m_fontQuads.size() << endl;
+
+
+    r_textRenderer.enableShader(RENDER_PASS1);
+    r_textRenderer.setTextureUnit(0);
+
+    glActiveTexture(GL_TEXTURE0);
+    glBindTexture(GL_TEXTURE_2D, fontTexture);
+
+    m_pipeline.pushMatrix();
+
+        m_pipeline.translate(x,y,0);
+
+        int length = strlen(in_text);
+
+        for(int i=0; i<length; i++)
+        {
+            m_pipeline.pushMatrix();
+                float x_offset = getTextWidthOffset(i);
+                m_pipeline.translate(x_offset,0,0);
+
+
+                char c = in_text[i];
+                int index = m_charToIndexMapping[c];
+//
+                r_textRenderer.loadUniformLocations(m_pipeline, RENDER_PASS1);
+
+                m_fontQuadsABS[index].render();
+            m_pipeline.popMatrix();
+        }
+
+    m_pipeline.popMatrix();
+    r_textRenderer.disableShader(RENDER_PASS1);
 
 }
 
 
 
 
+
+
+
+
+
+
+
+
+
+/*
 void EG_Text::render(   pipeline& m_pipeline,
                         EG_RenderTechnique* RenderTechnique,
                         int RenderPassID,
@@ -195,7 +288,7 @@ void EG_Text::render(   pipeline& m_pipeline,
     m_pipeline.popMatrix();
 
 }
-
+*/
 
 
 
@@ -214,11 +307,12 @@ int EG_Text::getTextWidthOffset(int i)
 
 GLuint EG_Text::getTextWidth(const char* text)
 {
-    return(strlen(text) * fontSpace);
+    int len = strlen(text)-1;
+    return len * (fontSize + fontSpace) + fontSize;
 }
 
 
-GLuint EG_Text::getTextHeight(const char* text)
+GLuint EG_Text::getTextHeight()
 {
     return fontSize;
 }

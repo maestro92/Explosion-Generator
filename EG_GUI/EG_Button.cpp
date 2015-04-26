@@ -1,39 +1,47 @@
 #include "EG_Button.h"
 
-/*
+
 EG_Button::EG_Button()
 {
     m_down = false;
+    m_idleTexture = 0;
+    m_highlightTexture = 0;
+    m_pressedTexture = 0;
+    m_vertexColors.resize(4);
 }
 
 
 
-EG_Button::EG_Button(string label, int posX, int posY, int width, int height) :
-    EG_Control(posX, posY, width, height)
+EG_Button::EG_Button(string label, int x, int y, int width, int height, glm::vec3 c) : EG_Control(x, y, width, height, c)
 {
     m_label = label;
     m_down = false;
-
-    m_pos = glm::vec2(posX, posY);
-//    quad.init();
 }
 
-
-void EG_Button::init()
+/*
+void EG_Button::initQuad()
 {
-    m_rectQuad.init(m_width, m_height);
+    EG_Control::initQuad();
 }
+*/
 
+
+
+/*
 void EG_Button::init(int posX, int posY, int width, int height)
 {
-    m_pos = glm::vec2(posX, posY);
+    m_position = glm::vec2(posX, posY);
 //    m_rectQuad.init(400, 400);
     m_width = width;
     m_height = height;
     m_rectQuad.init(width, height);
-
 }
+*/
 
+bool EG_Button::update(string label)
+{
+    m_label = label;
+}
 
 
 bool EG_Button::update(MouseState & state)
@@ -56,7 +64,33 @@ bool EG_Button::update(MouseState & state)
 }
 
 
-void EG_Button::render(unsigned int shaderID, pipeline& m_pipeline, int x, int y, const char *in_text, ...)
+
+void EG_Button::render( pipeline& m_pipeline,
+                        EG_RenderTechnique* RenderTechnique,
+                        int RenderPassID)
+{
+    EG_Control::render(m_pipeline, RenderTechnique, RENDER_PASS1);
+
+
+
+    int offset_x = computeStartingX(m_label);
+    int offset_y = computeStartingY();
+
+
+
+    cout << "offset_x " << offset_x << endl;
+    cout << "offset_y " << offset_y << endl;
+
+    EG_Control::m_textEngine.render(m_pipeline, offset_x, offset_y, m_label.c_str());
+}
+
+
+
+
+
+
+/*
+void EG_Button::render(pipeline& m_pipeline, int x, int y)
 {
   //  glDisable(GL_CULL_FACE);
   //  glDisable(GL_DEPTH_TEST);
@@ -73,10 +107,11 @@ void EG_Button::render(unsigned int shaderID, pipeline& m_pipeline, int x, int y
 
     m_pipeline.popMatrix();
 }
+*/
 
 
 int EG_Button::getType()
 {
     return BUTTON;
 }
-*/
+

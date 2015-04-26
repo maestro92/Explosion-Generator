@@ -108,19 +108,19 @@ ExplosionGenerator::ExplosionGenerator()
 
     smoke.init();
 
-
+    initRenderingTechniques();
     r_DepthTexture_Render.init(1);
 
-
+/*
     r_Shadow_Render.init(SCREEN_WIDTH, SCREEN_HEIGHT, 2);
     r_TwoPass_Render.init(SCREEN_WIDTH, SCREEN_HEIGHT, 2);
-
 
     r_Reflection_Render.init(1);
     r_renderTexture.init(1);
     r_renderToDepthTexture.init(1);
 
     r_skinning.init(2);
+*/
 
 #if DEFERRED_SHADING
     r_deferredShadingGeometryPass.init(1);
@@ -348,6 +348,14 @@ void ExplosionGenerator::initModels()
     wall_negative_z = new meshLoader("Wall_NZ.obj");
     wall_positive_x = new meshLoader("Wall_PX.obj");
 
+
+//    wall_negative_z1.loadModel("./assets/Models/Wall_NZ.obj");
+//    wall_positive_z1.loadModel("./assets/Models/Wall_PX.obj");
+
+
+
+
+
     o_hugeWall        = new meshLoader("HugeWall.obj");
 
     testSphere.loadModel("./models/Sphere/sphere10_grey_flat.obj");
@@ -388,8 +396,8 @@ void ExplosionGenerator::initModels()
 //    smooth_sphere = new meshLoader("./Sphere/sphere10_grey_smooth.obj");
     smoothSphere = new meshLoader("./Sphere/sphere_grey.obj");
     cube = new meshLoader("cube.obj");
-    monkey = new meshLoader("monkey.obj");
-    mainCharacter = new meshLoader("./Characters/LEGO_Man.obj");
+//    monkey = new meshLoader("monkey.obj");
+//    mainCharacter = new meshLoader("./Characters/LEGO_Man.obj");
 
 
 //    cube = new meshLoader("./Sphere/sphere10_grey_flat.obj");
@@ -413,8 +421,25 @@ void ExplosionGenerator::initObjects()
 
 void ExplosionGenerator::initGUI()
 {
-    EG_Control::m_textRenderer.initialize();
-    m_lb.init();
+    EG_Control::m_textEngine.initialize();
+    m_triggerButton.update(50, 100, 200, 100);
+    m_triggerButton.update("EXPLODE!");
+    m_triggerButton.update(GRAY);
+    m_triggerButton.initColoredQuad();
+}
+
+
+void ExplosionGenerator::initRenderingTechniques()
+{
+    r_Shadow_Render.init(SCREEN_WIDTH, SCREEN_HEIGHT, 2);
+    r_TwoPass_Render.init(SCREEN_WIDTH, SCREEN_HEIGHT, 2);
+
+    r_Reflection_Render.init(1);
+    r_renderTexture.init(1);
+    r_renderToDepthTexture.init(1);
+
+    r_skinning.init(2);
+    r_buttonRenderer.init(3);
 }
 
 void ExplosionGenerator::start()
@@ -809,6 +834,11 @@ void ExplosionGenerator::RenderSmoke(bool pass1, bool pass2, Matrices_t& Mat, un
 
         /// getting the Front and Back of the cube
         r_TwoPass_Render.Render_TwoPass_RayCasting_1(Matrices);
+
+
+  //      glBindBuffer(GL_ARRAY_BUFFER,0);
+  //      glBindBuffer(GL_ELEMENT_ARRAY_BUFFER,0);
+  //      glDisableVertexAttribArray(SlotPosition);
     }
 
     if(pass2)
@@ -822,6 +852,11 @@ void ExplosionGenerator::RenderSmoke(bool pass1, bool pass2, Matrices_t& Mat, un
 
         /// the volume RayCasting part
         r_TwoPass_Render.Render_TwoPass_RayCasting_2(Mat, depthTextureId);
+
+
+ //       glBindBuffer(GL_ARRAY_BUFFER,0);
+//        glBindBuffer(GL_ELEMENT_ARRAY_BUFFER,0);
+ //       glDisableVertexAttribArray(SlotPosition);
     }
 
 }
@@ -892,7 +927,6 @@ void ExplosionGenerator::RenderScene()
         o_wall.renderGroup(m_pipeline, r_Technique, RENDER_PASS2, wall_positive_x);
 
 #if SPHERE_EFFECT
-     //   l_SphereEffect.show(m_pipeline, r_Technique, RENDER_PASS2, sphere);
         l_SphereEffect.render(m_pipeline, r_Technique, RENDER_PASS2, testSphere);
 #endif
 
@@ -1170,11 +1204,35 @@ void ExplosionGenerator::forwardRender()
 #endif
 
 
+
+
+    setupGUIRenderStage();
+    EG_Control::m_textEngine.render(m_pipeline, 50, 300, "Explosion Generator");
+
+    r_Technique = &r_buttonRenderer;
+    m_triggerButton.render(m_pipeline, r_Technique, RENDER_PASS1);
 #endif
+
+    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 }
 
+void ExplosionGenerator::setupGUIRenderStage()
+{
+    glDisable(GL_DEPTH_TEST);
+    glDisable(GL_CULL_FACE);
 
+    glEnable(GL_BLEND);
+    glBlendFunc(GL_SRC_ALPHA, GL_ONE);
 
+    m_pipeline.reset();
+    m_pipeline.matrixMode(PROJECTION_MATRIX);
+    m_pipeline.loadIdentity();
+    m_pipeline.ortho(0, SCREEN_WIDTH, 0, SCREEN_HEIGHT, -1, 1);
+//    m_pipeline.ortho(-1, 1, -1, 1, -1, 1);
+
+    m_pipeline.matrixMode(MODEL_MATRIX);
+    m_pipeline.loadIdentity();
+}
 
 
 

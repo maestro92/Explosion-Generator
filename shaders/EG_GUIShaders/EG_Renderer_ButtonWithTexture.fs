@@ -1,6 +1,6 @@
 #version 330
 in vec2 outUV;
-uniform sampler2D Sampler;
+uniform sampler2D gTextures;
 
 out vec4 FragColor;
 

@@ -21,7 +21,7 @@
 #include "EG_RenderTechnique.h"
 #include "EG_WorldAnimatedObject.h"
 #include "EG_Model.h"
-#include "EG_DynamicModel.h"
+#include "EG_ImportedAnimatedModel.h"
 /*
 
 // Orbit mode rotates the camera around a target position. This mode can be
@@ -149,7 +149,7 @@ using spring system, we will have different view matrix
         void setCharacterPosition(glm::vec3 c_pos);
         void setCharacterPosition(float x, float y, float z);
 
-        EG_DynamicModel m_mainAvatar;
+        EG_ImportedAnimatedModel m_mainAvatar;
 
         private:
             glm::vec3 m_eye;

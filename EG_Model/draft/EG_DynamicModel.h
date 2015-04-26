@@ -12,6 +12,7 @@
 
 
 #define NUM_BONES_PER_VERTEX 4
+
 struct BoneInfo
 {
     glm::mat4 boneOffset;

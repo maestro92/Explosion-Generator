@@ -1,5 +1,5 @@
-#ifndef WORLD_AXIS_H_
-#define WORLD_AXIS_H_
+#ifndef XYZ_AXIS_H_
+#define XYZ_AXIS_H_
 
 #include <iostream>
 #include <cstdlib>
@@ -30,5 +30,25 @@ class EG_WorldAxis : public WorldObject
 //        void render(pipeline &m_pipeline, EG_RenderTechnique* RenderTechnique, int RenderPassID);
    //     void buildAxisMesh();
 };
+
+
+/*
+class EG_WorldAxis : public WorldObject
+// class EG_WorldAxis
+{
+    public:
+        // Constructor
+        EG_WorldAxis();
+		~EG_WorldAxis();
+
+        mesh* worldAxis;
+
+        void init();
+        void renderSingle(pipeline &m_pipeline, EG_RenderTechnique* RenderTechnique, int RenderPassID);
+        void render(pipeline &m_pipeline, EG_RenderTechnique* RenderTechnique, int RenderPassID);
+//        void render(pipeline &m_pipeline, EG_RenderTechnique* RenderTechnique, int RenderPassID);
+   //     void buildAxisMesh();
+};
+*/
 
 #endif

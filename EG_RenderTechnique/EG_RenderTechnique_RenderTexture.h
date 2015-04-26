@@ -11,7 +11,7 @@
 #include <stdio.h>
 #include <string>
 #include <sstream>
-#include "EG_Quad.h"
+#include "EG_QuadModel.h"
 #include "EG_RenderTechnique.h"
 
 
@@ -24,7 +24,7 @@ class EG_RenderTechnique_RenderTexture : public EG_RenderTechnique
         ~EG_RenderTechnique_RenderTexture();
         void init(int Shader_Num);
 
-        EG_Quad m_quad;
+        EG_QuadModel m_quad;
 
         void setTextureUnit(unsigned int TextureUnit);
         void setPixelSize(unsigned int Width, unsigned int Height);

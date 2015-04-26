@@ -1,17 +1,17 @@
-#include "EG_Quad.h"
+#include "EG_QuadModel.h"
 
 
-EG_Quad::EG_Quad()
+EG_QuadModel::EG_QuadModel()
 {
 
 }
 
-EG_Quad::~EG_Quad()
+EG_QuadModel::~EG_QuadModel()
 {
 
 }
 
-void EG_Quad::init()
+void EG_QuadModel::init()
 {
     /// assigning a quad for rendering textures
 	{
@@ -52,13 +52,13 @@ void EG_Quad::init()
 
 
 
-void EG_Quad::init(int w, int h)
+void EG_QuadModel::init(int w, int h)
 {
     init(w, h, 0, 0, 1);
 }
 
 
-void EG_Quad::init(int w, int h, float cx, float cy, float cw)
+void EG_QuadModel::init(int w, int h, float cx, float cy, float cw)
 {
     /// assigning a quad for rendering textures
 	{

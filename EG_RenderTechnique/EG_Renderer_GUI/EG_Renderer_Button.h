@@ -1,5 +1,5 @@
-#ifndef EG_RENDERER_TEXT_H_
-#define EG_RENDERER_TEXT_H_
+#ifndef EG_RENDERER_BUTTON_H_
+#define EG_RENDERER_BUTTON_H_
 
 #include "pipeline.h"
 
@@ -15,22 +15,22 @@
 #include "EG_RenderTechnique.h"
 
 
-class EG_Renderer_Text : public EG_RenderTechnique
+class EG_Renderer_Button : public EG_RenderTechnique
 {
     public:
-        EG_Renderer_Text();
-        ~EG_Renderer_Text();
+        EG_Renderer_Button();
+        ~EG_Renderer_Button();
         void init(int nShaders);
 
-
-//        void loadUniformLocations(pipeline& p, int RenderPassID);
         void setTextureUnit(unsigned int TextureUnit);
+        void setColor(glm::vec3 color);
 
     private:
+        GLuint m_colorUniformLocation;
         GLuint m_textureUnitUniformLocation;
 };
 
 
-#endif // EG_RENDER_TECHINQUE_RENDER_TEXTURE_H_
+#endif // EG_RENDERER_BUTTON_H_
 
 

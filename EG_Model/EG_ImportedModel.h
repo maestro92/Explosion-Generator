@@ -1,5 +1,5 @@
-#ifndef EG_MODEL_H
-#define	EG_MODEL_H
+#ifndef EG_IMPORTED_MODEL_H
+#define	EG_IMPORTED_MODEL_H
 
 
 #define NO_SDL_GLEXT
@@ -51,14 +51,14 @@ This basically means that the models are stored in GPU memory instead of CPU mem
 
 
 
-class EG_Model
+class EG_ImportedModel
 {
 
 
     public:
-        EG_Model();
-        EG_Model(int count);
-        ~EG_Model();
+        EG_ImportedModel();
+        EG_ImportedModel(int count);
+        ~EG_ImportedModel();
 
         void transferDataToBuffer(vector<glm::vec3>& vec, unsigned int bufferIndex, unsigned int location);
         void transferDataToBuffer(vector<glm::vec2>& vec, unsigned int bufferIndex, unsigned int location);

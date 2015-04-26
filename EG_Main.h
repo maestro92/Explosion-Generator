@@ -12,7 +12,7 @@
 #include "EG_SpotLight.h"
 #include "EG_DirectionalLight.h"
 #include "EG_AllLights.h"
-#include "EG_DynamicModel.h"
+#include "EG_ImportedAnimatedModel.h"
 
 #include "EG_DeferredShadingGeometryPass.h"
 #include "EG_DeferredShadingSkybox.h"
@@ -28,6 +28,8 @@
 #include "EG_ThirdPersonPovCamera.h"
 
 #include "EG_Model.h"
+#include "EG_ImportedModel.h"
+
 
 #include "EG_DeferredShading.h"
 #include "EG_GBuffer.h"
@@ -50,12 +52,16 @@
 #include "EG_RenderTechnique_RenderTexture.h"
 #include "EG_RenderTechnique_RenderDepthToTexture.h"
 #include "EG_RenderTechnique_Skinning.h"
+#include "EG_Renderer_Text.h"
+#include "EG_Renderer_Button.h"
+
+#include "EG_Button.h"
 
 #include "EG_WorldAnimatedObject.h"
-#include "EG_WorldAxis.h"
+#include "EG_XYZAxis.h"
 #include "EG_WorldBox.h"
 #include "EG_WorldSphere.h"
-#include "EG_Quad.h"
+#include "EG_QuadModel.h"
 
 #include "pipeline.h"
 #include "L_SphereParticleEffect.h"
@@ -119,6 +125,7 @@ class ExplosionGenerator
     //    EG_DeferredShading r_deferredShadingRenderTechnique;
     //    EG_DeferredShading2 r_deferredShadingRenderTechnique;
 
+
         EG_RenderTechnique_Skinning             r_skinning;
 
         EG_DeferredShadingGeometryPass          r_deferredShadingGeometryPass;
@@ -133,6 +140,12 @@ class ExplosionGenerator
         EG_DeferredShadingDirectionalLightPass  r_deferredShadingDirectionalLightPass;
         EG_DeferredShadingDirectionalLightPass  r_deferredShadingDirectionalLightPass_Skybox;
         EG_RenderTechnique_RenderTexture        r_renderTexture;
+
+
+        /// GUI
+        EG_Renderer_Button  r_buttonRenderer;
+
+        EG_Button m_triggerButton;
 
         EG_TimeManager m_timeManager;
         long long m_runningTime;
@@ -168,27 +181,35 @@ class ExplosionGenerator
         // models
         meshLoader* scene;
         meshLoader* ground;
-        meshLoader* ground1;
+
         meshLoader* wall_negative_x;
         meshLoader* wall_positive_x;
-
         meshLoader* wall_negative_z;
         meshLoader* wall_positive_z;
         meshLoader* o_hugeWall;
 
+/*
+        EG_ImportedModel wall_negative_x1;
+        EG_ImportedModel wall_positive_x1;
+        EG_ImportedModel wall_negative_z1;
+        EG_ImportedModel wall_positive_z1;
+        // meshLoader* o_hugeWall;
+*/
+
+
         meshLoader* sphere;
         meshLoader* smoothSphere;
         meshLoader* cube;
-        meshLoader* monkey;
-        meshLoader* mainCharacter;
+
+//        meshLoader* mainCharacter;
         meshLoader* light;
         meshLoader* pointLightSphere;
         meshLoader* m_box;
 //        mesh* quad;
 
         EG_Model    testSphere;
-        EG_DynamicModel legoMan;
-        EG_DynamicModel bob;
+        EG_ImportedAnimatedModel legoMan;
+        EG_ImportedAnimatedModel bob;
         EG_Model*   modelPtr;
 
 
@@ -202,7 +223,7 @@ class ExplosionGenerator
         EG_WorldAxis    o_worldAxis;
         WorldSphere     o_reflectionSphere;
         WorldBox        o_wall;
-        EG_Quad         o_fullScreenQuad;
+        EG_QuadModel    o_fullScreenQuad;
 
         meshLoader* deferredShadingQuad;
 
@@ -287,6 +308,7 @@ class ExplosionGenerator
         void initLights();
 
         void initGUI();
+        void initRenderingTechniques();
 
         void init_Texture_and_FrameBuffer();
 
@@ -303,6 +325,7 @@ class ExplosionGenerator
         void RenderTexture2();
         void RenderScene();
 
+        void setupGUIRenderStage();
 //        void RenderSmoke();
         void RenderSmoke(bool pass1, bool pass2, Matrices_t& Mat, unsigned int depthTextureId);
         void RenderQuad(GLuint TextureId);

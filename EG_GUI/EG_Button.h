@@ -4,32 +4,44 @@
 
 
 #include "EG_Control.h"
-/*
+
 class EG_Button : public EG_Control
 {
+  //  using EG_Control::update;
+
     public:
         EG_Button();
-        EG_Button(string label, int posX, int posY, int width, int height);
+        EG_Button(string label, int x, int y, int width, int height,
+                   glm::vec3 c);
 
-        void init();
-        void init(int posX, int posY, int width, int height);
-
+        /// http://stackoverflow.com/questions/4271245/why-do-i-get-no-matching-function-when-i-inherit-this-function
+        using EG_Control::update;
         virtual bool update(MouseState & state);
+        virtual bool update(string label);
     //    virtual void render(int x, int y);
 
+  //      virtual bool update(glm::vec3 c);
+  //      virtual bool update(glm::vec3 c1, glm::vec3 c2, glm::vec3 c3, glm::vec3 c4);
 
-        virtual void render(unsigned int shaderID, pipeline& m_pipeline, int x, int y, const char *in_text, ...);
+        virtual void render(pipeline& m_pipeline,
+                            EG_RenderTechnique* RenderTechnique,
+                            int RenderPassID);
+
         virtual int getType();
 
     protected:
         bool m_down;
         string m_label;
-        EG_Quad m_rectQuad;
+//        EG_Quad m_rectQuad;
 
+
+        GLuint m_idleTexture;
+        GLuint m_highlightTexture;
+        GLuint m_pressedTexture;
         /// have three textures for it
 
 };
-*/
+
 
 
 

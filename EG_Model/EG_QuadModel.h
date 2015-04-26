@@ -1,16 +1,16 @@
-#ifndef EG_FULL_SCREEN_QUAD_H_
-#define EG_FULL_SCREEN_QUAD_H_
+#ifndef EG_QUAD_MODEL_H_
+#define EG_QUAD_MODEL_H_
 
 #include "sceneLoader.h"
 
-class EG_Quad
+class EG_QuadModel
 {
     public:
         // constructor
-        EG_Quad();
+        EG_QuadModel();
 
         // Destructor
-		~EG_Quad();
+		~EG_QuadModel();
         mesh* quad;
         void init();
         void init(int w, int h);

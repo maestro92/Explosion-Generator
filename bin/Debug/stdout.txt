@@ -72,12 +72,6 @@ Shader Compile Status:
 Shader Compile Status: 
 
 in CreatePointVbo
-vs: EG_RenderDepthToTexture.vs, fs: EG_RenderDepthToTexture.fs
-Shader Compile Status: 
-
-Shader Compile Status: 
-
-Error in Init_Shader
 vs: shadow_FirstRender.vs, fs: shadow_FirstRender.fs
 Shader Compile Status: 
 
@@ -165,12 +159,41 @@ Shader Compile Status:
 
 Error in Init_Shader
 Error in Init_Shader
+vs: /EG_GUIShaders/EG_Renderer_Button.vs, fs: /EG_GUIShaders/EG_Renderer_Button.fs
+Shader Compile Status: 
+
+Shader Compile Status: 
+
+vs: /EG_GUIShaders/EG_Renderer_ButtonWithDynamicColor.vs, fs: /EG_GUIShaders/EG_Renderer_ButtonWithDynamicColor.fs
+Shader Compile Status: 
+
+Shader Compile Status: 
+ERROR: 0:4: 'out' : syntax error syntax error
+
+
+Error in Init_Shader with gColor
+vs: /EG_GUIShaders/EG_Renderer_ButtonWithTexture.vs, fs: /EG_GUIShaders/EG_Renderer_ButtonWithTexture.fs
+Shader Compile Status: 
+
+Shader Compile Status: 
+
+Error in Init_Shader with gTexture
+Error in Init_Shader
+Error in Init_Shader
+Error in Init_Shader
+vs: EG_RenderDepthToTexture.vs, fs: EG_RenderDepthToTexture.fs
+Shader Compile Status: 
+
+Shader Compile Status: 
+
+Error in Init_Shader
 vs: skybox.vs, fs: skybox.frag
 Shader Compile Status: 
 
 Shader Compile Status: 
 
 Error in Init_Shader
+Error happened while loading the texture: 1282
 model_path ./models/
 m_str ./models/shadow.obj
 model_path ./models/
@@ -183,7 +206,7 @@ model_path ./models/
 m_str ./models/HugeWall.obj
 Nor oepened1
 Nor oepened1
-Ret is 108
+Ret is 24
 Nor oepened1
 Loaded texture './models/Characters/guard1_body.tga'
 Nor oepened1
@@ -224,10 +247,13 @@ model_path ./models/
 m_str ./models/./Sphere/sphere_grey.obj
 model_path ./models/
 m_str ./models/cube.obj
-model_path ./models/
-m_str ./models/monkey.obj
-model_path ./models/
-m_str ./models/./Characters/LEGO_Man.obj
+vs: /EG_GUIShaders/EG_Renderer_Text.vs, fs: /EG_GUIShaders/EG_Renderer_Text.fs
+Shader Compile Status: 
+
+Shader Compile Status: 
+
+Error in Init_Shader with apple
+Error in Init_Shader
 start_x is -2
 start_y is 0
 start_z is -2
@@ -248,114 +274,472 @@ Nor oepened1
 Loaded texture './models/Characters/Waist_d.tga'
 Ret is 0
 Start
+m_height 100
+textHeight 20
+offset_x 101
+offset_y 140
 Advect3D Unable to attach color buffer
 0
+m_height 100
+textHeight 20
+offset_x 101
+offset_y 140
 Advect3D Unable to attach color buffer
 0
+m_height 100
+textHeight 20
+offset_x 101
+offset_y 140
 Advect3D Unable to attach color buffer
 0
+m_height 100
+textHeight 20
+offset_x 101
+offset_y 140
 Advect3D Unable to attach color buffer
 0
+m_height 100
+textHeight 20
+offset_x 101
+offset_y 140
 Advect3D Unable to attach color buffer
 0
+m_height 100
+textHeight 20
+offset_x 101
+offset_y 140
 Advect3D Unable to attach color buffer
 0
+m_height 100
+textHeight 20
+offset_x 101
+offset_y 140
 Advect3D Unable to attach color buffer
 0
+m_height 100
+textHeight 20
+offset_x 101
+offset_y 140
 Advect3D Unable to attach color buffer
 0
+m_height 100
+textHeight 20
+offset_x 101
+offset_y 140
 Advect3D Unable to attach color buffer
 0
+m_height 100
+textHeight 20
+offset_x 101
+offset_y 140
 Advect3D Unable to attach color buffer
 0
+m_height 100
+textHeight 20
+offset_x 101
+offset_y 140
 Advect3D Unable to attach color buffer
 0
+m_height 100
+textHeight 20
+offset_x 101
+offset_y 140
 Advect3D Unable to attach color buffer
 0
+m_height 100
+textHeight 20
+offset_x 101
+offset_y 140
 Advect3D Unable to attach color buffer
 0
+m_height 100
+textHeight 20
+offset_x 101
+offset_y 140
 Advect3D Unable to attach color buffer
 0
+m_height 100
+textHeight 20
+offset_x 101
+offset_y 140
 Advect3D Unable to attach color buffer
 0
+m_height 100
+textHeight 20
+offset_x 101
+offset_y 140
 Advect3D Unable to attach color buffer
 0
+m_height 100
+textHeight 20
+offset_x 101
+offset_y 140
 Advect3D Unable to attach color buffer
 0
+m_height 100
+textHeight 20
+offset_x 101
+offset_y 140
 Advect3D Unable to attach color buffer
 0
+m_height 100
+textHeight 20
+offset_x 101
+offset_y 140
 Advect3D Unable to attach color buffer
 0
+m_height 100
+textHeight 20
+offset_x 101
+offset_y 140
 Advect3D Unable to attach color buffer
 0
+m_height 100
+textHeight 20
+offset_x 101
+offset_y 140
 Advect3D Unable to attach color buffer
 0
+m_height 100
+textHeight 20
+offset_x 101
+offset_y 140
 Advect3D Unable to attach color buffer
 0
+m_height 100
+textHeight 20
+offset_x 101
+offset_y 140
+Advect3D Unable to attach color buffer
+0
+m_height 100
+textHeight 20
+offset_x 101
+offset_y 140
+Advect3D Unable to attach color buffer
+0
+m_height 100
+textHeight 20
+offset_x 101
+offset_y 140
+Advect3D Unable to attach color buffer
+0
+m_height 100
+textHeight 20
+offset_x 101
+offset_y 140
+Advect3D Unable to attach color buffer
+0
+m_height 100
+textHeight 20
+offset_x 101
+offset_y 140
+Advect3D Unable to attach color buffer
+0
+m_height 100
+textHeight 20
+offset_x 101
+offset_y 140
+Advect3D Unable to attach color buffer
+0
+m_height 100
+textHeight 20
+offset_x 101
+offset_y 140
+Advect3D Unable to attach color buffer
+0
+m_height 100
+textHeight 20
+offset_x 101
+offset_y 140
+Advect3D Unable to attach color buffer
+0
+m_height 100
+textHeight 20
+offset_x 101
+offset_y 140
+Advect3D Unable to attach color buffer
+0
+m_height 100
+textHeight 20
+offset_x 101
+offset_y 140
+Advect3D Unable to attach color buffer
+0
+m_height 100
+textHeight 20
+offset_x 101
+offset_y 140
+Advect3D Unable to attach color buffer
+0
+m_height 100
+textHeight 20
+offset_x 101
+offset_y 140
+Advect3D Unable to attach color buffer
+0
+m_height 100
+textHeight 20
+offset_x 101
+offset_y 140
+Advect3D Unable to attach color buffer
+0
+m_height 100
+textHeight 20
+offset_x 101
+offset_y 140
+Advect3D Unable to attach color buffer
+0
+m_height 100
+textHeight 20
+offset_x 101
+offset_y 140
+Advect3D Unable to attach color buffer
+0
+m_height 100
+textHeight 20
+offset_x 101
+offset_y 140
+Advect3D Unable to attach color buffer
+0
+m_height 100
+textHeight 20
+offset_x 101
+offset_y 140
+Advect3D Unable to attach color buffer
+0
+m_height 100
+textHeight 20
+offset_x 101
+offset_y 140
+Advect3D Unable to attach color buffer
+0
+m_height 100
+textHeight 20
+offset_x 101
+offset_y 140
 clicking left
 Advect3D Unable to attach color buffer
 0
+m_height 100
+textHeight 20
+offset_x 101
+offset_y 140
 Advect3D Unable to attach color buffer
 0
+m_height 100
+textHeight 20
+offset_x 101
+offset_y 140
+Advect3D Unable to attach color buffer
+0
+m_height 100
+textHeight 20
+offset_x 101
+offset_y 140
+Advect3D Unable to attach color buffer
+0
+m_height 100
+textHeight 20
+offset_x 101
+offset_y 140
 clicking Up left
 Advect3D Unable to attach color buffer
 0
+m_height 100
+textHeight 20
+offset_x 101
+offset_y 140
 Advect3D Unable to attach color buffer
 0
+m_height 100
+textHeight 20
+offset_x 101
+offset_y 140
 Advect3D Unable to attach color buffer
 0
+m_height 100
+textHeight 20
+offset_x 101
+offset_y 140
 Advect3D Unable to attach color buffer
 0
+m_height 100
+textHeight 20
+offset_x 101
+offset_y 140
 Advect3D Unable to attach color buffer
 0
+m_height 100
+textHeight 20
+offset_x 101
+offset_y 140
 Advect3D Unable to attach color buffer
 0
+m_height 100
+textHeight 20
+offset_x 101
+offset_y 140
 Advect3D Unable to attach color buffer
 0
+m_height 100
+textHeight 20
+offset_x 101
+offset_y 140
 Advect3D Unable to attach color buffer
 0
+m_height 100
+textHeight 20
+offset_x 101
+offset_y 140
 Advect3D Unable to attach color buffer
 0
+m_height 100
+textHeight 20
+offset_x 101
+offset_y 140
 Advect3D Unable to attach color buffer
 0
+m_height 100
+textHeight 20
+offset_x 101
+offset_y 140
 Advect3D Unable to attach color buffer
 0
+m_height 100
+textHeight 20
+offset_x 101
+offset_y 140
 Advect3D Unable to attach color buffer
 0
+m_height 100
+textHeight 20
+offset_x 101
+offset_y 140
 Advect3D Unable to attach color buffer
 0
+m_height 100
+textHeight 20
+offset_x 101
+offset_y 140
 Advect3D Unable to attach color buffer
 0
+m_height 100
+textHeight 20
+offset_x 101
+offset_y 140
 Advect3D Unable to attach color buffer
 0
+m_height 100
+textHeight 20
+offset_x 101
+offset_y 140
 Advect3D Unable to attach color buffer
 0
+m_height 100
+textHeight 20
+offset_x 101
+offset_y 140
 Advect3D Unable to attach color buffer
 0
+m_height 100
+textHeight 20
+offset_x 101
+offset_y 140
 Advect3D Unable to attach color buffer
 0
+m_height 100
+textHeight 20
+offset_x 101
+offset_y 140
 Advect3D Unable to attach color buffer
 0
+m_height 100
+textHeight 20
+offset_x 101
+offset_y 140
 Advect3D Unable to attach color buffer
 0
+m_height 100
+textHeight 20
+offset_x 101
+offset_y 140
 Advect3D Unable to attach color buffer
 0
+m_height 100
+textHeight 20
+offset_x 101
+offset_y 140
 Advect3D Unable to attach color buffer
 0
+m_height 100
+textHeight 20
+offset_x 101
+offset_y 140
 Advect3D Unable to attach color buffer
 0
+m_height 100
+textHeight 20
+offset_x 101
+offset_y 140
 Advect3D Unable to attach color buffer
 0
+m_height 100
+textHeight 20
+offset_x 101
+offset_y 140
 Advect3D Unable to attach color buffer
 0
+m_height 100
+textHeight 20
+offset_x 101
+offset_y 140
 Advect3D Unable to attach color buffer
 0
+m_height 100
+textHeight 20
+offset_x 101
+offset_y 140
 Advect3D Unable to attach color buffer
 0
+m_height 100
+textHeight 20
+offset_x 101
+offset_y 140
 Advect3D Unable to attach color buffer
 0
+m_height 100
+textHeight 20
+offset_x 101
+offset_y 140
 Advect3D Unable to attach color buffer
 0
+m_height 100
+textHeight 20
+offset_x 101
+offset_y 140
 Advect3D Unable to attach color buffer
 0
+m_height 100
+textHeight 20
+offset_x 101
+offset_y 140
+Advect3D Unable to attach color buffer
+0
+m_height 100
+textHeight 20
+offset_x 101
+offset_y 140
+Advect3D Unable to attach color buffer
+0
+m_height 100
+textHeight 20
+offset_x 101
+offset_y 140
+Advect3D Unable to attach color buffer
+0
+m_height 100
+textHeight 20
+offset_x 101
+offset_y 140
 Terminating normally.
