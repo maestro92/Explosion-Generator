@@ -78,12 +78,12 @@ void pipeline::translate(glm::vec3 trans_matrix)
 	matricesReady=false;
 }
 
-
+/*
 glm::mat4 pipeline::translateNoRotate(float x,float y,float z)
 {
     return (viewMatrix[viewMatrix.size()-1]*glm::translate(-x,-y,-z));
 }
-
+*/
 
 void pipeline::scale(float x,float y,float z)
 {

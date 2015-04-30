@@ -34,13 +34,14 @@ const int GridDepth = GridWidth;
 
 
 const float CellSize = 1.25f;
+//const float CellSize = 0.01f;
 const float SplatRadius = GridWidth / 8.0f;
 const float AmbientTemperature = 0.0f;
 const float ImpulseTemperature = 10.0f;
 const float ImpulseDensity = 1.0f;
 const int NumJacobiIterations = 10;
 const float TimeStep = 0.25f;
-const float SmokeBuoyancy = 1.0f;
+const float SmokeBuoyancy = 0.5f;
 const float SmokeWeight = 0.0125f;
 const float GradientScale = 1.125f / CellSize;
 /*

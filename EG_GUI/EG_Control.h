@@ -1,6 +1,6 @@
 
-#ifndef EG_GUI_CONTROL
-#define EG_GUI_CONTROL
+#ifndef EG_GUI_CONTROL_H_
+#define EG_GUI_CONTROL_H_
 
 
 #include "pipeline.h"
@@ -8,6 +8,7 @@
 #include "EG_Utility.h"
 #include "EG_Quad.h"
 #include "EG_Text.h"
+#include "EG_Rect.h"
 
 #define NO_SDL_GLEXT
 #include <GL/glew.h>
@@ -81,8 +82,9 @@ class EG_Control
         virtual void initQuad(glm::vec3 c1, glm::vec3 c2, glm::vec3 c3, glm::vec3 c4);
 */
 
-        void initTexturedQuad();
-        void initColoredQuad();
+        virtual void initTexturedQuad();
+        virtual void initColoredQuad();
+        virtual void initColoredQuad(int w, int h, glm::vec3 c);
 //        virtual void initColoredQuad(glm::vec3 c1, glm::vec3 c2, glm::vec3 c3, glm::vec3 c4);
 
 
@@ -96,13 +98,22 @@ class EG_Control
                             EG_RenderTechnique* RenderTechnique,
                             int RenderPassID);
 
+        virtual void render(pipeline& m_pipeline,
+                        EG_RenderTechnique* RenderTechnique,
+                        int RenderPassID, EG_ModelABS* model);
+
+        virtual void render(pipeline& m_pipeline,
+                        EG_RenderTechnique* RenderTechnique,
+                        int RenderPassID, EG_Rect r, EG_ModelABS* model);
+
+
         virtual int getType() = 0;
 
         void setPosition(int x, int y);
         void setSize(int width, int height);
 
-        int computeStartingX(string s);
-        int computeStartingY();
+        int computeTextStartingX(string s);
+        int computeTextStartingY();
 
         int getWidth();
         int getHeight();
@@ -115,7 +126,7 @@ class EG_Control
 
         /// http://stackoverflow.com/questions/7083612/defining-a-static-variable-of-base-class
         static EG_Text m_textEngine;
-        EG_QuadModelABS m_quad;
+        EG_QuadModelABS m_quadModel;
         vector<glm::vec3> m_vertexColors;
 };
 

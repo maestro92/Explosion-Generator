@@ -12,6 +12,7 @@
 #include "Particle.h"
 
 #include "EG_Model.h"
+#include "EG_ModelABS.h"
 #include "EG_DeferredShading.h"
 #include "sceneLoader.h"
 
@@ -141,6 +142,19 @@ class WorldObject
                             EG_RenderTechnique* RenderTechnique,
                             int RenderPassID,
                             EG_Model* model);
+
+
+
+        void renderSingle( pipeline& m_pipeline,
+                                EG_RenderTechnique* RenderTechnique,
+                                int RenderPassID,
+                                EG_ModelABS* model);
+
+
+        void renderGroup( pipeline& m_pipeline,
+                                EG_RenderTechnique* RenderTechnique,
+                                int RenderPassID,
+                                EG_ModelABS* model);
 
         // destructor
         /*

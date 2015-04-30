@@ -9,6 +9,8 @@
 #include <SDL/SDL.h>
 #include "pipeline.h"
 #include "define.h"
+#include "EG_WorldObject.h"
+#include "EG_Utility.h"
 #include "glm/glm.hpp"
 #include "glm/gtc/matrix_transform.hpp"
 #include "glm/gtx/transform.hpp"
@@ -44,20 +46,29 @@ const float DEFAULT_ORBIT_MAX_ZOOM = DEFAULT_ZFAR * 0.5f;
 
 const float DEFAULT_ORBIT_OFFSET_DISTANCE = DEFAULT_ORBIT_MIN_ZOOM + (DEFAULT_ORBIT_MAX_ZOOM - DEFAULT_ORBIT_MIN_ZOOM) * 0.25f;
 
-
+/*
 const glm::vec3 WORLD_XAXIS(1.0f, 0.0f, 0.0f);
 const glm::vec3 WORLD_YAXIS(0.0f, 1.0f, 0.0f);
 const glm::vec3 WORLD_ZAXIS(0.0f, 0.0f, 1.0f);
-
+*/
 
 class EG_Camera
 {
-
+    enum CAMERA_MODE
+    {
+        FIRST_PERSON_POV_CAMERA_MODE,
+        SPECTATOR_CAMERA_MODE,
+        FLIGHT_CAMERA_MODE,
+        ORBIT_CAMERA_MODE,
+        THIRD_PERSON_POV_CAMERA_MODE
+    };
 
     public:
 
         EG_Camera();
         ~EG_Camera();
+
+        WorldObject m_cameraObj;
 
         void init();
 
@@ -68,14 +79,26 @@ class EG_Camera
 
         void mouseIn(bool b);
 
-        void RotateOrbit(pipeline& m_pipeline);
         void Control(pipeline& m_pipeline);
         void Control(pipeline& m_pipeline, int mid_x, int mid_y);
+
+        void move(float dx, float dy, float dz);
+        void move(glm::vec3& direction, glm::vec3 amount);
+
+        void rotate(float yawDegree, float pitchDegree, float rollDegree);
+        void rotateFirstPersonPOV(float yawDegree, float pitchDegree);
+
+
+
+        void RotateOrbit(pipeline& m_pipeline);
         void updateViewMatrix(pipeline& m_pipeline);
  //   glm::
         bool mouse_in;
         float mousevel;
 
+
+        int m_cameraMode;
+        bool m_mouseIn;
 
 
         glm::vec3 m_eye;
@@ -98,6 +121,12 @@ class EG_Camera
         glm::vec3 newTarget;
 
         float m_mouseRotationSpeed;
+
+
+        float m_pitchDegrees;
+        float m_yawDegrees;
+
+
         float m_PitchDegrees;
         float m_YawDegrees;
         float m_orbitMinZoom;

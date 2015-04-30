@@ -1,6 +1,10 @@
 
 #include "EG_Utility.h"
 
+
+float EG_Utility::DEGREE_TO_RADIAN = 0.0174;
+float EG_Utility::RADIAN_TO_DEGREE = 57.32;
+
 EG_Utility::EG_Utility()
 {
 
@@ -11,9 +15,15 @@ EG_Utility::~EG_Utility()
 {
 
 }
-
+/*
 void EG_Utility::printGlmVec3(glm::vec3 v)
 {
+    cout << v.x << " " << v.y << " " << v.z << endl;
+}
+
+void EG_Utility::printGlmVec3(string s, glm::vec3 v)
+{
+    cout << s << endl;
     cout << v.x << " " << v.y << " " << v.z << endl;
 }
 
@@ -24,6 +34,39 @@ void EG_Utility::printGlmMat(glm::mat4 m)
         cout << m[i][0] << " " << m[i][1] << " " << m[i][2] << " " << m[i][3] << endl;
 
     cout << endl;
+}
+
+
+void EG_Utility::printGlmMat(string s, glm::mat4 m)
+{
+    cout << s << endl;
+    for (int i=0; i<4; i++)
+        cout << m[i][0] << " " << m[i][1] << " " << m[i][2] << " " << m[i][3] << endl;
+
+    cout << endl;
+}
+*/
+
+
+void EG_Utility::printGlm(string s, glm::vec2 v)
+{
+    cout << s << endl;
+    cout << v.x << " " << v.y << endl << endl;
+}
+
+void EG_Utility::printGlm(string s, glm::vec3 v)
+{
+    cout << s << endl;
+    cout << v.x << " " << v.y << " " << v.z << endl << endl;
+}
+
+void EG_Utility::printGlm(string s, glm::mat4 m)
+{
+    cout << s << endl;
+    for (int i=0; i<4; i++)
+        cout << m[i][0] << " " << m[i][1] << " " << m[i][2] << " " << m[i][3] << endl;
+
+    cout << endl << endl;
 }
 
 glm::vec3 EG_Utility::toGlmVec(aiVector3D& v2)
@@ -259,4 +302,27 @@ void EG_Utility::errorCheck()
     {
         std::cout << "Error happened while loading the texture: " << i << std::endl;
     }
+}
+
+/*
+glm::vec3 EG_Utility::scaleGlmVec3(glm::vec3 v, float s)
+{
+    return scaleGlmVec3(v,s,s,s);
+}
+
+glm::vec3 EG_Utility::scaleGlmVec3(glm::vec3 v, float s1, float s2, float s3)
+{
+    glm::vec3 newV(s1*v.x, s2*v.y, s3*v.z);
+    return newV;
+}
+*/
+glm::vec3 EG_Utility::scaleGlmVec3(const glm::vec3 v, float s)
+{
+    return scaleGlmVec3(v,s,s,s);
+}
+
+glm::vec3 EG_Utility::scaleGlmVec3(const glm::vec3 v, float s1, float s2, float s3)
+{
+    glm::vec3 newV(s1*v.x, s2*v.y, s3*v.z);
+    return newV;
 }

@@ -26,6 +26,7 @@
 #include "EG_Camera.h"
 #include "EG_FirstPersonPovCamera.h"
 #include "EG_ThirdPersonPovCamera.h"
+#include "EG_OrbitCamera.h"
 
 #include "EG_Model.h"
 #include "EG_ImportedModel.h"
@@ -54,17 +55,19 @@
 #include "EG_RenderTechnique_Skinning.h"
 #include "EG_Renderer_Text.h"
 #include "EG_Renderer_Button.h"
-
+#include "EG_FullColorRenderer.h"
 #include "EG_Button.h"
 
 #include "EG_WorldAnimatedObject.h"
-#include "EG_XYZAxis.h"
+#include "EG_XYZAxisModel.h"
 #include "EG_WorldBox.h"
 #include "EG_WorldSphere.h"
 #include "EG_QuadModel.h"
+#include "EG_ListBox.h"
+
 
 #include "pipeline.h"
-#include "L_SphereParticleEffect.h"
+#include "EG_SphereParticleEffect.h"
 #include "L_Cube_Sphere_ParticleEffect.h"
 
 #define NO_SDL_GLEXT
@@ -140,12 +143,16 @@ class ExplosionGenerator
         EG_DeferredShadingDirectionalLightPass  r_deferredShadingDirectionalLightPass;
         EG_DeferredShadingDirectionalLightPass  r_deferredShadingDirectionalLightPass_Skybox;
         EG_RenderTechnique_RenderTexture        r_renderTexture;
-
+        EG_FullColorRenderer                    r_fullColor;
 
         /// GUI
         EG_Renderer_Button  r_buttonRenderer;
 
         EG_Button m_triggerButton;
+        EG_Button m_resetButton;
+        EG_Button m_minimizeButton;
+        EG_ListBox m_listBox;
+
 
         EG_TimeManager m_timeManager;
         long long m_runningTime;
@@ -155,6 +162,7 @@ class ExplosionGenerator
         EG_AllLights allLights;
 
 
+        MouseState m_mouseState;
         GLuint VBO;
         GLuint FBO;
         GLuint FBO1;
@@ -169,7 +177,7 @@ class ExplosionGenerator
 
         EG_SkyBox m_skybox;
 
-        L_SphereParticleEffect l_SphereEffect;
+        EG_SphereParticleEffect l_SphereEffect;
         L_Cube_Sphere_ParticleEffect l_Cube_SphereEffect;
 
         Smoke smoke;
@@ -177,6 +185,7 @@ class ExplosionGenerator
 
         EG_FirstPersonPovCamera firstPersonPovCamera;
         EG_ThirdPersonPovCamera thirdPersonPovCamera;
+        EG_OrbitCamera m_orbitCamera;
 
         // models
         meshLoader* scene;
@@ -211,16 +220,19 @@ class ExplosionGenerator
         EG_ImportedAnimatedModel legoMan;
         EG_ImportedAnimatedModel bob;
         EG_Model*   modelPtr;
-
+        EG_ModelABS*    p_modelPtr;
+        EG_XYZAxisModel m_axisModel;
 
 //        EG_DynamicModel* mainAvatar;
-
 //        WorldObject     o_animationObject;
+
+
+
         EG_WorldAnimatedObject  o_animatedLegoMan;
         EG_WorldAnimatedObject  o_animatedBob;
 
 
-        EG_WorldAxis    o_worldAxis;
+        WorldObject     o_worldAxis;
         WorldSphere     o_reflectionSphere;
         WorldBox        o_wall;
         EG_QuadModel    o_fullScreenQuad;
@@ -236,6 +248,8 @@ class ExplosionGenerator
         bool addSmoke;
         bool isStencilTextureMode;
         bool isDepthTextureMode;
+
+        bool m_explodeFlag;
 
         /// textures
         unsigned int textureID;
@@ -283,8 +297,10 @@ class ExplosionGenerator
 //        glm::vec3 m_boxPositions[15];
 
         // buttons
-        bool g_bLeftMouseDown;
-        bool g_bRightMouseDown;
+
+
+        bool m_increaseFlag;
+        bool m_decreaseFlag;
 
         float angle;
 
@@ -321,15 +337,12 @@ class ExplosionGenerator
         void forwardRender();
         void deferredShadingShow();
 
-        void RenderTexture(GLuint TextureId);
-        void RenderTexture2();
         void RenderScene();
+        void RenderGUI();
 
         void setupGUIRenderStage();
 //        void RenderSmoke();
         void RenderSmoke(bool pass1, bool pass2, Matrices_t& Mat, unsigned int depthTextureId);
-        void RenderQuad(GLuint TextureId);
-
 
         void Render_to_CubeMapTexture2();
         void Render_to_CubeMapFace2(int face);

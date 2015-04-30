@@ -16,6 +16,9 @@ class EG_Button : public EG_Control
 
         /// http://stackoverflow.com/questions/4271245/why-do-i-get-no-matching-function-when-i-inherit-this-function
         using EG_Control::update;
+
+        virtual void initColoredQuad();
+
         virtual bool update(MouseState & state);
         virtual bool update(string label);
     //    virtual void render(int x, int y);
@@ -34,6 +37,9 @@ class EG_Button : public EG_Control
         string m_label;
 //        EG_Quad m_rectQuad;
 
+        EG_ModelABS* p_modelPtr;
+        EG_QuadModelABS m_highlightQuadModel;
+        EG_QuadModelABS m_pressedQuadModel;
 
         GLuint m_idleTexture;
         GLuint m_highlightTexture;

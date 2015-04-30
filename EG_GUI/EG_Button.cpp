@@ -18,12 +18,14 @@ EG_Button::EG_Button(string label, int x, int y, int width, int height, glm::vec
     m_down = false;
 }
 
-/*
-void EG_Button::initQuad()
+
+void EG_Button::initColoredQuad()
 {
-    EG_Control::initQuad();
+    EG_Control::initColoredQuad();
+    m_highlightQuadModel.init(m_width, m_height, BLUE);
+    m_pressedQuadModel.init(m_width, m_height, GREEN);
 }
-*/
+
 
 
 
@@ -50,7 +52,10 @@ bool EG_Button::update(MouseState & state)
     if(m_isInside == true)
     {
         if (state.m_leftButtonDown)
+        {
             m_down = true;
+            cout << "pressing the button" << endl;
+        }
 
         /// if it was down, we set it to false
         else if (m_down)
@@ -69,17 +74,35 @@ void EG_Button::render( pipeline& m_pipeline,
                         EG_RenderTechnique* RenderTechnique,
                         int RenderPassID)
 {
-    EG_Control::render(m_pipeline, RenderTechnique, RENDER_PASS1);
+    if(m_isInside && !m_down)
+    {
+        p_modelPtr = &m_highlightQuadModel;
+        EG_Control::render(m_pipeline, RenderTechnique, RENDER_PASS1, p_modelPtr);
+
+        m_pipeline.pushMatrix();
+            m_pipeline.scale(0.9);
+            EG_Control::render(m_pipeline, RenderTechnique, RENDER_PASS1);
+        m_pipeline.popMatrix();
+    }
+
+
+    else if (m_down)
+    {
+        p_modelPtr = &m_pressedQuadModel;
+        EG_Control::render(m_pipeline, RenderTechnique, RENDER_PASS1, p_modelPtr);
+    }
+    else
+        EG_Control::render(m_pipeline, RenderTechnique, RENDER_PASS1);
 
 
 
-    int offset_x = computeStartingX(m_label);
-    int offset_y = computeStartingY();
+    int offset_x = computeTextStartingX(m_label);
+    int offset_y = computeTextStartingY();
 
 
 
-    cout << "offset_x " << offset_x << endl;
-    cout << "offset_y " << offset_y << endl;
+ //   cout << "offset_x " << offset_x << endl;
+ //   cout << "offset_y " << offset_y << endl;
 
     EG_Control::m_textEngine.render(m_pipeline, offset_x, offset_y, m_label.c_str());
 }

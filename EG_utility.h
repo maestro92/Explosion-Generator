@@ -64,9 +64,23 @@ class EG_Utility
         static glm::mat4 toGlmMat(aiMatrix3x3 m2);
         static glm::mat4 toGlmMat(aiMatrix4x4& m2);
         static glm::mat4 toGlmMat(const aiMatrix4x4& m2);
+//        static glm::vec3 scaleGlmVec3(glm::vec3 v, float s);
+//        static glm::vec3 scaleGlmVec3(glm::vec3 v, float s1, float s2, float s3);
+        static glm::vec3 scaleGlmVec3(const glm::vec3 v, float s);
+        static glm::vec3 scaleGlmVec3(const glm::vec3 v, float s1, float s2, float s3);
 
+/*
         static void printGlmVec3(glm::vec3 v);
+        static void printGlmVec3(string s, glm::vec3 v);
         static void printGlmMat(glm::mat4 m);
+        static void printGlmMat(string s, glm::mat4 m);
+*/
+        static float DEGREE_TO_RADIAN;
+        static float RADIAN_TO_DEGREE;
+
+        static void printGlm(string s, glm::vec2 v);
+        static void printGlm(string s, glm::mat4 m);
+        static void printGlm(string s, glm::vec3 v);
     //    static GLuint GetUniformLocation(shader* s, const char* UniformName);
 
 };

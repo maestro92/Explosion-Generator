@@ -38,23 +38,25 @@
 
 
 
-
+const float BALL_FORWARD_SPEED = 0.5f;
+const float BALL_HEADING_SPEED = 3.0f;
+const float BALL_ROLLING_SPEED = 10.0f;
+const float MAX_CAMERA_OFFSET = 100.0f;
+const float MIN_CAMERA_OFFSET = 5.0f;
 
 class EG_ThirdPersonPovCamera
 {
     public:
-        enum CameraMode
-        {
-            FIRST_PERSON_POV_CAMERA_MODE,
-            THIRD_PERSON_POV_CAMERA_MODE
-        };
+
+    enum CameraMode
+    {
+        FIRST_PERSON_POV_CAMERA_MODE,
+        THIRD_PERSON_POV_CAMERA_MODE,
+        ORBIT_CAMERA_MODE
+    };
 
 
-    const float BALL_FORWARD_SPEED = 0.5f;
-    const float BALL_HEADING_SPEED = 3.0f;
-    const float BALL_ROLLING_SPEED = 10.0f;
-    const float MAX_CAMERA_OFFSET = 100.0f;
-    const float MIN_CAMERA_OFFSET = 5.0f;
+
 
 
     static const float DEFAULT_SPRING_CONSTANT;
@@ -96,7 +98,7 @@ using spring system, we will have different view matrix
         void setTarget(glm::vec3 target);
 
  //       void Control(pipeline& m_pipeline);
-        void Control(pipeline& m_pipeline, EG_SkyBox& skybox);
+        virtual void Control(pipeline& m_pipeline, EG_SkyBox& skybox);
         void updateViewMatrix(pipeline& m_pipeline);
 
         void enableSpringSystem(bool enableSpringSystem);
@@ -123,6 +125,9 @@ using spring system, we will have different view matrix
         /// Get methods
         void increaseOffsetDistance();
         void decreaseOffsetDistance();
+
+        float m_pitchDegree;
+        float m_yawDegree;
 
         float getDampingConstant() const;
         float getOffsetDistance() const;
@@ -151,7 +156,7 @@ using spring system, we will have different view matrix
 
         EG_ImportedAnimatedModel m_mainAvatar;
 
-        private:
+        protected:
             glm::vec3 m_eye;
             glm::vec3 m_target;
             glm::vec3 m_offset;

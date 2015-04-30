@@ -68,7 +68,7 @@ class EG_ModelABS
         virtual void render();
 
         void clear();
-
+        GLuint m_modelGeometry;
     protected:
         vector<EG_Mesh> m_meshes;
 

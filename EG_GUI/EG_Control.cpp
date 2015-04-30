@@ -12,6 +12,7 @@ EG_Control::EG_Control() : EG_Control(0,0,1,1)
 
 EG_Control::EG_Control(int x, int y, int width, int height)
 {
+    m_vertexColors.resize(4);
     update(x,y,width,height);
     m_isInside = false;
 }
@@ -40,12 +41,17 @@ EG_Control::~EG_Control()
 
 void EG_Control::initTexturedQuad()
 {
-    m_quad.init(m_width, m_height);
+    m_quadModel.init(m_width, m_height);
 }
 
 void EG_Control::initColoredQuad()
 {
-    m_quad.init(m_width, m_height, m_vertexColors[0], m_vertexColors[1], m_vertexColors[2], m_vertexColors[3]);
+    m_quadModel.init(m_width, m_height, m_vertexColors[0], m_vertexColors[1], m_vertexColors[2], m_vertexColors[3]);
+}
+
+void EG_Control::initColoredQuad(int w, int h, glm::vec3 c)
+{
+    m_quadModel.init(w, h, c, c, c, c);
 }
 
 
@@ -74,6 +80,10 @@ bool EG_Control::update(MouseState & state)
     int x = state.m_pos.x;
     int y = state.m_pos.y;
 
+    EG_Utility::printGlm("state.m_pos", state.m_pos);
+    EG_Utility::printGlm("m_position", m_position);
+
+
     m_isInside = false;
 
     if( (x >= m_position.x && x <= m_position.x + m_width) &&
@@ -86,20 +96,20 @@ bool EG_Control::update(MouseState & state)
 
 
 
-int EG_Control::computeStartingX(string s)
+int EG_Control::computeTextStartingX(string s)
 {
     int textWidth = m_textEngine.getTextWidth(s.c_str());
     int sx = m_width - textWidth;
     return m_position.x + sx/2;
 }
 
-int EG_Control::computeStartingY()
+int EG_Control::computeTextStartingY()
 {
     int textHeight = m_textEngine.getTextHeight();
     int sy = m_height - textHeight;
 
-    cout << "m_height " << m_height << endl;
-    cout << "textHeight " << textHeight << endl;
+//    cout << "m_height " << m_height << endl;
+//    cout << "textHeight " << textHeight << endl;
 
 
     return m_position.y + sy/2;
@@ -113,11 +123,39 @@ void EG_Control::render(pipeline& m_pipeline,
 {
     RenderTechnique->enableShader(RenderPassID);
     m_pipeline.pushMatrix();
-        glm::vec3 shift(m_position.x, m_position.y, 0);
-        m_pipeline.translate(shift);
+        glm::vec3 trans(m_position.x, m_position.y, 0);
+        m_pipeline.translate(trans);
     //    m_pipeline.scale(m_scale);
         RenderTechnique->loadUniformLocations(m_pipeline, RenderPassID);
-        m_quad.render();
+        m_quadModel.render();
+    m_pipeline.popMatrix();
+    RenderTechnique->disableShader(RenderPassID);
+}
+
+void EG_Control::render(pipeline& m_pipeline,
+                        EG_RenderTechnique* RenderTechnique,
+                        int RenderPassID, EG_ModelABS* model)
+{
+    RenderTechnique->enableShader(RenderPassID);
+    m_pipeline.pushMatrix();
+        glm::vec3 trans(m_position.x, m_position.y, 0);
+        m_pipeline.translate(trans);
+        RenderTechnique->loadUniformLocations(m_pipeline, RenderPassID);
+        model->render();
+    m_pipeline.popMatrix();
+    RenderTechnique->disableShader(RenderPassID);
+}
+
+void EG_Control::render(pipeline& m_pipeline,
+                        EG_RenderTechnique* RenderTechnique,
+                        int RenderPassID, EG_Rect r, EG_ModelABS* model)
+{
+    RenderTechnique->enableShader(RenderPassID);
+    m_pipeline.pushMatrix();
+        glm::vec3 trans(m_position.x, m_position.y, 0);
+        m_pipeline.translate(trans);
+        RenderTechnique->loadUniformLocations(m_pipeline, RenderPassID);
+        model->render();
     m_pipeline.popMatrix();
     RenderTechnique->disableShader(RenderPassID);
 }

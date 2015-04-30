@@ -2,8 +2,16 @@
 #include "EG_Camera.h"
 
 static bool first = true;
+
+
+const float CAMERA_ROTATION_SPEED = 0.2f;
+const glm::vec3 CAMERA_FORWARD_SPEED = glm::vec3(2.0f, 2.0f, 2.0f);
+
 EG_Camera::EG_Camera()
 {
+    m_cameraMode = FIRST_PERSON_POV_CAMERA_MODE;
+
+   /*
     m_PitchDegrees = 0.0f;
     m_YawDegrees = 0.0f;
 
@@ -14,11 +22,14 @@ EG_Camera::EG_Camera()
     m_orbitOffsetDistance = 30.0f;
 
     mousevel = 1.0f;
+*/
     mouse_in = false;
-	m_eye = glm::vec3(0.0f, 0.0f, 0.0f);
-	m_target = glm::vec3(0.0f, 0.0f, 0.0f);
-    m_targetYAxis = glm::vec3(0.0f, 1.0f, 0.0f);
+//	m_target = glm::vec3(0.0f, 0.0f, 0.0f);
+  //  m_targetYAxis = glm::vec3(0.0f, 1.0f, 0.0f);
 
+    m_mouseIn = false;
+
+	m_eye = glm::vec3(0.0f, 0.0f, 0.0f);
 	m_xAxis = glm::vec3(1.0f, 0.0f, 0.0f);
 	m_yAxis = glm::vec3(0.0f, 1.0f, 0.0f);
 	m_zAxis = glm::vec3(0.0f, 0.0f, 1.0f);
@@ -26,10 +37,10 @@ EG_Camera::EG_Camera()
 
     m_viewMatrix = glm::mat4(1.0);
     m_RotateViewMatrix = glm::mat4(1.0);
-//    m_RotateViewMatrix1 = glm::mat4(1.0);
 
-    m_PitchDegrees = 0.0f;
-    m_PitchDegrees = 30.0f;
+//    m_PitchDegrees = 0.0f;
+    m_pitchDegrees = 0.0f;
+    m_yawDegrees = 0.0f;
 
 }
 
@@ -66,24 +77,6 @@ void EG_Camera::mouseIn(bool b)
 }
 
 
-
-
-
-void EG_Camera::lookAt(pipeline& m_pipeline)
-{
-    if(first)
-    {
-        m_targetYAxis = m_yAxis;
-        glm::vec3 newEye = m_eye + m_zAxis * m_orbitOffsetDistance;
-        glm::vec3 newTarget = m_eye;
-        lookAt(m_pipeline, newEye, newTarget, m_targetYAxis);
-        first = false;
-    }
-//    lookAt(m_pipeline, m_eye, m_target, m_targetYAxis);
-
-}
-
-
 void EG_Camera::lookAt(pipeline& m_pipeline, glm::vec3 target)
 {
     lookAt(m_pipeline, m_eye, target, m_yAxis);
@@ -92,12 +85,7 @@ void EG_Camera::lookAt(pipeline& m_pipeline, glm::vec3 target)
 
 void EG_Camera::lookAt(pipeline& m_pipeline, glm::vec3& eye, glm::vec3& target, glm::vec3& up)
 {
-
     m_eye = eye;
-    m_target = target;
-
-//    newEye = m_eye + m_zAxis * m_orbitOffsetDistance;
-//    newTarget = m_eye;
 
     m_zAxis = eye - target;
     m_zAxis = glm::normalize(m_zAxis);
@@ -109,27 +97,60 @@ void EG_Camera::lookAt(pipeline& m_pipeline, glm::vec3& eye, glm::vec3& target, 
 
     m_yAxis = glm::cross(m_zAxis, m_xAxis);
     m_yAxis = glm::normalize(m_yAxis);
+    m_xAxis = glm::normalize(m_xAxis);
 
+    m_viewMatrix[0][0] = m_xAxis.x;     m_viewMatrix[1][0] = m_yAxis.x;     m_viewMatrix[2][0] = m_zAxis.x;     m_viewMatrix[3][0] = eye.x;
+    m_viewMatrix[0][1] = m_xAxis.y;     m_viewMatrix[1][1] = m_yAxis.y;     m_viewMatrix[2][1] = m_zAxis.y;     m_viewMatrix[3][1] = eye.y;
+    m_viewMatrix[0][2] = m_xAxis.z;     m_viewMatrix[1][2] = m_yAxis.z;     m_viewMatrix[2][2] = m_zAxis.z;     m_viewMatrix[3][2] = eye.z;
+
+/*
     m_viewMatrix[0][0] = m_xAxis.x;
-    m_viewMatrix[1][0] = m_xAxis.y;
-    m_viewMatrix[2][0] = m_xAxis.z;
-    m_viewMatrix[3][0] = -glm::dot(m_xAxis, eye);
+    m_viewMatrix[0][1] = m_xAxis.y;
+    m_viewMatrix[0][2] = m_xAxis.z;
+    m_viewMatrix[3][0] = eye.x;
 
-    m_viewMatrix[0][1] = m_yAxis.x;
+    m_viewMatrix[1][0] = m_yAxis.x;
     m_viewMatrix[1][1] = m_yAxis.y;
-    m_viewMatrix[2][1] = m_yAxis.z;
-    m_viewMatrix[3][1] = -glm::dot(m_yAxis, eye);
+    m_viewMatrix[1][2] = m_yAxis.z;
+    m_viewMatrix[3][1] = eye.y;
 
-    m_viewMatrix[0][2] = m_zAxis.x;
-    m_viewMatrix[1][2] = m_zAxis.y;
+    m_viewMatrix[2][0] = m_zAxis.x;
+    m_viewMatrix[2][1] = m_zAxis.y;
     m_viewMatrix[2][2] = m_zAxis.z;
-    m_viewMatrix[3][2] = -glm::dot(m_zAxis, eye);
-
-    m_orientation = glm::toQuat(m_viewMatrix);
+    m_viewMatrix[3][2] = eye.z;
+*/
+    m_viewMatrix = glm::inverse(m_viewMatrix);
 	updateViewMatrix(m_pipeline);
-
 }
 
+
+
+void EG_Camera::move(float dx, float dy, float dz)
+{
+    /*
+    glm::vec3 eye = m_eye;
+    glm::vec3 forward;
+
+    forward = glm::cross(WORLD_YAXIS, m_xAxis);
+    forward = glm::normalize(forward);
+
+    eye += EG_Utility(dx, m_xAxis);
+    eye += EG_Utility(dy, WORLD_YAXIS);
+    eye += EG_Utility(dz, forward);
+
+    m_eye = eye;
+*/
+}
+
+
+void EG_Camera::move(glm::vec3& direction, glm::vec3 amount)
+{
+    m_eye.x += amount.x * direction.x;
+    m_eye.y += amount.y * direction.y;
+    m_eye.z += amount.z * direction.z;
+
+//    updateViewMatrix();
+}
 
 
 
@@ -148,13 +169,11 @@ void EG_Camera::RotateOrbit(pipeline& m_pipeline)
 
         ROT = rot * ROT;
         m_orientation = rot * m_orientation;
-
-
     }
 
     if(m_PitchDegrees != 0.0f)
     {
-        rot = glm::angleAxis(-m_PitchDegrees, WORLD_XAXIS);
+ //       rot = glm::angleAxis(-m_PitchDegrees, WORLD_XAXIS);
    //     rot = glm::rotate(-m_PitchDegrees, 1.0f,0.0f,0.0f);
 
         ROT = rot * ROT;

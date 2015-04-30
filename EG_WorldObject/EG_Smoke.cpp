@@ -128,10 +128,20 @@ void Smoke::update(bool toggle)
         ApplyBuoyancy3D_SameFBO(f_Slab.Velocity.Ping, f_Slab.Temperature.Ping, f_Slab.Density.Ping, f_Slab.Velocity.Pong, pID);
         SwapSurfaces(&f_Slab.Velocity);
 
+/*
             pID = Eulerian3D_ApplyImpulse->getProgramId();
-        ApplyImpulse3D_SameFBO(f_Slab.Temperature.Ping, ImpulsePosition, ImpulseTemperature, pID);
- //       ApplyImpulse3D_SameFBO(f_Slab.Velocity.Ping, ImpulsePosition, ImpulseVelocity);
-        ApplyImpulse3D_SameFBO(f_Slab.Density.Ping, ImpulsePosition, ImpulseDensity, pID);
+            ApplyImpulse3D_SameFBO(f_Slab.Temperature.Ping, ImpulsePosition, ImpulseTemperature, pID);
+     //       ApplyImpulse3D_SameFBO(f_Slab.Velocity.Ping, ImpulsePosition, ImpulseVelocity);
+            ApplyImpulse3D_SameFBO(f_Slab.Density.Ping, ImpulsePosition, ImpulseDensity, pID);
+*/
+
+        if(toggle)
+        {
+            pID = Eulerian3D_ApplyImpulse->getProgramId();
+            ApplyImpulse3D_SameFBO(f_Slab.Temperature.Ping, ImpulsePosition, ImpulseTemperature, pID);
+     //       ApplyImpulse3D_SameFBO(f_Slab.Velocity.Ping, ImpulsePosition, ImpulseVelocity);
+            ApplyImpulse3D_SameFBO(f_Slab.Density.Ping, ImpulsePosition, ImpulseDensity, pID);
+        }
 
             pID = Eulerian3D_ComputeDivergence->getProgramId();
         ComputeDivergence3D_SameFBO(f_Slab.Velocity.Ping, f_Surfaces.Obstacles, f_Surfaces.Divergence, pID);
@@ -550,7 +560,7 @@ void Smoke::Advect3D_SameFBO(SurfacePod velocity, SurfacePod source, SurfacePod 
     glFramebufferTexture(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, dest.ColorTexture ,0);
     if (GL_NO_ERROR != glGetError())
     {
-        cout << "Advect3D Unable to attach color buffer" << endl;
+    //    cout << "Advect3D Unable to attach color buffer" << endl;
         cout << glGetError() << endl;
     //    exit(1);
     }

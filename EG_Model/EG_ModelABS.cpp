@@ -38,7 +38,7 @@ void EG_ModelABS::addMesh(EG_Mesh m)
 
 void EG_ModelABS::init()
 {
-
+    m_modelGeometry = GL_TRIANGLES;
 }
 
 void EG_ModelABS::render()
@@ -78,7 +78,8 @@ void EG_ModelABS::render()
 
         /// glDrawElements, you need to supply an index buffer
         /// glDrawArrays submits the vertices in linear order
-        glDrawElements(GL_TRIANGLES, m.m_numIndices, GL_UNSIGNED_INT, 0);
+//        glDrawElements(GL_TRIANGLES, m.m_numIndices, GL_UNSIGNED_INT, 0);
+        glDrawElements(m_modelGeometry, m.m_numIndices, GL_UNSIGNED_INT, 0);
     }
 
 	glBindBuffer(GL_ARRAY_BUFFER,0);

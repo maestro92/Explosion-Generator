@@ -38,6 +38,7 @@ void EG_QuadModelABS::init(int w, int h)
 void EG_QuadModelABS::init(int w, int h, float cx, float cy, float cw)
 {
     /// assigning a quad for rendering textures
+    m_modelGeometry = GL_TRIANGLES;
 
     std::vector<unsigned int> indices;
     std::vector<EG_VertexData> vertices;
@@ -72,6 +73,7 @@ void EG_QuadModelABS::init(int w, int h, float cx, float cy, float cw)
 
 void EG_QuadModelABS::init(int w, int h, glm::vec3 c)
 {
+
     init(w, h, c, c, c, c);
 }
 
@@ -79,6 +81,7 @@ void EG_QuadModelABS::init(int w, int h, glm::vec3 c)
 void EG_QuadModelABS::init(int w, int h, glm::vec3 c1, glm::vec3 c2, glm::vec3 c3, glm::vec3 c4)
 {
     /// assigning a quad for rendering textures
+    m_modelGeometry = GL_TRIANGLES;
 
     std::vector<unsigned int> indices;
     std::vector<EG_VertexData> vertices;

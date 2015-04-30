@@ -16,6 +16,7 @@ struct EG_Mesh
 {
     vector<EG_TextureData> m_textures;
 
+
     GLuint m_vbo;
     GLuint m_ind;
     int m_numIndices;

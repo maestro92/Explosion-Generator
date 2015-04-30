@@ -20,6 +20,8 @@ using namespace std;
 #define USING_INVERSE_MATRIX 0
 #define SKY_BOX 1
 
+#define ORBIT_CAMERA_FLAG 1
+#define ANIMATED_OBJECT_FLAG 0
 
 
 glm::vec3 ImpulsePosition1( GridWidth / 2.0f, GridHeight - (int) SplatRadius / 2.0f, GridDepth / 2.0f);
@@ -95,9 +97,14 @@ ExplosionGenerator::ExplosionGenerator()
     holdKeyFlag             = false;
     toggleFlag              = false;
 
+    m_increaseFlag = false;
+    m_decreaseFlag = false;
 
-    g_bLeftMouseDown = false;
-    g_bRightMouseDown = false;
+
+    m_explodeFlag = false;
+
+
+    m_orbitCamera.m_leftMouseDown = false;
 
     init_SDL_GLEW();
     init_OpenGL();
@@ -146,7 +153,6 @@ ExplosionGenerator::ExplosionGenerator()
     m_skybox.init();
 
     o_fullScreenQuad.init();
-    o_worldAxis.init();
     o_reflectionSphere.setPosition(ReflectiveSphere_Pos);
 
     initModels();
@@ -154,15 +160,19 @@ ExplosionGenerator::ExplosionGenerator()
     initGUI();
 
 #if SPHERE_EFFECT
-    l_SphereEffect.InitParticle();
+    l_SphereEffect.InitParticles();
 #endif
 
 #if CUBE_SPHERE_EFFECT
     l_Cube_SphereEffect.InitParticle(flag);
 #endif
+
+
+#if ORBIT_CAMERA_FLAG
+    m_orbitCamera.init(m_pipeline);
+#else
     thirdPersonPovCamera.init(m_pipeline);
-
-
+#endif
 
     SDL_WM_SetCaption("Template", NULL);
  //   myThirdPOV_camera.lookAt(m_pipeline);
@@ -365,7 +375,7 @@ void ExplosionGenerator::initModels()
     bob.loadModel("./models/Characters/boblampclean.md5mesh");
     legoMan.loadModel("./models/Characters/Walking Lego.md5mesh");
 
-
+    m_axisModel.init();
 //    mainAvatar.loadModel("./models/Characters/miracle3.md5mesh");
 
  //   mainAvatar = new EG_DynamicModel();
@@ -407,6 +417,8 @@ void ExplosionGenerator::initModels()
 
 void ExplosionGenerator::initObjects()
 {
+
+#if ANIMATED_OBJECT_FLAG
     o_animatedLegoMan.setPosition(0,0,5);
   //  o_animationObject.setScale(0.1, 0.1, 0.1);
   //  o_animationObject.setOrientation(180, glm::vec3(0.0,1.0,0.0));
@@ -415,6 +427,7 @@ void ExplosionGenerator::initObjects()
     o_animatedBob.setPosition(0,0,0);
     o_animatedBob.setScale(0.1, 0.1, 0.1);
     o_animatedBob.setOrientation(-90, glm::vec3(1.0,0.0,0.0));
+#endif
 }
 
 
@@ -422,10 +435,37 @@ void ExplosionGenerator::initObjects()
 void ExplosionGenerator::initGUI()
 {
     EG_Control::m_textEngine.initialize();
-    m_triggerButton.update(50, 100, 200, 100);
+
+    m_listBox.update(10, 400, 200, 100);
+    m_listBox.update(GREEN);
+    m_listBox.initColoredQuad();
+    m_listBox.addItem("Nice");
+    m_listBox.addItem("Nice");
+    m_listBox.addItem("Nice");
+    m_listBox.addItem("Nice");
+
+
+
+    m_resetButton.update(10, 160, 200, 50);
+    m_resetButton.update("Reset");
+    m_resetButton.update(GRAY);
+    m_resetButton.initColoredQuad();
+
+
+    m_triggerButton.update(10, 100, 200, 50);
     m_triggerButton.update("EXPLODE!");
     m_triggerButton.update(GRAY);
     m_triggerButton.initColoredQuad();
+
+    m_minimizeButton.update(0, SCREEN_HEIGHT - EG_Control::m_textEngine.getTextHeight(),
+                            200, EG_Control::m_textEngine.getTextHeight());
+    m_minimizeButton.update("minimize");
+    m_minimizeButton.update(GRAY);
+    m_minimizeButton.initColoredQuad();
+
+
+
+
 }
 
 
@@ -437,6 +477,8 @@ void ExplosionGenerator::initRenderingTechniques()
     r_Reflection_Render.init(1);
     r_renderTexture.init(1);
     r_renderToDepthTexture.init(1);
+
+    r_fullColor.init(1);
 
     r_skinning.init(2);
     r_buttonRenderer.init(3);
@@ -472,54 +514,83 @@ void ExplosionGenerator::start()
                     {
                         case SDL_BUTTON_LEFT:
                             cout << "clicking Up left" << endl;
-                            g_bLeftMouseDown = false;
+
+                            m_orbitCamera.m_leftMouseDown = false;
+
+                            m_mouseState.m_leftButtonDown = false;
 
                             SDL_GetMouseState(&tmpx,&tmpy);
-                            g_MousePrevious = glm::vec2(tmpx, tmpy);
+                  //          g_MousePrevious = glm::vec2(tmpx, tmpy);
+                            m_orbitCamera.m_mousePrevious = glm::vec2(tmpx, tmpy);
                             break;
 
                         case SDL_BUTTON_RIGHT:
                             cout << "clicking Up right" << endl;
-                            g_bRightMouseDown = false;
+
+                            m_mouseState.m_rightButtonDown = false;
 
                             SDL_GetMouseState(&tmpx,&tmpy);
-                            g_MousePrevious = glm::vec2(tmpx, tmpy);
+                     //       g_MousePrevious = glm::vec2(tmpx, tmpy);
+                            m_orbitCamera.m_mousePrevious = glm::vec2(tmpx, tmpy);
+
+
+                            m_mouseState.m_rightButtonDown = false;
+
                             break;
                     }
                     break;
 
                 case SDL_MOUSEBUTTONDOWN:
-                    firstPersonPovCamera.mouseIn(true);
-                    thirdPersonPovCamera.mouseIn(true);
 
-                    firstPersonPovCamera.lookAt(lightDirection.x, lightDirection.y);
+
+
+                    firstPersonPovCamera.setMouseInFlag(true);
+
+#if ORBIT_CAMERA_FLAG
+                    m_orbitCamera.mouseIn(true);
+#else
+                    thirdPersonPovCamera.mouseIn(true);
+#endif
+
 
                     switch(event.button.button)
                     {
                         int tmpx,tmpy;
                         case SDL_BUTTON_LEFT:
                             cout << "clicking left" << endl;
-                            g_bLeftMouseDown = true;
+
+                            m_orbitCamera.m_leftMouseDown = true;
 
                             SDL_GetMouseState(&tmpx,&tmpy);
-                            g_MousePrevious = glm::vec2(tmpx, tmpy);
+                            m_mouseState.m_leftButtonDown = true;
                             break;
 
                         case SDL_BUTTON_RIGHT:
                             cout << "clicking right" << endl;
-                            g_bRightMouseDown = true;
+
 
                             SDL_GetMouseState(&tmpx,&tmpy);
-                            g_MousePrevious = glm::vec2(tmpx, tmpy);
+                            m_mouseState.m_rightButtonDown = true;
                             break;
 
                         case SDL_BUTTON_WHEELUP:
+#if ORBIT_CAMERA_FLAG
+                            m_orbitCamera.decreaseOffsetDistance();
+#else
                             thirdPersonPovCamera.decreaseOffsetDistance();
+#endif
+
                             cout << "wheel up" << endl;
                             break;
 
                         case SDL_BUTTON_WHEELDOWN:
+
+#if ORBIT_CAMERA_FLAG
+                            m_orbitCamera.increaseOffsetDistance();
+#else
                             thirdPersonPovCamera.increaseOffsetDistance();
+#endif
+
                             cout << "wheel down" << endl;
                             break;
                     }
@@ -532,6 +603,16 @@ void ExplosionGenerator::start()
 
                         case SDLK_o:   holdKeyFlag = false; break;
 
+                        case SDLK_e:
+                            m_increaseFlag = false;
+                            break;
+
+                        case SDLK_q:
+                            m_decreaseFlag = false;
+                            break;
+
+
+
                     }
                     break;
 
@@ -540,7 +621,7 @@ void ExplosionGenerator::start()
                     {
                         case SDLK_ESCAPE:   isRunning = false;    break;
                         case SDLK_z:
-
+                            m_orbitCamera.m_pivotOffset.y = 3.0f;
 #if SPHERE_EFFECT
                              l_SphereEffect.Reset();
 #endif
@@ -548,14 +629,26 @@ void ExplosionGenerator::start()
 #if CUBE_SPHERE_EFFECT
                             l_Cube_SphereEffect.Reset();
 #endif
-                            space_bar = false;
+//                            space_bar = false;
+                            m_explodeFlag = false;
                             break;
                         case SDLK_SPACE:
-                            space_bar = true;
+                            m_explodeFlag = true;
+  //                          space_bar = true;
                             break;
                         case SDLK_v:
                             dvel = !dvel;
                             break;
+                        case SDLK_e:
+                            m_increaseFlag = true;
+                     //       EG_Utility::printGlm("Here", m_orbitCamera.m_pivotOffset);
+                            break;
+
+                        case SDLK_q:
+                            m_decreaseFlag = true;
+                            break;
+
+
                         case SDLK_l:
                             isDepthTextureMode = !isDepthTextureMode;
                             break;
@@ -575,7 +668,7 @@ void ExplosionGenerator::start()
                             break;
 
                         case SDLK_p:
-                            firstPersonPovCamera.mouseIn(false);
+                            firstPersonPovCamera.setMouseInFlag(false);
 //                            myThirdPOV_camera.mouseIn(false);
                             break;
                         case SDLK_x:
@@ -713,7 +806,10 @@ void ExplosionGenerator::renderShadowMap()
             o_animatedLegoMan.renderSingle(temp_pipeline, r_Technique, RENDER_PASS1, modelPtr);
 */
 
+
+#if ANIMATED_OBJECT_FLAG
         renderAnimatedObject(temp_pipeline, RENDER_PASS1);
+#endif
 
 /*
             m_pipeline.translate(0,0,5);
@@ -739,6 +835,22 @@ void ExplosionGenerator::update()
     angle+=0.05f;
 
 
+    if(m_increaseFlag)
+        m_orbitCamera.m_pivotOffset.y+=1;
+
+
+    if(m_decreaseFlag)
+        m_orbitCamera.m_pivotOffset.y-=1;
+
+
+    int mx, my;
+    SDL_GetMouseState(&mx,&my);
+    m_mouseState.m_pos = glm::vec2(mx, SCREEN_HEIGHT - my);
+
+    bool b = m_triggerButton.update(m_mouseState);
+    if(b)
+        m_explodeFlag = b;
+
     if(addSmoke)
     {
         if(inc_flag)
@@ -757,10 +869,10 @@ void ExplosionGenerator::update()
     glDisable(GL_BLEND);
 
 #if SMOKE_EFFECT
-    smoke.update();
+    smoke.update(addSmoke);
 #endif
 
-    if (space_bar)
+    if (m_explodeFlag)
     {
 #if SPHERE_EFFECT
         l_SphereEffect.update();
@@ -775,8 +887,11 @@ void ExplosionGenerator::update()
 
 
     float runningTime = (float)((double)SDL_GetTicks() - (double)m_timeManager.getStartTime()) / 1000.0f;
-    legoMan.boneTransform(runningTime, o_animatedLegoMan.m_boneTransforms);
-    bob.boneTransform(runningTime, o_animatedBob.m_boneTransforms);
+//    legoMan.boneTransform(runningTime, o_animatedLegoMan.m_boneTransforms);
+  //  bob.boneTransform(runningTime, o_animatedBob.m_boneTransforms);
+
+
+
 
 //    mainAvatar.boneTransform(runningTime);
 //    bob.boneTransform(runningTime, r_skinning)
@@ -815,10 +930,11 @@ void ExplosionGenerator::RenderSmoke(bool pass1, bool pass2, Matrices_t& Mat, un
         Matrices.View = m_pipeline.getViewMatrix();
      //   Matrices.View = glm::mat4(1.0);
 
+        float scale = 10;
         m_pipeline.pushMatrix();
-            m_pipeline.translate(0,5,0);
+            m_pipeline.translate(0,scale,0);
             m_pipeline.rotateZ(180);
-            m_pipeline.scale(5);
+            m_pipeline.scale(scale);
             Matrices.Model = m_pipeline.getModelMatrix();
             Matrices.Modelview = Matrices.View * Matrices.Model;
         m_pipeline.popMatrix();
@@ -894,7 +1010,13 @@ void ExplosionGenerator::renderAnimatedObject(pipeline& p, int pass)
 
         // if(!isFirstPersonCamera)
     //    r_skinning.setBoneTransforms(thirdPersonPovCamera.m_characterObject.m_boneTransforms);
+
+#if ORBIT_CAMERA_FLAG
+
+#else
         thirdPersonPovCamera.render1(p, r_Technique, pass, modelPtr);
+#endif // ORBIT_CAMERA_FLAG
+
 
 
     modelPtr = &bob;
@@ -919,7 +1041,12 @@ void ExplosionGenerator::RenderScene()
         glBindTexture(GL_TEXTURE_2D, shadowMap);
 		glUniform1i(r_Shadow_Render.shadowMap_UniLoc,6);
 
+//        r_Shadow_Render.setEyeWorldPos(thirdPersonPovCamera.getEyePoint());
+#if ORBIT_CAMERA_FLAG
+        r_Shadow_Render.setEyeWorldPos(m_orbitCamera.getEyePoint());
+#else
         r_Shadow_Render.setEyeWorldPos(thirdPersonPovCamera.getEyePoint());
+#endif
 
 
         o_wall.renderGroup(m_pipeline, r_Technique, RENDER_PASS2, ground);
@@ -958,7 +1085,9 @@ void ExplosionGenerator::Render_to_CubeMapTexture2()
     {
         Render_to_CubeMapFace2(i);
         RenderScene();
+#if ANIMATED_OBJECT_FLAG
         renderAnimatedObject(m_pipeline, RENDER_PASS2);
+#endif
   //      glDisable(GL_DEPTH_TEST);
 
     #if SMOKE_EFFECT
@@ -1080,11 +1209,11 @@ void ExplosionGenerator::forwardRender()
     {
         firstPersonPovCamera.Control(SCREEN_WIDTH/2, SCREEN_HEIGHT/2);
         firstPersonPovCamera.UpdateCamera();
-        firstPersonPovCamera.UpdateCamera_Rotation(m_pipeline);
+        firstPersonPovCamera.UpdateCameraRotation(m_pipeline);
     #if SKY_BOX
         m_skybox.UpdateRotationOnly_View_Pipeline(m_pipeline);
     #endif
-        firstPersonPovCamera.UpdateCamera_Translation(m_pipeline);
+        firstPersonPovCamera.UpdateCameraTranslation(m_pipeline);
        // thirdPersonPovCamera.c_position = firstPersonPovCamera.getEyePoint();
         /*
         thirdPersonPovCamera.setCharacterPosition(firstPersonPovCamera.getEyePoint().x,
@@ -1098,7 +1227,12 @@ void ExplosionGenerator::forwardRender()
 
     else
     {
+
+#if ORBIT_CAMERA_FLAG
+        m_orbitCamera.Control(m_pipeline, m_skybox);
+#else
         thirdPersonPovCamera.Control(m_pipeline, m_skybox);
+#endif
     }
 
 
@@ -1143,8 +1277,9 @@ void ExplosionGenerator::forwardRender()
         o_animatedLegoMan.renderSingle(m_pipeline, r_Technique, RENDER_PASS1, modelPtr);
 */
 
+#if ANIMATED_OBJECT_FLAG
         renderAnimatedObject(m_pipeline, RENDER_PASS1);
-
+#endif
     m_pipeline.popMatrix();
     glBindFramebuffer(GL_FRAMEBUFFER, 0);
 #endif
@@ -1177,10 +1312,14 @@ void ExplosionGenerator::forwardRender()
         r_skinning.setBoneTransforms(o_animatedLegoMan.m_boneTransforms);
         o_animatedLegoMan.renderSingle(m_pipeline, r_Technique, RENDER_PASS2, modelPtr);
  */
+
+#if ANIMATED_OBJECT_FLAG
     renderAnimatedObject(m_pipeline, RENDER_PASS2);
+#endif
 
+#if ANIMATED_OBJECT_FLAG
     r_skinning.renewVector();
-
+#endif
 
 
 #if REFLECTION_EFFECT
@@ -1188,17 +1327,27 @@ void ExplosionGenerator::forwardRender()
     if(isFirstPersonCamera)
         r_Reflection_Render.setCameraPosition(firstPersonPovCamera.getEyePoint());
     else
-        r_Reflection_Render.setCameraPosition(thirdPersonPovCamera.getEyePoint());
-    r_Reflection_Render.setReflectionTextureId(m_skybox.Dynamic_CubeMap_ColorTextureID);
+    {
 
+#if ORBIT_CAMERA_FLAG
+        r_Reflection_Render.setCameraPosition(m_orbitCamera.getEyePoint());
+#else
+        r_Reflection_Render.setCameraPosition(thirdPersonPovCamera.getEyePoint());
+#endif
+    }
+
+
+    r_Reflection_Render.setReflectionTextureId(m_skybox.Dynamic_CubeMap_ColorTextureID);
     o_reflectionSphere.renderSingle(m_pipeline, r_Technique, RENDER_PASS1, smoothSphere);
 #endif
 
+  //  glDepthFunc(GL_LEQUAL);
+    r_Technique = &r_fullColor;
+    p_modelPtr = &m_axisModel;
+    o_worldAxis.renderSingle(m_pipeline, r_Technique, RENDER_PASS1, p_modelPtr);
 
-    r_Technique = &r_Shadow_Render;
-    o_worldAxis.renderSingle(m_pipeline, r_Technique, RENDER_PASS2);
 
-
+ //   glDepthFunc(GL_LESS);
 #if SMOKE_EFFECT
     RenderSmoke(true, true, Matrices, depthTexture);
 #endif
@@ -1206,11 +1355,8 @@ void ExplosionGenerator::forwardRender()
 
 
 
-    setupGUIRenderStage();
-    EG_Control::m_textEngine.render(m_pipeline, 50, 300, "Explosion Generator");
+    RenderGUI();
 
-    r_Technique = &r_buttonRenderer;
-    m_triggerButton.render(m_pipeline, r_Technique, RENDER_PASS1);
 #endif
 
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
@@ -1235,7 +1381,21 @@ void ExplosionGenerator::setupGUIRenderStage()
 }
 
 
+void ExplosionGenerator::RenderGUI()
+{
+    setupGUIRenderStage();
+    EG_Control::m_textEngine.render(m_pipeline, 0, 10, "Explosion Generator");
 
+    r_Technique = &r_buttonRenderer;
+    m_triggerButton.render(m_pipeline, r_Technique, RENDER_PASS1);
+    m_resetButton.render(m_pipeline, r_Technique, RENDER_PASS1);
+    m_minimizeButton.render(m_pipeline, r_Technique, RENDER_PASS1);
+    m_listBox.render(m_pipeline, r_Technique, RENDER_PASS1);
+
+}
+
+
+#if 0
 void ExplosionGenerator::deferredShadingShow()
 {
 
@@ -1263,11 +1423,11 @@ void ExplosionGenerator::deferredShadingShow()
     {
         firstPersonPovCamera.Control(SCREEN_WIDTH/2, SCREEN_HEIGHT/2);
         firstPersonPovCamera.UpdateCamera();
-        firstPersonPovCamera.UpdateCamera_Rotation(m_pipeline);
+        firstPersonPovCamera.UpdateCameraRotation(m_pipeline);
     #if SKY_BOX
         m_skybox.UpdateRotationOnly_View_Pipeline(m_pipeline);
     #endif
-        firstPersonPovCamera.UpdateCamera_Translation(m_pipeline);
+        firstPersonPovCamera.UpdateCameraTranslation(m_pipeline);
        // thirdPersonPovCamera.c_position = firstPersonPovCamera.getEyePoint();
   /*
         thirdPersonPovCamera.setCharacterPosition(firstPersonPovCamera.getEyePoint().x,
@@ -1281,7 +1441,9 @@ void ExplosionGenerator::deferredShadingShow()
 
     else
     {
-        thirdPersonPovCamera.Control(m_pipeline, m_skybox);
+        // thirdPersonPovCamera.Control(m_pipeline, m_skybox);
+        m_orbitCamera.Control(m_pipeline, m_skybox);
+
 /*
         firstPersonPovCamera.setEyePoint(thirdPersonPovCamera.c_position.x,
                                          thirdPersonPovCamera.c_position.y + 5,
@@ -1343,8 +1505,10 @@ void ExplosionGenerator::deferredShadingShow()
 
 #endif
 }
+#endif
 
 
+/*
 void ExplosionGenerator::deferredShadingMrtDemoPass()
 {
     glBindFramebuffer(GL_DRAW_FRAMEBUFFER, 0);
@@ -1397,10 +1561,10 @@ void ExplosionGenerator::deferredShadingMrtDemoPass()
         glBlitFramebuffer(0, 0, WINDOW_WIDTH, WINDOW_HEIGHT, HalfWidth, 0, WINDOW_WIDTH, HalfHeight, GL_COLOR_BUFFER_BIT, GL_LINEAR);
     }
 }
+*/
 
 
-
-
+#if 0
 void ExplosionGenerator::deferredShadingGeometryPass37(EG_GBuffer& GBuffer)
 {
     /// 2nd Render pass of shadowMapping: camera's point of view
@@ -1432,7 +1596,16 @@ void ExplosionGenerator::deferredShadingGeometryPass37(EG_GBuffer& GBuffer)
     if(isFirstPersonCamera)
         eyePoint = firstPersonPovCamera.getEyePoint();
     else
+    {
+#if ORBIT_CAMERA_FLAG
+        eyePoint = m_orbitCamera.getEyePoint();
+#else
         eyePoint = thirdPersonPovCamera.getEyePoint();
+#endif
+    }
+
+
+
 /*
     o_reflectiveSphere.render(m_pipeline,
                           r_deferredShadingReflection,
@@ -1583,7 +1756,7 @@ void ExplosionGenerator::deferredShadingGeometryPass37_Skybox(EG_GBuffer& GBuffe
     r_deferredShadingGeometryPass.disableShader(RENDER_PASS1);
 
 }
-
+#endif
 
 
 void ExplosionGenerator::deferredShadingStencilPass37(int index, EG_GBuffer& GBuffer)
@@ -1636,7 +1809,7 @@ void ExplosionGenerator::deferredShadingStencilPass37(int index, EG_GBuffer& GBu
 }
 
 
-
+/*
 void ExplosionGenerator::deferredShadingPointLightPass37(int index, EG_GBuffer& GBuffer)
 {
     GBuffer.BindForLightPass37();
@@ -1837,8 +2010,8 @@ void ExplosionGenerator::deferredShadingRenderToCubeMapTexture()
     glEnable(GL_CULL_FACE);
 }
 
-
-
+*/
+#if 0
 void ExplosionGenerator::deferredShadingRenderToCubeMapTextureFace(int face)
 {
     m_pipeline.matrixMode(PROJECTION_MATRIX);
@@ -1959,7 +2132,7 @@ void ExplosionGenerator::deferredShadingRenderToCubeMapTextureFace(int face)
 
 
 }
-
+#endif
 
 
 

@@ -3,17 +3,18 @@
 
 #include <vector>
 
+#include "EG_Rect.h"
 #include "EG_Control.h"
 
 using namespace std;
-/*
+
 class EG_ListBox : public EG_Control
 {
     public:
         EG_ListBox();
-        EG_ListBox(string label, int posX, int posY, int width, int height);
+        EG_ListBox(int x, int y, int width, int height);
 
-        void init();
+        virtual void initColoredQuad();
 
         void addItem(string item);
         void removeItem(int index);
@@ -24,20 +25,28 @@ class EG_ListBox : public EG_Control
 
 
 
-        void update(int posX, int posY, int width, int height);
-
+//        void update(int posX, int posY, int width, int height);
+        using EG_Control::update;
         virtual bool update(MouseState & state);
 
 
-        virtual void render(unsigned int shaderID, pipeline& m_pipeline, int x, int y, const char *in_text, ...);
+        virtual void render (pipeline& m_pipeline,
+                            EG_RenderTechnique* RenderTechnique,
+                            int RenderPassID);
         virtual int getType();
 
     protected:
         int m_curIndex;
+
+        EG_Rect         m_curQuadData;
+        EG_QuadModelABS m_curQuadModel;
+
+
+
         vector<string> m_items;
 };
 
-*/
+
 
 
 #endif // EG_BUTTON_H

@@ -10,7 +10,8 @@ in float gLayer;
 void main()
 {
     float d = distance(Point, vec3(gl_FragCoord.xy, gLayer));
-    if (d < Radius) {
+    if (d < Radius) 
+    {
         float a = (Radius - d) * 0.5;
         a = min(a, 1.0);
         FragColor = vec4(FillColor, a);

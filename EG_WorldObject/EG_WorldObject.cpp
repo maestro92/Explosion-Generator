@@ -279,6 +279,36 @@ void WorldObject::renderSingle( pipeline& m_pipeline,
 }
 
 
+
+
+
+void WorldObject::renderSingle( pipeline& m_pipeline,
+                                EG_RenderTechnique* RenderTechnique,
+                                int RenderPassID,
+                                EG_ModelABS* model)
+{
+    RenderTechnique->enableShader(RenderPassID);
+    renderGroup(m_pipeline, RenderTechnique, RenderPassID, model);
+    RenderTechnique->disableShader(RenderPassID);
+}
+
+void WorldObject::renderGroup( pipeline& m_pipeline,
+                                EG_RenderTechnique* RenderTechnique,
+                                int RenderPassID,
+                                EG_ModelABS* model)
+{
+    m_pipeline.pushMatrix();
+        m_pipeline.translate(m_position);
+        m_pipeline.loadMatrix(glm::toMat4(m_orientation));
+        m_pipeline.scale(m_scale);
+        RenderTechnique->loadUniformLocations(m_pipeline, RenderPassID);
+        model->render();
+    m_pipeline.popMatrix();
+}
+
+
+
+
 /*
 void WorldObject::renderSingle( pipeline& m_pipeline,
                                 EG_RenderTechnique* RenderTechnique,

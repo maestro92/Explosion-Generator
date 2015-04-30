@@ -15,11 +15,13 @@ EG_ThirdPersonPovCamera::EG_ThirdPersonPovCamera()
     m_dampingConstant = DEFAULT_DAMPING_CONSTANT;
     m_enableSpringSystem = true;
 
-    pitchDegree = 0.0f;
-    yawDegree = 0.0f;
+    m_pitchDegree = 0.0f;
+    m_yawDegree = 0.0f;
 
     mousevel = 1.0f;
     mouse_in = false;
+
+
 
 	m_eye       = glm::vec3(0.0f, 0.0f, 0.0f);
 	m_target    = glm::vec3(0.0f, 0.0f, 0.0f);
@@ -69,6 +71,8 @@ void EG_ThirdPersonPovCamera::init(pipeline& m_pipeline)
 {
     m_character = new meshLoader("./Characters/LEGO_Man.obj");
     m_characterHeight = 3.0f;
+ //   m_pivotOffset.y = m_characterHeight;
+
 
     m_mainAvatar.loadModel("./models/Characters/Walking Lego.md5mesh");
 
@@ -84,6 +88,12 @@ void EG_ThirdPersonPovCamera::init(pipeline& m_pipeline)
     glm::vec3 up_p      = glm::vec3(0.0f, 1.0f, 0.0f);
 
     lookAt(m_pipeline, eye_p, target_p, up_p);
+
+  //  m_pitchDegree = -abs( atan2(9.0f, 30.0f)) * 180 / M_PI;
+    cout << "m_pitchDegree is " << m_pitchDegree << endl;
+
+  //  m_pitchDegree = asinf(m_viewMatrix[1][2]) * 180 / M_PI;
+
 }
 
 
@@ -140,22 +150,11 @@ void EG_ThirdPersonPovCamera::lookAt(pipeline& m_pipeline, glm::vec3& eye, glm::
     m_yAxis = glm::cross(m_zAxis, m_xAxis);
     m_yAxis = glm::normalize(m_yAxis);
 
-    m_viewMatrix[0][0] = m_xAxis.x;
-    m_viewMatrix[0][1] = m_xAxis.y;
-    m_viewMatrix[0][2] = m_xAxis.z;
-    m_viewMatrix[3][0] = eye.x;
-
-    m_viewMatrix[1][0] = m_yAxis.x;
-    m_viewMatrix[1][1] = m_yAxis.y;
-    m_viewMatrix[1][2] = m_yAxis.z;
-    m_viewMatrix[3][1] = eye.y;
-
-    m_viewMatrix[2][0] = m_zAxis.x;
-    m_viewMatrix[2][1] = m_zAxis.y;
-    m_viewMatrix[2][2] = m_zAxis.z;
-    m_viewMatrix[3][2] = eye.z;
-
+    m_viewMatrix[0][0] = m_xAxis.x;    m_viewMatrix[1][0] = m_yAxis.x;    m_viewMatrix[2][0] = m_zAxis.x;    m_viewMatrix[3][0] = eye.x;
+    m_viewMatrix[0][1] = m_xAxis.y;    m_viewMatrix[1][1] = m_yAxis.y;    m_viewMatrix[2][1] = m_zAxis.y;    m_viewMatrix[3][1] = eye.y;
+    m_viewMatrix[0][2] = m_xAxis.z;    m_viewMatrix[1][2] = m_yAxis.z;    m_viewMatrix[2][2] = m_zAxis.z;    m_viewMatrix[3][2] = eye.z;
     m_viewMatrix = glm::inverse(m_viewMatrix);
+
 
     m_idealViewMatrix = m_viewMatrix;
 
@@ -215,40 +214,38 @@ void EG_ThirdPersonPovCamera::update(pipeline& m_pipeline, float elapsedTimeSec,
 {
     glm::quat rot;
 
-
-
-    /// imagine the sequence of Model View Projection Matrix
-    /// it will be projectionMatrix * viewMatrix * modelMatrix
-    /// in this case, it will be
-    /// projectionMatrix * (m_orientation * rot) * modelMatrix
-    /// so by selecting
-    ///         rot = glm::angleAxis(yawChange, glm::vec3(0,1,0));
-    /// we're essentially turning the world first, then rotating our camera, then move our camera along our camera orientation
-    if (yawChange != 0.0f)
-    {
-        glm::mat4 rot_temp = glm::rotate(yawChange, 0.0f, 1.0f, 0.0f);
-        m_idealViewMatrix = m_idealViewMatrix * rot_temp;
-    }
-
-    if (pitchChange != 0.0f)
-    {
-        glm::mat4 rot_temp = glm::rotate(pitchChange, 1.0f,0.0f,0.0f);
-        m_idealViewMatrix = m_idealViewMatrix * rot_temp ;
-    }
-
-    glm::vec3 m_idealXAxis;
-    glm::vec3 m_idealYAxis;
-    glm::vec3 m_idealZAxis;
-    glm::vec3 m_idealEye;
-
-    /// extracting x,y,z axis from viewMatrix
-    computeLocalAxisAndEyePosFromMatrix(m_idealViewMatrix, VIEW_MATRIX,
-                                          m_idealXAxis, m_idealYAxis,
-                                          m_idealZAxis, m_idealEye);
-
-
     if (m_enableSpringSystem)
     {
+        /// imagine the sequence of Model View Projection Matrix
+        /// it will be projectionMatrix * viewMatrix * modelMatrix
+        /// in this case, it will be
+        /// projectionMatrix * (m_orientation * rot) * modelMatrix
+        /// so by selecting
+        ///         rot = glm::angleAxis(yawChange, glm::vec3(0,1,0));
+        /// we're essentially turning the world first, then rotating our camera, then move our camera along our camera orientation
+        if (yawChange != 0.0f)
+        {
+            glm::mat4 rot_temp = glm::rotate(yawChange, 0.0f, 1.0f, 0.0f);
+            m_idealViewMatrix = m_idealViewMatrix * rot_temp;
+        }
+
+        if (pitchChange != 0.0f)
+        {
+            glm::mat4 rot_temp = glm::rotate(pitchChange, 1.0f,0.0f,0.0f);
+            m_idealViewMatrix = m_idealViewMatrix * rot_temp ;
+        }
+
+        glm::vec3 m_idealXAxis;
+        glm::vec3 m_idealYAxis;
+        glm::vec3 m_idealZAxis;
+        glm::vec3 m_idealEye;
+
+        /// extracting x,y,z axis from viewMatrix
+        computeLocalAxisAndEyePosFromMatrix(m_idealViewMatrix, VIEW_MATRIX,
+                                              m_idealXAxis, m_idealYAxis,
+                                              m_idealZAxis, m_idealEye);
+
+
         glm::vec3 idealPosition = m_target + m_idealZAxis * m_offsetDistance;
         glm::vec3 displacement = m_eye - idealPosition;
 
@@ -262,9 +259,31 @@ void EG_ThirdPersonPovCamera::update(pipeline& m_pipeline, float elapsedTimeSec,
     }
     else
     {
+
+        if (yawChange != 0.0f)
+        {
+            glm::mat4 rot_temp = glm::rotate(yawChange, 0.0f, 1.0f, 0.0f);
+            m_viewMatrix = m_viewMatrix * rot_temp;
+        }
+
+
+
+        if (pitchChange != 0.0f)
+        {
+            glm::mat4 rot_temp = glm::rotate(pitchChange, 1.0f,0.0f,0.0f);
+            m_viewMatrix = m_viewMatrix * rot_temp ;
+//            m_viewMatrix = rot_temp * m_viewMatrix;
+        }
+
+
+        /// extracting x,y,z axis from viewMatrix
+        computeLocalAxisAndEyePosFromMatrix(m_viewMatrix, VIEW_MATRIX,
+                                              m_xAxis, m_yAxis,
+                                              m_zAxis, m_eye);
+
         /// if not using the spring system
         m_eye = m_target + m_zAxis * m_offsetDistance;
-        debugVec3(m_eye, "m_eye");
+      //  debugVec3(m_eye, "m_eye");
     }
 
 
@@ -288,6 +307,9 @@ void EG_ThirdPersonPovCamera::update(pipeline& m_pipeline, float elapsedTimeSec,
 
 
     m_viewMatrix = m_viewMatrix * glm::translate(0.0f, -m_characterHeight, 0.0f);
+
+ //   m_viewMatrix = m_viewMatrix * glm::translate(-m_pivotOffset.x, -m_pivotOffset.y, -m_pivotOffset.z);
+
 
     m_viewDir = -m_zAxis;
 	updateViewMatrix(m_pipeline);
@@ -361,6 +383,9 @@ void EG_ThirdPersonPovCamera::Control(pipeline& m_pipeline, EG_SkyBox& skybox)
 
 		if(state[SDLK_d])
             yawChange = BALL_HEADING_SPEED;
+
+
+
 
 
         /// update the character first
