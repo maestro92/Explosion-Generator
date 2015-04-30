@@ -9,24 +9,36 @@ using namespace std;
 class EG_Slider : public EG_Control
 {
     public:
+        EG_Slider();
         EG_Slider(string label, float min, float max,
                int x, int y, int width, int height);
 
         void setValue(float *value);
 
+        void setMaxValue(float max);
+        void setMinValue(float min);
+
+
+        virtual void initColoredQuad();
+
         virtual bool update(MouseState &state);
+
         virtual void render(pipeline& m_pipeline,
                             EG_RenderTechnique* RenderTechnique,
                             int RenderPassID);
 
         virtual int getType();
+
+
     protected:
+
+        EG_Rect m_sliderQuadRect;
+        EG_QuadModelABS m_sliderQuadModel;
 
         float m_defaultValue;
         float m_minValue;
         float m_maxValue;
         float*  m_current;
-        string m_label;
         bool m_dragging;
 
 

@@ -10,7 +10,7 @@
 
 #include "pipeline.h"
 #include "sceneLoader.h"
-#include "L_ParticleEffect_Interface.h"
+#include "EG_ParticleEffect.h"
 #include <cstdlib>
 #include <iostream>
 #include <algorithm>
@@ -22,7 +22,7 @@ using namespace std;
 typedef std::vector<WorldObject*> w_ParticleBuffer;
 
 
-class L_Cube_Sphere_ParticleEffect : public L_ParticleEffect_Interface
+class L_Cube_Sphere_ParticleEffect : public EG_ParticleEffect
 {
     public:
 

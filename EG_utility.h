@@ -78,9 +78,12 @@ class EG_Utility
         static float DEGREE_TO_RADIAN;
         static float RADIAN_TO_DEGREE;
 
-        static void printGlm(string s, glm::vec2 v);
-        static void printGlm(string s, glm::mat4 m);
-        static void printGlm(string s, glm::vec3 v);
+        static void debug(string s, string s2);
+        static void debug(string s, int i);
+        static void debug(string s, float f);
+        static void debug(string s, glm::vec2 v);
+        static void debug(string s, glm::mat4 m);
+        static void debug(string s, glm::vec3 v);
     //    static GLuint GetUniformLocation(shader* s, const char* UniformName);
 
 };

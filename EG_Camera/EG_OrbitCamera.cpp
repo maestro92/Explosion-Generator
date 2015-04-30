@@ -43,8 +43,16 @@ void EG_OrbitCamera::Control(pipeline& m_pipeline, EG_SkyBox& skybox)
 	SDL_GetMouseState(&tmpx,&tmpy);
 
     m_mouseCurrent = glm::vec2( tmpx, tmpy );
+
     m_mouseDelta = ( m_mousePrevious - m_mouseCurrent );
     m_enableSpringSystem = false;
+
+
+
+    if(tmpx < 200)
+    {
+        m_mouseDelta = glm::vec2(0,0);
+    }
 
 //	if(mouse_in)
 	if(m_leftMouseDown)
@@ -142,6 +150,55 @@ void EG_OrbitCamera::Control(pipeline& m_pipeline, EG_SkyBox& skybox)
 
   //  EG_Utility::printGlm("m_pivotOffset", m_pivotOffset);
 //    update(m_pipeline, 0.031f, pitchChange, (forwardSpeed >= 0.0f) ? yawChange : -yawChange, skybox);
+    update(m_pipeline, 0.031f, pitchChange, -yawChange, skybox);
+    m_mousePrevious = m_mouseCurrent;
+}
+
+
+
+void EG_OrbitCamera::Control(pipeline& m_pipeline, EG_SkyBox& skybox, int screen_w, int screen_h, int palette_w, int palette_h)
+{
+    float pitchChange = 0.0f;
+    float yawChange = 0.0f;
+    float forwardSpeed = 0.0f;
+
+    int tmpx,tmpy;
+	SDL_GetMouseState(&tmpx,&tmpy);
+
+    m_mouseCurrent = glm::vec2( tmpx, tmpy );
+
+    m_mouseDelta = ( m_mousePrevious - m_mouseCurrent );
+    m_enableSpringSystem = false;
+
+
+    if(tmpx < palette_w)
+    {
+        m_mouseDelta = glm::vec2(0,0);
+    }
+
+//	if(mouse_in)
+	if(m_leftMouseDown)
+	{
+		Uint8* state=SDL_GetKeyState(NULL);
+        pitchChange = m_mouseDelta.y;
+        yawChange = m_mouseDelta.x;
+    }
+
+
+    m_pitchDegree = asinf(m_viewMatrix[1][2]) * EG_Utility::RADIAN_TO_DEGREE;
+ //   cout << "Here m_pitchDegree is " << m_pitchDegree << endl;
+
+    if( (m_pitchDegree + pitchChange) > 89 || (m_pitchDegree + pitchChange) < -89 )
+        pitchChange = 0;
+
+
+    m_yawDegree += yawChange;
+    if(m_yawDegree > 360)
+        m_yawDegree -= 360;
+
+    if(m_yawDegree < -360)
+        m_yawDegree += 360;
+
     update(m_pipeline, 0.031f, pitchChange, -yawChange, skybox);
     m_mousePrevious = m_mouseCurrent;
 }

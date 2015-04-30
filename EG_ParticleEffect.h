@@ -1,5 +1,5 @@
-#ifndef _PARTICLE_EFFECT_H_
-#define _PARTICLE_EFFECT_H_
+#ifndef EG_PARTICLE_EFFECT_H_
+#define EG_PARTICLE_EFFECT_H_
 #include "Particle.h"
 #include <cstdlib>
 #include <cstdlib>
@@ -23,7 +23,8 @@ static glm::vec3 ExternalForce_half_pos = vec3(0,4.9,0);
 
 using namespace std;
 
-class L_ParticleEffect_Interface
+//class L_ParticleEffect_Interface
+class EG_ParticleEffect
 {
     public:
 

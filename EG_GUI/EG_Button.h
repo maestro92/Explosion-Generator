@@ -20,7 +20,7 @@ class EG_Button : public EG_Control
         virtual void initColoredQuad();
 
         virtual bool update(MouseState & state);
-        virtual bool update(string label);
+    //    virtual bool update(string label);
     //    virtual void render(int x, int y);
 
   //      virtual bool update(glm::vec3 c);
@@ -34,10 +34,10 @@ class EG_Button : public EG_Control
 
     protected:
         bool m_down;
-        string m_label;
+    //    string m_label;
 //        EG_Quad m_rectQuad;
 
-        EG_ModelABS* p_modelPtr;
+
         EG_QuadModelABS m_highlightQuadModel;
         EG_QuadModelABS m_pressedQuadModel;
 

@@ -5,31 +5,30 @@
 
 struct EG_Rect
 {
-    glm::vec3 m_position;
-    float m_width;
-    float m_height;
+    int x;
+    int y;
+    int w;
+    int h;
 
 
-    void update(glm::vec3 pos)
+
+    void setXY(int posX, int posY)
     {
-        m_position.x = pos.x;
-        m_position.y = pos.y;
-        m_position.z = 0;
+        x = posX;
+        y = posY;
     }
 
 
-    void update(float w, float h)
+    void setWH(int width, int height)
     {
-        m_width = w;
-        m_height = h;
+        w = width;
+        h = height;
     }
 
-    void update(int x, int y, float w, float h)
+    void set(int x, int y, int width, int height)
     {
-        m_position.x = x;
-        m_position.y = y;
-        m_width = w;
-        m_height = h;
+        setXY(x,y);
+        setWH(width, height);
     }
 
 };

@@ -88,9 +88,10 @@ class EG_Control
 //        virtual void initColoredQuad(glm::vec3 c1, glm::vec3 c2, glm::vec3 c3, glm::vec3 c4);
 
 
-        virtual bool update(int x, int y, int width, int height);
-        virtual bool update(glm::vec3 c);
-        virtual bool update(glm::vec3 c1, glm::vec3 c2, glm::vec3 c3, glm::vec3 c4);
+
+    //    virtual bool update(int x, int y, int width, int height);
+     //   virtual bool update(glm::vec3 c);
+    //    virtual bool update(glm::vec3 c1, glm::vec3 c2, glm::vec3 c3, glm::vec3 c4);
         virtual bool update(MouseState & state);
 
 
@@ -111,18 +112,24 @@ class EG_Control
 
         void setPosition(int x, int y);
         void setSize(int width, int height);
-
+        void setRect(int x, int y, int w, int h);
+        void setColor(glm::vec3 c);
+        void setColor(glm::vec3 c1, glm::vec3 c2, glm::vec3 c3, glm::vec3 c4);
+        void setLabel(string label);
         int computeTextStartingX(string s);
         int computeTextStartingY();
 
         int getWidth();
         int getHeight();
 
-        glm::vec2 m_position;
-        int m_width;
-        int m_height;
+        EG_ModelABS* p_modelPtr;
+     //   glm::vec2 m_position;
+     //   int m_width;
+     //   int m_height;
         bool m_isInside;
+        string m_label;
 
+        EG_Rect m_rect;
 
         /// http://stackoverflow.com/questions/7083612/defining-a-static-variable-of-base-class
         static EG_Text m_textEngine;

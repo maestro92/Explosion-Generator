@@ -66,6 +66,7 @@ class EG_OrbitCamera : public EG_ThirdPersonPovCamera
         bool f;
 
         virtual void Control(pipeline& m_pipeline, EG_SkyBox& skybox);
+        virtual void Control(pipeline& m_pipeline, EG_SkyBox& skybox, int screen_w, int screen_h, int palette_w, int palette_h);
         void update(pipeline& m_pipeline, float elapsedTimeSec, float pitchChange, float yawChange, EG_SkyBox& skybox);
 };
 

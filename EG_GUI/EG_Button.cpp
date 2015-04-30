@@ -22,8 +22,11 @@ EG_Button::EG_Button(string label, int x, int y, int width, int height, glm::vec
 void EG_Button::initColoredQuad()
 {
     EG_Control::initColoredQuad();
-    m_highlightQuadModel.init(m_width, m_height, BLUE);
-    m_pressedQuadModel.init(m_width, m_height, GREEN);
+//    m_highlightQuadModel.init(m_width, m_height, BLUE);
+//    m_pressedQuadModel.init(m_width, m_height, GREEN);
+    m_highlightQuadModel.init(m_rect.w, m_rect.h, BLUE);
+    m_pressedQuadModel.init(m_rect.w, m_rect.h, GREEN);
+
 }
 
 
@@ -40,11 +43,13 @@ void EG_Button::init(int posX, int posY, int width, int height)
 }
 */
 
+
+/*
 bool EG_Button::update(string label)
 {
     m_label = label;
 }
-
+*/
 
 bool EG_Button::update(MouseState & state)
 {
@@ -79,9 +84,17 @@ void EG_Button::render( pipeline& m_pipeline,
         p_modelPtr = &m_highlightQuadModel;
         EG_Control::render(m_pipeline, RenderTechnique, RENDER_PASS1, p_modelPtr);
 
+/*
         m_pipeline.pushMatrix();
             m_pipeline.scale(0.9);
             EG_Control::render(m_pipeline, RenderTechnique, RENDER_PASS1);
+        m_pipeline.popMatrix();
+  */
+
+        p_modelPtr = &m_quadModel;
+        m_pipeline.pushMatrix();
+            m_pipeline.scale(0.9);
+            EG_Control::render(m_pipeline, RenderTechnique, RENDER_PASS1, p_modelPtr);
         m_pipeline.popMatrix();
     }
 

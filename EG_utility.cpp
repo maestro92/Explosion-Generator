@@ -48,19 +48,37 @@ void EG_Utility::printGlmMat(string s, glm::mat4 m)
 */
 
 
-void EG_Utility::printGlm(string s, glm::vec2 v)
+void EG_Utility::debug(string s, string s2)
+{
+    cout << s << endl;
+    cout << s2 << endl << endl;
+}
+
+void EG_Utility::debug(string s, int i)
+{
+    cout << s << endl;
+    cout << i << endl << endl;
+}
+
+void EG_Utility::debug(string s, float f)
+{
+    cout << s << endl;
+    cout << f << endl << endl;
+}
+
+void EG_Utility::debug(string s, glm::vec2 v)
 {
     cout << s << endl;
     cout << v.x << " " << v.y << endl << endl;
 }
 
-void EG_Utility::printGlm(string s, glm::vec3 v)
+void EG_Utility::debug(string s, glm::vec3 v)
 {
     cout << s << endl;
     cout << v.x << " " << v.y << " " << v.z << endl << endl;
 }
 
-void EG_Utility::printGlm(string s, glm::mat4 m)
+void EG_Utility::debug(string s, glm::mat4 m)
 {
     cout << s << endl;
     for (int i=0; i<4; i++)

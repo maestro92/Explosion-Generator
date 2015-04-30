@@ -35,6 +35,10 @@ class EG_Text
         void render(pipeline& m_pipeline,
                     int x, int y, const char *in_text, ...);
 
+        void render(pipeline& m_pipeline,
+                    int x, int y, float fontSize, const char *in_text, ...);
+
+
     //    void render1(pipeline& m_pipeline,
     //                int x, int y, const char *in_text, ...);
 /*
@@ -55,6 +59,10 @@ class EG_Text
  //       EG_QuadModel fontQuad;
         GLuint fontBase;
         GLuint fontTexture;
+
+        int m_fontSize = 20;
+        int m_fontSpace = -9;
+
 
         EG_Renderer_Text    r_textRenderer;
 };

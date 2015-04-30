@@ -15,8 +15,8 @@ EG_ListBox::EG_ListBox(int x, int y, int width, int height) : EG_Control(x, y, w
 void EG_ListBox::initColoredQuad()
 {
     EG_Control::initColoredQuad();
-    m_curQuadData.update(0,0,m_width, m_itemHeight);
-    m_curQuadModel.init(m_width, m_itemHeight, BLUE);
+    m_curQuadData.set(0,0, m_rect.w, m_itemHeight);
+    m_curQuadModel.init(m_rect.w, m_itemHeight, BLUE);
 }
 
 
@@ -84,7 +84,7 @@ bool EG_ListBox::update(MouseState & state)
 
     if( m_isInside == true && state.m_leftButtonDown)
     {
-        int tempIndex = (y - m_position.y) / m_itemHeight;
+        int tempIndex = (y - m_rect.y) / m_itemHeight;
 
         if( tempIndex >= 0 && tempIndex < (int)m_items.size())
         {

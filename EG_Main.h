@@ -64,7 +64,7 @@
 #include "EG_WorldSphere.h"
 #include "EG_QuadModel.h"
 #include "EG_ListBox.h"
-
+#include "EG_Slider.h"
 
 #include "pipeline.h"
 #include "EG_SphereParticleEffect.h"
@@ -78,7 +78,7 @@
 #include "SDL/SDL_image.h"
 #include "EG_TimeManager.h"
 
-#include "L_ParticleEffect_Interface.h"
+#include "EG_ParticleEffect.h"
 
 #include "EG_Smoke.h"
 #include "CollisionDetection_HGrid.h"
@@ -148,9 +148,13 @@ class ExplosionGenerator
         /// GUI
         EG_Renderer_Button  r_buttonRenderer;
 
+
         EG_Button m_triggerButton;
         EG_Button m_resetButton;
         EG_Button m_minimizeButton;
+        float m_particleCount;
+        EG_Slider m_particleCountSlider;
+        EG_Slider m_velocitySlider;
         EG_ListBox m_listBox;
 
 

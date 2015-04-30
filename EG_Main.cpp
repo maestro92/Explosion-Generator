@@ -160,7 +160,7 @@ ExplosionGenerator::ExplosionGenerator()
     initGUI();
 
 #if SPHERE_EFFECT
-    l_SphereEffect.InitParticles();
+    l_SphereEffect.InitParticles(40);
 #endif
 
 #if CUBE_SPHERE_EFFECT
@@ -434,10 +434,27 @@ void ExplosionGenerator::initObjects()
 
 void ExplosionGenerator::initGUI()
 {
+
+    m_particleCount = 5;
+
     EG_Control::m_textEngine.initialize();
 
-    m_listBox.update(10, 400, 200, 100);
-    m_listBox.update(GREEN);
+
+    m_particleCountSlider.setRect(10, 600, 200, 50);
+    m_particleCountSlider.setColor(GRAY);
+    m_particleCountSlider.setLabel("Particle Count");
+    EG_Utility::debug("Label", m_particleCountSlider.m_label);
+    m_particleCountSlider.setValue(&m_particleCount);
+    m_particleCountSlider.setMaxValue(100);
+    m_particleCountSlider.setMinValue(1);
+
+    EG_Utility::debug("Label", m_particleCountSlider.m_label);
+
+
+    m_particleCountSlider.initColoredQuad();
+
+    m_listBox.setRect(10, 400, 200, 100);
+    m_listBox.setColor(GREEN);
     m_listBox.initColoredQuad();
     m_listBox.addItem("Nice");
     m_listBox.addItem("Nice");
@@ -446,21 +463,21 @@ void ExplosionGenerator::initGUI()
 
 
 
-    m_resetButton.update(10, 160, 200, 50);
-    m_resetButton.update("Reset");
-    m_resetButton.update(GRAY);
+    m_resetButton.setRect(10, 160, 200, 50);
+    m_resetButton.setLabel("Reset");
+    m_resetButton.setColor(GRAY);
     m_resetButton.initColoredQuad();
 
 
-    m_triggerButton.update(10, 100, 200, 50);
-    m_triggerButton.update("EXPLODE!");
-    m_triggerButton.update(GRAY);
+    m_triggerButton.setRect(10, 100, 200, 50);
+    m_triggerButton.setLabel("EXPLODE!");
+    m_triggerButton.setColor(GRAY);
     m_triggerButton.initColoredQuad();
 
-    m_minimizeButton.update(0, SCREEN_HEIGHT - EG_Control::m_textEngine.getTextHeight(),
+    m_minimizeButton.setRect(0, SCREEN_HEIGHT - EG_Control::m_textEngine.getTextHeight(),
                             200, EG_Control::m_textEngine.getTextHeight());
-    m_minimizeButton.update("minimize");
-    m_minimizeButton.update(GRAY);
+    m_minimizeButton.setLabel("minimize");
+    m_minimizeButton.setColor(GRAY);
     m_minimizeButton.initColoredQuad();
 
 
@@ -694,7 +711,7 @@ void ExplosionGenerator::start()
 #endif
                             break;
 #if SPHERE_EFFECT
-                            l_SphereEffect.myHgrid.removeParticleFromHGrid(&l_SphereEffect.e_ParticleBuffer[3]);
+                            l_SphereEffect.myHgrid.removeParticleFromHGrid(&l_SphereEffect.m_particles[3]);
 #endif
                             break;
                     }
@@ -847,9 +864,17 @@ void ExplosionGenerator::update()
     SDL_GetMouseState(&mx,&my);
     m_mouseState.m_pos = glm::vec2(mx, SCREEN_HEIGHT - my);
 
-    bool b = m_triggerButton.update(m_mouseState);
-    if(b)
-        m_explodeFlag = b;
+
+
+    bool sliding = m_particleCountSlider.update(m_mouseState);
+
+
+    if(!sliding)
+    {
+        bool b = m_triggerButton.update(m_mouseState);
+        if(b)
+            m_explodeFlag = b;
+    }
 
     if(addSmoke)
     {
@@ -1080,19 +1105,20 @@ void ExplosionGenerator::Render_to_CubeMapTexture2()
     glDisable(GL_CULL_FACE);
     glViewport(0, 0, 512, 512);
 
+
     /// for some reason if I start at i=0, the positive X face doesn't work
     for(int i=-1; i<6; i++)
     {
-        Render_to_CubeMapFace2(i);
-        RenderScene();
+  //      Render_to_CubeMapFace2(i);
+ //       RenderScene();
 #if ANIMATED_OBJECT_FLAG
         renderAnimatedObject(m_pipeline, RENDER_PASS2);
 #endif
   //      glDisable(GL_DEPTH_TEST);
 
     #if SMOKE_EFFECT
-        if(i==NEGATIVE_Z)
-            RenderSmoke(false, true, ReflectionSmoke, m_skybox.Dynamic_CubeMap_DepthTextureID);
+//        if(i==NEGATIVE_Z)
+  //          RenderSmoke(false, true, ReflectionSmoke, m_skybox.Dynamic_CubeMap_DepthTextureID);
     #endif
 
    //     glEnable(GL_DEPTH_TEST);
@@ -1391,7 +1417,7 @@ void ExplosionGenerator::RenderGUI()
     m_resetButton.render(m_pipeline, r_Technique, RENDER_PASS1);
     m_minimizeButton.render(m_pipeline, r_Technique, RENDER_PASS1);
     m_listBox.render(m_pipeline, r_Technique, RENDER_PASS1);
-
+    m_particleCountSlider.render(m_pipeline, r_Technique, RENDER_PASS1);
 }
 
 

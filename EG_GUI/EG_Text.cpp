@@ -2,8 +2,8 @@
 #include "EG_Text.h"
 
 
-const int fontSize = 20;
-const int fontSpace = -9;
+//const int fontSize = 20;
+//const int fontSpace = -9;
 
 EG_Text::EG_Text()
 {
@@ -16,7 +16,8 @@ void EG_Text::initialize()
 //    fontBase = new Texture("data/font.tga");
  //   buildTextureFont();
 
-
+    m_fontSize = 20;
+    m_fontSpace = -9;
   //  m_fontQuads.resize(256);
   //  fontQuad.init(50,50);
     r_textRenderer.init(1);
@@ -95,12 +96,13 @@ void EG_Text::buildTextureFont()
 //        cout << i << " cx is " << cx << "cy is " << cy << endl;
 
         EG_QuadModel tempQuad;
-        tempQuad.init(fontSize, fontSize, cx, cy, 0.0625);
+        tempQuad.init(m_fontSize, m_fontSize, cx, cy, 0.0625);
  //       tempQuad.init(fontSize, cx, cy);
         m_fontQuads.push_back(tempQuad);
 
         EG_QuadModelABS tempQuadABS;
-        tempQuadABS.init(fontSize, fontSize, cx, cy, 0.0625);
+//        tempQuadABS.init(m_fontSize, m_fontSize, cx, cy, 0.0625);
+        tempQuadABS.init(1, 1, cx, cy, 0.0625);
         m_fontQuadsABS.push_back(tempQuadABS);
 
     }
@@ -182,6 +184,64 @@ void EG_Text::render(pipeline& m_pipeline, int x, int y, const char *in_text, ..
 
 void EG_Text::render(pipeline& m_pipeline, int x, int y, const char *in_text, ...)
 {
+    render(m_pipeline, x, y, m_fontSize, in_text);
+/*
+    char text[256];
+
+    va_list ap;
+
+    va_start(ap, in_text);
+        vsprintf(text, in_text, ap);
+    va_end(ap);
+
+
+
+
+  //  cout << m_fontQuads.size() << endl;
+
+
+    r_textRenderer.enableShader(RENDER_PASS1);
+    r_textRenderer.setTextureUnit(0);
+
+    glActiveTexture(GL_TEXTURE0);
+    glBindTexture(GL_TEXTURE_2D, fontTexture);
+
+    m_pipeline.pushMatrix();
+
+        m_pipeline.translate(x,y,0);
+
+        int length = strlen(in_text);
+
+        for(int i=0; i<length; i++)
+        {
+            m_pipeline.pushMatrix();
+                float x_offset = getTextWidthOffset(i);
+                m_pipeline.translate(x_offset,0,0);
+
+
+                char c = in_text[i];
+                int index = m_charToIndexMapping[c];
+//
+                m_pipeline.scale(m_fontSize);
+
+                r_textRenderer.loadUniformLocations(m_pipeline, RENDER_PASS1);
+
+                m_fontQuadsABS[index].render();
+            m_pipeline.popMatrix();
+        }
+
+    m_pipeline.popMatrix();
+    r_textRenderer.disableShader(RENDER_PASS1);
+*/
+}
+
+
+
+
+
+
+void EG_Text::render(pipeline& m_pipeline, int x, int y, float fontSize, const char *in_text, ...)
+{
 
     char text[256];
 
@@ -219,6 +279,8 @@ void EG_Text::render(pipeline& m_pipeline, int x, int y, const char *in_text, ..
                 char c = in_text[i];
                 int index = m_charToIndexMapping[c];
 //
+                m_pipeline.scale(fontSize);
+
                 r_textRenderer.loadUniformLocations(m_pipeline, RENDER_PASS1);
 
                 m_fontQuadsABS[index].render();
@@ -229,10 +291,6 @@ void EG_Text::render(pipeline& m_pipeline, int x, int y, const char *in_text, ..
     r_textRenderer.disableShader(RENDER_PASS1);
 
 }
-
-
-
-
 
 
 
@@ -291,6 +349,9 @@ void EG_Text::render(   pipeline& m_pipeline,
 */
 
 
+//    m_fontSize = 20;
+//    m_fontSpace = -9;
+
 
 
 GLuint EG_Text::getFontTexture()
@@ -301,18 +362,18 @@ GLuint EG_Text::getFontTexture()
 
 int EG_Text::getTextWidthOffset(int i)
 {
-    return(fontSize+fontSpace) * i;
+    return(m_fontSize + m_fontSpace) * i;
 }
 
 
 GLuint EG_Text::getTextWidth(const char* text)
 {
     int len = strlen(text)-1;
-    return len * (fontSize + fontSpace) + fontSize;
+    return len * (m_fontSize + m_fontSpace) + m_fontSize;
 }
 
 
 GLuint EG_Text::getTextHeight()
 {
-    return fontSize;
+    return m_fontSize;
 }

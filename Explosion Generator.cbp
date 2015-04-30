@@ -106,6 +106,7 @@
 		<Unit filename="EG_Model/EG_VertexData.h" />
 		<Unit filename="EG_Model/EG_XYZAxisModel.cpp" />
 		<Unit filename="EG_Model/EG_XYZAxisModel.h" />
+		<Unit filename="EG_ParticleEffect.h" />
 		<Unit filename="EG_RenderTechnique/EG_DeferredShadingLightPass/EG_DeferredShadingDirectionalLightPass.cpp" />
 		<Unit filename="EG_RenderTechnique/EG_DeferredShadingLightPass/EG_DeferredShadingDirectionalLightPass.h" />
 		<Unit filename="EG_RenderTechnique/EG_DeferredShadingLightPass/EG_DeferredShadingLightPass.cpp" />
@@ -172,7 +173,6 @@
 		<Unit filename="EG_WorldObject/EG_WorldSphere.h" />
 		<Unit filename="L_Cube_Sphere_ParticleEffect.cpp" />
 		<Unit filename="L_Cube_Sphere_ParticleEffect.h" />
-		<Unit filename="L_ParticleEffect_Interface.h" />
 		<Unit filename="Particle.h" />
 		<Unit filename="Random.h" />
 		<Unit filename="Smoke_struct.h" />
