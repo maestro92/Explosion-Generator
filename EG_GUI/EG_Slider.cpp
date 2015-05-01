@@ -17,16 +17,21 @@ EG_Slider::EG_Slider(string label, float min, float max,
     m_minValue = min;
     m_dragging = false;
     m_label = label;
+    m_valueType = FLOAT_TYPE;
 }
 
 void EG_Slider::initColoredQuad()
 {
     EG_Control::initColoredQuad();
     m_sliderQuadRect.set(m_rect.x, m_rect.y, tickSize, m_rect.h);
-    m_sliderQuadModel.init(tickSize, m_rect.h, BLUE);
+    m_sliderQuadModel.init(tickSize, m_rect.h, m_sliderColor);
 }
 
 
+void EG_Slider::setSliderColor(glm::vec3 c)
+{
+    m_sliderColor = c;
+}
 
 
 void EG_Slider::setMaxValue(float max)
@@ -38,6 +43,19 @@ void EG_Slider::setMinValue(float min)
 {
     m_minValue = min;
 }
+
+void EG_Slider::setDefaultValue(float value)
+{
+    m_defaultValue = value;
+}
+
+
+
+void EG_Slider::setValueType(int t)
+{
+    m_valueType = t;
+}
+
 
 void EG_Slider::setValue(float *value)
 {
@@ -121,12 +139,25 @@ void EG_Slider::render(pipeline& m_pipeline,
     offset_x = m_rect.x + 2;
     offset_y = m_rect.y + m_rect.h - 15 - 5;
 
-    int count = (int)(*m_current);
-    stringstream ss;
-    ss << count;
-    string cs = ss.str();
 
-    string s = m_label + ": " + cs;
+    string s = "";
+
+    if(m_valueType == INT_TYPE)
+    {
+        int count = (int)(*m_current);
+        stringstream ss;
+        ss << count;
+        string cs = ss.str();
+        s = m_label + ": " + cs;
+    }
+    else
+    {
+        float num = *m_current;
+        ostringstream buff;
+        buff << num;
+        string cs = buff.str();
+        s = m_label + ": " + cs;
+    }
 
     // offset_y = m_rect.y + m_rect.h - EG_Control::m_textEngine.fontSize - 2;
     EG_Control::m_textEngine.render(m_pipeline, offset_x, offset_y, 15, s.c_str());

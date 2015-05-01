@@ -145,6 +145,8 @@ class ExplosionGenerator
         EG_RenderTechnique_RenderTexture        r_renderTexture;
         EG_FullColorRenderer                    r_fullColor;
 
+
+
         /// GUI
         EG_Renderer_Button  r_buttonRenderer;
 
@@ -152,10 +154,27 @@ class ExplosionGenerator
         EG_Button m_triggerButton;
         EG_Button m_resetButton;
         EG_Button m_minimizeButton;
-        float m_particleCount;
+
+
+        EG_Slider m_smokeSizeSlider;
+        float m_smokeSize;
+        bool m_testintSmokeMode;
+
         EG_Slider m_particleCountSlider;
+        float m_particleCount;
+
         EG_Slider m_velocitySlider;
+        float m_velocity;
+
+        EG_Slider m_maxRadiusSlider;
+        float m_maxRadius;
+
+
+
         EG_ListBox m_listBox;
+
+        int m_GUIComponentsFlags;
+        vector<EG_Control*> m_GUIComponents;
 
 
         EG_TimeManager m_timeManager;

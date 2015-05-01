@@ -159,8 +159,11 @@ ExplosionGenerator::ExplosionGenerator()
     initObjects();
     initGUI();
 
+    m_smokeSize = 10;
+    m_testintSmokeMode = false;
 #if SPHERE_EFFECT
-    l_SphereEffect.InitParticles(40);
+    m_particleCount = 64;
+    l_SphereEffect.InitParticles(m_particleCount);
 #endif
 
 #if CUBE_SPHERE_EFFECT
@@ -434,25 +437,64 @@ void ExplosionGenerator::initObjects()
 
 void ExplosionGenerator::initGUI()
 {
-
-    m_particleCount = 5;
+    m_GUIComponentsFlags = 0;
 
     EG_Control::m_textEngine.initialize();
 
+    int SLIDER_HEIGHT = 35;
+    int BUTTON_HEIGHT = 35;
 
-    m_particleCountSlider.setRect(10, 600, 200, 50);
-    m_particleCountSlider.setColor(GRAY);
+
+
+    m_particleCountSlider.setRect(10, 600, 200, SLIDER_HEIGHT);
+    m_particleCountSlider.setColor(DARK_GRAY);
+    m_particleCountSlider.setSliderColor(GREEN);
     m_particleCountSlider.setLabel("Particle Count");
-    EG_Utility::debug("Label", m_particleCountSlider.m_label);
     m_particleCountSlider.setValue(&m_particleCount);
     m_particleCountSlider.setMaxValue(100);
-    m_particleCountSlider.setMinValue(1);
-
-    EG_Utility::debug("Label", m_particleCountSlider.m_label);
-
-
+    m_particleCountSlider.setMinValue(0.5);
+    m_particleCountSlider.setValueType(EG_Slider::INT_TYPE);
     m_particleCountSlider.initColoredQuad();
+    m_GUIComponents.push_back(&m_particleCountSlider);
 
+
+
+    m_velocity = l_SphereEffect.m_maxVelocity;
+    m_velocitySlider.setRect(10, 550, 200, SLIDER_HEIGHT);
+    m_velocitySlider.setColor(DARK_GRAY);
+    m_velocitySlider.setSliderColor(GREEN);
+    m_velocitySlider.setLabel("Max Velocity");
+    m_velocitySlider.setValue(&m_velocity);
+    m_velocitySlider.setMaxValue(10);
+    m_velocitySlider.setMinValue(1);
+    m_velocitySlider.initColoredQuad();
+    m_GUIComponents.push_back(&m_velocitySlider);
+
+
+
+    m_maxRadius = l_SphereEffect.m_maxRadius;
+    m_maxRadiusSlider.setRect(10, 500, 200, SLIDER_HEIGHT);
+    m_maxRadiusSlider.setColor(DARK_GRAY);
+    m_maxRadiusSlider.setSliderColor(GREEN);
+    m_maxRadiusSlider.setLabel("Max Particle Radius");
+    m_maxRadiusSlider.setValue(&m_maxRadius);
+    m_maxRadiusSlider.setMaxValue(2);
+    m_maxRadiusSlider.setMinValue(0.5);
+    m_maxRadiusSlider.initColoredQuad();
+    m_GUIComponents.push_back(&m_maxRadiusSlider);
+
+
+
+    m_smokeSizeSlider.setRect(10, 450, 200, SLIDER_HEIGHT);
+    m_smokeSizeSlider.setColor(DARK_GRAY);
+    m_smokeSizeSlider.setSliderColor(GREEN);
+    m_smokeSizeSlider.setLabel("Smoke Size");
+    m_smokeSizeSlider.setValue(&m_smokeSize);
+    m_smokeSizeSlider.setMaxValue(20);
+    m_smokeSizeSlider.setMinValue(2);
+    m_smokeSizeSlider.initColoredQuad();
+    m_GUIComponents.push_back(&m_smokeSizeSlider);
+/*
     m_listBox.setRect(10, 400, 200, 100);
     m_listBox.setColor(GREEN);
     m_listBox.initColoredQuad();
@@ -460,28 +502,30 @@ void ExplosionGenerator::initGUI()
     m_listBox.addItem("Nice");
     m_listBox.addItem("Nice");
     m_listBox.addItem("Nice");
+*/
 
 
-
-    m_resetButton.setRect(10, 160, 200, 50);
+    m_resetButton.setRect(10, 400, 200, BUTTON_HEIGHT);
     m_resetButton.setLabel("Reset");
     m_resetButton.setColor(GRAY);
     m_resetButton.initColoredQuad();
 
+    m_GUIComponents.push_back(&m_resetButton);
 
-    m_triggerButton.setRect(10, 100, 200, 50);
+
+    m_triggerButton.setRect(10, 350, 200, BUTTON_HEIGHT);
     m_triggerButton.setLabel("EXPLODE!");
     m_triggerButton.setColor(GRAY);
     m_triggerButton.initColoredQuad();
+    m_GUIComponents.push_back(&m_triggerButton);
+
 
     m_minimizeButton.setRect(0, SCREEN_HEIGHT - EG_Control::m_textEngine.getTextHeight(),
                             200, EG_Control::m_textEngine.getTextHeight());
     m_minimizeButton.setLabel("minimize");
     m_minimizeButton.setColor(GRAY);
     m_minimizeButton.initColoredQuad();
-
-
-
+    m_GUIComponents.push_back(&m_minimizeButton);
 
 }
 
@@ -868,20 +912,61 @@ void ExplosionGenerator::update()
 
 
 
-    bool sliding = m_particleCountSlider.update(m_mouseState);
+    bool sliding = m_particleCountSlider.update(m_mouseState) || m_maxRadiusSlider.update(m_mouseState);
     if(sliding)
     {
         m_explodeFlag = false;
-        int newCount = (int)m_particleCountSlider.getValue();
-        if(l_SphereEffect.m_particlesCount != newCount)
+        int c = (int)m_particleCountSlider.getValue();
+        float r = m_maxRadiusSlider.getValue();
+
+        if( (l_SphereEffect.m_particlesCount != c) || (l_SphereEffect.m_maxRadius != r) )
         {
        //     EG_Utility::debug("newCount", newCount);
-
-            l_SphereEffect.m_particlesCount = newCount;
+            l_SphereEffect.m_particlesCount = c;
+            l_SphereEffect.m_maxRadius = r;
             l_SphereEffect.Reset();
         }
 
+
     }
+
+
+
+    sliding = m_velocitySlider.update(m_mouseState);
+    if(sliding)
+    {
+    //    m_explodeFlag = false;
+    //    m_explodeFlag = false;
+    //    l_SphereEffect.Reset();
+        float newV = m_velocitySlider.getValue();
+        l_SphereEffect.m_maxVelocity = newV;
+
+        if(m_explodeFlag == false)
+            l_SphereEffect.resetParticleVelocity();
+    }
+
+
+    sliding = m_smokeSizeSlider.update(m_mouseState);
+    if(sliding)
+    {
+        m_testintSmokeMode = true;
+
+        addSmoke = true;
+        m_smokeSize = m_smokeSizeSlider.getValue();
+
+    }
+    else
+    {
+        if (m_testintSmokeMode)
+        {
+            addSmoke = false;
+            m_testintSmokeMode = false;
+        }
+
+    }
+
+
+
 
     if(!sliding)
     {
@@ -969,11 +1054,11 @@ void ExplosionGenerator::RenderSmoke(bool pass1, bool pass2, Matrices_t& Mat, un
         Matrices.View = m_pipeline.getViewMatrix();
      //   Matrices.View = glm::mat4(1.0);
 
-        float scale = 10;
+     //   float scale = 10;
         m_pipeline.pushMatrix();
-            m_pipeline.translate(0,scale,0);
+            m_pipeline.translate(0,m_smokeSize,0);
             m_pipeline.rotateZ(180);
-            m_pipeline.scale(scale);
+            m_pipeline.scale(m_smokeSize);
             Matrices.Model = m_pipeline.getModelMatrix();
             Matrices.Modelview = Matrices.View * Matrices.Model;
         m_pipeline.popMatrix();
@@ -1269,7 +1354,8 @@ void ExplosionGenerator::forwardRender()
     {
 
 #if ORBIT_CAMERA_FLAG
-        m_orbitCamera.Control(m_pipeline, m_skybox, m_particleCountSlider.getDraggingFlag());
+        bool GuiFlag = m_particleCountSlider.getDraggingFlag() || m_velocitySlider.getDraggingFlag() || m_maxRadiusSlider.getDraggingFlag() || m_smokeSizeSlider.getDraggingFlag();
+        m_orbitCamera.Control(m_pipeline, m_skybox, GuiFlag);
 #else
         thirdPersonPovCamera.Control(m_pipeline, m_skybox);
 #endif
@@ -1427,11 +1513,24 @@ void ExplosionGenerator::RenderGUI()
     EG_Control::m_textEngine.render(m_pipeline, 0, 10, "Explosion Generator");
 
     r_Technique = &r_buttonRenderer;
+    /*
     m_triggerButton.render(m_pipeline, r_Technique, RENDER_PASS1);
     m_resetButton.render(m_pipeline, r_Technique, RENDER_PASS1);
     m_minimizeButton.render(m_pipeline, r_Technique, RENDER_PASS1);
-    m_listBox.render(m_pipeline, r_Technique, RENDER_PASS1);
-    m_particleCountSlider.render(m_pipeline, r_Technique, RENDER_PASS1);
+ */
+ //   m_listBox.render(m_pipeline, r_Technique, RENDER_PASS1);
+
+
+  //  m_particleCountSlider.render(m_pipeline, r_Technique, RENDER_PASS1);
+  //  m_velocitySlider.render(m_pipeline, r_Technique, RENDER_PASS1);
+
+
+    for(int i=0; i<m_GUIComponents.size(); i++)
+    {
+        EG_Control* control = m_GUIComponents[i];
+        control->render(m_pipeline, r_Technique, RENDER_PASS1);
+    }
+
 }
 
 

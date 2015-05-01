@@ -23,6 +23,7 @@ EG_SphereParticleEffect::EG_SphereParticleEffect()
     testRadius = 2.0;
     Ball2Ball_CollisionMode = false;
 
+    m_maxVelocity = 5.0f;
     m_maxRadius = 1.0;
     m_minRadius = 0.5;
     cout << "nice" << endl;
@@ -268,7 +269,7 @@ void EG_SphereParticleEffect::InitParticlePos(int i, int k, int j, int Index)
     pos_y = start_y + Radius*2 * k;
     pos_z = start_z + Radius*2 * j;
 */
-    int offset_y = 1.5;
+    int offset_y = m_maxRadius + 0.5;
     int Gap = 2;
 
     int offset_x = 0;
@@ -312,6 +313,7 @@ void EG_SphereParticleEffect::InitParticleVel(int i, int k, int j, int Index)
 //    float vel_x, vel_y, vel_z;
     if (!Ball2Ball_CollisionMode)
     {
+        /*
         float VelMag = 5;
         float scale = 1.0;
         float y_scale = 5.0f;
@@ -323,6 +325,14 @@ void EG_SphereParticleEffect::InitParticleVel(int i, int k, int j, int Index)
         vel_x = RandRange(-scale*VelMag,scale*VelMag);
         vel_y = RandRange(0,y_scale*VelMag);
         vel_z = RandRange(-scale*VelMag,scale*VelMag);
+
+        */
+
+        vel_x = RandRange(-m_maxVelocity, m_maxVelocity);
+        vel_y = RandRange(0, m_maxVelocity*m_maxVelocity);
+        vel_z = RandRange(-m_maxVelocity, m_maxVelocity);
+
+
 #if 0
         vel_x = 0;
         vel_y = 0;
@@ -376,6 +386,25 @@ void EG_SphereParticleEffect::Reset()
 //    InitParticles(m_count, true);
     InitParticles(m_particlesCount);
 }
+
+
+
+
+
+void EG_SphereParticleEffect::resetParticleVelocity()
+{
+    // cout << "Checking" << endl;
+    for(int i = 0; i < e_ParticleBuffer.size(); i++)
+    {
+        vel_x = RandRange(-m_maxVelocity, m_maxVelocity);
+        vel_y = RandRange(0, m_maxVelocity*m_maxVelocity);
+        vel_z = RandRange(-m_maxVelocity, m_maxVelocity);
+
+        e_ParticleBuffer[i].m_Velocity = glm::vec3(vel_x, vel_y, vel_z);
+    }
+
+}
+
 
 
 /* updating the particle */

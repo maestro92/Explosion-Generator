@@ -20,6 +20,7 @@ class EG_SphereParticleEffect : public EG_ParticleEffect
 {
     public:
 
+    float m_maxVelocity;
     float m_maxRadius;
     float m_minRadius;
     float testRadius;
@@ -55,6 +56,7 @@ class EG_SphereParticleEffect : public EG_ParticleEffect
         void render(pipeline &m_pipeline, EG_RenderTechnique* RenderTechnique, int RenderPassID, EG_Model& model);
 
         void Reset();
+        void resetParticleVelocity();
 
         void ExamineParticleAttribute();
 

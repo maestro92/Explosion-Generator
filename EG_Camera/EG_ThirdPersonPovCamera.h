@@ -41,8 +41,8 @@
 const float BALL_FORWARD_SPEED = 0.5f;
 const float BALL_HEADING_SPEED = 3.0f;
 const float BALL_ROLLING_SPEED = 10.0f;
-const float MAX_CAMERA_OFFSET = 100.0f;
-const float MIN_CAMERA_OFFSET = 5.0f;
+const float MAX_CAMERA_OFFSET = 200.0f;
+const float MIN_CAMERA_OFFSET = 20.0f;
 
 class EG_ThirdPersonPovCamera
 {
