@@ -142,6 +142,8 @@ class CollisionDetection_HGrid : public CollisionDetection_Interface
 
         void rehash( h_Particle *h_par );
 
+        void clear();
+
         void draw();
         void drawCubeFrame(float size);
 

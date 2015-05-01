@@ -17,7 +17,7 @@ class EG_Slider : public EG_Control
 
         void setMaxValue(float max);
         void setMinValue(float min);
-
+        float getValue();
 
         virtual void initColoredQuad();
 
@@ -29,6 +29,7 @@ class EG_Slider : public EG_Control
 
         virtual int getType();
 
+        bool getDraggingFlag();
 
     protected:
 

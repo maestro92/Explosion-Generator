@@ -52,6 +52,15 @@ void EG_Text::buildCharToIndexMapping()
         m_charToIndexMapping[c] = index_start+i;
     }
 
+    m_charToIndexMapping[':'] = 26;
+    m_charToIndexMapping[';'] = 27;
+    m_charToIndexMapping['<'] = 28;
+    m_charToIndexMapping['='] = 29;
+    m_charToIndexMapping['>'] = 30;
+    m_charToIndexMapping['?'] = 31;
+
+
+
     /// Uppercase
     start = 'A'+1-1;
     index_start = 33;
@@ -272,7 +281,7 @@ void EG_Text::render(pipeline& m_pipeline, int x, int y, float fontSize, const c
         for(int i=0; i<length; i++)
         {
             m_pipeline.pushMatrix();
-                float x_offset = getTextWidthOffset(i);
+                float x_offset = getTextWidthOffset(i, fontSize);
                 m_pipeline.translate(x_offset,0,0);
 
 
@@ -365,6 +374,10 @@ int EG_Text::getTextWidthOffset(int i)
     return(m_fontSize + m_fontSpace) * i;
 }
 
+int EG_Text::getTextWidthOffset(int i, int fontSize)
+{
+    return(fontSize/2) * i;
+}
 
 GLuint EG_Text::getTextWidth(const char* text)
 {

@@ -25,33 +25,36 @@ EG_SphereParticleEffect::EG_SphereParticleEffect()
 
     m_maxRadius = 1.0;
     m_minRadius = 0.5;
-
     cout << "nice" << endl;
     int size;
+    e_ParticleBuffer.reserve(1000);
+
     if (Ball2Ball_CollisionMode)
         size = ARRAY_SIZE_X * ARRAY_SIZE_Y * ARRAY_SIZE_Z + 1;
     else
         size = ARRAY_SIZE_X * ARRAY_SIZE_Y * ARRAY_SIZE_Z;
 
-    m_particles.resize(size, h_Particle());
+	quad = gluNewQuadric();
+	m_particlesCount = ARRAY_SIZE_X * ARRAY_SIZE_Y * ARRAY_SIZE_Z;
+    e_ParticleBuffer.resize(size, h_Particle());
 
 
 /*
-    for(int i = 0; i < m_particles.size(); i++)
+    for(int i = 0; i < e_ParticleBuffer.size(); i++)
     {
-        myHgrid.AddParticleToHGrid( &l_CubeEffect.m_particles[i]);
+        myHgrid.AddParticleToHGrid( &l_CubeEffect.e_ParticleBuffer[i]);
     }
 
     cout << "       #### end basic adding" << endl;
 
     int i = 0;
-    for(i = 0; i < l_CubeEffect.m_particles.size(); i++)
+    for(i = 0; i < l_CubeEffect.e_ParticleBuffer.size(); i++)
     {
-      //  myCD_Hgrid.Test_AddParticle(&l_CubeEffect.m_particles[i]);
+      //  myCD_Hgrid.Test_AddParticle(&l_CubeEffect.e_ParticleBuffer[i]);
     }
     cout << endl << "i is " << i << endl << endl;
 
-       myHgrid.Test_AddParticle(&l_CubeEffect.m_particles[0]);
+       myHgrid.Test_AddParticle(&l_CubeEffect.e_ParticleBuffer[0]);
 */
 
 
@@ -103,9 +106,9 @@ void EG_SphereParticleEffect::InitParticles(bool reset)
 
 
                 if (!reset)
-                    myHgrid.addParticleToHGrid( &m_particles[Index]);
+                    myHgrid.addParticleToHGrid( &e_ParticleBuffer[Index]);
                 else
-                    myHgrid.rehash(&m_particles[Index]);
+                    myHgrid.rehash(&e_ParticleBuffer[Index]);
             }
         }
     }
@@ -114,47 +117,47 @@ void EG_SphereParticleEffect::InitParticles(bool reset)
     // init my attacker grid
     if (Ball2Ball_CollisionMode)
     {
-        Index = m_particles.size()-1;
-        // m_particles[Index].m_Position = glm::vec3(-30, 30, -30);
+        Index = e_ParticleBuffer.size()-1;
+        // e_ParticleBuffer[Index].m_Position = glm::vec3(-30, 30, -30);
         // float scale = 20.0f;
-        // m_particles[Index].m_Velocity = glm::vec3(scale, -scale, scale);
+        // e_ParticleBuffer[Index].m_Velocity = glm::vec3(scale, -scale, scale);
 
-        m_particles[Index].m_Position = glm::vec3(-30, 3, -0);
+        e_ParticleBuffer[Index].m_Position = glm::vec3(-30, 3, -0);
         float scale = 30.0f;
-        m_particles[Index].m_Velocity = glm::vec3(scale, 0, 0);
-      //  m_particles[Index].m_Velocity = glm::vec3(scale, -scale+10, 0);
-        //m_particles[Index].m_Velocity = glm::vec3(scale, 0, 0);
+        e_ParticleBuffer[Index].m_Velocity = glm::vec3(scale, 0, 0);
+      //  e_ParticleBuffer[Index].m_Velocity = glm::vec3(scale, -scale+10, 0);
+        //e_ParticleBuffer[Index].m_Velocity = glm::vec3(scale, 0, 0);
 
-     //   m_particles[Index].m_Pre_Velocity = glm::vec3(1000,1000,1000);
-        m_particles[Index].m_fRadius = testRadius; // dRadius/2;
+     //   e_ParticleBuffer[Index].m_Pre_Velocity = glm::vec3(1000,1000,1000);
+        e_ParticleBuffer[Index].m_fRadius = testRadius; // dRadius/2;
         float lifetime;
         lifetime = RandRange(3,5);
-        m_particles[Index].m_fLifeTime = lifetime;
-        m_particles[Index].m_fAge = 0;
-        m_particles[Index].m_id = Index;
+        e_ParticleBuffer[Index].m_fLifeTime = lifetime;
+        e_ParticleBuffer[Index].m_fAge = 0;
+        e_ParticleBuffer[Index].m_id = Index;
 
         if (!reset)
         {
-            myHgrid.addParticleToHGrid( &m_particles[Index]);
+            myHgrid.addParticleToHGrid( &e_ParticleBuffer[Index]);
             myHgrid.ParticleCollisionPairList.clear();
         }
 
         else
-            myHgrid.rehash(&m_particles[Index]);
+            myHgrid.rehash(&e_ParticleBuffer[Index]);
     }
 
 
 
     cout << "Checking" << endl;
-    for(int i = 0; i < m_particles.size(); i++)
+    for(int i = 0; i < e_ParticleBuffer.size(); i++)
     {
-        float x = m_particles[i].m_Position.x;
-        float y = m_particles[i].m_Position.y;
-        float z = m_particles[i].m_Position.z;
+        float x = e_ParticleBuffer[i].m_Position.x;
+        float y = e_ParticleBuffer[i].m_Position.y;
+        float z = e_ParticleBuffer[i].m_Position.z;
   //      cout << x << " " << y << " " << z << endl;
 
 
-        myHgrid.Test_AddParticle(&m_particles[i]);
+        myHgrid.Test_AddParticle(&e_ParticleBuffer[i]);
     }
 }
 
@@ -164,83 +167,78 @@ void EG_SphereParticleEffect::InitParticles(bool reset)
 
 
 
-void EG_SphereParticleEffect::InitParticles(int count, bool reset)
+void EG_SphereParticleEffect::InitParticles(int count)
 {
-    start_x = (START_POS_X - ARRAY_SIZE_X/2)*Radius*2;
+    e_ParticleBuffer.clear();
+    m_particlesCount = count;
+    int size;
+    if (Ball2Ball_CollisionMode)
+        m_particlesCount = count + 1;
+    else
+        m_particlesCount = count;
+
+    e_ParticleBuffer.resize(m_particlesCount, h_Particle());
+
+
+
+
+    int side = pow(count, 1.0/3.0);
+    if(count > (side * side * side))
+        side = side + 1;
+
+
+
+    start_x = -(m_maxRadius * 2 * side)/2 + m_maxRadius;
     start_y = (START_POS_Y)*Radius*2;
-    start_z = (START_POS_Z - ARRAY_SIZE_Z/2)*Radius*2;
+    start_z = -(m_maxRadius * 2 * side)/2 + m_maxRadius;
     int Index = 0;
 
     cout << "start_x is " << start_x << endl;
     cout << "start_y is " << start_y << endl;
     cout << "start_z is " << start_z << endl;
 
-    for (int k=0;k<ARRAY_SIZE_Y;k++)
+    int currentCount = 0;
+
+    for (int k=0; currentCount<count; k++)
     {
-        for (int i=0;i<ARRAY_SIZE_X;i++)
+        for (int i=0;i<side;i++)
         {
-            for(int j = 0;j<ARRAY_SIZE_Z;j++)
+            for(int j = 0;j<side;j++)
             {
-                Index = k* ARRAY_SIZE_X * ARRAY_SIZE_Z + i*ARRAY_SIZE_Z + j;
+                Index = k* side * side + i*side + j;
                 InitParticleAttribute(i, k, j, Index);
                 InitParticlePos(i, k, j, Index);
                 InitParticleVel(i, k, j, Index);
 
-                if (!reset)
-                    myHgrid.addParticleToHGrid( &m_particles[Index]);
-                else
-                    myHgrid.rehash(&m_particles[Index]);
+                    myHgrid.addParticleToHGrid( &e_ParticleBuffer[Index]);
+
+
+                currentCount++;
+                if(currentCount >= count)
+                    break;
             }
+            if(currentCount >= count)
+                break;
         }
-    }
-
-
-    // init my attacker grid
-    if (Ball2Ball_CollisionMode)
-    {
-        Index = m_particles.size()-1;
-        // m_particles[Index].m_Position = glm::vec3(-30, 30, -30);
-        // float scale = 20.0f;
-        // m_particles[Index].m_Velocity = glm::vec3(scale, -scale, scale);
-
-        m_particles[Index].m_Position = glm::vec3(-30, 3, -0);
-        float scale = 30.0f;
-        m_particles[Index].m_Velocity = glm::vec3(scale, 0, 0);
-      //  m_particles[Index].m_Velocity = glm::vec3(scale, -scale+10, 0);
-        //m_particles[Index].m_Velocity = glm::vec3(scale, 0, 0);
-
-     //   m_particles[Index].m_Pre_Velocity = glm::vec3(1000,1000,1000);
-        m_particles[Index].m_fRadius = testRadius; // dRadius/2;
-        float lifetime;
-        lifetime = RandRange(3,5);
-        m_particles[Index].m_fLifeTime = lifetime;
-        m_particles[Index].m_fAge = 0;
-        m_particles[Index].m_id = Index;
-
-        if (!reset)
-        {
-            myHgrid.addParticleToHGrid( &m_particles[Index]);
-            myHgrid.ParticleCollisionPairList.clear();
-        }
-
-        else
-            myHgrid.rehash(&m_particles[Index]);
+        if(currentCount >= count)
+            break;
     }
 
 
 
     cout << "Checking" << endl;
-    for(int i = 0; i < m_particles.size(); i++)
+    for(int i = 0; i < e_ParticleBuffer.size(); i++)
     {
-        float x = m_particles[i].m_Position.x;
-        float y = m_particles[i].m_Position.y;
-        float z = m_particles[i].m_Position.z;
-  //      cout << x << " " << y << " " << z << endl;
 
+        float x = e_ParticleBuffer[i].m_Position.x;
+        float y = e_ParticleBuffer[i].m_Position.y;
+        float z = e_ParticleBuffer[i].m_Position.z;
+        cout << x << " " << y << " " << z << endl;
 
-        myHgrid.Test_AddParticle(&m_particles[i]);
+        myHgrid.Test_AddParticle(&e_ParticleBuffer[i]);
 
     }
+
 
 
 }
@@ -248,13 +246,14 @@ void EG_SphereParticleEffect::InitParticles(int count, bool reset)
 
 
 
+
 void EG_SphereParticleEffect::ExamineParticleAttribute()
 {
 
-    for(int i = 0; i < m_particles.size(); i++)
+    for(int i = 0; i < e_ParticleBuffer.size(); i++)
     {
-        cout << "id is " << m_particles[i].m_id << endl;
-   //     cout << "level is " << m_particles[i].m_level << endl;
+        cout << "id is " << e_ParticleBuffer[i].m_id << endl;
+   //     cout << "level is " << e_ParticleBuffer[i].m_level << endl;
     }
 
 }
@@ -287,8 +286,6 @@ void EG_SphereParticleEffect::InitParticlePos(int i, int k, int j, int Index)
     pos_z = start_z + m_maxRadius * 2 * j + offset_z;
 
 
-
-
 /*
     if (!Ball2Ball_CollisionMode)
     {
@@ -301,7 +298,7 @@ void EG_SphereParticleEffect::InitParticlePos(int i, int k, int j, int Index)
 
 
     glm::vec3 pos( pos_x, pos_y, pos_z );
-    m_particles[Index].m_Position = pos;
+    e_ParticleBuffer[Index].m_Position = pos;
   //  cout << "position is " << pos_x << " " << pos_y << " " << pos_z << endl;
 
 }
@@ -331,7 +328,7 @@ void EG_SphereParticleEffect::InitParticleVel(int i, int k, int j, int Index)
         vel_y = 0;
         vel_z = 0;
 #endif
-        m_particles[Index].m_Velocity = glm::vec3(vel_x, vel_y, vel_z);
+        e_ParticleBuffer[Index].m_Velocity = glm::vec3(vel_x, vel_y, vel_z);
     }
     else
     {
@@ -340,11 +337,11 @@ void EG_SphereParticleEffect::InitParticleVel(int i, int k, int j, int Index)
         vel_y = 0;
         vel_z = 0;
 
-        m_particles[Index].m_Velocity = glm::vec3(vel_x, vel_y, vel_z);
+        e_ParticleBuffer[Index].m_Velocity = glm::vec3(vel_x, vel_y, vel_z);
     }
 
 
-//    m_particles[Index].m_Pre_Velocity = glm::vec3(1000,1000,1000);
+//    e_ParticleBuffer[Index].m_Pre_Velocity = glm::vec3(1000,1000,1000);
 
 }
 
@@ -353,21 +350,21 @@ void EG_SphereParticleEffect::InitParticleAttribute(int i, int k, int j, int Ind
     // Radius
     /*
     if (Index < 3)
-        m_particles[Index].m_fRadius = 1; // dRadius/2;
+        e_ParticleBuffer[Index].m_fRadius = 1; // dRadius/2;
     else if (Index >= 3 && Index < 6)
-        m_particles[Index].m_fRadius = 2; // dRadius/2;
+        e_ParticleBuffer[Index].m_fRadius = 2; // dRadius/2;
     else
-        m_particles[Index].m_fRadius = 3; // dRadius/2;
+        e_ParticleBuffer[Index].m_fRadius = 3; // dRadius/2;
 */
-  //  m_particles[Index].m_fRadius = 0.5;
-//    m_particles[Index].m_fRadius = testRadius;
+  //  e_ParticleBuffer[Index].m_fRadius = 0.5;
+//    e_ParticleBuffer[Index].m_fRadius = testRadius;
 
     float lifetime;
     lifetime = RandRange(3,5);
-    m_particles[Index].m_fRadius = RandRange(m_minRadius, m_maxRadius); // dRadius/2;
-    m_particles[Index].m_fLifeTime = lifetime;
-    m_particles[Index].m_fAge = 0;
-    m_particles[Index].m_id = Index;
+    e_ParticleBuffer[Index].m_fRadius = RandRange(m_minRadius, m_maxRadius); // dRadius/2;
+    e_ParticleBuffer[Index].m_fLifeTime = lifetime;
+    e_ParticleBuffer[Index].m_fAge = 0;
+    e_ParticleBuffer[Index].m_id = Index;
     // Index
 }
 
@@ -375,55 +372,57 @@ void EG_SphereParticleEffect::InitParticleAttribute(int i, int k, int j, int Ind
 // resets to initial position
 void EG_SphereParticleEffect::Reset()
 {
-    InitParticles(true);
+    myHgrid.clear();
+//    InitParticles(m_count, true);
+    InitParticles(m_particlesCount);
 }
 
 
 /* updating the particle */
 void EG_SphereParticleEffect::UpdateParticleEffect(float dt)
 {
-    for(int i = 0; i < m_particles.size(); i++)
+    for(int i = 0; i < e_ParticleBuffer.size(); i++)
     {
-        m_particles[i].m_fAge += dt;
+        e_ParticleBuffer[i].m_fAge += dt;
 
 
-        myHgrid.removeParticleFromHGrid(&m_particles[i]);
+        myHgrid.removeParticleFromHGrid(&e_ParticleBuffer[i]);
 
         // check collision here?
         // check collision with the plane
 
-        cout << "   ## id is " << m_particles[i].m_id << endl;
-     //   cout << "   ## real time vel x is " << m_particles[i].m_Velocity.x << endl;
-        cout << "   ## real time vel y is " << m_particles[i].m_Velocity.y << endl;
-     //   cout << "   ## real time vel z is " << m_particles[i].m_Velocity.z << endl;
-        cout << "   ## real time pos y is " << m_particles[i].m_Position.y - m_particles[i].m_fRadius << endl;
+        cout << "   ## id is " << e_ParticleBuffer[i].m_id << endl;
+     //   cout << "   ## real time vel x is " << e_ParticleBuffer[i].m_Velocity.x << endl;
+        cout << "   ## real time vel y is " << e_ParticleBuffer[i].m_Velocity.y << endl;
+     //   cout << "   ## real time vel z is " << e_ParticleBuffer[i].m_Velocity.z << endl;
+        cout << "   ## real time pos y is " << e_ParticleBuffer[i].m_Position.y - e_ParticleBuffer[i].m_fRadius << endl;
 
 
         // check collision
         // if there's no collision just let it update regularly
 #if 0
-        if ( ! myHgrid.CheckCollision( &m_particles[i], dt ) )
+        if ( ! myHgrid.CheckCollision( &e_ParticleBuffer[i], dt ) )
         {
-            m_particles[i].m_Position += (m_particles[i].m_Velocity + dt * ExternalForce_half_neg )* dt;
-            m_particles[i].m_Velocity += ExternalForce_neg*dt;
+            e_ParticleBuffer[i].m_Position += (e_ParticleBuffer[i].m_Velocity + dt * ExternalForce_half_neg )* dt;
+            e_ParticleBuffer[i].m_Velocity += ExternalForce_neg*dt;
         }
 #endif
 
 
 #if 1
-        myHgrid.CheckCollision( &m_particles[i], dt );
-        m_particles[i].m_Velocity += ExternalForce_neg*dt;
-        m_particles[i].m_Position += (m_particles[i].m_Velocity * dt);
+        myHgrid.CheckCollision( &e_ParticleBuffer[i], dt );
+        e_ParticleBuffer[i].m_Velocity += ExternalForce_neg*dt;
+        e_ParticleBuffer[i].m_Position += (e_ParticleBuffer[i].m_Velocity * dt);
 
 #endif
 
 /*
-        myHgrid.CheckCollision( &m_particles[i], dt );
-        m_particles[i].m_Position += (m_particles[i].m_Velocity + dt * ExternalForce_half_neg )* dt;
-        m_particles[i].m_Velocity += ExternalForce_neg*dt;
+        myHgrid.CheckCollision( &e_ParticleBuffer[i], dt );
+        e_ParticleBuffer[i].m_Position += (e_ParticleBuffer[i].m_Velocity + dt * ExternalForce_half_neg )* dt;
+        e_ParticleBuffer[i].m_Velocity += ExternalForce_neg*dt;
 */
 
-        myHgrid.addParticleToHGrid(&m_particles[i]);
+        myHgrid.addParticleToHGrid(&e_ParticleBuffer[i]);
 
 
 
@@ -445,13 +444,13 @@ void EG_SphereParticleEffect::DrawParticleCube(pipeline &m_pipeline,  unsigned i
     // static GLuint spheresList=0, torusList=0, baseList=0;
     // glEnable(GL_COLOR_MATERIAL);
   //  myshader->useShader();
-    for(int i = 0; i < m_particles.size(); i++)
+    for(int i = 0; i < e_ParticleBuffer.size(); i++)
     {
 
         m_pipeline.pushMatrix();
 
-            m_pipeline.translate(m_particles[i].m_Position.x, m_particles[i].m_Position.y, m_particles[i].m_Position.z);
-            m_pipeline.scale(m_particles[i].m_fRadius);
+            m_pipeline.translate(e_ParticleBuffer[i].m_Position.x, e_ParticleBuffer[i].m_Position.y, e_ParticleBuffer[i].m_Position.z);
+            m_pipeline.scale(e_ParticleBuffer[i].m_fRadius);
             m_pipeline.updateMatrices(shaderID);
             m_pipeline.updateShadowMatrix(shaderID);
             mymesh->draw(shaderID);
@@ -494,11 +493,11 @@ void EG_SphereParticleEffect::show(pipeline &m_pipeline, Technique* RenderTechni
 
     m_pipeline.matrixMode(MODEL_MATRIX);
 
-    for(int i = 0; i < m_particles.size(); i++)
+    for(int i = 0; i < e_ParticleBuffer.size(); i++)
     {
         m_pipeline.pushMatrix();
-            m_pipeline.translate(m_particles[i].m_Position.x, m_particles[i].m_Position.y, m_particles[i].m_Position.z);
-            m_pipeline.scale(m_particles[i].m_fRadius);
+            m_pipeline.translate(e_ParticleBuffer[i].m_Position.x, e_ParticleBuffer[i].m_Position.y, e_ParticleBuffer[i].m_Position.z);
+            m_pipeline.scale(e_ParticleBuffer[i].m_fRadius);
             mytech->Setup_Matrix_forRender(m_pipeline, RenderPassID);
             ((Technique_Shadow_Render*)mytech)->Setup_ShadowMatrix_forRender(m_pipeline, RenderPassID);
       //      m_pipeline.updateMatrices(shaderID);
@@ -516,11 +515,11 @@ void EG_SphereParticleEffect::show(pipeline &m_pipeline, EG_RenderTechnique* Ren
 {
     m_pipeline.matrixMode(MODEL_MATRIX);
 
-    for(int i = 0; i < m_particles.size(); i++)
+    for(int i = 0; i < e_ParticleBuffer.size(); i++)
     {
         m_pipeline.pushMatrix();
-            m_pipeline.translate(m_particles[i].m_Position.x, m_particles[i].m_Position.y, m_particles[i].m_Position.z);
-            m_pipeline.scale(m_particles[i].m_fRadius);
+            m_pipeline.translate(e_ParticleBuffer[i].m_Position.x, e_ParticleBuffer[i].m_Position.y, e_ParticleBuffer[i].m_Position.z);
+            m_pipeline.scale(e_ParticleBuffer[i].m_fRadius);
 
       //      m_pipeline.updateMatrices(shaderID);
       //      m_pipeline.updateShadowMatrix(shaderID);
@@ -541,11 +540,11 @@ void EG_SphereParticleEffect::show(pipeline &m_pipeline, EG_RenderTechnique* Ren
 
 void EG_SphereParticleEffect::render(pipeline &m_pipeline, EG_RenderTechnique* RenderTechnique, int RenderPassID, meshLoader* mymesh)
 {
-    for(int i = 0; i < m_particles.size(); i++)
+    for(int i = 0; i < e_ParticleBuffer.size(); i++)
     {
         m_pipeline.pushMatrix();
-            m_pipeline.translate(m_particles[i].m_Position.x, m_particles[i].m_Position.y, m_particles[i].m_Position.z);
-            m_pipeline.scale(m_particles[i].m_fRadius);
+            m_pipeline.translate(e_ParticleBuffer[i].m_Position.x, e_ParticleBuffer[i].m_Position.y, e_ParticleBuffer[i].m_Position.z);
+            m_pipeline.scale(e_ParticleBuffer[i].m_fRadius);
             RenderTechnique->loadUniformLocations(m_pipeline, RenderPassID);
             mymesh->draw();
         m_pipeline.popMatrix();
@@ -559,11 +558,11 @@ void EG_SphereParticleEffect::render(pipeline &m_pipeline, EG_RenderTechnique* R
 {
     m_pipeline.matrixMode(MODEL_MATRIX);
 
-    for(int i = 0; i < m_particles.size(); i++)
+    for(int i = 0; i < e_ParticleBuffer.size(); i++)
     {
         m_pipeline.pushMatrix();
-            m_pipeline.translate(m_particles[i].m_Position.x, m_particles[i].m_Position.y, m_particles[i].m_Position.z);
-            m_pipeline.scale(m_particles[i].m_fRadius);
+            m_pipeline.translate(e_ParticleBuffer[i].m_Position.x, e_ParticleBuffer[i].m_Position.y, e_ParticleBuffer[i].m_Position.z);
+            m_pipeline.scale(e_ParticleBuffer[i].m_fRadius);
             RenderTechnique->loadUniformLocations(m_pipeline, RenderPassID);
             model.render();
         m_pipeline.popMatrix();

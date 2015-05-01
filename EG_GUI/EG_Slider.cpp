@@ -46,6 +46,12 @@ void EG_Slider::setValue(float *value)
         m_defaultValue = *m_current;
 }
 
+
+float EG_Slider::getValue()
+{
+    return *m_current;
+}
+
 bool EG_Slider::update(MouseState &state)
 {
     EG_Control::update(state);
@@ -95,7 +101,7 @@ void EG_Slider::render(pipeline& m_pipeline,
     int offset_x = (int)((*m_current - m_minValue) / (m_maxValue - m_minValue) * (m_rect.w - tickSize) + m_rect.x);
     int offset_y = 0;
 
-    EG_Utility::debug("offset_x", offset_x);
+  //  EG_Utility::debug("offset_x", offset_x);
 
     m_sliderQuadRect.x = offset_x;
 
@@ -115,11 +121,24 @@ void EG_Slider::render(pipeline& m_pipeline,
     offset_x = m_rect.x + 2;
     offset_y = m_rect.y + m_rect.h - 15 - 5;
 
+    int count = (int)(*m_current);
+    stringstream ss;
+    ss << count;
+    string cs = ss.str();
+
+    string s = m_label + ": " + cs;
+
     // offset_y = m_rect.y + m_rect.h - EG_Control::m_textEngine.fontSize - 2;
-    EG_Control::m_textEngine.render(m_pipeline, offset_x, offset_y, 15, m_label.c_str());
+    EG_Control::m_textEngine.render(m_pipeline, offset_x, offset_y, 15, s.c_str());
 }
 
 int EG_Slider::getType()
 {
     return SLIDER;
+}
+
+
+bool EG_Slider::getDraggingFlag()
+{
+    return m_dragging;
 }

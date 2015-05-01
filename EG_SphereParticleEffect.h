@@ -24,22 +24,20 @@ class EG_SphereParticleEffect : public EG_ParticleEffect
     float m_minRadius;
     float testRadius;
 
-
+    int m_particlesCount;
 
     bool Ball2Ball_CollisionMode;
     bool first;
 
-//    h_ParticleBuffer    e_ParticleBuffer;
-
-    h_ParticleBuffer    m_particles;
+    h_ParticleBuffer    e_ParticleBuffer;
 
     CollisionDetection_HGrid    myHgrid;
 
     public:
         EG_SphereParticleEffect();
 
-   //     void InitParticles(bool reset = false);
-        void InitParticles(int count, bool reset = false);
+   //    void InitParticles(bool reset = false);
+        void InitParticles(int count);
         void InitParticlePos(int i, int k, int j, int Index);
         void InitParticleVel(int i, int k, int j, int Index);
         void InitParticleAttribute(int i, int k, int j, int Index);
@@ -65,7 +63,7 @@ class EG_SphereParticleEffect : public EG_ParticleEffect
     float pos_x, pos_y, pos_z;
     float vel_x, vel_y, vel_z;
     float Radius;
- //   GLUquadricObj* quad;
+    GLUquadricObj* quad;
 };
 
 

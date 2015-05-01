@@ -156,7 +156,7 @@ void EG_OrbitCamera::Control(pipeline& m_pipeline, EG_SkyBox& skybox)
 
 
 
-void EG_OrbitCamera::Control(pipeline& m_pipeline, EG_SkyBox& skybox, int screen_w, int screen_h, int palette_w, int palette_h)
+void EG_OrbitCamera::Control(pipeline& m_pipeline, EG_SkyBox& skybox, bool GuiFlag)
 {
     float pitchChange = 0.0f;
     float yawChange = 0.0f;
@@ -170,11 +170,15 @@ void EG_OrbitCamera::Control(pipeline& m_pipeline, EG_SkyBox& skybox, int screen
     m_mouseDelta = ( m_mousePrevious - m_mouseCurrent );
     m_enableSpringSystem = false;
 
-
+/*
     if(tmpx < palette_w)
     {
         m_mouseDelta = glm::vec2(0,0);
     }
+*/
+
+    if(GuiFlag)
+        m_mouseDelta = glm::vec2(0,0);
 
 //	if(mouse_in)
 	if(m_leftMouseDown)
@@ -205,6 +209,10 @@ void EG_OrbitCamera::Control(pipeline& m_pipeline, EG_SkyBox& skybox, int screen
 
 
 
+void EG_OrbitCamera::Control(pipeline& m_pipeline, EG_SkyBox& skybox, int screen_w, int screen_h, int palette_w, int palette_h)
+{
+
+}
 
 void EG_OrbitCamera::update(pipeline& m_pipeline, float elapsedTimeSec, float pitchChange, float yawChange, EG_SkyBox& skybox)
 {

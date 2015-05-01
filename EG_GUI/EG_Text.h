@@ -54,6 +54,7 @@ class EG_Text
         GLuint getTextHeight();
 
         int getTextWidthOffset(int i);
+        int getTextWidthOffset(int i, int fontSize);
         GLuint getFontTexture();
 
  //       EG_QuadModel fontQuad;

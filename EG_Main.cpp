@@ -576,6 +576,7 @@ void ExplosionGenerator::start()
                         case SDL_BUTTON_LEFT:
                             cout << "clicking left" << endl;
 
+
                             m_orbitCamera.m_leftMouseDown = true;
 
                             SDL_GetMouseState(&tmpx,&tmpy);
@@ -711,7 +712,7 @@ void ExplosionGenerator::start()
 #endif
                             break;
 #if SPHERE_EFFECT
-                            l_SphereEffect.myHgrid.removeParticleFromHGrid(&l_SphereEffect.m_particles[3]);
+                            l_SphereEffect.myHgrid.removeParticleFromHGrid(&l_SphereEffect.e_ParticleBuffer[3]);
 #endif
                             break;
                     }
@@ -860,6 +861,7 @@ void ExplosionGenerator::update()
         m_orbitCamera.m_pivotOffset.y-=1;
 
 
+
     int mx, my;
     SDL_GetMouseState(&mx,&my);
     m_mouseState.m_pos = glm::vec2(mx, SCREEN_HEIGHT - my);
@@ -867,7 +869,19 @@ void ExplosionGenerator::update()
 
 
     bool sliding = m_particleCountSlider.update(m_mouseState);
+    if(sliding)
+    {
+        m_explodeFlag = false;
+        int newCount = (int)m_particleCountSlider.getValue();
+        if(l_SphereEffect.m_particlesCount != newCount)
+        {
+       //     EG_Utility::debug("newCount", newCount);
 
+            l_SphereEffect.m_particlesCount = newCount;
+            l_SphereEffect.Reset();
+        }
+
+    }
 
     if(!sliding)
     {
@@ -1255,7 +1269,7 @@ void ExplosionGenerator::forwardRender()
     {
 
 #if ORBIT_CAMERA_FLAG
-        m_orbitCamera.Control(m_pipeline, m_skybox);
+        m_orbitCamera.Control(m_pipeline, m_skybox, m_particleCountSlider.getDraggingFlag());
 #else
         thirdPersonPovCamera.Control(m_pipeline, m_skybox);
 #endif

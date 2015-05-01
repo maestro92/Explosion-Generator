@@ -123,8 +123,8 @@ bool EG_Control::update(MouseState & state)
     int x = state.m_pos.x;
     int y = state.m_pos.y;
 
-    EG_Utility::debug("state.m_pos", state.m_pos);
-    EG_Utility::debug("m_position", glm::vec2(m_rect.x, m_rect.y));
+//    EG_Utility::debug("state.m_pos", state.m_pos);
+ //   EG_Utility::debug("m_position", glm::vec2(m_rect.x, m_rect.y));
 
 
     m_isInside = false;

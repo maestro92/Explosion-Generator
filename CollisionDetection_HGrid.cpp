@@ -655,6 +655,15 @@ void CollisionDetection_HGrid::removeParticleFromHGrid( h_Particle *h_par )
 
 
 
+
+void CollisionDetection_HGrid::clear( )
+{
+    occupied_Levels_Mask = 0;
+    myMap.clear();
+}
+
+
+
 void CollisionDetection_HGrid::rehash( h_Particle *h_par )
 {
     removeParticleFromHGrid(h_par);
