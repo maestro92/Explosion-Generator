@@ -2,10 +2,9 @@
 #define EG_INSTANCED_RENDERER
 
 
+#include "EG_Technique_Shadow_Render.h"
 
-#include "EG_RenderTechnique.h"
-
-class EG_InstancedRenderer : public EG_RenderTechnique
+class EG_InstancedRenderer : public Technique_Shadow_Render
 {
     public:
         EG_InstancedRenderer();

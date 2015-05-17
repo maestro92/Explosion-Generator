@@ -629,13 +629,14 @@ void EG_SphereParticleEffect::updateMatrices(pipeline &m_pipeline)
 }
 
 
-void EG_SphereParticleEffect::instancedRender(EG_InstancedModel& model)
+void EG_SphereParticleEffect::instancedRender(pipeline &m_pipeline, EG_RenderTechnique* RenderTechnique, int RenderPassID, EG_InstancedModel& model)
 {
+    RenderTechnique->loadUniformLocations(m_pipeline, RenderPassID);
     // convert vector to pointer, http://stackoverflow.com/questions/2923272/how-to-convert-vector-to-array-c
     model.render(getCount(), &m_particleWVPMatrices[0], &m_particleWorldMatrices[0]);
 }
 
-
+/*
 void EG_SphereParticleEffect::instancedRender(pipeline &m_pipeline, EG_RenderTechnique* RenderTechnique, int RenderPassID, EG_InstancedModel& model)
 {
     m_pipeline.matrixMode(MODEL_MATRIX);
@@ -650,7 +651,7 @@ void EG_SphereParticleEffect::instancedRender(pipeline &m_pipeline, EG_RenderTec
         m_pipeline.popMatrix();
     }
 }
-
+*/
 
 
 

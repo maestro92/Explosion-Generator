@@ -58,7 +58,10 @@ class EG_SphereParticleEffect : public EG_ParticleEffect
         void render(pipeline &m_pipeline, EG_RenderTechnique* RenderTechnique, int RenderTypeID, meshLoader* mymesh);
         void render(pipeline &m_pipeline, EG_RenderTechnique* RenderTechnique, int RenderPassID, EG_Model& model);
         void updateMatrices(pipeline &m_pipeline);
-        void instancedRender(EG_InstancedModel& model);
+//        void instancedRender(EG_InstancedModel& model);
+
+    //    void instancedRender(EG_RenderTechnique* RenderTechnique, int RenderPassID, EG_InstancedModel& model);
+
         void instancedRender(pipeline &m_pipeline, EG_RenderTechnique* RenderTechnique, int RenderPassID, EG_InstancedModel& model);
 
         int getCount();

@@ -15,6 +15,8 @@
 #include "EG_ModelABS.h"
 #include "EG_DeferredShading.h"
 #include "sceneLoader.h"
+#include "pipeline.h"
+#include "EG_RenderTechnique.h"
 
 #define SPHERE  0
 #define BOX     1

@@ -151,6 +151,7 @@ class ExplosionGenerator
         /// GUI
         EG_Renderer_Button  r_buttonRenderer;
 
+        EG_Label m_frameRateLabel;
 
         EG_Button m_triggerButton;
         EG_Button m_resetButton;
@@ -348,15 +349,19 @@ class ExplosionGenerator
         void initShader();
         void initModels();
         void initObjects();
+
+        void initRenderers();
+        void initRendererLightParams(EG_RenderTechnique* r_ptr);
         void initLights();
 
         void initGUI();
-        void initRenderingTechniques();
+
 
         void init_Texture_and_FrameBuffer();
 
         void SetupRenderStage();
         void getDepthTexture_FromLightPosion(pipeline temp_pipeline);
+
 
         void start();
         void update();

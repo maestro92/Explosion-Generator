@@ -175,6 +175,7 @@
 		<Unit filename="EG_WorldObject/EG_WorldObject.h" />
 		<Unit filename="EG_WorldObject/EG_WorldSphere.cpp" />
 		<Unit filename="EG_WorldObject/EG_WorldSphere.h" />
+		<Unit filename="EG_deferredShading.h" />
 		<Unit filename="L_Cube_Sphere_ParticleEffect.cpp" />
 		<Unit filename="L_Cube_Sphere_ParticleEffect.h" />
 		<Unit filename="Particle.h" />
