@@ -228,11 +228,22 @@ glm::mat4 pipeline::getProjectionMatrix()
 glm::mat4 pipeline::getModelViewProjectionMatrix()
 {
 	if(!matricesReady)
-		return viewMatrix[viewMatrix.size()-1]*modelMatrix[modelMatrix.size()-1]*projectionMatrix[projectionMatrix.size()-1];
+    {
+        modelViewProjectionMatrix = projectionMatrix[projectionMatrix.size()-1]*viewMatrix[viewMatrix.size()-1]*modelMatrix[modelMatrix.size()-1];
+		return modelViewProjectionMatrix;
+    }
 	else
 		return modelViewProjectionMatrix;
 }
 
+
+
+glm::mat4 pipeline::getModelViewProjectionMatrixForInstancedRendering()
+{
+	if(!matricesReady)
+		modelViewProjectionMatrix = projectionMatrix[projectionMatrix.size()-1]*viewMatrix[viewMatrix.size()-1]*modelMatrix[modelMatrix.size()-1];
+    return modelViewProjectionMatrix;
+}
 
 
 

@@ -117,6 +117,7 @@ class pipeline
 		glm::mat4 getModelViewMatrix();
 		glm::mat4 getProjectionMatrix();
 		glm::mat4 getModelViewProjectionMatrix();
+        glm::mat4 getModelViewProjectionMatrixForInstancedRendering();
 
 		//GLSL
 		void updateMatrices(unsigned int programId);

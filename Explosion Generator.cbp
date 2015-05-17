@@ -93,6 +93,8 @@
 		<Unit filename="EG_Model/EG_ImportedAnimatedModel.h" />
 		<Unit filename="EG_Model/EG_ImportedModel.cpp" />
 		<Unit filename="EG_Model/EG_ImportedModel.h" />
+		<Unit filename="EG_Model/EG_InstancedModel.cpp" />
+		<Unit filename="EG_Model/EG_InstancedModel.h" />
 		<Unit filename="EG_Model/EG_Mesh.cpp" />
 		<Unit filename="EG_Model/EG_Mesh.h" />
 		<Unit filename="EG_Model/EG_Model.cpp" />
@@ -127,6 +129,8 @@
 		<Unit filename="EG_RenderTechnique/EG_DeferredShading/EG_DeferredShadingStencilPass.h" />
 		<Unit filename="EG_RenderTechnique/EG_FullColorRenderer.cpp" />
 		<Unit filename="EG_RenderTechnique/EG_FullColorRenderer.h" />
+		<Unit filename="EG_RenderTechnique/EG_InstancedRenderer.cpp" />
+		<Unit filename="EG_RenderTechnique/EG_InstancedRenderer.h" />
 		<Unit filename="EG_RenderTechnique/EG_RenderTechnique.cpp" />
 		<Unit filename="EG_RenderTechnique/EG_RenderTechnique.h" />
 		<Unit filename="EG_RenderTechnique/EG_RenderTechnique_RenderDepthToTexture.cpp" />

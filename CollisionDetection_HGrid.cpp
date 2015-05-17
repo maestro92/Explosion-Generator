@@ -244,6 +244,7 @@ bool CollisionDetection_HGrid::UpdateSphereSphereCollision(h_Particle * h_par, v
                                     cout << "C_hash value is " << C_hash.value << endl;
                                     if (ParticleCollisionPairList.find(C_hash.value) == ParticleCollisionPairList.end())
                                     {
+                                        /*
                                         cout << "Before " << endl;
                                         cout << "first ball is " << h_par->m_id << endl;
                                         cout << "vx " << h_par->m_Velocity.x << endl;
@@ -255,10 +256,10 @@ bool CollisionDetection_HGrid::UpdateSphereSphereCollision(h_Particle * h_par, v
                                         cout << "vy " << neighbor->m_Velocity.y << endl;
                                         cout << "vz " << neighbor->m_Velocity.z << endl << endl;
 
-
+*/
                                         ParticleCollisionPairList[C_hash.value] = C_Pair;
                                         HandleSphereSphereCollision(h_par, neighbor, dt);
-
+/*
                                         cout << "After " << endl;
                                         cout << "first ball is " << h_par->m_id << endl;
                                         cout << "vx " << h_par->m_Velocity.x << endl;
@@ -269,6 +270,7 @@ bool CollisionDetection_HGrid::UpdateSphereSphereCollision(h_Particle * h_par, v
                                         cout << "vx " << neighbor->m_Velocity.x << endl;
                                         cout << "vy " << neighbor->m_Velocity.y << endl;
                                         cout << "vz " << neighbor->m_Velocity.z << endl;
+                                        */
                                     }
                                 }
                             }

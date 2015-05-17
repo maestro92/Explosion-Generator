@@ -84,6 +84,9 @@ class EG_Utility
         static void debug(string s, glm::vec2 v);
         static void debug(string s, glm::mat4 m);
         static void debug(string s, glm::vec3 v);
+
+        static void checkGLError();
+
     //    static GLuint GetUniformLocation(shader* s, const char* UniformName);
 
 };

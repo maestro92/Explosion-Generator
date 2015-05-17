@@ -30,7 +30,7 @@
 
 #include "EG_Model.h"
 #include "EG_ImportedModel.h"
-
+#include "EG_InstancedModel.h"
 
 #include "EG_DeferredShading.h"
 #include "EG_GBuffer.h"
@@ -57,6 +57,7 @@
 #include "EG_Renderer_Button.h"
 #include "EG_FullColorRenderer.h"
 #include "EG_Button.h"
+#include "EG_InstancedRenderer.h"
 
 #include "EG_WorldAnimatedObject.h"
 #include "EG_XYZAxisModel.h"
@@ -144,7 +145,7 @@ class ExplosionGenerator
         EG_DeferredShadingDirectionalLightPass  r_deferredShadingDirectionalLightPass_Skybox;
         EG_RenderTechnique_RenderTexture        r_renderTexture;
         EG_FullColorRenderer                    r_fullColor;
-
+        EG_InstancedRenderer                    r_instancedRenderer;
 
 
         /// GUI
@@ -245,6 +246,9 @@ class ExplosionGenerator
         EG_Model*   modelPtr;
         EG_ModelABS*    p_modelPtr;
         EG_XYZAxisModel m_axisModel;
+
+
+        EG_InstancedModel  instancedSphere;
 
 //        EG_DynamicModel* mainAvatar;
 //        WorldObject     o_animationObject;

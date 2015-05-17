@@ -229,10 +229,10 @@ unsigned int Shader::loadShader(string& source, unsigned int ShaderType)
     char error[1000];
     glGetShaderInfoLog(id, 1000, NULL, error);
 
-   // if(strlen(error) != 0)
-   // {
-        cout << "Shader Compile Status: \n" << error << endl;
-   // }
+    if(strlen(error) != 0)
+   {
+        cout << "Shader Compile Status: \n" << error << endl << endl;
+   }
 
     return id;
 }

@@ -373,7 +373,7 @@ void ExplosionGenerator::initModels()
 
     testSphere.loadModel("./models/Sphere/sphere10_grey_flat.obj");
     // testSphere.loadModel("./models/Sphere.ctm");
-
+    instancedSphere.loadModel("./models/Sphere/sphere10_grey_flat.obj");
 
     bob.loadModel("./models/Characters/boblampclean.md5mesh");
     legoMan.loadModel("./models/Characters/Walking Lego.md5mesh");
@@ -409,6 +409,8 @@ void ExplosionGenerator::initModels()
 //    smooth_sphere = new meshLoader("./Sphere/sphere10_grey_smooth.obj");
     smoothSphere = new meshLoader("./Sphere/sphere_grey.obj");
     cube = new meshLoader("cube.obj");
+
+
 //    monkey = new meshLoader("monkey.obj");
 //    mainCharacter = new meshLoader("./Characters/LEGO_Man.obj");
 
@@ -543,6 +545,8 @@ void ExplosionGenerator::initRenderingTechniques()
 
     r_skinning.init(2);
     r_buttonRenderer.init(3);
+
+    r_instancedRenderer.init(1);
 }
 
 void ExplosionGenerator::start()
@@ -1178,7 +1182,11 @@ void ExplosionGenerator::RenderScene()
         o_wall.renderGroup(m_pipeline, r_Technique, RENDER_PASS2, wall_positive_x);
 
 #if SPHERE_EFFECT
-        l_SphereEffect.render(m_pipeline, r_Technique, RENDER_PASS2, testSphere);
+//        l_SphereEffect.render(m_pipeline, r_Technique, RENDER_PASS2, testSphere);
+
+//        l_SphereEffect.render(m_pipeline, r_Technique, RENDER_PASS2, testSphere);
+
+   //     l_SphereEffect.render(m_pipeline, r_Technique, RENDER_PASS2, instancedSphere);
 #endif
 
 #if CUBE_SPHERE_EFFECT
@@ -1193,6 +1201,22 @@ void ExplosionGenerator::RenderScene()
 
         r_Shadow_Render.disableShader(RENDER_PASS2);
     m_pipeline.popMatrix();
+
+
+
+    // l_SphereEffect.render(m_pipeline, r_Technique, RENDER_PASS2, testSphere);
+
+
+    r_Technique = &r_instancedRenderer;
+    r_instancedRenderer.enableShader(RENDER_PASS1);
+    m_pipeline.matrixMode(MODEL_MATRIX);
+    m_pipeline.pushMatrix();
+
+        l_SphereEffect.instancedRender(instancedSphere);
+    m_pipeline.popMatrix();
+    r_Shadow_Render.disableShader(RENDER_PASS1);
+
+
 }
 
 
@@ -1313,6 +1337,9 @@ void ExplosionGenerator::Render_to_CubeMapFace2(int face)
 
 void ExplosionGenerator::forwardRender()
 {
+
+
+
 #if REFLECTION_EFFECT
     Render_to_CubeMapTexture2();
 #endif
@@ -1363,7 +1390,7 @@ void ExplosionGenerator::forwardRender()
 
 
 
-
+    l_SphereEffect.updateMatrices(m_pipeline);
 
 #if SMOKE_EFFECT
     r_Technique = &r_DepthTexture_Render;

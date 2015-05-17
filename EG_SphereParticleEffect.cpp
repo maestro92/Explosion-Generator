@@ -29,6 +29,8 @@ EG_SphereParticleEffect::EG_SphereParticleEffect()
     cout << "nice" << endl;
     int size;
     e_ParticleBuffer.reserve(1000);
+    m_particleWVPMatrices.reserve(1000);
+    m_particleWorldMatrices.reserve(1000);
 
     if (Ball2Ball_CollisionMode)
         size = ARRAY_SIZE_X * ARRAY_SIZE_Y * ARRAY_SIZE_Z + 1;
@@ -38,6 +40,8 @@ EG_SphereParticleEffect::EG_SphereParticleEffect()
 	quad = gluNewQuadric();
 	m_particlesCount = ARRAY_SIZE_X * ARRAY_SIZE_Y * ARRAY_SIZE_Z;
     e_ParticleBuffer.resize(size, h_Particle());
+    m_particleWVPMatrices.resize(size);
+    m_particleWorldMatrices.resize(size);
 
 
 /*
@@ -171,6 +175,9 @@ void EG_SphereParticleEffect::InitParticles(bool reset)
 void EG_SphereParticleEffect::InitParticles(int count)
 {
     e_ParticleBuffer.clear();
+    m_particleWVPMatrices.clear();
+    m_particleWorldMatrices.clear();
+
     m_particlesCount = count;
     int size;
     if (Ball2Ball_CollisionMode)
@@ -179,6 +186,8 @@ void EG_SphereParticleEffect::InitParticles(int count)
         m_particlesCount = count;
 
     e_ParticleBuffer.resize(m_particlesCount, h_Particle());
+    m_particleWVPMatrices.resize(m_particlesCount);
+    m_particleWorldMatrices.resize(m_particlesCount);
 
 
 
@@ -599,6 +608,56 @@ void EG_SphereParticleEffect::render(pipeline &m_pipeline, EG_RenderTechnique* R
 }
 
 
+
+
+
+void EG_SphereParticleEffect::updateMatrices(pipeline &m_pipeline)
+{
+    m_pipeline.matrixMode(MODEL_MATRIX);
+
+    for(int i = 0; i < e_ParticleBuffer.size(); i++)
+    {
+        m_pipeline.pushMatrix();
+            m_pipeline.translate(e_ParticleBuffer[i].m_Position.x, e_ParticleBuffer[i].m_Position.y, e_ParticleBuffer[i].m_Position.z);
+            m_pipeline.scale(e_ParticleBuffer[i].m_fRadius);
+
+            m_particleWVPMatrices[i] = m_pipeline.getModelViewProjectionMatrixForInstancedRendering();
+            m_particleWorldMatrices[i] = m_pipeline.getModelMatrix();
+
+        m_pipeline.popMatrix();
+    }
+}
+
+
+void EG_SphereParticleEffect::instancedRender(EG_InstancedModel& model)
+{
+    // convert vector to pointer, http://stackoverflow.com/questions/2923272/how-to-convert-vector-to-array-c
+    model.render(getCount(), &m_particleWVPMatrices[0], &m_particleWorldMatrices[0]);
+}
+
+
+void EG_SphereParticleEffect::instancedRender(pipeline &m_pipeline, EG_RenderTechnique* RenderTechnique, int RenderPassID, EG_InstancedModel& model)
+{
+    m_pipeline.matrixMode(MODEL_MATRIX);
+
+    for(int i = 0; i < e_ParticleBuffer.size(); i++)
+    {
+        m_pipeline.pushMatrix();
+            m_pipeline.translate(e_ParticleBuffer[i].m_Position.x, e_ParticleBuffer[i].m_Position.y, e_ParticleBuffer[i].m_Position.z);
+            m_pipeline.scale(e_ParticleBuffer[i].m_fRadius);
+            RenderTechnique->loadUniformLocations(m_pipeline, RenderPassID);
+            model.render();
+        m_pipeline.popMatrix();
+    }
+}
+
+
+
+
+int EG_SphereParticleEffect::getCount()
+{
+    return e_ParticleBuffer.size();
+}
 
 
 

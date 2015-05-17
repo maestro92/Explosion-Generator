@@ -1,8 +1,9 @@
-#ifndef _L_SPHERE_PARTICLE_EFFECT_H_
-#define _L_SPHERE_PARTICLE_EFFECT_H_
+#ifndef EG_SPHERE_PARTICLE_EFFECT_H_
+#define EG_SPHERE_PARTICLE_EFFECT_H_
 
 #include "EG_Model.h"
 #include "EG_Model/EG_ModelABS.h"
+#include "EG_InstancedModel.h"
 #include "pipeline.h"
 #include "EG_RenderTechnique.h"
 #include "EG_Technique_Shadow_Render.h"
@@ -31,6 +32,8 @@ class EG_SphereParticleEffect : public EG_ParticleEffect
     bool first;
 
     h_ParticleBuffer    e_ParticleBuffer;
+    vector<glm::mat4> m_particleWVPMatrices;
+    vector<glm::mat4> m_particleWorldMatrices;
 
     CollisionDetection_HGrid    myHgrid;
 
@@ -54,11 +57,19 @@ class EG_SphereParticleEffect : public EG_ParticleEffect
         void show(pipeline &m_pipeline, EG_RenderTechnique* RenderTechnique, int RenderTypeID, meshLoader* mymesh);
         void render(pipeline &m_pipeline, EG_RenderTechnique* RenderTechnique, int RenderTypeID, meshLoader* mymesh);
         void render(pipeline &m_pipeline, EG_RenderTechnique* RenderTechnique, int RenderPassID, EG_Model& model);
+        void updateMatrices(pipeline &m_pipeline);
+        void instancedRender(EG_InstancedModel& model);
+        void instancedRender(pipeline &m_pipeline, EG_RenderTechnique* RenderTechnique, int RenderPassID, EG_InstancedModel& model);
+
+        int getCount();
+
 
         void Reset();
         void resetParticleVelocity();
 
         void ExamineParticleAttribute();
+
+
 
 
     float start_x, start_y, start_z;
