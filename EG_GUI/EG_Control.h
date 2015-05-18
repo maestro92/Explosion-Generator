@@ -16,7 +16,7 @@
 #include "define.h"
 #include <iostream>
 #include <string>
-
+#include <bitset>
 
 using namespace std;
 
@@ -94,11 +94,15 @@ class EG_Control
      //   virtual bool update(glm::vec3 c);
     //    virtual bool update(glm::vec3 c1, glm::vec3 c2, glm::vec3 c3, glm::vec3 c4);
         virtual bool update(MouseState & state);
-
+        virtual bool update(MouseState & state, unsigned int& groupFlag);
 
         virtual void render(pipeline& m_pipeline,
                             EG_RenderTechnique* RenderTechnique,
                             int RenderPassID);
+
+        virtual void customMatrixRender(pipeline& m_pipeline,
+                        EG_RenderTechnique* RenderTechnique,
+                        int RenderPassID);
 
         virtual void render(pipeline& m_pipeline,
                         EG_RenderTechnique* RenderTechnique,
@@ -111,6 +115,7 @@ class EG_Control
 
         virtual int getType() = 0;
 
+        void setID(int& ID);
         void setPosition(int x, int y);
         void setSize(int width, int height);
         void setRect(int x, int y, int w, int h);
@@ -119,6 +124,8 @@ class EG_Control
         void setLabel(string label);
         int computeTextStartingX(string s);
         int computeTextStartingY();
+
+
 
         int getWidth();
         int getHeight();
@@ -130,9 +137,12 @@ class EG_Control
         bool m_isInside;
         string m_label;
 
+        int m_id;
+
         EG_Rect m_rect;
 
         /// http://stackoverflow.com/questions/7083612/defining-a-static-variable-of-base-class
+
         static EG_Text m_textEngine;
         EG_QuadModelABS m_quadModel;
         vector<glm::vec3> m_vertexColors;

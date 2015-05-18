@@ -29,7 +29,7 @@ void EG_RenderTechnique_Skinning::init(int nShaders)
     allocateMemberVariables(nShaders);
 
 
-    m_shaders[RENDER_PASS1] = new Shader("EG_ShadowMapDynamicModel.vs", "EG_ShadowMapDynamicModel.fs");
+    m_shaders[RENDER_PASS1] = new Shader("EG_DynamicModelShadowMap.vs", "EG_DynamicModelShadowMap.fs");
     m_shaders[RENDER_PASS2] = new Shader("EG_DynamicModel.vs", "EG_DynamicModel.fs");
 
     initDirLightUniformLocations(RENDER_PASS2);

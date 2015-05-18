@@ -84,6 +84,7 @@
 #include "EG_Smoke.h"
 #include "CollisionDetection_HGrid.h"
 
+#define FRAME_VALUES 10
 
 using namespace std;
 
@@ -156,6 +157,7 @@ class ExplosionGenerator
         EG_Button m_triggerButton;
         EG_Button m_resetButton;
         EG_Button m_minimizeButton;
+        EG_Button m_pauseButton;
 
 
         EG_Slider m_smokeSizeSlider;
@@ -175,7 +177,8 @@ class ExplosionGenerator
 
         EG_ListBox m_listBox;
 
-        int m_GUIComponentsFlags;
+        int m_GUIComponentsIDs;
+        unsigned int m_GUIComponentsFlags;
         vector<EG_Control*> m_GUIComponents;
 
 
@@ -231,9 +234,9 @@ class ExplosionGenerator
 */
 
 
-        meshLoader* sphere;
+   //     meshLoader* sphere;
         meshLoader* smoothSphere;
-        meshLoader* cube;
+//        meshLoader* cube;
 
 //        meshLoader* mainCharacter;
         meshLoader* light;
@@ -270,6 +273,19 @@ class ExplosionGenerator
         bool holdKeyFlag;
         bool toggleFlag;
 
+        bool overrideAddSmokeFlag;
+
+        float m_fps;
+        float m_curTick;
+        float m_prevTick;
+        float m_iterRefreshRate;
+        float m_curIter;
+        unsigned int m_frameCount;
+        unsigned int m_frameTicks[FRAME_VALUES];
+        unsigned int m_frameTicksIndex;
+        unsigned int m_prevFrameTick;
+
+
         bool isRunning;
         bool isFirstPersonCamera;
         bool dvel;
@@ -278,6 +294,9 @@ class ExplosionGenerator
         bool isDepthTextureMode;
 
         bool m_explodeFlag;
+
+        float m_smokeStartTime;
+        float m_smokeDuration;
 
         /// textures
         unsigned int textureID;

@@ -4,7 +4,12 @@
 EG_TimeManager::EG_TimeManager( float maxTimeStep /* = 0.03333f */ )
 : m_fMaxTimeStep( maxTimeStep )
 , m_fPrevious ( std::clock() / (float)CLOCKS_PER_SEC )
-{}
+{
+    m_curIter = 0;
+    m_iterRefreshRate = 5;
+    memset(m_frameTicks, 0, sizeof(m_frameTicks));
+    m_frameCount = 0;
+}
 
 
 
@@ -42,6 +47,50 @@ long long EG_TimeManager::getRunningTime()
 {
     return m_runningTime;
 }
+
+
+void EG_TimeManager::addTick(unsigned tick)
+{
+    unsigned int index = m_frameCount % FRAME_VALUES;
+    m_frameTicks[index] = tick - m_prevFrameTick;
+    m_prevFrameTick = tick;
+    m_frameCount++;
+}
+
+float EG_TimeManager::computeAverageFPS()
+{
+    m_curIter+=1;
+    if(m_curIter >= m_iterRefreshRate)
+    {
+        unsigned int count;
+
+        if(m_frameCount < FRAME_VALUES)
+            count = m_frameCount;
+        else
+            count = FRAME_VALUES;
+
+        m_fps = 0;
+        for(int i=0; i<count; i++)
+            m_fps += m_frameTicks[i];
+
+        m_fps/=count;
+        m_fps = 1000.0f / m_fps;
+        m_curIter = 0;
+    }
+
+    return m_fps;
+ //   if(m_curIter >= m_iterRefreshRate)
+ //       m_curIter = 0;
+}
+
+
+
+
+
+
+
+
+
 
 # if 0
 long long ElapsedTime::GetCurrentTimeMillis()

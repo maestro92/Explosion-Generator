@@ -34,6 +34,8 @@ class EG_Slider : public EG_Control
         virtual void initColoredQuad();
 
         virtual bool update(MouseState &state);
+        virtual bool update(MouseState &state, unsigned int& groupFlag);
+        virtual bool update1(MouseState & state, unsigned int& groupFlag);
 
         virtual void render(pipeline& m_pipeline,
                             EG_RenderTechnique* RenderTechnique,

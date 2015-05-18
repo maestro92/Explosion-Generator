@@ -36,6 +36,12 @@ EG_Control::~EG_Control()
 }
 
 
+void EG_Control::setID(int& ID)
+{
+    m_id = ID;
+    ID++;
+}
+
 
 void EG_Control::setColor(glm::vec3 c)
 {
@@ -148,6 +154,25 @@ bool EG_Control::update(MouseState & state)
 }
 
 
+bool EG_Control::update(MouseState & state, unsigned int& groupFlag)
+{
+    bool flag = update(state);
+    if(flag)
+    {
+        groupFlag = groupFlag | ( 1 << m_id);
+     //   EG_Utility::debug()
+        std::bitset<32> x(groupFlag);
+        cout << x << endl;
+    }
+    else
+    {
+        groupFlag = groupFlag & (~( 1 << m_id));
+        std::bitset<32> x(groupFlag);
+        cout << x << endl;
+    }
+    return flag;
+}
+
 
 int EG_Control::computeTextStartingX(string s)
 {
@@ -206,6 +231,21 @@ void EG_Control::render(pipeline& m_pipeline,
     m_pipeline.popMatrix();
     RenderTechnique->disableShader(RenderPassID);
 }
+
+
+
+void EG_Control::customMatrixRender(pipeline& m_pipeline,
+                        EG_RenderTechnique* RenderTechnique,
+                        int RenderPassID)
+{
+    RenderTechnique->enableShader(RenderPassID);
+    m_pipeline.pushMatrix();
+        RenderTechnique->loadUniformLocations(m_pipeline, RenderPassID);
+        m_quadModel.render();
+    m_pipeline.popMatrix();
+    RenderTechnique->disableShader(RenderPassID);
+}
+
 
 void EG_Control::render(pipeline& m_pipeline,
                         EG_RenderTechnique* RenderTechnique,

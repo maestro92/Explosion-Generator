@@ -75,6 +75,56 @@ bool EG_Button::update(MouseState & state)
 
 
 
+bool EG_Button::update(MouseState & state, unsigned int& groupFlag)
+{
+    if(groupFlag & ( 1 << m_id) || (groupFlag==0) )
+    {
+        bool flag = update(state);
+        cout << "Flag is " << flag << endl;
+
+        if(flag == true)
+        {
+            groupFlag = groupFlag | ( 1 << m_id);
+         //   EG_Utility::debug()
+            std::bitset<32> x(groupFlag);
+            cout << x << endl;
+        }
+        else
+        {
+            groupFlag = groupFlag & (~( 1 << m_id));
+            std::bitset<32> x(groupFlag);
+            cout << x << endl;
+        }
+        return flag;
+    }
+    return false;
+
+    /*
+    bool flag = update(state);
+ //   cout << "Flag is " << flag << endl;
+
+    if(flag)
+    {
+        groupFlag = groupFlag | ( 1 << m_id);
+     //   EG_Utility::debug()
+        std::bitset<32> x(groupFlag);
+    //    cout << x << endl;
+    }
+    else
+    {
+        groupFlag = groupFlag & (~( 1 << m_id));
+        std::bitset<32> x(groupFlag);
+  //      cout << x << endl;
+    }
+    return flag;
+*/
+}
+
+
+
+
+
+
 void EG_Button::render( pipeline& m_pipeline,
                         EG_RenderTechnique* RenderTechnique,
                         int RenderPassID)
@@ -84,18 +134,29 @@ void EG_Button::render( pipeline& m_pipeline,
         p_modelPtr = &m_highlightQuadModel;
         EG_Control::render(m_pipeline, RenderTechnique, RENDER_PASS1, p_modelPtr);
 
-/*
+        float offset_x = 0.025 * m_rect.w;
+        float offset_y = 0.05 * m_rect.h;
+
         m_pipeline.pushMatrix();
-            m_pipeline.scale(0.9);
-            EG_Control::render(m_pipeline, RenderTechnique, RENDER_PASS1);
+            m_pipeline.translate( glm::vec3(m_rect.x + offset_x, m_rect.y + offset_y, 0) );
+            m_pipeline.scale(0.95,0.9,1.0);
+            EG_Control::customMatrixRender(m_pipeline, RenderTechnique, RENDER_PASS1);
+        m_pipeline.popMatrix();
+
+
+
+
+/*
+     //   p_modelPtr = &m_quadModel;
+        m_pipeline.pushMatrix();
+
+            m_pipeline.translate( glm::vec3(m_rect.x, m_rect.y, 0) );
+        //    m_pipeline.scale(0.9);
+            RenderTechnique->loadUniformLocations(m_pipeline, RenderPassID);
+            m_quadModel.render();
+
         m_pipeline.popMatrix();
   */
-
-        p_modelPtr = &m_quadModel;
-        m_pipeline.pushMatrix();
-            m_pipeline.scale(0.9);
-            EG_Control::render(m_pipeline, RenderTechnique, RENDER_PASS1, p_modelPtr);
-        m_pipeline.popMatrix();
     }
 
 

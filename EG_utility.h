@@ -27,7 +27,7 @@
 #include <cstdlib>
 #include <iostream>
 #include <stdio.h>
-
+#include <iomanip>
 
 #include "SDL/SDL.h"
 #include "SDL/SDL_image.h"
@@ -40,6 +40,10 @@ class EG_Utility
     public:
         EG_Utility();
         ~EG_Utility();
+
+        ///
+        static string floatToStr(float value);
+
 
         static void errorCheck();
 
@@ -54,6 +58,7 @@ class EG_Utility
         static GLuint createCubemapTexture(string* filenames);
         static void setTextureParameters(int w, int h, int format);
         static void setCubemapTextureParameters();
+
 
 
         template<typename T>
@@ -79,6 +84,7 @@ class EG_Utility
         static float RADIAN_TO_DEGREE;
 
         static void debug(string s, string s2);
+        static void debug(string s, unsigned int i);
         static void debug(string s, int i);
         static void debug(string s, float f);
         static void debug(string s, glm::vec2 v);

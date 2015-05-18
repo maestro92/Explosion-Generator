@@ -20,6 +20,8 @@ class EG_Button : public EG_Control
         virtual void initColoredQuad();
 
         virtual bool update(MouseState & state);
+        virtual bool update(MouseState & state, unsigned int& groupFlag);
+  //      virtual bool update1(MouseState & state, unsigned int& groupFlag);
     //    virtual bool update(string label);
     //    virtual void render(int x, int y);
 
