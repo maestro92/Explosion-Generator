@@ -4,7 +4,7 @@
 #include "pipeline.h"
 #include "define.h"
 #include "EG_Utility.h"
-#include "EG_Quad.h"
+#include "EG_QuadModel.h"
 
 
 #define NO_SDL_GLEXT

@@ -14,14 +14,6 @@
 #include "EG_AllLights.h"
 #include "EG_ImportedAnimatedModel.h"
 
-#include "EG_DeferredShadingGeometryPass.h"
-#include "EG_DeferredShadingSkybox.h"
-#include "EG_DeferredShadingReflection.h"
-#include "EG_DeferredShadingLightPos.h"
-#include "EG_DeferredShadingStencilPass.h"
-#include "EG_DeferredShadingPointLightPass.h"
-#include "EG_DeferredShadingDirectionalLightPass.h"
-
 
 #include "EG_Camera.h"
 #include "EG_FirstPersonPovCamera.h"
@@ -119,41 +111,18 @@ class ExplosionGenerator
 
     private:
         EG_RenderTechnique*             r_Technique;
-        EG_DeferredShading*             r_deferredShading;
-        Technique_Reflection            r_Reflection_Render;
         Technique_Shadow_Render         r_Shadow_Render;
         Technique_TwoPass_Raycasting    r_TwoPass_Render;
-   //     Technique_DepthTexture_Render   r_DepthTexture_Render;
         EG_RenderTechnique_RenderDepthToTexture   r_DepthTexture_Render;
-
         EG_RenderTechnique_RenderDepthToTexture   r_renderToDepthTexture;
-    //    EG_DeferredShading r_deferredShadingRenderTechnique;
-    //    EG_DeferredShading2 r_deferredShadingRenderTechnique;
 
-
-        EG_RenderTechnique_Skinning             r_skinning;
-
-        EG_DeferredShadingGeometryPass          r_deferredShadingGeometryPass;
-        EG_DeferredShadingSkybox                r_deferredShadingSkybox;
-        EG_DeferredShadingReflection            r_deferredShadingReflection;
-        EG_DeferredShadingStencilPass           r_deferredShadingStencilPass;
-        EG_DeferredShadingLightPos              r_deferredShadingLightPos;
-
-        EG_DeferredShadingPointLightPass        r_deferredShadingPointLightPass;
-        EG_DeferredShadingPointLightPass        r_deferredShadingPointLightPass_Skybox;
-
-        EG_DeferredShadingDirectionalLightPass  r_deferredShadingDirectionalLightPass;
-        EG_DeferredShadingDirectionalLightPass  r_deferredShadingDirectionalLightPass_Skybox;
-        EG_RenderTechnique_RenderTexture        r_renderTexture;
         EG_FullColorRenderer                    r_fullColor;
         EG_InstancedRenderer                    r_instancedRenderer;
 
 
         /// GUI
         EG_Renderer_Button  r_buttonRenderer;
-
         EG_Label m_frameRateLabel;
-
         EG_Button m_triggerButton;
         EG_Button m_resetButton;
         EG_Button m_minimizeButton;
@@ -216,49 +185,20 @@ class ExplosionGenerator
         EG_OrbitCamera m_orbitCamera;
 
         // models
-        meshLoader* scene;
         meshLoader* ground;
-
         meshLoader* wall_negative_x;
         meshLoader* wall_positive_x;
         meshLoader* wall_negative_z;
         meshLoader* wall_positive_z;
-        meshLoader* o_hugeWall;
 
-/*
-        EG_ImportedModel wall_negative_x1;
-        EG_ImportedModel wall_positive_x1;
-        EG_ImportedModel wall_negative_z1;
-        EG_ImportedModel wall_positive_z1;
-        // meshLoader* o_hugeWall;
-*/
-
-
-   //     meshLoader* sphere;
-        meshLoader* smoothSphere;
-//        meshLoader* cube;
-
-//        meshLoader* mainCharacter;
-        meshLoader* light;
-        meshLoader* pointLightSphere;
-        meshLoader* m_box;
-//        mesh* quad;
 
         EG_Model    testSphere;
-        EG_ImportedAnimatedModel legoMan;
-        EG_ImportedAnimatedModel bob;
         EG_Model*   modelPtr;
         EG_ModelABS*    p_modelPtr;
         EG_XYZAxisModel m_axisModel;
 
 
         EG_InstancedModel  instancedSphere;
-
-//        EG_DynamicModel* mainAvatar;
-//        WorldObject     o_animationObject;
-
-
-
         EG_WorldAnimatedObject  o_animatedLegoMan;
         EG_WorldAnimatedObject  o_animatedBob;
 
@@ -268,7 +208,6 @@ class ExplosionGenerator
         WorldBox        o_wall;
         EG_QuadModel    o_fullScreenQuad;
 
-        meshLoader* deferredShadingQuad;
 
         bool holdKeyFlag;
         bool toggleFlag;
@@ -317,7 +256,6 @@ class ExplosionGenerator
 
 
         /// shaders
-        Shader* quadRenderShader;   // for rendering the texture into a quad, then displaying the quad into the screen under a orthographic view
         Shader* Depth_CameraRender;
         Shader* skyboxShader;
 
@@ -341,9 +279,6 @@ class ExplosionGenerator
         EG_SpotLight spotLight;
         EG_DirectionalLight directionalLight;
         EG_PointLight pointLights[3];
-//        glm::vec3 m_boxPositions[15];
-
-        // buttons
 
 
         bool m_increaseFlag;
@@ -359,7 +294,6 @@ class ExplosionGenerator
         ExplosionGenerator();
         ~ExplosionGenerator();
 
-        void renderAnimatedObject(pipeline& p, int pass);
 
         /// init functions
         void init_SDL_GLEW();
@@ -392,40 +326,9 @@ class ExplosionGenerator
         void RenderGUI();
 
         void setupGUIRenderStage();
-//        void RenderSmoke();
+
         void RenderSmoke(bool pass1, bool pass2, Matrices_t& Mat, unsigned int depthTextureId);
-
-        void Render_to_CubeMapTexture2();
-        void Render_to_CubeMapFace2(int face);
-
-        // void renderShadowMap(pipeline temp_pipeline);
         void renderShadowMap();
-
-        void deferredShadingMrtDemoPass();
-
-/*
-        void deferredShadingGeometryPass37();
-        void deferredShadingStencilPass37(int index);
-        void deferredShadingPointLightPass37(int index);
-        void deferredShadingDirectionalLightPass37();
-        void deferredShadingFinalPass37();
-*/
-        void deferredShadingGeometryPass37(EG_GBuffer& GBuffer);
-        void deferredShadingStencilPass37(int index, EG_GBuffer& GBuffer);
-        void deferredShadingPointLightPass37(int index, EG_GBuffer& GBuffer);
-        void deferredShadingDirectionalLightPass37(EG_GBuffer& GBuffer);
-        void deferredShadingFinalPass37(EG_GBuffer& GBuffer);
-
-        void deferredShadingGeometryPass37_Skybox(EG_GBuffer& GBuffer);
-        void deferredShadingGeometryPass37_Skybox(EG_GBuffer& GBuffer, pipeline tempPipeline);
-
-        void deferredShadingPointLightPass37_Skybox(int index, EG_GBuffer& GBuffer);
-        void deferredShadingDirectionalLightPass37_Skybox(EG_GBuffer& GBuffer);
-
-
-        void deferredShadingRenderToCubeMapTexture();
-        void deferredShadingRenderToCubeMapTextureFace(int face);
-
 };
 
 

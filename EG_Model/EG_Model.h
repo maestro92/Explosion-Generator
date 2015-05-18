@@ -5,6 +5,7 @@
 #define NO_SDL_GLEXT
 #include <GL/glew.h>
 
+#include "texture.h"
 #include "define.h"
 #include "EG_Utility.h"
 #include <cstdlib>
@@ -17,7 +18,7 @@
 #include <assimp/Importer.hpp>      // C++ importer interface
 #include <assimp/scene.h>
 #include <assimp/postprocess.h>
-#include "texture.h"
+
 
 using namespace std;
 

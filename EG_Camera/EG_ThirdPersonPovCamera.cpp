@@ -69,12 +69,12 @@ void EG_ThirdPersonPovCamera::switchCameraMode()
 
 void EG_ThirdPersonPovCamera::init(pipeline& m_pipeline)
 {
-    m_character = new meshLoader("./Characters/LEGO_Man.obj");
+   // m_character = new meshLoader("./Characters/LEGO_Man.obj");
     m_characterHeight = 3.0f;
  //   m_pivotOffset.y = m_characterHeight;
 
 
-    m_mainAvatar.loadModel("./models/Characters/Walking Lego.md5mesh");
+//    m_mainAvatar.loadModel("./models/Characters/Walking Lego.md5mesh");
 
     m_characterObject.setPosition(glm::vec3(0.0f, 0.0f, 0.0f));
     m_characterObject.setRotation(glm::vec3(0.0f, 0.0f, 0.0f));
@@ -90,7 +90,7 @@ void EG_ThirdPersonPovCamera::init(pipeline& m_pipeline)
     lookAt(m_pipeline, eye_p, target_p, up_p);
 
   //  m_pitchDegree = -abs( atan2(9.0f, 30.0f)) * 180 / M_PI;
-    cout << "m_pitchDegree is " << m_pitchDegree << endl;
+
 
   //  m_pitchDegree = asinf(m_viewMatrix[1][2]) * 180 / M_PI;
 

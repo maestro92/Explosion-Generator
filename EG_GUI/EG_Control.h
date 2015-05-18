@@ -6,7 +6,7 @@
 #include "pipeline.h"
 #include "define.h"
 #include "EG_Utility.h"
-#include "EG_Quad.h"
+#include "EG_QuadModel.h"
 #include "EG_Text.h"
 #include "EG_Rect.h"
 

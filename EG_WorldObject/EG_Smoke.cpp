@@ -22,14 +22,14 @@ void Smoke::init()
     glGenFramebuffers(1, &fbo);
     glBindFramebuffer(GL_FRAMEBUFFER, fbo);
 
-    Eulerian3D_Raycast = new Shader("3D_Eulerian_Raycast.vs", "3D_Eulerian_Raycast.gs", "3D_Eulerian_Raycast.fs");
-    Eulerian3D_Fill = new Shader("3D_Eulerian_Vertex.vs", "3D_Eulerian_Fill.fs");
-    Eulerian3D_Advect = new Shader("3D_Eulerian_Vertex.vs", "3D_Eulerian_PickLayer.gs", "3D_Eulerian_Advect.fs");
-    Eulerian3D_Jacobi = new Shader("3D_Eulerian_Vertex.vs", "3D_Eulerian_PickLayer.gs", "3D_Eulerian_Jacobi.fs");
-    Eulerian3D_SubtractGradient = new Shader("3D_Eulerian_Vertex.vs", "3D_Eulerian_PickLayer.gs", "3D_Eulerian_SubtractGradient.fs");
-    Eulerian3D_ComputeDivergence = new Shader("3D_Eulerian_Vertex.vs", "3D_Eulerian_PickLayer.gs", "3D_Eulerian_ComputeDivergence.fs");
-    Eulerian3D_ApplyImpulse = new Shader("3D_Eulerian_Vertex.vs", "3D_Eulerian_PickLayer.gs", "3D_Eulerian_ApplyImpulse.fs");
-    Eulerian3D_ApplyBuoyancy = new Shader("3D_Eulerian_Vertex.vs", "3D_Eulerian_PickLayer.gs", "3D_Eulerian_Buoyancy.fs");
+    Eulerian3D_Fill = new Shader("EG_SmokeSimulation/3D_Eulerian_Vertex.vs", "EG_SmokeSimulation/3D_Eulerian_Fill.fs");
+    Eulerian3D_Advect = new Shader("EG_SmokeSimulation/3D_Eulerian_Vertex.vs", "EG_SmokeSimulation/3D_Eulerian_PickLayer.gs", "EG_SmokeSimulation/3D_Eulerian_Advect.fs");
+    Eulerian3D_Jacobi = new Shader("EG_SmokeSimulation/3D_Eulerian_Vertex.vs", "EG_SmokeSimulation/3D_Eulerian_PickLayer.gs", "EG_SmokeSimulation/3D_Eulerian_Jacobi.fs");
+    Eulerian3D_SubtractGradient = new Shader("EG_SmokeSimulation/3D_Eulerian_Vertex.vs", "EG_SmokeSimulation/3D_Eulerian_PickLayer.gs", "EG_SmokeSimulation/3D_Eulerian_SubtractGradient.fs");
+    Eulerian3D_ComputeDivergence = new Shader("EG_SmokeSimulation/3D_Eulerian_Vertex.vs", "EG_SmokeSimulation/3D_Eulerian_PickLayer.gs", "EG_SmokeSimulation/3D_Eulerian_ComputeDivergence.fs");
+    Eulerian3D_ApplyImpulse = new Shader("EG_SmokeSimulation/3D_Eulerian_Vertex.vs", "EG_SmokeSimulation/3D_Eulerian_PickLayer.gs", "EG_SmokeSimulation/3D_Eulerian_ApplyImpulse.fs");
+    Eulerian3D_ApplyBuoyancy = new Shader("EG_SmokeSimulation/3D_Eulerian_Vertex.vs", "EG_SmokeSimulation/3D_Eulerian_PickLayer.gs", "EG_SmokeSimulation/3D_Eulerian_Buoyancy.fs");
+
 
     Advect3D_Location.InverseSize = getUniform(Eulerian3D_Advect->getProgramId(), "InverseSize");
     Advect3D_Location.TimeStep = getUniform(Eulerian3D_Advect->getProgramId(), "TimeStep");
@@ -538,6 +538,7 @@ void Smoke::ResetState()
 
 #if 1
 
+
 void Smoke::Advect3D_SameFBO(SurfacePod velocity, SurfacePod source, SurfacePod obstacles, SurfacePod dest, float dissipation, GLuint p)
 {
     glUseProgram(p);
@@ -561,7 +562,7 @@ void Smoke::Advect3D_SameFBO(SurfacePod velocity, SurfacePod source, SurfacePod 
     if (GL_NO_ERROR != glGetError())
     {
     //    cout << "Advect3D Unable to attach color buffer" << endl;
-        cout << glGetError() << endl;
+  //      cout << glGetError() << endl;
     //    exit(1);
     }
 
@@ -944,7 +945,7 @@ GLuint Smoke::CreatePyroclasticVolume(int n, float r)
     i = glGetError();
     if(i!=0)
     {
-        std::cout << "Error happened while creating the 3D texture: " << i << std::endl;
+//        std::cout << "Error happened while creating the 3D texture: " << i << std::endl;
     }
     glTexImage3D(GL_TEXTURE_3D, 0,
                  GL_LUMINANCE,

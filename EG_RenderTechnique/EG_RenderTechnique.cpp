@@ -48,7 +48,7 @@ GLuint EG_RenderTechnique::GetUniformLocation(Shader* s, const char* UniformName
 
     if(Location == -1)
     {
-        cout << "Error in Init_Shader with " << UniformName << endl;
+//        cout << "Error in Init_Shader with " << UniformName << endl;
     }
     return Location;
 }
@@ -75,7 +75,7 @@ bool EG_RenderTechnique::Init_Shader_GL_Location(Shader* s, Matrices_Location& M
        Mat.ViewNoRotateMatrix == -1 ||
        Mat.NormalMatrix)
     {
-        cout << "Error in Init_Shader" << endl;
+//        cout << "Error in Init_Shader" << endl;
         return false;
     }
     return true;

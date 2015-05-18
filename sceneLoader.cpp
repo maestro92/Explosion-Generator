@@ -1,6 +1,6 @@
 #include "sceneLoader.h"
 
-string model_path = "./models/";
+string model_path = "./assets/";
 string m_str;
 
 
@@ -170,8 +170,8 @@ meshLoader::meshLoader(string filename)
     m_str = model_path;
     m_str = m_str + filename;
 
-    cout << "model_path " << model_path << endl;
-    cout << "m_str " << m_str << endl;
+//    cout << "model_path " << model_path << endl;
+ //   cout << "m_str " << m_str << endl;
 	const aiScene* scene=aiImportFile(m_str.c_str(), aiProcess_GenSmoothNormals | aiProcess_Triangulate | aiProcess_CalcTangentSpace | aiProcess_FlipUVs);
     // the filename and a mask of post processing options
     // aiProcess_Triangulate:       making non triangle polygons into triangle based meshes

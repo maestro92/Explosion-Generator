@@ -161,14 +161,14 @@ bool EG_Control::update(MouseState & state, unsigned int& groupFlag)
     {
         groupFlag = groupFlag | ( 1 << m_id);
      //   EG_Utility::debug()
-        std::bitset<32> x(groupFlag);
-        cout << x << endl;
+ //       std::bitset<32> x(groupFlag);
+//        cout << x << endl;
     }
     else
     {
         groupFlag = groupFlag & (~( 1 << m_id));
-        std::bitset<32> x(groupFlag);
-        cout << x << endl;
+  //      std::bitset<32> x(groupFlag);
+ //       cout << x << endl;
     }
     return flag;
 }

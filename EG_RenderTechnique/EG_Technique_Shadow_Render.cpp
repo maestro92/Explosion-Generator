@@ -65,15 +65,9 @@ void Technique_Shadow_Render::init(int w, int h, int Shader_Num)
 
     /// FirstPass_LightPOV
     /// SecondPass_CameraPOV
-    m_shaders[RENDER_PASS1] = new Shader("shadow_FirstRender.vs", "shadow_FirstRender.fs");
-//    m_shaders[RENDER_PASS2] = new Shader("shadow_SecondRender_WithManyLights.vs", "shadow_SecondRender_WithManyLights.fs");
-    m_shaders[RENDER_PASS2] = new Shader("shadow_SecondRender_dir_pt_include.vs", "shadow_SecondRender_dir_pt_include.fs");
+    m_shaders[RENDER_PASS1] = new Shader("EG_SceneShadowMapShader.vs", "EG_SceneShadowMapShader.fs");
+    m_shaders[RENDER_PASS2] = new Shader("EG_SceneShader.vs", "EG_SceneShader.fs");
 
-//    l_modelViewProjectionMatrix_UniLoc_ =       GetUniformLocation(progShaders[RENDER_PASS1], "l_modelViewProjectionMatrix");
-//    lightPosition_ModelViewMatrix_UniLoc_ =     GetUniformLocation(progShaders[RENDER_PASS1], "lightPosition_ModelViewMatrix");
-//    lightPosition_ObjectSpace_UniLoc_ =         GetUniformLocation(progShaders[RENDER_PASS1], "lightPosition");
-
-//    m_shadowMapTextureUnitLocation  =       GetUniformLocation(progShaders[RENDER_PASS1], "gShadowMap");
     initDirLightUniformLocations(RENDER_PASS2);
     initPointLightUniformLocations(RENDER_PASS2);
     initSpotLightUniformLocations(RENDER_PASS2);

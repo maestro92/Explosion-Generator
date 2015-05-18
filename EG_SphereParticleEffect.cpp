@@ -44,129 +44,11 @@ EG_SphereParticleEffect::EG_SphereParticleEffect()
     m_particleWorldMatrices.resize(size);
 
 
-/*
-    for(int i = 0; i < e_ParticleBuffer.size(); i++)
-    {
-        myHgrid.AddParticleToHGrid( &l_CubeEffect.e_ParticleBuffer[i]);
-    }
-
-    cout << "       #### end basic adding" << endl;
-
-    int i = 0;
-    for(i = 0; i < l_CubeEffect.e_ParticleBuffer.size(); i++)
-    {
-      //  myCD_Hgrid.Test_AddParticle(&l_CubeEffect.e_ParticleBuffer[i]);
-    }
-    cout << endl << "i is " << i << endl << endl;
-
-       myHgrid.Test_AddParticle(&l_CubeEffect.e_ParticleBuffer[0]);
-*/
-
-
 }
 
 
 
 
-
-#if 0
-void EG_SphereParticleEffect::InitParticles(bool reset)
-{
-    // creates and returns a pointer to a new quadric object
-
-
-   // float pos_x, pos_y, pos_z;
-   // float vel_x, vel_y, vel_z;
-
-/*
-    start_x = (START_POS_X - ARRAY_SIZE_X/2)*Radius*2;
-    start_y = (START_POS_Y)*Radius*2;
-    start_z = (START_POS_Z - ARRAY_SIZE_Z/2)*Radius*2;
-  */
-
-    start_x = -(m_maxRadius * 2 * ARRAY_SIZE_X)/2 + m_maxRadius;
-    start_y = (START_POS_Y)*Radius*2;
-    start_z = -(m_maxRadius * 2 * ARRAY_SIZE_Z)/2 + m_maxRadius;
-
-
-
-    int Index = 0;
-
-
-    cout << "start_x is " << start_x << endl;
-    cout << "start_y is " << start_y << endl;
-    cout << "start_z is " << start_z << endl;
-
-    for (int k=0;k<ARRAY_SIZE_Y;k++)
-    {
-        for (int i=0;i<ARRAY_SIZE_X;i++)
-        {
-            for(int j = 0;j<ARRAY_SIZE_Z;j++)
-            {
-
-                Index = k* ARRAY_SIZE_X * ARRAY_SIZE_Z + i*ARRAY_SIZE_Z + j;
-                InitParticleAttribute(i, k, j, Index);
-                InitParticlePos(i, k, j, Index);
-                InitParticleVel(i, k, j, Index);
-
-
-                if (!reset)
-                    myHgrid.addParticleToHGrid( &e_ParticleBuffer[Index]);
-                else
-                    myHgrid.rehash(&e_ParticleBuffer[Index]);
-            }
-        }
-    }
-
-
-    // init my attacker grid
-    if (Ball2Ball_CollisionMode)
-    {
-        Index = e_ParticleBuffer.size()-1;
-        // e_ParticleBuffer[Index].m_Position = glm::vec3(-30, 30, -30);
-        // float scale = 20.0f;
-        // e_ParticleBuffer[Index].m_Velocity = glm::vec3(scale, -scale, scale);
-
-        e_ParticleBuffer[Index].m_Position = glm::vec3(-30, 3, -0);
-        float scale = 30.0f;
-        e_ParticleBuffer[Index].m_Velocity = glm::vec3(scale, 0, 0);
-      //  e_ParticleBuffer[Index].m_Velocity = glm::vec3(scale, -scale+10, 0);
-        //e_ParticleBuffer[Index].m_Velocity = glm::vec3(scale, 0, 0);
-
-     //   e_ParticleBuffer[Index].m_Pre_Velocity = glm::vec3(1000,1000,1000);
-        e_ParticleBuffer[Index].m_fRadius = testRadius; // dRadius/2;
-        float lifetime;
-        lifetime = RandRange(3,5);
-        e_ParticleBuffer[Index].m_fLifeTime = lifetime;
-        e_ParticleBuffer[Index].m_fAge = 0;
-        e_ParticleBuffer[Index].m_id = Index;
-
-        if (!reset)
-        {
-            myHgrid.addParticleToHGrid( &e_ParticleBuffer[Index]);
-            myHgrid.ParticleCollisionPairList.clear();
-        }
-
-        else
-            myHgrid.rehash(&e_ParticleBuffer[Index]);
-    }
-
-
-
-    cout << "Checking" << endl;
-    for(int i = 0; i < e_ParticleBuffer.size(); i++)
-    {
-        float x = e_ParticleBuffer[i].m_Position.x;
-        float y = e_ParticleBuffer[i].m_Position.y;
-        float z = e_ParticleBuffer[i].m_Position.z;
-  //      cout << x << " " << y << " " << z << endl;
-
-
-        myHgrid.Test_AddParticle(&e_ParticleBuffer[i]);
-    }
-}
-
-#endif
 
 
 
@@ -203,10 +85,6 @@ void EG_SphereParticleEffect::InitParticles(int count)
     start_z = -(m_maxRadius * 2 * side)/2 + m_maxRadius;
     int Index = 0;
 
-    cout << "start_x is " << start_x << endl;
-    cout << "start_y is " << start_y << endl;
-    cout << "start_z is " << start_z << endl;
-
     int currentCount = 0;
 
     for (int k=0; currentCount<count; k++)
@@ -236,21 +114,6 @@ void EG_SphereParticleEffect::InitParticles(int count)
 
 
 
-    cout << "Checking" << endl;
-    for(int i = 0; i < e_ParticleBuffer.size(); i++)
-    {
-
-        float x = e_ParticleBuffer[i].m_Position.x;
-        float y = e_ParticleBuffer[i].m_Position.y;
-        float z = e_ParticleBuffer[i].m_Position.z;
-        cout << x << " " << y << " " << z << endl;
-
-        myHgrid.Test_AddParticle(&e_ParticleBuffer[i]);
-
-    }
-
-
-
 }
 
 
@@ -259,12 +122,6 @@ void EG_SphereParticleEffect::InitParticles(int count)
 
 void EG_SphereParticleEffect::ExamineParticleAttribute()
 {
-
-    for(int i = 0; i < e_ParticleBuffer.size(); i++)
-    {
-        cout << "id is " << e_ParticleBuffer[i].m_id << endl;
-   //     cout << "level is " << e_ParticleBuffer[i].m_level << endl;
-    }
 
 }
 
@@ -309,7 +166,6 @@ void EG_SphereParticleEffect::InitParticlePos(int i, int k, int j, int Index)
 
     glm::vec3 pos( pos_x, pos_y, pos_z );
     e_ParticleBuffer[Index].m_Position = pos;
-  //  cout << "position is " << pos_x << " " << pos_y << " " << pos_z << endl;
 
 }
 
@@ -402,7 +258,6 @@ void EG_SphereParticleEffect::Reset()
 
 void EG_SphereParticleEffect::resetParticleVelocity()
 {
-    // cout << "Checking" << endl;
     for(int i = 0; i < e_ParticleBuffer.size(); i++)
     {
         vel_x = RandRange(-m_maxVelocity, m_maxVelocity);
@@ -428,13 +283,6 @@ void EG_SphereParticleEffect::UpdateParticleEffect(float dt)
 
         // check collision here?
         // check collision with the plane
-
-        cout << "   ## id is " << e_ParticleBuffer[i].m_id << endl;
-     //   cout << "   ## real time vel x is " << e_ParticleBuffer[i].m_Velocity.x << endl;
-        cout << "   ## real time vel y is " << e_ParticleBuffer[i].m_Velocity.y << endl;
-     //   cout << "   ## real time vel z is " << e_ParticleBuffer[i].m_Velocity.z << endl;
-        cout << "   ## real time pos y is " << e_ParticleBuffer[i].m_Position.y - e_ParticleBuffer[i].m_fRadius << endl;
-
 
         // check collision
         // if there's no collision just let it update regularly
@@ -468,7 +316,7 @@ void EG_SphereParticleEffect::UpdateParticleEffect(float dt)
     // clear the collision pairs
     myHgrid.ParticleCollisionPairList.clear();
 
-    cout << endl;
+//    cout << endl;
 }
 
 

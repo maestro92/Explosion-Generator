@@ -11,7 +11,7 @@
 #include <stdio.h>
 #include <string>
 #include <sstream>
-#include "EG_Quad.h"
+#include "EG_QuadModel.h"
 #include "EG_RenderTechnique.h"
 
 

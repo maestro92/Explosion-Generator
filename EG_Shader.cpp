@@ -12,7 +12,7 @@ string p_str;
 Shader::Shader(const char* vs_source, const char* fs_source)
 {
     string source;
-    cout << "vs: " << vs_source << ", fs: " << fs_source << endl;
+ //   cout << "vs: " << vs_source << ", fs: " << fs_source << endl;
     loadFile(vs_source, source);
 
     // source code and Mode
@@ -40,7 +40,7 @@ Shader::Shader(const char* vs_source, const char* fs_source)
 Shader::Shader(const char* vs_source, const char* gs_source, const char* fs_source)
 {
     string source;
-    cout << "vs: " << vs_source << ", gs:" << gs_source << ", fs: " << fs_source << endl << endl;
+//    cout << "vs: " << vs_source << ", gs:" << gs_source << ", fs: " << fs_source << endl << endl;
     loadFile(vs_source, source);
     // source code and Mode
     vs = loadShader(source, GL_VERTEX_SHADER);
@@ -100,7 +100,7 @@ void Shader::loadFile(const char* fn, string & str)
 
     if(!in.is_open())
     {
-        cout << "The file " << fn << "cannot be openned\n" << endl;
+  //      cout << "The file " << fn << "cannot be openned\n" << endl;
         return;
     }
 
@@ -231,7 +231,7 @@ unsigned int Shader::loadShader(string& source, unsigned int ShaderType)
 
     if(strlen(error) != 0)
    {
-        cout << "Shader Compile Status: \n" << error << endl << endl;
+   //     cout << "Shader Compile Status: \n" << error << endl << endl;
    }
 
     return id;

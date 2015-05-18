@@ -82,24 +82,6 @@ void EG_AllLights::setPointLights()
 
 }
 
-/*
-void EG_AllLights::addPointLight()
-{
-    EG_PointLight::EG_PointLight(   glm::vec3 Color, float AmbientIntensity, float DiffuseIntensity,
-                                glm::vec3 Position, float Constant, float Linear, float Exp)
-
-    EG_PointLight light(COLOR_RED, 0.0f, 5.0f, );
-    pointLights.push_back();
-}
-
-    pointLights[3].color = COLOR_RED;
-    pointLights[3].diffuseIntensity = 15.0f;
-    pointLights[3].position = glm::vec3(-2.0f, 2.0f, -2.0f);
-    pointLights[3].attenuation.constant = 0.0f;
-    pointLights[3].attenuation.linear = 0.0f;
-    pointLights[3].attenuation.exp = 0.3f;
-*/
-
 
 void EG_AllLights::initPointLightWall()
 {

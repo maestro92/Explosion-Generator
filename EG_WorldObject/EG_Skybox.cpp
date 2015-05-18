@@ -22,7 +22,7 @@ void EG_SkyBox::init()
 
 //    SkyboxShader = new shader("skybox.vs", "skybox.frag");
 //    Init_Shader_GL_Location(SkyboxShader, Matrices_UniLoc[RENDER_PASS1]);
-    m_shaders[RENDER_PASS1] = new Shader("skybox.vs", "skybox.frag");
+    m_shaders[RENDER_PASS1] = new Shader("EG_SkyboxShader.vs", "EG_SkyboxShader.frag");
 
 
     initMemberVariables();
@@ -86,12 +86,12 @@ void EG_SkyBox::init()
 
     /// init skybox textures
     std::string cube_filenames[6];
-    cube_filenames[0]="./images/Skybox pictures/Skybox_Moon_Right.png";   /// positive x
-	cube_filenames[1]="./images/Skybox pictures/Skybox_Moon_Left.png";    /// negative x
-    cube_filenames[2]="./images/Skybox pictures/Skybox_Moon_Top.png";     /// positive y
-	cube_filenames[3]="./images/Skybox pictures/Skybox_Moon_Bottom.png";     /// negative y
-	cube_filenames[4]="./images/Skybox pictures/Skybox_Moon_Front.png";   /// positive z
-	cube_filenames[5]="./images/Skybox pictures/Skybox_Moon_Back.png";    /// negative z
+    cube_filenames[0]="./assets/images/Skybox pictures/Skybox_Moon_Right.png";   /// positive x
+	cube_filenames[1]="./assets/images/Skybox pictures/Skybox_Moon_Left.png";    /// negative x
+    cube_filenames[2]="./assets/images/Skybox pictures/Skybox_Moon_Top.png";     /// positive y
+	cube_filenames[3]="./assets/images/Skybox pictures/Skybox_Moon_Bottom.png";     /// negative y
+	cube_filenames[4]="./assets/images/Skybox pictures/Skybox_Moon_Front.png";   /// positive z
+	cube_filenames[5]="./assets/images/Skybox pictures/Skybox_Moon_Back.png";    /// negative z
 //    Static_CubeMap_ColorTextureID = utility_function.Create_CubemapTexture(cube_filenames);
     Static_CubeMap_ColorTextureID = utility_function.createCubemapTexture(cube_filenames);
 

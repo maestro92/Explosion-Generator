@@ -11,17 +11,12 @@ using namespace std;
 #define SPHERE_EFFECT 1
 #define CUBE_SPHERE_EFFECT 0
 
-#define DEFERRED_SHADING 0
 #define SMOKE_EFFECT 1
-#define REFLECTION_EFFECT 0
 #define MASS_LIGHTING 1
 #define POINT_LIGHT_BULBS   0
-#define MRT_DEMO_MODE 0
-#define USING_INVERSE_MATRIX 0
 #define SKY_BOX 1
 
 #define ORBIT_CAMERA_FLAG 1
-#define ANIMATED_OBJECT_FLAG 0
 #define INSTANCED_RENDERING 1
 
 glm::vec3 ImpulsePosition1( GridWidth / 2.0f, GridHeight - (int) SplatRadius / 2.0f, GridDepth / 2.0f);
@@ -108,7 +103,7 @@ ExplosionGenerator::ExplosionGenerator()
     m_GUIComponentsFlags = 0;
     m_GUIComponentsIDs = 0;
 
-    m_smokeDuration = 600;
+    m_smokeDuration = 800;
 
 
     m_orbitCamera.m_leftMouseDown = false;
@@ -125,35 +120,7 @@ ExplosionGenerator::ExplosionGenerator()
     initRenderers();
 
 
-/*
-    r_Shadow_Render.init(SCREEN_WIDTH, SCREEN_HEIGHT, 2);
-    r_TwoPass_Render.init(SCREEN_WIDTH, SCREEN_HEIGHT, 2);
 
-    r_Reflection_Render.init(1);
-    r_renderTexture.init(1);
-    r_renderToDepthTexture.init(1);
-
-    r_skinning.init(2);
-*/
-
-#if DEFERRED_SHADING
-    r_deferredShadingGeometryPass.init(1);
-    r_deferredShadingSkybox.init(1);
-    r_deferredShadingReflection.init(1);
-    r_deferredShadingStencilPass.init(1);
-    r_deferredShadingLightPos.init(1);
-    r_deferredShadingPointLightPass.init(1);
-    r_deferredShadingPointLightPass_Skybox.init(1, "/EG_DeferredShadingShaders/EG_DeferredShadingPointLightPass_Skybox.vs",
-                                                        "/EG_DeferredShadingShaders/EG_DeferredShadingPointLightPass_Skybox.fs");
-
-    r_deferredShadingDirectionalLightPass.init(1);
-    r_deferredShadingDirectionalLightPass_Skybox.init(1, "/EG_DeferredShadingShaders/EG_DeferredShadingDirectionalLightPass_Skybox.vs",
-                                                        "/EG_DeferredShadingShaders/EG_DeferredShadingDirectionalLightPass_Skybox.fs");
-
-
-    gbuffer.init37(SCREEN_WIDTH, SCREEN_HEIGHT);
-    skyboxGBuffer.init37(512, 512);
-#endif
     initLights();
 
 
@@ -173,9 +140,6 @@ ExplosionGenerator::ExplosionGenerator()
     l_SphereEffect.InitParticles(m_particleCount);
 #endif
 
-#if CUBE_SPHERE_EFFECT
-    l_Cube_SphereEffect.InitParticle(flag);
-#endif
 
 
 #if ORBIT_CAMERA_FLAG
@@ -186,6 +150,7 @@ ExplosionGenerator::ExplosionGenerator()
 
     SDL_WM_SetCaption("Template", NULL);
  //   myThirdPOV_camera.lookAt(m_pipeline);
+
 }
 
 
@@ -193,8 +158,7 @@ ExplosionGenerator::ExplosionGenerator()
 
 ExplosionGenerator::~ExplosionGenerator()
 {
-    delete quadRenderShader;
-    delete scene;
+
     delete ground;
  //   delete sphere;
 }
@@ -204,7 +168,7 @@ void ExplosionGenerator::init_SDL_GLEW()
 {
     SDL_Init(SDL_INIT_EVERYTHING);
     pDisplaySurface = SDL_SetVideoMode(SCREEN_WIDTH,SCREEN_HEIGHT,32, SDL_SWSURFACE|SDL_OPENGL);
-    //error check
+    /// error check
     if (pDisplaySurface == NULL)
     {
         //report error
@@ -212,21 +176,18 @@ void ExplosionGenerator::init_SDL_GLEW()
         exit(1);
     }
 
-    // initialize Glew
+    /// initialize Glew
     GLenum err = glewInit();
     if (GLEW_OK != err)
     {
       cout << "Error: %s\n" << glewGetErrorString(err) << endl;
     }
-
 }
 
 
 void ExplosionGenerator::init_Texture_and_FrameBuffer()
 {
     /// shadowMap Texture
-
-
     glGenFramebuffers(1,&FBO);
 	glBindFramebuffer(GL_FRAMEBUFFER,FBO);
 
@@ -241,7 +202,7 @@ void ExplosionGenerator::init_Texture_and_FrameBuffer()
     int i=glCheckFramebufferStatus(GL_FRAMEBUFFER);
 	if(i!=GL_FRAMEBUFFER_COMPLETE)
 	{
-		std::cout << "Framebuffer is not OK, status=" << i << std::endl;
+	//	std::cout << "Framebuffer is not OK, status=" << i << std::endl;
 	}
 	glBindFramebuffer(GL_FRAMEBUFFER,0);
 
@@ -257,7 +218,7 @@ void ExplosionGenerator::init_Texture_and_FrameBuffer()
     i=glCheckFramebufferStatus(GL_FRAMEBUFFER);
 	if(i!=GL_FRAMEBUFFER_COMPLETE)
 	{
-		std::cout << "Framebuffer is not OK, status=" << i << std::endl;
+	//	std::cout << "Framebuffer is not OK, status=" << i << std::endl;
 	}
 	glBindFramebuffer(GL_FRAMEBUFFER,0);
 }
@@ -268,16 +229,9 @@ void ExplosionGenerator::initRenderers()
     r_DepthTexture_Render.init(1);
     r_Shadow_Render.init(SCREEN_WIDTH, SCREEN_HEIGHT, 2);
     r_TwoPass_Render.init(SCREEN_WIDTH, SCREEN_HEIGHT, 2);
-
-    r_Reflection_Render.init(1);
-    r_renderTexture.init(1);
     r_renderToDepthTexture.init(1);
-
     r_fullColor.init(1);
-
-    r_skinning.init(2);
     r_buttonRenderer.init(3);
-
     r_instancedRenderer.init(2);
 }
 
@@ -314,16 +268,7 @@ void ExplosionGenerator::initLights()
         r_instancedRenderer.setDirectionalLight(allLights.getDirectionalLight(0));
     r_instancedRenderer.disableShader(RENDER_PASS2);
 
-
-
-    r_skinning.enableShader(RENDER_PASS2);
-        r_skinning.setMatSpecularIntensity(1.0f);
-        r_skinning.setMatSpecularPower(32.0f);
-        r_skinning.setDirectionalLight(allLights.getDirectionalLight(0));
-    r_skinning.disableShader(RENDER_PASS2);
 #endif
-
-
 }
 
 
@@ -343,91 +288,26 @@ void ExplosionGenerator::init_OpenGL()
 void ExplosionGenerator::initShader()
 {
     // init other shaders
-//	quadRenderShader=new Shader("quadRender.vs","quadRender.frag"); // rendering texture as a quad
-	quadRenderShader=new Shader("quadRender2.vs","quadRender2.fs"); // rendering texture as a quad
-    skyboxShader = new Shader("skybox.vs", "skybox.frag");
+    skyboxShader = new Shader("EG_SkyboxShader.vs", "EG_SkyboxShader.frag");
 }
 
 void ExplosionGenerator::initModels()
 {
     // models
-    scene = new meshLoader("shadow.obj");
     ground = new meshLoader("ground1.obj");
     wall_negative_z = new meshLoader("Wall_NZ.obj");
     wall_positive_x = new meshLoader("Wall_PX.obj");
 
-
-//    wall_negative_z1.loadModel("./assets/Models/Wall_NZ.obj");
-//    wall_positive_z1.loadModel("./assets/Models/Wall_PX.obj");
-
-
-
-
-
-    o_hugeWall        = new meshLoader("HugeWall.obj");
-
-    testSphere.loadModel("./models/Sphere/sphere10_grey_flat.obj");
-    // testSphere.loadModel("./models/Sphere.ctm");
-    instancedSphere.loadModel("./models/Sphere/sphere10_grey_flat.obj");
-
-    bob.loadModel("./models/Characters/boblampclean.md5mesh");
-    legoMan.loadModel("./models/Characters/Walking Lego.md5mesh");
+    testSphere.loadModel("./assets/models/sphere/sphere10_grey_flat.obj");
+    instancedSphere.loadModel("./assets/models/sphere/sphere10_grey_flat.obj");
 
     m_axisModel.init();
-//    mainAvatar.loadModel("./models/Characters/miracle3.md5mesh");
-
- //   mainAvatar = new EG_DynamicModel();
- //   mainAvatar->loadModel("./models/Content/boblampclean.md5mesh");
-
-//    wall_positive_z = new meshLoader("Wall_PZ.obj");
-//    wall_negative_x = new meshLoader("Wall_NX.obj");
-//    wall_negative_z = new meshLoader("Wall_NZ.obj");
-
-
-//    wall_positive_x = new meshLoader("Wall_NX.obj");
-//    wall_positive_x = new meshLoader("Wall_NX_w25_h25.obj");
-
-
-//    wall_negative_z = new meshLoader("Wall_PZ.obj");
-//    wall_positive_x = new meshLoader("Wall_NZ.obj");
-
-    deferredShadingQuad = new meshLoader("./Content/quad.obj");
-
-//    sphere = new meshLoader("./Sphere/sphere10_grey_flat.obj");
-//    sphere = new meshLoader("./Content/phoenix_ugv.md2");
-    pointLightSphere = new meshLoader("./Content/sphere.obj");
-//    pointLightSphere = new meshLoader("./Sphere/sphere10_grey_flat.obj");
-
-    light = new meshLoader("./Sphere/sphere10_grey_flat.obj");
-    m_box = new meshLoader("./Content/box.obj");
-//    sphere = new meshLoader("./Sphere/sphere10_grey_smootsz200h.obj");
-//    smooth_sphere = new meshLoader("./Sphere/sphere10_grey_smooth.obj");
-    smoothSphere = new meshLoader("./Sphere/sphere_grey.obj");
-//    cube = new meshLoader("cube.obj");
-
-
-//    monkey = new meshLoader("monkey.obj");
-//    mainCharacter = new meshLoader("./Characters/LEGO_Man.obj");
-
-
-//    cube = new meshLoader("./Sphere/sphere10_grey_flat.obj");
-//    meshLoader("./Content/phoenix_ugv.md2");
 }
 
 
 void ExplosionGenerator::initObjects()
 {
 
-#if ANIMATED_OBJECT_FLAG
-    o_animatedLegoMan.setPosition(0,0,5);
-  //  o_animationObject.setScale(0.1, 0.1, 0.1);
-  //  o_animationObject.setOrientation(180, glm::vec3(0.0,1.0,0.0));
-    o_animatedLegoMan.setOrientation(-90, glm::vec3(1.0,0.0,0.0));
-
-    o_animatedBob.setPosition(0,0,0);
-    o_animatedBob.setScale(0.1, 0.1, 0.1);
-    o_animatedBob.setOrientation(-90, glm::vec3(1.0,0.0,0.0));
-#endif
 }
 
 
@@ -440,9 +320,6 @@ void ExplosionGenerator::initGUI()
 
     int SLIDER_HEIGHT = 35;
     int BUTTON_HEIGHT = 35;
-
-
-  //  m_frameRateLabel.setRect
 
     m_particleCountSlider.setID(m_GUIComponentsIDs);
     m_particleCountSlider.setRect(10, 400, 200, SLIDER_HEIGHT);
@@ -495,15 +372,7 @@ void ExplosionGenerator::initGUI()
     m_smokeSizeSlider.setMinValue(2);
     m_smokeSizeSlider.initColoredQuad();
     m_GUIComponents.push_back(&m_smokeSizeSlider);
-/*
-    m_listBox.setRect(10, 400, 200, 100);
-    m_listBox.setColor(GREEN);
-    m_listBox.initColoredQuad();
-    m_listBox.addItem("Nice");
-    m_listBox.addItem("Nice");
-    m_listBox.addItem("Nice");
-    m_listBox.addItem("Nice");
-*/
+
 
     m_resetButton.setID(m_GUIComponentsIDs);
     m_resetButton.setRect(10, 200, 200, BUTTON_HEIGHT);
@@ -512,6 +381,7 @@ void ExplosionGenerator::initGUI()
     m_resetButton.initColoredQuad();
     m_GUIComponents.push_back(&m_resetButton);
 
+
     m_triggerButton.setID(m_GUIComponentsIDs);
     m_triggerButton.setRect(10, 150, 200, BUTTON_HEIGHT);
     m_triggerButton.setLabel("EXPLODE!");
@@ -519,14 +389,7 @@ void ExplosionGenerator::initGUI()
     m_triggerButton.initColoredQuad();
     m_GUIComponents.push_back(&m_triggerButton);
 
-/*
-    m_minimizeButton.setRect(0, SCREEN_HEIGHT - EG_Control::m_textEngine.getTextHeight(),
-                            200, EG_Control::m_textEngine.getTextHeight());
-    m_minimizeButton.setLabel("minimize");
-    m_minimizeButton.setColor(GRAY);
-    m_minimizeButton.initColoredQuad();
-    m_GUIComponents.push_back(&m_minimizeButton);
-*/
+
 }
 
 
@@ -683,9 +546,7 @@ void ExplosionGenerator::start()
                              l_SphereEffect.Reset();
 #endif
 
-#if CUBE_SPHERE_EFFECT
-                            l_Cube_SphereEffect.Reset();
-#endif
+
 //                            space_bar = false;
                             m_explodeFlag = false;
                             addSmoke = false;
@@ -732,7 +593,7 @@ void ExplosionGenerator::start()
 //                            myThirdPOV_camera.mouseIn(false);
                             break;
                         case SDLK_x:
-                            cout << "here" << endl;
+                           // cout << "here" << endl;
                             overrideAddSmokeFlag = true;
                             addSmoke = true;
 
@@ -744,15 +605,11 @@ void ExplosionGenerator::start()
                             break;
                         case SDLK_2:
                             flag = 2;
-#if CUBE_SPHERE_EFFECT
-                            l_Cube_SphereEffect.Reset(flag, angle);
-#endif
+
                             break;
                         case SDLK_3:
                             flag = 3;
-#if CUBE_SPHERE_EFFECT
-                            l_Cube_SphereEffect.Reset(flag, angle);
-#endif
+
                             break;
 #if SPHERE_EFFECT
                             l_SphereEffect.myHgrid.removeParticleFromHGrid(&l_SphereEffect.e_ParticleBuffer[3]);
@@ -765,11 +622,8 @@ void ExplosionGenerator::start()
 
             update();
 
-#if DEFERRED_SHADING
-            deferredShadingShow();
-#else
             forwardRender();
-#endif
+
             m_prevTick = m_curTick;
 
             SDL_GL_SwapBuffers();
@@ -857,9 +711,6 @@ void ExplosionGenerator::renderShadowMap()
         l_Cube_SphereEffect.show(temp_pipeline, shadow_FirstRender->getProgramId(), cube);
 #endif
 
-  //      o_reflectionSphere.renderGroup(temp_pipeline, r_Technique, RENDER_PASS1, smoothSphere);
-     //   thirdPersonPovCamera.render(temp_pipeline, r_Technique, RENDER_PASS1);
-
 
     r_Technique->disableShader(RENDER_PASS1);
 
@@ -875,30 +726,7 @@ void ExplosionGenerator::renderShadowMap()
 
     r_Technique->disableShader(RENDER_PASS1);
 #endif
-/*
-    r_Technique = &r_skinning;
-    modelPtr = &mainAvatar;
 
-    //    temp_pipeline.pushMatrix();
-
-   //         temp_pipeline.translate(0,0,5);
-  //          temp_pipeline.rotateX(270);
-   //         temp_pipeline.scale(0.1);
-            r_skinning.setBoneTransforms(o_animatedLegoMan.m_boneTransforms);
-            o_animatedLegoMan.renderSingle(temp_pipeline, r_Technique, RENDER_PASS1, modelPtr);
-*/
-
-
-#if ANIMATED_OBJECT_FLAG
-        renderAnimatedObject(temp_pipeline, RENDER_PASS1);
-#endif
-
-/*
-            m_pipeline.translate(0,0,5);
-            m_pipeline.rotateX(270);
-            m_pipeline.scale(0.1);
-            o_animationObject.renderSingle(m_pipeline, r_Technique, RENDER_PASS1, modelPtr);
-*/
      //   temp_pipeline.popMatrix();
  //   r_skinning.renewVector();
 
@@ -940,99 +768,82 @@ void ExplosionGenerator::update()
 
 
 
-    std::bitset<32> flag(m_GUIComponentsFlags);
-    cout << flag << endl;
-
-
-
-  //  if(m_GUIComponentsFlags == 0)
+    sliding = m_particleCountSlider.update(m_mouseState, m_GUIComponentsFlags) || m_maxRadiusSlider.update(m_mouseState, m_GUIComponentsFlags);
+    if(sliding)
     {
-        sliding = m_particleCountSlider.update(m_mouseState, m_GUIComponentsFlags) || m_maxRadiusSlider.update(m_mouseState, m_GUIComponentsFlags);
-        if(sliding)
-        {
-            m_explodeFlag = false;
-            int c = (int)m_particleCountSlider.getValue();
-            float r = m_maxRadiusSlider.getValue();
+        m_explodeFlag = false;
+        int c = (int)m_particleCountSlider.getValue();
+        float r = m_maxRadiusSlider.getValue();
 
-            if( (l_SphereEffect.m_particlesCount != c) || (l_SphereEffect.m_maxRadius != r) )
-            {
-           //     EG_Utility::debug("newCount", newCount);
-                l_SphereEffect.m_particlesCount = c;
-                l_SphereEffect.m_maxRadius = r;
-                l_SphereEffect.Reset();
-            }
+        if( (l_SphereEffect.m_particlesCount != c) || (l_SphereEffect.m_maxRadius != r) )
+        {
+       //     EG_Utility::debug("newCount", newCount);
+            l_SphereEffect.m_particlesCount = c;
+            l_SphereEffect.m_maxRadius = r;
+            l_SphereEffect.Reset();
         }
     }
 
 
 
-
-  //  if(m_GUIComponentsFlags == 0)
-  //  {
-        sliding = m_velocitySlider.update(m_mouseState, m_GUIComponentsFlags);
-        if(sliding)
-        {
-            float newV = m_velocitySlider.getValue();
-            l_SphereEffect.m_maxVelocity = newV;
-
-            if(m_explodeFlag == false)
-                l_SphereEffect.resetParticleVelocity();
-        }
- //   }
-
-  //  if(m_GUIComponentsFlags == 0)
+    sliding = m_velocitySlider.update(m_mouseState, m_GUIComponentsFlags);
+    if(sliding)
     {
-        sliding = m_smokeSizeSlider.update(m_mouseState, m_GUIComponentsFlags);
-        if(sliding)
+        float newV = m_velocitySlider.getValue();
+        l_SphereEffect.m_maxVelocity = newV;
+
+        if(m_explodeFlag == false)
+            l_SphereEffect.resetParticleVelocity();
+    }
+
+
+    sliding = m_smokeSizeSlider.update(m_mouseState, m_GUIComponentsFlags);
+    if(sliding)
+    {
+        m_testintSmokeMode = true;
+        overrideAddSmokeFlag = true;
+        addSmoke = true;
+        m_smokeSize = m_smokeSizeSlider.getValue();
+
+    }
+    else
+    {
+        if (m_testintSmokeMode)
         {
-            m_testintSmokeMode = true;
-            overrideAddSmokeFlag = true;
+            addSmoke = false;
+            m_testintSmokeMode = false;
+            overrideAddSmokeFlag = false;
+        }
+
+    }
+
+
+    if(!sliding)
+    {
+        bool b = m_triggerButton.update(m_mouseState, m_GUIComponentsFlags);
+        if(b)
+        {
+            m_explodeFlag = b;
+            m_explodeFlag = true;
+            m_smokeStartTime = SDL_GetTicks();
             addSmoke = true;
-            m_smokeSize = m_smokeSizeSlider.getValue();
-
-        }
-        else
-        {
-            if (m_testintSmokeMode)
-            {
-                addSmoke = false;
-                m_testintSmokeMode = false;
-                overrideAddSmokeFlag = false;
-            }
-
         }
     }
 
 
- //   if(m_GUIComponentsFlags == 0)
+
+    if(!sliding)
     {
-        if(!sliding)
+        bool b = m_resetButton.update(m_mouseState, m_GUIComponentsFlags);
+        if(b)
         {
-            bool b = m_triggerButton.update(m_mouseState, m_GUIComponentsFlags);
-            if(b)
-            {
-                m_explodeFlag = b;
-                m_explodeFlag = true;
-                m_smokeStartTime = SDL_GetTicks();
-                addSmoke = true;
-            }
+            m_orbitCamera.m_pivotOffset.y = 3.0f;
+            l_SphereEffect.Reset();
+            m_explodeFlag = false;
+            addSmoke = false;
         }
     }
 
-  //  if(m_GUIComponentsFlags == 0)
-    {
-        if(!sliding)
-        {
-            bool b = m_resetButton.update(m_mouseState, m_GUIComponentsFlags);
-            if(b)
-            {
-                m_orbitCamera.m_pivotOffset.y = 3.0f;
-                l_SphereEffect.Reset();
-                m_explodeFlag = false;
-                addSmoke = false;
-            }
-        }
-    }
 
     if(addSmoke)
     {
@@ -1053,18 +864,12 @@ void ExplosionGenerator::update()
 
 #if SMOKE_EFFECT
 
-    // if(m_explodeFlag)
-
- //   if(m_explodeFlag)
 
     unsigned int diff = 0;
     unsigned int curTick = SDL_GetTicks();
     if(m_explodeFlag)
     {
         diff = (curTick - m_smokeStartTime);
- //       EG_Utility::debug("curTick", curTick);
-   //     EG_Utility::debug("smoke start time", m_smokeStartTime);
-     //   EG_Utility::debug("diff", diff);
         if(diff > m_smokeDuration)
             addSmoke = false;
     }
@@ -1073,7 +878,6 @@ void ExplosionGenerator::update()
     if(overrideAddSmokeFlag)
     {
         addSmoke = true;
-
     }
 
     smoke.update(addSmoke);
@@ -1084,26 +888,9 @@ void ExplosionGenerator::update()
 #if SPHERE_EFFECT
         l_SphereEffect.update();
 #endif
-#if CUBE_SPHERE_EFFECT
-        l_Cube_SphereEffect.update();
-#endif
     }
 
-
-
-
-
     float runningTime = (float)((double)SDL_GetTicks() - (double)m_timeManager.getStartTime()) / 1000.0f;
-//    legoMan.boneTransform(runningTime, o_animatedLegoMan.m_boneTransforms);
-  //  bob.boneTransform(runningTime, o_animatedBob.m_boneTransforms);
-
-
-
-
-//    mainAvatar.boneTransform(runningTime);
-//    bob.boneTransform(runningTime, r_skinning)
-//    thirdPersonPovCamera.m_mainAvatar.boneTransform(runningTime, r_skinning.m_boneTransforms);
-
 }
 
 
@@ -1208,28 +995,6 @@ int main(int argc, char *argv[])
 }
 
 
-void ExplosionGenerator::renderAnimatedObject(pipeline& p, int pass)
-{
-    r_Technique = &r_skinning;
-    modelPtr = &legoMan;
-        r_skinning.setBoneTransforms(o_animatedLegoMan.m_boneTransforms);
-    //    o_animatedLegoMan.renderSingle(p, r_Technique, pass, modelPtr);
-
-        // if(!isFirstPersonCamera)
-    //    r_skinning.setBoneTransforms(thirdPersonPovCamera.m_characterObject.m_boneTransforms);
-
-#if ORBIT_CAMERA_FLAG
-
-#else
-        thirdPersonPovCamera.render1(p, r_Technique, pass, modelPtr);
-#endif // ORBIT_CAMERA_FLAG
-
-
-
-    modelPtr = &bob;
-        r_skinning.setBoneTransforms(o_animatedBob.m_boneTransforms);
-        o_animatedBob.renderSingle(p, r_Technique, pass, modelPtr);
-}
 
 void ExplosionGenerator::RenderScene()
 {
@@ -1271,10 +1036,7 @@ void ExplosionGenerator::RenderScene()
    //     l_SphereEffect.render(m_pipeline, r_Technique, RENDER_PASS2, instancedSphere);
 #endif
 
-#if CUBE_SPHERE_EFFECT
-        l_Cube_SphereEffect.show(m_pipeline, shadow_SecondRender->getProgramId(), cube);
-        l_Cube_SphereEffect.DrawMyHgridFrames();
-#endif
+
 
 //        thirdPersonPovCamera.render(m_pipeline, r_Technique, RENDER_PASS2);
 
@@ -1296,8 +1058,6 @@ void ExplosionGenerator::RenderScene()
     m_pipeline.matrixMode(MODEL_MATRIX);
     m_pipeline.pushMatrix();
 
-   //     glActiveTexture(GL_TEXTURE6);
-   //     glBindTexture(GL_TEXTURE_2D, shadowMap);
 		glUniform1i(r_instancedRenderer.shadowMap_UniLoc,6);
         r_instancedRenderer.setEyeWorldPos(m_orbitCamera.getEyePoint());
 
@@ -1311,131 +1071,8 @@ void ExplosionGenerator::RenderScene()
 
 
 
-
-
-void ExplosionGenerator::Render_to_CubeMapTexture2()
-{
-    glDisable(GL_CULL_FACE);
-    glViewport(0, 0, 512, 512);
-
-
-    /// for some reason if I start at i=0, the positive X face doesn't work
-    for(int i=-1; i<6; i++)
-    {
-  //      Render_to_CubeMapFace2(i);
- //       RenderScene();
-#if ANIMATED_OBJECT_FLAG
-        renderAnimatedObject(m_pipeline, RENDER_PASS2);
-#endif
-  //      glDisable(GL_DEPTH_TEST);
-
-    #if SMOKE_EFFECT
-//        if(i==NEGATIVE_Z)
-  //          RenderSmoke(false, true, ReflectionSmoke, m_skybox.Dynamic_CubeMap_DepthTextureID);
-    #endif
-
-   //     glEnable(GL_DEPTH_TEST);
-    }
-
-    glBindFramebuffer(GL_FRAMEBUFFER, 0);
-    glViewport(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
-    glEnable(GL_CULL_FACE);
-}
-
-void ExplosionGenerator::Render_to_CubeMapFace2(int face)
-{
-    m_pipeline.matrixMode(PROJECTION_MATRIX);
-    m_pipeline.loadIdentity();
-
-    m_pipeline.perspective(90,       // the camera angle
-                            1,              // width to height ratio
-                            0.5,            // the near z clippFing coordinate
-                            1000.0);
-
-
-    m_pipeline.matrixMode(VIEW_MATRIX);
-    m_pipeline.loadIdentity();
-
-    m_pipeline.RotateForReflection(face);
-
-
-    glViewport(0,0,SCREEN_WIDTH,SCREEN_HEIGHT);
-///*********************************
-    m_pipeline.pushMatrix();
-        m_pipeline.translate(ReflectiveSphere_Pos.x,ReflectiveSphere_Pos.y,ReflectiveSphere_Pos.z);
-        ReflectionSmoke.View = m_pipeline.getViewMatrix();
-    m_pipeline.popMatrix();
-
-    m_pipeline.matrixMode(MODEL_MATRIX);
-    m_pipeline.pushMatrix();
-        m_pipeline.translate(0,5,0);
-        m_pipeline.rotateZ(180);
-        m_pipeline.scale(5);
-        ReflectionSmoke.Model = m_pipeline.getModelMatrix();
-        ReflectionSmoke.Modelview = ReflectionSmoke.View * ReflectionSmoke.Model;
-    m_pipeline.popMatrix();
-
-    ReflectionSmoke.Projection = m_pipeline.getProjectionMatrix();
-    ReflectionSmoke.ModelviewProjection = ReflectionSmoke.Projection * ReflectionSmoke.Modelview;
-
-    glEnable(GL_CULL_FACE);
-
-    glBindBuffer(GL_ARRAY_BUFFER, smoke.myVbos.CubeCenter);
-    glEnableVertexAttribArray(SlotPosition);
-    glVertexAttribPointer(SlotPosition, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), 0);
-
-    /// getting the Front and Back of the cube
-    r_TwoPass_Render.Render_TwoPass_RayCasting_1(ReflectionSmoke);
-//    r_TwoPass_Render.Render_TwoPass_RayCasting_1_draft(ReflectionSmoke);
-    glDisable(GL_CULL_FACE);
-///*********************************
-
-
-
-  //  glClearColor(0.0,0.0,0.5,1.0);
-  //  glClear(GL_COLOR_BUFFER_BIT);
-
-    glViewport(0,0,512,512);
-
-
-
-    glBindFramebuffer(GL_FRAMEBUFFER, m_skybox.CubeMapFBO);
-
-
-
-    glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_CUBE_MAP_POSITIVE_X + (int)face, m_skybox.Dynamic_CubeMap_ColorTextureID, 0);
-    glFramebufferTexture2D(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_TEXTURE_2D, m_skybox.Dynamic_CubeMap_DepthTextureID, 0);
-
-  //  if(face != POSITIVE_X)
-  //  glClearColor(0.0,0.0,0.5,1.0);
-    glClear(GL_COLOR_BUFFER_BIT);
-
-    m_pipeline.matrixMode(MODEL_MATRIX);
-    m_skybox.RenderSkyBox(skyboxShader, m_pipeline);
-
-    m_pipeline.matrixMode(VIEW_MATRIX);
-    m_pipeline.translate(ReflectiveSphere_Pos.x,ReflectiveSphere_Pos.y,ReflectiveSphere_Pos.z);
-
-    m_pipeline.matrixMode(MODEL_MATRIX);
-    glEnable(GL_DEPTH_TEST);
-    glClear(GL_DEPTH_BUFFER_BIT);
-
-}
-
-
-
-
 void ExplosionGenerator::forwardRender()
 {
-
-
-
-#if REFLECTION_EFFECT
-    Render_to_CubeMapTexture2();
-#endif
-
-
-
 #if 1
     m_pipeline.matrixMode(PROJECTION_MATRIX);
     m_pipeline.loadIdentity();
@@ -1456,16 +1093,8 @@ void ExplosionGenerator::forwardRender()
         m_skybox.UpdateRotationOnly_View_Pipeline(m_pipeline);
     #endif
         firstPersonPovCamera.UpdateCameraTranslation(m_pipeline);
-       // thirdPersonPovCamera.c_position = firstPersonPovCamera.getEyePoint();
-        /*
-        thirdPersonPovCamera.setCharacterPosition(firstPersonPovCamera.getEyePoint().x,
-                                                  firstPersonPovCamera.getEyePoint().y-5,
-                                                  firstPersonPovCamera.getEyePoint().z);
-
-        thirdPersonPovCamera.setPitch(firstPersonPovCamera.getPitch());
-        thirdPersonPovCamera.setYaw(firstPersonPovCamera.getYaw());
-  */
     }
+
 
     else
     {
@@ -1511,11 +1140,8 @@ void ExplosionGenerator::forwardRender()
     #endif
 #endif
 
-#if CUBE_SPHERE_EFFECT
-            l_Cube_SphereEffect.show(m_pipeline, Depth_CameraRender->getProgramId(), cube);
-#endif
-        o_reflectionSphere.renderGroup(m_pipeline, r_Technique, RENDER_PASS1, smoothSphere);
-      //  if(!isFirstPersonCamera)
+
+     //  if(!isFirstPersonCamera)
       //      thirdPersonPovCamera.render(m_pipeline, r_Technique, RENDER_PASS1);
         r_Technique->disableShader(RENDER_PASS1);
 
@@ -1532,10 +1158,6 @@ void ExplosionGenerator::forwardRender()
     r_Technique->disableShader(RENDER_PASS1);
 
 
- //   r_skinning.m_boneTransforms = mainAvatar.m_boneTransforms;
-#if ANIMATED_OBJECT_FLAG
-        renderAnimatedObject(m_pipeline, RENDER_PASS1);
-#endif
     m_pipeline.popMatrix();
     glBindFramebuffer(GL_FRAMEBUFFER, 0);
 #endif
@@ -1564,30 +1186,6 @@ void ExplosionGenerator::forwardRender()
 
 
 
-#if ANIMATED_OBJECT_FLAG
-    renderAnimatedObject(m_pipeline, RENDER_PASS2);
-    r_skinning.renewVector();
-#endif
-
-
-#if REFLECTION_EFFECT
-    r_Technique = &r_Reflection_Render;
-    if(isFirstPersonCamera)
-        r_Reflection_Render.setCameraPosition(firstPersonPovCamera.getEyePoint());
-    else
-    {
-
-#if ORBIT_CAMERA_FLAG
-        r_Reflection_Render.setCameraPosition(m_orbitCamera.getEyePoint());
-#else
-        r_Reflection_Render.setCameraPosition(thirdPersonPovCamera.getEyePoint());
-#endif
-    }
-
-
-    r_Reflection_Render.setReflectionTextureId(m_skybox.Dynamic_CubeMap_ColorTextureID);
-    o_reflectionSphere.renderSingle(m_pipeline, r_Technique, RENDER_PASS1, smoothSphere);
-#endif
 
   //  glDepthFunc(GL_LEQUAL);
     r_Technique = &r_fullColor;
@@ -1644,18 +1242,6 @@ void ExplosionGenerator::RenderGUI()
 
 
     r_Technique = &r_buttonRenderer;
-    /*
-    m_triggerButton.render(m_pipeline, r_Technique, RENDER_PASS1);
-    m_resetButton.render(m_pipeline, r_Technique, RENDER_PASS1);
-    m_minimizeButton.render(m_pipeline, r_Technique, RENDER_PASS1);
- */
- //   m_listBox.render(m_pipeline, r_Technique, RENDER_PASS1);
-
-
-  //  m_particleCountSlider.render(m_pipeline, r_Technique, RENDER_PASS1);
-  //  m_velocitySlider.render(m_pipeline, r_Technique, RENDER_PASS1);
-
-
     for(int i=0; i<m_GUIComponents.size(); i++)
     {
         EG_Control* control = m_GUIComponents[i];

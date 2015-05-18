@@ -27,7 +27,7 @@
 #include "glm/gtx/euler_angles.hpp"
 #include "glm/gtx/norm.hpp"
 
-#include "SOIL.h"
+//#include "SOIL.h"
 
 #define ZERO_MEM(a) memset(a, 0, sizeof(a))
 

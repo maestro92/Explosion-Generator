@@ -166,6 +166,8 @@ SDL_Surface* EG_Utility::loadRawImage(string filename)
 }
 
 
+
+
 SDL_Surface* EG_Utility::loadSDLImage(string filename)
 {
     SDL_Surface* img = loadRawImage(filename);
@@ -200,6 +202,7 @@ SDL_Surface* EG_Utility::loadSDLImage(string filename)
 
 GLuint EG_Utility::loadTexture(string filename)
 {
+
     SDL_Surface* img2 = loadSDLImage(filename);
 
     unsigned int num;

@@ -41,7 +41,7 @@ void Technique_TwoPass_Raycasting::init(int w, int h, int Shader_Num)
     GLenum status = glCheckFramebufferStatus(GL_FRAMEBUFFER);
     if(status != GL_FRAMEBUFFER_COMPLETE)
     {
-        cout << "TextureFBO1 error" << endl;
+//        cout << "TextureFBO1 error" << endl;
         exit(1);
     }
 
@@ -67,24 +67,23 @@ void Technique_TwoPass_Raycasting::init(int w, int h, int Shader_Num)
     status = glCheckFramebufferStatus(GL_FRAMEBUFFER);
     if(status != GL_FRAMEBUFFER_COMPLETE)
     {
-        cout << "TextureFBO2 error" << endl;
+//        cout << "TextureFBO2 error" << endl;
         exit(1);
     }
 
     // switch back to window-system-provided framebuffer
     glBindFramebuffer(GL_FRAMEBUFFER, 0);
 
-
     /// Interval
-    TwoPassIntervals = new Shader("TwoPass.vs", "TwoPass.Cube", "TwoPass.Intervals");
-    m_shaders[RENDER_PASS1] = new Shader("TwoPass.vs", "TwoPass.Cube", "TwoPass.Intervals");
+    TwoPassIntervals = new Shader("EG_SmokeRendering/TwoPass.vs", "EG_SmokeRendering/TwoPass.Cube", "EG_SmokeRendering/TwoPass.Intervals");
+    m_shaders[RENDER_PASS1] = new Shader("EG_SmokeRendering/TwoPass.vs", "EG_SmokeRendering/TwoPass.Cube", "EG_SmokeRendering/TwoPass.Intervals");
 
     /// Cube depth
-    TwoPass_CubeDepth = new Shader("TwoPass.vs", "TwoPass.Cube", "TwoPass_Depth.fs");
+    TwoPass_CubeDepth = new Shader("EG_SmokeRendering/TwoPass.vs", "EG_SmokeRendering/TwoPass.Cube", "EG_SmokeRendering/TwoPass_Depth.fs");
 
     /// Raycast
-    TwoPassRaycast = new Shader("TwoPass.vs", "TwoPass.Fullscreen", "TwoPass.Raycast");
-    m_shaders[RENDER_PASS2] = new Shader("TwoPass.vs", "TwoPass.Cube", "TwoPass.Intervals");
+    TwoPassRaycast = new Shader("EG_SmokeRendering/TwoPass.vs", "EG_SmokeRendering/TwoPass.Fullscreen", "EG_SmokeRendering/TwoPass.Raycast");
+    m_shaders[RENDER_PASS2] = new Shader("EG_SmokeRendering/TwoPass.vs", "EG_SmokeRendering/TwoPass.Cube", "EG_SmokeRendering/TwoPass.Intervals");
 
 
     initMemberVariables();
@@ -92,7 +91,7 @@ void Technique_TwoPass_Raycasting::init(int w, int h, int Shader_Num)
 
     if (Matrices_UniLoc[RENDER_PASS2].ModelviewProjection == -1)
     {
-        cout << "TwoPass get location error" << endl;
+//        cout << "TwoPass get location error" << endl;
         exit(1);
     }
 
@@ -267,7 +266,7 @@ unsigned int Technique_TwoPass_Raycasting::createTexture(int w, int h, bool isDe
     i = glGetError();
     if(i!=0)
     {
-        std::cout << "Error happened while loading the texture: " << i << std::endl;
+  //      std::cout << "Error happened while loading the texture: " << i << std::endl;
     }
     // unbind the texture
     glBindTexture(GL_TEXTURE_2D,0);

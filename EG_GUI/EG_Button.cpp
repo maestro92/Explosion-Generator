@@ -59,7 +59,7 @@ bool EG_Button::update(MouseState & state)
         if (state.m_leftButtonDown)
         {
             m_down = true;
-            cout << "pressing the button" << endl;
+//            cout << "pressing the button" << endl;
         }
 
         /// if it was down, we set it to false
@@ -80,20 +80,20 @@ bool EG_Button::update(MouseState & state, unsigned int& groupFlag)
     if(groupFlag & ( 1 << m_id) || (groupFlag==0) )
     {
         bool flag = update(state);
-        cout << "Flag is " << flag << endl;
+   //     cout << "Flag is " << flag << endl;
 
         if(flag == true)
         {
             groupFlag = groupFlag | ( 1 << m_id);
          //   EG_Utility::debug()
-            std::bitset<32> x(groupFlag);
-            cout << x << endl;
+    //        std::bitset<32> x(groupFlag);
+    //        cout << x << endl;
         }
         else
         {
             groupFlag = groupFlag & (~( 1 << m_id));
-            std::bitset<32> x(groupFlag);
-            cout << x << endl;
+      //      std::bitset<32> x(groupFlag);
+      //      cout << x << endl;
         }
         return flag;
     }

@@ -180,7 +180,6 @@ class Smoke : public WorldObject
     private:
         GLuint fbo;
 
-        Shader* Eulerian3D_Raycast;
         Shader* Eulerian3D_Advect;
         Shader* Eulerian3D_Fill;
 
