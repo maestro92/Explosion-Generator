@@ -20,7 +20,5 @@ void main()
     gl_Position = WVP * vec4(position, 1.0);                                        
     outWorldPos = (World * vec4(position, 1.0)).xyz;                                
     outNormal   = (World * vec4(normal, 0.0)).xyz;                                  
-    outUV   	= UV;                                                         
-    
-                                 
+    outUV   	= UV;                                                                          
 }

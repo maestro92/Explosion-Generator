@@ -17,6 +17,13 @@
 
 using namespace std;
 
+//const static float m_specularIntensity;
+//const static float m_specularPower;
+
+const static float SPECULAR_INTENSITY = 1.0f;
+const static float SPECULAR_POWER = 32.0f;
+
+
 class EG_AllLights
 {
     public:

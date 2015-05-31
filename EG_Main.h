@@ -14,6 +14,7 @@
 #include "EG_AllLights.h"
 #include "EG_ImportedAnimatedModel.h"
 
+
 #include "EG_DeferredShadingGeometryPass.h"
 #include "EG_DeferredShadingSkybox.h"
 #include "EG_DeferredShadingReflection.h"
@@ -36,7 +37,7 @@
 #include "EG_GBuffer.h"
 
 #include "EG_utility.h"
-//#include "EG_RenderTechniques/EG_Skybox.h"
+//#include "EG_Renderers/EG_Skybox.h"
 #include "EG_Skybox.h"
 #include "EG_Shader.h"
 #include "sceneLoader.h"
@@ -46,24 +47,25 @@
 #include "EG_Label.h"
 
 
-/// Render Techniques
-#include "EG_Technique_TwoPass_RayCasting.h"
-#include "EG_Technique_Shadow_Render.h"
-#include "EG_Technique_Reflection.h"
-#include "EG_RenderTechnique_RenderTexture.h"
-#include "EG_RenderTechnique_RenderDepthToTexture.h"
-#include "EG_RenderTechnique_Skinning.h"
-#include "EG_Renderer_Text.h"
-#include "EG_Renderer_Button.h"
+/// Renderers
+#include "EG_TwoPassRayCastingRenderer.h"
+#include "EG_SceneRenderer.h"
+#include "EG_ReflectionRenderer.h"
+#include "EG_TextureRenderer.h"
+#include "EG_DepthRenderer.h"
+#include "EG_SkinningRenderer.h"
+#include "EG_TextRenderer.h"
+#include "EG_ButtonRenderer.h"
 #include "EG_FullColorRenderer.h"
-#include "EG_Button.h"
 #include "EG_InstancedRenderer.h"
+#include "EG_SkyboxRenderer.h"
 
 #include "EG_WorldAnimatedObject.h"
+
+#include "EG_Button.h"
 #include "EG_XYZAxisModel.h"
 #include "EG_WorldBox.h"
 #include "EG_WorldSphere.h"
-#include "EG_QuadModel.h"
 #include "EG_ListBox.h"
 #include "EG_Slider.h"
 
@@ -118,21 +120,28 @@ class ExplosionGenerator
 {
 
     private:
-        EG_RenderTechnique*             r_Technique;
+        EG_Renderer*                    r_Technique;
         EG_DeferredShading*             r_deferredShading;
-        Technique_Reflection            r_Reflection_Render;
-        Technique_Shadow_Render         r_Shadow_Render;
-        Technique_TwoPass_Raycasting    r_TwoPass_Render;
-   //     Technique_DepthTexture_Render   r_DepthTexture_Render;
-        EG_RenderTechnique_RenderDepthToTexture   r_DepthTexture_Render;
-
-        EG_RenderTechnique_RenderDepthToTexture   r_renderToDepthTexture;
-    //    EG_DeferredShading r_deferredShadingRenderTechnique;
-    //    EG_DeferredShading2 r_deferredShadingRenderTechnique;
+        EG_ReflectionRenderer           r_reflectionRenderer;
+        EG_SceneRenderer                r_sceneRenderer;
+        EG_TwoPassRaycastingRenderer    r_twoPassRaycastingRenderer;
+        EG_DepthRenderer                r_depthRenderer;
+        EG_SkyboxRenderer               r_skyboxRenderer;
 
 
-        EG_RenderTechnique_Skinning             r_skinning;
+        EG_SkinningRenderer                     r_skinning;
+        EG_TextureRenderer                      r_renderTexture;
+        EG_FullColorRenderer                    r_fullColor;
+        EG_InstancedRenderer                    r_instancedRenderer;
 
+
+/*
+       // EG_DepthTextureRenderer
+//        EG_DepthRenderer       r_depthRenderer;
+
+//        EG_RenderTechnique_RenderDepthToTexture   r_renderToDepthTexture;
+    //    EG_DeferredShading r_deferredShadingRenderer;
+    //    EG_DeferredShading2 r_deferredShadingRenderer;
         EG_DeferredShadingGeometryPass          r_deferredShadingGeometryPass;
         EG_DeferredShadingSkybox                r_deferredShadingSkybox;
         EG_DeferredShadingReflection            r_deferredShadingReflection;
@@ -144,16 +153,14 @@ class ExplosionGenerator
 
         EG_DeferredShadingDirectionalLightPass  r_deferredShadingDirectionalLightPass;
         EG_DeferredShadingDirectionalLightPass  r_deferredShadingDirectionalLightPass_Skybox;
-        EG_RenderTechnique_RenderTexture        r_renderTexture;
-        EG_FullColorRenderer                    r_fullColor;
-        EG_InstancedRenderer                    r_instancedRenderer;
-
+*/
 
         /// GUI
-        EG_Renderer_Button  r_buttonRenderer;
+        EG_ButtonRenderer  r_buttonRenderer;
+
+
 
         EG_Label m_frameRateLabel;
-
         EG_Button m_triggerButton;
         EG_Button m_resetButton;
         EG_Button m_minimizeButton;
@@ -197,11 +204,8 @@ class ExplosionGenerator
         pipeline m_pipeline;
 
         // Material Property
-        float specularIntensity;
-        float specularPower;
-
-
-        EG_Utility utilityFunction;
+        float m_specularIntensity;
+        float m_specularPower;
 
         EG_SkyBox m_skybox;
 
@@ -266,9 +270,8 @@ class ExplosionGenerator
         WorldObject     o_worldAxis;
         WorldSphere     o_reflectionSphere;
         WorldBox        o_wall;
-        EG_QuadModel    o_fullScreenQuad;
 
-        meshLoader* deferredShadingQuad;
+//        meshLoader* deferredShadingQuad;
 
         bool holdKeyFlag;
         bool toggleFlag;
@@ -276,8 +279,6 @@ class ExplosionGenerator
         bool overrideAddSmokeFlag;
 
         float m_fps;
-        float m_curTick;
-        float m_prevTick;
         float m_iterRefreshRate;
         float m_curIter;
         unsigned int m_frameCount;
@@ -299,52 +300,16 @@ class ExplosionGenerator
         float m_smokeDuration;
 
         /// textures
-        unsigned int textureID;
-        unsigned int groundTexture;
-        unsigned int renderTexture;
         unsigned int depthTexture;
-        unsigned int depth_TwoPassTexture;
-        unsigned int shadow_depthTexture;
 
-
-        unsigned int CubeMap_ColorTextureID_Dynamic;
-        unsigned int CubeMap_DepthTextureID_Dynamic;
-        unsigned int CubeMapTextureID;
-        unsigned int CubeMapFBO;
 
         GLuint shadowMap;
 
 
 
-        /// shaders
-        Shader* quadRenderShader;   // for rendering the texture into a quad, then displaying the quad into the screen under a orthographic view
-        Shader* Depth_CameraRender;
-        Shader* skyboxShader;
-
         /// Matrices
-        glm::mat4 Light_ModelMatrix;
-        glm::mat4 Light_ViewMatrix;
-        glm::mat4 Light_ProjectionMatrix;
-        glm::mat4 Light_ModelViewProjectionMatrix;
-        glm::mat4 Light_BiasMatrix;
-
-        glm::mat4 shadowMatrix;     // the matrix used to for conversion in the 2nd rendering pass
+        // the matrix used to for conversion in the 2nd rendering pass
         //  convert Vertices in object space into texture coordinates in the light's perspective
-
-
-        void GetLightPos_ModelView_Matrix();
-        glm::mat4 LightPos_viewMatrix;
-        glm::mat4 LightPos_modelMatrix;
-        glm::mat4 LightPos_modelViewMatrix;
-
-
-        EG_SpotLight spotLight;
-        EG_DirectionalLight directionalLight;
-        EG_PointLight pointLights[3];
-//        glm::vec3 m_boxPositions[15];
-
-        // buttons
-
 
         bool m_increaseFlag;
         bool m_decreaseFlag;
@@ -359,57 +324,56 @@ class ExplosionGenerator
         ExplosionGenerator();
         ~ExplosionGenerator();
 
-        void renderAnimatedObject(pipeline& p, int pass);
+
 
         /// init functions
-        void init_SDL_GLEW();
-        void init_OpenGL();
+        void initSDL();
+        void initGLEW();
+        void initOpenGL();
 
-        void initShader();
+ //       void initShader();
         void initModels();
         void initObjects();
 
         void initRenderers();
-        void initRendererLightParams(EG_RenderTechnique* r_ptr);
+        void initRendererLightParams(EG_Renderer* r_ptr);
         void initLights();
 
         void initGUI();
 
 
-        void init_Texture_and_FrameBuffer();
+        void initFrameBuffers();
 
         void SetupRenderStage();
         void getDepthTexture_FromLightPosion(pipeline temp_pipeline);
-
 
         void start();
         void update();
 
         void forwardRender();
-        void deferredShadingShow();
-
         void RenderScene();
-        void RenderGUI();
-
-        void setupGUIRenderStage();
-//        void RenderSmoke();
+        void initGUIRenderStage();
+        void renderAnimatedObject(pipeline& p, int pass);
+        void renderShadowMap();
+        void renderGUI();
         void RenderSmoke(bool pass1, bool pass2, Matrices_t& Mat, unsigned int depthTextureId);
 
         void Render_to_CubeMapTexture2();
         void Render_to_CubeMapFace2(int face);
 
-        // void renderShadowMap(pipeline temp_pipeline);
-        void renderShadowMap();
 
-        void deferredShadingMrtDemoPass();
+
 
 /*
+        void deferredShadingShow();
+        void deferredShadingMrtDemoPass();
+
         void deferredShadingGeometryPass37();
         void deferredShadingStencilPass37(int index);
         void deferredShadingPointLightPass37(int index);
         void deferredShadingDirectionalLightPass37();
         void deferredShadingFinalPass37();
-*/
+
         void deferredShadingGeometryPass37(EG_GBuffer& GBuffer);
         void deferredShadingStencilPass37(int index, EG_GBuffer& GBuffer);
         void deferredShadingPointLightPass37(int index, EG_GBuffer& GBuffer);
@@ -425,7 +389,7 @@ class ExplosionGenerator
 
         void deferredShadingRenderToCubeMapTexture();
         void deferredShadingRenderToCubeMapTextureFace(int face);
-
+*/
 };
 
 

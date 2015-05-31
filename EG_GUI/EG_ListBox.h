@@ -31,7 +31,7 @@ class EG_ListBox : public EG_Control
 
 
         virtual void render (pipeline& m_pipeline,
-                            EG_RenderTechnique* RenderTechnique,
+                            EG_Renderer* Renderer,
                             int RenderPassID);
         virtual int getType();
 

@@ -272,7 +272,7 @@ void L_Cube_Sphere_ParticleEffect::UpdateParticleEffect(float dt)
 
 
 
-
+/*
 
 // http://stackoverflow.com/questions/8494942/why-does-my-color-go-away-when-i-enable-lighting-in-opengl
 void L_Cube_Sphere_ParticleEffect::DrawParticles(pipeline &m_pipeline, unsigned int shaderID, meshLoader* mymesh)
@@ -295,7 +295,7 @@ void L_Cube_Sphere_ParticleEffect::DrawParticles(pipeline &m_pipeline, unsigned 
         m_pipeline.popMatrix();
     }
 }
-
+*/
 
 
 void L_Cube_Sphere_ParticleEffect::DrawMyHgridFrames()
@@ -310,7 +310,7 @@ void L_Cube_Sphere_ParticleEffect::update(bool toggle)
 
 void L_Cube_Sphere_ParticleEffect::show(pipeline &m_pipeline,  unsigned int shaderID , meshLoader* mymesh)
 {
-    DrawParticles(m_pipeline, shaderID, mymesh);
+//    DrawParticles(m_pipeline, shaderID, mymesh);
 }
 
 void L_Cube_Sphere_ParticleEffect::show(bool toggle)

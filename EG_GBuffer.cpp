@@ -25,6 +25,9 @@ EG_GBuffer::~EG_GBuffer()
 }
 
 
+
+
+
 void EG_GBuffer::init(unsigned int width, unsigned int height)
 {
     // Create the FBO

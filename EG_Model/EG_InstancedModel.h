@@ -25,7 +25,6 @@ class EG_InstancedModel : public EG_Model
 
         using EG_Model::render;
         void render(unsigned int NumInstances, glm::mat4* WVPMats, glm::mat4* WorldMats);
-
 };
 
 

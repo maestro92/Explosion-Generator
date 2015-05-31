@@ -474,7 +474,7 @@ void EG_SphereParticleEffect::UpdateParticleEffect(float dt)
 
 
 
-
+/*
 // http://stackoverflow.com/questions/8494942/why-does-my-color-go-away-when-i-enable-lighting-in-opengl
 void EG_SphereParticleEffect::DrawParticleCube(pipeline &m_pipeline,  unsigned int shaderID , meshLoader* mymesh)
 {
@@ -500,7 +500,7 @@ void EG_SphereParticleEffect::DrawParticleCube(pipeline &m_pipeline,  unsigned i
     // drawing the cubes
  //   myHgrid.Draw();
 }
-
+*/
 
 
 
@@ -514,17 +514,17 @@ void EG_SphereParticleEffect::update(bool toggle)
 }
 
 /*
-void EG_SphereParticleEffect::show(pipeline &m_pipeline, Technique* RenderTechnique, int RenderTypeID,
+void EG_SphereParticleEffect::show(pipeline &m_pipeline, Technique* Renderer, int RenderTypeID,
                                 int RenderPassID, meshLoader* mymesh)
 {
     Technique* mytech;
     switch(RenderTypeID)
     {
         case SHADOW_RENDER:
-            mytech = (Technique_Shadow_Render*) RenderTechnique;
+            mytech = (Technique_Shadow_Render*) Renderer;
             break;
         case TWOPASS_RAYCASTING_RENDER:
-            mytech = (Technique_TwoPass_Raycasting*) RenderTechnique;
+            mytech = (Technique_TwoPass_Raycasting*) Renderer;
             break;
     }
 
@@ -549,7 +549,7 @@ void EG_SphereParticleEffect::show(pipeline &m_pipeline, Technique* RenderTechni
 */
 
 
-void EG_SphereParticleEffect::show(pipeline &m_pipeline, EG_RenderTechnique* RenderTechnique, int RenderPassID, meshLoader* mymesh)
+void EG_SphereParticleEffect::show(pipeline &m_pipeline, EG_Renderer* Renderer, int RenderPassID, meshLoader* mymesh)
 {
     m_pipeline.matrixMode(MODEL_MATRIX);
 
@@ -559,31 +559,28 @@ void EG_SphereParticleEffect::show(pipeline &m_pipeline, EG_RenderTechnique* Ren
             m_pipeline.translate(e_ParticleBuffer[i].m_Position.x, e_ParticleBuffer[i].m_Position.y, e_ParticleBuffer[i].m_Position.z);
             m_pipeline.scale(e_ParticleBuffer[i].m_fRadius);
 
-      //      m_pipeline.updateMatrices(shaderID);
-      //      m_pipeline.updateShadowMatrix(shaderID);
+      //      Renderer->Setup_Matrix_forRender(m_pipeline, RenderPassID);
+//            Renderer->Load_glUniform(m_pipeline, RenderPassID);
 
-      //      RenderTechnique->Setup_Matrix_forRender(m_pipeline, RenderPassID);
-//            RenderTechnique->Load_glUniform(m_pipeline, RenderPassID);
-
-            RenderTechnique->loadUniformLocations(m_pipeline, RenderPassID);
+            Renderer->loadUniformLocations(m_pipeline, RenderPassID);
 /*
             if(RenderTypeID == SHADOW_RENDER)
-                ((Technique_Shadow_Render*)RenderTechnique)->loadSpecialUniformLocation(m_pipeline, RenderPassID);
+                ((Technique_Shadow_Render*)Renderer)->loadSpecialUniformLocation(m_pipeline, RenderPassID);
 */
             mymesh->draw();
-//          mymesh->draw(RenderTechnique->progShaders[RenderPassID]->getProgramId());
+//          mymesh->draw(Renderer->progShaders[RenderPassID]->getProgramId());
         m_pipeline.popMatrix();
     }
 }
 
-void EG_SphereParticleEffect::render(pipeline &m_pipeline, EG_RenderTechnique* RenderTechnique, int RenderPassID, meshLoader* mymesh)
+void EG_SphereParticleEffect::render(pipeline &m_pipeline, EG_Renderer* Renderer, int RenderPassID, meshLoader* mymesh)
 {
     for(int i = 0; i < e_ParticleBuffer.size(); i++)
     {
         m_pipeline.pushMatrix();
             m_pipeline.translate(e_ParticleBuffer[i].m_Position.x, e_ParticleBuffer[i].m_Position.y, e_ParticleBuffer[i].m_Position.z);
             m_pipeline.scale(e_ParticleBuffer[i].m_fRadius);
-            RenderTechnique->loadUniformLocations(m_pipeline, RenderPassID);
+            Renderer->loadUniformLocations(m_pipeline, RenderPassID);
             mymesh->draw();
         m_pipeline.popMatrix();
     }
@@ -592,7 +589,7 @@ void EG_SphereParticleEffect::render(pipeline &m_pipeline, EG_RenderTechnique* R
 
 
 
-void EG_SphereParticleEffect::render(pipeline &m_pipeline, EG_RenderTechnique* RenderTechnique, int RenderPassID, EG_Model& model)
+void EG_SphereParticleEffect::render(pipeline &m_pipeline, EG_Renderer* Renderer, int RenderPassID, EG_Model& model)
 {
     m_pipeline.matrixMode(MODEL_MATRIX);
 
@@ -601,7 +598,7 @@ void EG_SphereParticleEffect::render(pipeline &m_pipeline, EG_RenderTechnique* R
         m_pipeline.pushMatrix();
             m_pipeline.translate(e_ParticleBuffer[i].m_Position.x, e_ParticleBuffer[i].m_Position.y, e_ParticleBuffer[i].m_Position.z);
             m_pipeline.scale(e_ParticleBuffer[i].m_fRadius);
-            RenderTechnique->loadUniformLocations(m_pipeline, RenderPassID);
+            Renderer->loadUniformLocations(m_pipeline, RenderPassID);
             model.render();
         m_pipeline.popMatrix();
     }
@@ -629,15 +626,17 @@ void EG_SphereParticleEffect::updateMatrices(pipeline &m_pipeline)
 }
 
 
-void EG_SphereParticleEffect::instancedRender(pipeline &m_pipeline, EG_RenderTechnique* RenderTechnique, int RenderPassID, EG_InstancedModel& model)
+void EG_SphereParticleEffect::instancedRender(pipeline &m_pipeline, EG_Renderer* Renderer, int RenderPassID, EG_InstancedModel& model)
 {
-    RenderTechnique->loadUniformLocations(m_pipeline, RenderPassID);
-    // convert vector to pointer, http://stackoverflow.com/questions/2923272/how-to-convert-vector-to-array-c
-    model.render(getCount(), &m_particleWVPMatrices[0], &m_particleWorldMatrices[0]);
+    Renderer->enableShader(RenderPassID);
+        Renderer->loadUniformLocations(m_pipeline, RenderPassID);
+        // convert vector to pointer, http://stackoverflow.com/questions/2923272/how-to-convert-vector-to-array-c
+        model.render(getCount(), &m_particleWVPMatrices[0], &m_particleWorldMatrices[0]);
+    Renderer->disableShader(RenderPassID);
 }
 
 /*
-void EG_SphereParticleEffect::instancedRender(pipeline &m_pipeline, EG_RenderTechnique* RenderTechnique, int RenderPassID, EG_InstancedModel& model)
+void EG_SphereParticleEffect::instancedRender(pipeline &m_pipeline, EG_Renderer* Renderer, int RenderPassID, EG_InstancedModel& model)
 {
     m_pipeline.matrixMode(MODEL_MATRIX);
 
@@ -646,7 +645,7 @@ void EG_SphereParticleEffect::instancedRender(pipeline &m_pipeline, EG_RenderTec
         m_pipeline.pushMatrix();
             m_pipeline.translate(e_ParticleBuffer[i].m_Position.x, e_ParticleBuffer[i].m_Position.y, e_ParticleBuffer[i].m_Position.z);
             m_pipeline.scale(e_ParticleBuffer[i].m_fRadius);
-            RenderTechnique->loadUniformLocations(m_pipeline, RenderPassID);
+            Renderer->loadUniformLocations(m_pipeline, RenderPassID);
             model.render();
         m_pipeline.popMatrix();
     }

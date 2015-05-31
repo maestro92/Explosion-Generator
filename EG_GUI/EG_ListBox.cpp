@@ -97,10 +97,10 @@ bool EG_ListBox::update(MouseState & state)
 
 
 void EG_ListBox::render(pipeline& m_pipeline,
-                            EG_RenderTechnique* RenderTechnique,
+                            EG_Renderer* Renderer,
                             int RenderPassID)
 {
-    EG_Control::render(m_pipeline, RenderTechnique, RENDER_PASS1);
+    EG_Control::render(m_pipeline, Renderer, RENDER_PASS1);
     int offset_x;
     int offset_y = 0;
  //   EG_Control::m_textEngine.render(m_pipeline, offset_x, offset_y, m_label.c_str());
@@ -111,14 +111,14 @@ void EG_ListBox::render(pipeline& m_pipeline,
         offset_y = m_curIndex * m_itemHeight;
 
 
-        RenderTechnique->enableShader(RenderPassID);
+        Renderer->enableShader(RenderPassID);
             m_pipeline.pushMatrix();
                 glm::vec3 shift(offset_x, offset_y, 0);
                 m_pipeline.translate(shift);
-                RenderTechnique->loadUniformLocations(m_pipeline, RenderPassID);
+                Renderer->loadUniformLocations(m_pipeline, RenderPassID);
                 m_curQuadModel.render();
             m_pipeline.popMatrix();
-        RenderTechnique->disableShader(RenderPassID);
+        Renderer->disableShader(RenderPassID);
     }
 
 

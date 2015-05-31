@@ -29,7 +29,7 @@ class EG_Button : public EG_Control
   //      virtual bool update(glm::vec3 c1, glm::vec3 c2, glm::vec3 c3, glm::vec3 c4);
 
         virtual void render(pipeline& m_pipeline,
-                            EG_RenderTechnique* RenderTechnique,
+                            EG_Renderer* Renderer,
                             int RenderPassID);
 
         virtual int getType();

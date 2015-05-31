@@ -187,13 +187,13 @@ bool EG_Slider::update1(MouseState & state, unsigned int& groupFlag)
 
 
 void EG_Slider::render(pipeline& m_pipeline,
-                    EG_RenderTechnique* RenderTechnique,
+                    EG_Renderer* Renderer,
                     int RenderPassID)
 {
-//    EG_Control::render(m_pipeline, RenderTechnique, RENDER_PASS1);
+//    EG_Control::render(m_pipeline, Renderer, RENDER_PASS1);
     p_modelPtr = &m_quadModel;
 
-    EG_Control::render(m_pipeline, RenderTechnique, RENDER_PASS1, m_rect, p_modelPtr);
+    EG_Control::render(m_pipeline, Renderer, RENDER_PASS1, m_rect, p_modelPtr);
 
     int offset_x = (int)((*m_current - m_minValue) / (m_maxValue - m_minValue) * (m_rect.w - tickSize) + m_rect.x);
     int offset_y = 0;
@@ -205,7 +205,7 @@ void EG_Slider::render(pipeline& m_pipeline,
   //  glDisable(GL_BLEND);
     p_modelPtr = &m_sliderQuadModel;
     EG_Control::render(m_pipeline,
-                        RenderTechnique,
+                        Renderer,
                         RENDER_PASS1, m_sliderQuadRect, p_modelPtr);
 
 

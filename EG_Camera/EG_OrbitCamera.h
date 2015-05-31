@@ -23,7 +23,7 @@
 #include "glm/gtx/transform.hpp"
 #include "glm/gtc/quaternion.hpp"
 #include "glm/gtx/quaternion.hpp"
-#include "EG_RenderTechnique.h"
+#include "EG_Renderer.h"
 #include "EG_WorldAnimatedObject.h"
 #include "EG_Model.h"
 #include "EG_ImportedAnimatedModel.h"

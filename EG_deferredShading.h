@@ -595,7 +595,7 @@ void ExplosionGenerator::deferredShadingDirectionalLightPass37(EG_GBuffer& GBuff
         r_deferredShadingDirectionalLightPass.setShadowMapTextureUnit(6);
         r_deferredShadingDirectionalLightPass.loadUniformLocations(tempPipeline, RENDER_PASS1);
 
-        o_fullScreenQuad.quad->draw(r_deferredShadingDirectionalLightPass.m_shaders[RENDER_PASS1]->getProgramId());
+//        o_fullScreenQuad.quad->draw(r_deferredShadingDirectionalLightPass.m_shaders[RENDER_PASS1]->getProgramId());
         tempPipeline.popMatrix();
 
 
@@ -632,7 +632,7 @@ void ExplosionGenerator::deferredShadingDirectionalLightPass37_Skybox(EG_GBuffer
         r_deferredShadingDirectionalLightPass.setShadowMapTextureUnit(6);
         r_deferredShadingDirectionalLightPass_Skybox.loadUniformLocations(tempPipeline, RENDER_PASS1);
 
-        o_fullScreenQuad.quad->draw(r_deferredShadingDirectionalLightPass_Skybox.m_shaders[RENDER_PASS1]->getProgramId());
+//        o_fullScreenQuad.quad->draw(r_deferredShadingDirectionalLightPass_Skybox.m_shaders[RENDER_PASS1]->getProgramId());
         tempPipeline.popMatrix();
 
 

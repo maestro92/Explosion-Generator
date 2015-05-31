@@ -340,3 +340,51 @@ void mesh::draw(unsigned int programId)
 
 }
 
+
+
+
+
+
+void mesh::draw2()
+{
+
+
+    /// this means we're going to use these two buffer object
+	glBindBuffer(GL_ARRAY_BUFFER,VBO);
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER,IND);
+
+
+    /// http://arcsynthesis.org/gltut/Basics/Tut01%20Following%20the%20Data.html
+    /// glEnableVertexAttribArray is
+
+    /// glVertexAttribPointer tells how OpenGL interprets your data in the VBO object
+    /// when rendering, OpenGL pulls vertex data from arrays stored in buffer objects.
+    /// what we need to tell OpenGL is what form our vertex array in the buffer object is stored in
+    /// meaning we need to tell OpenGL how to interpret the array of data stored in the buffer
+	glEnableVertexAttribArray(0);
+	glVertexAttribPointer(0,3,GL_FLOAT,GL_FALSE,sizeof(vertexData),0);
+
+	glEnableVertexAttribArray(1);
+	glVertexAttribPointer(1,3,GL_FLOAT,GL_FALSE,sizeof(vertexData),(void*)(3*sizeof(float)));
+
+	glEnableVertexAttribArray(2);
+	glVertexAttribPointer(2,3,GL_FLOAT,GL_FALSE,sizeof(vertexData),(void*)(6*sizeof(float)));
+
+	glEnableVertexAttribArray(3);
+	glVertexAttribPointer(3,2,GL_FLOAT,GL_FALSE,sizeof(vertexData),(void*)(9*sizeof(float)));
+
+    /// glDrawElements, you need to supply an index buffer
+    /// glDrawArrays submits the vertices in linear order
+	glDrawElements(GL_TRIANGLES,indices.size(),GL_UNSIGNED_INT,0);
+
+	glDisableVertexAttribArray(0);
+	glDisableVertexAttribArray(1);
+	glDisableVertexAttribArray(2);
+	glDisableVertexAttribArray(3);
+
+	glBindBuffer(GL_ARRAY_BUFFER,0);
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER,0);
+
+
+}
+

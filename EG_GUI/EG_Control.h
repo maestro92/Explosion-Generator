@@ -6,7 +6,7 @@
 #include "pipeline.h"
 #include "define.h"
 #include "EG_Utility.h"
-#include "EG_Quad.h"
+#include "EG_QuadModelABS.h"
 #include "EG_Text.h"
 #include "EG_Rect.h"
 
@@ -50,6 +50,7 @@ struct MouseState
 
         m_pos = glm::vec2(0,0);
     }
+
 };
 
 
@@ -97,19 +98,19 @@ class EG_Control
         virtual bool update(MouseState & state, unsigned int& groupFlag);
 
         virtual void render(pipeline& m_pipeline,
-                            EG_RenderTechnique* RenderTechnique,
+                            EG_Renderer* Renderer,
                             int RenderPassID);
 
         virtual void customMatrixRender(pipeline& m_pipeline,
-                        EG_RenderTechnique* RenderTechnique,
+                        EG_Renderer* Renderer,
                         int RenderPassID);
 
         virtual void render(pipeline& m_pipeline,
-                        EG_RenderTechnique* RenderTechnique,
+                        EG_Renderer* Renderer,
                         int RenderPassID, EG_ModelABS* model);
 
         virtual void render(pipeline& m_pipeline,
-                        EG_RenderTechnique* RenderTechnique,
+                        EG_Renderer* Renderer,
                         int RenderPassID, EG_Rect r, EG_ModelABS* model);
 
 

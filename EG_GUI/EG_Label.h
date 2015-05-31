@@ -4,7 +4,7 @@
 #include "pipeline.h"
 #include "define.h"
 #include "EG_Utility.h"
-#include "EG_Quad.h"
+//#include "EG_Quad.h"
 
 
 #define NO_SDL_GLEXT
@@ -31,7 +31,7 @@ class EG_Label : public EG_Control
 
         bool update(string label);
         virtual void render(pipeline& m_pipeline,
-                            EG_RenderTechnique* RenderTechnique,
+                            EG_Renderer* Renderer,
                             int RenderPassID);
 
         virtual int getType();

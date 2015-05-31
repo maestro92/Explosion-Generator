@@ -151,7 +151,6 @@ vec4 CalcPointLight(int Index, vec3 Normal)
 void main()
 {
 
-
     vec3 normal = normalize(outNormal);
  
     float shadowValue = 0.0;

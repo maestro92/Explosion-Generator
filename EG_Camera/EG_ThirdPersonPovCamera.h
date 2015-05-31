@@ -18,7 +18,7 @@
 #include "glm/gtx/transform.hpp"
 #include "glm/gtc/quaternion.hpp"
 #include "glm/gtx/quaternion.hpp"
-#include "EG_RenderTechnique.h"
+#include "EG_Renderer.h"
 #include "EG_WorldAnimatedObject.h"
 #include "EG_Model.h"
 #include "EG_ImportedAnimatedModel.h"
@@ -108,8 +108,8 @@ using spring system, we will have different view matrix
 
 
         glm::vec3 getEyePoint();
-        void render(pipeline &m_pipeline, EG_RenderTechnique* RenderTechnique, int RenderPassID);
-        void render1(pipeline &m_pipeline, EG_RenderTechnique* RenderTechnique, int RenderPassID, EG_Model* m);
+        void render(pipeline &m_pipeline, EG_Renderer* Renderer, int RenderPassID);
+        void render1(pipeline &m_pipeline, EG_Renderer* Renderer, int RenderPassID, EG_Model* m);
 
         void computeLocalAxisAndEyePosFromMatrix( glm::mat4& mat, int mat_type,
                                                   glm::vec3& xAxis, glm::vec3& yAxis,

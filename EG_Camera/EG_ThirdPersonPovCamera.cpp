@@ -403,19 +403,19 @@ void EG_ThirdPersonPovCamera::Control(pipeline& m_pipeline, EG_SkyBox& skybox)
 
 
 /*
-void EG_ThirdPersonPovCamera::render(pipeline &m_pipeline, EG_RenderTechnique* RenderTechnique, int RenderPassID)
+void EG_ThirdPersonPovCamera::render(pipeline &m_pipeline, EG_Renderer* Renderer, int RenderPassID)
 {
     m_pipeline.pushMatrix();
         m_pipeline.LoadMatrix(c_worldMatrix);
         m_pipeline.Rotate(180.0f, 0.0f, 1.0f, 0.0f);
-        RenderTechnique->loadUniformLocations(m_pipeline, RenderPassID);
+        Renderer->loadUniformLocations(m_pipeline, RenderPassID);
         m_character->draw();
     m_pipeline.popMatrix();
 }
 */
 
 /*
-void EG_ThirdPersonPovCamera::render(pipeline &m_pipeline, EG_RenderTechnique* RenderTechnique, int RenderPassID)
+void EG_ThirdPersonPovCamera::render(pipeline &m_pipeline, EG_Renderer* Renderer, int RenderPassID)
 {
     m_pipeline.pushMatrix();
 
@@ -429,14 +429,14 @@ void EG_ThirdPersonPovCamera::render(pipeline &m_pipeline, EG_RenderTechnique* R
 
         m_pipeline.rotate(180.0f, 0.0f, 1.0f, 0.0f);
 
-        RenderTechnique->loadUniformLocations(m_pipeline, RenderPassID);
+        Renderer->loadUniformLocations(m_pipeline, RenderPassID);
         m_character->draw();
     m_pipeline.popMatrix();
 }
 */
 
 
-void EG_ThirdPersonPovCamera::render(pipeline &m_pipeline, EG_RenderTechnique* RenderTechnique, int RenderPassID)
+void EG_ThirdPersonPovCamera::render(pipeline &m_pipeline, EG_Renderer* Renderer, int RenderPassID)
 {
     m_pipeline.pushMatrix();
 
@@ -450,13 +450,13 @@ void EG_ThirdPersonPovCamera::render(pipeline &m_pipeline, EG_RenderTechnique* R
 
         m_pipeline.rotate(180.0f, 0.0f, 1.0f, 0.0f);
 
-        RenderTechnique->loadUniformLocations(m_pipeline, RenderPassID);
+        Renderer->loadUniformLocations(m_pipeline, RenderPassID);
         m_character->draw();
     m_pipeline.popMatrix();
 }
 
 
-void EG_ThirdPersonPovCamera::render1(pipeline &m_pipeline, EG_RenderTechnique* RenderTechnique, int RenderPassID, EG_Model* m)
+void EG_ThirdPersonPovCamera::render1(pipeline &m_pipeline, EG_Renderer* Renderer, int RenderPassID, EG_Model* m)
 {
 
     /*
@@ -469,24 +469,24 @@ void EG_ThirdPersonPovCamera::render1(pipeline &m_pipeline, EG_RenderTechnique* 
 
         m_pipeline.rotate(180.0f, 0.0f, 1.0f, 0.0f);
 
-        RenderTechnique->loadUniformLocations(m_pipeline, RenderPassID);
+        Renderer->loadUniformLocations(m_pipeline, RenderPassID);
         // m_character->draw();
-        m_characterObject.renderSingle(m_pipeline, RenderTechnique, RenderPassID, m);
+        m_characterObject.renderSingle(m_pipeline, Renderer, RenderPassID, m);
 
     m_pipeline.popMatrix();
 */
 
-    RenderTechnique->enableShader(RenderPassID);
+    Renderer->enableShader(RenderPassID);
     m_pipeline.pushMatrix();
         m_pipeline.translate(m_characterObject.m_position);
         m_pipeline.loadMatrix(glm::toMat4(m_characterObject.m_rotation));
    //     m_pipeline.scale(m_scale);
         m_pipeline.rotate(180.0f, 0.0f, 1.0f, 0.0f);
         m_pipeline.rotate(-90, 1.0, 0.0, 0.0);
-        RenderTechnique->loadUniformLocations(m_pipeline, RenderPassID);
+        Renderer->loadUniformLocations(m_pipeline, RenderPassID);
         m->render();
     m_pipeline.popMatrix();
-    RenderTechnique->disableShader(RenderPassID);
+    Renderer->disableShader(RenderPassID);
 }
 
 

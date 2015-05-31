@@ -53,7 +53,7 @@ class EG_ModelABS
 {
     enum
     {
-        VERTEX = 0,
+        POSITION = 0,
         NORMAL,
         COLOR,
         UV,

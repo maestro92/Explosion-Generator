@@ -18,7 +18,6 @@ void EG_Text::initialize()
 
     m_fontSize = 20;
     m_fontSpace = -9;
-  //  m_fontQuads.resize(256);
   //  fontQuad.init(50,50);
     r_textRenderer.init(1);
 
@@ -102,18 +101,10 @@ void EG_Text::buildTextureFont()
         float cx = (float)(i % 16);
         float cy = (float)(i / 16);
 
-//        cout << i << " cx is " << cx << "cy is " << cy << endl;
 
-        EG_QuadModel tempQuad;
-        tempQuad.init(m_fontSize, m_fontSize, cx, cy, 0.0625);
- //       tempQuad.init(fontSize, cx, cy);
-        m_fontQuads.push_back(tempQuad);
-
-        EG_QuadModelABS tempQuadABS;
-//        tempQuadABS.init(m_fontSize, m_fontSize, cx, cy, 0.0625);
-        tempQuadABS.init(1, 1, cx, cy, 0.0625);
-        m_fontQuadsABS.push_back(tempQuadABS);
-
+        EG_QuadModelABS q;
+        q.init(1, 1, cx, cy, 0.0625);
+        m_fontQuadsABS.push_back(q);
     }
 }
 
@@ -133,7 +124,6 @@ void EG_Text::render(pipeline& m_pipeline, int x, int y, const char *in_text, ..
     glEnable(GL_BLEND);
     glBlendFunc(GL_SRC_ALPHA, GL_ONE);
 
-  //  cout << m_fontQuads.size() << endl;
 
 
     r_textRenderer.enableShader(RENDER_PASS1);
@@ -152,9 +142,6 @@ void EG_Text::render(pipeline& m_pipeline, int x, int y, const char *in_text, ..
 
      //   glDisable(GL_BLEND);
 //        fontQuad.quad->drawSpecial();
-    //    m_fontQuads[5].quad->drawSpecial();
-
-      //  m_fontQuads[5].quad->drawSpecial();
  //       fontQuad.quad->draw(r_textRenderer.m_shaders[RENDER_PASS1]->getProgramId());
 
         for(int i=0; i<length; i++)
@@ -172,7 +159,6 @@ void EG_Text::render(pipeline& m_pipeline, int x, int y, const char *in_text, ..
 //
                 r_textRenderer.loadUniformLocations(m_pipeline, RENDER_PASS1);
 
-         //       m_fontQuads[6].quad->drawSpecial();
                   m_fontQuads[index].quad->drawSpecial();
             m_pipeline.popMatrix();
         }
@@ -206,7 +192,6 @@ void EG_Text::render(pipeline& m_pipeline, int x, int y, const char *in_text, ..
 
 
 
-  //  cout << m_fontQuads.size() << endl;
 
 
     r_textRenderer.enableShader(RENDER_PASS1);
@@ -260,10 +245,6 @@ void EG_Text::render(pipeline& m_pipeline, int x, int y, float fontSize, const c
         vsprintf(text, in_text, ap);
     va_end(ap);
 
-
-
-
-  //  cout << m_fontQuads.size() << endl;
 
 
     r_textRenderer.enableShader(RENDER_PASS1);

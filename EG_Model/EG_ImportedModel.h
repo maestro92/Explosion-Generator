@@ -19,6 +19,8 @@
 #include <assimp/postprocess.h>
 #include "texture.h"
 
+#include "EG_ModelABS.h"
+
 using namespace std;
 
 #define INVALID_MATERIAL 0xFFFFFFFF
@@ -51,9 +53,8 @@ This basically means that the models are stored in GPU memory instead of CPU mem
 
 
 
-class EG_ImportedModel
+class EG_ImportedModel : public EG_ModelABS
 {
-
 
     public:
         EG_ImportedModel();
@@ -79,12 +80,10 @@ class EG_ImportedModel
                 BaseIndex = 0;
                 MaterialIndex = INVALID_MATERIAL;
             }
-
             unsigned int BaseVertex;
             unsigned int BaseIndex;
             unsigned int NumIndices;
             unsigned int MaterialIndex;
-
         };
 
         /// instead of having VB/IB (Vertex Buffer and Index Buffer) Objects, we

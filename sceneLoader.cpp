@@ -1,6 +1,6 @@
 #include "sceneLoader.h"
 
-string model_path = "./models/";
+string model_path = "./assets/models/";
 string m_str;
 
 

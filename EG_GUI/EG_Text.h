@@ -4,10 +4,9 @@
 #include "pipeline.h"
 #include "define.h"
 #include "EG_Utility.h"
-#include "EG_QuadModel.h"
 #include "EG_QuadModelABS.h"
-#include "EG_RenderTechnique.h"
-#include "EG_Renderer_text.h"
+#include "EG_Renderer.h"
+#include "EG_TextRenderer.h"
 
 #define NO_SDL_GLEXT
 #include <GL/glew.h>
@@ -43,7 +42,7 @@ class EG_Text
     //                int x, int y, const char *in_text, ...);
 /*
         void render(pipeline& m_pipeline,
-                    EG_RenderTechnique* RenderTechnique,
+                    EG_Renderer* Renderer,
                     int RenderPassID,
                     int x, int y, const char *in_text, ...);
 */
@@ -57,7 +56,6 @@ class EG_Text
         int getTextWidthOffset(int i, int fontSize);
         GLuint getFontTexture();
 
- //       EG_QuadModel fontQuad;
         GLuint fontBase;
         GLuint fontTexture;
 
@@ -65,11 +63,10 @@ class EG_Text
         int m_fontSpace = -9;
 
 
-        EG_Renderer_Text    r_textRenderer;
+        EG_TextRenderer    r_textRenderer;
 };
 
 
-static vector<EG_QuadModel> m_fontQuads;
 static vector<EG_QuadModelABS> m_fontQuadsABS;
 static unordered_map<char, int> m_charToIndexMapping;
 

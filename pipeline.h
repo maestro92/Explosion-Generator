@@ -54,10 +54,14 @@ class pipeline
     public:
         int currentMatrix;
         //members
+//        std::vector<glm::mat4> m_modelMatrices;
+//        std::vector<glm::mat4> m_viewMatrices;
+//        std::vector<glm::mat4> m_projectionMatrices;
+
+
         std::vector<glm::mat4> modelMatrix;
         std::vector<glm::mat4> viewMatrix;
         std::vector<glm::mat4> projectionMatrix;
-
 
         bool matricesReady;
         glm::mat4 modelViewMatrix;						//only to save time for vertexshader
@@ -65,21 +69,13 @@ class pipeline
         glm::mat3 normalMatrix;							  //only to save time for vertexshader
 
         /// for shadow mapping
-        glm::mat4 Light_BiasMatrix;
-        glm::mat4 Light_ModelMatrix;
-        glm::mat4 Light_ViewMatrix;
-        glm::mat4 Light_ProjectionMatrix;
-        glm::mat4 Light_ModelViewProjectionMatrix;
-        glm::mat4 shadowMatrix;
+        glm::mat4 m_lightModelMatrix;
+        glm::mat4 m_lightViewMatrix;
+        glm::mat4 m_lightProjectionMatrix;
 
-        glm::mat4 Camera_BiasMatrix;
-        glm::mat4 Camera_ModelMatrix;
-        glm::mat4 Camera_ViewMatrix;
-        glm::mat4 Camera_ProjectionMatrix;
-        glm::mat4 Camera_ModelViewProjectionMatrix;
-        glm::mat4 DepthMatrix;
+
+
 	public:
-
 		pipeline();
 
 		void loadIdentity();
@@ -99,13 +95,7 @@ class pipeline
         void rotate(glm::quat q_rotation);
         void reset();
 
-   //     void LoadMatrix(glm::mat4 m_Matrix);
         void loadMatrix(glm::mat4 m);
-   //     void Rotate1(float angle, float x, float y, float z);
-   //     void Rotate1(glm::quat q_rotation);
-
-
-  //      void setUpProjectionMatrix();
 
 		//projection
 		void ortho(float left,float right,float bottom,float top,float near,float far); //==glOrtho
@@ -121,18 +111,10 @@ class pipeline
 
 		//GLSL
 		void updateMatrices(unsigned int programId);
-		void updateMatrices_depth(unsigned int programId);
-		void updateMatrices_TwoPassRayCasting(unsigned int programId);
+//		void updateMatrices_TwoPassRayCasting(unsigned int programId);
 
-        void updateLightMatrix(glm::mat4 Light_Model, glm::mat4 Light_View, glm::mat4 Light_Projection);
-        void updateShadowMatrix(unsigned int shaderId);
-        void updateShadowMatrix(unsigned int shaderId, glm::mat4 Light_ViewMatrix, glm::mat4 Light_ProjectionMatrix);
-
-
-
-        void updateCameraMatrix(glm::mat4 Camera_Model, glm::mat4 Camera_View, glm::mat4 Camera_Projection);
-        void updateCameraMatrix(unsigned int shaderId);
-
+        void updateLightMatrix(glm::mat4 lightModel, glm::mat4 lightView, glm::mat4 lightProjection);
+        void updateShadowMatrix();
 
         void pushMatrix();
 		void popMatrix();
@@ -153,6 +135,9 @@ class pipeline
 
 		void RotatePositiveZ();
 		void RotateNegativeZ();
+
+
+        glm::mat4 m_shadowMatrix;
 };
 
 #endif

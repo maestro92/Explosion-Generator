@@ -27,7 +27,7 @@
 #include "glm/gtx/euler_angles.hpp"
 #include "glm/gtx/norm.hpp"
 
-#include "SOIL.h"
+//#include "SOIL.h"
 
 #define ZERO_MEM(a) memset(a, 0, sizeof(a))
 
@@ -36,6 +36,7 @@
 #ifndef INVALID_UNIFORM_LOCATION -1
 #define INVALID_UNIFORM_LOCATION -1
 #endif
+
 
 #define ZERO_MEM(a) memset(a, 0, sizeof(a))
 #define SAFE_DELETE(p) if (p) { delete p; p = NULL; }
@@ -48,6 +49,7 @@
         exit(0);                                                                \
     }                                                                           \
 }
+
 
 #define GLCheckError() (glGetError() == GL_NO_ERROR)
 

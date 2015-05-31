@@ -206,54 +206,50 @@ float WorldObject::getBoundingVolumeSize()
 
 
 void WorldObject::renderSingle( pipeline& m_pipeline,
-                                EG_RenderTechnique* RenderTechnique,
+                                EG_Renderer* Renderer,
                                 int RenderPassID,
                                 meshLoader* model)
 {
-    RenderTechnique->enableShader(RenderPassID);
-    render(m_pipeline, RenderTechnique, RenderPassID, model);
-    RenderTechnique->disableShader(RenderPassID);
+    Renderer->enableShader(RenderPassID);
+    render(m_pipeline, Renderer, RenderPassID, model);
+    Renderer->disableShader(RenderPassID);
 }
 
 
 
 void WorldObject::render(   pipeline& m_pipeline,
-                            EG_RenderTechnique* RenderTechnique,
+                            EG_Renderer* Renderer,
                             int RenderPassID,
                             meshLoader* model)
 {
-    RenderTechnique->enableShader(RenderPassID);
+    Renderer->enableShader(RenderPassID);
     m_pipeline.pushMatrix();
         m_pipeline.translate(m_position);
         m_pipeline.scale(m_scale);
-        RenderTechnique->loadUniformLocations(m_pipeline, RenderPassID);
+        Renderer->loadUniformLocations(m_pipeline, RenderPassID);
         model->draw();
     m_pipeline.popMatrix();
-    RenderTechnique->disableShader(RenderPassID);
+    Renderer->disableShader(RenderPassID);
 }
 
 
 void WorldObject::renderGroup(  pipeline& m_pipeline,
-                                EG_RenderTechnique* RenderTechnique,
+                                EG_Renderer* Renderer,
                                 int RenderPassID,
                                 meshLoader* model)
 {
     m_pipeline.pushMatrix();
         m_pipeline.translate(m_position);
         m_pipeline.scale(m_scale);
-        RenderTechnique->loadUniformLocations(m_pipeline, RenderPassID);
+        Renderer->loadUniformLocations(m_pipeline, RenderPassID);
         model->draw();
     m_pipeline.popMatrix();
 }
 
 
 
-
-
-
-
 void WorldObject::renderGroup( pipeline& m_pipeline,
-                                EG_RenderTechnique* RenderTechnique,
+                                EG_Renderer* Renderer,
                                 int RenderPassID,
                                 EG_Model* model)
 {
@@ -261,7 +257,7 @@ void WorldObject::renderGroup( pipeline& m_pipeline,
         m_pipeline.translate(m_position);
         m_pipeline.loadMatrix(glm::toMat4(m_orientation));
         m_pipeline.scale(m_scale);
-        RenderTechnique->loadUniformLocations(m_pipeline, RenderPassID);
+        Renderer->loadUniformLocations(m_pipeline, RenderPassID);
         model->render();
     m_pipeline.popMatrix();
 }
@@ -269,13 +265,13 @@ void WorldObject::renderGroup( pipeline& m_pipeline,
 
 
 void WorldObject::renderSingle( pipeline& m_pipeline,
-                                EG_RenderTechnique* RenderTechnique,
+                                EG_Renderer* Renderer,
                                 int RenderPassID,
                                 EG_Model* model)
 {
-    RenderTechnique->enableShader(RenderPassID);
-    renderGroup(m_pipeline, RenderTechnique, RenderPassID, model);
-    RenderTechnique->disableShader(RenderPassID);
+    Renderer->enableShader(RenderPassID);
+    renderGroup(m_pipeline, Renderer, RenderPassID, model);
+    Renderer->disableShader(RenderPassID);
 }
 
 
@@ -283,17 +279,17 @@ void WorldObject::renderSingle( pipeline& m_pipeline,
 
 
 void WorldObject::renderSingle( pipeline& m_pipeline,
-                                EG_RenderTechnique* RenderTechnique,
+                                EG_Renderer* Renderer,
                                 int RenderPassID,
                                 EG_ModelABS* model)
 {
-    RenderTechnique->enableShader(RenderPassID);
-    renderGroup(m_pipeline, RenderTechnique, RenderPassID, model);
-    RenderTechnique->disableShader(RenderPassID);
+    Renderer->enableShader(RenderPassID);
+    renderGroup(m_pipeline, Renderer, RenderPassID, model);
+    Renderer->disableShader(RenderPassID);
 }
 
 void WorldObject::renderGroup( pipeline& m_pipeline,
-                                EG_RenderTechnique* RenderTechnique,
+                                EG_Renderer* Renderer,
                                 int RenderPassID,
                                 EG_ModelABS* model)
 {
@@ -301,7 +297,7 @@ void WorldObject::renderGroup( pipeline& m_pipeline,
         m_pipeline.translate(m_position);
         m_pipeline.loadMatrix(glm::toMat4(m_orientation));
         m_pipeline.scale(m_scale);
-        RenderTechnique->loadUniformLocations(m_pipeline, RenderPassID);
+        Renderer->loadUniformLocations(m_pipeline, RenderPassID);
         model->render();
     m_pipeline.popMatrix();
 }
@@ -311,85 +307,28 @@ void WorldObject::renderGroup( pipeline& m_pipeline,
 
 /*
 void WorldObject::renderSingle( pipeline& m_pipeline,
-                                EG_RenderTechnique* RenderTechnique,
+                                EG_Renderer* Renderer,
                                 int RenderPassID,
                                 EG_Model* model)
 {
-    RenderTechnique->enableShader(RenderPassID);
+    Renderer->enableShader(RenderPassID);
     m_pipeline.pushMatrix();
         m_pipeline.translate(m_position);
   //      m_pipeline.rotateX(270);
         m_pipeline.loadMatrix(glm::toMat4(m_orientation));
         m_pipeline.scale(m_scale);
-        RenderTechnique->loadUniformLocations(m_pipeline, RenderPassID);
+        Renderer->loadUniformLocations(m_pipeline, RenderPassID);
         model->render();
     m_pipeline.popMatrix();
-    RenderTechnique->disableShader(RenderPassID);
+    Renderer->disableShader(RenderPassID);
 }
 */
 
-
 /*
-/// changes the way the model is facing
-void EG_ThirdPersonPovCamera::updateCharacterOrientation(float pitchChange, float yawChange, float rollChange)
-{
-    c_eulerOrient.x += pitchChange;
-    c_eulerOrient.y += yawChange;
-    c_eulerOrient.z += rollChange;
-
-    if (c_eulerOrient.x > 360.0f)
-        c_eulerOrient.x -= 360.0f;
-
-    if (c_eulerOrient.x < -360.0f)
-        c_eulerOrient.x += 360.0f;
-
-    if (c_eulerOrient.y > 360.0f)
-        c_eulerOrient.y -= 360.0f;
-
-    if (c_eulerOrient.y < -360.0f)
-        c_eulerOrient.y += 360.0f;
-
-    if (c_eulerOrient.z > 360.0f)
-        c_eulerOrient.z -= 360.0f;
-
-    if (c_eulerOrient.z < -360.0f)
-        c_eulerOrient.z += 360.0f;
-}
-
-
-/// changes the way the model is facing
-void EG_ThirdPersonPovCamera::updateCharacterRotation(float pitchChange, float yawChange, float rollChange)
-{
-    c_eulerRotate.x += pitchChange;
-    c_eulerRotate.y += yawChange;
-    c_eulerRotate.z += rollChange;
-
-    if (c_eulerRotate.x > 360.0f)
-        c_eulerRotate.x -= 360.0f;
-
-    if (c_eulerRotate.x < -360.0f)
-        c_eulerRotate.x += 360.0f;
-
-    if (c_eulerRotate.y > 360.0f)
-        c_eulerRotate.y -= 360.0f;
-
-    if (c_eulerRotate.y < -360.0f)
-        c_eulerRotate.y += 360.0f;
-
-    if (c_eulerRotate.z > 360.0f)
-        c_eulerRotate.z -= 360.0f;
-
-    if (c_eulerRotate.z < -360.0f)
-        c_eulerRotate.z += 360.0f;
-}
-*/
-
-
-/*
-void WorldObject::render(pipeline &m_pipeline, EG_DeferredShading* RenderTechnique,
+void WorldObject::render(pipeline &m_pipeline, EG_DeferredShading* Renderer,
                         int RenderPassID, unsigned int textureId, meshLoader* model)
 {
-    RenderTechnique->enableShader(RENDER_PASS1);
+    Renderer->enableShader(RENDER_PASS1);
     m_pipeline.pushMatrix();
         r_deferredShading->setStencilFlag(glm::vec3(1.0,0.0,0.0));
 
@@ -407,7 +346,7 @@ void WorldObject::render(pipeline &m_pipeline, EG_DeferredShading* RenderTechniq
         r_deferredShading.loadUniformLocations(m_pipeline, RENDER_PASS1);
         model->draw();
     m_pipeline.popMatrix();
-    RenderTechnique->disableShader(RENDER_PASS1);
+    Renderer->disableShader(RENDER_PASS1);
 }
 */
 

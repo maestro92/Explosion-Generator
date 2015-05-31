@@ -16,7 +16,7 @@
 #include "EG_DeferredShading.h"
 #include "sceneLoader.h"
 #include "pipeline.h"
-#include "EG_RenderTechnique.h"
+#include "EG_Renderer.h"
 
 #define SPHERE  0
 #define BOX     1
@@ -120,48 +120,48 @@ class WorldObject
 
 
         virtual void renderSingle(pipeline& m_pipeline,
-                            EG_RenderTechnique* RenderTechnique,
+                            EG_Renderer* Renderer,
                             int RenderPassID,
                             meshLoader* model);
 
         virtual void render(pipeline& m_pipeline,
-                            EG_RenderTechnique* RenderTechnique,
+                            EG_Renderer* Renderer,
                             int RenderPassID,
                             meshLoader* model);
 
         virtual void renderGroup(   pipeline& m_pipeline,
-                                    EG_RenderTechnique* RenderTechnique,
+                                    EG_Renderer* Renderer,
                                     int RenderPassID,
                                     meshLoader* model);
 
 
         void renderGroup(   pipeline& m_pipeline,
-                            EG_RenderTechnique* RenderTechnique,
+                            EG_Renderer* Renderer,
                             int RenderPassID,
                             EG_Model* model);
 
         void renderSingle(  pipeline& m_pipeline,
-                            EG_RenderTechnique* RenderTechnique,
+                            EG_Renderer* Renderer,
                             int RenderPassID,
                             EG_Model* model);
 
 
 
         void renderSingle( pipeline& m_pipeline,
-                                EG_RenderTechnique* RenderTechnique,
+                                EG_Renderer* Renderer,
                                 int RenderPassID,
                                 EG_ModelABS* model);
 
 
         void renderGroup( pipeline& m_pipeline,
-                                EG_RenderTechnique* RenderTechnique,
+                                EG_Renderer* Renderer,
                                 int RenderPassID,
                                 EG_ModelABS* model);
 
         // destructor
         /*
         virtual void render(pipeline& m_pipeline,
-                            EG_DeferredShading* RenderTechnique,
+                            EG_DeferredShading* Renderer,
                             int RenderPassID,
                             unsigned int textureId,
                             meshLoader* model);

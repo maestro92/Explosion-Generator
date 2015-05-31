@@ -26,6 +26,7 @@ class mesh{
 		mesh(vector<vertexData>* vd,vector<unsigned int>* id,vector<textureData>* td=NULL);
 		~mesh();
 		void draw();
+        void draw2();
 		void draw(unsigned int programId);
         void drawSpecial();
         void drawLines();

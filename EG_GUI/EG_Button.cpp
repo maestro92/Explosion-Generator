@@ -126,13 +126,13 @@ bool EG_Button::update(MouseState & state, unsigned int& groupFlag)
 
 
 void EG_Button::render( pipeline& m_pipeline,
-                        EG_RenderTechnique* RenderTechnique,
+                        EG_Renderer* Renderer,
                         int RenderPassID)
 {
     if(m_isInside && !m_down)
     {
         p_modelPtr = &m_highlightQuadModel;
-        EG_Control::render(m_pipeline, RenderTechnique, RENDER_PASS1, p_modelPtr);
+        EG_Control::render(m_pipeline, Renderer, RENDER_PASS1, p_modelPtr);
 
         float offset_x = 0.025 * m_rect.w;
         float offset_y = 0.05 * m_rect.h;
@@ -140,7 +140,7 @@ void EG_Button::render( pipeline& m_pipeline,
         m_pipeline.pushMatrix();
             m_pipeline.translate( glm::vec3(m_rect.x + offset_x, m_rect.y + offset_y, 0) );
             m_pipeline.scale(0.95,0.9,1.0);
-            EG_Control::customMatrixRender(m_pipeline, RenderTechnique, RENDER_PASS1);
+            EG_Control::customMatrixRender(m_pipeline, Renderer, RENDER_PASS1);
         m_pipeline.popMatrix();
 
 
@@ -152,7 +152,7 @@ void EG_Button::render( pipeline& m_pipeline,
 
             m_pipeline.translate( glm::vec3(m_rect.x, m_rect.y, 0) );
         //    m_pipeline.scale(0.9);
-            RenderTechnique->loadUniformLocations(m_pipeline, RenderPassID);
+            Renderer->loadUniformLocations(m_pipeline, RenderPassID);
             m_quadModel.render();
 
         m_pipeline.popMatrix();
@@ -163,10 +163,10 @@ void EG_Button::render( pipeline& m_pipeline,
     else if (m_down)
     {
         p_modelPtr = &m_pressedQuadModel;
-        EG_Control::render(m_pipeline, RenderTechnique, RENDER_PASS1, p_modelPtr);
+        EG_Control::render(m_pipeline, Renderer, RENDER_PASS1, p_modelPtr);
     }
     else
-        EG_Control::render(m_pipeline, RenderTechnique, RENDER_PASS1);
+        EG_Control::render(m_pipeline, Renderer, RENDER_PASS1);
 
 
 
@@ -185,26 +185,6 @@ void EG_Button::render( pipeline& m_pipeline,
 
 
 
-
-/*
-void EG_Button::render(pipeline& m_pipeline, int x, int y)
-{
-  //  glDisable(GL_CULL_FACE);
-  //  glDisable(GL_DEPTH_TEST);
-
-    glDisable(GL_BLEND);
- //   glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC1_ALPHA);
-
-  // m_rectQuad.init(400, 400);
-    m_pipeline.pushMatrix();
-
-        m_pipeline.translate(50,100,0);
-        m_pipeline.updateMatrices(shaderID);
-        m_rectQuad.quad->draw(shaderID);
-
-    m_pipeline.popMatrix();
-}
-*/
 
 
 int EG_Button::getType()

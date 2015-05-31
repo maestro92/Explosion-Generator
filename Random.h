@@ -13,6 +13,7 @@ inline float RandRange( float fMin, float fMax )
     return ( Random() * ( fMax - fMin ) ) + fMin;
 }
 
+
 inline glm::vec3 RandUnitVec()
 {
     float x = ( Random() * 2.0f ) - 1.0f;

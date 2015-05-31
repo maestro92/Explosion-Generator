@@ -5,9 +5,9 @@
 #include "EG_Model/EG_ModelABS.h"
 #include "EG_InstancedModel.h"
 #include "pipeline.h"
-#include "EG_RenderTechnique.h"
-#include "EG_Technique_Shadow_Render.h"
-#include "EG_Technique_TwoPass_RayCasting.h"
+#include "EG_Renderer.h"
+#include "EG_SceneRenderer.h"
+#include "EG_TwoPassRayCastingRenderer.h"
 #include "sceneLoader.h"
 #include "EG_ParticleEffect.h"
 #include <cstdlib>
@@ -54,15 +54,15 @@ class EG_SphereParticleEffect : public EG_ParticleEffect
         void update(bool toggle = false);
 
    //     void show(pipeline &m_pipeline,  unsigned int shaderID , meshLoader* mymesh);
-        void show(pipeline &m_pipeline, EG_RenderTechnique* RenderTechnique, int RenderTypeID, meshLoader* mymesh);
-        void render(pipeline &m_pipeline, EG_RenderTechnique* RenderTechnique, int RenderTypeID, meshLoader* mymesh);
-        void render(pipeline &m_pipeline, EG_RenderTechnique* RenderTechnique, int RenderPassID, EG_Model& model);
+        void show(pipeline &m_pipeline, EG_Renderer* Renderer, int RenderTypeID, meshLoader* mymesh);
+        void render(pipeline &m_pipeline, EG_Renderer* Renderer, int RenderTypeID, meshLoader* mymesh);
+        void render(pipeline &m_pipeline, EG_Renderer* Renderer, int RenderPassID, EG_Model& model);
         void updateMatrices(pipeline &m_pipeline);
 //        void instancedRender(EG_InstancedModel& model);
 
-    //    void instancedRender(EG_RenderTechnique* RenderTechnique, int RenderPassID, EG_InstancedModel& model);
+    //    void instancedRender(EG_Renderer* Renderer, int RenderPassID, EG_InstancedModel& model);
 
-        void instancedRender(pipeline &m_pipeline, EG_RenderTechnique* RenderTechnique, int RenderPassID, EG_InstancedModel& model);
+        void instancedRender(pipeline &m_pipeline, EG_Renderer* Renderer, int RenderPassID, EG_InstancedModel& model);
 
         int getCount();
 

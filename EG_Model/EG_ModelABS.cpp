@@ -8,7 +8,7 @@ using namespace std;
 
 EG_ModelABS::EG_ModelABS()
 {
-
+    m_modelGeometry = GL_TRIANGLES;
 }
 
 
@@ -43,18 +43,10 @@ void EG_ModelABS::init()
 
 void EG_ModelABS::render()
 {
-   	int VERTEX=0;
-	int NORMAL=1;
-	int COLOR=2; //3
-	int UV=3; //4
-
-    glEnableVertexAttribArray(VERTEX);
+    glEnableVertexAttribArray(POSITION);
     glEnableVertexAttribArray(NORMAL);
     glEnableVertexAttribArray(COLOR);
     glEnableVertexAttribArray(UV);
-
-
-
 
     /// this means we're going to use these two buffer object
     for (int i=0; i<m_meshes.size(); i++)
@@ -71,7 +63,7 @@ void EG_ModelABS::render()
         glBindBuffer(GL_ARRAY_BUFFER, m.m_vbo);
         glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m.m_ind);
 
-        glVertexAttribPointer(VERTEX,   3, GL_FLOAT, GL_FALSE, sizeof(EG_VertexData), 0);
+        glVertexAttribPointer(POSITION,   3, GL_FLOAT, GL_FALSE, sizeof(EG_VertexData), 0);
         glVertexAttribPointer(NORMAL,   3, GL_FLOAT, GL_FALSE, sizeof(EG_VertexData), (void*)(3*sizeof(float)));
         glVertexAttribPointer(COLOR,    3, GL_FLOAT, GL_FALSE, sizeof(EG_VertexData), (void*)(6*sizeof(float)));
         glVertexAttribPointer(UV,       2, GL_FLOAT, GL_FALSE, sizeof(EG_VertexData), (void*)(9*sizeof(float)));
@@ -82,12 +74,14 @@ void EG_ModelABS::render()
         glDrawElements(m_modelGeometry, m.m_numIndices, GL_UNSIGNED_INT, 0);
     }
 
-	glBindBuffer(GL_ARRAY_BUFFER,0);
+
+    glBindBuffer(GL_ARRAY_BUFFER,0);
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER,0);
 
-//	glDisableVertexAttribArray(VERTEX);
+//	glDisableVertexAttribArray(POSITION);
 	glDisableVertexAttribArray(NORMAL);
 	glDisableVertexAttribArray(COLOR);
 	glDisableVertexAttribArray(UV);
+
 }
 

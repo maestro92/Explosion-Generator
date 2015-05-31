@@ -217,60 +217,60 @@ int EG_Control::computeTextStartingY()
 
 
 void EG_Control::render(pipeline& m_pipeline,
-                        EG_RenderTechnique* RenderTechnique,
+                        EG_Renderer* Renderer,
                         int RenderPassID)
 {
-    RenderTechnique->enableShader(RenderPassID);
+    Renderer->enableShader(RenderPassID);
     m_pipeline.pushMatrix();
     //    glm::vec3 trans(m_position.x, m_position.y, 0);
     //    m_pipeline.translate(trans);
     //    m_pipeline.scale(m_scale);
         m_pipeline.translate( glm::vec3(m_rect.x, m_rect.y, 0) );
-        RenderTechnique->loadUniformLocations(m_pipeline, RenderPassID);
+        Renderer->loadUniformLocations(m_pipeline, RenderPassID);
         m_quadModel.render();
     m_pipeline.popMatrix();
-    RenderTechnique->disableShader(RenderPassID);
+    Renderer->disableShader(RenderPassID);
 }
 
 
 
 void EG_Control::customMatrixRender(pipeline& m_pipeline,
-                        EG_RenderTechnique* RenderTechnique,
+                        EG_Renderer* Renderer,
                         int RenderPassID)
 {
-    RenderTechnique->enableShader(RenderPassID);
+    Renderer->enableShader(RenderPassID);
     m_pipeline.pushMatrix();
-        RenderTechnique->loadUniformLocations(m_pipeline, RenderPassID);
+        Renderer->loadUniformLocations(m_pipeline, RenderPassID);
         m_quadModel.render();
     m_pipeline.popMatrix();
-    RenderTechnique->disableShader(RenderPassID);
+    Renderer->disableShader(RenderPassID);
 }
 
 
 void EG_Control::render(pipeline& m_pipeline,
-                        EG_RenderTechnique* RenderTechnique,
+                        EG_Renderer* Renderer,
                         int RenderPassID, EG_ModelABS* model)
 {
-    RenderTechnique->enableShader(RenderPassID);
+    Renderer->enableShader(RenderPassID);
     m_pipeline.pushMatrix();
         glm::vec3 trans(m_rect.x, m_rect.y, 0);
         m_pipeline.translate(trans);
-        RenderTechnique->loadUniformLocations(m_pipeline, RenderPassID);
+        Renderer->loadUniformLocations(m_pipeline, RenderPassID);
         model->render();
     m_pipeline.popMatrix();
-    RenderTechnique->disableShader(RenderPassID);
+    Renderer->disableShader(RenderPassID);
 }
 
 void EG_Control::render(pipeline& m_pipeline,
-                        EG_RenderTechnique* RenderTechnique,
+                        EG_Renderer* Renderer,
                         int RenderPassID, EG_Rect r, EG_ModelABS* model)
 {
-    RenderTechnique->enableShader(RenderPassID);
+    Renderer->enableShader(RenderPassID);
     m_pipeline.pushMatrix();
         m_pipeline.translate(glm::vec3(r.x, r.y, 0));
       //  m_pipeline.scale(0.9);
-        RenderTechnique->loadUniformLocations(m_pipeline, RenderPassID);
+        Renderer->loadUniformLocations(m_pipeline, RenderPassID);
         model->render();
     m_pipeline.popMatrix();
-    RenderTechnique->disableShader(RenderPassID);
+    Renderer->disableShader(RenderPassID);
 }
