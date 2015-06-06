@@ -46,6 +46,8 @@
 		<Unit filename="CollisionDetection_HGrid_new.cpp" />
 		<Unit filename="CollisionDetection_HGrid_new.h" />
 		<Unit filename="CollisionDetection_Interface.h" />
+		<Unit filename="EG_BillboardList.cpp" />
+		<Unit filename="EG_BillboardList.h" />
 		<Unit filename="EG_Camera/EG_Camera.cpp" />
 		<Unit filename="EG_Camera/EG_Camera.h" />
 		<Unit filename="EG_Camera/EG_FirstPersonPovCamera.cpp" />
@@ -54,6 +56,10 @@
 		<Unit filename="EG_Camera/EG_OrbitCamera.h" />
 		<Unit filename="EG_Camera/EG_ThirdPersonPovCamera.cpp" />
 		<Unit filename="EG_Camera/EG_ThirdPersonPovCamera.h" />
+		<Unit filename="EG_Emitter/EG_Emitter.cpp" />
+		<Unit filename="EG_Emitter/EG_Emitter.h" />
+		<Unit filename="EG_Emitter/EG_EmitterParticle.cpp" />
+		<Unit filename="EG_Emitter/EG_EmitterParticle.h" />
 		<Unit filename="EG_GBuffer.cpp" />
 		<Unit filename="EG_GBuffer.h" />
 		<Unit filename="EG_GUI/EG_Button.cpp" />
@@ -101,6 +107,8 @@
 		<Unit filename="EG_Model/EG_ModelABS.h" />
 		<Unit filename="EG_Model/EG_VertexData.h" />
 		<Unit filename="EG_ParticleEffect.h" />
+		<Unit filename="EG_Renderer/EG_BillboardRenderer.cpp" />
+		<Unit filename="EG_Renderer/EG_BillboardRenderer.h" />
 		<Unit filename="EG_Renderer/EG_DeferredShadingLightPass/EG_DeferredShadingDirectionalLightPass.cpp" />
 		<Unit filename="EG_Renderer/EG_DeferredShadingLightPass/EG_DeferredShadingDirectionalLightPass.h" />
 		<Unit filename="EG_Renderer/EG_DeferredShadingLightPass/EG_DeferredShadingLightPass.cpp" />

@@ -156,7 +156,9 @@ using spring system, we will have different view matrix
 
         EG_ImportedAnimatedModel m_mainAvatar;
 
-        protected:
+//        protected:
+
+        public:
             glm::vec3 m_eye;
             glm::vec3 m_target;
             glm::vec3 m_offset;

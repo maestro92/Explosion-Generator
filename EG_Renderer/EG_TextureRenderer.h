@@ -21,19 +21,26 @@ class EG_TextureRenderer : public EG_Renderer
         EG_TextureRenderer();
         ~EG_TextureRenderer();
 
-        GLuint m_textureUnitUniformLocation;
-        GLuint m_pixelSizeUniformLocation;
+        GLuint m_textureUnitUniLoc;
+        GLuint m_pixelSizeUniLoc;
 
         void init(int nShaders);
-
-//        EG_QuadModel m_quad1;
-   //     EG_QuadModelABS m_quad;
 
         void setTextureUnit(unsigned int TextureUnit);
         void setPixelSize(unsigned int Width, unsigned int Height);
 
-        void render(unsigned int TextureId, GLuint FboTarget, int Width, int Height, pipeline& m_pipeline);
-        void renderFullScreen(unsigned int TextureId, GLuint FboTarget, int Width, int Height);
+
+        virtual void loadUniformLocations(pipeline& p, int pass);
+
+        void renderFullScreen(GLuint TextureId, EG_QuadModelABS& model);
+
+        int m_width;
+        int m_height;
+        int m_texUnit;
+
+
+   //     void render(unsigned int TextureId, GLuint FboTarget, int Width, int Height, pipeline& m_pipeline);
+   //     void renderFullScreen(unsigned int TextureId, GLuint FboTarget, int Width, int Height);
 };
 
 

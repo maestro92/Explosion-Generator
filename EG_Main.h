@@ -13,7 +13,7 @@
 #include "EG_DirectionalLight.h"
 #include "EG_AllLights.h"
 #include "EG_ImportedAnimatedModel.h"
-
+#include "EG_BillboardList.h"
 
 #include "EG_DeferredShadingGeometryPass.h"
 #include "EG_DeferredShadingSkybox.h"
@@ -22,6 +22,9 @@
 #include "EG_DeferredShadingStencilPass.h"
 #include "EG_DeferredShadingPointLightPass.h"
 #include "EG_DeferredShadingDirectionalLightPass.h"
+
+#include "EG_Emitter.h"
+
 
 
 #include "EG_Camera.h"
@@ -59,6 +62,7 @@
 #include "EG_FullColorRenderer.h"
 #include "EG_InstancedRenderer.h"
 #include "EG_SkyboxRenderer.h"
+#include "EG_BillboardRenderer.h"
 
 #include "EG_WorldAnimatedObject.h"
 
@@ -134,7 +138,8 @@ class ExplosionGenerator
         EG_FullColorRenderer                    r_fullColor;
         EG_InstancedRenderer                    r_instancedRenderer;
 
-
+        EG_BillboardRenderer                    r_billBoardRenderer;
+        EG_TextureRenderer                      r_textureRenderer;
 /*
        // EG_DepthTextureRenderer
 //        EG_DepthRenderer       r_depthRenderer;
@@ -266,6 +271,7 @@ class ExplosionGenerator
         EG_WorldAnimatedObject  o_animatedLegoMan;
         EG_WorldAnimatedObject  o_animatedBob;
 
+        EG_QuadModelABS     o_fullScreenQuad;
 
         WorldObject     o_worldAxis;
         WorldSphere     o_reflectionSphere;
@@ -319,18 +325,25 @@ class ExplosionGenerator
         Matrices_t ReflectionSmoke;
 
         EG_Label m_lb;
+
+
+        EG_Emitter* m_emitter;
     public:
 
         ExplosionGenerator();
         ~ExplosionGenerator();
 
 
+        EG_BillboardList m_billboardList;
+
 
         /// init functions
         void initSDL();
         void initGLEW();
         void initOpenGL();
+        void initEmitter();
 
+        void initBillboardList();
  //       void initShader();
         void initModels();
         void initObjects();

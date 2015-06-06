@@ -106,6 +106,7 @@ ExplosionGenerator::ExplosionGenerator()
     initFrameBuffers();
     smoke.init();
     initRenderers();
+    initBillboardList();
 
 #if DEFERRED_SHADING
     r_deferredShadingGeometryPass.init(1);
@@ -259,6 +260,9 @@ void ExplosionGenerator::initRenderers()
     r_skinning.init(2);
     r_buttonRenderer.init(3);
     r_instancedRenderer.init(2);
+
+    r_billBoardRenderer.init(1);
+    r_textureRenderer.init(1);
 }
 
 
@@ -337,6 +341,7 @@ void ExplosionGenerator::initModels()
 //    deferredShadingQuad = new meshLoader("./Content/quad.obj");
     smoothSphere = new meshLoader("./Sphere/sphere_grey.obj");
 
+    o_fullScreenQuad.init();
 }
 
 
@@ -455,6 +460,18 @@ void ExplosionGenerator::initGUI()
 }
 
 
+void ExplosionGenerator::initEmitter()
+{
+  //  m_emitter = new Emitter();
+
+}
+
+void ExplosionGenerator::initBillboardList()
+{
+    m_billboardList.init("Assets/Images/monster_hellknight.png");
+
+// EG_Utility::loadTexture("assets/font.jpg");
+}
 
 
 void ExplosionGenerator::start()
@@ -1474,14 +1491,49 @@ void ExplosionGenerator::forwardRender()
     o_worldAxis.renderSingle(m_pipeline, r_Technique, RENDER_PASS1, p_modelPtr);
 
 
+
+
+    r_Technique = &r_billBoardRenderer;
+
+    m_pipeline.pushMatrix();
+
+        m_pipeline.translate(0,5,0);
+        m_pipeline.scale(5.0);
+
+/*
+        glm::mat4 mv = m_pipeline.getModelViewMatrix();
+        mv[0][0] = 5; mv[0][1] = 0; mv[0][2] = 0;
+        mv[1][0] = 0; mv[1][1] = 5; mv[1][2] = 0;
+        mv[2][0] = 0; mv[2][1] = 0; mv[2][2] = 5;
+        glm::mat4 mvp = m_pipeline.getProjectionMatrix() * mv;
+*/
+
+        glm::mat4 mvp = m_pipeline.getModelViewProjectionMatrix();
+        r_billBoardRenderer.setModelViewProjectionMatrix(mvp);
+        r_billBoardRenderer.setCameraPosition(m_orbitCamera.getEyePoint());
+        r_billBoardRenderer.setCameraViewDir(m_orbitCamera.m_zAxis);
+      //  glm::mat4 vp = m_pipeline.getProjectionMatrix() * m_pipeline.getViewMatrix();
+     //   r_billBoardRenderer.setViewProjectionMatrix(vp);
+     //   r_billBoardRenderer.setCameraPosition(m_orbitCamera.getEyePoint());
+
+        m_billboardList.render(m_pipeline, r_Technique, RENDER_PASS1);
+    m_pipeline.popMatrix();
+
+//    r_Technique =
+ //   o_fullScreenQuad.render();
+
+
+
+
  //   glDepthFunc(GL_LESS);
 #if SMOKE_EFFECT
     RenderSmoke(true, true, Matrices, depthTexture);
 #endif
-
-
-
-
+/*
+    r_textureRenderer.setTextureUnit(0);
+    r_textureRenderer.setPixelSize(SCREEN_WIDTH, SCREEN_HEIGHT);
+    r_textureRenderer.renderFullScreen(m_billboardList.m_billboardTexture, o_fullScreenQuad);
+*/
     renderGUI();
 
 #endif

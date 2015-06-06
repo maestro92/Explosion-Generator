@@ -54,6 +54,11 @@ GLuint EG_Renderer::GetUniformLocation(Shader* s, const char* UniformName)
 }
 
 
+GLuint EG_Renderer::getUniLoc(Shader* s, const char* UniformName)
+{
+    return GetUniformLocation(s, UniformName);
+}
+
 // assign GL location
 bool EG_Renderer::Init_Shader_GL_Location(Shader* s, Matrices_Location& Mat)
 {

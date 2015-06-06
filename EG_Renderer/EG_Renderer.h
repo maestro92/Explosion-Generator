@@ -65,10 +65,18 @@ class EG_Renderer
 
 
         GLuint GetUniformLocation(Shader* s, const char* UniformName);
+        GLuint getUniLoc(Shader* s, const char* UniformName);
         bool Init_Shader_GL_Location(Shader* s, Matrices_Location& Mat);
 
         virtual void loadUniformLocations(pipeline& p, int RenderPassID);
         virtual void render();
+
+        void setUniLoc(GLuint location, int value);
+        void setUniLoc(GLuint location, float value);
+        void setUniLoc(GLuint location, float x, float y);
+        void setUniLoc(GLuint location, glm::vec3 value);
+        void setUniLoc(GLuint location, glm::vec4 value);
+        void setUniLoc(GLuint location, glm::mat4 value);
 
         void setUniformLocation(GLuint location, int value);
         void setUniformLocation(GLuint location, float value);

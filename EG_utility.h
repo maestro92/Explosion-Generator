@@ -44,6 +44,7 @@ class EG_Utility
         ///
         static string floatToStr(float value);
 
+        static float randFloat(float min=0, float max=1);
 
         static void errorCheck();
 

@@ -23,6 +23,12 @@ string EG_Utility::floatToStr(float value)
     return buff.str();
 }
 
+float EG_Utility::randFloat(float min, float max)
+{
+    float num = (float)rand() / (float) RAND_MAX;
+    return min + (max - min) * num;
+}
+
 
 void EG_Utility::debug(string s, string s2)
 {
@@ -148,7 +154,7 @@ SDL_Surface* EG_Utility::loadRawImage(string filename)
 
     if(!in.is_open())
     {
-        std::cout << "filename not found" << std::endl;
+        std::cout << filename << " not found" << std::endl;
         return NULL;
     }
 
@@ -158,7 +164,7 @@ SDL_Surface* EG_Utility::loadRawImage(string filename)
     SDL_Surface* img = IMG_Load(filename.c_str());
     if(img == NULL)
     {
-        cout << "Load image failed" << endl;
+        cout << filename << " Load image failed" << endl;
         return NULL;
     }
 
@@ -188,7 +194,7 @@ SDL_Surface* EG_Utility::loadSDLImage(string filename)
     SDL_Surface* img2 = SDL_ConvertSurface(img, &pixel_format ,SDL_SWSURFACE);
     if(img2 == NULL)
     {
-        cout << "img not converted to SDL img" << std :: endl;
+        cout << "img not converted to SDL img " << filename << endl;
         return NULL;
     }
 
@@ -200,6 +206,8 @@ SDL_Surface* EG_Utility::loadSDLImage(string filename)
 
 GLuint EG_Utility::loadTexture(string filename)
 {
+    cout << "Loading Texture " << filename << endl;
+
     SDL_Surface* img2 = loadSDLImage(filename);
 
     unsigned int num;
