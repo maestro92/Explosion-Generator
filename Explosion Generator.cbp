@@ -172,6 +172,9 @@
 		<Unit filename="EG_Utility/EG_Utility_AssimpMath.cpp" />
 		<Unit filename="EG_Utility/EG_Utility_Debug.cpp" />
 		<Unit filename="EG_Utility/EG_Utility_GL.cpp" />
+		<Unit filename="EG_Utility/EG_Utility_GLUniLoc.cpp">
+			<Option compilerVar="CC" />
+		</Unit>
 		<Unit filename="EG_Utility/EG_Utility_Math.cpp" />
 		<Unit filename="EG_WorldObject/EG_Skybox.cpp" />
 		<Unit filename="EG_WorldObject/EG_Skybox.h" />

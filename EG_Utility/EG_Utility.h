@@ -45,6 +45,10 @@ class EG_Utility
         EG_Utility();
         ~EG_Utility();
 
+
+        template<typename T>
+            static vector<T> reserveVector(int size);
+
         /// EG_Utility_Math.cpp
         static float DEGREE_TO_RADIAN;
         static float RADIAN_TO_DEGREE;
@@ -56,10 +60,8 @@ class EG_Utility
         static void errorCheck();
         static GLuint createFBO();
         static void errorCheckFBO();
-
         static SDL_Surface* loadRawImage(string filename);
         static SDL_Surface* loadSDLImage(string filename);
-
         static GLuint loadTexture(string filename);
         static GLuint createTexture(int w, int h);
         static GLuint createDepthTexture(int, int h);
@@ -69,9 +71,6 @@ class EG_Utility
         static void setCubemapTextureParameters();
 
 
-        template<typename T>
-            static vector<T> reserveVector(int size);
-
         /// EG_Utility_AssimpMath.cpp
         static glm::vec3 toGlmVec(aiVector3D& v2);
         static glm::mat4 toGlmMat(aiMatrix3x3 m2);
@@ -79,7 +78,6 @@ class EG_Utility
         static glm::mat4 toGlmMat(const aiMatrix4x4& m2);
         static glm::vec3 scaleGlmVec3(const glm::vec3 v, float s);
         static glm::vec3 scaleGlmVec3(const glm::vec3 v, float s1, float s2, float s3);
-
 
 
         /// EG_Utility_Debug.cpp
@@ -92,9 +90,17 @@ class EG_Utility
         static void debug(string s, glm::vec3 v);
         static void checkGLError();
 
-    //    static GLuint GetUniformLocation(shader* s, const char* UniformName);
 
-
+        /// EG_Utility_UniLoc.cpp
+        static void setUniLoc(GLuint location, int value);
+        static void setUniLoc(GLuint location, float value);
+        static void setUniLoc(GLuint location, float x, float y);
+        static void setUniLoc(GLuint location, glm::vec2 value);
+        static void setUniLoc(GLuint location, glm::vec3 value);
+        static void setUniLoc(GLuint location, glm::vec4 value);
+        static void setUniLoc(GLuint location, glm::mat3 value);
+        static void setUniLoc(GLuint location, glm::mat4 value);
+        static void setUniLocTranspose(GLuint location, glm::mat4 value);
 
 
 };

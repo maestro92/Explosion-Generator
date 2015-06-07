@@ -3,7 +3,7 @@
 #include "define.h"
 #include "EG_Shader.h"
 #include "pipeline.h"
-
+#include "EG_Utility.h"
 using namespace std;
 
 /*
@@ -49,45 +49,81 @@ struct Matrices_Location
 };
 
 
+
+
 struct DataPair
 {
     GLuint uniLoc;
+    virtual void setUniLoc() = 0;
 };
 
 struct IntDataPair : public DataPair
 {
     int value;
+    void setUniLoc()
+    {
+        EG_Utility::setUniLoc(uniLoc, value);
+    }
 };
 
 struct FloatDataPair : public DataPair
 {
     float value;
+    void setUniLoc()
+    {
+        EG_Utility::setUniLoc(uniLoc, value);
+    }
 };
 
 struct Vec2DataPair : public DataPair
 {
     glm::vec2 value;
+    void setUniLoc()
+    {
+        EG_Utility::setUniLoc(uniLoc, value);
+    }
 };
 
 struct Vec3DataPair : public DataPair
 {
     glm::vec3 value;
+    void setUniLoc()
+    {
+        EG_Utility::setUniLoc(uniLoc, value);
+    }
 };
 
 struct Vec4DataPair : public DataPair
 {
     glm::vec4 value;
+    void setUniLoc()
+    {
+        EG_Utility::setUniLoc(uniLoc, value);
+    }
 };
 
 struct Mat3DataPair : public DataPair
 {
     glm::mat3 value;
+    void setUniLoc()
+    {
+        EG_Utility::setUniLoc(uniLoc, value);
+    }
 };
 
 struct Mat4DataPair : public DataPair
 {
     glm::mat4 value;
+    void setUniLoc()
+    {
+        EG_Utility::setUniLoc(uniLoc, value);
+    }
 };
+
+
+
+
+
 
 
 class EG_Renderer
@@ -114,14 +150,9 @@ class EG_Renderer
         virtual void render();
 
         void initDataPairUniLoc(DataPair* p, Shader* s, const char* name);
+        void initDataPairUniLoc(DataPair* p, Shader* s, int pass, const char* name);
         GLuint getUniLoc(Shader* s, const char* name);
 
-        void setUniLoc(GLuint location, int value);
-        void setUniLoc(GLuint location, float value);
-        void setUniLoc(GLuint location, float x, float y);
-        void setUniLoc(GLuint location, glm::vec3 value);
-        void setUniLoc(GLuint location, glm::vec4 value);
-        void setUniLoc(GLuint location, glm::mat4 value);
 
         void setUniformLocation(GLuint location, int value);
         void setUniformLocation(GLuint location, float value);
@@ -129,16 +160,21 @@ class EG_Renderer
         void setUniformLocation(GLuint location, glm::vec2 value);
         void setUniformLocation(GLuint location, glm::vec3 value);
         void setUniformLocation(GLuint location, glm::vec4 value);
+        void setUniformLocation(GLuint location, glm::mat3 value);
         void setUniformLocation(GLuint location, glm::mat4 value);
         void setUniformLocationTranspose(GLuint location, glm::mat4 value);
+
+        void setAllDataPairUniLocs(int pass);
 
         void setDataPairUniLoc(IntDataPair& dp);
         void setDataPairUniLoc(FloatDataPair& dp);
         void setDataPairUniLoc(Vec2DataPair& dp);
         void setDataPairUniLoc(Vec3DataPair& dp);
         void setDataPairUniLoc(Vec4DataPair& dp);
-    //    void setDataPairUniLoc(Mat3DataPair& dp);
+        void setDataPairUniLoc(Mat3DataPair& dp);
         void setDataPairUniLoc(Mat4DataPair& dp);
+
+
 
         void getAllMatrixUniLocs();
         bool getMatrixUniLocs(Shader* s, Matrices_Location& Mat);
@@ -146,6 +182,7 @@ class EG_Renderer
     public:
         Matrices_Location* Matrices_UniLoc;
         Shader** m_shaders;
+        vector< vector<DataPair*> > m_allDataPairs;
     private:
         int m_numShaders;
 

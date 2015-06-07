@@ -7,7 +7,6 @@ using namespace std;
 
 
 
-
 #define SPHERE_EFFECT 1
 #define CUBE_SPHERE_EFFECT 0
 
@@ -52,7 +51,7 @@ SDL_Surface* pDisplaySurface = NULL;
 SDL_Event event;
 
 
-
+static float runningTime = 0.0f;
 
 int shadowMapWidth = SCREEN_WIDTH * 2;
 int shadowMapheight = SCREEN_HEIGHT * 2;
@@ -251,6 +250,8 @@ void ExplosionGenerator::initRenderers()
 
     r_billBoardRenderer.init(1);
     r_textureRenderer.init(1);
+
+    r_nbpRenderer.init(3);
 }
 
 
@@ -329,7 +330,7 @@ void ExplosionGenerator::initModels()
 //    deferredShadingQuad = new meshLoader("./Content/quad.obj");
     smoothSphere = new meshLoader("./Sphere/sphere_grey.obj");
 
-    o_fullScreenQuad.init();
+//    o_fullScreenQuad.init();
 }
 
 
@@ -350,7 +351,7 @@ void ExplosionGenerator::initObjects()
 
  //   nbp_particleSurface = EG_NoiseBasedParticleEffect::createSurface(SCREEN_WIDTH, SCREEN_HEIGHT);
  //   nbp_backgroundSurface = EG_NoiseBasedParticleEffect::createSurface(SCREEN_WIDTH, SCREEN_HEIGHT);
-    m_nbpEffect.init(SCREEN_WIDTH, SCREEN_HEIGHT, "Assets/Images/Sprite.png");
+    m_nbpEffect.init(SCREEN_WIDTH, SCREEN_HEIGHT);
 }
 
 
@@ -985,12 +986,12 @@ void ExplosionGenerator::update()
     }
 
 
+    runningTime = (float)((double)SDL_GetTicks() - (double)m_timeManager.getStartTime()) / 1000.0f;
+#if ANIMATED_OBJECT_FLAG
 
-
-
-    float runningTime = (float)((double)SDL_GetTicks() - (double)m_timeManager.getStartTime()) / 1000.0f;
 //    legoMan.boneTransform(runningTime, o_animatedLegoMan.m_boneTransforms);
   //  bob.boneTransform(runningTime, o_animatedBob.m_boneTransforms);
+
 
 
 
@@ -998,7 +999,7 @@ void ExplosionGenerator::update()
 //    mainAvatar.boneTransform(runningTime);
 //    bob.boneTransform(runningTime, r_skinning)
 //    thirdPersonPovCamera.m_mainAvatar.boneTransform(runningTime, r_skinning.m_boneTransforms);
-
+#endif
 }
 
 
@@ -1525,7 +1526,7 @@ void ExplosionGenerator::forwardRender()
 
 
 
-
+    renderNoiseBasedParticleEffect();
 
 
     renderGUI();
@@ -1552,6 +1553,38 @@ void ExplosionGenerator::initGUIRenderStage()
     m_pipeline.matrixMode(MODEL_MATRIX);
     m_pipeline.loadIdentity();
 }
+
+
+void ExplosionGenerator::renderNoiseBasedParticleEffect()
+{
+  //  glDisable(GL_BLEND);
+  //  glDisable(GL_DEPTH_TEST);
+ //   glBindFramebuffer(GL_FRAMEBUFFER, m_nbpEffect.m_backgroundSurface.FBO);
+  //  glBindFramebuffer(GL_FRAMEBUFFER, 0);
+  //  glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+/*
+    r_Technique = &r_nbpRenderer;
+    r_nbpRenderer.setDepth(1.0f);
+    r_nbpRenderer.setScrollOffsetTime(runningTime);
+*/
+
+    r_textureRenderer.setTextureUnit(0);
+    r_textureRenderer.setPixelSize(SCREEN_WIDTH, SCREEN_HEIGHT);
+    r_textureRenderer.renderFullScreen(m_nbpEffect.m_backgroundTexture, m_nbpEffect.m_backgroundSurface.FBO);
+//    r_textureRenderer.renderFullScreen(m_billboardList.m_billboardTexture);
+
+
+    glBindFramebuffer(GL_FRAMEBUFFER, m_nbpEffect.m_particleSurface.FBO);
+
+
+
+    glBindFramebuffer(GL_FRAMEBUFFER, 0);
+ //   m_nbpEffect
+  //  glEnable(GL_BLEND);
+  //  glEnable(GL_DEPTH_TEST);
+}
+
 
 
 void ExplosionGenerator::renderGUI()

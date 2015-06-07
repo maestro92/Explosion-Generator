@@ -13,6 +13,15 @@ class EG_NoiseBasedParticleEffectRenderer : public EG_Renderer
         ~EG_NoiseBasedParticleEffectRenderer();
         void init(int nShaders);
 
+        /// Blit Shader
+        FloatDataPair m_depthPair;
+        FloatDataPair m_scrollOffsetTimePair;
+
+        void setDepth(float color);
+        void setScrollOffsetTime(float value);
+
+
+        /// Particle Shader
         Vec4DataPair m_colorPair;
         FloatDataPair m_fadeRatePair;
         IntDataPair m_depthTexturePair;
@@ -28,6 +37,10 @@ class EG_NoiseBasedParticleEffectRenderer : public EG_Renderer
         void setTime(float time);
         void setPointSize(float size);
         void setInverseSize(glm::vec2 size);
+
+
+        /// Composite Shader
+
 
         virtual void loadUniformLocations(pipeline& p, int pass);
 };

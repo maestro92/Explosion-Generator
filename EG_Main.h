@@ -64,7 +64,7 @@
 #include "EG_InstancedRenderer.h"
 #include "EG_SkyboxRenderer.h"
 #include "EG_BillboardRenderer.h"
-
+#include "EG_NoiseBasedParticleEffectRenderer.h"
 #include "EG_WorldAnimatedObject.h"
 
 #include "EG_Button.h"
@@ -141,6 +141,7 @@ class ExplosionGenerator
 
         EG_BillboardRenderer                    r_billBoardRenderer;
         EG_TextureRenderer                      r_textureRenderer;
+        EG_NoiseBasedParticleEffectRenderer     r_nbpRenderer;
 /*
        // EG_DepthTextureRenderer
 //        EG_DepthRenderer       r_depthRenderer;
@@ -381,7 +382,7 @@ class ExplosionGenerator
         void Render_to_CubeMapTexture2();
         void Render_to_CubeMapFace2(int face);
 
-
+        void renderNoiseBasedParticleEffect();
 
 
 /*

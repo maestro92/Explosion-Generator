@@ -206,9 +206,6 @@ bool Shader::loadIncludeFiles(string & str, string newLine)
     return includeFlag;
 }
 
-
-
-
 // need glew to run Shader
 unsigned int Shader::loadShader(string& source, unsigned int ShaderType)
 {
@@ -237,26 +234,21 @@ unsigned int Shader::loadShader(string& source, unsigned int ShaderType)
     return id;
 }
 
-
 void Shader::linkShader()
 {
     // links the program object
     glLinkProgram(program);
 }
 
-
-
 void Shader::useShader()
 {
 	glUseProgram(program);
 }
 
-
 unsigned int Shader::getProgramId()
 {
 	return program;
 }
-
 
 void Shader::delShader()
 {

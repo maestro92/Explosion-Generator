@@ -27,6 +27,9 @@ void EG_TextureRenderer::init(int nShaders)
 //    initDataPairUniLoc(&m_colorPair,        m_shaders[RENDER_PASS1], "gColor");
 
     initMemberVariables();
+
+
+    o_fullScreenQuad.init();
 }
 
 
@@ -52,8 +55,10 @@ void EG_TextureRenderer::loadUniformLocations(pipeline& p, int pass)
 }
 
 
-void EG_TextureRenderer::renderFullScreen(GLuint TextureId, EG_QuadModelABS& model)
+void EG_TextureRenderer::renderFullScreen(GLuint TextureID)
 {
+    renderFullScreen(TextureID, 0);
+    /*
     glDisable(GL_CULL_FACE);
     glDisable(GL_DEPTH_TEST);
     //render texture to screen
@@ -62,7 +67,7 @@ void EG_TextureRenderer::renderFullScreen(GLuint TextureId, EG_QuadModelABS& mod
 	m_pipeline.ortho(0,1,0,1,-1,1);
 
     glBindFramebuffer(GL_FRAMEBUFFER, 0);
-	glClear(GL_COLOR_BUFFER_BIT);
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	m_shaders[RENDER_PASS1]->useShader();
 
         glActiveTexture(GL_TEXTURE0);
@@ -70,6 +75,29 @@ void EG_TextureRenderer::renderFullScreen(GLuint TextureId, EG_QuadModelABS& mod
         loadUniformLocations(m_pipeline, RENDER_PASS1);
         model.render();
         // m_quad1.quad->draw(m_shaders[RENDER_PASS1]->getProgramId());
+
+	m_shaders[RENDER_PASS1]->delShader();
+    glEnable(GL_DEPTH_TEST);
+*/
+}
+
+void EG_TextureRenderer::renderFullScreen(GLuint TextureID, GLuint FboTarget)
+{
+    glDisable(GL_CULL_FACE);
+    glDisable(GL_DEPTH_TEST);
+    //render texture to screen
+	pipeline m_pipeline;
+	m_pipeline.loadIdentity();
+	m_pipeline.ortho(0,1,0,1,-1,1);
+
+    glBindFramebuffer(GL_FRAMEBUFFER, FboTarget);
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+	m_shaders[RENDER_PASS1]->useShader();
+
+        glActiveTexture(GL_TEXTURE0);
+        glBindTexture(GL_TEXTURE_2D, TextureID);
+        loadUniformLocations(m_pipeline, RENDER_PASS1);
+        o_fullScreenQuad.render();
 
 	m_shaders[RENDER_PASS1]->delShader();
     glEnable(GL_DEPTH_TEST);
@@ -100,7 +128,6 @@ void EG_TextureRenderer::renderFullScreen(unsigned int TextureId, GLuint FboTarg
 
     glEnable(GL_DEPTH_TEST);
 }
-
 
 
 void EG_TextureRenderer::render(unsigned int TextureId, GLuint FboTarget, int Width, int Height, pipeline& m_pipeline)

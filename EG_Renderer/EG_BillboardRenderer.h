@@ -4,22 +4,31 @@
 #include "EG_Renderer.h"
 
 
+
+
+/*
+/// http://stackoverflow.com/questions/12009314/how-to-create-an-array-of-templated-class-objects
+/// http://stackoverflow.com/questions/13345595/c-store-same-classes-with-different-templates-in-array
+struct AbsTempDataPair
+{
+    virtual ~AbsTempDataPair() = 0;
+};
+
+template <typename T>
+struct TempDataPair
+{
+    GLuint uniLoc;
+    T value;
+    virtual ~TempDataPair(){};
+};
+*/
+
+
 class EG_BillboardRenderer: public EG_Renderer
 {
     public:
         EG_BillboardRenderer();
         ~EG_BillboardRenderer();
-
-/*
-        GLuint m_modelViewProjectionMatrixUniLoc;
-        GLuint m_cameraPositionUniLoc;
-        GLuint m_cameraViewDirectionUniLoc;
-//        GLuint m_textureUniLoc;
-
-        glm::mat4 m_modelViewProjectionMatrix;
-        glm::vec3 m_cameraPosition;
-        glm::vec3 m_cameraViewDir;
-*/
 
         Mat4DataPair m_MVPMatrixDataPair;
         Vec3DataPair m_cameraPositionDataPair;

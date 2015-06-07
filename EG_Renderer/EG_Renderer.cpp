@@ -29,6 +29,8 @@ void EG_Renderer::allocateMemberVariables(int nShaders)
     m_numShaders = nShaders;
     Matrices_UniLoc = new Matrices_Location[m_numShaders];
     m_shaders = new Shader*[m_numShaders];
+    //m_allDataPairs = new DataPair
+    m_allDataPairs.resize(nShaders);
 }
 
 
@@ -56,11 +58,16 @@ GLuint EG_Renderer::GetUniformLocation(Shader* s, const char* name)
     }
     return location;
 }
-
-
+/*
 void EG_Renderer::initDataPairUniLoc(DataPair* p, Shader* s, const char* name)
 {
     p->uniLoc = getUniLoc(s, name);
+}
+*/
+void EG_Renderer::initDataPairUniLoc(DataPair* p, Shader* s, int pass, const char* name)
+{
+    p->uniLoc = getUniLoc(s, name);
+    m_allDataPairs[pass].push_back(p);
 }
 
 
@@ -161,6 +168,11 @@ void EG_Renderer::setUniformLocation(GLuint location, glm::vec4 value)
     glUniform4f(location, value.x, value.y, value.z, value.w);
 }
 
+void EG_Renderer::setUniformLocation(GLuint location, glm::mat3 value)
+{
+    glUniformMatrix3fv(location, 1, GL_FALSE, &value[0][0]);
+}
+
 void EG_Renderer::setUniformLocation(GLuint location, glm::mat4 value)
 {
     glUniformMatrix4fv(location, 1, GL_FALSE, &value[0][0]);
@@ -211,6 +223,21 @@ bool EG_Renderer::getMatrixUniLocs(Shader* s, Matrices_Location& Mat)
     return true;
 }
 
+
+
+
+
+void EG_Renderer::setAllDataPairUniLocs(int pass)
+{
+    int size = m_allDataPairs[pass].size();
+    for(int i=0; i<size; i++)
+        m_allDataPairs[pass][i]->setUniLoc();
+ //       setDataPairUniLoc( m_allDataPairs[pass][i]->uniLoc, m_allDataPairs[pass][i]->value);
+}
+
+
+
+
 void EG_Renderer::setDataPairUniLoc(IntDataPair& dp)
 {
     setUniformLocation(dp.uniLoc, dp.value);
@@ -236,17 +263,14 @@ void EG_Renderer::setDataPairUniLoc(Vec4DataPair& dp)
     setUniformLocation(dp.uniLoc, dp.value);
 }
 
-/*
 void EG_Renderer::setDataPairUniLoc(Mat3DataPair& dp)
 {
     setUniformLocation(dp.uniLoc, dp.value);
 }
-*/
 
 void EG_Renderer::setDataPairUniLoc(Mat4DataPair& dp)
 {
     setUniformLocation(dp.uniLoc, dp.value);
 }
-
 
 

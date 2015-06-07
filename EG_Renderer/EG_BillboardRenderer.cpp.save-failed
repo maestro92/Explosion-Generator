@@ -15,12 +15,31 @@ void EG_BillboardRenderer::init(int nShaders)
     allocateMemberVariables(nShaders);
     m_shaders[RENDER_PASS1] = new Shader("EG_BillboardingShader.vs", "EG_BillboardingShader.gs", "EG_BillboardingShader.fs");
 
+/*
+ //   vector<DataPair*> dataPairs;
     initDataPairUniLoc(&m_MVPMatrixDataPair,            m_shaders[RENDER_PASS1], RENDER_PASS1, "gModelViewProjectionMatrix");
     initDataPairUniLoc(&m_cameraPositionDataPair,       m_shaders[RENDER_PASS1], RENDER_PASS1, "gCameraPosition");
     initDataPairUniLoc(&m_cameraViewDirDataPair,        m_shaders[RENDER_PASS1], RENDER_PASS1, "gCameraViewDir");
+ //   m_allDataPairs.push_back(dataPairs);
+*/
+
+    // initDataPairUniLoc(&m_MVPMatrixDataPair,            m_shaders[RENDER_PASS1], "gModelViewProjectionMatrix");
+    initTempDataPairUniLoc(m_MVPMatrixDataPair,            m_shaders[RENDER_PASS1], "gModelViewProjectionMatrix");
+    initDataPairUniLoc(&m_cameraPositionDataPair,       m_shaders[RENDER_PASS1], "gCameraPosition");
+    initDataPairUniLoc(&m_cameraViewDirDataPair,        m_shaders[RENDER_PASS1], "gCameraViewDir");
 
     initMemberVariables();
 }
+
+
+
+
+//template<typename T>
+void EG_BillboardRenderer::initTempDataPairUniLoc(TempDataPair p, Shader* s, const char* name)
+{
+    p->uniLoc = getUniLoc(s, name);
+}
+
 
 
 void EG_BillboardRenderer::setModelViewProjectionMatrix(glm::mat4 vpMat)
@@ -40,6 +59,12 @@ void EG_BillboardRenderer::setCameraViewDir(glm::vec3 dir)
 
 void EG_BillboardRenderer::loadUniformLocations(pipeline& p, int RenderPassID)
 {
-    setAllDataPairUniLocs(RenderPassID);
+
+//    setDataPairUniLoc(m_MVPMatrixDataPair);
+    setDataPairUniLoc(m_cameraPositionDataPair);
+    setDataPairUniLoc(m_cameraViewDirDataPair);
+
+ //   setAllDataPairUniLocs(RenderPassID);
+
     EG_Renderer::loadUniformLocations(p, RenderPassID);
 }

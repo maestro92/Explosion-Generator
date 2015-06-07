@@ -6,6 +6,8 @@
 #include "EG_Utility.h"
 #include "EG_NoiseBasedParticle.h"
 
+#include "EG_QuadModelABS.h"
+
 #define NO_SDL_GLEXT
 #include <GL/glew.h>
 
@@ -23,8 +25,11 @@ class EG_NoiseBasedParticleEffect
     public:
         static EG_SurfacePod createSurface(int width, int height);
 
-        void init(int width, int height, string tex);
+        void init(int width, int height);
 
+        EG_QuadModelABS m_screenQuad;
+
+        GLuint m_backgroundTexture;
         GLuint m_spriteTexture;
         EG_NoiseBasedParticleList m_particles;
 
