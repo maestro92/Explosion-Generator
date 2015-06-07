@@ -40,23 +40,33 @@ void EG_Renderer::initMemberVariables()
 }
 
 
-GLuint EG_Renderer::GetUniformLocation(Shader* s, const char* UniformName)
+
+
+
+
+GLuint EG_Renderer::GetUniformLocation(Shader* s, const char* name)
 {
     unsigned int shaderID = s->getProgramId();
 
-    GLuint Location = glGetUniformLocation(shaderID, UniformName);
+    GLuint location = glGetUniformLocation(shaderID, name);
 
-    if(Location == -1)
+    if(location == -1)
     {
-        cout << "Error in Init_Shader with " << UniformName << endl;
+        cout << "Error in Init_Shader with " << name << endl;
     }
-    return Location;
+    return location;
 }
 
 
-GLuint EG_Renderer::getUniLoc(Shader* s, const char* UniformName)
+void EG_Renderer::initDataPairUniLoc(DataPair* p, Shader* s, const char* name)
 {
-    return GetUniformLocation(s, UniformName);
+    p->uniLoc = getUniLoc(s, name);
+}
+
+
+GLuint EG_Renderer::getUniLoc(Shader* s, const char* name)
+{
+    return GetUniformLocation(s, name);
 }
 
 // assign GL location
@@ -85,7 +95,6 @@ bool EG_Renderer::Init_Shader_GL_Location(Shader* s, Matrices_Location& Mat)
     }
     return true;
 }
-
 
 
 void EG_Renderer::loadUniformLocations(pipeline& p, int RenderPassID)
@@ -135,6 +144,11 @@ void EG_Renderer::setUniformLocation(GLuint location, float x, float y)
     glUniform2f(location, x, y);
 }
 
+void EG_Renderer::setUniformLocation(GLuint location, glm::vec2 value)
+{
+    glUniform2f(location, value.x, value.y);
+}
+
 void EG_Renderer::setUniformLocation(GLuint location, glm::vec3 value)
 {
     glUniform3f(location, value.x, value.y, value.z);
@@ -161,3 +175,78 @@ void EG_Renderer::render()
 {
 
 }
+
+
+
+
+void EG_Renderer::getAllMatrixUniLocs()
+{
+    for(int i=0; i<m_numShaders; i++)
+        getMatrixUniLocs(m_shaders[i], Matrices_UniLoc[i]);
+
+}
+
+
+bool EG_Renderer::getMatrixUniLocs(Shader* s, Matrices_Location& Mat)
+{
+    Mat.ModelviewProjection = getUniLoc( s, "m_ModelviewProjection");
+    Mat.ModelviewMatrix     = getUniLoc( s, "m_Modelview");
+    Mat.ViewMatrix          = getUniLoc( s, "m_ViewMatrix");
+    Mat.ProjectionMatrix    = getUniLoc( s, "m_ProjectionMatrix");
+    Mat.ModelMatrix         = getUniLoc( s, "m_ModelMatrix");
+    Mat.ViewNoRotateMatrix  = getUniLoc( s, "m_ViewNoRotateMatrix");
+    Mat.NormalMatrix        = getUniLoc( s, "m_normalMatrix");
+
+    if(Mat.ModelviewProjection == -1 ||
+       Mat.ModelviewMatrix == -1 ||
+       Mat.ViewMatrix == -1 ||
+       Mat.ProjectionMatrix == -1 ||
+       Mat.ModelMatrix == -1 ||
+       Mat.ViewNoRotateMatrix == -1 ||
+       Mat.NormalMatrix)
+    {
+        cout << "Error in Init_Shader" << endl;
+        return false;
+    }
+    return true;
+}
+
+void EG_Renderer::setDataPairUniLoc(IntDataPair& dp)
+{
+    setUniformLocation(dp.uniLoc, dp.value);
+}
+
+void EG_Renderer::setDataPairUniLoc(FloatDataPair& dp)
+{
+    setUniformLocation(dp.uniLoc, dp.value);
+}
+
+void EG_Renderer::setDataPairUniLoc(Vec2DataPair& dp)
+{
+    setUniformLocation(dp.uniLoc, dp.value.x, dp.value.y);
+}
+
+void EG_Renderer::setDataPairUniLoc(Vec3DataPair& dp)
+{
+    setUniformLocation(dp.uniLoc, dp.value);
+}
+
+void EG_Renderer::setDataPairUniLoc(Vec4DataPair& dp)
+{
+    setUniformLocation(dp.uniLoc, dp.value);
+}
+
+/*
+void EG_Renderer::setDataPairUniLoc(Mat3DataPair& dp)
+{
+    setUniformLocation(dp.uniLoc, dp.value);
+}
+*/
+
+void EG_Renderer::setDataPairUniLoc(Mat4DataPair& dp)
+{
+    setUniformLocation(dp.uniLoc, dp.value);
+}
+
+
+

@@ -23,7 +23,7 @@ class EG_NoiseBasedParticleEffect
     public:
         static EG_SurfacePod createSurface(int width, int height);
 
-        void init(string tex);
+        void init(int width, int height, string tex);
 
         GLuint m_spriteTexture;
         EG_NoiseBasedParticleList m_particles;

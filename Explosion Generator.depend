@@ -37300,7 +37300,7 @@
 1431982921 source:d:\martin\programming\c and c++\sdl\explosion generator 2099 99 99 infinity\sceneloader.cpp
 	"sceneLoader.h"
 
-1433654405 source:d:\martin\programming\c and c++\sdl\explosion generator 2099 99 99 infinity\eg_main.cpp
+1433656301 source:d:\martin\programming\c and c++\sdl\explosion generator 2099 99 99 infinity\eg_main.cpp
 	"EG_Main.h"
 	"gl/gl.h"
 	"gl/glu.h"
@@ -38279,7 +38279,7 @@
 	<sstream>
 	"EG_Renderer.h"
 
-1433563494 d:\martin\programming\c and c++\sdl\explosion generator 2099 99 99 infinity\eg_renderer\eg_renderer.h
+1433663716 d:\martin\programming\c and c++\sdl\explosion generator 2099 99 99 infinity\eg_renderer\eg_renderer.h
 	"define.h"
 	"EG_Shader.h"
 	"pipeline.h"
@@ -38321,7 +38321,7 @@
 	<sstream>
 	"EG_Renderer.h"
 
-1433563122 source:d:\martin\programming\c and c++\sdl\explosion generator 2099 99 99 infinity\eg_renderer\eg_renderer.cpp
+1433663736 source:d:\martin\programming\c and c++\sdl\explosion generator 2099 99 99 infinity\eg_renderer\eg_renderer.cpp
 	"EG_Renderer.h"
 
 1432013312 source:d:\martin\programming\c and c++\sdl\explosion generator 2099 99 99 infinity\eg_renderer\eg_renderer_gui\eg_buttonrenderer.cpp
@@ -38395,10 +38395,10 @@
 	<sstream>
 	"EG_Renderer.h"
 
-1433563607 source:d:\martin\programming\c and c++\sdl\explosion generator 2099 99 99 infinity\eg_renderer\eg_texturerenderer.cpp
+1433663764 source:d:\martin\programming\c and c++\sdl\explosion generator 2099 99 99 infinity\eg_renderer\eg_texturerenderer.cpp
 	"EG_TextureRenderer.h"
 
-1433562192 d:\martin\programming\c and c++\sdl\explosion generator 2099 99 99 infinity\eg_renderer\eg_texturerenderer.h
+1433661821 d:\martin\programming\c and c++\sdl\explosion generator 2099 99 99 infinity\eg_renderer\eg_texturerenderer.h
 	"pipeline.h"
 	<GL/glew.h>
 	<cstdlib>
@@ -38496,10 +38496,10 @@
 	<iostream>
 	<string>
 
-1433571973 source:d:\martin\programming\c and c++\sdl\explosion generator 2099 99 99 infinity\eg_renderer\eg_billboardrenderer.cpp
+1433663803 source:d:\martin\programming\c and c++\sdl\explosion generator 2099 99 99 infinity\eg_renderer\eg_billboardrenderer.cpp
 	"EG_BillboardRenderer.h"
 
-1433571908 d:\martin\programming\c and c++\sdl\explosion generator 2099 99 99 infinity\eg_renderer\eg_billboardrenderer.h
+1433663591 d:\martin\programming\c and c++\sdl\explosion generator 2099 99 99 infinity\eg_renderer\eg_billboardrenderer.h
 	"EG_Renderer.h"
 
 1433647976 source:d:\martin\programming\c and c++\sdl\explosion generator 2099 99 99 infinity\eg_noisebasedsmoke\eg_noisebasedparticlesutility.cpp
@@ -38546,6 +38546,31 @@
 
 1433649886 source:d:\martin\programming\c and c++\sdl\explosion generator 2099 99 99 infinity\eg_utility\eg_utility_math.cpp
 	"EG_Utility.h"
+
+1433655815 source:d:\martin\programming\c and c++\sdl\explosion generator 2099 99 99 infinity\eg_noisebasedparticleeffect\eg_noisebasedparticleeffect.cpp
+	"EG_NoiseBasedParticleEffect.h"
+
+1433655823 d:\martin\programming\c and c++\sdl\explosion generator 2099 99 99 infinity\eg_noisebasedparticleeffect\eg_noisebasedparticleeffect.h
+	"EG_Utility.h"
+	"EG_NoiseBasedParticle.h"
+	<GL/glew.h>
+
+1433654357 d:\martin\programming\c and c++\sdl\explosion generator 2099 99 99 infinity\eg_noisebasedparticleeffect\eg_noisebasedparticle.h
+	<cstdlib>
+	<vector>
+	<iostream>
+	<sstream>
+	<string>
+	<algorithm>
+	<fstream>
+	<cstdio>
+	"define.h"
+
+1433661745 source:d:\martin\programming\c and c++\sdl\explosion generator 2099 99 99 infinity\eg_renderer\eg_noisebasedparticleeffectrenderer.cpp
+	"EG_NoiseBasedParticleEffectRenderer.h"
+
+1433661162 d:\martin\programming\c and c++\sdl\explosion generator 2099 99 99 infinity\eg_renderer\eg_noisebasedparticleeffectrenderer.h
+	"EG_Renderer.h"
 
 1433565196 source:d:\martin\programming\c and c++\sdl\explosion generator\eg_billboardlist.cpp
 	"EG_BillboardList.h"
@@ -38776,7 +38801,7 @@
 1421085266 source:d:\martin\programming\c and c++\sdl\explosion generator\eg_light\eg_spotlight.cpp
 	"EG_SpotLight.h"
 
-1433654405 source:d:\martin\programming\c and c++\sdl\explosion generator\eg_main.cpp
+1433656301 source:d:\martin\programming\c and c++\sdl\explosion generator\eg_main.cpp
 	"EG_Main.h"
 	"gl/gl.h"
 	"gl/glu.h"
@@ -38989,10 +39014,10 @@
 	<assert.h>
 	"EG_ModelABS.h"
 
-1433654443 source:d:\martin\programming\c and c++\sdl\explosion generator\eg_noisebasedparticleeffect\eg_noisebasedparticleeffect.cpp
+1433655815 source:d:\martin\programming\c and c++\sdl\explosion generator\eg_noisebasedparticleeffect\eg_noisebasedparticleeffect.cpp
 	"EG_NoiseBasedParticleEffect.h"
 
-1433654095 d:\martin\programming\c and c++\sdl\explosion generator\eg_noisebasedparticleeffect\eg_noisebasedparticleeffect.h
+1433655823 d:\martin\programming\c and c++\sdl\explosion generator\eg_noisebasedparticleeffect\eg_noisebasedparticleeffect.h
 	"EG_Utility.h"
 	"EG_NoiseBasedParticle.h"
 	<GL/glew.h>
@@ -39008,13 +39033,13 @@
 	<cstdio>
 	"define.h"
 
-1433571973 source:d:\martin\programming\c and c++\sdl\explosion generator\eg_renderer\eg_billboardrenderer.cpp
+1433663803 source:d:\martin\programming\c and c++\sdl\explosion generator\eg_renderer\eg_billboardrenderer.cpp
 	"EG_BillboardRenderer.h"
 
-1433571908 d:\martin\programming\c and c++\sdl\explosion generator\eg_renderer\eg_billboardrenderer.h
+1433663591 d:\martin\programming\c and c++\sdl\explosion generator\eg_renderer\eg_billboardrenderer.h
 	"EG_Renderer.h"
 
-1433563494 d:\martin\programming\c and c++\sdl\explosion generator\eg_renderer\eg_renderer.h
+1433663716 d:\martin\programming\c and c++\sdl\explosion generator\eg_renderer\eg_renderer.h
 	"define.h"
 	"EG_Shader.h"
 	"pipeline.h"
@@ -39112,6 +39137,12 @@
 	"EG_DirectionalLight.h"
 	"EG_PointLight.h"
 
+1433664081 source:d:\martin\programming\c and c++\sdl\explosion generator\eg_renderer\eg_noisebasedparticleeffectrenderer.cpp
+	"EG_NoiseBasedParticleEffectRenderer.h"
+
+1433664292 d:\martin\programming\c and c++\sdl\explosion generator\eg_renderer\eg_noisebasedparticleeffectrenderer.h
+	"EG_Renderer.h"
+
 1432048655 source:d:\martin\programming\c and c++\sdl\explosion generator\eg_renderer\eg_reflectionrenderer.cpp
 	"EG_ReflectionRenderer.h"
 
@@ -39125,7 +39156,7 @@
 	<sstream>
 	"EG_Renderer.h"
 
-1433563122 source:d:\martin\programming\c and c++\sdl\explosion generator\eg_renderer\eg_renderer.cpp
+1433663736 source:d:\martin\programming\c and c++\sdl\explosion generator\eg_renderer\eg_renderer.cpp
 	"EG_Renderer.h"
 
 1432013312 source:d:\martin\programming\c and c++\sdl\explosion generator\eg_renderer\eg_renderer_gui\eg_buttonrenderer.cpp
@@ -39199,10 +39230,10 @@
 	<sstream>
 	"EG_Renderer.h"
 
-1433563607 source:d:\martin\programming\c and c++\sdl\explosion generator\eg_renderer\eg_texturerenderer.cpp
+1433663764 source:d:\martin\programming\c and c++\sdl\explosion generator\eg_renderer\eg_texturerenderer.cpp
 	"EG_TextureRenderer.h"
 
-1433562192 d:\martin\programming\c and c++\sdl\explosion generator\eg_renderer\eg_texturerenderer.h
+1433661821 d:\martin\programming\c and c++\sdl\explosion generator\eg_renderer\eg_texturerenderer.h
 	"pipeline.h"
 	<GL/glew.h>
 	<cstdlib>

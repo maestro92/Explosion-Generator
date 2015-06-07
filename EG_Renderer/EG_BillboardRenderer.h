@@ -10,6 +10,7 @@ class EG_BillboardRenderer: public EG_Renderer
         EG_BillboardRenderer();
         ~EG_BillboardRenderer();
 
+/*
         GLuint m_modelViewProjectionMatrixUniLoc;
         GLuint m_cameraPositionUniLoc;
         GLuint m_cameraViewDirectionUniLoc;
@@ -18,6 +19,11 @@ class EG_BillboardRenderer: public EG_Renderer
         glm::mat4 m_modelViewProjectionMatrix;
         glm::vec3 m_cameraPosition;
         glm::vec3 m_cameraViewDir;
+*/
+
+        Mat4DataPair m_MVPMatrixDataPair;
+        Vec3DataPair m_cameraPositionDataPair;
+        Vec3DataPair m_cameraViewDirDataPair;
 
         void init(int nShaders);
         void setModelViewProjectionMatrix(glm::mat4 vpMat);

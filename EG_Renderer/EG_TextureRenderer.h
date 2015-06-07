@@ -23,20 +23,19 @@ class EG_TextureRenderer : public EG_Renderer
 
         GLuint m_textureUnitUniLoc;
         GLuint m_pixelSizeUniLoc;
-
-        void init(int nShaders);
-
-        void setTextureUnit(unsigned int TextureUnit);
-        void setPixelSize(unsigned int Width, unsigned int Height);
-
-
-        virtual void loadUniformLocations(pipeline& p, int pass);
-
-        void renderFullScreen(GLuint TextureId, EG_QuadModelABS& model);
-
         int m_width;
         int m_height;
         int m_texUnit;
+
+
+
+
+        void init(int nShaders);
+        void setTextureUnit(unsigned int TextureUnit);
+        void setPixelSize(unsigned int Width, unsigned int Height);
+        virtual void loadUniformLocations(pipeline& p, int pass);
+        void renderFullScreen(GLuint TextureId, EG_QuadModelABS& model);
+
 
 
    //     void render(unsigned int TextureId, GLuint FboTarget, int Width, int Height, pipeline& m_pipeline);

@@ -33,7 +33,10 @@ EG_SurfacePod EG_NoiseBasedParticleEffect::createSurface(int width, int height)
 
 
 
-void EG_NoiseBasedParticleEffect::init(string tex)
+void EG_NoiseBasedParticleEffect::init(int width, int height, string tex)
 {
+    m_backgroundSurface = createSurface(width, height);
+    m_particleSurface = createSurface(width, height);
+
     m_spriteTexture = EG_Utility::loadTexture(tex);
 }

@@ -49,6 +49,47 @@ struct Matrices_Location
 };
 
 
+struct DataPair
+{
+    GLuint uniLoc;
+};
+
+struct IntDataPair : public DataPair
+{
+    int value;
+};
+
+struct FloatDataPair : public DataPair
+{
+    float value;
+};
+
+struct Vec2DataPair : public DataPair
+{
+    glm::vec2 value;
+};
+
+struct Vec3DataPair : public DataPair
+{
+    glm::vec3 value;
+};
+
+struct Vec4DataPair : public DataPair
+{
+    glm::vec4 value;
+};
+
+struct Mat3DataPair : public DataPair
+{
+    glm::mat3 value;
+};
+
+struct Mat4DataPair : public DataPair
+{
+    glm::mat4 value;
+};
+
+
 class EG_Renderer
 {
     public:
@@ -65,11 +106,15 @@ class EG_Renderer
 
 
         GLuint GetUniformLocation(Shader* s, const char* UniformName);
-        GLuint getUniLoc(Shader* s, const char* UniformName);
+
+
         bool Init_Shader_GL_Location(Shader* s, Matrices_Location& Mat);
 
         virtual void loadUniformLocations(pipeline& p, int RenderPassID);
         virtual void render();
+
+        void initDataPairUniLoc(DataPair* p, Shader* s, const char* name);
+        GLuint getUniLoc(Shader* s, const char* name);
 
         void setUniLoc(GLuint location, int value);
         void setUniLoc(GLuint location, float value);
@@ -81,10 +126,23 @@ class EG_Renderer
         void setUniformLocation(GLuint location, int value);
         void setUniformLocation(GLuint location, float value);
         void setUniformLocation(GLuint location, float x, float y);
+        void setUniformLocation(GLuint location, glm::vec2 value);
         void setUniformLocation(GLuint location, glm::vec3 value);
         void setUniformLocation(GLuint location, glm::vec4 value);
         void setUniformLocation(GLuint location, glm::mat4 value);
         void setUniformLocationTranspose(GLuint location, glm::mat4 value);
+
+        void setDataPairUniLoc(IntDataPair& dp);
+        void setDataPairUniLoc(FloatDataPair& dp);
+        void setDataPairUniLoc(Vec2DataPair& dp);
+        void setDataPairUniLoc(Vec3DataPair& dp);
+        void setDataPairUniLoc(Vec4DataPair& dp);
+    //    void setDataPairUniLoc(Mat3DataPair& dp);
+        void setDataPairUniLoc(Mat4DataPair& dp);
+
+        void getAllMatrixUniLocs();
+        bool getMatrixUniLocs(Shader* s, Matrices_Location& Mat);
+
     public:
         Matrices_Location* Matrices_UniLoc;
         Shader** m_shaders;

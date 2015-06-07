@@ -136,6 +136,8 @@
 		<Unit filename="EG_Renderer/EG_FullColorRenderer.h" />
 		<Unit filename="EG_Renderer/EG_InstancedRenderer.cpp" />
 		<Unit filename="EG_Renderer/EG_InstancedRenderer.h" />
+		<Unit filename="EG_Renderer/EG_NoiseBasedParticleEffectRenderer.cpp" />
+		<Unit filename="EG_Renderer/EG_NoiseBasedParticleEffectRenderer.h" />
 		<Unit filename="EG_Renderer/EG_ReflectionRenderer.cpp" />
 		<Unit filename="EG_Renderer/EG_ReflectionRenderer.h" />
 		<Unit filename="EG_Renderer/EG_RenderTechnique_FullColor.h" />

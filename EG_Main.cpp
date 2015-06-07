@@ -21,7 +21,7 @@ using namespace std;
 #define SKY_BOX 1
 
 #define ORBIT_CAMERA_FLAG 1
-#define ANIMATED_OBJECT_FLAG 1
+#define ANIMATED_OBJECT_FLAG 0
 #define INSTANCED_RENDERING 1
 
 glm::vec3 ImpulsePosition1( GridWidth / 2.0f, GridHeight - (int) SplatRadius / 2.0f, GridDepth / 2.0f);
@@ -350,7 +350,7 @@ void ExplosionGenerator::initObjects()
 
  //   nbp_particleSurface = EG_NoiseBasedParticleEffect::createSurface(SCREEN_WIDTH, SCREEN_HEIGHT);
  //   nbp_backgroundSurface = EG_NoiseBasedParticleEffect::createSurface(SCREEN_WIDTH, SCREEN_HEIGHT);
-    m_nbpEffect.init("Assets/Images/Sprite.png");
+    m_nbpEffect.init(SCREEN_WIDTH, SCREEN_HEIGHT, "Assets/Images/Sprite.png");
 }
 
 
@@ -1373,53 +1373,53 @@ void ExplosionGenerator::forwardRender()
     l_SphereEffect.updateMatrices(m_pipeline);
 
 #if SMOKE_EFFECT
-    r_Technique = &r_depthRenderer;
-    /// getting the depth of the scene
-    m_pipeline.matrixMode(MODEL_MATRIX);
-    glBindFramebuffer(GL_FRAMEBUFFER, FBO1);
-//    glFramebufferTexture2D(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_TEXTURE_2D, depthTexture, 0);
-    glEnable(GL_DEPTH_TEST);
-    glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT);
-        m_pipeline.pushMatrix();
-        r_Technique->enableShader(RENDER_PASS1);
+        r_Technique = &r_depthRenderer;
+        /// getting the depth of the scene
+        m_pipeline.matrixMode(MODEL_MATRIX);
+        glBindFramebuffer(GL_FRAMEBUFFER, FBO1);
+    //    glFramebufferTexture2D(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_TEXTURE_2D, depthTexture, 0);
+        glEnable(GL_DEPTH_TEST);
+        glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT);
+            m_pipeline.pushMatrix();
+            r_Technique->enableShader(RENDER_PASS1);
 
-        o_wall.renderGroup(m_pipeline, r_Technique, RENDER_PASS1, ground);
-        o_wall.renderGroup(m_pipeline, r_Technique, RENDER_PASS1, wall_negative_z);
-        o_wall.renderGroup(m_pipeline, r_Technique, RENDER_PASS1, wall_positive_x);
+            o_wall.renderGroup(m_pipeline, r_Technique, RENDER_PASS1, ground);
+            o_wall.renderGroup(m_pipeline, r_Technique, RENDER_PASS1, wall_negative_z);
+            o_wall.renderGroup(m_pipeline, r_Technique, RENDER_PASS1, wall_positive_x);
 
-#if SPHERE_EFFECT
-    #if INSTANCED_RENDERING
-      //      l_SphereEffect.show(m_pipeline, r_Technique, RENDER_PASS1, sphere);
-    #else
-          l_SphereEffect.render(m_pipeline, r_Technique, RENDER_PASS1, testSphere);
+    #if SPHERE_EFFECT
+        #if INSTANCED_RENDERING
+          //      l_SphereEffect.show(m_pipeline, r_Technique, RENDER_PASS1, sphere);
+        #else
+              l_SphereEffect.render(m_pipeline, r_Technique, RENDER_PASS1, testSphere);
+        #endif
     #endif
-#endif
 
-#if CUBE_SPHERE_EFFECT
-            l_Cube_SphereEffect.show(m_pipeline, Depth_CameraRender->getProgramId(), cube);
-#endif
-        o_reflectionSphere.renderGroup(m_pipeline, r_Technique, RENDER_PASS1, smoothSphere);
-      //  if(!isFirstPersonCamera)
-      //      thirdPersonPovCamera.render(m_pipeline, r_Technique, RENDER_PASS1);
-        r_Technique->disableShader(RENDER_PASS1);
-
-
-
-#if SPHERE_EFFECT
-    #if INSTANCED_RENDERING
-            r_Technique = &r_instancedRenderer;
-            l_SphereEffect.instancedRender(m_pipeline, r_Technique, RENDER_PASS1, instancedSphere);
+    #if CUBE_SPHERE_EFFECT
+                l_Cube_SphereEffect.show(m_pipeline, Depth_CameraRender->getProgramId(), cube);
     #endif
-#endif
+            o_reflectionSphere.renderGroup(m_pipeline, r_Technique, RENDER_PASS1, smoothSphere);
+          //  if(!isFirstPersonCamera)
+          //      thirdPersonPovCamera.render(m_pipeline, r_Technique, RENDER_PASS1);
+            r_Technique->disableShader(RENDER_PASS1);
 
 
 
-#if ANIMATED_OBJECT_FLAG
- //   r_skinning.m_boneTransforms = mainAvatar.m_boneTransforms;
-        renderAnimatedObject(m_pipeline, RENDER_PASS1);
-#endif
-    m_pipeline.popMatrix();
-    glBindFramebuffer(GL_FRAMEBUFFER, 0);
+    #if SPHERE_EFFECT
+        #if INSTANCED_RENDERING
+                r_Technique = &r_instancedRenderer;
+                l_SphereEffect.instancedRender(m_pipeline, r_Technique, RENDER_PASS1, instancedSphere);
+        #endif
+    #endif
+
+
+
+    #if ANIMATED_OBJECT_FLAG
+     //   r_skinning.m_boneTransforms = mainAvatar.m_boneTransforms;
+            renderAnimatedObject(m_pipeline, RENDER_PASS1);
+    #endif
+        m_pipeline.popMatrix();
+        glBindFramebuffer(GL_FRAMEBUFFER, 0);
 #endif
 
 
@@ -1521,6 +1521,13 @@ void ExplosionGenerator::forwardRender()
     r_textureRenderer.setPixelSize(SCREEN_WIDTH, SCREEN_HEIGHT);
     r_textureRenderer.renderFullScreen(m_billboardList.m_billboardTexture, o_fullScreenQuad);
 */
+
+
+
+
+
+
+
     renderGUI();
 
 #endif

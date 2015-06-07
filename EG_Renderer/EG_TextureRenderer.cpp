@@ -23,6 +23,9 @@ void EG_TextureRenderer::init(int nShaders)
     m_textureUnitUniLoc    = getUniLoc(m_shaders[RENDER_PASS1], "gTexture");
     m_pixelSizeUniLoc      = getUniLoc(m_shaders[RENDER_PASS1], "gPixelSize");
 
+
+//    initDataPairUniLoc(&m_colorPair,        m_shaders[RENDER_PASS1], "gColor");
+
     initMemberVariables();
 }
 
