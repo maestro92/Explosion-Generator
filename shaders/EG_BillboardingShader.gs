@@ -29,14 +29,13 @@ void main()
 
                                                               
     vec3 Pos = gl_in[0].gl_Position.xyz;                                            
- //   vec3 toCamera = normalize(gCameraPosition - Pos);                                    
+    vec3 toCamera = normalize(gCameraPosition - Pos);                                    
     vec3 up = vec3(0.0, 1.0, 0.0);                                                  
- //   vec3 right = cross(toCamera, up);                                               
-    vec3 right = cross(-gCameraViewDir, up);
+    vec3 right = cross(toCamera, up);                                               
     right = normalize(right);
 
-    vec3 newup = cross(gCameraViewDir, right);
-    newup = normalize(newup);
+    up = cross(right, toCamera);
+    up = normalize(up);
 
     // we're growing a quad around a point
     
@@ -50,18 +49,18 @@ void main()
     TexCoord = vec2(0.0, 0.0);                                                      
     EmitVertex();                                                                   
                                                                                     
-    Pos += newup;                                                                   
+    Pos += up;                                                                   
     gl_Position = gModelViewProjectionMatrix * vec4(Pos, 1.0);                                             
     TexCoord = vec2(0.0, 1.0);                                                      
     EmitVertex();                                                                   
                                                                                     
-    Pos -= newup;                                                                   
+    Pos -= up;                                                                   
     Pos += right;                                                                   
     gl_Position = gModelViewProjectionMatrix * vec4(Pos, 1.0);                                             
     TexCoord = vec2(1.0, 0.0);                                                      
     EmitVertex();                                                                   
                                                                                     
-    Pos += newup;                                                                   
+    Pos += up;                                                                   
     gl_Position = gModelViewProjectionMatrix * vec4(Pos, 1.0);                                             
     TexCoord = vec2(1.0, 1.0);                                                      
     EmitVertex();                                                                   

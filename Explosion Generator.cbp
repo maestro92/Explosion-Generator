@@ -106,6 +106,9 @@
 		<Unit filename="EG_Model/EG_ModelABS.cpp" />
 		<Unit filename="EG_Model/EG_ModelABS.h" />
 		<Unit filename="EG_Model/EG_VertexData.h" />
+		<Unit filename="EG_NoiseBasedParticleEffect/EG_NoiseBasedParticle.h" />
+		<Unit filename="EG_NoiseBasedParticleEffect/EG_NoiseBasedParticleEffect.cpp" />
+		<Unit filename="EG_NoiseBasedParticleEffect/EG_NoiseBasedParticleEffect.h" />
 		<Unit filename="EG_ParticleEffect.h" />
 		<Unit filename="EG_Renderer/EG_BillboardRenderer.cpp" />
 		<Unit filename="EG_Renderer/EG_BillboardRenderer.h" />
@@ -162,8 +165,12 @@
 		<Unit filename="EG_SphereParticleEffect.h" />
 		<Unit filename="EG_TimeManager.cpp" />
 		<Unit filename="EG_TimeManager.h" />
-		<Unit filename="EG_Utility.cpp" />
-		<Unit filename="EG_Utility.h" />
+		<Unit filename="EG_Utility/EG_Utility.cpp" />
+		<Unit filename="EG_Utility/EG_Utility.h" />
+		<Unit filename="EG_Utility/EG_Utility_AssimpMath.cpp" />
+		<Unit filename="EG_Utility/EG_Utility_Debug.cpp" />
+		<Unit filename="EG_Utility/EG_Utility_GL.cpp" />
+		<Unit filename="EG_Utility/EG_Utility_Math.cpp" />
 		<Unit filename="EG_WorldObject/EG_Skybox.cpp" />
 		<Unit filename="EG_WorldObject/EG_Skybox.h" />
 		<Unit filename="EG_WorldObject/EG_Smoke.cpp" />

@@ -207,7 +207,8 @@ bool CollisionDetection_HGrid::UpdateSphereSphereCollision(h_Particle * h_par, v
                             {
                                 neighbors.push_back(neighbor);
                                 // add it to the ParticleCollisionPairList
-                                cout << "I'm Over here" << endl;
+//                                cout << "I'm Over here" << endl;
+
 
 
                                 if (CheckSphereSphereCollision(h_par, neighbor, Collision, dt))
@@ -239,9 +240,9 @@ bool CollisionDetection_HGrid::UpdateSphereSphereCollision(h_Particle * h_par, v
                                          C_Pair->h_par2 = h_par;
                                     }
 
-                                    std::bitset<32> x(C_hash.value);
-                                    std::cout << x << endl;
-                                    cout << "C_hash value is " << C_hash.value << endl;
+//                                    std::bitset<32> x(C_hash.value);
+//                                    std::cout << x << endl;
+//                                    cout << "C_hash value is " << C_hash.value << endl;
                                     if (ParticleCollisionPairList.find(C_hash.value) == ParticleCollisionPairList.end())
                                     {
                                         /*

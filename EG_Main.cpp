@@ -106,7 +106,7 @@ ExplosionGenerator::ExplosionGenerator()
     initFrameBuffers();
     smoke.init();
     initRenderers();
-    initBillboardList();
+ //   initBillboardList();
 
 #if DEFERRED_SHADING
     r_deferredShadingGeometryPass.init(1);
@@ -127,7 +127,6 @@ ExplosionGenerator::ExplosionGenerator()
     skyboxGBuffer.init37(512, 512);
 #endif
     initLights();
-
 
     m_skybox.init();
 
@@ -210,38 +209,27 @@ void ExplosionGenerator::initOpenGL()
 void ExplosionGenerator::initFrameBuffers()
 {
     /// shadowMap Texture
-    glGenFramebuffers(1,&FBO);
+    FBO = EG_Utility::createFBO();
+//    glGenFramebuffers(1,&FBO);
 	glBindFramebuffer(GL_FRAMEBUFFER,FBO);
 
     shadowMap = EG_Utility::createDepthTexture(shadowMapWidth, shadowMapheight);
 
     glBindTexture(GL_TEXTURE_2D, shadowMap);
     glFramebufferTexture2D(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_TEXTURE_2D, shadowMap, 0);
-
-
-    int i=glCheckFramebufferStatus(GL_FRAMEBUFFER);
-	if(i!=GL_FRAMEBUFFER_COMPLETE)
-	{
-		std::cout << "Framebuffer is not OK, status=" << i << std::endl;
-	}
+	EG_Utility::errorCheckFBO();
 	glBindFramebuffer(GL_FRAMEBUFFER,0);
 
 
-
-    glGenFramebuffers(1,&FBO1);
+    FBO1 = EG_Utility::createFBO();
+//    glGenFramebuffers(1,&FBO1);
 	glBindFramebuffer(GL_FRAMEBUFFER,FBO1);
     /// depthTexture
     depthTexture = EG_Utility::createDepthTexture(SCREEN_WIDTH, SCREEN_HEIGHT);
 
     glBindTexture(GL_TEXTURE_2D, depthTexture);
     glFramebufferTexture2D(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_TEXTURE_2D, depthTexture, 0);
-
-
-    i=glCheckFramebufferStatus(GL_FRAMEBUFFER);
-	if(i!=GL_FRAMEBUFFER_COMPLETE)
-	{
-		std::cout << "Framebuffer is not OK, status=" << i << std::endl;
-	}
+    EG_Utility::errorCheckFBO();
 	glBindFramebuffer(GL_FRAMEBUFFER,0);
 }
 
@@ -358,6 +346,11 @@ void ExplosionGenerator::initObjects()
     o_animatedBob.setScale(0.1, 0.1, 0.1);
     o_animatedBob.setOrientation(-90, glm::vec3(1.0,0.0,0.0));
 #endif
+    m_billboardList.init("Assets/Images/monster_hellknight.png");
+
+ //   nbp_particleSurface = EG_NoiseBasedParticleEffect::createSurface(SCREEN_WIDTH, SCREEN_HEIGHT);
+ //   nbp_backgroundSurface = EG_NoiseBasedParticleEffect::createSurface(SCREEN_WIDTH, SCREEN_HEIGHT);
+    m_nbpEffect.init("Assets/Images/Sprite.png");
 }
 
 
@@ -466,12 +459,6 @@ void ExplosionGenerator::initEmitter()
 
 }
 
-void ExplosionGenerator::initBillboardList()
-{
-    m_billboardList.init("Assets/Images/monster_hellknight.png");
-
-// EG_Utility::loadTexture("assets/font.jpg");
-}
 
 
 void ExplosionGenerator::start()
@@ -848,8 +835,8 @@ void ExplosionGenerator::update()
 
 
 
-    std::bitset<32> flag(m_GUIComponentsFlags);
-    cout << flag << endl;
+//    std::bitset<32> flag(m_GUIComponentsFlags);
+//    cout << flag << endl;
 
 
 
@@ -1492,7 +1479,7 @@ void ExplosionGenerator::forwardRender()
 
 
 
-
+#if 1
     r_Technique = &r_billBoardRenderer;
 
     m_pipeline.pushMatrix();
@@ -1522,7 +1509,7 @@ void ExplosionGenerator::forwardRender()
 //    r_Technique =
  //   o_fullScreenQuad.render();
 
-
+#endif
 
 
  //   glDepthFunc(GL_LESS);

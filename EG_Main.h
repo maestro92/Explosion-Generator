@@ -14,6 +14,7 @@
 #include "EG_AllLights.h"
 #include "EG_ImportedAnimatedModel.h"
 #include "EG_BillboardList.h"
+#include "EG_NoiseBasedParticleEffect.h"
 
 #include "EG_DeferredShadingGeometryPass.h"
 #include "EG_DeferredShadingSkybox.h"
@@ -328,6 +329,11 @@ class ExplosionGenerator
 
 
         EG_Emitter* m_emitter;
+
+        EG_NoiseBasedParticleEffect m_nbpEffect;
+
+
+
     public:
 
         ExplosionGenerator();
@@ -343,7 +349,7 @@ class ExplosionGenerator
         void initOpenGL();
         void initEmitter();
 
-        void initBillboardList();
+    //    void initBillboardList();
  //       void initShader();
         void initModels();
         void initObjects();
@@ -351,6 +357,7 @@ class ExplosionGenerator
         void initRenderers();
         void initRendererLightParams(EG_Renderer* r_ptr);
         void initLights();
+  //      void initNoiseBasedParticles();
 
         void initGUI();
 

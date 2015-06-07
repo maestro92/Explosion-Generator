@@ -1,0 +1,113 @@
+#ifndef EG_UTILITY_H
+#define EG_UTILITY_H
+
+#include <cstdlib>
+#include <vector>
+#include <iostream>
+#include <sstream> //You'll need to include this header to use 'std::stringstream'.
+#include <string>
+#include <algorithm>
+#include <fstream>
+#include <cstdio>
+
+
+#define NO_SDL_GLEXT
+#include <GL/glew.h>
+
+#include "EG_Shader.h"
+
+
+#include "define.h"
+#include <assimp/cimport.h>
+#include <assimp/Importer.hpp>      // C++ importer interface
+#include <assimp/scene.h>
+#include <assimp/postprocess.h>
+#include <cstdlib>
+#include <iostream>
+#include <stdio.h>
+#include <iomanip>
+
+#include "SDL/SDL.h"
+#include "SDL/SDL_image.h"
+
+
+using namespace std;
+
+//typedef std::<EG_NoiseBasedParticle> EG_NoiseBasedParticleList;
+
+
+
+
+
+class EG_Utility
+{
+    public:
+        EG_Utility();
+        ~EG_Utility();
+
+        /// EG_Utility_Math.cpp
+        static float DEGREE_TO_RADIAN;
+        static float RADIAN_TO_DEGREE;
+        static string floatToStr(float value);
+        static float randFloat(float min=0, float max=1);
+
+
+        /// EG_Utility_GL.cpp
+        static void errorCheck();
+        static GLuint createFBO();
+        static void errorCheckFBO();
+
+        static SDL_Surface* loadRawImage(string filename);
+        static SDL_Surface* loadSDLImage(string filename);
+
+        static GLuint loadTexture(string filename);
+        static GLuint createTexture(int w, int h);
+        static GLuint createDepthTexture(int, int h);
+        static GLuint createCubemapTexture();
+        static GLuint createCubemapTexture(string* filenames);
+        static void setTextureParameters(int w, int h, int format);
+        static void setCubemapTextureParameters();
+
+
+        template<typename T>
+            static vector<T> reserveVector(int size);
+
+        /// EG_Utility_AssimpMath.cpp
+        static glm::vec3 toGlmVec(aiVector3D& v2);
+        static glm::mat4 toGlmMat(aiMatrix3x3 m2);
+        static glm::mat4 toGlmMat(aiMatrix4x4& m2);
+        static glm::mat4 toGlmMat(const aiMatrix4x4& m2);
+        static glm::vec3 scaleGlmVec3(const glm::vec3 v, float s);
+        static glm::vec3 scaleGlmVec3(const glm::vec3 v, float s1, float s2, float s3);
+
+
+
+        /// EG_Utility_Debug.cpp
+        static void debug(string s, string s2);
+        static void debug(string s, unsigned int i);
+        static void debug(string s, int i);
+        static void debug(string s, float f);
+        static void debug(string s, glm::vec2 v);
+        static void debug(string s, glm::mat4 m);
+        static void debug(string s, glm::vec3 v);
+        static void checkGLError();
+
+    //    static GLuint GetUniformLocation(shader* s, const char* UniformName);
+
+
+
+
+};
+
+
+
+template<typename T>
+vector<T> EG_Utility::reserveVector(int size)
+{
+    vector<T> v;
+    v.reserve(size);
+    return v;
+}
+
+
+#endif

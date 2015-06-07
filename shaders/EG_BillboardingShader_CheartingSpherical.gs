@@ -23,26 +23,19 @@ out vec2 TexCoord;
 
 void main()                                                                         
 {                     
- //   mat4 mvp = gModelViewProjectionMatrix;
-
-
-
                                                               
-    vec3 Pos = gl_in[0].gl_Position.xyz;                                            
- //   vec3 toCamera = normalize(gCameraPosition - Pos);                                    
-    vec3 up = vec3(0.0, 1.0, 0.0);                                                  
- //   vec3 right = cross(toCamera, up);                                               
+    vec3 Pos = gl_in[0].gl_Position.xyz;                                                                         
+    vec3 up = vec3(0.0, 1.0, 0.0);                                                                                          
     vec3 right = cross(-gCameraViewDir, up);
     right = normalize(right);
 
     vec3 newup = cross(gCameraViewDir, right);
     newup = normalize(newup);
 
+
     // we're growing a quad around a point
-    
     // the initial point is considered to be
     // at the center of the bottom of the quad                                                             
-    
     // generating two front facing triangles from it
     // subtracting half of right 
     Pos -= (right * 0.5);                                                           
