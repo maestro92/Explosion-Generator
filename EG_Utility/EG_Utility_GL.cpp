@@ -109,7 +109,7 @@ GLuint EG_Utility::createTexture(int w, int h)
     glGenTextures(1,&textureID);
 	glBindTexture(GL_TEXTURE_2D,textureID);
 
-    setTextureParameters(w, h, GL_RGBA8);
+    setTextureParameters(w, h, GL_RGBA8, GL_RGBA);
     errorCheck();
 
     // unbind the texture
@@ -125,7 +125,7 @@ GLuint EG_Utility::createDepthTexture(int w, int h)
     glGenTextures(1,&textureID);
 	glBindTexture(GL_TEXTURE_2D,textureID);
 
-    setTextureParameters(w, h, GL_DEPTH_COMPONENT);
+    setTextureParameters(w, h, GL_DEPTH_COMPONENT, GL_DEPTH_COMPONENT);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_COMPARE_MODE, GL_COMPARE_R_TO_TEXTURE);
 
     errorCheck();
@@ -137,9 +137,9 @@ GLuint EG_Utility::createDepthTexture(int w, int h)
 
 
 
-void EG_Utility::setTextureParameters(int w, int h, int format)
+void EG_Utility::setTextureParameters(int w, int h, int internal_format, int format)
 {
-   	glTexImage2D(GL_TEXTURE_2D, 0, format, w, h, 0, format, GL_FLOAT, NULL);
+   	glTexImage2D(GL_TEXTURE_2D, 0, internal_format, w, h, 0, format, GL_FLOAT, NULL);
 
 	glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MAG_FILTER,GL_NEAREST);
 	glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MIN_FILTER,GL_NEAREST);

@@ -67,7 +67,7 @@ class EG_Utility
         static GLuint createDepthTexture(int, int h);
         static GLuint createCubemapTexture();
         static GLuint createCubemapTexture(string* filenames);
-        static void setTextureParameters(int w, int h, int format);
+        static void setTextureParameters(int w, int h, int internal_format, int format);
         static void setCubemapTextureParameters();
 
 
@@ -76,8 +76,11 @@ class EG_Utility
         static glm::mat4 toGlmMat(aiMatrix3x3 m2);
         static glm::mat4 toGlmMat(aiMatrix4x4& m2);
         static glm::mat4 toGlmMat(const aiMatrix4x4& m2);
-        static glm::vec3 scaleGlmVec3(const glm::vec3 v, float s);
-        static glm::vec3 scaleGlmVec3(const glm::vec3 v, float s1, float s2, float s3);
+
+        static glm::vec2 scaleGlmVec(const glm::vec2 v, float s);
+        static glm::vec2 scaleGlmVec(const glm::vec2 v, float s1, float s2);
+        static glm::vec3 scaleGlmVec(const glm::vec3 v, float s);
+        static glm::vec3 scaleGlmVec(const glm::vec3 v, float s1, float s2, float s3);
 
 
         /// EG_Utility_Debug.cpp

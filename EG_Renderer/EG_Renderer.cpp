@@ -201,13 +201,13 @@ void EG_Renderer::getAllMatrixUniLocs()
 
 bool EG_Renderer::getMatrixUniLocs(Shader* s, Matrices_Location& Mat)
 {
-    Mat.ModelviewProjection = getUniLoc( s, "m_ModelviewProjection");
-    Mat.ModelviewMatrix     = getUniLoc( s, "m_Modelview");
-    Mat.ViewMatrix          = getUniLoc( s, "m_ViewMatrix");
-    Mat.ProjectionMatrix    = getUniLoc( s, "m_ProjectionMatrix");
-    Mat.ModelMatrix         = getUniLoc( s, "m_ModelMatrix");
-    Mat.ViewNoRotateMatrix  = getUniLoc( s, "m_ViewNoRotateMatrix");
-    Mat.NormalMatrix        = getUniLoc( s, "m_normalMatrix");
+    Mat.ModelviewProjection = getUniLoc( s, "u_modelViewProjMat");
+    Mat.ModelviewMatrix     = getUniLoc( s, "u_modelViewMat");
+    Mat.ViewMatrix          = getUniLoc( s, "u_viewMat");
+    Mat.ProjectionMatrix    = getUniLoc( s, "u_projMat");
+    Mat.ModelMatrix         = getUniLoc( s, "u_modelMat");
+    Mat.ViewNoRotateMatrix  = getUniLoc( s, "u_viewNoRotateMat");
+    Mat.NormalMatrix        = getUniLoc( s, "u_normalMat");
 
     if(Mat.ModelviewProjection == -1 ||
        Mat.ModelviewMatrix == -1 ||

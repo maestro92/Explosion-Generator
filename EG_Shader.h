@@ -10,9 +10,19 @@
 #include <sstream>
 #include <stdio.h>
 
+/*
 enum AttributeSlot {
     SlotPosition,
     SlotTexCoord,
+};
+*/
+
+enum AttributeSlot {
+    SlotPosition,
+    SlotTexCoord,
+    SlotNormal,
+    SlotBirthTime,
+    SlotVelocity,
 };
 
 

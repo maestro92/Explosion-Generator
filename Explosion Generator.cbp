@@ -87,6 +87,8 @@
 		<Unit filename="EG_Light/EG_SpotLight.h" />
 		<Unit filename="EG_Main.cpp" />
 		<Unit filename="EG_Main.h" />
+		<Unit filename="EG_Math.cpp" />
+		<Unit filename="EG_Math.h" />
 		<Unit filename="EG_Model/EG_BuiltinModel/EG_CubeModel.cpp" />
 		<Unit filename="EG_Model/EG_BuiltinModel/EG_CubeModel.h" />
 		<Unit filename="EG_Model/EG_BuiltinModel/EG_QuadModelABS.cpp" />
@@ -106,6 +108,8 @@
 		<Unit filename="EG_Model/EG_ModelABS.cpp" />
 		<Unit filename="EG_Model/EG_ModelABS.h" />
 		<Unit filename="EG_Model/EG_VertexData.h" />
+		<Unit filename="EG_NoiseBasedParticleEffect/EG_Noise.cpp" />
+		<Unit filename="EG_NoiseBasedParticleEffect/EG_Noise.h" />
 		<Unit filename="EG_NoiseBasedParticleEffect/EG_NoiseBasedParticle.h" />
 		<Unit filename="EG_NoiseBasedParticleEffect/EG_NoiseBasedParticleEffect.cpp" />
 		<Unit filename="EG_NoiseBasedParticleEffect/EG_NoiseBasedParticleEffect.h" />

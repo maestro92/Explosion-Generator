@@ -2,7 +2,8 @@
 #ifndef EG_NOISE_BASED_PARTICLE_EFFECT_H_
 #define EG_NOISE_BASED_PARTICLE_EFFECT_H_
 
-
+#include "EG_Math.h"
+#include "EG_Noise.h"
 #include "EG_Utility.h"
 #include "EG_NoiseBasedParticle.h"
 
@@ -11,6 +12,10 @@
 #define NO_SDL_GLEXT
 #include <GL/glew.h>
 
+#include <stdio.h>      /* printf */
+#include <math.h>       /* sqrt */
+
+using namespace std;
 
 struct EG_SurfacePod
 {
@@ -23,9 +28,34 @@ struct EG_SurfacePod
 class EG_NoiseBasedParticleEffect
 {
     public:
-        static EG_SurfacePod createSurface(int width, int height);
+        EG_NoiseBasedParticleEffect();
+        ~EG_NoiseBasedParticleEffect();
 
+        EG_SurfacePod createSurface(int width, int height);
         void init(int width, int height);
+        void update(float dt, float timeStep);
+        glm::vec3 computeGradient(glm::vec3 p);
+        glm::vec3 computeCurl(glm::vec3 p);
+        float sampleDistance(glm::vec3 p);
+        glm::vec3 samplePotential(glm::vec3 p);
+
+        glm::vec3 getPerlinNoise3D(glm::vec3 src);
+        void seedParticles(float dt);
+/*
+        static EG_SurfacePod createSurface(int width, int height);
+        void init(int width, int height);
+        void update(float dt, float timeStep);
+        static glm::vec3 computeGradient(glm::vec3 p);
+        static glm::vec3 computeCurl(glm::vec3 p);
+        static float sampleDistance(glm::vec3 p);
+        static glm::vec3 samplePotential(glm::vec3 p);
+
+        static glm::vec3 getPerlinNoise3D(glm::vec3 src);
+        static void seedParticles(float dt);
+*/
+
+        glm::vec3 m_sphereCenter;
+        float m_sphereRadius;
 
         EG_QuadModelABS m_screenQuad;
 

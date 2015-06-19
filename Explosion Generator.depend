@@ -37059,12 +37059,12 @@
 	<sstream>
 	"EG_RenderTechnique.h"
 
-1433709602 source:d:\martin\programming\c and c++\sdl\explosion generator 2099 99 99 infinity\eg_shader.cpp
+1434606406 source:d:\martin\programming\c and c++\sdl\explosion generator 2099 99 99 infinity\eg_shader.cpp
 	"EG_Shader.h"
 	<stdio.h>
 	<string.h>
 
-1427512777 d:\martin\programming\c and c++\sdl\explosion generator 2099 99 99 infinity\eg_shader.h
+1434606399 d:\martin\programming\c and c++\sdl\explosion generator 2099 99 99 infinity\eg_shader.h
 	<GL/glew.h>
 	<string>
 	<vector>
@@ -37300,7 +37300,7 @@
 1431982921 source:d:\martin\programming\c and c++\sdl\explosion generator 2099 99 99 infinity\sceneloader.cpp
 	"sceneLoader.h"
 
-1433722283 source:d:\martin\programming\c and c++\sdl\explosion generator 2099 99 99 infinity\eg_main.cpp
+1434698143 source:d:\martin\programming\c and c++\sdl\explosion generator 2099 99 99 infinity\eg_main.cpp
 	"EG_Main.h"
 	"gl/gl.h"
 	"gl/glu.h"
@@ -38323,7 +38323,7 @@
 	<sstream>
 	"EG_Renderer.h"
 
-1433717150 source:d:\martin\programming\c and c++\sdl\explosion generator 2099 99 99 infinity\eg_renderer\eg_renderer.cpp
+1434674377 source:d:\martin\programming\c and c++\sdl\explosion generator 2099 99 99 infinity\eg_renderer\eg_renderer.cpp
 	"EG_Renderer.h"
 
 1432013312 source:d:\martin\programming\c and c++\sdl\explosion generator 2099 99 99 infinity\eg_renderer\eg_renderer_gui\eg_buttonrenderer.cpp
@@ -38514,7 +38514,7 @@
 1433648073 source:d:\martin\programming\c and c++\sdl\explosion generator 2099 99 99 infinity\eg_utility\eg_utility_debug.cpp
 	"EG_Utility.h"
 
-1433716504 d:\martin\programming\c and c++\sdl\explosion generator 2099 99 99 infinity\eg_utility\eg_utility.h
+1434697732 d:\martin\programming\c and c++\sdl\explosion generator 2099 99 99 infinity\eg_utility\eg_utility.h
 	<cstdlib>
 	<vector>
 	<iostream>
@@ -38537,26 +38537,30 @@
 	"SDL/SDL.h"
 	"SDL/SDL_image.h"
 
-1433649802 source:d:\martin\programming\c and c++\sdl\explosion generator 2099 99 99 infinity\eg_utility\eg_utility.cpp
+1434601531 source:d:\martin\programming\c and c++\sdl\explosion generator 2099 99 99 infinity\eg_utility\eg_utility.cpp
 	"EG_Utility.h"
 
 1433648466 source:d:\martin\programming\c and c++\sdl\explosion generator 2099 99 99 infinity\eg_utility\eg_utility_assimpmath.cpp
 	"EG_Utility.h"
 
-1433650040 source:d:\martin\programming\c and c++\sdl\explosion generator 2099 99 99 infinity\eg_utility\eg_utility_gl.cpp
+1434697774 source:d:\martin\programming\c and c++\sdl\explosion generator 2099 99 99 infinity\eg_utility\eg_utility_gl.cpp
 	"EG_Utility.h"
 
 1433649886 source:d:\martin\programming\c and c++\sdl\explosion generator 2099 99 99 infinity\eg_utility\eg_utility_math.cpp
 	"EG_Utility.h"
 
-1433720848 source:d:\martin\programming\c and c++\sdl\explosion generator 2099 99 99 infinity\eg_noisebasedparticleeffect\eg_noisebasedparticleeffect.cpp
+1434698124 source:d:\martin\programming\c and c++\sdl\explosion generator 2099 99 99 infinity\eg_noisebasedparticleeffect\eg_noisebasedparticleeffect.cpp
 	"EG_NoiseBasedParticleEffect.h"
 
-1433720837 d:\martin\programming\c and c++\sdl\explosion generator 2099 99 99 infinity\eg_noisebasedparticleeffect\eg_noisebasedparticleeffect.h
+1434601499 d:\martin\programming\c and c++\sdl\explosion generator 2099 99 99 infinity\eg_noisebasedparticleeffect\eg_noisebasedparticleeffect.h
+	"EG_Math.h"
+	"EG_Noise.h"
 	"EG_Utility.h"
 	"EG_NoiseBasedParticle.h"
 	"EG_QuadModelABS.h"
 	<GL/glew.h>
+	<stdio.h>
+	<math.h>
 
 1433654357 d:\martin\programming\c and c++\sdl\explosion generator 2099 99 99 infinity\eg_noisebasedparticleeffect\eg_noisebasedparticle.h
 	<cstdlib>
@@ -38569,12 +38573,21 @@
 	<cstdio>
 	"define.h"
 
-1433719388 source:d:\martin\programming\c and c++\sdl\explosion generator 2099 99 99 infinity\eg_renderer\eg_noisebasedparticleeffectrenderer.cpp
+1434684787 source:d:\martin\programming\c and c++\sdl\explosion generator 2099 99 99 infinity\eg_renderer\eg_noisebasedparticleeffectrenderer.cpp
 	"EG_NoiseBasedParticleEffectRenderer.h"
 
-1433718785 d:\martin\programming\c and c++\sdl\explosion generator 2099 99 99 infinity\eg_renderer\eg_noisebasedparticleeffectrenderer.h
+1434684601 d:\martin\programming\c and c++\sdl\explosion generator 2099 99 99 infinity\eg_renderer\eg_noisebasedparticleeffectrenderer.h
 	"EG_Renderer.h"
 
 1433714219 source:d:\martin\programming\c and c++\sdl\explosion generator 2099 99 99 infinity\eg_utility\eg_utility_gluniloc.cpp
+	"EG_Utility.h"
+
+1434594979 source:d:\martin\programming\c and c++\sdl\explosion generator 2099 99 99 infinity\eg_math.cpp
+
+1434601506 source:d:\martin\programming\c and c++\sdl\explosion generator 2099 99 99 infinity\eg_noisebasedparticleeffect\eg_noise.cpp
+	"EG_Noise.h"
+
+1434601481 d:\martin\programming\c and c++\sdl\explosion generator 2099 99 99 infinity\eg_noisebasedparticleeffect\eg_noise.h
+	"define.h"
 	"EG_Utility.h"
 

@@ -251,7 +251,7 @@ void ExplosionGenerator::initRenderers()
     r_billBoardRenderer.init(1);
     r_textureRenderer.init(1);
 
-    r_nbpRenderer.init(3);
+    r_nbpRenderer.init(2);
 }
 
 
@@ -973,6 +973,8 @@ void ExplosionGenerator::update()
     }
 
     smoke.update(addSmoke);
+    m_nbpEffect.update(0.0013, 5.0f);
+
 #endif
 
     if (m_explodeFlag)
@@ -1572,14 +1574,87 @@ void ExplosionGenerator::renderNoiseBasedParticleEffect()
     r_textureRenderer.setTextureUnit(0);
     r_textureRenderer.setPixelSize(SCREEN_WIDTH, SCREEN_HEIGHT);
     r_textureRenderer.renderFullScreen(m_nbpEffect.m_backgroundTexture, m_nbpEffect.m_backgroundSurface.FBO);
+//    r_textureRenderer.renderFullScreen(m_nbpEffect.m_backgroundTexture, 0);
 //    r_textureRenderer.renderFullScreen(m_billboardList.m_billboardTexture);
 
+    r_Technique = &r_nbpRenderer;
 
-    glBindFramebuffer(GL_FRAMEBUFFER, m_nbpEffect.m_particleSurface.FBO);
+/*
+    r_textureRenderer.setTextureUnit(0);
+    r_textureRenderer.setPixelSize(SCREEN_WIDTH, SCREEN_HEIGHT);
+    r_textureRenderer.renderFullScreen(m_nbpEffect.m_backgroundSurface.colorTexture, 0);
+    r_Technique = &r_nbpRenderer;
+*/
 
-
-
+#if 0
+//    glBindFramebuffer(GL_FRAMEBUFFER, m_nbpEffect.m_particleSurface.FBO);
     glBindFramebuffer(GL_FRAMEBUFFER, 0);
+    glClearColor(0,0,0,1);
+    glClear(GL_COLOR_BUFFER_BIT);
+
+        r_nbpRenderer.enableShader(RENDER_PASS1);
+            glActiveTexture(GL_TEXTURE0);
+            glBindTexture(GL_TEXTURE_2D, m_nbpEffect.m_backgroundSurface.depthTexture);
+            glActiveTexture(GL_TEXTURE1);
+            glBindTexture(GL_TEXTURE_2D, m_nbpEffect.m_spriteTexture);
+            glDisable(GL_DEPTH_TEST);
+            glEnable(GL_BLEND);
+
+            r_nbpRenderer.setColor(glm::vec4(0.0,0.0,0.0,1.0));
+            r_nbpRenderer.setFadeRate(5.0f * 0.75f);
+            r_nbpRenderer.setDepthTextureUnit(0);
+            r_nbpRenderer.setSpriteTextureUnit(1);
+            r_nbpRenderer.setTime(runningTime);
+            r_nbpRenderer.setPointSize(0.2f);
+            r_nbpRenderer.setInverseSize(glm::vec2(1.0f/SCREEN_WIDTH, 1.0f/SCREEN_HEIGHT));
+
+            r_nbpRenderer.loadUniformLocations(m_pipeline, RENDER_PASS1);
+
+            glBindBuffer(GL_ARRAY_BUFFER, 0);
+            glEnableVertexAttribArray(SlotPosition);
+            glEnableVertexAttribArray(SlotBirthTime);
+            glEnableVertexAttribArray(SlotVelocity);
+            unsigned char* pData = (unsigned char*) &m_nbpEffect.m_particles[0].px;
+            glVertexAttribPointer(SlotPosition, 3, GL_FLOAT, GL_FALSE, sizeof(EG_NoiseBasedParticle), pData);
+            glVertexAttribPointer(SlotBirthTime, 1, GL_FLOAT, GL_FALSE, sizeof(EG_NoiseBasedParticle), 12 + pData);
+            glVertexAttribPointer(SlotVelocity, 3, GL_FLOAT, GL_FALSE, sizeof(EG_NoiseBasedParticle), 16 + pData);
+                glDrawArrays(GL_POINTS, 0, m_nbpEffect.m_particles.size());
+            glDisableVertexAttribArray(SlotPosition);
+            glDisableVertexAttribArray(SlotBirthTime);
+            glDisableVertexAttribArray(SlotVelocity);
+            glDisable(GL_BLEND);
+            glBindTexture(GL_TEXTURE_2D, 0);
+
+        r_nbpRenderer.disableShader(RENDER_PASS1);
+#endif
+
+#if 1
+    pipeline temp_pipeline;
+    temp_pipeline.loadIdentity();
+    temp_pipeline.ortho(0,1,0,1,-1,1);
+
+    glDisable(GL_DEPTH_TEST);
+    glBindFramebuffer(GL_FRAMEBUFFER, 0);
+    glActiveTexture(GL_TEXTURE0);
+    glBindTexture(GL_TEXTURE_2D, m_nbpEffect.m_backgroundSurface.colorTexture);
+    glActiveTexture(GL_TEXTURE1);
+    glBindTexture(GL_TEXTURE_2D, m_nbpEffect.m_particleSurface.colorTexture);
+
+    r_nbpRenderer.enableShader(RENDER_PASS2);
+        r_nbpRenderer.setBackgroundTextureUnit(0);
+        r_nbpRenderer.setParticlesTextureUnit(1);
+        r_nbpRenderer.loadUniformLocations(temp_pipeline, RENDER_PASS2);
+        r_textureRenderer.o_fullScreenQuad.render();
+    r_nbpRenderer.disableShader(RENDER_PASS2);
+
+
+    glActiveTexture(GL_TEXTURE1);
+    glBindTexture(GL_TEXTURE_2D, 0);
+    glActiveTexture(GL_TEXTURE0);
+    glBindTexture(GL_TEXTURE_2D, 0);
+    glEnable(GL_DEPTH_TEST);
+#endif
+
  //   m_nbpEffect
   //  glEnable(GL_BLEND);
   //  glEnable(GL_DEPTH_TEST);

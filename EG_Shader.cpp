@@ -64,8 +64,8 @@ Shader::Shader(const char* vs_source, const char* gs_source, const char* fs_sour
     glAttachShader(program, fs);
 
 
-    glBindAttribLocation(program, SlotPosition, "Position");
-    glBindAttribLocation(program, SlotTexCoord, "TexCoord");
+  //  glBindAttribLocation(program, SlotPosition, "Position");
+  //  glBindAttribLocation(program, SlotTexCoord, "TexCoord");
     // links the program object
     glLinkProgram(program);
     // this will use this Shader program

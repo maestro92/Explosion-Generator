@@ -17,7 +17,7 @@ class EG_NoiseBasedParticleEffectRenderer : public EG_Renderer
         FloatDataPair m_depthPair;
         FloatDataPair m_scrollOffsetTimePair;
 
-        void setDepth(float color);
+        void setDepth(float depth);
         void setScrollOffsetTime(float value);
 
 
@@ -40,7 +40,15 @@ class EG_NoiseBasedParticleEffectRenderer : public EG_Renderer
 
 
         /// Composite Shader
+        FloatDataPair m_depthPair3;
+        IntDataPair m_backgroundTexturePair;
+        IntDataPair m_particlesTexturePair;
+        Vec2DataPair m_inverseSizePair3;
 
+        void setDepth3(float depth);
+        void setInverseSize3(glm::vec2 size);
+        void setBackgroundTextureUnit(int unit);
+        void setParticlesTextureUnit(int unit);
 
         virtual void loadUniformLocations(pipeline& p, int pass);
 };
