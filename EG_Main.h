@@ -383,7 +383,7 @@ class ExplosionGenerator
         void Render_to_CubeMapFace2(int face);
 
         void renderNoiseBasedParticleEffect();
-
+        void renderNoiseBasedParticleEffect2();
 
 /*
         void deferredShadingShow();

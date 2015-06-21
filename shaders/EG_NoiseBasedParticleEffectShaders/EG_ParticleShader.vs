@@ -14,9 +14,12 @@ out float vg_alpha;
 
 void main()
 {
+	gl_Position = vec4(Position,1.0);
+	/*
 	gl_Position = u_modelViewProjMat * vec4(Position,1.0);
 
 	vg_position = Position;
 	vg_velocity = normalize(Velocity);
 	vg_alpha = max(0.0, 1.0-(u_time - BirthTime) * u_fadeRate);
+*/
 }

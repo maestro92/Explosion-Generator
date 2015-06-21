@@ -26,7 +26,6 @@ void EG_NoiseBasedParticleEffectRenderer::init(int nShaders)
     initDataPairUniLoc(&m_scrollOffsetTimePair, m_shaders[RENDER_PASS1], RENDER_PASS1, "gScrollOffsetTime");
 */
 
-
     m_shaders[RENDER_PASS1] = new Shader("EG_NoiseBasedParticleEffectShaders/EG_ParticleShader.vs",
                                          "EG_NoiseBasedParticleEffectShaders/EG_ParticleShader.gs",
                                          "EG_NoiseBasedParticleEffectShaders/EG_ParticleShader.fs");
@@ -37,6 +36,11 @@ void EG_NoiseBasedParticleEffectRenderer::init(int nShaders)
     initDataPairUniLoc(&m_timePair,             m_shaders[RENDER_PASS1], RENDER_PASS1, "u_time");
     initDataPairUniLoc(&m_pointSizePair,        m_shaders[RENDER_PASS1], RENDER_PASS1, "u_pointSize");
     initDataPairUniLoc(&m_inverseSizePair,      m_shaders[RENDER_PASS1], RENDER_PASS1, "u_inverseSize");
+
+    initDataPairUniLoc(&m_MVPMatrixDataPair,            m_shaders[RENDER_PASS1], RENDER_PASS1, "u_modelViewProjMat2");
+    initDataPairUniLoc(&m_cameraPositionDataPair,       m_shaders[RENDER_PASS1], RENDER_PASS1, "u_cameraPosition");
+    initDataPairUniLoc(&m_cameraViewDirDataPair,        m_shaders[RENDER_PASS1], RENDER_PASS1, "u_cameraViewDir");
+
 
 
     m_shaders[RENDER_PASS2] = new Shader("EG_NoiseBasedParticleEffectShaders/EG_CompositeShader.vs",
@@ -60,6 +64,24 @@ void EG_NoiseBasedParticleEffectRenderer::setScrollOffsetTime(float value)
 {
 
 }
+
+
+void EG_NoiseBasedParticleEffectRenderer::setModelViewProjectionMatrix(glm::mat4 vpMat)
+{
+    m_MVPMatrixDataPair.value = vpMat;
+}
+
+void EG_NoiseBasedParticleEffectRenderer::setCameraPosition(glm::vec3 camPos)
+{
+    m_cameraPositionDataPair.value = camPos;
+}
+
+void EG_NoiseBasedParticleEffectRenderer::setCameraViewDir(glm::vec3 dir)
+{
+    m_cameraViewDirDataPair.value = dir;
+}
+
+
 
 
 
@@ -122,7 +144,6 @@ void EG_NoiseBasedParticleEffectRenderer::setParticlesTextureUnit(int unit)
 {
     m_particlesTexturePair.value = unit;
 }
-
 
 void EG_NoiseBasedParticleEffectRenderer::loadUniformLocations(pipeline& p, int pass)
 {

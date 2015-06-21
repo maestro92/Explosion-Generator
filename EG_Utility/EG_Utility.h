@@ -84,6 +84,7 @@ class EG_Utility
 
 
         /// EG_Utility_Debug.cpp
+        static void debug(string s);
         static void debug(string s, string s2);
         static void debug(string s, unsigned int i);
         static void debug(string s, int i);

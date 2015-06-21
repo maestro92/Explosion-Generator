@@ -560,8 +560,8 @@ void Smoke::Advect3D_SameFBO(SurfacePod velocity, SurfacePod source, SurfacePod 
     glFramebufferTexture(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, dest.ColorTexture ,0);
     if (GL_NO_ERROR != glGetError())
     {
-    //    cout << "Advect3D Unable to attach color buffer" << endl;
-        cout << glGetError() << endl;
+     //   cout << "Advect3D Unable to attach color buffer" << endl;
+     //   cout << glGetError() << endl;
     //    exit(1);
     }
 

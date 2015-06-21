@@ -1,5 +1,9 @@
 #include "EG_Utility.h"
 
+void EG_Utility::debug(string s)
+{
+    cout << s << endl;
+}
 
 void EG_Utility::debug(string s, string s2)
 {
@@ -9,8 +13,7 @@ void EG_Utility::debug(string s, string s2)
 
 void EG_Utility::debug(string s, unsigned int i)
 {
-    cout << s << endl;
-    cout << i << endl << endl;
+    cout << s << "  " << i << endl;
 }
 
 void EG_Utility::debug(string s, int i)
@@ -21,8 +24,7 @@ void EG_Utility::debug(string s, int i)
 
 void EG_Utility::debug(string s, float f)
 {
-    cout << s << endl;
-    cout << f << endl << endl;
+    cout << s << " " << f << endl;
 }
 
 void EG_Utility::debug(string s, glm::vec2 v)
@@ -33,8 +35,10 @@ void EG_Utility::debug(string s, glm::vec2 v)
 
 void EG_Utility::debug(string s, glm::vec3 v)
 {
-    cout << s << endl;
-    cout << v.x << " " << v.y << " " << v.z << endl << endl;
+    // cout << s << endl;
+    // cout << v.x << " " << v.y << " " << v.z << endl << endl;
+
+    cout << s << "  " << v.x << " " << v.y << " " << v.z << endl;
 }
 
 void EG_Utility::debug(string s, glm::mat4 m)

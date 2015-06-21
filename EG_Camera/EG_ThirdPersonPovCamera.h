@@ -77,7 +77,6 @@ using spring system, we will have different view matrix
         void init(pipeline& m_pipeline);
         void initFirst(pipeline& m_pipeline);
 
-        void debugVec3(glm::vec3 v, string s);
 
         void lookAt(pipeline& m_pipeline, glm::vec3& eye, glm::vec3& target, glm::vec3& up);
 

@@ -77,14 +77,24 @@ vs: EG_TextureRendererShader.vs, fs: EG_TextureRendererShader.fs
 Error in Init_Shader
 vs: EG_NoiseBasedParticleEffectShaders/EG_ParticleShader.vs, gs:EG_NoiseBasedParticleEffectShaders/EG_ParticleShader.gs, fs: EG_NoiseBasedParticleEffectShaders/EG_ParticleShader.fs
 
+Error in Init_Shader with u_color
+Error in Init_Shader with u_fadeRate
+Error in Init_Shader with u_depthTexture
+Error in Init_Shader with u_spriteTexture
+Error in Init_Shader with u_time
+Error in Init_Shader with u_pointSize
+Error in Init_Shader with u_inverseSize
+Error in Init_Shader with u_modelViewProjMat2
+Error in Init_Shader with u_cameraViewDir
 vs: EG_NoiseBasedParticleEffectShaders/EG_CompositeShader.vs, fs: EG_NoiseBasedParticleEffectShaders/EG_CompositeShader.fs
 Shader Compile Status: 
-WARNING: 0:21: Only GLSL version > 110 allows postfix "F" or "f" for float
+WARNING: 0:22: Only GLSL version > 110 allows postfix "F" or "f" for float
 
 
 
 Error in Init_Shader with u_depth
 Error in Init_Shader with u_inverseSize
+Error in Init_Shader with u_modelViewMat
 Error in Init_Shader with u_viewMat
 Error in Init_Shader with u_projMat
 Error in Init_Shader with u_modelMat
@@ -111,7 +121,7 @@ model_path ./assets/models/
 m_str ./assets/models/HugeWall.obj
 Nor oepened1
 Nor oepened1
-Ret is 254
+Ret is 250
 Nor oepened1
 Nor oepened1
 GL_INVALID_OPERATION
@@ -222,97 +232,892 @@ Checking
 model_path ./assets/models/
 m_str ./assets/models/./Characters/LEGO_Man.obj
 Error parsing './models/Characters/Walking Lego.md5mesh': 'Unable to open file "./models/Characters/Walking Lego.md5mesh".'
-m_pitchDegree is 0
 Start
-0
-0
-0
-0
-0
-0
-0
-0
-0
-0
-0
-0
-0
-0
-0
-0
-0
-0
-0
-0
-0
-0
-0
-0
-clicking left
-0
-0
-0
-0
-0
-0
-0
-0
-clicking Up left
-0
-0
-0
-0
-0
-0
-0
-0
-0
-0
-0
-0
-0
-0
-0
-0
-0
-0
-0
-0
-0
-0
-0
-0
-0
-0
-0
-0
-0
-0
-0
-0
-0
-0
-0
-0
-0
-0
-0
-0
-0
-0
-0
-0
-0
-0
-0
-0
-0
-0
-0
-0
-0
-0
-0
-0
-0
+New Iteration:   0
+num_new   12
+new seed p is   0.0622109 -2.77775 0.1394
+New Iteration:   12
+position is   0.0622109 -2.77775 0.1394
+velocity is   -0.0817701 3.91539 -0.183284
+num_new   12
+new seed p is   -0.000729168 -2.78264 0.123524
+New Iteration:   24
+position is   0.0608782 -2.71377 0.136418
+velocity is   -0.0849366 4.08813 -0.190288
+num_new   12
+new seed p is   0.189988 -2.86475 -0.121932
+New Iteration:   36
+position is   0.059493 -2.64688 0.133316
+velocity is   -0.0883639 4.28051 -0.197887
+num_new   12
+new seed p is   -0.334901 -2.73159 0.00492072
+New Iteration:   48
+position is   0.0580517 -2.57674 0.130085
+velocity is   -0.0920892 4.49568 -0.206232
+num_new   12
+new seed p is   0.340793 -2.97256 -0.0171713
+New Iteration:   60
+position is   0.0565485 -2.50295 0.126714
+velocity is   -0.096038 4.7376 -0.215173
+num_new   12
+new seed p is   -0.147164 -2.69903 0.466645
+New Iteration:   72
+position is   0.0549797 -2.42506 0.1232
+velocity is   -0.100136 5.01156 -0.22456
+num_new   12
+new seed p is   -0.164858 -2.75269 0.594061
+New Iteration:   84
+position is   0.0533418 -2.34249 0.11953
+velocity is   -0.104755 5.32374 -0.234693
+num_new   12
+new seed p is   -0.23288 -2.76912 0.356086
+New Iteration:   96
+position is   0.0516287 -2.25458 0.115692
+velocity is   -0.109375 5.68219 -0.245124
+num_new   12
+new seed p is   -0.0925167 -2.61702 -0.123651
+New Iteration:   108
+position is   0.0498418 -2.16053 0.111686
+velocity is   -0.114068 6.09644 -0.255704
+num_new   12
+new seed p is   -0.146092 -2.69643 0.420659
+New Iteration:   120
+position is   0.0479809 -2.05934 0.107517
+velocity is   -0.118539 6.57789 -0.265688
+num_new   12
+new seed p is   -0.0770728 -2.51427 0.52993
+New Iteration:   132
+position is   0.0460545 -1.94986 0.103199
+velocity is   -0.122264 7.13907 -0.274032
+num_new   12
+new seed p is   -0.300671 -2.89003 0.248561
+New Iteration:   144
+position is   0.044078 -1.83071 0.0987666
+velocity is   -0.124276 7.79122 -0.278205
+num_new   12
+new seed p is   -0.216094 -2.99266 0.237305
+New Iteration:   156
+position is   0.0420956 -1.70037 0.0943201
+velocity is   -0.122637 8.53941 -0.274628
+num_new   12
+new seed p is   0.0337218 -2.89891 0.0741275
+New Iteration:   168
+position is   0.0401787 -1.55738 0.0900262
+velocity is   -0.114888 9.36858 -0.257492
+num_new   12
+new seed p is   0.157324 -2.70816 0.0754859
+New Iteration:   180
+position is   0.0384525 -1.40074 0.086159
+velocity is   -0.0978261 10.2226 -0.219047
+num_new   12
+new seed p is   -0.115742 -2.72311 0.405389
+New Iteration:   192
+position is   0.0370947 -1.23087 0.083112
+velocity is   -0.0684708 10.9786 -0.153333
+num_new   12
+new seed p is   0.212325 -2.6748 -0.237436
+New Iteration:   204
+position is   0.0362996 -1.05065 0.0813286
+velocity is   -0.0286847 11.4627 -0.064224
+num_new   12
+new seed p is   -0.00446119 -2.92323 -0.00532722
+New Iteration:   216
+position is   0.0361828 -0.865763 0.0810664
+velocity is   0.0135601 11.54 0.0305474
+num_new   12
+new seed p is   0.207604 -2.90192 0.053584
+New Iteration:   228
+position is   0.0366942 -0.682958 0.0822132
+velocity is   0.0471622 11.2297 0.105649
+num_new   12
+new seed p is   -0.0470842 -2.735 -0.218317
+New Iteration:   240
+position is   0.0376336 -0.50737 0.0843136
+velocity is   0.0660866 10.6887 0.148118
+num_new   12
+new seed p is   -0.172425 -2.59871 0.180286
+New Iteration:   252
+position is   0.0387565 -0.34124 0.086829
+velocity is   0.0713766 10.0885 0.159889
+num_new   12
+new seed p is   0.308526 -2.87838 0.00659091
+New Iteration:   264
+position is   0.0398759 -0.184463 0.0893371
+velocity is   0.0666827 9.53861 0.149459
+num_new   12
+new seed p is   0.479723 -2.91305 0.113092
+New Iteration:   276
+position is   0.0408629 -0.0357134 0.0915496
+velocity is   0.0558794 9.08941 0.12517
+num_new   12
+new seed p is   -0.483213 -2.5228 0.227449
+New Iteration:   288
+position is   0.0416473 0.10678 0.0933044
+velocity is   0.0414997 8.75562 0.0929832
+num_new   12
+new seed p is   -0.189623 -2.61873 0.142936
+New Iteration:   300
+position is   0.042185 0.244877 0.0945084
+velocity is   0.025481 8.53717 0.0569224
+num_new   12
+new seed p is   -0.134138 -2.93714 0.151694
+New Iteration:   312
+position is   0.0424568 0.380394 0.0951188
+velocity is   0.00834465 8.43078 0.0187755
+num_new   12
+new seed p is   -0.125879 -2.66897 0.175006
+New Iteration:   324
+position is   0.042452 0.515086 0.0951045
+velocity is   -0.0089407 8.43316 -0.0201166
+num_new   12
+new seed p is   0.129364 -2.88108 0.250245
+New Iteration:   336
+position is   0.0421695 0.650691 0.0944727
+velocity is   -0.0263751 8.54626 -0.0590086
+num_new   12
+new seed p is   -0.046079 -2.85758 0.213487
+New Iteration:   348
+position is   0.0416116 0.789012 0.0932233
+velocity is   -0.0432879 8.77522 -0.0968575
+num_new   12
+new seed p is   0.233666 -2.5545 0.0346757
+New Iteration:   360
+position is   0.0407902 0.931958 0.0913851
+velocity is   -0.0590086 9.12853 -0.132173
+num_new   12
+new seed p is   -0.033834 -2.74718 -0.171526
+New Iteration:   372
+position is   0.0397316 1.0816 0.0890153
+velocity is   -0.0725687 9.61691 -0.16287
+num_new   12
+new seed p is   0.44741 -2.79857 0.327893
+New Iteration:   384
+position is   0.0384859 1.24014 0.0862234
+velocity is   -0.0818074 10.2429 -0.183582
+num_new   12
+new seed p is   -0.0922985 -2.68096 0.0340875
+New Iteration:   396
+position is   0.0371472 1.4097 0.0832217
+velocity is   -0.083223 10.9864 -0.186712
+New Iteration:   396
+position is   0.0358728 1.59169 0.0803654
+velocity is   -0.0722706 11.7683 -0.161529
+New Iteration:   396
+position is   0.0349001 1.78561 0.0781887
+velocity is   -0.044927 12.4199 -0.100881
+New Iteration:   396
+position is   0.0344852 1.98759 0.0772565
+velocity is   -0.00461936 12.7145 -0.0104308
+New Iteration:   396
+position is   0.0347487 2.19049 0.0778501
+velocity is   0.0362098 12.5248 0.0812113
+New Iteration:   396
+position is   0.0355915 2.3868 0.0797384
+velocity is   0.0652671 11.9481 0.146329
+New Iteration:   396
+position is   0.0367633 2.57208 0.082361
+velocity is   0.077486 11.209 0.173599
+New Iteration:   396
+position is   0.0380186 2.74541 0.0851696
+velocity is   0.076592 10.4906 0.171661
+New Iteration:   396
+position is   0.0391797 2.90806 0.0877731
+velocity is   0.0671297 9.88409 0.150502
+New Iteration:   396
+position is   0.0401477 3.06213 0.0899403
+velocity is   0.0530481 9.4182 0.118911
+New Iteration:   396
+position is   0.0408665 3.20991 0.091552
+velocity is   0.0365078 9.09247 0.0818074
+New Iteration:   396
+position is   0.0413112 3.35357 0.0925462
+velocity is   0.018701 8.90009 0.0420213
+New Iteration:   396
+position is   0.0414661 3.4952 0.0928919
+velocity is   0.000596046 8.83386 0.00163913
+New Iteration:   396
+position is   0.041329 3.63675 0.0925868
+velocity is   -0.0175834 8.89137 -0.0396371
+New Iteration:   396
+position is   0.0409035 3.78022 0.0916331
+velocity is   -0.0354648 9.07511 -0.0791252
+New Iteration:   396
+position is   0.0402025 3.92766 0.0900643
+velocity is   -0.0520796 9.39161 -0.116378
+New Iteration:   396
+position is   0.0392488 4.08125 0.0879257
+velocity is   -0.0664592 9.84795 -0.149012
+New Iteration:   396
+position is   0.0380949 4.24326 0.0853412
+velocity is   -0.0763685 10.4449 -0.171363
+New Iteration:   396
+position is   0.0368408 4.41583 0.0825255
+velocity is   -0.0780821 11.1584 -0.17494
+New Iteration:   396
+position is   0.0356523 4.6003 0.0798624
+velocity is   -0.0666082 11.9006 -0.14931
+New Iteration:   396
+position is   0.0347725 4.79593 0.0778954
+velocity is   -0.038892 12.496 -0.0868738
+New Iteration:   396
+position is   0.0344566 4.99858 0.0771897
+velocity is   0.00171363 12.7175 0.0038743
+New Iteration:   396
+position is   0.0348238 5.2009 0.0780122
+velocity is   0.0426918 12.4542 0.0953674
+New Iteration:   396
+position is   0.0357655 5.39556 0.0801199
+velocity is   0.0709295 11.8192 0.158697
+New Iteration:   396
+position is   0.0370256 5.57841 0.0829427
+velocity is   0.0829995 11.0395 0.185966
+New Iteration:   396
+position is   0.0383655 5.74877 0.0859444
+velocity is   0.0822544 10.2903 0.184178
+New Iteration:   396
+position is   0.039622 5.90797 0.0887625
+velocity is   0.0733137 9.65528 0.164509
+New Iteration:   396
+position is   0.0406948 6.05813 0.0911658
+velocity is   0.0601262 9.15766 0.134706
+New Iteration:   396
+position is   0.0415329 6.20145 0.0930398
+velocity is   0.0444055 8.79519 0.0996888
+New Iteration:   396
+position is   0.0421087 6.34002 0.0943296
+velocity is   0.0274926 8.55803 0.0616908
+New Iteration:   396
+position is   0.0424103 6.47575 0.095002
+velocity is   0.0102818 8.43771 0.0229478
+New Iteration:   396
+position is   0.0424317 6.61045 0.095052
+velocity is   -0.00722706 8.42758 -0.0160933
+New Iteration:   396
+position is   0.0421778 6.74586 0.0944822
+velocity is   -0.0242889 8.52682 -0.0542402
+New Iteration:   396
+position is   0.0416581 6.88374 0.0933187
+velocity is   -0.0404567 8.73737 -0.0907481
+New Iteration:   396
+position is   0.0408892 7.02589 0.0915949
+velocity is   -0.0549853 9.06348 -0.123084
+New Iteration:   396
+position is   0.039914 7.17417 0.0894063
+velocity is   -0.0660121 9.505 -0.14782
+New Iteration:   396
+position is   0.0387994 7.33037 0.08691
+velocity is   -0.0713766 10.049 -0.159889
+New Iteration:   396
+position is   0.0376693 7.49586 0.084378
+velocity is   -0.0669062 10.6489 -0.149906
+   erasing
+   erasing
+New Iteration:   394
+position is   0.0367085 7.67083 0.0822299
+velocity is   -0.0489503 11.199 -0.109822
+   erasing
+   erasing
+New Iteration:   392
+position is   0.0361589 7.85326 0.0809972
+velocity is   -0.0163168 11.5304 -0.0365078
+   erasing
+   erasing
+   erasing
+   erasing
+   erasing
+   erasing
+New Iteration:   386
+position is   0.00205829 7.99392 0.0766449
+velocity is   0.000875443 11.5874 0.0326335
+   erasing
+   erasing
+   erasing
+   erasing
+   erasing
+New Iteration:   381
+position is   0.00844656 7.99176 0.058327
+velocity is   0.00348315 11.6562 0.0239909
+   erasing
+   erasing
+   erasing
+   erasing
+   erasing
+New Iteration:   376
+position is   -0.0486105 6.6955 0.392217
+velocity is   0.0140071 7.34724 -0.112653
+   erasing
+   erasing
+   erasing
+New Iteration:   373
+position is   -0.0482886 6.81354 0.389613
+velocity is   0.0263751 7.4213 -0.212193
+   erasing
+   erasing
+   erasing
+   erasing
+   erasing
+   erasing
+   erasing
+   erasing
+   erasing
+   erasing
+New Iteration:   363
+position is   -0.0477748 6.93315 0.385455
+velocity is   0.0377744 7.54811 -0.305176
+   erasing
+   erasing
+   erasing
+   erasing
+   erasing
+   erasing
+   erasing
+New Iteration:   356
+position is   -0.047087 7.05522 0.379905
+velocity is   0.0477582 7.72648 -0.385642
+   erasing
+   erasing
+   erasing
+   erasing
+   erasing
+   erasing
+   erasing
+   erasing
+   erasing
+   erasing
+   erasing
+New Iteration:   345
+position is   -0.0462597 7.18056 0.37322
+velocity is   0.0551343 7.95484 -0.445247
+   erasing
+   erasing
+   erasing
+   erasing
+   erasing
+   erasing
+New Iteration:   339
+position is   -0.0453394 7.30991 0.3658
+velocity is   0.0587851 8.22529 -0.475049
+   erasing
+   erasing
+   erasing
+   erasing
+   erasing
+   erasing
+   erasing
+New Iteration:   332
+position is   -0.0443988 7.4438 0.358218
+velocity is   0.0569969 8.51467 -0.459552
+   erasing
+   erasing
+   erasing
+   erasing
+   erasing
+   erasing
+   erasing
+   erasing
+   erasing
+   erasing
+   erasing
+New Iteration:   321
+position is   -0.0435405 7.58234 0.351285
+velocity is   0.0482053 8.79332 -0.389218
+   erasing
+   erasing
+   erasing
+   erasing
+   erasing
+   erasing
+   erasing
+   erasing
+   erasing
+New Iteration:   312
+position is   -0.0428896 7.72496 0.34604
+velocity is   0.0311434 9.00783 -0.252128
+   erasing
+   erasing
+   erasing
+   erasing
+   erasing
+   erasing
+   erasing
+   erasing
+   erasing
+New Iteration:   303
+position is   -0.0425737 7.87019 0.343494
+velocity is   0.0064075 9.09634 -0.05126
+   erasing
+   erasing
+   erasing
+   erasing
+   erasing
+   erasing
+   erasing
+   erasing
+   erasing
+   erasing
+   erasing
+   erasing
+   erasing
+New Iteration:   290
+position is   -0.107134 7.47088 0.323041
+velocity is   0.140667 8.7589 -0.424385
+   erasing
+   erasing
+   erasing
+   erasing
+   erasing
+   erasing
+   erasing
+   erasing
+New Iteration:   282
+position is   -0.105054 7.61348 0.316775
+velocity is   0.113845 9.05246 -0.343323
+   erasing
+   erasing
+   erasing
+   erasing
+   erasing
+   erasing
+   erasing
+   erasing
+   erasing
+   erasing
+   erasing
+   erasing
+   erasing
+   erasing
+   erasing
+   erasing
+   erasing
+   erasing
+   erasing
+   erasing
+   erasing
+New Iteration:   261
+position is   -0.103576 7.76026 0.312312
+velocity is   0.0655651 9.26286 -0.197291
+   erasing
+   erasing
+   erasing
+   erasing
+   erasing
+   erasing
+   erasing
+   erasing
+New Iteration:   253
+position is   -0.103033 7.90937 0.310672
+velocity is   -0.000596046 9.32157 0.00298023
+   erasing
+   erasing
+   erasing
+   erasing
+   erasing
+   erasing
+   erasing
+   erasing
+   erasing
+   erasing
+   erasing
+   erasing
+   erasing
+New Iteration:   240
+position is   -0.0935484 7.83004 0.283427
+velocity is   0.0359118 9.65938 -0.110865
+   erasing
+   erasing
+   erasing
+   erasing
+   erasing
+   erasing
+   erasing
+   erasing
+   erasing
+   erasing
+   erasing
+   erasing
+   erasing
+   erasing
+   erasing
+   erasing
+   erasing
+   erasing
+   erasing
+New Iteration:   221
+position is   -0.0935174 7.98491 0.283351
+velocity is   -0.0351667 9.63479 0.106096
+   erasing
+   erasing
+   erasing
+   erasing
+   erasing
+   erasing
+   erasing
+   erasing
+   erasing
+   erasing
+   erasing
+   erasing
+   erasing
+   erasing
+   erasing
+New Iteration:   206
+position is   0.142496 7.97632 0.307796
+velocity is   0.0476837 9.14454 0.103116
+   erasing
+   erasing
+   erasing
+   erasing
+   erasing
+   erasing
+   erasing
+   erasing
+   erasing
+   erasing
+   erasing
+   erasing
+New Iteration:   194
+position is   -0.0990715 7.63897 0.356854
+velocity is   0.0929832 8.68201 -0.333786
+   erasing
+   erasing
+   erasing
+   erasing
+   erasing
+   erasing
+   erasing
+New Iteration:   187
+position is   -0.0979009 7.77939 0.352648
+velocity is   0.0490248 8.83654 -0.17643
+   erasing
+   erasing
+   erasing
+   erasing
+   erasing
+   erasing
+   erasing
+   erasing
+   erasing
+   erasing
+   erasing
+   erasing
+   erasing
+   erasing
+   erasing
+   erasing
+   erasing
+New Iteration:   170
+position is   -0.0975528 7.92131 0.351418
+velocity is   -0.00864267 8.8577 0.0315905
+   erasing
+   erasing
+   erasing
+   erasing
+   erasing
+   erasing
+   erasing
+   erasing
+   erasing
+   erasing
+New Iteration:   160
+position is   0.0788183 7.98303 0.341437
+velocity is   0.0289083 9 0.12517
+   erasing
+   erasing
+   erasing
+   erasing
+   erasing
+   erasing
+   erasing
+   erasing
+   erasing
+New Iteration:   151
+position is   0.00458043 7.75965 0.31243
+velocity is   -0.0030268 9.45327 -0.206232
+   erasing
+   erasing
+   erasing
+   erasing
+   erasing
+   erasing
+   erasing
+   erasing
+   erasing
+   erasing
+   erasing
+   erasing
+   erasing
+New Iteration:   138
+position is   0.0045548 7.91191 0.310685
+velocity is   4.65661e-05 9.52124 0.00417233
+   erasing
+   erasing
+   erasing
+   erasing
+   erasing
+   erasing
+   erasing
+   erasing
+   erasing
+   erasing
+   erasing
+   erasing
+   erasing
+   erasing
+New Iteration:   124
+position is   -0.0776434 7.64886 0.334748
+velocity is   0.0751019 8.99047 -0.325441
+   erasing
+   erasing
+   erasing
+   erasing
+   erasing
+   erasing
+   erasing
+   erasing
+   erasing
+   erasing
+   erasing
+   erasing
+New Iteration:   112
+position is   -0.0767112 7.79436 0.330743
+velocity is   0.0372529 9.15915 -0.15974
+   erasing
+   erasing
+   erasing
+   erasing
+   erasing
+   erasing
+   erasing
+   erasing
+   erasing
+   erasing
+   erasing
+   erasing
+   erasing
+   erasing
+New Iteration:   98
+position is   -0.076499 7.94145 0.329837
+velocity is   -0.012666 9.17286 0.0548363
+   erasing
+   erasing
+   erasing
+   erasing
+   erasing
+   erasing
+   erasing
+   erasing
+   erasing
+   erasing
+   erasing
+   erasing
+New Iteration:   86
+position is   0.128488 7.75593 0.274099
+velocity is   -0.0891089 9.56118 -0.190139
+   erasing
+   erasing
+   erasing
+   erasing
+   erasing
+   erasing
+   erasing
+   erasing
+   erasing
+   erasing
+   erasing
+   erasing
+   erasing
+   erasing
+New Iteration:   72
+position is   0.12773 7.91 0.272487
+velocity is   -0.00089407 9.64046 -0.000596046
+   erasing
+   erasing
+   erasing
+   erasing
+   erasing
+   erasing
+   erasing
+   erasing
+   erasing
+   erasing
+   erasing
+   erasing
+   erasing
+   erasing
+   erasing
+   erasing
+New Iteration:   56
+position is   -0.208617 7.96035 0.293492
+velocity is   -0.0554323 8.89421 0.077486
+   erasing
+   erasing
+   erasing
+   erasing
+   erasing
+   erasing
+   erasing
+   erasing
+   erasing
+   erasing
+New Iteration:   46
+position is   0.25162 7.61944 0.169015
+velocity is   -0.28789 9.38654 -0.193119
+   erasing
+   erasing
+   erasing
+   erasing
+   erasing
+   erasing
+New Iteration:   40
+position is   0.247939 7.77182 0.166555
+velocity is   -0.157952 9.62138 -0.106394
+   erasing
+   erasing
+   erasing
+   erasing
+   erasing
+   erasing
+   erasing
+   erasing
+   erasing
+   erasing
+   erasing
+New Iteration:   29
+position is   0.246747 7.92672 0.165759
+velocity is   0.0196695 9.68099 0.012517
+   erasing
+   erasing
+   erasing
+   erasing
+   erasing
+   erasing
+   erasing
+   erasing
+New Iteration:   21
+position is   -0.262912 7.30768 0.206952
+velocity is   0.362992 8.50618 -0.285506
+   erasing
+   erasing
+New Iteration:   19
+position is   -0.257104 7.44639 0.202389
+velocity is   0.352859 8.83877 -0.277162
+   erasing
+   erasing
+   erasing
+   erasing
+   erasing
+   erasing
+   erasing
+   erasing
+   erasing
+New Iteration:   10
+position is   -0.25183 7.59044 0.198226
+velocity is   0.295043 9.15945 -0.231266
+New Iteration:   10
+position is   -0.247911 7.73917 0.195127
+velocity is   0.18239 9.40144 -0.143051
+New Iteration:   10
+position is   -0.246184 7.89078 0.193763
+velocity is   0.0226498 9.49562 -0.0172853
+   erasing
+New Iteration:   9
+position is   -0.0694138 7.69976 0.317041
+velocity is   0.0596046 9.26062 -0.272989
+   erasing
+   erasing
+   erasing
+New Iteration:   6
+position is   -0.0687606 7.84937 0.314066
+velocity is   0.0184774 9.39235 -0.0858307
+   erasing
+New Iteration:   5
+position is   -0.0688464 7.99971 0.314457
+velocity is   -0.0306964 9.33915 0.141263
+   erasing
+   erasing
+New Iteration:   3
+position is   0.261863 7.74401 0.191818
+velocity is   -0.184178 9.30071 -0.134408
+New Iteration:   3
+position is   0.260185 7.8939 0.190578
+velocity is   -0.0178814 9.38237 -0.013113
+   erasing
+New Iteration:   2
+position is   0.0140942 7.43116 0.348301
+velocity is   -0.0186637 8.61172 -0.46134
+New Iteration:   2
+position is   0.013811 7.57139 0.341311
+velocity is   -0.0159815 8.90937 -0.394583
+   erasing
+New Iteration:   1
+position is   0.0135923 7.71603 0.335913
+velocity is   -0.0105798 9.14309 -0.260472
+New Iteration:   1
+position is   0.013482 7.86355 0.333186
+velocity is   -0.00264496 9.24993 -0.0649691
+   erasing
+New Iteration:   0
+New Iteration:   0
+New Iteration:   0
+New Iteration:   0
+New Iteration:   0
+New Iteration:   0
+New Iteration:   0
+New Iteration:   0
+New Iteration:   0
+New Iteration:   0
+New Iteration:   0
+New Iteration:   0
+New Iteration:   0
+New Iteration:   0
+New Iteration:   0
+New Iteration:   0
+New Iteration:   0
+New Iteration:   0
+New Iteration:   0
+New Iteration:   0
+New Iteration:   0
+New Iteration:   0
+New Iteration:   0
+New Iteration:   0
+New Iteration:   0
+New Iteration:   0
+New Iteration:   0
+New Iteration:   0
+New Iteration:   0
+New Iteration:   0
+New Iteration:   0
+New Iteration:   0
+New Iteration:   0
+New Iteration:   0
+New Iteration:   0
+New Iteration:   0
+New Iteration:   0
+New Iteration:   0
+New Iteration:   0
+New Iteration:   0
+New Iteration:   0
+New Iteration:   0
+New Iteration:   0
+New Iteration:   0
+New Iteration:   0
+New Iteration:   0
+New Iteration:   0
+New Iteration:   0
+New Iteration:   0
+New Iteration:   0
+New Iteration:   0
+New Iteration:   0
+New Iteration:   0
+New Iteration:   0
+New Iteration:   0
+New Iteration:   0
+New Iteration:   0
+New Iteration:   0
+New Iteration:   0
+New Iteration:   0
+New Iteration:   0
+New Iteration:   0
+New Iteration:   0
+New Iteration:   0
 Terminating normally.

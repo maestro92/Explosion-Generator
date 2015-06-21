@@ -7,12 +7,10 @@ layout(max_vertices = 4) out;
 // we are going emit a quad for each incoming vertex, so we
 // declare the maximum as four vertices
 
-
 // geometry shader 
 // vs: per vertex
 // fs: per pixel
 // gs: per primitive (dot, line, triangle)
-
 
 // so here we get one triangle
 uniform mat4 gModelViewProjectionMatrix;                                                                   
@@ -24,9 +22,6 @@ out vec2 TexCoord;
 void main()                                                                         
 {                     
  //   mat4 mvp = gModelViewProjectionMatrix;
-
-
-
                                                               
     vec3 Pos = gl_in[0].gl_Position.xyz;                                            
     vec3 toCamera = normalize(gCameraPosition - Pos);                                    
@@ -66,10 +61,9 @@ void main()
     EmitVertex();                                                                   
                                                                                     
     EndPrimitive();        
+}
 
-
-/*
-                                                              
+/*                                                      
     vec3 Pos = gl_in[0].gl_Position.xyz;                                            
     vec3 toCamera = normalize(gCameraPosition - Pos);                                    
     vec3 up = vec3(0.0, 1.0, 0.0);                                                  
@@ -106,4 +100,4 @@ void main()
                                                                                     
     EndPrimitive();    
     */                                                             
-}                                                                                   
+                                                                                  

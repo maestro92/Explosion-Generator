@@ -30,6 +30,10 @@ class EG_NoiseBasedParticleEffectRenderer : public EG_Renderer
         FloatDataPair m_pointSizePair;
         Vec2DataPair m_inverseSizePair;
 
+        Mat4DataPair m_MVPMatrixDataPair;
+        Vec3DataPair m_cameraPositionDataPair;
+        Vec3DataPair m_cameraViewDirDataPair;
+
         void setColor(glm::vec4 color);
         void setFadeRate(float value);
         void setDepthTextureUnit(int unit);
@@ -37,6 +41,11 @@ class EG_NoiseBasedParticleEffectRenderer : public EG_Renderer
         void setTime(float time);
         void setPointSize(float size);
         void setInverseSize(glm::vec2 size);
+
+        void setModelViewProjectionMatrix(glm::mat4 vpMat);
+        void setCameraPosition(glm::vec3 camPos);
+        void setCameraViewDir(glm::vec3 dir);
+
 
 
         /// Composite Shader

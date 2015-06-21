@@ -35,11 +35,19 @@ class EG_NoiseBasedParticleEffect
         void init(int width, int height);
         void update(float dt, float timeStep);
         glm::vec3 computeGradient(glm::vec3 p);
+        glm::vec3 computeGradient2(glm::vec3 p);
+
         glm::vec3 computeCurl(glm::vec3 p);
+        glm::vec3 computeCurl2(glm::vec3 p);
+
         float sampleDistance(glm::vec3 p);
+        float sampleDistance2(glm::vec3 p);
+
         glm::vec3 samplePotential(glm::vec3 p);
+        glm::vec3 samplePotential2(glm::vec3 p);
 
         glm::vec3 getPerlinNoise3D(glm::vec3 src);
+        bool ZOrderPredicate(const EG_NoiseBasedParticle& p0, const EG_NoiseBasedParticle& p1);
         void seedParticles(float dt);
 /*
         static EG_SurfacePod createSurface(int width, int height);

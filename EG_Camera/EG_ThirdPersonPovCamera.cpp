@@ -90,7 +90,7 @@ void EG_ThirdPersonPovCamera::init(pipeline& m_pipeline)
     lookAt(m_pipeline, eye_p, target_p, up_p);
 
   //  m_pitchDegree = -abs( atan2(9.0f, 30.0f)) * 180 / M_PI;
-    cout << "m_pitchDegree is " << m_pitchDegree << endl;
+//    cout << "m_pitchDegree is " << m_pitchDegree << endl;
 
   //  m_pitchDegree = asinf(m_viewMatrix[1][2]) * 180 / M_PI;
 
@@ -196,13 +196,6 @@ void EG_ThirdPersonPovCamera::setTarget(glm::vec3 target)
     m_target = target;
 }
 
-
-
-
-void EG_ThirdPersonPovCamera::debugVec3(glm::vec3 v, string s)
-{
-    cout << s << " " << v.x << " " << v.y << " " << v.z << endl;
-}
 
 
 

@@ -59,7 +59,7 @@ bool EG_Button::update(MouseState & state)
         if (state.m_leftButtonDown)
         {
             m_down = true;
-            cout << "pressing the button" << endl;
+//            cout << "pressing the button" << endl;
         }
 
         /// if it was down, we set it to false
