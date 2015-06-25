@@ -37059,12 +37059,12 @@
 	<sstream>
 	"EG_RenderTechnique.h"
 
-1434606406 source:d:\martin\programming\c and c++\sdl\explosion generator 2099 99 99 infinity\eg_shader.cpp
+1434935072 source:d:\martin\programming\c and c++\sdl\explosion generator 2099 99 99 infinity\eg_shader.cpp
 	"EG_Shader.h"
 	<stdio.h>
 	<string.h>
 
-1434606399 d:\martin\programming\c and c++\sdl\explosion generator 2099 99 99 infinity\eg_shader.h
+1434934985 d:\martin\programming\c and c++\sdl\explosion generator 2099 99 99 infinity\eg_shader.h
 	<GL/glew.h>
 	<string>
 	<vector>
@@ -37300,7 +37300,7 @@
 1431982921 source:d:\martin\programming\c and c++\sdl\explosion generator 2099 99 99 infinity\sceneloader.cpp
 	"sceneLoader.h"
 
-1434870640 source:d:\martin\programming\c and c++\sdl\explosion generator 2099 99 99 infinity\eg_main.cpp
+1435214411 source:d:\martin\programming\c and c++\sdl\explosion generator 2099 99 99 infinity\eg_main.cpp
 	"EG_Main.h"
 	"gl/gl.h"
 	"gl/glu.h"
@@ -37636,10 +37636,10 @@
 	"SDL/SDL.h"
 	"SDL/SDL_image.h"
 
-1434781159 source:d:\martin\programming\c and c++\sdl\explosion generator 2099 99 99 infinity\eg_worldobject\eg_smoke.cpp
+1434939712 source:d:\martin\programming\c and c++\sdl\explosion generator 2099 99 99 infinity\eg_worldobject\eg_smoke.cpp
 	"EG_Smoke.h"
 
-1432137718 d:\martin\programming\c and c++\sdl\explosion generator 2099 99 99 infinity\eg_worldobject\eg_smoke.h
+1434934690 d:\martin\programming\c and c++\sdl\explosion generator 2099 99 99 infinity\eg_worldobject\eg_smoke.h
 	"EG_Shader.h"
 	"EG_TwoPassRayCastingRenderer.h"
 	"Smoke_struct.h"
@@ -38411,10 +38411,10 @@
 	"EG_QuadModelABS.h"
 	"EG_Renderer.h"
 
-1432052411 source:d:\martin\programming\c and c++\sdl\explosion generator 2099 99 99 infinity\eg_renderer\eg_twopassraycastingrenderer.cpp
+1434936593 source:d:\martin\programming\c and c++\sdl\explosion generator 2099 99 99 infinity\eg_renderer\eg_twopassraycastingrenderer.cpp
 	"EG_TwoPassRayCastingRenderer.h"
 
-1432137859 d:\martin\programming\c and c++\sdl\explosion generator 2099 99 99 infinity\eg_renderer\eg_twopassraycastingrenderer.h
+1434935634 d:\martin\programming\c and c++\sdl\explosion generator 2099 99 99 infinity\eg_renderer\eg_twopassraycastingrenderer.h
 	"Smoke_struct.h"
 	"pipeline.h"
 	<GL/glew.h>
@@ -38549,10 +38549,10 @@
 1433649886 source:d:\martin\programming\c and c++\sdl\explosion generator 2099 99 99 infinity\eg_utility\eg_utility_math.cpp
 	"EG_Utility.h"
 
-1434870701 source:d:\martin\programming\c and c++\sdl\explosion generator 2099 99 99 infinity\eg_noisebasedparticleeffect\eg_noisebasedparticleeffect.cpp
+1435202872 source:d:\martin\programming\c and c++\sdl\explosion generator 2099 99 99 infinity\eg_noisebasedparticleeffect\eg_noisebasedparticleeffect.cpp
 	"EG_NoiseBasedParticleEffect.h"
 
-1434835873 d:\martin\programming\c and c++\sdl\explosion generator 2099 99 99 infinity\eg_noisebasedparticleeffect\eg_noisebasedparticleeffect.h
+1435202838 d:\martin\programming\c and c++\sdl\explosion generator 2099 99 99 infinity\eg_noisebasedparticleeffect\eg_noisebasedparticleeffect.h
 	"EG_Math.h"
 	"EG_Noise.h"
 	"EG_Utility.h"

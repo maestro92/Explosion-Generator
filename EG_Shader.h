@@ -41,6 +41,9 @@ class Shader{
 
         Shader(const char* vs_source, const char* fs_source);
         Shader(const char* vs_source, const char* gs_source, const char* fs_source);
+
+        Shader(string path, string vs_source, string fs_source);
+        Shader(string path, string vs_source, string gs_source, string fs_source);
         ~Shader();
         void linkShader();
         void useShader();

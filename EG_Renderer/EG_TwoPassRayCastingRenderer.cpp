@@ -76,15 +76,12 @@ void EG_TwoPassRaycastingRenderer::init(int w, int h, int Shader_Num)
 
 
     /// Interval
-    TwoPassIntervals = new Shader("TwoPass.vs", "TwoPass.Cube", "TwoPass.Intervals");
-    m_shaders[RENDER_PASS1] = new Shader("TwoPass.vs", "TwoPass.Cube", "TwoPass.Intervals");
-
-    /// Cube depth
-    TwoPass_CubeDepth = new Shader("TwoPass.vs", "TwoPass.Cube", "TwoPass_Depth.fs");
+    TwoPassIntervals = new Shader("TwoPassRaycast.vs", "TwoPassRaycastIntervals.gs", "TwoPassRaycastIntervals.fs");
+    m_shaders[RENDER_PASS1] = new Shader("TwoPassRaycast.vs", "TwoPassRaycastIntervals.gs", "TwoPassRaycastIntervals.fs");
 
     /// Raycast
-    TwoPassRaycast = new Shader("TwoPass.vs", "TwoPass.Fullscreen", "TwoPass.Raycast");
-    m_shaders[RENDER_PASS2] = new Shader("TwoPass.vs", "TwoPass.Cube", "TwoPass.Intervals");
+    TwoPassRaycast = new Shader("TwoPassRaycast.vs", "TwoPassRaycastVolume.gs", "TwoPassRaycastVolume.fs");
+    m_shaders[RENDER_PASS2] = new Shader("TwoPassRaycast.vs", "TwoPassRaycastVolume.gs", "TwoPassRaycastVolume.fs");
 
 
     initMemberVariables();
@@ -110,7 +107,7 @@ void EG_TwoPassRaycastingRenderer::init(int w, int h, int Shader_Num)
  //   glDisable(GL_DEPTH_TEST);
     glEnable(GL_BLEND);
     glEnable(GL_CULL_FACE);
-    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+//    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
 
     TwoPass_CubeDepthTexture_Front = createTexture(w, h, true);

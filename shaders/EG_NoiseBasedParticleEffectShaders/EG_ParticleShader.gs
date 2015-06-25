@@ -36,7 +36,7 @@ const float Epsilon = 0.0000001;
 
 void main()                                                                         
 {                     
-
+#if 1
     vec3 Pos = gl_in[0].gl_Position.xyz;                                            
     vec3 toCamera = normalize(u_cameraPosition - Pos);                                    
     vec3 up = vec3(0.0, 1.0, 0.0);                                                  
@@ -46,32 +46,32 @@ void main()
     up = cross(right, toCamera);
     up = normalize(up);
 
-
+    gf_alpha = vg_alpha[0];
     Pos -= (right * 0.5);                                                           
-    gl_Position = u_modelViewProjMat * vec4(Pos, 1.0);                                             
+    gl_Position = u_modelViewProjMat2 * vec4(Pos, 1.0);                                             
     gf_UV = vec2(0.0, 0.0);                                                      
     EmitVertex();                                                                   
                                                                                     
     Pos += up;                                                                   
-    gl_Position = u_modelViewProjMat * vec4(Pos, 1.0);                                             
+    gl_Position = u_modelViewProjMat2 * vec4(Pos, 1.0);                                             
     gf_UV = vec2(0.0, 1.0);                                                      
     EmitVertex();                                                                   
                                                                                     
     Pos -= up;                                                                   
     Pos += right;                                                                   
-    gl_Position = u_modelViewProjMat * vec4(Pos, 1.0);                                             
+    gl_Position = u_modelViewProjMat2 * vec4(Pos, 1.0);                                             
     gf_UV = vec2(1.0, 0.0);                                                      
     EmitVertex();                                                                   
                                                                                     
     Pos += up;                                                                   
-    gl_Position = u_modelViewProjMat * vec4(Pos, 1.0);                                             
+    gl_Position = u_modelViewProjMat2 * vec4(Pos, 1.0);                                             
     gf_UV = vec2(1.0, 1.0);                                                      
     EmitVertex();                                                                   
                                                                                     
     EndPrimitive();   
     
-      
-    /*
+#else  
+
     vec3 u = u_modelViewMat * vg_velocity[0];
     float w = u_pointSize;
     float h = w * 2.0;
@@ -118,7 +118,7 @@ void main()
     gf_UV = vec2(0,1); gl_Position = u_modelViewProjMat * vec4(p+S+W,1); EmitVertex();
     gf_UV = vec2(1,1); gl_Position = u_modelViewProjMat * vec4(p+S+E,1); EmitVertex();
     EndPrimitive();     
-    */                                                     
+#endif                                                         
 }                                                                                   
 
 

@@ -7,7 +7,7 @@ glm::vec3 ImpulsePosition( GridWidth / 2.0f, GridHeight - (int) SplatRadius / 2.
 
 Smoke::Smoke()
 {
-
+    m_shaderPath = "./shaders/EG_EulerianGridFluidSimShaders/";
 }
 
 Smoke::~Smoke()
@@ -22,6 +22,12 @@ void Smoke::init()
     glGenFramebuffers(1, &fbo);
     glBindFramebuffer(GL_FRAMEBUFFER, fbo);
 
+
+    string m_str = m_shaderPath;
+ //   m_str = m_str + filename;
+ //   const aiScene* scene=aiImportFile(m_str.c_str(),
+
+
     Eulerian3D_Raycast = new Shader("3D_Eulerian_Raycast.vs", "3D_Eulerian_Raycast.gs", "3D_Eulerian_Raycast.fs");
     Eulerian3D_Fill = new Shader("3D_Eulerian_Vertex.vs", "3D_Eulerian_Fill.fs");
     Eulerian3D_Advect = new Shader("3D_Eulerian_Vertex.vs", "3D_Eulerian_PickLayer.gs", "3D_Eulerian_Advect.fs");
@@ -31,6 +37,16 @@ void Smoke::init()
     Eulerian3D_ApplyImpulse = new Shader("3D_Eulerian_Vertex.vs", "3D_Eulerian_PickLayer.gs", "3D_Eulerian_ApplyImpulse.fs");
     Eulerian3D_ApplyBuoyancy = new Shader("3D_Eulerian_Vertex.vs", "3D_Eulerian_PickLayer.gs", "3D_Eulerian_Buoyancy.fs");
 
+/*
+    Eulerian3D_Raycast = new Shader(m_shaderPath,"3D_Eulerian_Raycast.vs", "3D_Eulerian_Raycast.gs", "3D_Eulerian_Raycast.fs");
+    Eulerian3D_Fill = new Shader(m_shaderPath,"3D_Eulerian_Vertex.vs", "3D_Eulerian_Fill.fs");
+    Eulerian3D_Advect = new Shader(m_shaderPath, "3D_Eulerian_Vertex.vs", "3D_Eulerian_PickLayer.gs", "3D_Eulerian_Advect.fs");
+    Eulerian3D_Jacobi = new Shader(m_shaderPath,"3D_Eulerian_Vertex.vs", "3D_Eulerian_PickLayer.gs", "3D_Eulerian_Jacobi.fs");
+    Eulerian3D_SubtractGradient = new Shader(m_shaderPath,"3D_Eulerian_Vertex.vs", "3D_Eulerian_PickLayer.gs", "3D_Eulerian_SubtractGradient.fs");
+    Eulerian3D_ComputeDivergence = new Shader(m_shaderPath,"3D_Eulerian_Vertex.vs", "3D_Eulerian_PickLayer.gs", "3D_Eulerian_ComputeDivergence.fs");
+    Eulerian3D_ApplyImpulse = new Shader(m_shaderPath,"3D_Eulerian_Vertex.vs", "3D_Eulerian_PickLayer.gs", "3D_Eulerian_ApplyImpulse.fs");
+    Eulerian3D_ApplyBuoyancy = new Shader(m_shaderPath,"3D_Eulerian_Vertex.vs", "3D_Eulerian_PickLayer.gs", "3D_Eulerian_Buoyancy.fs");
+*/
     Advect3D_Location.InverseSize = getUniform(Eulerian3D_Advect->getProgramId(), "InverseSize");
     Advect3D_Location.TimeStep = getUniform(Eulerian3D_Advect->getProgramId(), "TimeStep");
     Advect3D_Location.Dissipation = getUniform(Eulerian3D_Advect->getProgramId(), "Dissipation");
@@ -92,8 +108,9 @@ void Smoke::init()
 
     glDisable(GL_DEPTH_TEST);
     glEnable(GL_CULL_FACE);
-    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+//    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
     glEnableVertexAttribArray(SlotPosition);
+
 
     Eulerian3D_ApplyBuoyancy->delShader();
     glBindFramebuffer(GL_FRAMEBUFFER, 0);
@@ -101,10 +118,11 @@ void Smoke::init()
 
 
 
-
-
 void Smoke::update(bool toggle)
 {
+    glEnable(GL_BLEND);
+    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+
     glBindFramebuffer(GL_FRAMEBUFFER, fbo);
     if(true)
     {
@@ -160,6 +178,7 @@ void Smoke::update(bool toggle)
 
     }
     glBindFramebuffer(GL_FRAMEBUFFER, 0);
+    glDisable(GL_BLEND);
 }
 
 

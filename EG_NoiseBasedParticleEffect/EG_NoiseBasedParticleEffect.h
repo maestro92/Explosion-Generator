@@ -28,6 +28,8 @@ struct EG_SurfacePod
 class EG_NoiseBasedParticleEffect
 {
     public:
+        float Time;
+
         EG_NoiseBasedParticleEffect();
         ~EG_NoiseBasedParticleEffect();
 

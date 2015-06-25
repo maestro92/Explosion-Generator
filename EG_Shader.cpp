@@ -73,6 +73,16 @@ Shader::Shader(const char* vs_source, const char* gs_source, const char* fs_sour
 }
 
 
+Shader::Shader(string path, string vs_source, string fs_source) : Shader( (path + vs_source).c_str(),  (path + fs_source).c_str())
+{
+
+}
+
+Shader::Shader(string path, string vs_source, string gs_source, string fs_source)
+{
+
+}
+
 
 // deletes the Shader
 Shader::~Shader()

@@ -12,13 +12,17 @@ out vec4 FragColor;
                                                                                     
 void main()                                                                         
 {            
-    FragColor = vec4(1.0,0.0,0.0,1.0);
 
-/*                                                                                  
+  //  FragColor = vec4(0.0,1.0,0.0,1.0);
+   
+                                                                                
     vec2 tc = gl_FragCoord.xy * u_inverseSize;
     float depth = texture2D(u_depthTexture, tc).r;
     if(depth < gl_FragCoord.z)
         discard;
+    
+ //   FragColor = u_color;  
+
     
     float d = depth - gl_FragCoord.z;
     float softness = 1.0 - min(1.0, 40.0*d);
@@ -26,6 +30,9 @@ void main()
     softness = 1.0 - softness * softness;
     
     float A = gf_alpha * texture2D(u_spriteTexture, gf_UV).r;
+//    FragColor = u_color * vec4(1,1,1, gf_alpha);                                                                               
     FragColor = u_color * vec4(1,1,1, A*softness);                                                                               
-*/
+
+//    FragColor = u_color;
+
 }

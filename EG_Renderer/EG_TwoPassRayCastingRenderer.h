@@ -58,9 +58,6 @@ class EG_TwoPassRaycastingRenderer : public EG_Renderer
         // Shaders
         Shader* TwoPassIntervals;
         Shader* TwoPassRaycast;
-        Shader* TwoPass_CubeDepth;
-
-
 
 };
 

@@ -15,22 +15,37 @@ void main()
 	vec4 dest = texture2D(u_backgroundTexture, tc);
 	vec4 src = texture2D(u_particlesTexture, tc);
 
-	float a = 1.0 - src.a;
+	float a = 1 - src.a;
+/*
+	if(a==1.0)
+		FragColor = vec4(0.0,1.0,0.0,1.0);
+	else if(a==0.0)
+	{
+		FragColor.rgb = dest.rgb * (1.0 - a);
+		FragColor.a = 1.0;
+	}	
+	else
+		FragColor = vec4(1.0,1.0,0.0,1.0);
+*/
+
+	FragColor.rgb = src.rgb * a + dest.rgb * (1.0 - a);
+	FragColor.a = 1.0;   
+
 
 //	FragColor = dest;
-
-	if(src.a == 1.0f)
+//	FragColor = src;
+//	FragColor.a = 1.0f;
+/*
+	if(a == 1.0f)
 	{
-		FragColor = src;
+		FragColor = vec4(0.0,0.0,1.0,1.0);
 	}
 	else
 	{
-		FragColor = dest;
+		FragColor = vec4(0.0,1.0,0.0,1.0);
 	}
+*/
 
-
-//	FragColor.rgb = src.rgb * a + dest.rgb * (1.0 - a);
-//	FragColor.a = 1.0;   
 
 
 //	FragColor = dest;

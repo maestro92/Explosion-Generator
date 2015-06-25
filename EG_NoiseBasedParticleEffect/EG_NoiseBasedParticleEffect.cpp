@@ -5,8 +5,9 @@
 static const glm::vec3 SphereCenter(0,0,0);
 static const float NoiseLengthScale[] = {0.4f, 0.23f, 0.11f};
 static const float NoiseGain[] = {1.0f, 0.5f, 0.25f};
-static const float PlumeCeiling(8);
-static const float PlumeBase(-3);
+//static const float PlumeCeiling(8);
+static const float PlumeCeiling(15);
+static const float PlumeBase(0);
 static const float PlumeHeight(8);
 static const float RingRadius(0.6f);
 static const float RingSpeed(0.3f);
@@ -17,7 +18,7 @@ static const float ParticlesPerSecond(4000);
 static const float SeedRadius(0.5f);
 static const float InitialBand(0.1f);
 
-static float Time = 0;
+// static float Time = 0;
 static unsigned int Seed(0);
 
 
@@ -25,6 +26,7 @@ EG_NoiseBasedParticleEffect::EG_NoiseBasedParticleEffect()
 {
     m_sphereCenter = glm::vec3(0.0,0.0,0.0);
     m_sphereRadius = 1.0f;
+    Time = 0;
 }
 
 EG_NoiseBasedParticleEffect::~EG_NoiseBasedParticleEffect()
@@ -143,8 +145,7 @@ void EG_NoiseBasedParticleEffect::update(float dt, float timeStep)
     for(int i=0; i<m_particles.size(); i++)
     {
         glm::vec3 p(m_particles[i].px, m_particles[i].py, m_particles[i].pz);
-        glm::vec3 v;
-//        glm::vec3 v = computeCurl(p);
+        glm::vec3 v = computeCurl(p);
 
 
 
@@ -152,16 +153,15 @@ void EG_NoiseBasedParticleEffect::update(float dt, float timeStep)
         {
             // EG_Utility::debug("position is ", p);
             // v = computeCurl2(p);
-            v = computeCurl(p);
+        //    v = computeCurl(p);
             EG_Utility::debug("position is ", p);
             EG_Utility::debug("velocity is ", v);
         }
         else
         {
-            v = computeCurl(p);
+       //     v = computeCurl(p);
 
         }
-
 
         glm::vec3 midx = p + 0.5f * timeStep * v;
         p += timeStep * computeCurl(midx);
@@ -171,8 +171,6 @@ void EG_NoiseBasedParticleEffect::update(float dt, float timeStep)
         m_particles[i].vx = v.x;
         m_particles[i].vy = v.y;
         m_particles[i].vz = v.z;
-
-
     }
 
     for(EG_NoiseBasedParticleList::iterator i=m_particles.begin(); i!=m_particles.end();)
@@ -186,21 +184,20 @@ void EG_NoiseBasedParticleEffect::update(float dt, float timeStep)
             i++;
     }
 
-    if(Time < 0.1f)
-        seedParticles(dt);
+    seedParticles(dt);
 }
 
 void EG_NoiseBasedParticleEffect::seedParticles(float dt)
 {
-    static float time = 0;
-    time += dt;
-    unsigned int num_new = (unsigned int) (time * ParticlesPerSecond);
+ //   static float time = 0;
+ //   time += dt;
+    unsigned int num_new = (unsigned int) (dt * ParticlesPerSecond);
     if(num_new == 0)
         return;
 
 
     EG_Utility::debug("num_new ", num_new);
-    time = 0;
+ //   time = 0;
     m_particles.reserve(m_particles.size() + num_new);
     for(unsigned int i=0; i<num_new; i++)
     {

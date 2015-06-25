@@ -972,9 +972,11 @@ void ExplosionGenerator::update()
 
     }
 
-    smoke.update(addSmoke);
-
-    m_nbpEffect.update(0.0013, 5.0f);
+//    smoke.update(addSmoke);
+#if SMOKE_EFFECT
+ //   smoke.update(true);
+#endif
+    m_nbpEffect.update(0.0013, 0.0025 * 5.0f);
 
 #endif
 
@@ -1064,7 +1066,8 @@ void ExplosionGenerator::RenderSmoke(bool pass1, bool pass2, Matrices_t& Mat, un
 
         /// the volume RayCasting part
         r_twoPassRaycastingRenderer.Render_TwoPass_RayCasting_2(Mat, depthTextureId);
-
+ //   glEnable(GL_BLEND);
+ //   glBlendFunc(GL_SRC_ALPHA, GL_ONE);
 
  //       glBindBuffer(GL_ARRAY_BUFFER,0);
 //        glBindBuffer(GL_ELEMENT_ARRAY_BUFFER,0);
@@ -1317,8 +1320,6 @@ void ExplosionGenerator::Render_to_CubeMapFace2(int face)
 void ExplosionGenerator::forwardRender()
 {
 
-
-
 #if REFLECTION_EFFECT
     Render_to_CubeMapTexture2();
 #endif
@@ -1446,6 +1447,7 @@ void ExplosionGenerator::forwardRender()
 #endif
 
 
+
     glEnable(GL_CULL_FACE);
     glEnable(GL_DEPTH_TEST);    glClear(GL_DEPTH_BUFFER_BIT);
 
@@ -1517,6 +1519,7 @@ void ExplosionGenerator::forwardRender()
 
 
  //   glDepthFunc(GL_LESS);
+
 #if SMOKE_EFFECT
     RenderSmoke(true, true, Matrices, depthTexture);
 #endif
@@ -1527,16 +1530,9 @@ void ExplosionGenerator::forwardRender()
 */
 
 
-
-
     renderNoiseBasedParticleEffect2();
-
-
     renderGUI();
-
 #endif
-
-    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 }
 
 void ExplosionGenerator::initGUIRenderStage()
@@ -1562,7 +1558,7 @@ void ExplosionGenerator::initGUIRenderStage()
 
 void ExplosionGenerator::renderNoiseBasedParticleEffect2()
 {
-
+    glDisable(GL_BLEND);
 
     r_Technique = &r_nbpRenderer;
     r_textureRenderer.setTextureUnit(0);
@@ -1570,17 +1566,20 @@ void ExplosionGenerator::renderNoiseBasedParticleEffect2()
     r_textureRenderer.renderFullScreen(m_nbpEffect.m_backgroundTexture, m_nbpEffect.m_backgroundSurface.FBO);
     r_Technique = &r_nbpRenderer;
 
-
     glEnable(GL_BLEND);
-   // glBlendFuncSeparate(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA, GL_ZERO, GL_ONE_MINUS_SRC_ALPHA);
-  //  glBindFramebuffer(GL_FRAMEBUFFER, m_nbpEffect.m_particleSurface.FBO);
-
     glBlendFuncSeparate(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA, GL_ZERO, GL_ONE_MINUS_SRC_ALPHA);
-    glBindFramebuffer(GL_FRAMEBUFFER, 0);
 
-    glEnable(GL_DEPTH_TEST);
-    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-    glClearColor(0.0,0.0,0.0,1.0);
+
+    glBindFramebuffer(GL_FRAMEBUFFER, m_nbpEffect.m_particleSurface.FBO);
+ //   glBindFramebuffer(GL_FRAMEBUFFER, 0);
+
+  //  glEnable(GL_DEPTH_TEST);
+  //  glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+    glClearColor(0.0,0.0,1.0,1.0);
+    glClear(GL_COLOR_BUFFER_BIT);
+
+
+
 
         r_nbpRenderer.enableShader(RENDER_PASS1);
             glActiveTexture(GL_TEXTURE0);
@@ -1593,26 +1592,22 @@ void ExplosionGenerator::renderNoiseBasedParticleEffect2()
 
 
             m_pipeline.pushMatrix();
-                m_pipeline.translate(0,3,0);
-                m_pipeline.scale(3.0);
+           //     m_pipeline.translate(0,5,0);
+                m_pipeline.scale(5.0);
                 glm::mat4 mvp = m_pipeline.getModelViewProjectionMatrix();
                 r_nbpRenderer.setModelViewProjectionMatrix(mvp);
                 r_nbpRenderer.setCameraPosition(m_orbitCamera.getEyePoint());
                 r_nbpRenderer.setCameraViewDir(m_orbitCamera.m_zAxis);
             m_pipeline.popMatrix();
 
-
-            r_nbpRenderer.setColor(glm::vec4(1.0,1.0,0.0,1.0));
+            r_nbpRenderer.setColor(glm::vec4(0.0,0.0,0.0,1.0));
             r_nbpRenderer.setFadeRate(5.0f * 0.75f);
             r_nbpRenderer.setDepthTextureUnit(0);
             r_nbpRenderer.setSpriteTextureUnit(1);
-            r_nbpRenderer.setTime(runningTime);
+            r_nbpRenderer.setTime(m_nbpEffect.Time);
             r_nbpRenderer.setPointSize(0.2f);
             r_nbpRenderer.setInverseSize(glm::vec2(1.0f/SCREEN_WIDTH, 1.0f/SCREEN_HEIGHT));
             r_nbpRenderer.loadUniformLocations(m_pipeline, RENDER_PASS1);
-
-
-
 
             glBindBuffer(GL_ARRAY_BUFFER, 0);
             glEnableVertexAttribArray(SlotPosition);
@@ -1648,13 +1643,14 @@ void ExplosionGenerator::renderNoiseBasedParticleEffect2()
 
 
 
-#if 0
+#if 1
     pipeline temp_pipeline;
     temp_pipeline.loadIdentity();
     temp_pipeline.ortho(0,1,0,1,-1,1);
 
     glDisable(GL_DEPTH_TEST);
     glBindFramebuffer(GL_FRAMEBUFFER, 0);
+//    glClearColor(0.0,0.0,0.0,1.0);
     glActiveTexture(GL_TEXTURE0);
     glBindTexture(GL_TEXTURE_2D, m_nbpEffect.m_backgroundSurface.colorTexture);
     glActiveTexture(GL_TEXTURE1);

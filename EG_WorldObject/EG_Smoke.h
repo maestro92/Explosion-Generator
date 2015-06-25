@@ -190,7 +190,7 @@ class Smoke : public WorldObject
         Shader* Eulerian3D_ApplyImpulse;
         Shader* Eulerian3D_ApplyBuoyancy;
 
-
+        string m_shaderPath;;
 };
 
 
