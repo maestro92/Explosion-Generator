@@ -11,7 +11,11 @@ using namespace std;
 #define CUBE_SPHERE_EFFECT 0
 
 #define DEFERRED_SHADING 0
-#define SMOKE_EFFECT 1
+
+#define EULER_SMOKE_EFFECT 0
+#define NBP_SMOKE_EFFECT 1
+#define NBP_SMOKE_EFFECT_GPU 1
+
 #define REFLECTION_EFFECT 0
 #define MASS_LIGHTING 1
 #define POINT_LIGHT_BULBS   0
@@ -153,6 +157,7 @@ ExplosionGenerator::ExplosionGenerator()
     thirdPersonPovCamera.init(m_pipeline);
 #endif
 
+
     SDL_WM_SetCaption("Template", NULL);
  //   myThirdPOV_camera.lookAt(m_pipeline);
 }
@@ -230,6 +235,9 @@ void ExplosionGenerator::initFrameBuffers()
     glFramebufferTexture2D(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_TEXTURE_2D, depthTexture, 0);
     EG_Utility::errorCheckFBO();
 	glBindFramebuffer(GL_FRAMEBUFFER,0);
+
+
+    m_sceneSurface = EG_Utility::createSurface((int)SCREEN_WIDTH, (int)SCREEN_HEIGHT);
 }
 
 
@@ -251,7 +259,8 @@ void ExplosionGenerator::initRenderers()
     r_billBoardRenderer.init(1);
     r_textureRenderer.init(1);
 
-    r_nbpRenderer.init(2);
+    r_particleSystemRenderer.init(1);
+    r_nbpRenderer.init(3);
 }
 
 
@@ -334,6 +343,16 @@ void ExplosionGenerator::initModels()
 }
 
 
+
+
+
+
+
+
+
+
+
+
 void ExplosionGenerator::initObjects()
 {
 
@@ -351,7 +370,20 @@ void ExplosionGenerator::initObjects()
 
  //   nbp_particleSurface = EG_NoiseBasedParticleEffect::createSurface(SCREEN_WIDTH, SCREEN_HEIGHT);
  //   nbp_backgroundSurface = EG_NoiseBasedParticleEffect::createSurface(SCREEN_WIDTH, SCREEN_HEIGHT);
+
+
+#if NBP_SMOKE_EFFECT_GPU
+    m_nbpEffect.initGPU(SCREEN_WIDTH, SCREEN_HEIGHT);
+#else
     m_nbpEffect.init(SCREEN_WIDTH, SCREEN_HEIGHT);
+#endif
+
+
+
+    initTransformFeedBackTest();
+    m_particleSystemEffect.init();
+
+
 }
 
 
@@ -454,13 +486,110 @@ void ExplosionGenerator::initGUI()
 }
 
 
-void ExplosionGenerator::initEmitter()
+
+GLuint m_deltaTimeMillisLocation;
+GLuint m_randomTextureLocation;
+GLuint m_timeLocation;
+GLuint m_launcherLifetimeLocation;
+GLuint m_shellLifetimeLocation;
+GLuint m_secondaryShellLifetimeLocation;
+
+/*
+GLuint m_VPLocation_geometry;
+GLuint m_cameraPosLocation_geometry;
+GLuint m_colorMapLocation_geometry;
+GLuint m_billboardSizeLocation_geometry;
+*/
+
+void ExplosionGenerator::initTransformFeedBackTest()
 {
-  //  m_emitter = new Emitter();
+  //  glClearColor( 0.0f, 0.0f, 0.0f, 0.0f );
+  //  glEnable(GL_TEXTURE_2D);
+
+    glm::vec3 ParticleSystemPos = glm::vec3(0.0f, 0.0f, 1.0f);
+    m_particleSystem.InitParticleSystem(ParticleSystemPos);
+    m_particleSystem.Init_Texture("Assets/Images/fireworks_red.jpg");
+
+    const GLchar* Varyings[4];
+    Varyings[0] = "Type1";
+    Varyings[1] = "Position1";
+    Varyings[2] = "Velocity1";
+    Varyings[3] = "Age1";
+    // ParticleSystemShader = new Shader("EG_ParticleSystemShader28.vs", "EG_ParticleSystemShader28.gs", "EG_ParticleSystemShader28.fs", true);
+    ParticleSystemShader = new Shader("EG_ParticleSystemShaders/EG_ParticleSystemUpdate.vs",
+                                      "EG_ParticleSystemShaders/EG_ParticleSystemUpdate.gs",
+                                      "EG_ParticleSystemShaders/EG_ParticleSystemUpdate.fs", true);
+    glTransformFeedbackVaryings(ParticleSystemShader->getProgramId(), 4, Varyings, GL_INTERLEAVED_ATTRIBS);
+
+    ParticleSystemShader->linkShader();
+    ParticleSystemShader->useShader();
+    m_deltaTimeMillisLocation = glGetUniformLocation( ParticleSystemShader->getProgramId(), "gDeltaTimeMillis");
+    m_randomTextureLocation = glGetUniformLocation( ParticleSystemShader->getProgramId(), "gRandomTexture");
+    m_timeLocation = glGetUniformLocation( ParticleSystemShader->getProgramId(), "gTime");
+    m_launcherLifetimeLocation = glGetUniformLocation( ParticleSystemShader->getProgramId(), "gLauncherLifetime");
+    m_shellLifetimeLocation = glGetUniformLocation( ParticleSystemShader->getProgramId(), "gShellLifetime");
+    m_secondaryShellLifetimeLocation = glGetUniformLocation( ParticleSystemShader->getProgramId(), "gSecondaryShellLifetime");
+
+    glUniform1i(m_randomTextureLocation, 3);
+    glUniform1f(m_launcherLifetimeLocation, 100.0f);
+    glUniform1f(m_shellLifetimeLocation, 10000.0f);
+    glUniform1f(m_secondaryShellLifetimeLocation, 2500.0f);
+
 
 }
 
 
+/*
+void ExplosionGenerator::initTransformFeedBackTestBackup()
+{
+    glClearColor( 0.0f, 0.0f, 0.0f, 0.0f );
+    glEnable(GL_TEXTURE_2D);
+
+    glm::vec3 ParticleSystemPos = glm::vec3(0.0f, 0.0f, 1.0f);
+    m_particleSystem.InitParticleSystem(ParticleSystemPos);
+
+    const GLchar* Varyings[4];
+    Varyings[0] = "Type1";
+    Varyings[1] = "Position1";
+    Varyings[2] = "Velocity1";
+    Varyings[3] = "Age1";
+    ParticleSystemShader = new Shader("EG_ParticleSystemShader28.vs", "EG_ParticleSystemShader28.gs", "EG_ParticleSystemShader28.fs", true);
+    glTransformFeedbackVaryings(ParticleSystemShader->getProgramId(), 4, Varyings, GL_INTERLEAVED_ATTRIBS);
+
+    ParticleSystemShader->linkShader();
+    ParticleSystemShader->useShader();
+    m_deltaTimeMillisLocation = glGetUniformLocation( ParticleSystemShader->getProgramId(), "gDeltaTimeMillis");
+    m_randomTextureLocation = glGetUniformLocation( ParticleSystemShader->getProgramId(), "gRandomTexture");
+    m_timeLocation = glGetUniformLocation( ParticleSystemShader->getProgramId(), "gTime");
+    m_launcherLifetimeLocation = glGetUniformLocation( ParticleSystemShader->getProgramId(), "gLauncherLifetime");
+    m_shellLifetimeLocation = glGetUniformLocation( ParticleSystemShader->getProgramId(), "gShellLifetime");
+    m_secondaryShellLifetimeLocation = glGetUniformLocation( ParticleSystemShader->getProgramId(), "gSecondaryShellLifetime");
+
+    glUniform1f(m_launcherLifetimeLocation, 100.0f);
+    glUniform1f(m_shellLifetimeLocation, 10000.0f);
+    glUniform1f(m_secondaryShellLifetimeLocation, 2500.0f);
+
+    m_particleSystem.Init_Texture("Assets/Images/fireworks_red.jpg");
+
+    GeometryShader = new Shader("EG_ParticleSystemBillboarding28.vs", "EG_ParticleSystemBillboarding28.gs", "EG_ParticleSystemBillboarding28.fs");
+    m_VPLocation_geometry = glGetUniformLocation( GeometryShader->getProgramId(), "gVP");
+    m_cameraPosLocation_geometry = glGetUniformLocation( GeometryShader->getProgramId(),"gCameraPos");
+    m_colorMapLocation_geometry = glGetUniformLocation( GeometryShader->getProgramId(),"gColorMap");
+    m_billboardSizeLocation_geometry = glGetUniformLocation( GeometryShader->getProgramId(), "gBillboardSize");
+
+    if (m_VPLocation_geometry == INVALID_UNIFORM_LOCATION ||
+        m_cameraPosLocation_geometry == INVALID_UNIFORM_LOCATION ||
+        m_colorMapLocation_geometry == INVALID_UNIFORM_LOCATION ||
+        m_billboardSizeLocation_geometry == INVALID_UNIFORM_LOCATION)
+    {
+        cout << "geometry error" << endl;
+        exit(1);
+    }
+
+    glUniform1i(m_colorMapLocation_geometry, 0);
+    glUniform1f(m_billboardSizeLocation_geometry, 0.01f);
+}
+*/
 
 void ExplosionGenerator::start()
 {
@@ -690,15 +819,19 @@ void ExplosionGenerator::start()
         }
 
             update();
-
+//            updateTransformFeedbackTest();
 #if DEFERRED_SHADING
             deferredShadingShow();
 #else
             forwardRender();
+//            transformFeedBackTest();
+//            forwardRender2();
 #endif
 
             SDL_GL_SwapBuffers();
 
+       //     float curTime = SDL_GetTicks();
+       //     EG_Utility::debug("curTime is", curTime);
 /*
             if (next_game_tick > SDL_GetTicks())
                 SDL_Delay(next_game_tick - SDL_GetTicks());
@@ -947,7 +1080,7 @@ void ExplosionGenerator::update()
 
     glDisable(GL_BLEND);
 
-#if SMOKE_EFFECT
+#if EULER_SMOKE_EFFECT
 
     // if(m_explodeFlag)
 
@@ -969,15 +1102,23 @@ void ExplosionGenerator::update()
     if(overrideAddSmokeFlag)
     {
         addSmoke = true;
-
     }
 
-//    smoke.update(addSmoke);
-#if SMOKE_EFFECT
- //   smoke.update(true);
-#endif
-    m_nbpEffect.update(0.0013, 0.0025 * 5.0f);
 
+#if EULER_SMOKE_EFFECT
+    smoke.update(true);
+ //   smoke.update(addSmoke);
+#endif
+
+
+
+#endif
+
+
+#if NBP_SMOKE_EFFECT_GPU
+
+#else
+    m_nbpEffect.update(0.0025, 0.0025 * 5.0f);
 #endif
 
     if (m_explodeFlag)
@@ -1010,16 +1151,28 @@ void ExplosionGenerator::update()
 
 
 
+void ExplosionGenerator::updateTransformFeedbackTest()
+{
+  //  m_GUIComponentsFlags = 0;
+    float fDeltaTime = m_timeManager.GetElapsedTime();
+    angle+=0.05f;
+
+    if(m_increaseFlag)
+        m_orbitCamera.m_pivotOffset.y+=1;
+
+    if(m_decreaseFlag)
+        m_orbitCamera.m_pivotOffset.y-=1;
+
+    int mx, my;
+    SDL_GetMouseState(&mx,&my);
+    m_mouseState.m_pos = glm::vec2(mx, SCREEN_HEIGHT - my);
+
+    runningTime = (float)((double)SDL_GetTicks() - (double)m_timeManager.getStartTime()) / 1000.0f;
+}
+
 
 
 ///************************Helper Functions**************************///
-
-
-
-
-
-
-
 void ExplosionGenerator::RenderSmoke(bool pass1, bool pass2, Matrices_t& Mat, unsigned int depthTextureId)
 {
     if(pass1)
@@ -1125,8 +1278,6 @@ void ExplosionGenerator::renderAnimatedObject(pipeline& p, int pass)
 
 void ExplosionGenerator::RenderScene()
 {
-    m_pipeline.matrixMode(MODEL_MATRIX);
-
     /// 2nd Render pass of shadowMapping: camera's point of view
     m_pipeline.matrixMode(MODEL_MATRIX);
     m_pipeline.pushMatrix();
@@ -1220,7 +1371,7 @@ void ExplosionGenerator::Render_to_CubeMapTexture2()
 #endif
 
 
-    #if SMOKE_EFFECT
+    #if EULER_SMOKE_EFFECT
  //       if(i==NEGATIVE_Z)
   //          RenderSmoke(false, true, ReflectionSmoke, m_skybox.Dynamic_CubeMap_DepthTextureID);
     #endif
@@ -1315,9 +1466,587 @@ void ExplosionGenerator::Render_to_CubeMapFace2(int face)
 }
 
 
+unsigned int DeltaTimeMillis;
 
 
 void ExplosionGenerator::forwardRender()
+{
+
+#if REFLECTION_EFFECT
+    Render_to_CubeMapTexture2();
+#endif
+
+#if 1
+    m_pipeline.matrixMode(PROJECTION_MATRIX);
+    m_pipeline.loadIdentity();
+    m_pipeline.perspective(45,SCREEN_WIDTH/SCREEN_HEIGHT, 0.5, 1000.0);
+
+
+///camera motion
+	m_pipeline.matrixMode(VIEW_MATRIX);
+	m_pipeline.loadIdentity();
+
+
+    if(isFirstPersonCamera)
+    {
+        firstPersonPovCamera.Control(SCREEN_WIDTH/2, SCREEN_HEIGHT/2);
+        firstPersonPovCamera.UpdateCamera();
+        firstPersonPovCamera.UpdateCameraRotation(m_pipeline);
+    #if SKY_BOX
+        m_skybox.UpdateRotationOnly_View_Pipeline(m_pipeline);
+    #endif
+        firstPersonPovCamera.UpdateCameraTranslation(m_pipeline);
+    }
+
+
+    else
+    {
+
+#if ORBIT_CAMERA_FLAG
+     //   bool GuiFlag = m_particleCountSlider.getDraggingFlag() || m_velocitySlider.getDraggingFlag() || m_maxRadiusSlider.getDraggingFlag() || m_smokeSizeSlider.getDraggingFlag();
+        bool GUIFlag = (m_GUIComponentsFlags != 0);
+        m_orbitCamera.Control(m_pipeline, m_skybox, GUIFlag);
+#else
+        thirdPersonPovCamera.Control(m_pipeline, m_skybox);
+#endif
+    }
+
+
+
+    renderShadowMap();
+    l_SphereEffect.updateMatrices(m_pipeline);
+
+
+    /// render to sceneSurface
+    glBindFramebuffer(GL_FRAMEBUFFER, m_sceneSurface.FBO);
+    glDisable(GL_DEPTH_TEST);
+    glClearColor(0.0,0.0,0.0,1.0);
+    glClear(GL_COLOR_BUFFER_BIT);
+
+
+
+#if SKY_BOX
+    r_Technique = &r_skyboxRenderer;
+    r_skyboxRenderer.setCubeMapTextureUnit(0);
+    m_skybox.render(r_Technique, RENDER_PASS1);
+#endif
+
+
+    glEnable(GL_DEPTH_TEST);
+    glClear(GL_DEPTH_BUFFER_BIT);
+    glEnable(GL_CULL_FACE);
+    glCullFace(GL_BACK);
+
+    m_pipeline.matrixMode(MODEL_MATRIX);
+    m_pipeline.pushMatrix();
+
+        r_Technique = &r_sceneRenderer;
+        r_sceneRenderer.enableShader(RENDER_PASS2);
+
+            glActiveTexture(GL_TEXTURE6);
+            glBindTexture(GL_TEXTURE_2D, shadowMap);
+            glUniform1i(r_sceneRenderer.shadowMap_UniLoc,6);
+
+            r_sceneRenderer.setEyeWorldPos(m_orbitCamera.getEyePoint());
+
+            o_wall.renderGroup(m_pipeline, r_Technique, RENDER_PASS2, ground);
+            o_wall.renderGroup(m_pipeline, r_Technique, RENDER_PASS2, wall_negative_z);
+            o_wall.renderGroup(m_pipeline, r_Technique, RENDER_PASS2, wall_positive_x);
+        r_sceneRenderer.disableShader(RENDER_PASS2);
+    m_pipeline.popMatrix();
+
+
+
+    r_Technique = &r_instancedRenderer;
+    r_instancedRenderer.enableShader(RENDER_PASS2);
+    m_pipeline.pushMatrix();
+
+        glUniform1i(r_instancedRenderer.shadowMap_UniLoc,6);
+        r_instancedRenderer.setEyeWorldPos(m_orbitCamera.getEyePoint());
+
+        l_SphereEffect.instancedRender(m_pipeline, r_Technique, RENDER_PASS2, instancedSphere);
+    m_pipeline.popMatrix();
+    r_instancedRenderer.disableShader(RENDER_PASS2);
+
+
+    r_Technique = &r_fullColor;
+    p_modelPtr = &m_axisModel;
+        o_worldAxis.renderSingle(m_pipeline, r_Technique, RENDER_PASS1, p_modelPtr);
+
+
+
+
+
+
+
+
+    renderParticleSystemEffect();
+
+    glBindFramebuffer(GL_FRAMEBUFFER, 0);
+
+
+    glDisable(GL_BLEND);
+    r_Technique = &r_nbpRenderer;
+    r_textureRenderer.setTextureUnit(0);
+    r_textureRenderer.setPixelSize(SCREEN_WIDTH, SCREEN_HEIGHT);
+    r_textureRenderer.renderFullScreen(m_sceneSurface.colorTexture, 0);
+
+
+#if EULER_SMOKE_EFFECT
+    RenderSmoke(true, true, Matrices, m_sceneSurface.depthTexture);
+#endif
+
+
+
+
+
+
+#if NBP_SMOKE_EFFECT_GPU
+/*
+    r_Technique = &r_nbpRenderer;
+    r_nbpRenderer.enableShader(RENDER_PASS3);
+    r_nbpRenderer.setTime3(m_nbpEffect.Time);
+    r_nbpRenderer.setSize(glm::vec3(m_nbpEffect.m_velocityTexture.width,
+                                    m_nbpEffect.m_velocityTexture.height,
+                                    m_nbpEffect.m_velocityTexture.depth));
+    r_nbpRenderer.setExtent(glm::vec3(2,4,2));
+
+    m_nbpEffect.updateGPU(0.0025, 0.0025 * 5.0f);
+
+    renderNoiseBasedParticleEffectGPU();
+*/
+#else
+    renderNoiseBasedParticleEffect();
+#endif
+
+
+//   float deltaTimeMillis = 0.0
+
+/*
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+    glEnable(GL_DEPTH_TEST);
+
+    m_particleSystemEffect.m_time += 2.0;
+
+    r_Technique = &r_particleSystemRenderer;
+    r_particleSystemRenderer.enableShader(RENDER_PASS1);
+        r_particleSystemRenderer.setTime(m_particleSystemEffect.m_time);
+        r_particleSystemRenderer.setDeltaTime(2.0);
+
+
+        m_particleSystemEffect.udpate();
+    r_particleSystemRenderer.disableShader(RENDER_PASS1);
+
+
+    r_Technique = &r_billBoardRenderer;
+    r_billBoardRenderer.enableShader(RENDER_PASS1);
+    m_pipeline.pushMatrix();
+
+     //   m_pipeline.translate(0,5,0);
+     //   m_pipeline.scale(5.0);
+
+        glm::mat4 mvp = m_pipeline.getModelViewProjectionMatrix();
+        r_billBoardRenderer.setModelViewProjectionMatrix(mvp);
+        r_billBoardRenderer.setCameraPosition(m_orbitCamera.getEyePoint());
+        r_billBoardRenderer.setCameraViewDir(m_orbitCamera.m_zAxis);
+
+
+        // r_billBoardRenderer.loadUniformLocations(m_pipeline, RENDER_PASS1);
+        m_particleSystemEffect.render(m_pipeline, r_Technique, RENDER_PASS1);
+
+    m_pipeline.popMatrix();
+    r_billBoardRenderer.disableShader(RENDER_PASS1);
+*/
+
+
+   renderGUI();
+#endif
+}
+
+
+
+
+void ExplosionGenerator::initGUIRenderStage()
+{
+    glDisable(GL_DEPTH_TEST);
+    glDisable(GL_CULL_FACE);
+
+    glEnable(GL_BLEND);
+    glBlendFunc(GL_SRC_ALPHA, GL_ONE);
+
+    m_pipeline.reset();
+    m_pipeline.matrixMode(PROJECTION_MATRIX);
+    m_pipeline.loadIdentity();
+    m_pipeline.ortho(0, SCREEN_WIDTH, 0, SCREEN_HEIGHT, -1, 1);
+
+    m_pipeline.matrixMode(MODEL_MATRIX);
+    m_pipeline.loadIdentity();
+}
+
+
+
+
+#if NBP_SMOKE_EFFECT_GPU
+
+#else
+void ExplosionGenerator::renderNoiseBasedParticleEffect()
+{
+    glEnable(GL_BLEND);
+    glBlendFuncSeparate(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA, GL_ZERO, GL_ONE_MINUS_SRC_ALPHA);
+
+    glBindFramebuffer(GL_FRAMEBUFFER, m_nbpEffect.m_particleSurface.FBO);
+    glClearColor(0.0,0.0,0.0,1.0);
+    glClear(GL_COLOR_BUFFER_BIT);
+
+        r_nbpRenderer.enableShader(RENDER_PASS1);
+            glActiveTexture(GL_TEXTURE0);
+            glBindTexture(GL_TEXTURE_2D, m_sceneSurface.depthTexture);
+            glActiveTexture(GL_TEXTURE1);
+            glBindTexture(GL_TEXTURE_2D, m_nbpEffect.m_spriteTexture);
+            glDisable(GL_DEPTH_TEST);
+            glEnable(GL_BLEND);
+
+
+            m_pipeline.pushMatrix();
+                m_pipeline.translate(0,0,-1);
+                m_pipeline.scale(5.0);
+                glm::mat4 mvp = m_pipeline.getModelViewProjectionMatrix();
+                r_nbpRenderer.setModelViewProjectionMatrix(mvp);
+
+                glm::mat4 mv = m_pipeline.getModelViewMatrix();
+                r_nbpRenderer.setModelViewMatrix(mv);
+
+                r_nbpRenderer.setCameraPosition(m_orbitCamera.getEyePoint());
+                r_nbpRenderer.setCameraViewDir(m_orbitCamera.m_zAxis);
+            m_pipeline.popMatrix();
+
+  //          r_nbpRenderer.setColor(glm::vec4(0.8, 0.8, 0.8, 1.0));
+            r_nbpRenderer.setColor(glm::vec4(0.0, 0.0, 0.0, 1.0));
+            r_nbpRenderer.setFadeRate(5.0f * 0.75f);
+            r_nbpRenderer.setDepthTextureUnit(0);
+            r_nbpRenderer.setSpriteTextureUnit(1);
+            r_nbpRenderer.setTime(m_nbpEffect.Time);
+            r_nbpRenderer.setPointSize(0.2f);
+            r_nbpRenderer.setInverseSize(glm::vec2(1.0f/SCREEN_WIDTH, 1.0f/SCREEN_HEIGHT));
+            r_nbpRenderer.loadUniformLocations(m_pipeline, RENDER_PASS1);
+
+            glBindBuffer(GL_ARRAY_BUFFER, 0);
+            glEnableVertexAttribArray(SlotPosition);
+            glEnableVertexAttribArray(SlotBirthTime);
+            glEnableVertexAttribArray(SlotVelocity);
+            unsigned char* pData = (unsigned char*) &m_nbpEffect.m_particles[0].px;
+            glVertexAttribPointer(SlotPosition, 3, GL_FLOAT, GL_FALSE, sizeof(EG_NoiseBasedParticle), pData);
+            glVertexAttribPointer(SlotBirthTime, 1, GL_FLOAT, GL_FALSE, sizeof(EG_NoiseBasedParticle), 12 + pData);
+            glVertexAttribPointer(SlotVelocity, 3, GL_FLOAT, GL_FALSE, sizeof(EG_NoiseBasedParticle), 16 + pData);
+                glDrawArrays(GL_POINTS, 0, m_nbpEffect.m_particles.size());
+            glDisableVertexAttribArray(SlotPosition);
+            glDisableVertexAttribArray(SlotBirthTime);
+            glDisableVertexAttribArray(SlotVelocity);
+            glDisable(GL_BLEND);
+            glBindTexture(GL_TEXTURE_2D, 0);
+
+        r_nbpRenderer.disableShader(RENDER_PASS1);
+
+
+
+#if 1
+    pipeline temp_pipeline;
+    temp_pipeline.loadIdentity();
+    temp_pipeline.ortho(0,1,0,1,-1,1);
+
+    glDisable(GL_DEPTH_TEST);
+    glBindFramebuffer(GL_FRAMEBUFFER, 0);
+//    glClearColor(0.0,0.0,0.0,1.0);
+    glActiveTexture(GL_TEXTURE0);
+    glBindTexture(GL_TEXTURE_2D, m_sceneSurface.colorTexture);
+    glActiveTexture(GL_TEXTURE1);
+    glBindTexture(GL_TEXTURE_2D, m_nbpEffect.m_particleSurface.colorTexture);
+
+    r_nbpRenderer.enableShader(RENDER_PASS2);
+        r_nbpRenderer.setBackgroundTextureUnit(0);
+        r_nbpRenderer.setParticlesTextureUnit(1);
+        r_nbpRenderer.loadUniformLocations(temp_pipeline, RENDER_PASS2);
+        r_textureRenderer.o_fullScreenQuad.render();
+    r_nbpRenderer.disableShader(RENDER_PASS2);
+
+
+    glActiveTexture(GL_TEXTURE1);
+    glBindTexture(GL_TEXTURE_2D, 0);
+    glActiveTexture(GL_TEXTURE0);
+    glBindTexture(GL_TEXTURE_2D, 0);
+    glEnable(GL_DEPTH_TEST);
+#endif
+}
+#endif
+
+
+void ExplosionGenerator::renderNoiseBasedParticleEffectGPU()
+{
+    glEnable(GL_BLEND);
+    glBlendFuncSeparate(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA, GL_ZERO, GL_ONE_MINUS_SRC_ALPHA);
+
+    glBindFramebuffer(GL_FRAMEBUFFER, m_nbpEffect.m_particleSurface.FBO);
+    glClearColor(0.0,0.0,0.0,1.0);
+    glClear(GL_COLOR_BUFFER_BIT);
+
+        r_nbpRenderer.enableShader(RENDER_PASS1);
+            glActiveTexture(GL_TEXTURE0);
+            glBindTexture(GL_TEXTURE_2D, m_sceneSurface.depthTexture);
+            glActiveTexture(GL_TEXTURE1);
+            glBindTexture(GL_TEXTURE_2D, m_nbpEffect.m_spriteTexture);
+            glDisable(GL_DEPTH_TEST);
+            glEnable(GL_BLEND);
+
+
+            m_pipeline.pushMatrix();
+                m_pipeline.translate(0,0,-1);
+                m_pipeline.scale(5.0);
+                glm::mat4 mvp = m_pipeline.getModelViewProjectionMatrix();
+                r_nbpRenderer.setModelViewProjectionMatrix(mvp);
+
+                glm::mat4 mv = m_pipeline.getModelViewMatrix();
+                r_nbpRenderer.setModelViewMatrix(mv);
+
+                r_nbpRenderer.setCameraPosition(m_orbitCamera.getEyePoint());
+                r_nbpRenderer.setCameraViewDir(m_orbitCamera.m_zAxis);
+            m_pipeline.popMatrix();
+
+  //          r_nbpRenderer.setColor(glm::vec4(0.8, 0.8, 0.8, 1.0));
+            r_nbpRenderer.setColor(glm::vec4(0.0, 0.0, 0.0, 1.0));
+            r_nbpRenderer.setFadeRate(5.0f * 0.75f);
+            r_nbpRenderer.setDepthTextureUnit(0);
+            r_nbpRenderer.setSpriteTextureUnit(1);
+            r_nbpRenderer.setTime(m_nbpEffect.Time);
+            r_nbpRenderer.setPointSize(0.2f);
+            r_nbpRenderer.setInverseSize(glm::vec2(1.0f/SCREEN_WIDTH, 1.0f/SCREEN_HEIGHT));
+            r_nbpRenderer.loadUniformLocations(m_pipeline, RENDER_PASS1);
+
+            glBindBuffer(GL_ARRAY_BUFFER, 0);
+            glEnableVertexAttribArray(SlotPosition);
+            glEnableVertexAttribArray(SlotBirthTime);
+            glEnableVertexAttribArray(SlotVelocity);
+            unsigned char* pData = (unsigned char*) &m_nbpEffect.m_particles[0].px;
+            glVertexAttribPointer(SlotPosition, 3, GL_FLOAT, GL_FALSE, sizeof(EG_NoiseBasedParticle), pData);
+            glVertexAttribPointer(SlotBirthTime, 1, GL_FLOAT, GL_FALSE, sizeof(EG_NoiseBasedParticle), 12 + pData);
+            glVertexAttribPointer(SlotVelocity, 3, GL_FLOAT, GL_FALSE, sizeof(EG_NoiseBasedParticle), 16 + pData);
+                glDrawArrays(GL_POINTS, 0, m_nbpEffect.m_particles.size());
+            glDisableVertexAttribArray(SlotPosition);
+            glDisableVertexAttribArray(SlotBirthTime);
+            glDisableVertexAttribArray(SlotVelocity);
+            glDisable(GL_BLEND);
+            glBindTexture(GL_TEXTURE_2D, 0);
+
+        r_nbpRenderer.disableShader(RENDER_PASS1);
+
+
+
+#if 1
+    pipeline temp_pipeline;
+    temp_pipeline.loadIdentity();
+    temp_pipeline.ortho(0,1,0,1,-1,1);
+
+    glDisable(GL_DEPTH_TEST);
+    glBindFramebuffer(GL_FRAMEBUFFER, 0);
+//    glClearColor(0.0,0.0,0.0,1.0);
+    glActiveTexture(GL_TEXTURE0);
+    glBindTexture(GL_TEXTURE_2D, m_sceneSurface.colorTexture);
+    glActiveTexture(GL_TEXTURE1);
+    glBindTexture(GL_TEXTURE_2D, m_nbpEffect.m_particleSurface.colorTexture);
+
+    r_nbpRenderer.enableShader(RENDER_PASS2);
+        r_nbpRenderer.setBackgroundTextureUnit(0);
+        r_nbpRenderer.setParticlesTextureUnit(1);
+        r_nbpRenderer.loadUniformLocations(temp_pipeline, RENDER_PASS2);
+        r_textureRenderer.o_fullScreenQuad.render();
+    r_nbpRenderer.disableShader(RENDER_PASS2);
+
+
+    glActiveTexture(GL_TEXTURE1);
+    glBindTexture(GL_TEXTURE_2D, 0);
+    glActiveTexture(GL_TEXTURE0);
+    glBindTexture(GL_TEXTURE_2D, 0);
+    glEnable(GL_DEPTH_TEST);
+#endif
+}
+
+
+
+
+
+void ExplosionGenerator::renderParticleSystemEffect()
+{
+    /*
+    DeltaTimeMillis = 2;
+    m_particleSystem.m_time += DeltaTimeMillis;
+    r_Technique = &r_particleSystemRenderer;
+    r_particleSystemRenderer.enableShader(RENDER_PASS1);
+   //     r_particleSystemRenderer.setTime((float)m_particleSystemEffect.m_time);
+   //     r_particleSystemRenderer.setDeltaTime((float)DeltaTimeMillis);
+
+
+  //      r_particleSystemRenderer.m_randomTextureDataPair.value = 3;
+    //    r_particleSystemRenderer.m_launchLifeTimeDataPair.value = 100.0f;
+      //  r_particleSystemRenderer.m_shellLifeTimeDataPair.value = 10000.0f;
+        //r_particleSystemRenderer.m_secondaryShellLifeTimeDataPair.value = 2500.0f;
+
+  //      r_particleSystemRenderer.loadUniformLocations(m_pipeline, RENDER_PASS1);
+
+        EG_Utility::debug("time is", (float)m_particleSystemEffect.m_time);
+    //    r_particleSystemRenderer.setTime((float)m_particleSystemEffect.m_time);
+        // r_particleSystemRenderer.loadUniformLocations(m_pipeline, RENDER_PASS1);
+        glUniform1f(r_particleSystemRenderer.m_timeDataPair.uniLoc, (float)m_particleSystem.m_time);
+        glUniform1f(r_particleSystemRenderer.m_deltaTimeMillisDataPair.uniLoc, (float)DeltaTimeMillis);
+        glUniform1i(r_particleSystemRenderer.m_randomTextureDataPair.uniLoc, 3);
+        glUniform1f(r_particleSystemRenderer.m_launchLifeTimeDataPair.uniLoc, 100.0f);
+        glUniform1f(r_particleSystemRenderer.m_shellLifeTimeDataPair.uniLoc, 10000.0f);
+        glUniform1f(r_particleSystemRenderer.m_secondaryShellLifeTimeDataPair.uniLoc, 2500.0f);
+
+        m_particleSystem.UpdateParticles();
+    r_particleSystemRenderer.disableShader(RENDER_PASS1);
+*/
+
+
+    DeltaTimeMillis = 2;
+    // m_particleSystem.m_time += DeltaTimeMillis;
+    m_particleSystemEffect.m_time += DeltaTimeMillis;
+
+    r_Technique = &r_particleSystemRenderer;
+    r_particleSystemRenderer.enableShader(RENDER_PASS1);
+
+        //EG_Utility::debug("time is", (float)m_particleSystem.m_time);
+        r_particleSystemRenderer.setTime((float)m_particleSystemEffect.m_time);
+        r_particleSystemRenderer.setDeltaTime((float)DeltaTimeMillis);
+        r_particleSystemRenderer.loadUniformLocations(m_pipeline, RENDER_PASS1);
+
+/*
+        // glUniform1f(r_particleSystemRenderer.m_timeDataPair.uniLoc, (float)m_particleSystem.m_time);
+        // glUniform1f(r_particleSystemRenderer.m_deltaTimeMillisDataPair.uniLoc, (float)DeltaTimeMillis);
+        glUniform1i(r_particleSystemRenderer.m_randomTextureDataPair.uniLoc, 3);
+        glUniform1f(r_particleSystemRenderer.m_launchLifeTimeDataPair.uniLoc, 100.0f);
+        glUniform1f(r_particleSystemRenderer.m_shellLifeTimeDataPair.uniLoc, 10000.0f);
+        glUniform1f(r_particleSystemRenderer.m_secondaryShellLifeTimeDataPair.uniLoc, 2500.0f);
+*/
+//    m_particleSystem.UpdateParticles();
+#if 0
+/// ####################################################
+        glActiveTexture(GL_TEXTURE3);
+        glBindTexture(GL_TEXTURE_1D, m_particleSystemEffect.m_randomTexture);
+
+        glEnable(GL_RASTERIZER_DISCARD);
+
+  //      glBindBuffer(GL_ARRAY_BUFFER, m_particleSystem.m_particleBuffer[m_particleSystem.m_currVB]);
+  //      glBindTransformFeedback(GL_TRANSFORM_FEEDBACK, m_particleSystem.m_transformFeedback[m_particleSystem.m_currTFB]);
+
+        glBindBuffer(GL_ARRAY_BUFFER, m_particleSystem.m_particleBuffer[m_particleSystem.m_currVB]);
+        glBindTransformFeedback(GL_TRANSFORM_FEEDBACK, m_particleSystem.m_transformFeedback[m_particleSystem.m_currTFB]);
+
+
+        glEnableVertexAttribArray(0);
+        glEnableVertexAttribArray(1);
+        glEnableVertexAttribArray(2);
+        glEnableVertexAttribArray(3);
+
+        glVertexAttribPointer(0, 1, GL_FLOAT, GL_FALSE, sizeof(ParticlePS), 0);                          // type
+        glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, sizeof(ParticlePS), (const GLvoid*)4);         // position
+        glVertexAttribPointer(2, 3, GL_FLOAT, GL_FALSE, sizeof(ParticlePS), (const GLvoid*)16);        // velocity
+        glVertexAttribPointer(3, 1, GL_FLOAT, GL_FALSE, sizeof(ParticlePS), (const GLvoid*)28);          // lifetime
+
+        glBeginTransformFeedback(GL_POINTS);
+
+        if (m_particleSystem.m_isFirst)
+        {
+            glDrawArrays(GL_POINTS, 0, 1);
+            m_particleSystem.m_isFirst = false;
+        }
+        else
+        {
+            glDrawTransformFeedback(GL_POINTS, m_particleSystem.m_transformFeedback[m_particleSystem.m_currVB]);
+//            glDrawTransformFeedback(GL_POINTS, m_particleSystemEffect.m_transformFeedbacks[m_particleSystemEffect.m_currVB]);
+        }
+
+        glEndTransformFeedback();
+
+        glDisableVertexAttribArray(0);
+        glDisableVertexAttribArray(1);
+        glDisableVertexAttribArray(2);
+        glDisableVertexAttribArray(3);
+
+        glDisable(GL_RASTERIZER_DISCARD);
+/// ####################################################
+#endif
+
+        m_particleSystemEffect.update();
+    r_particleSystemRenderer.disableShader(RENDER_PASS1);
+
+
+
+
+
+    r_Technique = &r_billBoardRenderer;
+    r_billBoardRenderer.enableShader(RENDER_PASS1);
+    m_pipeline.pushMatrix();
+        m_pipeline.scale(2.0);
+
+        glm::mat4 mvp = m_pipeline.getModelViewProjectionMatrix();
+        r_billBoardRenderer.setModelViewProjectionMatrix(mvp);
+        r_billBoardRenderer.setCameraPosition(m_orbitCamera.getEyePoint());
+        r_billBoardRenderer.setCameraViewDir(m_orbitCamera.m_zAxis);
+        r_billBoardRenderer.loadUniformLocations(m_pipeline, RENDER_PASS1);
+
+//        m_particleSystem.Render();
+        m_particleSystemEffect.render();
+    m_pipeline.popMatrix();
+    r_billBoardRenderer.disableShader(RENDER_PASS1);
+}
+
+
+
+
+
+void ExplosionGenerator::renderGUI()
+{
+    initGUIRenderStage();
+
+    /// http://sdl.beuc.net/sdl.wiki/SDL_Average_FPS_Measurement
+    unsigned int getTicks = SDL_GetTicks();
+    m_timeManager.addTick(getTicks);
+    m_fps = m_timeManager.computeAverageFPS();
+
+
+    string final_str = "Explosion Generator  FPS:" + EG_Utility::floatToStr(m_fps);
+    EG_Control::m_textEngine.render(m_pipeline, 0, 10, final_str.c_str());
+
+
+    r_Technique = &r_buttonRenderer;
+    /*
+    m_triggerButton.render(m_pipeline, r_Technique, RENDER_PASS1);
+    m_resetButton.render(m_pipeline, r_Technique, RENDER_PASS1);
+    m_minimizeButton.render(m_pipeline, r_Technique, RENDER_PASS1);
+ */
+ //   m_listBox.render(m_pipeline, r_Technique, RENDER_PASS1);
+
+
+  //  m_particleCountSlider.render(m_pipeline, r_Technique, RENDER_PASS1);
+  //  m_velocitySlider.render(m_pipeline, r_Technique, RENDER_PASS1);
+
+
+    for(int i=0; i<m_GUIComponents.size(); i++)
+    {
+        EG_Control* control = m_GUIComponents[i];
+        control->render(m_pipeline, r_Technique, RENDER_PASS1);
+    }
+
+}
+
+
+
+
+
+
+
+
+#if 0
+void ExplosionGenerator::forwardRender2()
 {
 
 #if REFLECTION_EFFECT
@@ -1377,6 +2106,37 @@ void ExplosionGenerator::forwardRender()
     renderShadowMap();
     l_SphereEffect.updateMatrices(m_pipeline);
 
+
+
+#if EULER_SMOKE_EFFECT
+
+        /// getting the depth of the scene
+        m_pipeline.matrixMode(MODEL_MATRIX);
+        glBindFramebuffer(GL_FRAMEBUFFER, m_sceneSurface.FBO);
+        glEnable(GL_DEPTH_TEST);
+        glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT);
+            m_pipeline.pushMatrix();
+
+            r_Technique = &r_depthRenderer;
+                r_Technique->enableShader(RENDER_PASS1);
+
+                o_wall.renderGroup(m_pipeline, r_Technique, RENDER_PASS1, ground);
+                o_wall.renderGroup(m_pipeline, r_Technique, RENDER_PASS1, wall_negative_z);
+                o_wall.renderGroup(m_pipeline, r_Technique, RENDER_PASS1, wall_positive_x);
+
+                o_reflectionSphere.renderGroup(m_pipeline, r_Technique, RENDER_PASS1, smoothSphere);
+                r_Technique->disableShader(RENDER_PASS1);
+
+
+            r_Technique = &r_instancedRenderer;
+                l_SphereEffect.instancedRender(m_pipeline, r_Technique, RENDER_PASS1, instancedSphere);
+
+        m_pipeline.popMatrix();
+        glBindFramebuffer(GL_FRAMEBUFFER, 0);
+#endif
+
+
+    /*
 #if SMOKE_EFFECT
         r_Technique = &r_depthRenderer;
         /// getting the depth of the scene
@@ -1426,9 +2186,9 @@ void ExplosionGenerator::forwardRender()
         m_pipeline.popMatrix();
         glBindFramebuffer(GL_FRAMEBUFFER, 0);
 #endif
+*/
 
 
- //   renderShadowMap();
 
 
     glEnable(GL_CULL_FACE);
@@ -1436,7 +2196,6 @@ void ExplosionGenerator::forwardRender()
 
 
     /// sets the color
-//    glClearColor(0,0,0.5,1);
     glClearColor(0,0,0,0);      glClear(GL_COLOR_BUFFER_BIT); // clears the buffer
     glDisable(GL_DEPTH_TEST);   glDisable(GL_CULL_FACE);
 
@@ -1520,8 +2279,9 @@ void ExplosionGenerator::forwardRender()
 
  //   glDepthFunc(GL_LESS);
 
-#if SMOKE_EFFECT
-    RenderSmoke(true, true, Matrices, depthTexture);
+#if EULER_SMOKE_EFFECT
+//    RenderSmoke(true, true, Matrices, depthTexture);
+    RenderSmoke(true, true, Matrices, m_sceneSurface.depthTexture);
 #endif
 /*
     r_textureRenderer.setTextureUnit(0);
@@ -1530,312 +2290,8 @@ void ExplosionGenerator::forwardRender()
 */
 
 
-    renderNoiseBasedParticleEffect2();
+  //  renderNoiseBasedParticleEffect();
     renderGUI();
 #endif
 }
-
-void ExplosionGenerator::initGUIRenderStage()
-{
-    glDisable(GL_DEPTH_TEST);
-    glDisable(GL_CULL_FACE);
-
-    glEnable(GL_BLEND);
-    glBlendFunc(GL_SRC_ALPHA, GL_ONE);
-
-    m_pipeline.reset();
-    m_pipeline.matrixMode(PROJECTION_MATRIX);
-    m_pipeline.loadIdentity();
-    m_pipeline.ortho(0, SCREEN_WIDTH, 0, SCREEN_HEIGHT, -1, 1);
-
-    m_pipeline.matrixMode(MODEL_MATRIX);
-    m_pipeline.loadIdentity();
-}
-
-
-
-
-
-void ExplosionGenerator::renderNoiseBasedParticleEffect2()
-{
-    glDisable(GL_BLEND);
-
-    r_Technique = &r_nbpRenderer;
-    r_textureRenderer.setTextureUnit(0);
-    r_textureRenderer.setPixelSize(SCREEN_WIDTH, SCREEN_HEIGHT);
-    r_textureRenderer.renderFullScreen(m_nbpEffect.m_backgroundTexture, m_nbpEffect.m_backgroundSurface.FBO);
-    r_Technique = &r_nbpRenderer;
-
-    glEnable(GL_BLEND);
-    glBlendFuncSeparate(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA, GL_ZERO, GL_ONE_MINUS_SRC_ALPHA);
-
-
-    glBindFramebuffer(GL_FRAMEBUFFER, m_nbpEffect.m_particleSurface.FBO);
- //   glBindFramebuffer(GL_FRAMEBUFFER, 0);
-
-  //  glEnable(GL_DEPTH_TEST);
-  //  glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-    glClearColor(0.0,0.0,1.0,1.0);
-    glClear(GL_COLOR_BUFFER_BIT);
-
-
-
-
-        r_nbpRenderer.enableShader(RENDER_PASS1);
-            glActiveTexture(GL_TEXTURE0);
-            glBindTexture(GL_TEXTURE_2D, m_nbpEffect.m_backgroundSurface.depthTexture);
-            glActiveTexture(GL_TEXTURE1);
-            glBindTexture(GL_TEXTURE_2D, m_nbpEffect.m_spriteTexture);
-            glDisable(GL_DEPTH_TEST);
-            glEnable(GL_BLEND);
-
-
-
-            m_pipeline.pushMatrix();
-           //     m_pipeline.translate(0,5,0);
-                m_pipeline.scale(5.0);
-                glm::mat4 mvp = m_pipeline.getModelViewProjectionMatrix();
-                r_nbpRenderer.setModelViewProjectionMatrix(mvp);
-                r_nbpRenderer.setCameraPosition(m_orbitCamera.getEyePoint());
-                r_nbpRenderer.setCameraViewDir(m_orbitCamera.m_zAxis);
-            m_pipeline.popMatrix();
-
-            r_nbpRenderer.setColor(glm::vec4(0.0,0.0,0.0,1.0));
-            r_nbpRenderer.setFadeRate(5.0f * 0.75f);
-            r_nbpRenderer.setDepthTextureUnit(0);
-            r_nbpRenderer.setSpriteTextureUnit(1);
-            r_nbpRenderer.setTime(m_nbpEffect.Time);
-            r_nbpRenderer.setPointSize(0.2f);
-            r_nbpRenderer.setInverseSize(glm::vec2(1.0f/SCREEN_WIDTH, 1.0f/SCREEN_HEIGHT));
-            r_nbpRenderer.loadUniformLocations(m_pipeline, RENDER_PASS1);
-
-            glBindBuffer(GL_ARRAY_BUFFER, 0);
-            glEnableVertexAttribArray(SlotPosition);
-            glEnableVertexAttribArray(SlotBirthTime);
-            glEnableVertexAttribArray(SlotVelocity);
-            unsigned char* pData = (unsigned char*) &m_nbpEffect.m_particles[0].px;
-            glVertexAttribPointer(SlotPosition, 3, GL_FLOAT, GL_FALSE, sizeof(EG_NoiseBasedParticle), pData);
-            glVertexAttribPointer(SlotBirthTime, 1, GL_FLOAT, GL_FALSE, sizeof(EG_NoiseBasedParticle), 12 + pData);
-            glVertexAttribPointer(SlotVelocity, 3, GL_FLOAT, GL_FALSE, sizeof(EG_NoiseBasedParticle), 16 + pData);
-                glDrawArrays(GL_POINTS, 0, m_nbpEffect.m_particles.size());
-            glDisableVertexAttribArray(SlotPosition);
-            glDisableVertexAttribArray(SlotBirthTime);
-            glDisableVertexAttribArray(SlotVelocity);
-            glDisable(GL_BLEND);
-            glBindTexture(GL_TEXTURE_2D, 0);
-
-        r_nbpRenderer.disableShader(RENDER_PASS1);
-/*
-    r_Technique = &r_billBoardRenderer;
-    m_pipeline.pushMatrix();
-        m_pipeline.translate(0,3,0);
-        m_pipeline.scale(3.0);
-        glm::mat4 mvp = m_pipeline.getModelViewProjectionMatrix();
-        r_billBoardRenderer.setModelViewProjectionMatrix(mvp);
-        r_billBoardRenderer.setCameraPosition(m_orbitCamera.getEyePoint());
-        r_billBoardRenderer.setCameraViewDir(m_orbitCamera.m_zAxis);
-        m_billboardList.render(m_pipeline, r_Technique, RENDER_PASS1);
-    m_pipeline.popMatrix();
-    glBindFramebuffer(GL_FRAMEBUFFER, 0);
-    glDisable(GL_BLEND);
-*/
-
-
-
-
-#if 1
-    pipeline temp_pipeline;
-    temp_pipeline.loadIdentity();
-    temp_pipeline.ortho(0,1,0,1,-1,1);
-
-    glDisable(GL_DEPTH_TEST);
-    glBindFramebuffer(GL_FRAMEBUFFER, 0);
-//    glClearColor(0.0,0.0,0.0,1.0);
-    glActiveTexture(GL_TEXTURE0);
-    glBindTexture(GL_TEXTURE_2D, m_nbpEffect.m_backgroundSurface.colorTexture);
-    glActiveTexture(GL_TEXTURE1);
-    glBindTexture(GL_TEXTURE_2D, m_nbpEffect.m_particleSurface.colorTexture);
-
-    r_nbpRenderer.enableShader(RENDER_PASS2);
-        r_nbpRenderer.setBackgroundTextureUnit(0);
-        r_nbpRenderer.setParticlesTextureUnit(1);
-        r_nbpRenderer.loadUniformLocations(temp_pipeline, RENDER_PASS2);
-        r_textureRenderer.o_fullScreenQuad.render();
-    r_nbpRenderer.disableShader(RENDER_PASS2);
-
-
-    glActiveTexture(GL_TEXTURE1);
-    glBindTexture(GL_TEXTURE_2D, 0);
-    glActiveTexture(GL_TEXTURE0);
-    glBindTexture(GL_TEXTURE_2D, 0);
-    glEnable(GL_DEPTH_TEST);
 #endif
-}
-
-
-
-
-void ExplosionGenerator::renderNoiseBasedParticleEffect()
-{
-  //  glDisable(GL_BLEND);
-  //  glDisable(GL_DEPTH_TEST);
- //   glBindFramebuffer(GL_FRAMEBUFFER, m_nbpEffect.m_backgroundSurface.FBO);
-  //  glBindFramebuffer(GL_FRAMEBUFFER, 0);
-  //  glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-
-/*
-    r_Technique = &r_nbpRenderer;
-    r_nbpRenderer.setDepth(1.0f);
-    r_nbpRenderer.setScrollOffsetTime(runningTime);
-*/
-
-
- //   glDisable(GL_BLEND);
-
-    r_Technique = &r_nbpRenderer;
-    r_textureRenderer.setTextureUnit(0);
-    r_textureRenderer.setPixelSize(SCREEN_WIDTH, SCREEN_HEIGHT);
-    r_textureRenderer.renderFullScreen(m_nbpEffect.m_backgroundTexture, m_nbpEffect.m_backgroundSurface.FBO);
-//    r_textureRenderer.renderFullScreen(m_nbpEffect.m_backgroundTexture, 0);
-//    r_textureRenderer.renderFullScreen(m_billboardList.m_billboardTexture);
-    r_Technique = &r_nbpRenderer;
-/*
-    r_textureRenderer.setTextureUnit(0);
-    r_textureRenderer.setPixelSize(SCREEN_WIDTH, SCREEN_HEIGHT);
-    r_textureRenderer.renderFullScreen(m_nbpEffect.m_backgroundSurface.colorTexture, 0);
-    r_Technique = &r_nbpRenderer;
-*/
-
-    EG_Utility::debug("Particle Size ", m_nbpEffect.m_particles.size());
-    EG_Utility::debug("\n\n\n");
-
-
-    glEnable(GL_BLEND);
-    glBlendFuncSeparate(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA, GL_ZERO, GL_ONE_MINUS_SRC_ALPHA);
-    glBindFramebuffer(GL_FRAMEBUFFER, m_nbpEffect.m_particleSurface.FBO);
-    glEnable(GL_DEPTH_TEST);
-    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-    glClearColor(0.0,0.0,0.0,1.0);
-
-    r_Technique = &r_billBoardRenderer;
-    m_pipeline.pushMatrix();
-        m_pipeline.translate(0,3,0);
-        m_pipeline.scale(3.0);
-        glm::mat4 mvp = m_pipeline.getModelViewProjectionMatrix();
-        r_billBoardRenderer.setModelViewProjectionMatrix(mvp);
-        r_billBoardRenderer.setCameraPosition(m_orbitCamera.getEyePoint());
-        r_billBoardRenderer.setCameraViewDir(m_orbitCamera.m_zAxis);
-        m_billboardList.render(m_pipeline, r_Technique, RENDER_PASS1);
-    m_pipeline.popMatrix();
-    glBindFramebuffer(GL_FRAMEBUFFER, 0);
-    glDisable(GL_BLEND);
-
-#if 0
-    glBindFramebuffer(GL_FRAMEBUFFER, m_nbpEffect.m_particleSurface.FBO);
-//    glBindFramebuffer(GL_FRAMEBUFFER, 0);
-    glClearColor(0,0,0,1);
-    glClear(GL_COLOR_BUFFER_BIT);
-
-        r_nbpRenderer.enableShader(RENDER_PASS1);
-            glActiveTexture(GL_TEXTURE0);
-            glBindTexture(GL_TEXTURE_2D, m_nbpEffect.m_backgroundSurface.depthTexture);
-            glActiveTexture(GL_TEXTURE1);
-            glBindTexture(GL_TEXTURE_2D, m_nbpEffect.m_spriteTexture);
-            glDisable(GL_DEPTH_TEST);
-            glEnable(GL_BLEND);
-
-            r_nbpRenderer.setColor(glm::vec4(1.0,1.0,0.0,1.0));
-            r_nbpRenderer.setFadeRate(5.0f * 0.75f);
-            r_nbpRenderer.setDepthTextureUnit(0);
-            r_nbpRenderer.setSpriteTextureUnit(1);
-            r_nbpRenderer.setTime(runningTime);
-            r_nbpRenderer.setPointSize(0.2f);
-            r_nbpRenderer.setInverseSize(glm::vec2(1.0f/SCREEN_WIDTH, 1.0f/SCREEN_HEIGHT));
-            r_nbpRenderer.loadUniformLocations(m_pipeline, RENDER_PASS1);
-
-            glBindBuffer(GL_ARRAY_BUFFER, 0);
-            glEnableVertexAttribArray(SlotPosition);
-            glEnableVertexAttribArray(SlotBirthTime);
-            glEnableVertexAttribArray(SlotVelocity);
-            unsigned char* pData = (unsigned char*) &m_nbpEffect.m_particles[0].px;
-            glVertexAttribPointer(SlotPosition, 3, GL_FLOAT, GL_FALSE, sizeof(EG_NoiseBasedParticle), pData);
-            glVertexAttribPointer(SlotBirthTime, 1, GL_FLOAT, GL_FALSE, sizeof(EG_NoiseBasedParticle), 12 + pData);
-            glVertexAttribPointer(SlotVelocity, 3, GL_FLOAT, GL_FALSE, sizeof(EG_NoiseBasedParticle), 16 + pData);
-                glDrawArrays(GL_POINTS, 0, m_nbpEffect.m_particles.size());
-            glDisableVertexAttribArray(SlotPosition);
-            glDisableVertexAttribArray(SlotBirthTime);
-            glDisableVertexAttribArray(SlotVelocity);
-            glDisable(GL_BLEND);
-            glBindTexture(GL_TEXTURE_2D, 0);
-
-        r_nbpRenderer.disableShader(RENDER_PASS1);
-#endif
- //   glEnable(GL_BLEND);
-#if 1
-    pipeline temp_pipeline;
-    temp_pipeline.loadIdentity();
-    temp_pipeline.ortho(0,1,0,1,-1,1);
-
-    glDisable(GL_DEPTH_TEST);
-    glBindFramebuffer(GL_FRAMEBUFFER, 0);
-    glActiveTexture(GL_TEXTURE0);
-    glBindTexture(GL_TEXTURE_2D, m_nbpEffect.m_backgroundSurface.colorTexture);
-    glActiveTexture(GL_TEXTURE1);
-    glBindTexture(GL_TEXTURE_2D, m_nbpEffect.m_particleSurface.colorTexture);
-
-    r_nbpRenderer.enableShader(RENDER_PASS2);
-        r_nbpRenderer.setBackgroundTextureUnit(0);
-        r_nbpRenderer.setParticlesTextureUnit(1);
-        r_nbpRenderer.loadUniformLocations(temp_pipeline, RENDER_PASS2);
-        r_textureRenderer.o_fullScreenQuad.render();
-    r_nbpRenderer.disableShader(RENDER_PASS2);
-
-
-    glActiveTexture(GL_TEXTURE1);
-    glBindTexture(GL_TEXTURE_2D, 0);
-    glActiveTexture(GL_TEXTURE0);
-    glBindTexture(GL_TEXTURE_2D, 0);
-    glEnable(GL_DEPTH_TEST);
-#endif
-
- //   m_nbpEffect
-  //  glEnable(GL_BLEND);
-  //  glEnable(GL_DEPTH_TEST);
-}
-
-
-
-void ExplosionGenerator::renderGUI()
-{
-    initGUIRenderStage();
-
-    /// http://sdl.beuc.net/sdl.wiki/SDL_Average_FPS_Measurement
-    unsigned int getTicks = SDL_GetTicks();
-    m_timeManager.addTick(getTicks);
-    m_fps = m_timeManager.computeAverageFPS();
-
-
-    string final_str = "Explosion Generator  FPS:" + EG_Utility::floatToStr(m_fps);
-    EG_Control::m_textEngine.render(m_pipeline, 0, 10, final_str.c_str());
-
-
-    r_Technique = &r_buttonRenderer;
-    /*
-    m_triggerButton.render(m_pipeline, r_Technique, RENDER_PASS1);
-    m_resetButton.render(m_pipeline, r_Technique, RENDER_PASS1);
-    m_minimizeButton.render(m_pipeline, r_Technique, RENDER_PASS1);
- */
- //   m_listBox.render(m_pipeline, r_Technique, RENDER_PASS1);
-
-
-  //  m_particleCountSlider.render(m_pipeline, r_Technique, RENDER_PASS1);
-  //  m_velocitySlider.render(m_pipeline, r_Technique, RENDER_PASS1);
-
-
-    for(int i=0; i<m_GUIComponents.size(); i++)
-    {
-        EG_Control* control = m_GUIComponents[i];
-        control->render(m_pipeline, r_Technique, RENDER_PASS1);
-    }
-
-}

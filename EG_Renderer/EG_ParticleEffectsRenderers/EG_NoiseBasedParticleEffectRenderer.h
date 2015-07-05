@@ -13,13 +13,6 @@ class EG_NoiseBasedParticleEffectRenderer : public EG_Renderer
         ~EG_NoiseBasedParticleEffectRenderer();
         void init(int nShaders);
 
-        /// Blit Shader
-        FloatDataPair m_depthPair;
-        FloatDataPair m_scrollOffsetTimePair;
-
-        void setDepth(float depth);
-        void setScrollOffsetTime(float value);
-
 
         /// Particle Shader
         Vec4DataPair m_colorPair;
@@ -30,6 +23,7 @@ class EG_NoiseBasedParticleEffectRenderer : public EG_Renderer
         FloatDataPair m_pointSizePair;
         Vec2DataPair m_inverseSizePair;
 
+        Mat4DataPair m_MVMatrixDataPair;
         Mat4DataPair m_MVPMatrixDataPair;
         Vec3DataPair m_cameraPositionDataPair;
         Vec3DataPair m_cameraViewDirDataPair;
@@ -42,24 +36,37 @@ class EG_NoiseBasedParticleEffectRenderer : public EG_Renderer
         void setPointSize(float size);
         void setInverseSize(glm::vec2 size);
 
-        void setModelViewProjectionMatrix(glm::mat4 vpMat);
+        void setModelViewProjectionMatrix(glm::mat4 mvpMat);
+        void setModelViewMatrix(glm::mat4 mvMat);
         void setCameraPosition(glm::vec3 camPos);
         void setCameraViewDir(glm::vec3 dir);
 
 
 
         /// Composite Shader
-        FloatDataPair m_depthPair3;
+        FloatDataPair m_depthPair2;
         IntDataPair m_backgroundTexturePair;
         IntDataPair m_particlesTexturePair;
-        Vec2DataPair m_inverseSizePair3;
+        Vec2DataPair m_inverseSizePair2;
 
-        void setDepth3(float depth);
-        void setInverseSize3(glm::vec2 size);
+        void setDepth2(float depth);
+        void setInverseSize2(glm::vec2 size);
         void setBackgroundTextureUnit(int unit);
         void setParticlesTextureUnit(int unit);
 
+
+
+
+        /// Advection Shader
+        FloatDataPair m_timePair3;
+        Vec3DataPair m_sizeDataPair;
+        Vec3DataPair m_extentDataPair;
+
+        void setTime3(float time);
+        void setSize(glm::vec3 size);
+        void setExtent(glm::vec3 extent);
         virtual void loadUniformLocations(pipeline& p, int pass);
+
 };
 
 

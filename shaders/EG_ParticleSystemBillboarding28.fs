@@ -1,26 +1,28 @@
 #version 330                                                                        
                                                                                     
-uniform sampler2D gTexture;                                                        
+uniform sampler2D gColorMap;                                                        
                                                                                     
 in vec2 TexCoord;                                                                   
 out vec4 FragColor;                                                                 
                                                                                     
 void main()                                                                         
-{                                                                                                  
-    FragColor = vec4(1.0,0.0,0.0,1.0);
+{            
 
 
-    FragColor = texture2D(gTexture, TexCoord);   
+                    
+                        /*                                                  
+    if (FragColor.r == 0.0 && FragColor.g == 0.0 && FragColor.b == 0.0) 
+    {           
+        discard;                                                                    
+    } 
+                      */  
+                    
+    FragColor = texture2D(gColorMap, TexCoord);                       
+    
+    FragColor = vec4(1.0,1.0,0.0,1.0);                                                                       
     if (FragColor.r >= 0.9 && FragColor.g >= 0.9 && FragColor.b >= 0.9) 
-    {
+    {           
         discard;                                                                    
-    }   
-
-
-
-/*                                                                               
-    if (FragColor.r >= 0.99 && FragColor.g >= 0.99 && FragColor.b >= 0.9) {
-        discard;                                                                    
-    }  
-*/                                                                               
+    } 
+                                                                               
 }

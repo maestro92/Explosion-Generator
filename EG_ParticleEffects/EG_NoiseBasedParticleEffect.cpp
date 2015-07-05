@@ -6,11 +6,11 @@ static const glm::vec3 SphereCenter(0,0,0);
 static const float NoiseLengthScale[] = {0.4f, 0.23f, 0.11f};
 static const float NoiseGain[] = {1.0f, 0.5f, 0.25f};
 //static const float PlumeCeiling(8);
-static const float PlumeCeiling(15);
+static const float PlumeCeiling(4);
 static const float PlumeBase(0);
-static const float PlumeHeight(8);
-static const float RingRadius(0.6f);
-static const float RingSpeed(0.3f);
+static const float PlumeHeight(16);
+static const float RingRadius(0.1f);
+static const float RingSpeed(0.1f);
 static const float RingsPerSecond(0.1f);
 static const float RingMagnitude(7);
 static const float RingFalloff(0.7f);
@@ -18,9 +18,13 @@ static const float ParticlesPerSecond(4000);
 static const float SeedRadius(0.5f);
 static const float InitialBand(0.1f);
 
+
+static EG_VelocityCache VelocityCache;
+
 // static float Time = 0;
 static unsigned int Seed(0);
 
+static const int ParticleCount = 5000;
 
 EG_NoiseBasedParticleEffect::EG_NoiseBasedParticleEffect()
 {
@@ -46,6 +50,69 @@ void EG_NoiseBasedParticleEffect::init(int width, int height)
 
     m_screenQuad.init();
 }
+
+
+
+
+
+
+void EG_NoiseBasedParticleEffect::update(float dt, float timeStep)
+{
+    //float timestep = 0.0013f;
+
+    EG_Utility::debug("New Iteration: ", m_particles.size());
+
+    dt = 0.0030;
+    timeStep = 0.016;
+
+    Time += dt;
+
+    for(int i=0; i<m_particles.size(); i++)
+    {
+        glm::vec3 p(m_particles[i].px, m_particles[i].py, m_particles[i].pz);
+        glm::vec3 v = computeCurl(p);
+
+
+
+        if(i==0)
+        {
+            // EG_Utility::debug("position is ", p);
+            // v = computeCurl2(p);
+        //    v = computeCurl(p);
+            EG_Utility::debug("position is ", p);
+            EG_Utility::debug("velocity is ", v);
+        }
+        else
+        {
+       //     v = computeCurl(p);
+
+        }
+
+        glm::vec3 midx = p + 0.5f * timeStep * v;
+        p += timeStep * computeCurl(midx);
+        m_particles[i].px = p.x;
+        m_particles[i].py = p.y;
+        m_particles[i].pz = p.z;
+        m_particles[i].vx = v.x;
+        m_particles[i].vy = v.y;
+        m_particles[i].vz = v.z;
+    }
+
+    for(EG_NoiseBasedParticleList::iterator i=m_particles.begin(); i!=m_particles.end();)
+    {
+        if(i->py > PlumeCeiling)
+        {
+            i = m_particles.erase(i);
+            cout << "   erasing" << endl;
+        }
+        else
+            i++;
+    }
+
+    seedParticles(dt);
+}
+
+
 
 
 
@@ -131,61 +198,6 @@ EG_SurfacePod EG_NoiseBasedParticleEffect::createSurface(int width, int height)
 }
 
 
-void EG_NoiseBasedParticleEffect::update(float dt, float timeStep)
-{
-    //float timestep = 0.0013f;
-
-    EG_Utility::debug("New Iteration: ", m_particles.size());
-
-    dt = 0.0030;
-    timeStep = 0.016;
-
-    Time += dt;
-
-    for(int i=0; i<m_particles.size(); i++)
-    {
-        glm::vec3 p(m_particles[i].px, m_particles[i].py, m_particles[i].pz);
-        glm::vec3 v = computeCurl(p);
-
-
-
-        if(i==0)
-        {
-            // EG_Utility::debug("position is ", p);
-            // v = computeCurl2(p);
-        //    v = computeCurl(p);
-            EG_Utility::debug("position is ", p);
-            EG_Utility::debug("velocity is ", v);
-        }
-        else
-        {
-       //     v = computeCurl(p);
-
-        }
-
-        glm::vec3 midx = p + 0.5f * timeStep * v;
-        p += timeStep * computeCurl(midx);
-        m_particles[i].px = p.x;
-        m_particles[i].py = p.y;
-        m_particles[i].pz = p.z;
-        m_particles[i].vx = v.x;
-        m_particles[i].vy = v.y;
-        m_particles[i].vz = v.z;
-    }
-
-    for(EG_NoiseBasedParticleList::iterator i=m_particles.begin(); i!=m_particles.end();)
-    {
-        if(i->py > PlumeCeiling)
-        {
-            i = m_particles.erase(i);
-            cout << "   erasing" << endl;
-        }
-        else
-            i++;
-    }
-
-    seedParticles(dt);
-}
 
 void EG_NoiseBasedParticleEffect::seedParticles(float dt)
 {
@@ -290,7 +302,7 @@ glm::vec3 EG_NoiseBasedParticleEffect::computeCurl(glm::vec3 p)
 
 }
 
-
+/*
 glm::vec3 EG_NoiseBasedParticleEffect::computeCurl2(glm::vec3 p)
 {
     float e = 1e-4f;
@@ -325,8 +337,9 @@ glm::vec3 EG_NoiseBasedParticleEffect::computeCurl2(glm::vec3 p)
 
     float numer = 1/(2*e);
     return EG_Utility::scaleGlmVec(glm::vec3(x,y,z), numer);
-
 }
+*/
+
 
 float EG_NoiseBasedParticleEffect::sampleDistance(glm::vec3 p)
 {
@@ -362,9 +375,9 @@ glm::vec3 EG_NoiseBasedParticleEffect::samplePotential(glm::vec3 p)
 
     glm::vec3 risingForce = glm::vec3(p.z,0,-p.x);
 
-    float ring_y = PlumeCeiling;
+    float ring_y = RingSpeed * 0.013;
 
-    while(ring_y > PlumeBase)
+    while(ring_y > 0)
     {
 
         float ry = p.y - ring_y;
@@ -380,7 +393,7 @@ glm::vec3 EG_NoiseBasedParticleEffect::samplePotential(glm::vec3 p)
     return psi;
 }
 
-
+/*
 
 glm::vec3 EG_NoiseBasedParticleEffect::samplePotential2(glm::vec3 p)
 {
@@ -391,9 +404,9 @@ glm::vec3 EG_NoiseBasedParticleEffect::samplePotential2(glm::vec3 p)
 
     glm::vec3 risingForce = glm::vec3(p.z,0,-p.x);
 
-    float ring_y = PlumeCeiling;
+    float ring_y = RingSpeed * 0.013;
 
-    while(ring_y > PlumeBase)
+    while(ring_y > 0)
     {
 
         float ry = p.y - ring_y;
@@ -409,3 +422,126 @@ glm::vec3 EG_NoiseBasedParticleEffect::samplePotential2(glm::vec3 p)
 
     return psi;
 }
+*/
+
+
+
+void EG_NoiseBasedParticleEffect::initGPU(int width, int height)
+{
+    m_backgroundSurface = createSurface(width, height);
+    m_particleSurface = createSurface(width, height);
+
+    m_backgroundTexture = EG_Utility::loadTexture("Assets/Images/Scroll.png");
+    m_spriteTexture = EG_Utility::loadTexture("Assets/Images/Sprite.png");
+
+    m_screenQuad.init();
+
+    glGenBuffers(1, &m_particleBuffers[0]);
+    glBindBuffer(GL_ARRAY_BUFFER, m_particleBuffers[0]);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(EG_NoiseBasedParticle), &m_particles[0].px, GL_STREAM_DRAW);
+    glBindBuffer(GL_ARRAY_BUFFER, 0);
+
+    glGenBuffers(1, &m_particleBuffers[1]);
+    glBindBuffer(GL_ARRAY_BUFFER, m_particleBuffers[1]);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(EG_NoiseBasedParticle), 0, GL_STREAM_DRAW);
+    glBindBuffer(GL_ARRAY_BUFFER, 0);
+
+    m_velocityTexture = createVelocityTexture(32, 64, 32);
+}
+
+void EG_NoiseBasedParticleEffect::updateGPU(float dt, float timeStep)
+{
+    glEnable(GL_RASTERIZER_DISCARD);
+
+    glBindBuffer(GL_ARRAY_BUFFER, m_particleBuffers[0]);
+    glEnableVertexAttribArray(SlotPosition);
+    glEnableVertexAttribArray(SlotBirthTime);
+    glEnableVertexAttribArray(SlotVelocity);
+    unsigned char* pData = 0;
+    glVertexAttribPointer(SlotPosition, 3, GL_FLOAT, GL_FALSE, sizeof(EG_NoiseBasedParticle), pData);
+    glVertexAttribPointer(SlotBirthTime, 1, GL_FLOAT, GL_FALSE, sizeof(EG_NoiseBasedParticle), 12 + pData);
+    glVertexAttribPointer(SlotVelocity, 3, GL_FLOAT, GL_FALSE, sizeof(EG_NoiseBasedParticle), 16 + pData);
+
+    /// specify the target buffer;
+    glBindBufferBase(GL_TRANSFORM_FEEDBACK_BUFFER, 0, m_particleBuffers[1]);
+
+    /// draw it
+    glBeginTransformFeedback(GL_POINTS);
+    glBindTexture(GL_TEXTURE_3D, m_velocityTexture.id);
+    glDrawArrays(GL_POINTS, 0, ParticleCount);
+
+    /// restore
+    glEndTransformFeedback();
+    glBindBuffer(GL_ARRAY_BUFFER, 0);
+    glDisableVertexAttribArray(SlotPosition);
+    glDisableVertexAttribArray(SlotBirthTime);
+    glDisableVertexAttribArray(SlotVelocity);
+    glDisable(GL_RASTERIZER_DISCARD);
+    std::swap(m_particleBuffers[0], m_particleBuffers[1]);
+}
+
+// EG_TexturePod EG_NoiseBasedParticleEffect::createVelocityTexture(int width, int height, int depth, void(*progress)(int))
+EG_TexturePod EG_NoiseBasedParticleEffect::createVelocityTexture(int width, int height, int depth)
+{
+    VelocityCache.data.resize(width * height * depth * 3);
+
+    const float w = 2.0f;
+    const float h = w * height / width;
+    const float d = w;
+
+    size_t requiredBytes = VelocityCache.data.size() * sizeof(float);
+    FILE* voxelsFile = fopen("Velocity.dat", "rb");
+    if(voxelsFile)
+    {
+        size_t bytesRead = fread(&VelocityCache.data[0], 1, requiredBytes, voxelsFile);
+        if(bytesRead == requiredBytes)
+        {
+            EG_Utility::debug("Error in createVelocityTexture");
+        }
+    }
+    else
+    {
+        vector<float>::iterator pData = VelocityCache.data.begin();
+        for(int slice=0; slice<depth; slice++)
+        {
+            for(int row=0; row < height; row++)
+            {
+                for(int col=0; col < width; col++)
+                {
+                    glm::vec3 p;
+                    p.x = -w + 2 * w * col / width;
+                    p.y = -h + 2 * h * row / height;
+                    p.z = -d + 2 * d * slice / depth;
+                    glm::vec3 v = computeCurl(p);
+                    *pData++ = v.x;
+                    *pData++ = v.y;
+                    *pData++ = v.z;
+                }
+            }
+     //       progress(depth-1-slice);
+        }
+
+        voxelsFile = fopen("Velocity.dat", "wb");
+        int bytesWritten = fwrite(&VelocityCache.data[0], 1, requiredBytes, voxelsFile);
+    }
+    fclose(voxelsFile);
+
+    GLuint textureID;
+    glGenTextures(1,&textureID);
+	glBindTexture(GL_TEXTURE_3D, textureID);
+    glTexImage3D(GL_TEXTURE_3D, 0, GL_RGB16F, width, height, depth, 0, GL_RGB, GL_FLOAT, &VelocityCache.data[0]);
+    glTexParameteri(GL_TEXTURE_3D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+    glTexParameteri(GL_TEXTURE_3D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+    glTexParameteri(GL_TEXTURE_3D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+    glTexParameteri(GL_TEXTURE_3D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+    glTexParameteri(GL_TEXTURE_3D, GL_TEXTURE_WRAP_R, GL_CLAMP_TO_EDGE);
+
+    VelocityCache.description.id = textureID;
+    VelocityCache.description.width = width;
+    VelocityCache.description.height = height;
+    VelocityCache.description.depth = depth;
+
+    return VelocityCache.description;
+}
+
+

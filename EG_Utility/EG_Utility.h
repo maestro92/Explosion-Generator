@@ -37,6 +37,21 @@ using namespace std;
 
 
 
+struct EG_TexturePod
+{
+    GLuint id;
+    int width;
+    int height;
+    int depth;
+};
+
+struct EG_SurfacePod
+{
+    GLuint FBO;
+    GLuint colorTexture;
+    GLuint depthTexture;
+};
+
 
 
 class EG_Utility
@@ -64,11 +79,15 @@ class EG_Utility
         static SDL_Surface* loadSDLImage(string filename);
         static GLuint loadTexture(string filename);
         static GLuint createTexture(int w, int h);
+        static GLuint create3DTexture(int w, int h, int d);
+
         static GLuint createDepthTexture(int, int h);
         static GLuint createCubemapTexture();
         static GLuint createCubemapTexture(string* filenames);
         static void setTextureParameters(int w, int h, int internal_format, int format);
         static void setCubemapTextureParameters();
+        static EG_SurfacePod createSurface(int width, int height);
+
 
 
         /// EG_Utility_AssimpMath.cpp
@@ -90,8 +109,10 @@ class EG_Utility
         static void debug(string s, int i);
         static void debug(string s, float f);
         static void debug(string s, glm::vec2 v);
-        static void debug(string s, glm::mat4 m);
         static void debug(string s, glm::vec3 v);
+        static void debug(string s, glm::vec4 v);
+        static void debug(string s, glm::mat3 m);
+        static void debug(string s, glm::mat4 m);
         static void checkGLError();
 
 

@@ -36,9 +36,10 @@ void main()
     vec3 rayStop = texture(RayStopPoints, gTexCoord).xyz;
     float Regular_Depth = texture(DepthMap, gTexCoord.xy).r;
 
+   
     if (rayStart == rayStop)
     {
-        FragColor = vec4(0.2,0.2,0.2,0);
+        FragColor = vec4(0.2,0.2,1.0,0);
         return;
     }
 

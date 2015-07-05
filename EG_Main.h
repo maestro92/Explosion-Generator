@@ -64,7 +64,9 @@
 #include "EG_InstancedRenderer.h"
 #include "EG_SkyboxRenderer.h"
 #include "EG_BillboardRenderer.h"
+#include "EG_ParticleSystemRenderer.h"
 #include "EG_NoiseBasedParticleEffectRenderer.h"
+
 #include "EG_WorldAnimatedObject.h"
 
 #include "EG_Button.h"
@@ -87,9 +89,12 @@
 #include "EG_TimeManager.h"
 
 #include "EG_ParticleEffect.h"
+#include "EG_ParticleSystemEffect.h"
 
 #include "EG_Smoke.h"
 #include "CollisionDetection_HGrid.h"
+
+#include "EG_ParticleSystem.h"
 
 #define FRAME_VALUES 10
 
@@ -125,6 +130,16 @@ class ExplosionGenerator
 {
 
     private:
+        EG_ParticleSystem  m_particleSystem;
+        Shader* GeometryShader;
+        Shader* ParticleSystemShader;
+
+
+
+
+
+
+
         EG_Renderer*                    r_Technique;
         EG_DeferredShading*             r_deferredShading;
         EG_ReflectionRenderer           r_reflectionRenderer;
@@ -142,6 +157,8 @@ class ExplosionGenerator
         EG_BillboardRenderer                    r_billBoardRenderer;
         EG_TextureRenderer                      r_textureRenderer;
         EG_NoiseBasedParticleEffectRenderer     r_nbpRenderer;
+
+        EG_ParticleSystemRenderer               r_particleSystemRenderer;
 /*
        // EG_DepthTextureRenderer
 //        EG_DepthRenderer       r_depthRenderer;
@@ -161,6 +178,7 @@ class ExplosionGenerator
         EG_DeferredShadingDirectionalLightPass  r_deferredShadingDirectionalLightPass;
         EG_DeferredShadingDirectionalLightPass  r_deferredShadingDirectionalLightPass_Skybox;
 */
+
 
         /// GUI
         EG_ButtonRenderer  r_buttonRenderer;
@@ -331,9 +349,10 @@ class ExplosionGenerator
 
         EG_Emitter* m_emitter;
 
+        EG_ParticleSystemEffect     m_particleSystemEffect;
         EG_NoiseBasedParticleEffect m_nbpEffect;
 
-
+        EG_SurfacePod m_sceneSurface;
 
     public:
 
@@ -348,7 +367,6 @@ class ExplosionGenerator
         void initSDL();
         void initGLEW();
         void initOpenGL();
-        void initEmitter();
 
     //    void initBillboardList();
  //       void initShader();
@@ -372,6 +390,8 @@ class ExplosionGenerator
         void update();
 
         void forwardRender();
+        void forwardRender2();
+
         void RenderScene();
         void initGUIRenderStage();
         void renderAnimatedObject(pipeline& p, int pass);
@@ -382,8 +402,17 @@ class ExplosionGenerator
         void Render_to_CubeMapTexture2();
         void Render_to_CubeMapFace2(int face);
 
+        void renderParticleSystemEffect();
         void renderNoiseBasedParticleEffect();
-        void renderNoiseBasedParticleEffect2();
+        void renderNoiseBasedParticleEffectGPU();
+    //    void renderNoiseBasedParticleEffect2();
+
+
+        void initTransformFeedBackTest();
+        void initTransformFeedBackTestBackup();
+
+        void updateTransformFeedbackTest();
+        void transformFeedBackTest();
 
 /*
         void deferredShadingShow();

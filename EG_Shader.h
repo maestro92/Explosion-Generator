@@ -27,7 +27,8 @@ enum AttributeSlot {
 
 
 using namespace std;
-class Shader{
+class Shader
+{
     unsigned int vs, fs, program;
     unsigned int gs;
     string path;
@@ -42,8 +43,13 @@ class Shader{
         Shader(const char* vs_source, const char* fs_source);
         Shader(const char* vs_source, const char* gs_source, const char* fs_source);
 
+        Shader(const char* vs_source, bool feedBack);
+        Shader(const char* vs_source, const char* gs_source, bool feedBack);
+        Shader(const char* vs_source, const char* gs_source, const char* fs_source, bool feedBack);
+
         Shader(string path, string vs_source, string fs_source);
         Shader(string path, string vs_source, string gs_source, string fs_source);
+   //     Shader(string path, string vs_source, bool feedBack);
         ~Shader();
         void linkShader();
         void useShader();

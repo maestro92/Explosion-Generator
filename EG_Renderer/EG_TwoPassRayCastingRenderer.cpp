@@ -149,6 +149,36 @@ void EG_TwoPassRaycastingRenderer::Render_TwoPass_RayCasting_1(Matrices_t& Mat)
         glCullFace(GL_BACK);
 }
 
+/*
+void EG_TwoPassRaycastingRenderer::Render_TwoPass_RayCasting_1(Matrices_t& Mat)
+{
+    TwoPassIntervals->useShader();
+
+//        Load_glUniform(Matrices_Loc1, Mat);
+        Load_glUniform(Matrices_UniLoc[RENDER_PASS1], Mat);
+        glClearColor(0, 0, 0, 0);
+        glBindFramebuffer(GL_FRAMEBUFFER, IntervalsFbo1);
+        glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT);
+        glCullFace(GL_BACK);
+        glDrawArrays(GL_POINTS, 0, 1);
+
+
+        glBindFramebuffer(GL_FRAMEBUFFER, IntervalsFbo2);
+        glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT);
+        glCullFace(GL_FRONT);
+        glDrawArrays(GL_POINTS, 0, 1);
+        glBindFramebuffer(GL_FRAMEBUFFER, 0);
+
+    TwoPassIntervals->delShader();
+        glCullFace(GL_BACK);
+}
+*/
+
+
+
+
+
+
 
 /*
 void Technique_TwoPass_Raycasting::Render_TwoPass_RayCasting_CubeDepth(Matrices_t& Mat, GLuint fbo)

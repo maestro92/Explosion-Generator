@@ -2,6 +2,7 @@
 #ifndef EG_NOISE_BASED_PARTICLE_EFFECT_H_
 #define EG_NOISE_BASED_PARTICLE_EFFECT_H_
 
+#include <stdio.h>
 #include "EG_Math.h"
 #include "EG_Noise.h"
 #include "EG_Utility.h"
@@ -17,13 +18,12 @@
 
 using namespace std;
 
-struct EG_SurfacePod
-{
-    GLuint FBO;
-    GLuint colorTexture;
-    GLuint depthTexture;
-};
 
+struct EG_VelocityCache
+{
+    vector<float> data;
+    EG_TexturePod description;
+};
 
 class EG_NoiseBasedParticleEffect
 {
@@ -36,6 +36,9 @@ class EG_NoiseBasedParticleEffect
         EG_SurfacePod createSurface(int width, int height);
         void init(int width, int height);
         void update(float dt, float timeStep);
+
+
+
         glm::vec3 computeGradient(glm::vec3 p);
         glm::vec3 computeGradient2(glm::vec3 p);
 
@@ -75,7 +78,22 @@ class EG_NoiseBasedParticleEffect
 
         EG_SurfacePod m_backgroundSurface;
         EG_SurfacePod m_particleSurface;
+
+
+
+        /// GPU
+        EG_TexturePod m_velocityTexture;
+        GLuint m_particleBuffers[2];
+        GLuint m_transformFeedback[2];
+
+        void initGPU(int width, int height);
+        void updateGPU(float dt, float timeStep);
+        EG_TexturePod createVelocityTexture(int width, int height, int depth);
+        EG_TexturePod createVelocityTexture(int width, int height, int depth, void(*progress)(int));
+
+
 };
+
 
 
 #endif // EG_NOISE_BASED_COMMON_H

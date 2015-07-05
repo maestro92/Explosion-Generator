@@ -156,6 +156,7 @@ void EG_OrbitCamera::Control(pipeline& m_pipeline, EG_SkyBox& skybox)
 
 
 
+
 void EG_OrbitCamera::Control(pipeline& m_pipeline, EG_SkyBox& skybox, bool GuiFlag)
 {
     float pitchChange = 0.0f;

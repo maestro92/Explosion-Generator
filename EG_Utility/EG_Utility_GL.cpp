@@ -98,6 +98,7 @@ GLuint EG_Utility::loadTexture(string filename)
     glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_WRAP_T,GL_CLAMP);      //we do it for vertically and horizontally (previous line)
 
     //we delete the image, we don't need it anymore
+    glBindTexture(GL_TEXTURE_2D,0);
     SDL_FreeSurface(img2);
     return num;
 }
@@ -117,12 +118,27 @@ GLuint EG_Utility::createTexture(int w, int h)
     return textureID;
 }
 
+/*
+GLuint EG_Utility::create3DTexture(int w, int h, int d)
+{
+    GLuint textureID;
+    glGenTextures(1,&textureID);
+	glBindTexture(GL_TEXTURE_3D, textureID);
+
+
+
+    return textureID;
+}
+*/
+
+
 
 GLuint EG_Utility::createDepthTexture(int w, int h)
 {
     GLuint textureID;
 
     glGenTextures(1,&textureID);
+    /// glBindTexture: i'm binding this texture object as the current 2D texture
 	glBindTexture(GL_TEXTURE_2D,textureID);
 
     setTextureParameters(w, h, GL_DEPTH_COMPONENT, GL_DEPTH_COMPONENT);
@@ -214,4 +230,29 @@ void EG_Utility::errorCheck()
     {
         std::cout << "Error happened while loading the texture: " << i << std::endl;
     }
+}
+
+
+
+
+EG_SurfacePod EG_Utility::createSurface(int width, int height)
+{
+    EG_SurfacePod pod;
+
+    pod.depthTexture = createDepthTexture(width, height);
+
+    // Create a FBO and attach the depth texture:
+    glGenFramebuffers(1, &pod.FBO);
+    glBindFramebuffer(GL_FRAMEBUFFER, pod.FBO);
+    glFramebufferTexture2D(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_TEXTURE_2D, pod.depthTexture, 0);
+
+    pod.colorTexture = createTexture(width, height);
+
+    // Attach the color buffer:
+    GLuint colorbuffer;
+    glGenRenderbuffers(1, &colorbuffer);
+    glBindRenderbuffer(GL_RENDERBUFFER, colorbuffer);
+    glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, pod.colorTexture, 0);
+
+    return pod;
 }

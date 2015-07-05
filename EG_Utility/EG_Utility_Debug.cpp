@@ -7,8 +7,7 @@ void EG_Utility::debug(string s)
 
 void EG_Utility::debug(string s, string s2)
 {
-    cout << s << endl;
-    cout << s2 << endl << endl;
+    cout << s << "  "  << s2 << endl;
 }
 
 void EG_Utility::debug(string s, unsigned int i)
@@ -18,8 +17,7 @@ void EG_Utility::debug(string s, unsigned int i)
 
 void EG_Utility::debug(string s, int i)
 {
-    cout << s << endl;
-    cout << i << endl << endl;
+    cout << s << " " << i << endl;
 }
 
 void EG_Utility::debug(string s, float f)
@@ -29,8 +27,7 @@ void EG_Utility::debug(string s, float f)
 
 void EG_Utility::debug(string s, glm::vec2 v)
 {
-    cout << s << endl;
-    cout << v.x << " " << v.y << endl << endl;
+    cout << s << " " << v.x << " " << v.y << endl << endl;
 }
 
 void EG_Utility::debug(string s, glm::vec3 v)
@@ -39,6 +36,23 @@ void EG_Utility::debug(string s, glm::vec3 v)
     // cout << v.x << " " << v.y << " " << v.z << endl << endl;
 
     cout << s << "  " << v.x << " " << v.y << " " << v.z << endl;
+}
+
+void EG_Utility::debug(string s, glm::vec4 v)
+{
+    // cout << s << endl;
+    // cout << v.x << " " << v.y << " " << v.z << endl << endl;
+
+    cout << s << "  " << v.x << " " << v.y << " " << v.z << " " << v.w << endl;
+}
+
+void EG_Utility::debug(string s, glm::mat3 m)
+{
+    cout << s << endl;
+    for (int i=0; i<3; i++)
+        cout << m[i][0] << " " << m[i][1] << " " << m[i][2] << endl;
+
+    cout << endl << endl;
 }
 
 void EG_Utility::debug(string s, glm::mat4 m)

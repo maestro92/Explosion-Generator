@@ -55,6 +55,7 @@ struct DataPair
 {
     GLuint uniLoc;
     virtual void setUniLoc() = 0;
+    virtual void printValue() = 0;
 };
 
 struct IntDataPair : public DataPair
@@ -63,6 +64,11 @@ struct IntDataPair : public DataPair
     void setUniLoc()
     {
         EG_Utility::setUniLoc(uniLoc, value);
+    }
+
+    void printValue()
+    {
+        EG_Utility::debug("value is", value);
     }
 };
 
@@ -73,6 +79,11 @@ struct FloatDataPair : public DataPair
     {
         EG_Utility::setUniLoc(uniLoc, value);
     }
+
+    void printValue()
+    {
+        EG_Utility::debug("value is", value);
+    }
 };
 
 struct Vec2DataPair : public DataPair
@@ -81,6 +92,11 @@ struct Vec2DataPair : public DataPair
     void setUniLoc()
     {
         EG_Utility::setUniLoc(uniLoc, value);
+    }
+
+    void printValue()
+    {
+        EG_Utility::debug("value is", value);
     }
 };
 
@@ -91,6 +107,11 @@ struct Vec3DataPair : public DataPair
     {
         EG_Utility::setUniLoc(uniLoc, value);
     }
+
+    void printValue()
+    {
+        EG_Utility::debug("value is", value);
+    }
 };
 
 struct Vec4DataPair : public DataPair
@@ -99,6 +120,11 @@ struct Vec4DataPair : public DataPair
     void setUniLoc()
     {
         EG_Utility::setUniLoc(uniLoc, value);
+    }
+
+    void printValue()
+    {
+        EG_Utility::debug("value is", value);
     }
 };
 
@@ -109,6 +135,11 @@ struct Mat3DataPair : public DataPair
     {
         EG_Utility::setUniLoc(uniLoc, value);
     }
+
+    void printValue()
+    {
+        EG_Utility::debug("value is", value);
+    }
 };
 
 struct Mat4DataPair : public DataPair
@@ -117,6 +148,11 @@ struct Mat4DataPair : public DataPair
     void setUniLoc()
     {
         EG_Utility::setUniLoc(uniLoc, value);
+    }
+
+    void printValue()
+    {
+        EG_Utility::debug("value is", value);
     }
 };
 
