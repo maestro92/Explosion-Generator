@@ -114,11 +114,8 @@
 		<Unit filename="EG_ParticleEffects/EG_NoiseBasedParticle.h" />
 		<Unit filename="EG_ParticleEffects/EG_NoiseBasedParticleEffect.cpp" />
 		<Unit filename="EG_ParticleEffects/EG_NoiseBasedParticleEffect.h" />
-		<Unit filename="EG_ParticleEffects/EG_NoiseBasedParticlesUtility.cpp" />
-		<Unit filename="EG_ParticleEffects/EG_NoiseBasedParticlesUtility.h" />
 		<Unit filename="EG_ParticleEffects/EG_ParticleSystemEffect.cpp" />
 		<Unit filename="EG_ParticleEffects/EG_ParticleSystemEffect.h" />
-		<Unit filename="EG_ParticleSystem.cpp" />
 		<Unit filename="EG_ParticleSystem.h" />
 		<Unit filename="EG_Renderer/EG_BillboardRenderer.cpp" />
 		<Unit filename="EG_Renderer/EG_BillboardRenderer.h" />
@@ -148,6 +145,8 @@
 		<Unit filename="EG_Renderer/EG_InstancedRenderer.h" />
 		<Unit filename="EG_Renderer/EG_ParticleEffectsRenderers/EG_NoiseBasedParticleEffectRenderer.cpp" />
 		<Unit filename="EG_Renderer/EG_ParticleEffectsRenderers/EG_NoiseBasedParticleEffectRenderer.h" />
+		<Unit filename="EG_Renderer/EG_ParticleEffectsRenderers/EG_NoiseBasedParticleEffectRendererGPU.cpp" />
+		<Unit filename="EG_Renderer/EG_ParticleEffectsRenderers/EG_NoiseBasedParticleEffectRendererGPU.h" />
 		<Unit filename="EG_Renderer/EG_ParticleEffectsRenderers/EG_ParticleSystemRenderer.cpp" />
 		<Unit filename="EG_Renderer/EG_ParticleEffectsRenderers/EG_ParticleSystemRenderer.h" />
 		<Unit filename="EG_Renderer/EG_ReflectionRenderer.cpp" />
@@ -204,8 +203,6 @@
 		<Unit filename="L_Cube_Sphere_ParticleEffect.cpp" />
 		<Unit filename="L_Cube_Sphere_ParticleEffect.h" />
 		<Unit filename="Particle.h" />
-		<Unit filename="ParticleSystem.cpp" />
-		<Unit filename="ParticleSystem.h" />
 		<Unit filename="Random.h" />
 		<Unit filename="Smoke_struct.h" />
 		<Unit filename="define.h" />

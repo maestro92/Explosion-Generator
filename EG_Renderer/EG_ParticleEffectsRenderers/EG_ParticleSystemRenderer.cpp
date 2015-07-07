@@ -41,12 +41,12 @@ void EG_ParticleSystemRenderer::init(int nShaders)
     initDataPairUniLoc(&m_shellLifeTimeDataPair,            m_shaders[RENDER_PASS1], RENDER_PASS1, "u_shellLifeTime");
     initDataPairUniLoc(&m_secondaryShellLifeTimeDataPair,   m_shaders[RENDER_PASS1], RENDER_PASS1, "u_secondaryShellLifeTime");
 */
-    initDataPairUniLoc(&m_deltaTimeMillisDataPair,          m_shaders[RENDER_PASS1], RENDER_PASS1, "gDeltaTimeMillis");
-    initDataPairUniLoc(&m_randomTextureDataPair,            m_shaders[RENDER_PASS1], RENDER_PASS1, "gRandomTexture");
-    initDataPairUniLoc(&m_timeDataPair,                     m_shaders[RENDER_PASS1], RENDER_PASS1, "gTime");
-    initDataPairUniLoc(&m_launchLifeTimeDataPair,           m_shaders[RENDER_PASS1], RENDER_PASS1, "gLauncherLifetime");
-    initDataPairUniLoc(&m_shellLifeTimeDataPair,            m_shaders[RENDER_PASS1], RENDER_PASS1, "gShellLifetime");
-    initDataPairUniLoc(&m_secondaryShellLifeTimeDataPair,   m_shaders[RENDER_PASS1], RENDER_PASS1, "gSecondaryShellLifetime");
+    initDataPairUniLoc(&m_deltaTimeMillisDataPair,          RENDER_PASS1, "gDeltaTimeMillis");
+    initDataPairUniLoc(&m_randomTextureDataPair,            RENDER_PASS1, "gRandomTexture");
+    initDataPairUniLoc(&m_timeDataPair,                     RENDER_PASS1, "gTime");
+    initDataPairUniLoc(&m_launchLifeTimeDataPair,           RENDER_PASS1, "gLauncherLifetime");
+    initDataPairUniLoc(&m_shellLifeTimeDataPair,            RENDER_PASS1, "gShellLifetime");
+    initDataPairUniLoc(&m_secondaryShellLifeTimeDataPair,   RENDER_PASS1, "gSecondaryShellLifetime");
 
 /*
     m_launcherLifetimeLocation = glGetUniformLocation( ParticleSystemShader->getProgramId(), "gLauncherLifetime");

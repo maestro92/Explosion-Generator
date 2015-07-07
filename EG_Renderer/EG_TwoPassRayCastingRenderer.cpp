@@ -87,7 +87,7 @@ void EG_TwoPassRaycastingRenderer::init(int w, int h, int Shader_Num)
     initMemberVariables();
 
 
-    if (Matrices_UniLoc[RENDER_PASS2].ModelviewProjection == -1)
+    if (m_matricesUniLocs[RENDER_PASS2].ModelviewProjection == -1)
     {
         cout << "TwoPass get location error" << endl;
         exit(1);
@@ -131,7 +131,7 @@ void EG_TwoPassRaycastingRenderer::Render_TwoPass_RayCasting_1(Matrices_t& Mat)
     TwoPassIntervals->useShader();
 
 //        Load_glUniform(Matrices_Loc1, Mat);
-        Load_glUniform(Matrices_UniLoc[RENDER_PASS1], Mat);
+        Load_glUniform(m_matricesUniLocs[RENDER_PASS1], Mat);
         glClearColor(0, 0, 0, 0);
         glBindFramebuffer(GL_FRAMEBUFFER, IntervalsFbo1);
         glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT);
@@ -225,7 +225,7 @@ void EG_TwoPassRaycastingRenderer::Render_TwoPass_RayCasting_2(Matrices_t& Mat, 
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
     TwoPassRaycast->useShader();
 //        Load_glUniform(Matrices_Loc2, Mat);
-        Load_glUniform(Matrices_UniLoc[RENDER_PASS2], Mat);
+        Load_glUniform(m_matricesUniLocs[RENDER_PASS2], Mat);
         glUniform1i(RayStartPoints_Location2, 1);
         glUniform1i(RayStopPoints_Location2, 2);
         glUniform1i(Depth_Location2, 3);

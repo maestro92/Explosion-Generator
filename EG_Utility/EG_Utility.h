@@ -89,6 +89,9 @@ class EG_Utility
         static EG_SurfacePod createSurface(int width, int height);
 
 
+        static void setupFrameBuffer();
+        static void setupFrameBuffer(GLuint target);
+
 
         /// EG_Utility_AssimpMath.cpp
         static glm::vec3 toGlmVec(aiVector3D& v2);

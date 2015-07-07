@@ -1,7 +1,6 @@
 #version 330                                                                        
 
-in vec2 vf_UV;                     
-uniform vec2 u_pixelSize; //1.0/SCREEN_WIDTH, 1.0/SCREEN_HEIGHT                                                                  
+in vec2 vf_UV;                                                                                   
 uniform sampler2D u_backgroundTexture;                                                        
 uniform sampler2D u_particlesTexture;                                                        
                                                                                                                                    
@@ -15,10 +14,16 @@ void main()
 	vec4 dest = texture2D(u_backgroundTexture, tc);
 	vec4 src = texture2D(u_particlesTexture, tc);
 
+	float particle_alpha = 1 - src.a;
+
+	FragColor.rgb = src.rgb * particle_alpha + dest.rgb * (1.0 - particle_alpha);
+	FragColor.a = 1.0;   
+	
+	/*
 	// a is the contribution from the src.rgb (we calculate it through alpha
 	// remember int he particleTexture, the particles part are from [1,0], the fullest particle has alpha value 0.0, the actual background has alpha value 1.0
 	float particle_alpha = 1 - src.a;
-/*
+
 	if(a==1.0)
 		FragColor = vec4(0.0,1.0,0.0,1.0);
 	else if(a==0.0)
@@ -29,9 +34,8 @@ void main()
 	else
 		FragColor = vec4(1.0,1.0,0.0,1.0);
 */
-
-	FragColor.rgb = src.rgb * particle_alpha + dest.rgb * (1.0 - particle_alpha);
-	FragColor.a = 1.0;   
+//	FragColor.rgb = src.rgb * particle_alpha + dest.rgb * (1.0 - particle_alpha);
+//	FragColor.a = 1.0;   
 
 
 //	FragColor = dest;
@@ -56,6 +60,28 @@ void main()
 //	FragColor = dest;                                                   
 //	FragColor = src;
 //	FragColor = vec4(1.0,0.0,0.0,1.0);
+
+
+
+
+
+
+
+
+
+
+
+/*
+	vec2 tc = vf_UV;	tc.y = 1.0 - tc.y;
+
+	vec4 dest = texture2D(u_backgroundTexture, tc);
+	vec4 src = texture2D(u_particlesTexture, tc);
+
+	float particle_alpha = 1 - src.a;
+
+	FragColor.rgb = src.rgb * particle_alpha + dest.rgb * (1.0 - particle_alpha);
+	FragColor.a = 1.0;   
+*/
 }
 
 

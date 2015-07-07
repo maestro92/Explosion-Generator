@@ -19,18 +19,23 @@ static const float SeedRadius(0.5f);
 static const float InitialBand(0.1f);
 
 
+// static Particle Particles[ParticleCount] = {0};
+static EG_NoiseBasedParticle m_GPUParticles[ParticleCount] = {0};
+
 static EG_VelocityCache VelocityCache;
 
 // static float Time = 0;
 static unsigned int Seed(0);
 
-static const int ParticleCount = 5000;
+
 
 EG_NoiseBasedParticleEffect::EG_NoiseBasedParticleEffect()
 {
     m_sphereCenter = glm::vec3(0.0,0.0,0.0);
     m_sphereRadius = 1.0f;
     Time = 0;
+
+    m_GPUParticles[ParticleCount] = {0};
 }
 
 EG_NoiseBasedParticleEffect::~EG_NoiseBasedParticleEffect()
@@ -438,19 +443,24 @@ void EG_NoiseBasedParticleEffect::initGPU(int width, int height)
 
     glGenBuffers(1, &m_particleBuffers[0]);
     glBindBuffer(GL_ARRAY_BUFFER, m_particleBuffers[0]);
-    glBufferData(GL_ARRAY_BUFFER, sizeof(EG_NoiseBasedParticle), &m_particles[0].px, GL_STREAM_DRAW);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(m_GPUParticles), m_GPUParticles, GL_DYNAMIC_DRAW);
     glBindBuffer(GL_ARRAY_BUFFER, 0);
 
     glGenBuffers(1, &m_particleBuffers[1]);
     glBindBuffer(GL_ARRAY_BUFFER, m_particleBuffers[1]);
-    glBufferData(GL_ARRAY_BUFFER, sizeof(EG_NoiseBasedParticle), 0, GL_STREAM_DRAW);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(m_GPUParticles), 0, GL_DYNAMIC_DRAW);
     glBindBuffer(GL_ARRAY_BUFFER, 0);
 
     m_velocityTexture = createVelocityTexture(32, 64, 32);
 }
 
-void EG_NoiseBasedParticleEffect::updateGPU(float dt, float timeStep)
+void EG_NoiseBasedParticleEffect::updateGPU()
 {
+    float dt = 0.0030;
+    float timeStep = 0.016;
+
+    Time += dt;
+
     glEnable(GL_RASTERIZER_DISCARD);
 
     glBindBuffer(GL_ARRAY_BUFFER, m_particleBuffers[0]);
@@ -479,6 +489,8 @@ void EG_NoiseBasedParticleEffect::updateGPU(float dt, float timeStep)
     glDisable(GL_RASTERIZER_DISCARD);
     std::swap(m_particleBuffers[0], m_particleBuffers[1]);
 }
+
+
 
 // EG_TexturePod EG_NoiseBasedParticleEffect::createVelocityTexture(int width, int height, int depth, void(*progress)(int))
 EG_TexturePod EG_NoiseBasedParticleEffect::createVelocityTexture(int width, int height, int depth)

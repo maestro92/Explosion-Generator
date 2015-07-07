@@ -16,8 +16,13 @@ void main()
 	value.z = pow(value.z,32);
 	FragColor = value;
 #else
-	FragColor = texture2D(gTexture,pos);
+	vec2 tc = outUV;	 tc.y = 1.0 - tc.y;
+	pos = tc;
+
+	FragColor = texture(gTexture,pos);
 //	FragColor = vec4(1.0,0.0,0.0,1.0);
+//	FragColor = vec4(outUV.x, outUV.x, outUV.x, 1.0);
+//	FragColor = vec4(outUV.y, outUV.y, outUV.y, 1.0);
 #endif
 }
 

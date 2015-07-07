@@ -61,6 +61,7 @@ struct DataPair
 struct IntDataPair : public DataPair
 {
     int value;
+
     void setUniLoc()
     {
         EG_Utility::setUniLoc(uniLoc, value);
@@ -171,6 +172,7 @@ class EG_Renderer
         virtual void init();
         virtual void init(int nShaders) = 0;
 
+        void addShader(Shader* s);
         void allocateMemberVariables(int nShaders);
         void initMemberVariables();
         void enableShader(int RenderPassID);
@@ -185,8 +187,8 @@ class EG_Renderer
         virtual void loadUniformLocations(pipeline& p, int RenderPassID);
         virtual void render();
 
-        void initDataPairUniLoc(DataPair* p, Shader* s, const char* name);
-        void initDataPairUniLoc(DataPair* p, Shader* s, int pass, const char* name);
+        void initDataPairUniLoc(DataPair* p, int pass, const char* name);
+   //     void initDataPairUniLoc(DataPair* p, Shader* s, int pass, const char* name);
         GLuint getUniLoc(Shader* s, const char* name);
 
 
@@ -216,11 +218,17 @@ class EG_Renderer
         bool getMatrixUniLocs(Shader* s, Matrices_Location& Mat);
 
     public:
-        Matrices_Location* Matrices_UniLoc;
-        Shader** m_shaders;
+//        Matrices_Location* Matrices_UniLoc;
+//        Shader** m_shaders;
+//        vector< vector<DataPair*> > m_allDataPairs;
+
+
+        vector<Matrices_Location> m_matricesUniLocs;
+        vector<Shader*> m_shaders;
         vector< vector<DataPair*> > m_allDataPairs;
     private:
         int m_numShaders;
+        int m_curShader;
 
 };
 

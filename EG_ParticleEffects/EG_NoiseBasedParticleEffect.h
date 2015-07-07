@@ -17,7 +17,7 @@
 #include <math.h>       /* sqrt */
 
 using namespace std;
-
+static const int ParticleCount = 5000;
 
 struct EG_VelocityCache
 {
@@ -87,11 +87,12 @@ class EG_NoiseBasedParticleEffect
         GLuint m_transformFeedback[2];
 
         void initGPU(int width, int height);
-        void updateGPU(float dt, float timeStep);
+        void updateGPU();
+        void renderGPU();
         EG_TexturePod createVelocityTexture(int width, int height, int depth);
         EG_TexturePod createVelocityTexture(int width, int height, int depth, void(*progress)(int));
 
-
+    //    EG_NoiseBasedParticle m_GPUParticles[ParticleCount];
 };
 
 

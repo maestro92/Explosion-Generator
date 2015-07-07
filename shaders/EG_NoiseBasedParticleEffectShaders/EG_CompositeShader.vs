@@ -4,7 +4,6 @@ layout (location = 0) in vec3 Position;
 layout (location = 3) in vec2 UV;
 
 uniform mat4 u_modelViewProjMat;  
-uniform float u_depth;
 
 out vec2 vf_UV;
 

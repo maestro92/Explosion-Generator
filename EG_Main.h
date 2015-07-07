@@ -66,6 +66,7 @@
 #include "EG_BillboardRenderer.h"
 #include "EG_ParticleSystemRenderer.h"
 #include "EG_NoiseBasedParticleEffectRenderer.h"
+#include "EG_NoiseBasedParticleEffectRendererGPU.h"
 
 #include "EG_WorldAnimatedObject.h"
 
@@ -94,7 +95,6 @@
 #include "EG_Smoke.h"
 #include "CollisionDetection_HGrid.h"
 
-#include "EG_ParticleSystem.h"
 
 #define FRAME_VALUES 10
 
@@ -130,9 +130,9 @@ class ExplosionGenerator
 {
 
     private:
-        EG_ParticleSystem  m_particleSystem;
-        Shader* GeometryShader;
-        Shader* ParticleSystemShader;
+  //      EG_ParticleSystem  m_particleSystem;
+
+    //    Shader* AdvectProgram;
 
 
 
@@ -157,6 +157,7 @@ class ExplosionGenerator
         EG_BillboardRenderer                    r_billBoardRenderer;
         EG_TextureRenderer                      r_textureRenderer;
         EG_NoiseBasedParticleEffectRenderer     r_nbpRenderer;
+        EG_NoiseBasedParticleEffectRendererGPU  r_nbpRendererGPU;
 
         EG_ParticleSystemRenderer               r_particleSystemRenderer;
 /*
@@ -389,8 +390,10 @@ class ExplosionGenerator
         void start();
         void update();
 
+     //   void forwardRenderDRAFT();
         void forwardRender();
         void forwardRender2();
+
 
         void RenderScene();
         void initGUIRenderStage();
@@ -405,6 +408,7 @@ class ExplosionGenerator
         void renderParticleSystemEffect();
         void renderNoiseBasedParticleEffect();
         void renderNoiseBasedParticleEffectGPU();
+        void renderNoiseBasedParticleEffectGPU2();
     //    void renderNoiseBasedParticleEffect2();
 
 

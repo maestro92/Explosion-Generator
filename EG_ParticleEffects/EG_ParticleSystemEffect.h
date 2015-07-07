@@ -38,7 +38,7 @@ class EG_ParticleSystemEffect
         EG_ParticleSystemEffect();
         ~EG_ParticleSystemEffect();
 
-        void init();
+
 
         GLuint m_randomTexture;
         GLuint m_particleTexture;
@@ -49,11 +49,16 @@ class EG_ParticleSystemEffect
         GLuint m_currVB;
         GLuint m_currTFB;
         GLuint m_particleBuffers[2];
-        GLuint m_transformFeedbacks[2];
+        GLuint m_transformFeedbackObjects[2];
 
+        void init();
         void update();
         void render();
         void render(pipeline& p, EG_Renderer* Renderer, int pass);
+
+        void initCurlNoiseStyle();
+        void updateCurlNoiseStyle();
+        void renderCurlNoiseStyle();
 };
 
 #endif // EG_PARTICLE_SYSTEM_EFFECT_H_
