@@ -106,6 +106,9 @@ class EG_Utility
 
 
         /// EG_Utility_Debug.cpp
+        static void debugLn(int l=0);
+        static void debugLn(string s, int l=0);
+
         static void debug(string s);
         static void debug(string s, string s2);
         static void debug(string s, unsigned int i);

@@ -1,7 +1,6 @@
 #ifndef EG_NOISE_BASED_PARTICLE_EFFECT_RENDERER_GPU_H_
 #define EG_NOISE_BASED_PARTICLE_EFFECT_RENDERER_GPU_H_
 
-
 #include "EG_Renderer.h"
 
 using namespace std;
@@ -51,6 +50,9 @@ class EG_NoiseBasedParticleEffectRendererGPU : public EG_Renderer
         void setModelViewMatrix(glm::mat4 mvMat);
         void setCameraPosition(glm::vec3 camPos);
         void setCameraViewDir(glm::vec3 dir);
+
+
+
 
 
 

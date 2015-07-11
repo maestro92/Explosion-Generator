@@ -131,7 +131,7 @@ ExplosionGenerator::ExplosionGenerator()
 #endif
     initLights();
 
-    m_skybox.init();
+
 
     o_reflectionSphere.setPosition(ReflectiveSphere_Pos);
 
@@ -383,10 +383,9 @@ void ExplosionGenerator::initObjects()
 #endif
 
 
+    m_skybox.init();
 
-
-
-
+//    m_emitter = new Emitter();
 
 
 
@@ -1659,7 +1658,27 @@ void ExplosionGenerator::renderNoiseBasedParticleEffectGPU()
         m_pipeline.popMatrix();
 
 //        r_nbpRendererGPU.setColor(glm::vec4(1.0, 0.8, 0.8, 1.0));
-        r_nbpRendererGPU.setColor(glm::vec4(0.0, 0.0, 0.0, 1.0));
+//            r_nbpRendererGPU.setColor(glm::vec4(1.0, 0.0, 0.0, 1.0));
+            r_nbpRendererGPU.setData(RENDER_PASS2, "u_color", glm::vec4(1.0,0.0,0.0,1.0));
+
+         //   r_nbpRendererGPU.tables[RENDER_PASS2]["u_color"]->setValue(glm::vec4(1.0, 0.0, 0.0, 1.0));
+
+/*
+            std::unordered_map<std::string,DataPair*>::const_iterator got = r_nbpRendererGPU.tables[RENDER_PASS2].find ("u_color");
+
+            if ( got == r_nbpRendererGPU.tables[RENDER_PASS2].end() )
+                std::cout << "not found";
+            else
+            {
+                std::cout << got->first << " is " << got->second;
+                DataPair* dp = got->second;
+                dp->setValue(glm::vec4(1.0,0.0,0.0,0.0));
+            }
+*/
+
+ //           DataPair* dp = r_nbpRendererGPU.tables[RENDER_PASS2]["u_color"];
+ //           dp->setValue(glm::vec4(1.0,0.0,0.0,0.0));
+//            r_nbpRendererGPU.tables[RENDER_PASS2]["u_color"]->setValue(glm::vec4(1.0, 0.0, 0.0, 1.0));
 
 
             r_nbpRendererGPU.setFadeRate(5.0f * 0.75f);

@@ -48,6 +48,9 @@ void EG_Renderer::addShader(Shader* s)
 
     vector<DataPair*> v;
     m_allDataPairs.push_back(v);
+
+    unordered_map<string, DataPair*> table;
+    tables.push_back(table);
 }
 
 
@@ -89,6 +92,169 @@ void EG_Renderer::initDataPairUniLoc(DataPair* p, int pass, const char* name)
     m_allDataPairs[pass].push_back(p);
 }
 
+
+
+void EG_Renderer::addDataPair(int pass, const char* name, int dataType)
+{
+    DataPair* p;
+
+    switch(dataType)
+    {
+		case DP_INT:
+        {
+            IntDataPair dp;
+            dp.uniLoc = getUniLoc(m_shaders[pass], name);
+            p = &dp;
+            break;
+        }
+        case DP_FLOAT:
+        {
+            FloatDataPair dp;
+            dp.uniLoc = getUniLoc(m_shaders[pass], name);
+            p = &dp;
+            break;
+        }
+        case DP_VEC2:
+        {
+            Vec2DataPair dp;
+            dp.uniLoc = getUniLoc(m_shaders[pass], name);
+            p = &dp;
+            break;
+        }
+        case DP_VEC3:
+        {
+            Vec3DataPair dp;
+            dp.uniLoc = getUniLoc(m_shaders[pass], name);
+            p = &dp;
+            break;
+        }
+        case DP_VEC4:
+        {
+            /*
+            Vec4DataPair dp;
+            dp.uniLoc = getUniLoc(m_shaders[pass], name);
+//            p = &dp;
+            tables[pass][name] = &dp;
+            */
+
+
+            tables[pass][name] = new Vec4DataPair();
+            tables[pass][name]->uniLoc = getUniLoc(m_shaders[pass], name);
+            break;
+        }
+        case DP_MAT3:
+        {
+            Mat3DataPair dp;
+            dp.uniLoc = getUniLoc(m_shaders[pass], name);
+            p = &dp;
+            break;
+        }
+        case DP_MAT4:
+        {
+            Mat4DataPair dp;
+            dp.uniLoc = getUniLoc(m_shaders[pass], name);
+            p = &dp;
+            break;
+        }
+    }
+//    p->label = "here";
+//    tables[pass][name] = p;
+
+/*
+    DataPair* dpdp = tables[RENDER_PASS2]["u_color"];
+    dpdp->setValue(glm::vec4(1.0,0.0,0.0,1.0));
+    EG_Utility::debug("it is", dpdp->value)
+*/
+
+
+
+/*
+    (tables[RENDER_PASS2]["u_color"])->setValue(glm::vec4(1.0,0.0,0.0,1.0));
+   // EG_Utility::debug("it is", (tables[RENDER_PASS2]["u_color"])->value);
+    tables[RENDER_PASS2]["u_color"]->printValue();
+    int a = 1;
+*/
+
+
+
+
+//    std::pair<string, DataPair*> newPair(name, p);
+//    tables[pass].insert(newPair);
+}
+
+
+
+
+void EG_Renderer::setData(int pass, const char* name, int value)
+{
+    tables[pass][name]->setValue(value);
+}
+
+void EG_Renderer::setData(int pass, const char* name, float value)
+{
+    tables[pass][name]->setValue(value);
+}
+
+void EG_Renderer::setData(int pass, const char* name, glm::vec2 value)
+{
+    tables[pass][name]->setValue(value);
+}
+
+void EG_Renderer::setData(int pass, const char* name, glm::vec3 value)
+{
+    tables[pass][name]->setValue(value);
+}
+
+void EG_Renderer::setData(int pass, const char* name, glm::vec4 value)
+{
+    // if (tables[pass][name] == NULL)
+    //    EG_Utility::debug("here");
+    // tables[pass][name]->setValue(value);
+  //  DataPair* dp = tables[pass][name];
+
+
+  //  if (tables[pass][name] == NULL)
+  //      EG_Utility::debug("here");
+
+//    cout << dp->label << endl;
+
+    tables[pass][name]->setValue(value);
+}
+
+void EG_Renderer::setData(int pass, const char* name, glm::mat3 value)
+{
+    tables[pass][name]->setValue(value);
+}
+
+void EG_Renderer::setData(int pass, const char* name, glm::mat4 value)
+{
+    tables[pass][name]->setValue(value);
+}
+
+
+
+
+
+
+void EG_Renderer::printTables()
+{
+
+    DataPair* dp = tables[1]["u_color"];
+
+    for (int i=0; i<tables.size(); i++)
+    {
+        EG_Utility::debug("Table ", i);
+
+        for ( auto it = tables[i].begin(); it != tables[i].end(); ++it )
+        {
+            cout << " " << it->first;
+            cout << ":" << it->second << endl;
+        }
+
+        EG_Utility::debugLn(2);
+    }
+}
+
 /*
 void EG_Renderer::initDataPairUniLoc(DataPair* p, Shader* s, int pass, const char* name)
 {
@@ -96,7 +262,6 @@ void EG_Renderer::initDataPairUniLoc(DataPair* p, Shader* s, int pass, const cha
     m_allDataPairs[pass].push_back(p);
 }
 */
-
 
 
 GLuint EG_Renderer::getUniLoc(Shader* s, const char* name)

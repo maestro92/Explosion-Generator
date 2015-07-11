@@ -21,7 +21,6 @@ EG_Emitter::EG_Emitter()
 
     m_spread = 1.0f;
     m_gravity = 0.0f;
-
 }
 
 EG_Emitter::~EG_Emitter()
@@ -88,6 +87,9 @@ void EG_Emitter::addParticle()
 
 void EG_Emitter::render()
 {
+    glDisable(GL_CULL_FACE);
+    glDisable(GL_DEPTH_TEST);
+
     for(list<EG_EmitterParticle *>::iterator it = m_particles.begin(); it != m_particles.end(); it++)
     {
         EG_EmitterParticle* particle = (*it);
@@ -107,6 +109,8 @@ void EG_Emitter::render()
 
     }
 
+
+    glEnable(GL_DEPTH_TEST);
     /*
     for(int i=0; i<m_particles.size(); i++)
     {

@@ -1,5 +1,18 @@
 #include "EG_Utility.h"
 
+
+void EG_Utility::debugLn(int l)
+{
+    for(int i=0; i<l; i++)
+        cout << endl;
+}
+
+void EG_Utility::debugLn(string s, int l)
+{
+    debug(s);
+    debugLn(l);
+}
+
 void EG_Utility::debug(string s)
 {
     cout << s << endl;

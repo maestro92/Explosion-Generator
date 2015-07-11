@@ -35,6 +35,11 @@ void EG_NoiseBasedParticleEffectRendererGPU::init()
 
 
 
+
+//     m_timePair
+
+
+
     s = new Shader( "EG_NoiseBasedParticleEffectShaders/EG_ParticleShaderGPU.vs",
                     "EG_NoiseBasedParticleEffectShaders/EG_ParticleShaderGPU.gs",
                     "EG_NoiseBasedParticleEffectShaders/EG_ParticleShaderGPU.fs");
@@ -52,6 +57,8 @@ void EG_NoiseBasedParticleEffectRendererGPU::init()
     initDataPairUniLoc(&m_cameraPositionDataPair,       RENDER_PASS2, "u_cameraPosition");
     initDataPairUniLoc(&m_cameraViewDirDataPair,        RENDER_PASS2, "u_cameraViewDir");
 
+    addDataPair(RENDER_PASS2, "u_color", DP_VEC4);
+
 
 
     s = new Shader( "EG_NoiseBasedParticleEffectShaders/EG_CompositeShader.vs",
@@ -60,6 +67,8 @@ void EG_NoiseBasedParticleEffectRendererGPU::init()
     initDataPairUniLoc(&m_inverseSizePair3,             RENDER_PASS3, "u_inverseSize");
     initDataPairUniLoc(&m_backgroundTexturePair,        RENDER_PASS3, "u_backgroundTexture");
     initDataPairUniLoc(&m_particlesTexturePair,         RENDER_PASS3, "u_particlesTexture");
+
+    printTables();
 }
 
 
@@ -171,5 +180,17 @@ void EG_NoiseBasedParticleEffectRendererGPU::setParticlesTextureUnit(int unit)
 void EG_NoiseBasedParticleEffectRendererGPU::loadUniformLocations(pipeline& p, int pass)
 {
     setAllDataPairUniLocs(pass);
+
+
+
+    for ( auto local_it = tables[pass].begin(); local_it!= tables[pass].end(); ++local_it )
+        (local_it->second)->setUniLoc();
+    //  std::cout << " " << local_it->first << ":" << local_it->second;
+    //std::cout << std::endl;
+
+  //  for(int i=0; i<size; i++)
+  //      m_allDataPairs[pass][i]->setUniLoc();
+
+
     EG_Renderer::loadUniformLocations(p, pass);
 }
