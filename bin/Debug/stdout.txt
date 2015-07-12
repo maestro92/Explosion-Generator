@@ -173,7 +173,9 @@ Table  0
 
 
 Table  1
- u_color:0x118c158
+ u_inverseSize:0x26fbe68
+ u_fadeRate:0x3eb618
+ u_color:0x3ee5d0
 
 
 Table  2
@@ -191,7 +193,7 @@ model_path ./assets/models/
 m_str ./assets/models/HugeWall.obj
 Nor oepened1
 Nor oepened1
-Ret is 43
+Ret is 210
 Nor oepened1
 Nor oepened1
 GL_INVALID_OPERATION
@@ -306,6 +308,8 @@ model_path ./assets/models/
 m_str ./assets/models/./Characters/LEGO_Man.obj
 Error parsing './models/Characters/Walking Lego.md5mesh': 'Unable to open file "./models/Characters/Walking Lego.md5mesh".'
 Start
+clicking left
+clicking Up left
 clicking left
 clicking Up left
 Terminating normally.

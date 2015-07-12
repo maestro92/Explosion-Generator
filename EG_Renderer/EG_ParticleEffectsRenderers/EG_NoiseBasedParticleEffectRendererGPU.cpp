@@ -44,13 +44,13 @@ void EG_NoiseBasedParticleEffectRendererGPU::init()
                     "EG_NoiseBasedParticleEffectShaders/EG_ParticleShaderGPU.gs",
                     "EG_NoiseBasedParticleEffectShaders/EG_ParticleShaderGPU.fs");
     addShader(s);
-    initDataPairUniLoc(&m_colorPair,                    RENDER_PASS2, "u_color");
-    initDataPairUniLoc(&m_fadeRatePair,                 RENDER_PASS2, "u_fadeRate");
+  //  initDataPairUniLoc(&m_colorPair,                    RENDER_PASS2, "u_color");
+  //  initDataPairUniLoc(&m_fadeRatePair,                 RENDER_PASS2, "u_fadeRate");
     initDataPairUniLoc(&m_depthTexturePair,             RENDER_PASS2, "u_depthTexture");
     initDataPairUniLoc(&m_spriteTexturePair,            RENDER_PASS2, "u_spriteTexture");
     initDataPairUniLoc(&m_timePair2,                    RENDER_PASS2, "u_time");
     initDataPairUniLoc(&m_pointSizePair,                RENDER_PASS2, "u_pointSize");
-    initDataPairUniLoc(&m_inverseSizePair,              RENDER_PASS2, "u_inverseSize");
+  //  initDataPairUniLoc(&m_inverseSizePair,              RENDER_PASS2, "u_inverseSize");
 
     initDataPairUniLoc(&m_MVMatrixDataPair,             RENDER_PASS2, "u_modelViewMat2");
     initDataPairUniLoc(&m_MVPMatrixDataPair,            RENDER_PASS2, "u_modelViewProjMat2");
@@ -58,7 +58,8 @@ void EG_NoiseBasedParticleEffectRendererGPU::init()
     initDataPairUniLoc(&m_cameraViewDirDataPair,        RENDER_PASS2, "u_cameraViewDir");
 
     addDataPair(RENDER_PASS2, "u_color", DP_VEC4);
-
+    addDataPair(RENDER_PASS2, "u_fadeRate", DP_FLOAT);
+    addDataPair(RENDER_PASS2, "u_inverseSize", DP_VEC2);
 
 
     s = new Shader( "EG_NoiseBasedParticleEffectShaders/EG_CompositeShader.vs",

@@ -61,24 +61,36 @@ always make the base classes' destructors virtual when they're meant to be manip
 struct DataPair
 {
     GLuint uniLoc;
-
+    string name;
     virtual ~DataPair(){};
 
     virtual void setUniLoc(){};
     virtual void printValue(){};
 
-    virtual void setValue(int value){};
-    virtual void setValue(float value){};
-    virtual void setValue(glm::vec2 value){};
-    virtual void setValue(glm::vec3 value){};
-    virtual void setValue(glm::vec4 value){};
-    virtual void setValue(glm::mat3 value){};
-    virtual void setValue(glm::mat4 value){};
+    void printError()
+    {
+        EG_Utility::debug(name, "unmatched type");
+        exit(1);
+    }
+    virtual void setValue(int value){printError();};
+    virtual void setValue(float value){printError();};
+    virtual void setValue(glm::vec2 value){printError();};
+    virtual void setValue(glm::vec3 value){printError();};
+    virtual void setValue(glm::vec4 value){printError();};
+    virtual void setValue(glm::mat3 value){printError();};
+    virtual void setValue(glm::mat4 value){printError();};
 };
 
 struct IntDataPair : public DataPair
 {
     int value;
+
+    IntDataPair(){};
+    IntDataPair(string n)
+    {
+        name = n;
+    };
+
     ~IntDataPair(){};
 
     virtual void setValue(int value)
@@ -100,6 +112,13 @@ struct IntDataPair : public DataPair
 struct FloatDataPair : public DataPair
 {
     float value;
+
+    FloatDataPair(){};
+    FloatDataPair(string n)
+    {
+        name = n;
+    };
+
     ~FloatDataPair(){};
 
     void setValue(float value)
@@ -121,6 +140,13 @@ struct FloatDataPair : public DataPair
 struct Vec2DataPair : public DataPair
 {
     glm::vec2 value;
+
+    Vec2DataPair(){};
+    Vec2DataPair(string n)
+    {
+        name = n;
+    };
+
     ~Vec2DataPair(){};
 
     void setValue(glm::vec2 value)
@@ -142,6 +168,13 @@ struct Vec2DataPair : public DataPair
 struct Vec3DataPair : public DataPair
 {
     glm::vec3 value;
+
+    Vec3DataPair(){};
+    Vec3DataPair(string n)
+    {
+        name = n;
+    };
+
     ~Vec3DataPair(){};
 
     void setValue(glm::vec3 value)
@@ -163,6 +196,13 @@ struct Vec3DataPair : public DataPair
 struct Vec4DataPair : public DataPair
 {
     glm::vec4 value;
+
+    Vec4DataPair(){};
+    Vec4DataPair(string n)
+    {
+        name = n;
+    };
+
     ~Vec4DataPair(){};
 
 
@@ -185,6 +225,13 @@ struct Vec4DataPair : public DataPair
 struct Mat3DataPair : public DataPair
 {
     glm::mat3 value;
+
+    Mat3DataPair(){};
+    Mat3DataPair(string n)
+    {
+        name = n;
+    };
+
     ~Mat3DataPair(){};
 
     void setValue(glm::mat3 value)
@@ -206,6 +253,12 @@ struct Mat3DataPair : public DataPair
 struct Mat4DataPair : public DataPair
 {
     glm::mat4 value;
+    Mat4DataPair(){};
+    Mat4DataPair(string n)
+    {
+        name = n;
+    };
+
     ~Mat4DataPair(){};
 
     void setValue(glm::mat4 value)

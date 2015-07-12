@@ -1481,9 +1481,8 @@ void ExplosionGenerator::forwardRender()
 #if NBP_SMOKE_EFFECT_GPU
     r_Technique = &r_nbpRendererGPU;
     r_nbpRendererGPU.enableShader(RENDER_PASS1);
-//        r_nbpRendererGPU.setTime(10.0f);
+//        r_nbpRendererGPU.setTime(1.0f);
         r_nbpRendererGPU.setTime(m_nbpEffect.Time);
-
         r_nbpRendererGPU.setSize(glm::vec3(32.0f, 64.0f, 32.0f));
         r_nbpRendererGPU.setExtent(glm::vec3(2,4,2));
         r_nbpRendererGPU.loadUniformLocations(m_pipeline, RENDER_PASS1);
@@ -1659,34 +1658,17 @@ void ExplosionGenerator::renderNoiseBasedParticleEffectGPU()
 
 //        r_nbpRendererGPU.setColor(glm::vec4(1.0, 0.8, 0.8, 1.0));
 //            r_nbpRendererGPU.setColor(glm::vec4(1.0, 0.0, 0.0, 1.0));
-            r_nbpRendererGPU.setData(RENDER_PASS2, "u_color", glm::vec4(1.0,0.0,0.0,1.0));
 
-         //   r_nbpRendererGPU.tables[RENDER_PASS2]["u_color"]->setValue(glm::vec4(1.0, 0.0, 0.0, 1.0));
-
-/*
-            std::unordered_map<std::string,DataPair*>::const_iterator got = r_nbpRendererGPU.tables[RENDER_PASS2].find ("u_color");
-
-            if ( got == r_nbpRendererGPU.tables[RENDER_PASS2].end() )
-                std::cout << "not found";
-            else
-            {
-                std::cout << got->first << " is " << got->second;
-                DataPair* dp = got->second;
-                dp->setValue(glm::vec4(1.0,0.0,0.0,0.0));
-            }
-*/
-
- //           DataPair* dp = r_nbpRendererGPU.tables[RENDER_PASS2]["u_color"];
- //           dp->setValue(glm::vec4(1.0,0.0,0.0,0.0));
-//            r_nbpRendererGPU.tables[RENDER_PASS2]["u_color"]->setValue(glm::vec4(1.0, 0.0, 0.0, 1.0));
+            r_nbpRendererGPU.setData(RENDER_PASS2, "u_color",       glm::vec4(1.0,0.0,0.0,1.0));
+            r_nbpRendererGPU.setData(RENDER_PASS2, "u_fadeRate",    5.0f * 0.75f);
+            r_nbpRendererGPU.setData(RENDER_PASS2, "u_inverseSize", glm::vec2(1.0f/SCREEN_WIDTH, 1.0f/SCREEN_HEIGHT));
 
 
-            r_nbpRendererGPU.setFadeRate(5.0f * 0.75f);
             r_nbpRendererGPU.setDepthTextureUnit(0);
             r_nbpRendererGPU.setSpriteTextureUnit(1);
             r_nbpRendererGPU.setTime(m_nbpEffect.Time);
             r_nbpRendererGPU.setPointSize(0.2f);
-            r_nbpRendererGPU.setInverseSize(glm::vec2(1.0f/SCREEN_WIDTH, 1.0f/SCREEN_HEIGHT));
+      //      r_nbpRendererGPU.setInverseSize(glm::vec2(1.0f/SCREEN_WIDTH, 1.0f/SCREEN_HEIGHT));
             r_nbpRendererGPU.loadUniformLocations(m_pipeline, RENDER_PASS2);
 
 

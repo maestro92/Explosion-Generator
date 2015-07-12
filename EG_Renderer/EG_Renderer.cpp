@@ -102,61 +102,43 @@ void EG_Renderer::addDataPair(int pass, const char* name, int dataType)
     {
 		case DP_INT:
         {
-            IntDataPair dp;
-            dp.uniLoc = getUniLoc(m_shaders[pass], name);
-            p = &dp;
+            tables[pass][name] = new IntDataPair(name);
             break;
         }
         case DP_FLOAT:
         {
-            FloatDataPair dp;
-            dp.uniLoc = getUniLoc(m_shaders[pass], name);
-            p = &dp;
+            tables[pass][name] = new FloatDataPair(name);
             break;
         }
         case DP_VEC2:
         {
-            Vec2DataPair dp;
-            dp.uniLoc = getUniLoc(m_shaders[pass], name);
-            p = &dp;
+            tables[pass][name] = new Vec2DataPair(name);
             break;
         }
         case DP_VEC3:
         {
-            Vec3DataPair dp;
-            dp.uniLoc = getUniLoc(m_shaders[pass], name);
-            p = &dp;
+            tables[pass][name] = new Vec3DataPair(name);
             break;
         }
         case DP_VEC4:
         {
-            /*
-            Vec4DataPair dp;
-            dp.uniLoc = getUniLoc(m_shaders[pass], name);
-//            p = &dp;
-            tables[pass][name] = &dp;
-            */
-
-
-            tables[pass][name] = new Vec4DataPair();
-            tables[pass][name]->uniLoc = getUniLoc(m_shaders[pass], name);
+            tables[pass][name] = new Vec4DataPair(name);
             break;
         }
         case DP_MAT3:
         {
-            Mat3DataPair dp;
-            dp.uniLoc = getUniLoc(m_shaders[pass], name);
-            p = &dp;
+            tables[pass][name] = new Mat3DataPair(name);
             break;
         }
         case DP_MAT4:
         {
-            Mat4DataPair dp;
-            dp.uniLoc = getUniLoc(m_shaders[pass], name);
-            p = &dp;
+            tables[pass][name] = new Mat4DataPair(name);
             break;
         }
     }
+
+    tables[pass][name]->uniLoc = getUniLoc(m_shaders[pass], name);
+
 //    p->label = "here";
 //    tables[pass][name] = p;
 
