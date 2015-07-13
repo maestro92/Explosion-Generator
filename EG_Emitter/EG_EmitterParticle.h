@@ -11,6 +11,7 @@ class EG_EmitterParticle
     public:
         EG_EmitterParticle(int id);
         void update(long time);
+        void rotate(float angle, float &x, float &y);
 
         void render();
 

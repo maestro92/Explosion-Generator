@@ -15,6 +15,16 @@ EG_EmitterParticle::EG_EmitterParticle(int id)
 }
 
 
+void EG_EmitterParticle::rotate(float angle, float &x, float &y)
+{
+    float finalX = x * cos(angle) - y * sin(angle);
+    float finalY = y * cos(angle) + x * sin(angle);
+
+    x = finalX;
+    y = finalY;
+}
+
+
 void EG_EmitterParticle::update(long time)
 {
     if(m_active == false)
@@ -28,6 +38,27 @@ void EG_EmitterParticle::update(long time)
 
     m_velocity += m_acceleration * dt;
     m_position += m_velocity * dt;
+
+    float x = m_position.x;
+    float y = m_position.y;
+    float z = m_position.z;
+
+///######################################################
+    /// Rotation around X
+  //  rotate(m_rotation.x * time / 1000.0f, y, z);
+    /// Rotation around Y
+  //  rotate(m_rotation.y * time / 1000.0f, x, z);
+    /// Rotation around Z
+  //  rotate(m_rotation.z * time / 1000.0f, x, y);
+
+    m_position.x = x;
+    m_position.y = y;
+    m_position.z = z;
+///######################################################
+
+
+
+
 
     /// collision with the plane
     if( m_position.y < 0.0f )

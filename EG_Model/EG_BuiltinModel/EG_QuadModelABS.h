@@ -21,9 +21,16 @@ class EG_QuadModelABS : public EG_ModelABS
         void init(int w, int h);
         void init(int w, int h, float cx, float cy, float cw);
 
+
         /// color
         void init(int w, int h, glm::vec3 c);
         void init(int w, int h, glm::vec3 c1, glm::vec3 c2, glm::vec3 c3, glm::vec3 c4);
+
+        void initCentered();
+
+        void init(float l, float r,
+                  float b, float t,
+                  float cx, float cy, float cw);
 };
 
 

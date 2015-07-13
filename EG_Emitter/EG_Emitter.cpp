@@ -19,7 +19,7 @@ EG_Emitter::EG_Emitter()
     m_saturation = 1.0f;
     m_alpha = 0.5;
 
-    m_spread = 1.0f;
+    m_spread = 0.2f;
     m_gravity = 0.0f;
 }
 
@@ -36,7 +36,13 @@ EG_Emitter::~EG_Emitter()
 void EG_Emitter::init()
 {
     m_particleSprite = EG_Utility::loadTexture("Assets/Images/fire sprite.jpg");
-    m_quad.init();
+//    m_quad.init(-0.5, 0.5, 0.0, 1.0,
+//                 0.0, 0.0, 1.0);
+
+    m_quad.initCentered();
+    // m_quad.init1(1, 1, 0, 0, 1);
+
+
     initRenderer();
 }
 
@@ -132,7 +138,7 @@ void EG_Emitter::addParticle()
     particle->m_totalLife = particle->m_life;
 
     float vx = EG_Utility::randFloat(-m_spread, m_spread);
-    float vy = EG_Utility::randFloat(3,20);
+    float vy = EG_Utility::randFloat(10,12);
     float vz = EG_Utility::randFloat(-m_spread, m_spread);
     particle->m_velocity = glm::vec3(vx, vy, vz);
 
@@ -170,8 +176,16 @@ void EG_Emitter::render(pipeline& p, GLuint sceneDepthTexture)
 
 
 
+/*
+            if(particle->m_id % 5 == 0)
+                p.rotateZ(90.0f);
+            else
+                p.rotateZ(-90.0f);
+*/
+
 
             glm::mat4 mvp = p.getModelViewMatrix();
+
             for(int i=0; i<3; i++)
             {
                 for(int j=0; j<3; j++)
@@ -183,8 +197,19 @@ void EG_Emitter::render(pipeline& p, GLuint sceneDepthTexture)
                 }
             }
 
-          //  EG_Utility::debug("mat is", mvp);
 
+            if(particle->m_id % 5 == 0)
+                mvp = mvp * glm::rotate(particle->m_life * 100.0f, 0.0f, 0.0f, 1.0f);
+            else
+                mvp = mvp * glm::rotate(particle->m_life * -100.0f, 0.0f, 0.0f, 1.0f);
+
+          //  EG_Utility::debug("mat is", mvp);
+/*
+            if(particle->m_id % 5 == 0)
+                mvp = mvp * glm::rotate(particle->m_life * 100.0f, 0.0f, 0.0f, 1.0f);
+            else
+                mvp = mvp * glm::rotate(particle->m_life * -100.0f, 0.0f, 0.0f, 1.0f);
+*/
             mvp = p.getProjectionMatrix() * mvp;
 
             m_renderer.setData(RENDER_PASS2, "u_texture", 0);

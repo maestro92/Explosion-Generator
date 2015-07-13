@@ -385,6 +385,13 @@ void ExplosionGenerator::initObjects()
 
     m_skybox.init();
     m_fireEffect.init();
+    m_fireEffect.m_alpha = 0.1f;
+    m_fireEffect.m_emissionRadius = 2.0f;
+    m_fireEffect.m_emissionRate = 260.0f;
+    m_fireEffect.m_size = 2.0f;
+    m_fireEffect.m_sizeRange = 1.5f;
+
+    m_fireEffect.m_rotation.y = 1.5;
 
 }
 
@@ -1679,7 +1686,7 @@ void ExplosionGenerator::renderNoiseBasedParticleEffectGPU()
             glVertexAttribPointer(SlotPosition, 3, GL_FLOAT, GL_FALSE, sizeof(EG_NoiseBasedParticle), pData);
             glVertexAttribPointer(SlotBirthTime, 1, GL_FLOAT, GL_FALSE, sizeof(EG_NoiseBasedParticle), 12 + pData);
             glVertexAttribPointer(SlotVelocity, 3, GL_FLOAT, GL_FALSE, sizeof(EG_NoiseBasedParticle), 16 + pData);
-                glDrawArrays(GL_POINTS, 0, ParticleCount);
+    //            glDrawArrays(GL_POINTS, 0, ParticleCount);
             glDisableVertexAttribArray(SlotPosition);
             glDisableVertexAttribArray(SlotBirthTime);
             glDisableVertexAttribArray(SlotVelocity);
