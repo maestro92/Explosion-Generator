@@ -23,10 +23,11 @@ void EG_EmitterParticle::update(long time)
     if(m_prevTime == -1)
         m_prevTime = time;
 
-    float change = (time - m_prevTime) / 1000.0f;
+    /// changing from millisecond to seconds
+    float dt = (time - m_prevTime) / 1000.0f;
 
-    m_velocity += m_acceleration * change;
-    m_position += m_velocity * change;
+    m_velocity += m_acceleration * dt;
+    m_position += m_velocity * dt;
 
     /// collision with the plane
     if( m_position.y < 0.0f )
@@ -40,23 +41,45 @@ void EG_EmitterParticle::update(long time)
     /// when it just came into existence
     /// and it hasn't even lived for 0.2 seconds yet
     /// we allow them to fade in
-    if( m_totalLife - m_life < fadeInTime)
+
+    float dlife = m_totalLife - m_life;
+
+    /// as dlife -> 2.0, dlife / fadeInTime -> 1.0
+    /// so this hits full alpha intensity
+    if( dlife < fadeInTime)
     {
         /// 33:11
+        /// glColor4f(color.x, color.y, color.z, (dlife/fadeInTime) * alpha )
+        float temp = m_alpha;
+        m_alpha = (dlife/fadeInTime) * temp;
     }
 
-    /// when it's about to die
+    /// when it's about to die in one second
+    /// since life is below 1.0 and it's going towards zero
+    /// we can use it for the color fading
     else if (m_life < 1.0f)
     {
         /// full color 33::11
+        /// glColor4f(color.x, color.y, color.z, life * alpha)
+        float temp = m_alpha;
+        m_alpha = m_life * temp;
     }
 
-    /// else it's just full alpha intensity
+    /// else it's just full regular alpha intensity
     else
     {
+        /// glColor4f(color.x, color.y, color.z, alpha)
 
     }
 
 
+
+    /// start decreasing the life
+    m_life -= dt;
+
+    if(m_life <= 0.0f)
+        m_active = false;
+
+    m_prevTime = time;
 
 }

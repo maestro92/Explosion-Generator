@@ -116,7 +116,6 @@
 		<Unit filename="EG_ParticleEffects/EG_NoiseBasedParticleEffect.h" />
 		<Unit filename="EG_ParticleEffects/EG_ParticleSystemEffect.cpp" />
 		<Unit filename="EG_ParticleEffects/EG_ParticleSystemEffect.h" />
-		<Unit filename="EG_ParticleSystem.h" />
 		<Unit filename="EG_Renderer/EG_BillboardRenderer.cpp" />
 		<Unit filename="EG_Renderer/EG_BillboardRenderer.h" />
 		<Unit filename="EG_Renderer/EG_DeferredShadingLightPass/EG_DeferredShadingDirectionalLightPass.cpp" />
@@ -147,6 +146,8 @@
 		<Unit filename="EG_Renderer/EG_ParticleEffectsRenderers/EG_NoiseBasedParticleEffectRenderer.h" />
 		<Unit filename="EG_Renderer/EG_ParticleEffectsRenderers/EG_NoiseBasedParticleEffectRendererGPU.cpp" />
 		<Unit filename="EG_Renderer/EG_ParticleEffectsRenderers/EG_NoiseBasedParticleEffectRendererGPU.h" />
+		<Unit filename="EG_Renderer/EG_ParticleEffectsRenderers/EG_ParticleEffectRenderer.cpp" />
+		<Unit filename="EG_Renderer/EG_ParticleEffectsRenderers/EG_ParticleEffectRenderer.h" />
 		<Unit filename="EG_Renderer/EG_ParticleEffectsRenderers/EG_ParticleSystemRenderer.cpp" />
 		<Unit filename="EG_Renderer/EG_ParticleEffectsRenderers/EG_ParticleSystemRenderer.h" />
 		<Unit filename="EG_Renderer/EG_ReflectionRenderer.cpp" />

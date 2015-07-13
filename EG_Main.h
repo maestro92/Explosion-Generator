@@ -79,6 +79,9 @@
 
 #include "pipeline.h"
 #include "EG_SphereParticleEffect.h"
+
+#include "EG_ParticleEffectRenderer.h"
+
 #include "L_Cube_Sphere_ParticleEffect.h"
 
 #define NO_SDL_GLEXT
@@ -160,6 +163,8 @@ class ExplosionGenerator
         EG_NoiseBasedParticleEffectRendererGPU  r_nbpRendererGPU;
 
         EG_ParticleSystemRenderer               r_particleSystemRenderer;
+
+
 /*
        // EG_DepthTextureRenderer
 //        EG_DepthRenderer       r_depthRenderer;
@@ -348,7 +353,7 @@ class ExplosionGenerator
         EG_Label m_lb;
 
 
-        EG_Emitter* m_emitter;
+        EG_Emitter m_fireEffect;
 
         EG_ParticleSystemEffect     m_particleSystemEffect;
         EG_NoiseBasedParticleEffect m_nbpEffect;

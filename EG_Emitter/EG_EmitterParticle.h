@@ -4,6 +4,8 @@
 
 #include "define.h"
 
+
+
 class EG_EmitterParticle
 {
     public:

@@ -377,18 +377,14 @@ void ExplosionGenerator::initObjects()
 
 #if NBP_SMOKE_EFFECT_GPU
     m_nbpEffect.initGPU(SCREEN_WIDTH, SCREEN_HEIGHT);
-    m_particleSystemEffect.initCurlNoiseStyle();
+  //  m_particleSystemEffect.initCurlNoiseStyle();
 #else
     m_nbpEffect.init(SCREEN_WIDTH, SCREEN_HEIGHT);
 #endif
 
 
     m_skybox.init();
-
-//    m_emitter = new Emitter();
-
-
-
+    m_fireEffect.init();
 
 }
 
@@ -1036,6 +1032,9 @@ void ExplosionGenerator::update()
     }
 
 
+
+    m_fireEffect.update(SDL_GetTicks());
+
     runningTime = (float)((double)SDL_GetTicks() - (double)m_timeManager.getStartTime()) / 1000.0f;
 #if ANIMATED_OBJECT_FLAG
 
@@ -1492,7 +1491,7 @@ void ExplosionGenerator::forwardRender()
 
 
     renderNoiseBasedParticleEffectGPU();
-
+ //   renderParticleSystemEffect();
 #else
 
  //   renderParticleSystemEffect();
@@ -1509,8 +1508,8 @@ void ExplosionGenerator::forwardRender()
     RenderSmoke(true, true, Matrices, m_sceneSurface.depthTexture);
 #endif
 
-
-   renderGUI();
+    m_fireEffect.render(m_pipeline, m_sceneSurface.depthTexture);
+    renderGUI();
 #endif
 }
 

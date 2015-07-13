@@ -34,11 +34,7 @@ void EG_NoiseBasedParticleEffectRendererGPU::init()
     initDataPairUniLoc(&m_extentDataPair,       RENDER_PASS1, "Extent");
 
 
-
-
 //     m_timePair
-
-
 
     s = new Shader( "EG_NoiseBasedParticleEffectShaders/EG_ParticleShaderGPU.vs",
                     "EG_NoiseBasedParticleEffectShaders/EG_ParticleShaderGPU.gs",

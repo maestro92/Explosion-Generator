@@ -5,9 +5,16 @@
 #include <GL/glew.h>
 #include <list>
 
-#include "EG_Utility.h"
 
+
+#include "EG_QuadModelABS.h"
+#include "EG_Utility.h"
+#include "pipeline.h"
 #include "EG_EmitterParticle.h"
+
+
+
+#include "EG_ParticleEffectRenderer.h"
 
 using namespace std;
 
@@ -19,16 +26,22 @@ class EG_Emitter
         ~EG_Emitter();
 
         void update(long time);
-        void setTexture();
-        void render();
+
+        void init();
+        void initRenderer();
+
+        void render(pipeline& m_pipeline, GLuint sceneDepthTexture);
+
     protected:
         void addParticle();
 
     public:
         //vector<EG_EmitterParticle*> m_particles;
         list<EG_EmitterParticle*> m_particles;
+        vector<EG_EmitterParticle> m_vec_particles;
 
-        GLuint m_textureID;
+
+        GLuint m_particleSprite;
 
         long m_prevTime;
         long m_curTime;
@@ -55,6 +68,11 @@ class EG_Emitter
         glm::vec3 m_wind;
 
         glm::vec3 m_rotation;
+
+
+        EG_QuadModelABS m_quad;
+        EG_ParticleEffectRenderer m_renderer;
+
 };
 
 

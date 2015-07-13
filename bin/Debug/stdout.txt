@@ -173,9 +173,9 @@ Table  0
 
 
 Table  1
- u_inverseSize:0x26fbe68
- u_fadeRate:0x3eb618
- u_color:0x3ee5d0
+ u_inverseSize:0xd5be58
+ u_fadeRate:0xd5b350
+ u_color:0xd5c798
 
 
 Table  2
@@ -193,7 +193,7 @@ model_path ./assets/models/
 m_str ./assets/models/HugeWall.obj
 Nor oepened1
 Nor oepened1
-Ret is 210
+Ret is 88
 Nor oepened1
 Nor oepened1
 GL_INVALID_OPERATION
@@ -230,8 +230,27 @@ Loading Texture Assets/Images/monster_hellknight.png
 Loading Texture Assets/Images/Scroll.png
 Loading Texture Assets/Images/Sprite.png
 Error in createVelocityTexture
-random texture very nice
-Loading Texture Assets/Images/fireworks_red.jpg
+Loading Texture Assets/Images/fire sprite.jpg
+vs: EG_ParticleSystemShaders/EG_FireShader.vs, gs:EG_ParticleSystemShaders/EG_FireShader.gs, fs: EG_ParticleSystemShaders/EG_FireShader.fs
+
+Error in Init_Shader with u_modelViewMat
+Error in Init_Shader with u_viewMat
+Error in Init_Shader with u_projMat
+Error in Init_Shader with u_modelMat
+Error in Init_Shader with u_viewNoRotateMat
+Error in Init_Shader with u_normalMat
+Error in Init_Shader
+Error in Init_Shader with u_cameraViewDir
+Error in Init_Shader with u_texture
+vs: EG_ParticleSystemShaders/EG_FireShaderDraft.vs, fs: EG_ParticleSystemShaders/EG_FireShaderDraft.fs
+Error in Init_Shader with u_modelViewProjMat
+Error in Init_Shader with u_modelViewMat
+Error in Init_Shader with u_viewMat
+Error in Init_Shader with u_projMat
+Error in Init_Shader with u_modelMat
+Error in Init_Shader with u_viewNoRotateMat
+Error in Init_Shader with u_normalMat
+Error in Init_Shader
 vs: /EG_GUIShaders/EG_Renderer_Text.vs, fs: /EG_GUIShaders/EG_Renderer_Text.fs
 Error in Init_Shader with apple
 Error in Init_Shader
@@ -308,8 +327,16 @@ model_path ./assets/models/
 m_str ./assets/models/./Characters/LEGO_Man.obj
 Error parsing './models/Characters/Walking Lego.md5mesh': 'Unable to open file "./models/Characters/Walking Lego.md5mesh".'
 Start
-clicking left
-clicking Up left
-clicking left
-clicking Up left
+wheel up
+wheel up
+wheel up
+wheel up
+wheel up
+wheel up
+wheel up
+wheel up
+wheel up
+wheel up
+wheel up
+wheel up
 Terminating normally.
