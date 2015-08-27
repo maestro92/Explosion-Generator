@@ -6,7 +6,7 @@ out vec4 FragColor;
 
 void main()
 {
-	vec2 pos = gl_FragCoord.xy * gPixelSize;	
+//	vec2 pos = gl_FragCoord.xy * gPixelSize;	
 
 // if it's a depth texture
 #if 0	
@@ -17,9 +17,9 @@ void main()
 	FragColor = value;
 #else
 	vec2 tc = outUV;	 tc.y = 1.0 - tc.y;
-	pos = tc;
+//	pos = tc;
 
-	FragColor = texture(gTexture,pos);
+	FragColor = texture(gTexture,tc);
 //	FragColor = vec4(1.0,0.0,0.0,1.0);
 //	FragColor = vec4(outUV.x, outUV.x, outUV.x, 1.0);
 //	FragColor = vec4(outUV.y, outUV.y, outUV.y, 1.0);

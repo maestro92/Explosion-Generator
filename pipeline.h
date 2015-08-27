@@ -102,6 +102,7 @@ class pipeline
 
         void updateLightMatrix(glm::mat4 lightModel, glm::mat4 lightView, glm::mat4 lightProjection);
         void updateShadowMatrix();
+        glm::mat4 getShadowMatrix();
 
         void pushMatrix();
 		void popMatrix();

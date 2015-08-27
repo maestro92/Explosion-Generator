@@ -3,19 +3,12 @@
 
 
 EG_SceneRenderer::EG_SceneRenderer()
-{
-
-
-}
+{}
 
 
 
 EG_SceneRenderer::~EG_SceneRenderer()
-{
-
-
-
-}
+{}
 
 
 /*
@@ -60,15 +53,13 @@ void EG_SceneRenderer::init(int w, int h, int Shader_Num)
 {
     allocateMemberVariables(Shader_Num);
 
-    ShadowMapWidth = w*2;
-    ShadowMapHeight = h*2;
 
     /// FirstPass_LightPOV
     /// SecondPass_CameraPOV
     m_shaders[RENDER_PASS1] = new Shader("shadow_FirstRender.vs", "shadow_FirstRender.fs");
 //    m_shaders[RENDER_PASS2] = new Shader("shadow_SecondRender_WithManyLights.vs", "shadow_SecondRender_WithManyLights.fs");
-    m_shaders[RENDER_PASS2] = new Shader("shadow_SecondRender_dir_pt_include.vs", "shadow_SecondRender_dir_pt_include.fs");
-
+ //   m_shaders[RENDER_PASS2] = new Shader("shadow_SecondRender_dir_pt_include.vs", "shadow_SecondRender_dir_pt_include.fs");
+    m_shaders[RENDER_PASS2] = new Shader("EG_SceneRenderer.vs", "EG_SceneRenderer.fs");
 //    l_modelViewProjectionMatrix_UniLoc_ =       GetUniformLocation(progShaders[RENDER_PASS1], "l_modelViewProjectionMatrix");
 //    lightPosition_ModelViewMatrix_UniLoc_ =     GetUniformLocation(progShaders[RENDER_PASS1], "lightPosition_ModelViewMatrix");
 //    lightPosition_ObjectSpace_UniLoc_ =         GetUniformLocation(progShaders[RENDER_PASS1], "lightPosition");
@@ -81,6 +72,24 @@ void EG_SceneRenderer::init(int w, int h, int Shader_Num)
     l_modelViewProjectionMatrix_UniLoc_     = GetUniformLocation( m_shaders[RENDER_PASS2], "l_modelViewProjectionMatrix");
     shadowMap_UniLoc                        = GetUniformLocation( m_shaders[RENDER_PASS2], "gShadowMap");
     initMemberVariables();
+
+
+}
+
+
+void EG_SceneRenderer::loadUniformLocations(pipeline& p, int pass)
+{
+    p.updateShadowMatrix();
+//    p.shadowMatrix = LIGHT_BIAS_MATRIX * p.Light_ProjectionMatrix * p.Light_ViewMatrix * p.modelMatrix[p.modelMatrix.size()-1];
+    glUniformMatrix4fv(l_modelViewProjectionMatrix_UniLoc_,1,GL_FALSE,&p.m_shadowMatrix[0][0]);
+
+    if(tables.size() != 0)
+    {
+        for ( auto local_it = tables[RENDER_PASS1].begin(); local_it!= tables[RENDER_PASS1].end(); ++local_it )
+            (local_it->second)->setUniLoc();
+    }
+
+    EG_Renderer::loadUniformLocations(p, pass);
 }
 
 
@@ -143,13 +152,20 @@ void EG_SceneRenderer::initSpotLightUniformLocations(int pass)
 
 
 
-void EG_SceneRenderer::loadUniformLocations(pipeline& p, int RenderPassID)
+
+/*
+void EG_SceneRenderer::loadUniformLocations1(pipeline& p, int pass)
 {
     p.updateShadowMatrix();
-//    p.shadowMatrix = LIGHT_BIAS_MATRIX * p.Light_ProjectionMatrix * p.Light_ViewMatrix * p.modelMatrix[p.modelMatrix.size()-1];
     glUniformMatrix4fv(l_modelViewProjectionMatrix_UniLoc_,1,GL_FALSE,&p.m_shadowMatrix[0][0]);
-    EG_Renderer::loadUniformLocations(p, RenderPassID);
+
+
+    for ( auto local_it = tables[RENDER_PASS1].begin(); local_it!= tables[RENDER_PASS1].end(); ++local_it )
+        (local_it->second)->setUniLoc();
+
+    EG_Renderer::loadUniformLocations(p, pass);
 }
+*/
 
 
 void EG_SceneRenderer::setDirectionalLight(EG_DirectionalLight& Light)

@@ -6,7 +6,7 @@
 #include "EG_Utility.h"
 #include "EG_QuadModelABS.h"
 #include "EG_Renderer.h"
-#include "EG_TextRenderer.h"
+#include "EG_GeneralRenderer.h"
 
 #define NO_SDL_GLEXT
 #include <GL/glew.h>
@@ -63,7 +63,8 @@ class EG_Text
         int m_fontSpace = -9;
 
 
-        EG_TextRenderer    r_textRenderer;
+    //    EG_TextRenderer    r_textRenderer;
+        EG_GeneralRenderer r_textRenderer;
 };
 
 

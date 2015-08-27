@@ -136,9 +136,6 @@ void EG_GBuffer::bindForReading36()
 
 
 
-
-
-
 void EG_GBuffer::init37(unsigned int width, unsigned int height)
 {
     // Create the FBO

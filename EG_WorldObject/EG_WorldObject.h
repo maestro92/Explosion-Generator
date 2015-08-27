@@ -72,6 +72,8 @@ class WorldObject
         WorldObject();
         virtual ~WorldObject();
 
+        EG_ModelABS* defaultModel;
+
 
 
         vec3    m_position;
@@ -117,7 +119,10 @@ class WorldObject
         virtual float getBoundingVolumeSize();
         // for sphere
         virtual void setSize(float x, float y, float z);
+        void setModel(EG_ModelABS* model);
 
+
+        virtual void render(EG_Renderer* Renderer, int pass);
 
         virtual void renderSingle(pipeline& m_pipeline,
                             EG_Renderer* Renderer,

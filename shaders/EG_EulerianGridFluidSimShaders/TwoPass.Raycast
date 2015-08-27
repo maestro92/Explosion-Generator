@@ -92,12 +92,11 @@ void main()
             if( Regular_Depth < CalcDepthValue(d_pos))
             {
                 //  Transparency
-
-                
                 Color_0 += LightIntensity*density*stepSize * Transparency;
                 
                 Transparency *= 1.0-density*stepSize;
-                if (Transparency <= 0.01)  break;
+                if (Transparency <= 0.01)  
+                    break;
 
                 FragColor.rgb = Color_0;
                 FragColor.a = 1-Transparency;

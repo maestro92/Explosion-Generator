@@ -33,6 +33,27 @@ void EG_TextureRenderer::init(int nShaders)
 }
 
 
+
+void EG_TextureRenderer::init()
+{
+    Shader* s = new Shader("EG_TextureRenderer.vs", "EG_TextureRenderer.fs");
+
+    addShader(s);
+    addDataPair(RENDER_PASS1, "u_texture",        DP_INT);
+
+
+    m_textureUnitUniLoc    = getUniLoc(m_shaders[RENDER_PASS1], "gTexture");
+
+
+//    initDataPairUniLoc(&m_colorPair,        m_shaders[RENDER_PASS1], "gColor");
+
+    initMemberVariables();
+
+
+    o_fullScreenQuad.init();
+}
+
+
 void EG_TextureRenderer::setTextureUnit(unsigned int TextureUnit)
 {
     m_texUnit = TextureUnit;

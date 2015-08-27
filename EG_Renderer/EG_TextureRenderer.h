@@ -30,6 +30,7 @@ class EG_TextureRenderer : public EG_Renderer
 
         EG_QuadModelABS o_fullScreenQuad;
 
+        void init();
         void init(int nShaders);
         void setTextureUnit(unsigned int TextureUnit);
         void setPixelSize(unsigned int Width, unsigned int Height);

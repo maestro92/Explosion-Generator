@@ -48,7 +48,8 @@ class EG_SceneRenderer : public EG_Renderer
       //  void init(int w, int h);
         void init(int nShaders);
         void init(int w, int h, int Shader_Num);
-        void loadUniformLocations(pipeline& p, int RenderPassID);
+        void loadUniformLocations(pipeline& p, int pass);
+        void loadUniformLocations1(pipeline& p, int pass);
 
         void setDirectionalLight(EG_DirectionalLight& Light);
         void setPointLight(int index, EG_PointLight& Light);
@@ -70,8 +71,6 @@ class EG_SceneRenderer : public EG_Renderer
         GLuint ShadowMap;
         GLuint DepthTexture_LightPOV;
 
-        int ShadowMapWidth;
-        int ShadowMapHeight;
 
 
 

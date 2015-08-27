@@ -314,6 +314,11 @@ void pipeline::updateShadowMatrix()
 }
 
 
+glm::mat4 pipeline::getShadowMatrix()
+{
+    updateShadowMatrix();
+    return m_shadowMatrix;
+}
 
 void pipeline::RotateForReflection(int face)
 {

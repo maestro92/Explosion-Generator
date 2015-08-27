@@ -11,6 +11,7 @@ class EG_QuadModelABS : public EG_ModelABS
     public:
         // constructor
         EG_QuadModelABS();
+        EG_QuadModelABS(int i);
 
         // Destructor
 		~EG_QuadModelABS();

@@ -5,7 +5,7 @@
 #include "pipeline.h"
 #include "EG_Utility.h"
 #include <unordered_map>
-
+#include <stack>
 
 using namespace std;
 
@@ -345,6 +345,7 @@ class EG_Renderer
 
         void printTables();
         void setData(int pass, const char* name, int value);
+        void setData(int pass, const char* name, int value, GLuint textureId, GLuint unit);
         void setData(int pass, const char* name, float value);
         void setData(int pass, const char* name, glm::vec2 value);
         void setData(int pass, const char* name, glm::vec3 value);
@@ -367,7 +368,7 @@ class EG_Renderer
         vector< vector<DataPair*> > m_allDataPairs;
 
         vector< unordered_map<string, DataPair*> > tables;
-
+        stack<GLuint> textureUnitStack;
     private:
         int m_numShaders;
         int m_curShader;

@@ -3,6 +3,7 @@
 
 EG_XYZAxisModel::EG_XYZAxisModel()
 {
+    m_modelGeometry = GL_LINES;
 }
 
 EG_XYZAxisModel::~EG_XYZAxisModel()
@@ -11,7 +12,7 @@ EG_XYZAxisModel::~EG_XYZAxisModel()
 
 void EG_XYZAxisModel::init()
 {
-    m_modelGeometry = GL_LINES;
+
 
     std::vector<unsigned int> indices;
     std::vector<EG_VertexData> vertices;

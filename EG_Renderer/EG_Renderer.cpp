@@ -26,6 +26,7 @@ void EG_Renderer::init(int nShaders)
 
 
 
+
 void EG_Renderer::allocateMemberVariables(int nShaders)
 {
     m_numShaders = nShaders;
@@ -157,9 +158,6 @@ void EG_Renderer::addDataPair(int pass, const char* name, int dataType)
     int a = 1;
 */
 
-
-
-
 //    std::pair<string, DataPair*> newPair(name, p);
 //    tables[pass].insert(newPair);
 }
@@ -169,6 +167,15 @@ void EG_Renderer::addDataPair(int pass, const char* name, int dataType)
 
 void EG_Renderer::setData(int pass, const char* name, int value)
 {
+    tables[pass][name]->setValue(value);
+}
+
+void EG_Renderer::setData(int pass, const char* name, int value, GLuint unit, GLuint textureId)
+{
+    glActiveTexture(unit);
+    glBindTexture(GL_TEXTURE_2D, textureId);
+
+    textureUnitStack.push(unit);
     tables[pass][name]->setValue(value);
 }
 
@@ -189,17 +196,6 @@ void EG_Renderer::setData(int pass, const char* name, glm::vec3 value)
 
 void EG_Renderer::setData(int pass, const char* name, glm::vec4 value)
 {
-    // if (tables[pass][name] == NULL)
-    //    EG_Utility::debug("here");
-    // tables[pass][name]->setValue(value);
-  //  DataPair* dp = tables[pass][name];
-
-
-  //  if (tables[pass][name] == NULL)
-  //      EG_Utility::debug("here");
-
-//    cout << dp->label << endl;
-
     tables[pass][name]->setValue(value);
 }
 
@@ -321,6 +317,12 @@ void EG_Renderer::disableShader(int RenderPassID)
 {
     m_shaders[RenderPassID]->delShader();
     m_curShader = -1;
+    while(!textureUnitStack.empty())
+    {
+        glActiveTexture(textureUnitStack.top());
+        glBindTexture(GL_TEXTURE_2D, 0);
+        textureUnitStack.pop();
+    }
 }
 
 
@@ -375,8 +377,6 @@ void EG_Renderer::render()
 {
 
 }
-
-
 
 
 void EG_Renderer::getAllMatrixUniLocs()

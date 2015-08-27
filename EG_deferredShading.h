@@ -4,54 +4,6 @@
 
 
 
-#if DEFERRED_SHADING
-    r_deferredShadingPointLightPass.enableShader(RENDER_PASS1);
-        r_deferredShadingPointLightPass.setPositionTextureUnit(EG_GBuffer::GBUFFER_TEXTURE_TYPE_POSITION);
-        r_deferredShadingPointLightPass.setColorTextureUnit(EG_GBuffer::GBUFFER_TEXTURE_TYPE_DIFFUSE);
-        r_deferredShadingPointLightPass.setNormalTextureUnit(EG_GBuffer::GBUFFER_TEXTURE_TYPE_NORMAL);
-        r_deferredShadingPointLightPass.setScreenSize(SCREEN_WIDTH, SCREEN_HEIGHT);
-    r_deferredShadingPointLightPass.disableShader(RENDER_PASS1);
-
-    r_deferredShadingDirectionalLightPass.enableShader(RENDER_PASS1);
-        r_deferredShadingDirectionalLightPass.setPositionTextureUnit(EG_GBuffer::GBUFFER_TEXTURE_TYPE_POSITION);
-        r_deferredShadingDirectionalLightPass.setColorTextureUnit(EG_GBuffer::GBUFFER_TEXTURE_TYPE_DIFFUSE);
-        r_deferredShadingDirectionalLightPass.setNormalTextureUnit(EG_GBuffer::GBUFFER_TEXTURE_TYPE_NORMAL);
-        r_deferredShadingDirectionalLightPass.setStencilTextureUnit(EG_GBuffer::GBUFFER_TEXTURE_TYPE_STENCIL);
-
-        r_deferredShadingDirectionalLightPass.setMatSpecularIntensity(1.0f);
-        r_deferredShadingDirectionalLightPass.setMatSpecularPower(32.0f);
-        r_deferredShadingDirectionalLightPass.setDirectionalLight(allLights.getDirectionalLight(0));
-        r_deferredShadingDirectionalLightPass.setScreenSize(SCREEN_WIDTH, SCREEN_HEIGHT);
-    r_deferredShadingDirectionalLightPass.disableShader(RENDER_PASS1);
-
-
-
-    r_deferredShadingPointLightPass_Skybox.enableShader(RENDER_PASS1);
-        r_deferredShadingPointLightPass_Skybox.setPositionTextureUnit(EG_GBuffer::GBUFFER_TEXTURE_TYPE_POSITION);
-        r_deferredShadingPointLightPass_Skybox.setColorTextureUnit(EG_GBuffer::GBUFFER_TEXTURE_TYPE_DIFFUSE);
-        r_deferredShadingPointLightPass_Skybox.setNormalTextureUnit(EG_GBuffer::GBUFFER_TEXTURE_TYPE_NORMAL);
-     //   r_deferredShadingPointLightPass_Skybox.setScreenSize(SCREEN_WIDTH, SCREEN_HEIGHT);
-        r_deferredShadingPointLightPass_Skybox.setScreenSize(512, 512);
-    r_deferredShadingPointLightPass_Skybox.disableShader(RENDER_PASS1);
-
-    r_deferredShadingDirectionalLightPass_Skybox.enableShader(RENDER_PASS1);
-        r_deferredShadingDirectionalLightPass_Skybox.setPositionTextureUnit(EG_GBuffer::GBUFFER_TEXTURE_TYPE_POSITION);
-        r_deferredShadingDirectionalLightPass_Skybox.setColorTextureUnit(EG_GBuffer::GBUFFER_TEXTURE_TYPE_DIFFUSE);
-        r_deferredShadingDirectionalLightPass_Skybox.setNormalTextureUnit(EG_GBuffer::GBUFFER_TEXTURE_TYPE_NORMAL);
-        r_deferredShadingDirectionalLightPass_Skybox.setStencilTextureUnit(EG_GBuffer::GBUFFER_TEXTURE_TYPE_STENCIL);
-
-        r_deferredShadingDirectionalLightPass_Skybox.setMatSpecularIntensity(1.0f);
-        r_deferredShadingDirectionalLightPass_Skybox.setMatSpecularPower(32.0f);
-        r_deferredShadingDirectionalLightPass_Skybox.setDirectionalLight(allLights.getDirectionalLight(0));
-        r_deferredShadingDirectionalLightPass_Skybox.setScreenSize(512, 512);
-    r_deferredShadingDirectionalLightPass_Skybox.disableShader(RENDER_PASS1);
-
-#else
-
-#endif
-
-
-
 
 
 

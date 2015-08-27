@@ -14,7 +14,7 @@
 
 
 
-#include "EG_ParticleEffectRenderer.h"
+#include "EG_GeneralRenderer.h"
 
 using namespace std;
 
@@ -71,7 +71,7 @@ class EG_Emitter
 
 
         EG_QuadModelABS m_quad;
-        EG_ParticleEffectRenderer m_renderer;
+        EG_GeneralRenderer m_renderer;
 
 };
 

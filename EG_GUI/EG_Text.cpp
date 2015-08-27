@@ -19,7 +19,14 @@ void EG_Text::initialize()
     m_fontSize = 20;
     m_fontSpace = -9;
   //  fontQuad.init(50,50);
-    r_textRenderer.init(1);
+
+
+
+    Shader* s = new Shader("/EG_GUIShaders/EG_GUIText.vs", "/EG_GUIShaders/EG_GUIText.fs");
+    r_textRenderer.addShader(s);
+    r_textRenderer.addDataPair(RENDER_PASS1, "u_texture", DP_INT);
+
+
 
     buildCharToIndexMapping();
     buildTextureFont();
@@ -236,7 +243,6 @@ void EG_Text::render(pipeline& m_pipeline, int x, int y, const char *in_text, ..
 
 void EG_Text::render(pipeline& m_pipeline, int x, int y, float fontSize, const char *in_text, ...)
 {
-
     char text[256];
 
     va_list ap;
@@ -245,10 +251,9 @@ void EG_Text::render(pipeline& m_pipeline, int x, int y, float fontSize, const c
         vsprintf(text, in_text, ap);
     va_end(ap);
 
-
-
     r_textRenderer.enableShader(RENDER_PASS1);
-    r_textRenderer.setTextureUnit(0);
+    r_textRenderer.setData(RENDER_PASS1, "u_texture", 0);
+
 
     glActiveTexture(GL_TEXTURE0);
     glBindTexture(GL_TEXTURE_2D, fontTexture);

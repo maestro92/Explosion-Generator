@@ -21,7 +21,6 @@ static const float InitialBand(0.1f);
 
 // static Particle Particles[ParticleCount] = {0};
 static EG_NoiseBasedParticle m_GPUParticles[ParticleCount] = {0};
-
 static EG_VelocityCache VelocityCache;
 
 // static float Time = 0;
@@ -76,8 +75,6 @@ void EG_NoiseBasedParticleEffect::update(float dt, float timeStep)
     {
         glm::vec3 p(m_particles[i].px, m_particles[i].py, m_particles[i].pz);
         glm::vec3 v = computeCurl(p);
-
-
 
         if(i==0)
         {

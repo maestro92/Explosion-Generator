@@ -9,12 +9,20 @@ WorldObject::WorldObject()
     m_scale = glm::vec3(1.0, 1.0, 1.0);
 
     m_orientation = glm::toQuat(glm::mat4(1.0));
+
+    defaultModel = NULL;
 }
 
 
 WorldObject::~WorldObject()
 {
 
+}
+
+
+void WorldObject::setModel(EG_ModelABS* model)
+{
+    defaultModel = model;
 }
 
 
@@ -302,7 +310,13 @@ void WorldObject::renderGroup( pipeline& m_pipeline,
     m_pipeline.popMatrix();
 }
 
+void WorldObject::render(EG_Renderer* Renderer, int pass)
+{
+    if(defaultModel != NULL)
+    {
 
+    }
+}
 
 
 /*

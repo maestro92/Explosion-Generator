@@ -72,6 +72,10 @@ class EG_Utility
 
 
         /// EG_Utility_GL.cpp
+      //  static SDL_Surface* m_displaySurface;
+        static void initSDL(int w, int h, SDL_Surface* & m_displaySurface);
+        static void exitSDL(SDL_Surface* & m_displaySurface);
+        static void initGLEW();
         static void errorCheck();
         static GLuint createFBO();
         static void errorCheckFBO();
@@ -132,8 +136,6 @@ class EG_Utility
         static void setUniLoc(GLuint location, glm::mat3 value);
         static void setUniLoc(GLuint location, glm::mat4 value);
         static void setUniLocTranspose(GLuint location, glm::mat4 value);
-
-
 };
 
 

@@ -150,12 +150,14 @@ void EG_Emitter::addParticle()
     m_particles.push_back(particle);
 }
 
-
-
+/// add
+/// http://www.andersriggelsen.dk/glblendfunc.php
 void EG_Emitter::render(pipeline& p, GLuint sceneDepthTexture)
 {
     glEnable(GL_BLEND);
-    glBlendFunc(GL_SRC_ALPHA, GL_ONE);
+  //  glBlendFunc(GL_SRC_ALPHA, GL_ONE);
+
+    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
     glDisable(GL_CULL_FACE);
     glDisable(GL_DEPTH_TEST);
 
@@ -173,8 +175,6 @@ void EG_Emitter::render(pipeline& p, GLuint sceneDepthTexture)
         p.pushMatrix();
             p.translate(particle->m_position);
             p.scale(5);
-
-
 
 /*
             if(particle->m_id % 5 == 0)

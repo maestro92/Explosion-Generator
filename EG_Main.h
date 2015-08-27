@@ -56,19 +56,18 @@
 #include "EG_SceneRenderer.h"
 #include "EG_ReflectionRenderer.h"
 #include "EG_TextureRenderer.h"
-#include "EG_DepthRenderer.h"
 #include "EG_SkinningRenderer.h"
-#include "EG_TextRenderer.h"
-#include "EG_ButtonRenderer.h"
-#include "EG_FullColorRenderer.h"
+
 #include "EG_InstancedRenderer.h"
-#include "EG_SkyboxRenderer.h"
 #include "EG_BillboardRenderer.h"
 #include "EG_ParticleSystemRenderer.h"
 #include "EG_NoiseBasedParticleEffectRenderer.h"
 #include "EG_NoiseBasedParticleEffectRendererGPU.h"
 
+#include "EG_RendererManager.h"
+
 #include "EG_WorldAnimatedObject.h"
+#include "EG_FullScreenQuad.h"
 
 #include "EG_Button.h"
 #include "EG_XYZAxisModel.h"
@@ -80,7 +79,7 @@
 #include "pipeline.h"
 #include "EG_SphereParticleEffect.h"
 
-#include "EG_ParticleEffectRenderer.h"
+#include "EG_GeneralRenderer.h"
 
 #include "L_Cube_Sphere_ParticleEffect.h"
 
@@ -133,14 +132,7 @@ class ExplosionGenerator
 {
 
     private:
-  //      EG_ParticleSystem  m_particleSystem;
-
-    //    Shader* AdvectProgram;
-
-
-
-
-
+        EG_RendererManager              m_rm;
 
 
         EG_Renderer*                    r_Technique;
@@ -148,13 +140,10 @@ class ExplosionGenerator
         EG_ReflectionRenderer           r_reflectionRenderer;
         EG_SceneRenderer                r_sceneRenderer;
         EG_TwoPassRaycastingRenderer    r_twoPassRaycastingRenderer;
-        EG_DepthRenderer                r_depthRenderer;
-        EG_SkyboxRenderer               r_skyboxRenderer;
+
 
 
         EG_SkinningRenderer                     r_skinning;
-        EG_TextureRenderer                      r_renderTexture;
-        EG_FullColorRenderer                    r_fullColor;
         EG_InstancedRenderer                    r_instancedRenderer;
 
         EG_BillboardRenderer                    r_billBoardRenderer;
@@ -164,33 +153,7 @@ class ExplosionGenerator
 
         EG_ParticleSystemRenderer               r_particleSystemRenderer;
 
-
-/*
-       // EG_DepthTextureRenderer
-//        EG_DepthRenderer       r_depthRenderer;
-
-//        EG_RenderTechnique_RenderDepthToTexture   r_renderToDepthTexture;
-    //    EG_DeferredShading r_deferredShadingRenderer;
-    //    EG_DeferredShading2 r_deferredShadingRenderer;
-        EG_DeferredShadingGeometryPass          r_deferredShadingGeometryPass;
-        EG_DeferredShadingSkybox                r_deferredShadingSkybox;
-        EG_DeferredShadingReflection            r_deferredShadingReflection;
-        EG_DeferredShadingStencilPass           r_deferredShadingStencilPass;
-        EG_DeferredShadingLightPos              r_deferredShadingLightPos;
-
-        EG_DeferredShadingPointLightPass        r_deferredShadingPointLightPass;
-        EG_DeferredShadingPointLightPass        r_deferredShadingPointLightPass_Skybox;
-
-        EG_DeferredShadingDirectionalLightPass  r_deferredShadingDirectionalLightPass;
-        EG_DeferredShadingDirectionalLightPass  r_deferredShadingDirectionalLightPass_Skybox;
-*/
-
-
         /// GUI
-        EG_ButtonRenderer  r_buttonRenderer;
-
-
-
         EG_Label m_frameRateLabel;
         EG_Button m_triggerButton;
         EG_Button m_resetButton;
@@ -202,14 +165,9 @@ class ExplosionGenerator
         float m_smokeSize;
         bool m_testintSmokeMode;
 
-        EG_Slider m_particleCountSlider;
-        float m_particleCount;
-
-        EG_Slider m_velocitySlider;
-        float m_velocity;
-
-        EG_Slider m_maxRadiusSlider;
-        float m_maxRadius;
+        EG_Slider m_particleCountSlider;    float m_particleCount;
+        EG_Slider m_velocitySlider;         float m_velocity;
+        EG_Slider m_maxRadiusSlider;        float m_maxRadius;
 
 
 
@@ -258,7 +216,6 @@ class ExplosionGenerator
         meshLoader* wall_positive_x;
         meshLoader* wall_negative_z;
         meshLoader* wall_positive_z;
-        meshLoader* o_hugeWall;
 
 /*
         EG_ImportedModel wall_negative_x1;
@@ -269,15 +226,7 @@ class ExplosionGenerator
 */
 
 
-   //     meshLoader* sphere;
         meshLoader* smoothSphere;
-//        meshLoader* cube;
-
-//        meshLoader* mainCharacter;
-        meshLoader* light;
-        meshLoader* pointLightSphere;
-        meshLoader* m_box;
-//        mesh* quad;
 
         EG_Model    testSphere;
         EG_ImportedAnimatedModel legoMan;
@@ -296,8 +245,9 @@ class ExplosionGenerator
 
         EG_WorldAnimatedObject  o_animatedLegoMan;
         EG_WorldAnimatedObject  o_animatedBob;
+        EG_FullScreenQuad       o_fullScreenQuad;
 
-        EG_QuadModelABS     o_fullScreenQuad;
+//        EG_QuadModelABS     o_fullScreenQuad;
 
         WorldObject     o_worldAxis;
         WorldSphere     o_reflectionSphere;
@@ -340,9 +290,6 @@ class ExplosionGenerator
 
 
         /// Matrices
-        // the matrix used to for conversion in the 2nd rendering pass
-        //  convert Vertices in object space into texture coordinates in the light's perspective
-
         bool m_increaseFlag;
         bool m_decreaseFlag;
 
@@ -354,7 +301,6 @@ class ExplosionGenerator
 
 
         EG_Emitter m_fireEffect;
-
         EG_ParticleSystemEffect     m_particleSystemEffect;
         EG_NoiseBasedParticleEffect m_nbpEffect;
 
@@ -370,52 +316,35 @@ class ExplosionGenerator
 
 
         /// init functions
-        void initSDL();
-        void initGLEW();
         void initOpenGL();
 
-    //    void initBillboardList();
- //       void initShader();
         void initModels();
         void initObjects();
 
         void initRenderers();
-        void initRendererLightParams(EG_Renderer* r_ptr);
         void initLights();
   //      void initNoiseBasedParticles();
 
         void initGUI();
-
-
         void initFrameBuffers();
-
-        void SetupRenderStage();
-        void getDepthTexture_FromLightPosion(pipeline temp_pipeline);
 
         void start();
         void update();
 
-     //   void forwardRenderDRAFT();
         void forwardRender();
-        void forwardRender2();
-
-
-        void RenderScene();
+        void renderScene();
         void initGUIRenderStage();
         void renderAnimatedObject(pipeline& p, int pass);
         void renderShadowMap();
         void renderGUI();
         void RenderSmoke(bool pass1, bool pass2, Matrices_t& Mat, unsigned int depthTextureId);
 
-        void Render_to_CubeMapTexture2();
-        void Render_to_CubeMapFace2(int face);
-
         void renderParticleSystemEffect();
         void renderNoiseBasedParticleEffect();
         void renderNoiseBasedParticleEffectGPU();
         void renderNoiseBasedParticleEffectGPU2();
-    //    void renderNoiseBasedParticleEffect2();
 
+        void renderNoiseBasedParticleEffectGPU1();
 
         void initTransformFeedBackTest();
         void initTransformFeedBackTestBackup();

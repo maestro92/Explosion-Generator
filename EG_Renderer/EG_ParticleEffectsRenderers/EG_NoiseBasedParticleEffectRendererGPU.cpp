@@ -65,7 +65,7 @@ void EG_NoiseBasedParticleEffectRendererGPU::init()
     initDataPairUniLoc(&m_backgroundTexturePair,        RENDER_PASS3, "u_backgroundTexture");
     initDataPairUniLoc(&m_particlesTexturePair,         RENDER_PASS3, "u_particlesTexture");
 
-    printTables();
+ //   printTables();
 }
 
 

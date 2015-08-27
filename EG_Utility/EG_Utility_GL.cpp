@@ -1,5 +1,37 @@
 #include "EG_Utility.h"
 
+
+
+void EG_Utility::initSDL(int w, int h, SDL_Surface* & m_displaySurface)
+{
+    SDL_Init(SDL_INIT_EVERYTHING);
+    m_displaySurface = SDL_SetVideoMode(w, h, 32, SDL_SWSURFACE|SDL_OPENGL);
+    //error check
+    if (m_displaySurface == NULL)
+    {
+        //report error
+        cerr << "Could not set up display surface!" << SDL_GetError() << endl;
+        exit(1);
+    }
+}
+
+void EG_Utility::exitSDL(SDL_Surface* & m_displaySurface)
+{
+    SDL_FreeSurface(m_displaySurface);
+    SDL_Quit();
+}
+
+void EG_Utility::initGLEW()
+{
+    // initialize Glew
+    GLenum err = glewInit();
+    if (GLEW_OK != err)
+    {
+      cout << "Error: %s\n" << glewGetErrorString(err) << endl;
+    }
+}
+
+
 GLuint EG_Utility::createFBO()
 {
     GLuint FBO;

@@ -45,17 +45,11 @@ void EG_Utility::debug(string s, glm::vec2 v)
 
 void EG_Utility::debug(string s, glm::vec3 v)
 {
-    // cout << s << endl;
-    // cout << v.x << " " << v.y << " " << v.z << endl << endl;
-
     cout << s << "  " << v.x << " " << v.y << " " << v.z << endl;
 }
 
 void EG_Utility::debug(string s, glm::vec4 v)
 {
-    // cout << s << endl;
-    // cout << v.x << " " << v.y << " " << v.z << endl << endl;
-
     cout << s << "  " << v.x << " " << v.y << " " << v.z << " " << v.w << endl;
 }
 

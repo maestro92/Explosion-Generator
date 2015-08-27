@@ -6,13 +6,9 @@
 using namespace std;
 
 
-
 #define SPHERE_EFFECT 1
-#define CUBE_SPHERE_EFFECT 0
 
-#define DEFERRED_SHADING 0
-
-#define EULER_SMOKE_EFFECT 0
+#define EULER_SMOKE_EFFECT 1
 #define NBP_SMOKE_EFFECT 1
 #define NBP_SMOKE_EFFECT_GPU 1
 
@@ -22,6 +18,7 @@ using namespace std;
 #define MRT_DEMO_MODE 0
 #define USING_INVERSE_MATRIX 0
 #define SKY_BOX 1
+#define SIDE_WALLS 1
 
 #define ORBIT_CAMERA_FLAG 1
 #define ANIMATED_OBJECT_FLAG 0
@@ -102,10 +99,6 @@ ExplosionGenerator::ExplosionGenerator()
     m_smokeDuration = 800;
     m_orbitCamera.m_leftMouseDown = false;
 
-    initSDL();
-    initGLEW();
-    initOpenGL();
-
     initFrameBuffers();
     smoke.init();
     initRenderers();
@@ -146,9 +139,7 @@ ExplosionGenerator::ExplosionGenerator()
     l_SphereEffect.InitParticles(m_particleCount);
 #endif
 
-#if CUBE_SPHERE_EFFECT
-    l_Cube_SphereEffect.InitParticle(flag);
-#endif
+
 
 
 #if ORBIT_CAMERA_FLAG
@@ -157,9 +148,7 @@ ExplosionGenerator::ExplosionGenerator()
     thirdPersonPovCamera.init(m_pipeline);
 #endif
 
-
     SDL_WM_SetCaption("Template", NULL);
- //   myThirdPOV_camera.lookAt(m_pipeline);
 }
 
 
@@ -169,33 +158,7 @@ ExplosionGenerator::~ExplosionGenerator()
 {
     delete scene;
     delete ground;
- //   delete sphere;
 }
-
-
-void ExplosionGenerator::initSDL()
-{
-    SDL_Init(SDL_INIT_EVERYTHING);
-    pDisplaySurface = SDL_SetVideoMode(SCREEN_WIDTH,SCREEN_HEIGHT,32, SDL_SWSURFACE|SDL_OPENGL);
-    //error check
-    if (pDisplaySurface == NULL)
-    {
-        //report error
-        cerr << "Could not set up display surface!" << SDL_GetError() << endl;
-        exit(1);
-    }
-}
-
-void ExplosionGenerator::initGLEW()
-{
-    // initialize Glew
-    GLenum err = glewInit();
-    if (GLEW_OK != err)
-    {
-      cout << "Error: %s\n" << glewGetErrorString(err) << endl;
-    }
-}
-
 
 void ExplosionGenerator::initOpenGL()
 {
@@ -214,7 +177,6 @@ void ExplosionGenerator::initFrameBuffers()
 {
     /// shadowMap Texture
     FBO = EG_Utility::createFBO();
-//    glGenFramebuffers(1,&FBO);
 	glBindFramebuffer(GL_FRAMEBUFFER,FBO);
 
     shadowMap = EG_Utility::createDepthTexture(shadowMapWidth, shadowMapheight);
@@ -226,7 +188,6 @@ void ExplosionGenerator::initFrameBuffers()
 
 
     FBO1 = EG_Utility::createFBO();
-//    glGenFramebuffers(1,&FBO1);
 	glBindFramebuffer(GL_FRAMEBUFFER,FBO1);
     /// depthTexture
     depthTexture = EG_Utility::createDepthTexture(SCREEN_WIDTH, SCREEN_HEIGHT);
@@ -236,24 +197,28 @@ void ExplosionGenerator::initFrameBuffers()
     EG_Utility::errorCheckFBO();
 	glBindFramebuffer(GL_FRAMEBUFFER,0);
 
-
+    /// used for rendering the scene
     m_sceneSurface = EG_Utility::createSurface((int)SCREEN_WIDTH, (int)SCREEN_HEIGHT);
 }
 
 
 void ExplosionGenerator::initRenderers()
 {
-    r_depthRenderer.init(1);
+    m_rm.init();
+
+//    r_depthRenderer.init(1);
     r_reflectionRenderer.init(1);
-    r_renderTexture.init(1);
-    r_fullColor.init(1);
-    r_skyboxRenderer.init(1);
 
     r_sceneRenderer.init(SCREEN_WIDTH, SCREEN_HEIGHT, 2);
+    r_sceneRenderer.addShader(new Shader("shadow_SecondRender_dir_pt_include.vs", "shadow_SecondRender_dir_pt_include.fs"));
+ //   r_sceneRenderer.addShader(new Shader("shadow_SecondRender_dir_pt_include.vs", "shadow_SecondRender_dir_pt_include.fs"));
+    r_sceneRenderer.addDataPair(RENDER_PASS1, "u_lightModelViewProjMat", DP_MAT4);
+
+
+
     r_twoPassRaycastingRenderer.init(SCREEN_WIDTH, SCREEN_HEIGHT, 2);
 
     r_skinning.init(2);
-    r_buttonRenderer.init(3);
     r_instancedRenderer.init(2);
 
     r_billBoardRenderer.init(1);
@@ -264,11 +229,8 @@ void ExplosionGenerator::initRenderers()
 
 
     r_nbpRendererGPU.init();
-}
 
 
-void ExplosionGenerator::initRendererLightParams(EG_Renderer* r_ptr)
-{
 
 }
 
@@ -322,27 +284,14 @@ void ExplosionGenerator::initModels()
     wall_negative_z = new meshLoader("Wall_NZ.obj");
     wall_positive_x = new meshLoader("Wall_PX.obj");
 
-
-//    wall_negative_z1.loadModel("./assets/Models/Wall_NZ.obj");
-//    wall_positive_z1.loadModel("./assets/Models/Wall_PX.obj");
-
-
-
-    o_hugeWall        = new meshLoader("HugeWall.obj");
-
     testSphere.loadModel("./Assets/Models/Sphere/sphere10_grey_flat.obj");
-    // testSphere.loadModel("./models/Sphere.ctm");
     instancedSphere.loadModel("./Assets/Models/Sphere/sphere10_grey_flat.obj");
 
     bob.loadModel("./Assets/Models/Characters/boblampclean.md5mesh");
     legoMan.loadModel("./Assets/Models/Characters/Walking Lego.md5mesh");
 
     m_axisModel.init();
-
-//    deferredShadingQuad = new meshLoader("./Content/quad.obj");
     smoothSphere = new meshLoader("./Sphere/sphere_grey.obj");
-
-//    o_fullScreenQuad.init();
 }
 
 
@@ -377,7 +326,7 @@ void ExplosionGenerator::initObjects()
 
 #if NBP_SMOKE_EFFECT_GPU
     m_nbpEffect.initGPU(SCREEN_WIDTH, SCREEN_HEIGHT);
-  //  m_particleSystemEffect.initCurlNoiseStyle();
+    m_particleSystemEffect.initCurlNoiseStyle();
 #else
     m_nbpEffect.init(SCREEN_WIDTH, SCREEN_HEIGHT);
 #endif
@@ -403,14 +352,14 @@ void ExplosionGenerator::initGUI()
 
     EG_Control::m_textEngine.initialize();
 
+    int X_OFFSET = 10;
+
     int SLIDER_HEIGHT = 35;
+    int BUTTON_WIDTH = 200;
     int BUTTON_HEIGHT = 35;
 
-
-  //  m_frameRateLabel.setRect
-
     m_particleCountSlider.setID(m_GUIComponentsIDs);
-    m_particleCountSlider.setRect(10, 400, 200, SLIDER_HEIGHT);
+    m_particleCountSlider.setRect(X_OFFSET, 400, BUTTON_WIDTH, SLIDER_HEIGHT);
     m_particleCountSlider.setColor(DARK_GRAY);
     m_particleCountSlider.setSliderColor(GREEN);
     m_particleCountSlider.setLabel("Particle Count");
@@ -422,10 +371,9 @@ void ExplosionGenerator::initGUI()
     m_GUIComponents.push_back(&m_particleCountSlider);
 
 
-
     m_velocity = l_SphereEffect.m_maxVelocity;
     m_velocitySlider.setID(m_GUIComponentsIDs);
-    m_velocitySlider.setRect(10, 350, 200, SLIDER_HEIGHT);
+    m_velocitySlider.setRect(X_OFFSET, 350, BUTTON_WIDTH, SLIDER_HEIGHT);
     m_velocitySlider.setColor(DARK_GRAY);
     m_velocitySlider.setSliderColor(GREEN);
     m_velocitySlider.setLabel("Max Velocity");
@@ -436,10 +384,9 @@ void ExplosionGenerator::initGUI()
     m_GUIComponents.push_back(&m_velocitySlider);
 
 
-
     m_maxRadius = l_SphereEffect.m_maxRadius;
     m_maxRadiusSlider.setID(m_GUIComponentsIDs);
-    m_maxRadiusSlider.setRect(10, 300, 200, SLIDER_HEIGHT);
+    m_maxRadiusSlider.setRect(X_OFFSET, 300, BUTTON_WIDTH, SLIDER_HEIGHT);
     m_maxRadiusSlider.setColor(DARK_GRAY);
     m_maxRadiusSlider.setSliderColor(GREEN);
     m_maxRadiusSlider.setLabel("Max Particle Radius");
@@ -451,7 +398,7 @@ void ExplosionGenerator::initGUI()
 
 
     m_smokeSizeSlider.setID(m_GUIComponentsIDs);
-    m_smokeSizeSlider.setRect(10, 250, 200, SLIDER_HEIGHT);
+    m_smokeSizeSlider.setRect(X_OFFSET, 250, BUTTON_WIDTH, SLIDER_HEIGHT);
     m_smokeSizeSlider.setColor(DARK_GRAY);
     m_smokeSizeSlider.setSliderColor(GREEN);
     m_smokeSizeSlider.setLabel("Smoke Size");
@@ -460,38 +407,22 @@ void ExplosionGenerator::initGUI()
     m_smokeSizeSlider.setMinValue(2);
     m_smokeSizeSlider.initColoredQuad();
     m_GUIComponents.push_back(&m_smokeSizeSlider);
-/*
-    m_listBox.setRect(10, 400, 200, 100);
-    m_listBox.setColor(GREEN);
-    m_listBox.initColoredQuad();
-    m_listBox.addItem("Nice");
-    m_listBox.addItem("Nice");
-    m_listBox.addItem("Nice");
-    m_listBox.addItem("Nice");
-*/
+
 
     m_resetButton.setID(m_GUIComponentsIDs);
-    m_resetButton.setRect(10, 200, 200, BUTTON_HEIGHT);
+    m_resetButton.setRect(X_OFFSET, 200, BUTTON_WIDTH, BUTTON_HEIGHT);
     m_resetButton.setLabel("Reset");
     m_resetButton.setColor(GRAY);
     m_resetButton.initColoredQuad();
     m_GUIComponents.push_back(&m_resetButton);
 
+
     m_triggerButton.setID(m_GUIComponentsIDs);
-    m_triggerButton.setRect(10, 150, 200, BUTTON_HEIGHT);
+    m_triggerButton.setRect(X_OFFSET, 150, BUTTON_WIDTH, BUTTON_HEIGHT);
     m_triggerButton.setLabel("EXPLODE!");
     m_triggerButton.setColor(GRAY);
     m_triggerButton.initColoredQuad();
     m_GUIComponents.push_back(&m_triggerButton);
-
-/*
-    m_minimizeButton.setRect(0, SCREEN_HEIGHT - EG_Control::m_textEngine.getTextHeight(),
-                            200, EG_Control::m_textEngine.getTextHeight());
-    m_minimizeButton.setLabel("minimize");
-    m_minimizeButton.setColor(GRAY);
-    m_minimizeButton.initColoredQuad();
-    m_GUIComponents.push_back(&m_minimizeButton);
-*/
 }
 
 
@@ -529,26 +460,17 @@ void ExplosionGenerator::start()
                     {
                         case SDL_BUTTON_LEFT:
                             cout << "clicking Up left" << endl;
-
                             m_orbitCamera.m_leftMouseDown = false;
-
                             m_mouseState.m_leftButtonDown = false;
-
                             SDL_GetMouseState(&tmpx,&tmpy);
-                  //          g_MousePrevious = glm::vec2(tmpx, tmpy);
                             m_orbitCamera.m_mousePrevious = glm::vec2(tmpx, tmpy);
                             break;
 
                         case SDL_BUTTON_RIGHT:
                             cout << "clicking Up right" << endl;
-
                             m_mouseState.m_rightButtonDown = false;
-
                             SDL_GetMouseState(&tmpx,&tmpy);
-                     //       g_MousePrevious = glm::vec2(tmpx, tmpy);
                             m_orbitCamera.m_mousePrevious = glm::vec2(tmpx, tmpy);
-
-
                             m_mouseState.m_rightButtonDown = false;
 
                             break;
@@ -556,35 +478,24 @@ void ExplosionGenerator::start()
                     break;
 
                 case SDL_MOUSEBUTTONDOWN:
-
-
-
                     firstPersonPovCamera.setMouseInFlag(true);
-
 #if ORBIT_CAMERA_FLAG
                     m_orbitCamera.mouseIn(true);
 #else
                     thirdPersonPovCamera.mouseIn(true);
 #endif
-
-
                     switch(event.button.button)
                     {
                         int tmpx,tmpy;
                         case SDL_BUTTON_LEFT:
                             cout << "clicking left" << endl;
-
-
                             m_orbitCamera.m_leftMouseDown = true;
-
                             SDL_GetMouseState(&tmpx,&tmpy);
                             m_mouseState.m_leftButtonDown = true;
                             break;
 
                         case SDL_BUTTON_RIGHT:
                             cout << "clicking right" << endl;
-
-
                             SDL_GetMouseState(&tmpx,&tmpy);
                             m_mouseState.m_rightButtonDown = true;
                             break;
@@ -595,18 +506,15 @@ void ExplosionGenerator::start()
 #else
                             thirdPersonPovCamera.decreaseOffsetDistance();
 #endif
-
                             cout << "wheel up" << endl;
                             break;
 
                         case SDL_BUTTON_WHEELDOWN:
-
 #if ORBIT_CAMERA_FLAG
                             m_orbitCamera.increaseOffsetDistance();
 #else
                             thirdPersonPovCamera.increaseOffsetDistance();
 #endif
-
                             cout << "wheel down" << endl;
                             break;
                     }
@@ -617,9 +525,12 @@ void ExplosionGenerator::start()
                     {
                         case SDLK_x:
                             overrideAddSmokeFlag = false;
-                            addSmoke = false;    break;
+                            addSmoke = false;
+                            break;
 
-                        case SDLK_o:   holdKeyFlag = false; break;
+                        case SDLK_o:
+                            holdKeyFlag = false;
+                            break;
 
                         case SDLK_e:
                             m_increaseFlag = false;
@@ -628,9 +539,6 @@ void ExplosionGenerator::start()
                         case SDLK_q:
                             m_decreaseFlag = false;
                             break;
-
-
-
                     }
                     break;
 
@@ -644,9 +552,7 @@ void ExplosionGenerator::start()
                              l_SphereEffect.Reset();
 #endif
 
-#if CUBE_SPHERE_EFFECT
-                            l_Cube_SphereEffect.Reset();
-#endif
+
 //                            space_bar = false;
                             m_explodeFlag = false;
                             addSmoke = false;
@@ -696,60 +602,15 @@ void ExplosionGenerator::start()
                             cout << "here" << endl;
                             overrideAddSmokeFlag = true;
                             addSmoke = true;
-
-                        case SDLK_1:
-                            flag = 1;
-#if CUBE_SPHERE_EFFECT
-                            l_Cube_SphereEffect.Reset(flag, angle);
-#endif
-                            break;
-                        case SDLK_2:
-                            flag = 2;
-#if CUBE_SPHERE_EFFECT
-                            l_Cube_SphereEffect.Reset(flag, angle);
-#endif
-                            break;
-                        case SDLK_3:
-                            flag = 3;
-#if CUBE_SPHERE_EFFECT
-                            l_Cube_SphereEffect.Reset(flag, angle);
-#endif
-                            break;
-#if SPHERE_EFFECT
-                            l_SphereEffect.myHgrid.removeParticleFromHGrid(&l_SphereEffect.e_ParticleBuffer[3]);
-#endif
-                            break;
                     }
                     break;
 			}
         }
-
             update();
-//            updateTransformFeedbackTest();
-#if DEFERRED_SHADING
-            deferredShadingShow();
-#else
             forwardRender();
-
-//            transformFeedBackTest();
-//            forwardRender2();
-#endif
-
             SDL_GL_SwapBuffers();
-
-       //     float curTime = SDL_GetTicks();
-       //     EG_Utility::debug("curTime is", curTime);
-/*
-            if (next_game_tick > SDL_GetTicks())
-                SDL_Delay(next_game_tick - SDL_GetTicks());
-            next_game_tick = SDL_GetTicks() + INTERVAL;
-*/
     }
 }
-
-
-
-
 
 
 void ExplosionGenerator::renderShadowMap()
@@ -769,21 +630,18 @@ void ExplosionGenerator::renderShadowMap()
     temp_pipeline.rotateY(lightDirection.y);
     temp_pipeline.translate(lightPosition.x,lightPosition.y, lightPosition.z);
 
-
-
-
     /// get the MVP matrices
     glm::mat4 lightModelMat = temp_pipeline.getModelMatrix();
     glm::mat4 lightViewMat = temp_pipeline.getViewMatrix();
     glm::mat4 lightProjMat = temp_pipeline.getProjectionMatrix();
-    glm::mat4 lightMVPMat = lightProjMat * lightViewMat * lightModelMat;
+    // glm::mat4 lightMVPMat = lightProjMat * lightViewMat * lightModelMat;
+    glm::mat4 lightMVPMat = temp_pipeline.getModelViewProjectionMatrix();
+
 
     temp_pipeline.updateLightMatrix(lightModelMat, lightViewMat, lightProjMat);
     m_pipeline.updateLightMatrix(lightModelMat, lightViewMat, lightProjMat);
 
     /// assign the Bias Matrix to convert from NDC coordinate [-1,1] to Texture coord [0,1]
-
-
 
 
 
@@ -804,13 +662,17 @@ void ExplosionGenerator::renderShadowMap()
     glDepthMask(GL_TRUE);
     glClear(GL_DEPTH_BUFFER_BIT);
 
-    // r_Technique = &r_renderToDepthTexture;
-    r_Technique = &r_depthRenderer;
+
+    r_Technique = &m_rm.r_depthRenderer;
     r_Technique->enableShader(RENDER_PASS1);
 
         o_wall.renderGroup(temp_pipeline, r_Technique, RENDER_PASS1, ground);
+#if SIDE_WALLS
         o_wall.renderGroup(temp_pipeline, r_Technique, RENDER_PASS1, wall_negative_z);
         o_wall.renderGroup(temp_pipeline, r_Technique, RENDER_PASS1, wall_positive_x);
+#endif
+
+
 
 #if SPHERE_EFFECT
     #if INSTANCED_RENDERING
@@ -821,9 +683,6 @@ void ExplosionGenerator::renderShadowMap()
 #endif
 
 
-#if CUBE_SPHERE_EFFECT
-        l_Cube_SphereEffect.show(temp_pipeline, shadow_FirstRender->getProgramId(), cube);
-#endif
 
   //      o_reflectionSphere.renderGroup(temp_pipeline, r_Technique, RENDER_PASS1, smoothSphere);
      //   thirdPersonPovCamera.render(temp_pipeline, r_Technique, RENDER_PASS1);
@@ -857,28 +716,21 @@ void ExplosionGenerator::update()
     float fDeltaTime = m_timeManager.GetElapsedTime();
     angle+=0.05f;
 
-
     if(m_increaseFlag)
         m_orbitCamera.m_pivotOffset.y+=1;
-
 
     if(m_decreaseFlag)
         m_orbitCamera.m_pivotOffset.y-=1;
 
 
-
     int mx, my;
     SDL_GetMouseState(&mx,&my);
     m_mouseState.m_pos = glm::vec2(mx, SCREEN_HEIGHT - my);
-
     bool sliding = false;
-
-
 
 
 //    std::bitset<32> flag(m_GUIComponentsFlags);
 //    cout << flag << endl;
-
 
 
   //  if(m_GUIComponentsFlags == 0)
@@ -903,72 +755,61 @@ void ExplosionGenerator::update()
 
 
 
-  //  if(m_GUIComponentsFlags == 0)
-  //  {
-        sliding = m_velocitySlider.update(m_mouseState, m_GUIComponentsFlags);
-        if(sliding)
-        {
-            float newV = m_velocitySlider.getValue();
-            l_SphereEffect.m_maxVelocity = newV;
-
-            if(m_explodeFlag == false)
-                l_SphereEffect.resetParticleVelocity();
-        }
- //   }
-
-  //  if(m_GUIComponentsFlags == 0)
+    sliding = m_velocitySlider.update(m_mouseState, m_GUIComponentsFlags);
+    if(sliding)
     {
-        sliding = m_smokeSizeSlider.update(m_mouseState, m_GUIComponentsFlags);
-        if(sliding)
+        float newV = m_velocitySlider.getValue();
+        l_SphereEffect.m_maxVelocity = newV;
+
+        if(m_explodeFlag == false)
+            l_SphereEffect.resetParticleVelocity();
+    }
+
+    sliding = m_smokeSizeSlider.update(m_mouseState, m_GUIComponentsFlags);
+    if(sliding)
+    {
+        m_testintSmokeMode = true;
+        overrideAddSmokeFlag = true;
+        addSmoke = true;
+        m_smokeSize = m_smokeSizeSlider.getValue();
+
+    }
+    else
+    {
+        if (m_testintSmokeMode)
         {
-            m_testintSmokeMode = true;
-            overrideAddSmokeFlag = true;
+            addSmoke = false;
+            m_testintSmokeMode = false;
+            overrideAddSmokeFlag = false;
+        }
+    }
+
+
+    if(!sliding)
+    {
+        bool b = m_triggerButton.update(m_mouseState, m_GUIComponentsFlags);
+        if(b)
+        {
+            m_explodeFlag = b;
+            m_explodeFlag = true;
+            m_smokeStartTime = SDL_GetTicks();
             addSmoke = true;
-            m_smokeSize = m_smokeSizeSlider.getValue();
-
-        }
-        else
-        {
-            if (m_testintSmokeMode)
-            {
-                addSmoke = false;
-                m_testintSmokeMode = false;
-                overrideAddSmokeFlag = false;
-            }
-
         }
     }
 
 
- //   if(m_GUIComponentsFlags == 0)
+    if(!sliding)
     {
-        if(!sliding)
+        bool b = m_resetButton.update(m_mouseState, m_GUIComponentsFlags);
+        if(b)
         {
-            bool b = m_triggerButton.update(m_mouseState, m_GUIComponentsFlags);
-            if(b)
-            {
-                m_explodeFlag = b;
-                m_explodeFlag = true;
-                m_smokeStartTime = SDL_GetTicks();
-                addSmoke = true;
-            }
+            m_orbitCamera.m_pivotOffset.y = 3.0f;
+            l_SphereEffect.Reset();
+            m_explodeFlag = false;
+            addSmoke = false;
         }
     }
 
-  //  if(m_GUIComponentsFlags == 0)
-    {
-        if(!sliding)
-        {
-            bool b = m_resetButton.update(m_mouseState, m_GUIComponentsFlags);
-            if(b)
-            {
-                m_orbitCamera.m_pivotOffset.y = 3.0f;
-                l_SphereEffect.Reset();
-                m_explodeFlag = false;
-                addSmoke = false;
-            }
-        }
-    }
 
     if(addSmoke)
     {
@@ -1033,9 +874,6 @@ void ExplosionGenerator::update()
 #if SPHERE_EFFECT
         l_SphereEffect.update();
 #endif
-#if CUBE_SPHERE_EFFECT
-        l_Cube_SphereEffect.update();
-#endif
     }
 
 
@@ -1047,10 +885,6 @@ void ExplosionGenerator::update()
 
 //    legoMan.boneTransform(runningTime, o_animatedLegoMan.m_boneTransforms);
   //  bob.boneTransform(runningTime, o_animatedBob.m_boneTransforms);
-
-
-
-
 
 //    mainAvatar.boneTransform(runningTime);
 //    bob.boneTransform(runningTime, r_skinning)
@@ -1111,8 +945,6 @@ void ExplosionGenerator::RenderSmoke(bool pass1, bool pass2, Matrices_t& Mat, un
 
         /// getting the Front and Back of the cube
         r_twoPassRaycastingRenderer.Render_TwoPass_RayCasting_1(Matrices);
-
-
   //      glBindBuffer(GL_ARRAY_BUFFER,0);
   //      glBindBuffer(GL_ELEMENT_ARRAY_BUFFER,0);
   //      glDisableVertexAttribArray(SlotPosition);
@@ -1151,12 +983,17 @@ enum CubeMapOrientation
 
 int main(int argc, char *argv[])
 {
+
+    EG_Utility::initSDL(SCREEN_WIDTH, SCREEN_HEIGHT, pDisplaySurface);
+    EG_Utility::initGLEW();
+
+
     ExplosionGenerator Martin;
 
     Martin.start();
 
-    SDL_FreeSurface(pDisplaySurface);
-    SDL_Quit();
+    EG_Utility::exitSDL(pDisplaySurface);
+
     //normal termination
     cout << "Terminating normally." << endl;
     return EXIT_SUCCESS;
@@ -1180,18 +1017,17 @@ void ExplosionGenerator::renderAnimatedObject(pipeline& p, int pass)
 #endif // ORBIT_CAMERA_FLAG
 
 
-
     modelPtr = &bob;
         r_skinning.setBoneTransforms(o_animatedBob.m_boneTransforms);
         o_animatedBob.renderSingle(p, r_Technique, pass, modelPtr);
 }
 
-void ExplosionGenerator::RenderScene()
+
+void ExplosionGenerator::renderScene()
 {
     /// 2nd Render pass of shadowMapping: camera's point of view
     m_pipeline.matrixMode(MODEL_MATRIX);
     m_pipeline.pushMatrix();
-
 
     r_Technique = &r_sceneRenderer;
     r_sceneRenderer.enableShader(RENDER_PASS2);
@@ -1207,7 +1043,6 @@ void ExplosionGenerator::RenderScene()
         r_sceneRenderer.setEyeWorldPos(thirdPersonPovCamera.getEyePoint());
 #endif
 
-
         o_wall.renderGroup(m_pipeline, r_Technique, RENDER_PASS2, ground);
         o_wall.renderGroup(m_pipeline, r_Technique, RENDER_PASS2, wall_negative_z);
         o_wall.renderGroup(m_pipeline, r_Technique, RENDER_PASS2, wall_positive_x);
@@ -1217,26 +1052,17 @@ void ExplosionGenerator::RenderScene()
 
     #else
         l_SphereEffect.render(m_pipeline, r_Technique, RENDER_PASS2, testSphere);
-    #endif\
+    #endif
 //        l_SphereEffect.render(m_pipeline, r_Technique, RENDER_PASS2, testSphere);
 
    //     l_SphereEffect.render(m_pipeline, r_Technique, RENDER_PASS2, instancedSphere);
 #endif
 
-#if CUBE_SPHERE_EFFECT
-        l_Cube_SphereEffect.show(m_pipeline, shadow_SecondRender->getProgramId(), cube);
-        l_Cube_SphereEffect.DrawMyHgridFrames();
-#endif
-
 //        thirdPersonPovCamera.render(m_pipeline, r_Technique, RENDER_PASS2);
-
-
      //   thirdPersonPovCamera.render(m_pipeline, r_Technique, RENDER_PASS2);
 
         r_sceneRenderer.disableShader(RENDER_PASS2);
     m_pipeline.popMatrix();
-
-
 
     // l_SphereEffect.render(m_pipeline, r_Technique, RENDER_PASS2, testSphere);
 
@@ -1253,7 +1079,6 @@ void ExplosionGenerator::RenderScene()
 		glUniform1i(r_instancedRenderer.shadowMap_UniLoc,6);
         r_instancedRenderer.setEyeWorldPos(m_orbitCamera.getEyePoint());
 
-
         l_SphereEffect.instancedRender(m_pipeline, r_Technique, RENDER_PASS2, instancedSphere);
     m_pipeline.popMatrix();
     r_instancedRenderer.disableShader(RENDER_PASS2);
@@ -1261,119 +1086,6 @@ void ExplosionGenerator::RenderScene()
 
 }
 
-
-
-
-
-void ExplosionGenerator::Render_to_CubeMapTexture2()
-{
-    glDisable(GL_CULL_FACE);
-    glViewport(0, 0, 512, 512);
-
-
-    /// for some reason if I start at i=0, the positive X face doesn't work
-    for(int i=-1; i<6; i++)
-    {
-//        Render_to_CubeMapFace2(i);
- //       RenderScene();
-#if ANIMATED_OBJECT_FLAG
-        renderAnimatedObject(m_pipeline, RENDER_PASS2);
-#endif
-
-
-    #if EULER_SMOKE_EFFECT
- //       if(i==NEGATIVE_Z)
-  //          RenderSmoke(false, true, ReflectionSmoke, m_skybox.Dynamic_CubeMap_DepthTextureID);
-    #endif
-
-  //      glEnable(GL_DEPTH_TEST);
-    }
-
-    glBindFramebuffer(GL_FRAMEBUFFER, 0);
-    glViewport(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
-    glEnable(GL_CULL_FACE);
-}
-
-void ExplosionGenerator::Render_to_CubeMapFace2(int face)
-{
-    m_pipeline.matrixMode(PROJECTION_MATRIX);
-    m_pipeline.loadIdentity();
-
-    m_pipeline.perspective(90,       // the camera angle
-                            1,              // width to height ratio
-                            0.5,            // the near z clippFing coordinate
-                            1000.0);
-
-
-    m_pipeline.matrixMode(VIEW_MATRIX);
-    m_pipeline.loadIdentity();
-
-    m_pipeline.RotateForReflection(face);
-
-
-    glViewport(0,0,SCREEN_WIDTH,SCREEN_HEIGHT);
-///*********************************
-    m_pipeline.pushMatrix();
-        m_pipeline.translate(ReflectiveSphere_Pos.x,ReflectiveSphere_Pos.y,ReflectiveSphere_Pos.z);
-        ReflectionSmoke.View = m_pipeline.getViewMatrix();
-    m_pipeline.popMatrix();
-
-    m_pipeline.matrixMode(MODEL_MATRIX);
-    m_pipeline.pushMatrix();
-        m_pipeline.translate(0,5,0);
-        m_pipeline.rotateZ(180);
-        m_pipeline.scale(5);
-        ReflectionSmoke.Model = m_pipeline.getModelMatrix();
-        ReflectionSmoke.Modelview = ReflectionSmoke.View * ReflectionSmoke.Model;
-    m_pipeline.popMatrix();
-
-    ReflectionSmoke.Projection = m_pipeline.getProjectionMatrix();
-    ReflectionSmoke.ModelviewProjection = ReflectionSmoke.Projection * ReflectionSmoke.Modelview;
-
-    glEnable(GL_CULL_FACE);
-
-    glBindBuffer(GL_ARRAY_BUFFER, smoke.myVbos.CubeCenter);
-    glEnableVertexAttribArray(SlotPosition);
-    glVertexAttribPointer(SlotPosition, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), 0);
-
-    /// getting the Front and Back of the cube
-    r_twoPassRaycastingRenderer.Render_TwoPass_RayCasting_1(ReflectionSmoke);
-//    r_TwoPass_Render.Render_TwoPass_RayCasting_1_draft(ReflectionSmoke);
-    glDisable(GL_CULL_FACE);
-///*********************************
-
-
-
-  //  glClearColor(0.0,0.0,0.5,1.0);
-  //  glClear(GL_COLOR_BUFFER_BIT);
-
-    glViewport(0,0,512,512);
-
-
-
-    glBindFramebuffer(GL_FRAMEBUFFER, m_skybox.CubeMapFBO);
-
-
-
-    glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_CUBE_MAP_POSITIVE_X + (int)face, m_skybox.Dynamic_CubeMap_ColorTextureID, 0);
-    glFramebufferTexture2D(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_TEXTURE_2D, m_skybox.Dynamic_CubeMap_DepthTextureID, 0);
-
-  //  if(face != POSITIVE_X)
-  //  glClearColor(0.0,0.0,0.5,1.0);
-    glClear(GL_COLOR_BUFFER_BIT);
-
-    m_pipeline.matrixMode(MODEL_MATRIX);
-#if SKY_BOX
-//    m_skybox.RenderSkyBox(skyboxShader, m_pipeline);
-#endif
-    m_pipeline.matrixMode(VIEW_MATRIX);
-    m_pipeline.translate(ReflectiveSphere_Pos.x,ReflectiveSphere_Pos.y,ReflectiveSphere_Pos.z);
-
-    m_pipeline.matrixMode(MODEL_MATRIX);
-    glEnable(GL_DEPTH_TEST);
-    glClear(GL_DEPTH_BUFFER_BIT);
-
-}
 
 
 unsigned int DeltaTimeMillis;
@@ -1406,8 +1118,6 @@ void ExplosionGenerator::forwardRender()
     #endif
         firstPersonPovCamera.UpdateCameraTranslation(m_pipeline);
     }
-
-
     else
     {
 
@@ -1420,11 +1130,8 @@ void ExplosionGenerator::forwardRender()
 #endif
     }
 
-
-
     renderShadowMap();
     l_SphereEffect.updateMatrices(m_pipeline);
-
 
     /// render to sceneSurface
     glBindFramebuffer(GL_FRAMEBUFFER, m_sceneSurface.FBO);
@@ -1432,14 +1139,11 @@ void ExplosionGenerator::forwardRender()
     glClearColor(0.0,0.0,0.0,1.0);
     glClear(GL_COLOR_BUFFER_BIT);
 
-
-
 #if SKY_BOX
-    r_Technique = &r_skyboxRenderer;
-    r_skyboxRenderer.setCubeMapTextureUnit(0);
+    r_Technique = &m_rm.r_skyboxRenderer;
+    m_rm.r_skyboxRenderer.setData(RENDER_PASS1, "u_cubeMapTexture", 0);
     m_skybox.render(r_Technique, RENDER_PASS1);
 #endif
-
 
     glEnable(GL_DEPTH_TEST);
     glClear(GL_DEPTH_BUFFER_BIT);
@@ -1458,9 +1162,13 @@ void ExplosionGenerator::forwardRender()
 
             r_sceneRenderer.setEyeWorldPos(m_orbitCamera.getEyePoint());
 
+      //      r_sceneRenderer.setData(RENDER_PASS1, "u_lightModelViewProjMat", m_pipeline.getShadowMatrix());
+
             o_wall.renderGroup(m_pipeline, r_Technique, RENDER_PASS2, ground);
+#if SIDE_WALLS
             o_wall.renderGroup(m_pipeline, r_Technique, RENDER_PASS2, wall_negative_z);
             o_wall.renderGroup(m_pipeline, r_Technique, RENDER_PASS2, wall_positive_x);
+#endif
         r_sceneRenderer.disableShader(RENDER_PASS2);
     m_pipeline.popMatrix();
 
@@ -1477,10 +1185,15 @@ void ExplosionGenerator::forwardRender()
     m_pipeline.popMatrix();
     r_instancedRenderer.disableShader(RENDER_PASS2);
 
-
-    r_Technique = &r_fullColor;
+    r_Technique = &m_rm.r_fullColorRenderer;
     p_modelPtr = &m_axisModel;
         o_worldAxis.renderSingle(m_pipeline, r_Technique, RENDER_PASS1, p_modelPtr);
+
+/*
+    glBindFramebuffer(GL_FRAMEBUFFER, 0);
+    glDisable(GL_BLEND);
+    r_textureRenderer.renderFullScreen(m_sceneSurface.colorTexture, 0);
+*/
 
 
 
@@ -1496,26 +1209,58 @@ void ExplosionGenerator::forwardRender()
         m_nbpEffect.updateGPU();
     r_nbpRendererGPU.disableShader(RENDER_PASS1);
 
+   // renderNoiseBasedParticleEffectGPU();
 
-    renderNoiseBasedParticleEffectGPU();
- //   renderParticleSystemEffect();
+   // glDisable(GL_CULL_FACE);
+  //  renderParticleSystemEffect();
+
+
+
+
+
+
 #else
-
  //   renderParticleSystemEffect();
     renderNoiseBasedParticleEffect();
+#endif
 
+
+
+#if 0
+    r_Technique = &m_rm.r_particleCompositeRenderer;
+    m_rm.r_particleCompositeRenderer.setData(RENDER_PASS1, "u_backgroundTexture", 0,
+                                                            GL_TEXTURE0,
+                                                            m_sceneSurface.colorTexture);
+
+    m_rm.r_particleCompositeRenderer.setData(RENDER_PASS1, "u_particlesTexture", 1,
+                                                            GL_TEXTURE1,
+                                                            m_nbpEffect.m_particleSurface.colorTexture);
+    o_fullScreenQuad.render(r_Technique, RENDER_PASS1, 0);
+    glEnable(GL_DEPTH_TEST);
+#endif
+
+
+
+    glBindFramebuffer(GL_FRAMEBUFFER, 0);
+    glDisable(GL_BLEND);
+    r_textureRenderer.renderFullScreen(m_sceneSurface.colorTexture, 0);
+    renderNoiseBasedParticleEffectGPU1();
+
+
+
+/*
+#if EULER_SMOKE_EFFECT
+    glBindFramebuffer(GL_FRAMEBUFFER, 0);
+    glDisable(GL_BLEND);
+    r_textureRenderer.renderFullScreen(m_sceneSurface.colorTexture, 0);
+    RenderSmoke(true, true, Matrices, m_sceneSurface.depthTexture);
+#endif
+*/
 
   //  glBindFramebuffer(GL_FRAMEBUFFER, 0);
   //  glDisable(GL_BLEND);
   //  r_textureRenderer.renderFullScreen(m_sceneSurface.colorTexture, 0);
-
-#endif
-
-#if EULER_SMOKE_EFFECT
-    RenderSmoke(true, true, Matrices, m_sceneSurface.depthTexture);
-#endif
-
-    m_fireEffect.render(m_pipeline, m_sceneSurface.depthTexture);
+//    m_fireEffect.render(m_pipeline, m_sceneSurface.depthTexture);
     renderGUI();
 #endif
 }
@@ -1632,11 +1377,14 @@ void ExplosionGenerator::renderNoiseBasedParticleEffectGPU()
                         GL_ZERO,        GL_ONE_MINUS_SRC_ALPHA);
 
 
+//    glBlendFuncSeparate(GL_ONE,   GL_ONE,
+//                        GL_ZERO,  GL_ONE_MINUS_SRC_ALPHA);
+
     glBindFramebuffer(GL_FRAMEBUFFER, m_nbpEffect.m_particleSurface.FBO);
     glClearColor(0.0,0.0,0.0,1.0);
+
     glEnable(GL_DEPTH_TEST);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-
 
 
     r_nbpRendererGPU.enableShader(RENDER_PASS2);
@@ -1648,7 +1396,7 @@ void ExplosionGenerator::renderNoiseBasedParticleEffectGPU()
         glDisable(GL_DEPTH_TEST);
         glEnable(GL_BLEND);
 
-
+        /// getting all the matrix we need
         m_pipeline.pushMatrix();
             m_pipeline.translate(0,0,-1);
             m_pipeline.scale(5.0);
@@ -1665,7 +1413,7 @@ void ExplosionGenerator::renderNoiseBasedParticleEffectGPU()
 //        r_nbpRendererGPU.setColor(glm::vec4(1.0, 0.8, 0.8, 1.0));
 //            r_nbpRendererGPU.setColor(glm::vec4(1.0, 0.0, 0.0, 1.0));
 
-            r_nbpRendererGPU.setData(RENDER_PASS2, "u_color",       glm::vec4(1.0,0.0,0.0,1.0));
+            r_nbpRendererGPU.setData(RENDER_PASS2, "u_color",       glm::vec4(1.0,1.0,0.0,1.0));
             r_nbpRendererGPU.setData(RENDER_PASS2, "u_fadeRate",    5.0f * 0.75f);
             r_nbpRendererGPU.setData(RENDER_PASS2, "u_inverseSize", glm::vec2(1.0f/SCREEN_WIDTH, 1.0f/SCREEN_HEIGHT));
 
@@ -1686,7 +1434,7 @@ void ExplosionGenerator::renderNoiseBasedParticleEffectGPU()
             glVertexAttribPointer(SlotPosition, 3, GL_FLOAT, GL_FALSE, sizeof(EG_NoiseBasedParticle), pData);
             glVertexAttribPointer(SlotBirthTime, 1, GL_FLOAT, GL_FALSE, sizeof(EG_NoiseBasedParticle), 12 + pData);
             glVertexAttribPointer(SlotVelocity, 3, GL_FLOAT, GL_FALSE, sizeof(EG_NoiseBasedParticle), 16 + pData);
-    //            glDrawArrays(GL_POINTS, 0, ParticleCount);
+                glDrawArrays(GL_POINTS, 0, ParticleCount);
             glDisableVertexAttribArray(SlotPosition);
             glDisableVertexAttribArray(SlotBirthTime);
             glDisableVertexAttribArray(SlotVelocity);
@@ -1696,64 +1444,57 @@ void ExplosionGenerator::renderNoiseBasedParticleEffectGPU()
     m_pipeline.popMatrix();
     r_nbpRendererGPU.disableShader(RENDER_PASS2);
 
-
-
-
-#if 1
-    pipeline temp_pipeline;
-    temp_pipeline.loadIdentity();
-    temp_pipeline.ortho(0,1,0,1,-1,1);
-
-    glDisable(GL_DEPTH_TEST);
-    glBindFramebuffer(GL_FRAMEBUFFER, 0);
-//    glClearColor(0.0,0.0,0.0,1.0);
-    glActiveTexture(GL_TEXTURE0);
-    glBindTexture(GL_TEXTURE_2D, m_sceneSurface.colorTexture);
-    glActiveTexture(GL_TEXTURE1);
-    glBindTexture(GL_TEXTURE_2D, m_nbpEffect.m_particleSurface.colorTexture);
-
-    r_nbpRenderer.enableShader(RENDER_PASS2);
-        r_nbpRenderer.setBackgroundTextureUnit(0);
-        r_nbpRenderer.setParticlesTextureUnit(1);
-        r_nbpRenderer.loadUniformLocations(temp_pipeline, RENDER_PASS2);
-        r_textureRenderer.o_fullScreenQuad.render();
-    r_nbpRenderer.disableShader(RENDER_PASS2);
-
-
-    glActiveTexture(GL_TEXTURE1);
-    glBindTexture(GL_TEXTURE_2D, 0);
-    glActiveTexture(GL_TEXTURE0);
-    glBindTexture(GL_TEXTURE_2D, 0);
-    glEnable(GL_DEPTH_TEST);
-#endif
 }
 
 
 
-/*
-void ExplosionGenerator::renderNoiseBasedParticleEffectGPU()
+
+
+
+void ExplosionGenerator::renderNoiseBasedParticleEffectGPU1()
 {
-    glEnable(GL_BLEND);
     glDisable(GL_CULL_FACE);
-    glBlendFuncSeparate(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA, GL_ZERO, GL_ONE_MINUS_SRC_ALPHA);
+
+    glEnable(GL_BLEND);
+    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+
+    r_nbpRendererGPU.enableShader(RENDER_PASS2);
+
+        glActiveTexture(GL_TEXTURE0);
+        glBindTexture(GL_TEXTURE_2D, m_sceneSurface.depthTexture);
+        glActiveTexture(GL_TEXTURE1);
+        glBindTexture(GL_TEXTURE_2D, m_nbpEffect.m_spriteTexture);
+        glDisable(GL_DEPTH_TEST);
+
+        /// getting all the matrix we need
+        m_pipeline.pushMatrix();
+            m_pipeline.translate(0,0,-1);
+            m_pipeline.scale(5.0);
+            glm::mat4 mvp = m_pipeline.getModelViewProjectionMatrix();
+            r_nbpRendererGPU.setModelViewProjectionMatrix(mvp);
+
+            glm::mat4 mv = m_pipeline.getModelViewMatrix();
+            r_nbpRendererGPU.setModelViewMatrix(mv);
+
+            r_nbpRendererGPU.setCameraPosition(m_orbitCamera.getEyePoint());
+            r_nbpRendererGPU.setCameraViewDir(m_orbitCamera.m_zAxis);
+        m_pipeline.popMatrix();
+
+//        r_nbpRendererGPU.setColor(glm::vec4(1.0, 0.8, 0.8, 1.0));
+//            r_nbpRendererGPU.setColor(glm::vec4(1.0, 0.0, 0.0, 1.0));
+
+            r_nbpRendererGPU.setData(RENDER_PASS2, "u_color",       glm::vec4(1.0,1.0,0.0,1.0));
+            r_nbpRendererGPU.setData(RENDER_PASS2, "u_fadeRate",    5.0f * 0.75f);
+            r_nbpRendererGPU.setData(RENDER_PASS2, "u_inverseSize", glm::vec2(1.0f/SCREEN_WIDTH, 1.0f/SCREEN_HEIGHT));
 
 
-    glBindFramebuffer(GL_FRAMEBUFFER, m_nbpEffect.m_particleSurface.FBO);
-    glClearColor(0.0,0.0,0.0,1.0);
-    glEnable(GL_DEPTH_TEST);
-    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+            r_nbpRendererGPU.setDepthTextureUnit(0);
+            r_nbpRendererGPU.setSpriteTextureUnit(1);
+            r_nbpRendererGPU.setTime(m_nbpEffect.Time);
+            r_nbpRendererGPU.setPointSize(0.2f);
+      //      r_nbpRendererGPU.setInverseSize(glm::vec2(1.0f/SCREEN_WIDTH, 1.0f/SCREEN_HEIGHT));
+            r_nbpRendererGPU.loadUniformLocations(m_pipeline, RENDER_PASS2);
 
-
-    r_Technique = &r_billBoardRenderer;
-    r_billBoardRenderer.enableShader(RENDER_PASS1);
-    m_pipeline.pushMatrix();
-        m_pipeline.scale(0.5);
-
-        glm::mat4 mvp = m_pipeline.getModelViewProjectionMatrix();
-        r_billBoardRenderer.setModelViewProjectionMatrix(mvp);
-        r_billBoardRenderer.setCameraPosition(m_orbitCamera.getEyePoint());
-        r_billBoardRenderer.setCameraViewDir(m_orbitCamera.m_zAxis);
-        r_billBoardRenderer.loadUniformLocations(m_pipeline, RENDER_PASS1);
 
             glBindBuffer(GL_ARRAY_BUFFER, m_nbpEffect.m_particleBuffers[0]);
             glEnableVertexAttribArray(SlotPosition);
@@ -1771,37 +1512,9 @@ void ExplosionGenerator::renderNoiseBasedParticleEffectGPU()
             glBindTexture(GL_TEXTURE_2D, 0);
 
     m_pipeline.popMatrix();
-    r_billBoardRenderer.disableShader(RENDER_PASS1);
+    r_nbpRendererGPU.disableShader(RENDER_PASS2);
 
-#if 1
-    pipeline temp_pipeline;
-    temp_pipeline.loadIdentity();
-    temp_pipeline.ortho(0,1,0,1,-1,1);
-
-    glDisable(GL_DEPTH_TEST);
-    glBindFramebuffer(GL_FRAMEBUFFER, 0);
-//    glClearColor(0.0,0.0,0.0,1.0);
-    glActiveTexture(GL_TEXTURE0);
-    glBindTexture(GL_TEXTURE_2D, m_sceneSurface.colorTexture);
-    glActiveTexture(GL_TEXTURE1);
-    glBindTexture(GL_TEXTURE_2D, m_nbpEffect.m_particleSurface.colorTexture);
-
-    r_nbpRenderer.enableShader(RENDER_PASS2);
-        r_nbpRenderer.setBackgroundTextureUnit(0);
-        r_nbpRenderer.setParticlesTextureUnit(1);
-        r_nbpRenderer.loadUniformLocations(temp_pipeline, RENDER_PASS2);
-        r_textureRenderer.o_fullScreenQuad.render();
-    r_nbpRenderer.disableShader(RENDER_PASS2);
-
-
-    glActiveTexture(GL_TEXTURE1);
-    glBindTexture(GL_TEXTURE_2D, 0);
-    glActiveTexture(GL_TEXTURE0);
-    glBindTexture(GL_TEXTURE_2D, 0);
-    glEnable(GL_DEPTH_TEST);
-#endif
 }
-*/
 
 
 
@@ -1864,24 +1577,11 @@ void ExplosionGenerator::renderGUI()
     m_timeManager.addTick(getTicks);
     m_fps = m_timeManager.computeAverageFPS();
 
-
     string final_str = "Explosion Generator  FPS:" + EG_Utility::floatToStr(m_fps);
     EG_Control::m_textEngine.render(m_pipeline, 0, 10, final_str.c_str());
 
-
-    r_Technique = &r_buttonRenderer;
-    /*
-    m_triggerButton.render(m_pipeline, r_Technique, RENDER_PASS1);
-    m_resetButton.render(m_pipeline, r_Technique, RENDER_PASS1);
-    m_minimizeButton.render(m_pipeline, r_Technique, RENDER_PASS1);
- */
- //   m_listBox.render(m_pipeline, r_Technique, RENDER_PASS1);
-
-
-  //  m_particleCountSlider.render(m_pipeline, r_Technique, RENDER_PASS1);
-  //  m_velocitySlider.render(m_pipeline, r_Technique, RENDER_PASS1);
-
-
+    /// render Each GUI component
+    r_Technique = &m_rm.r_GUIRenderer;
     for(int i=0; i<m_GUIComponents.size(); i++)
     {
         EG_Control* control = m_GUIComponents[i];
@@ -1889,261 +1589,3 @@ void ExplosionGenerator::renderGUI()
     }
 
 }
-
-
-
-
-
-
-
-
-#if 0
-void ExplosionGenerator::forwardRender2()
-{
-
-#if REFLECTION_EFFECT
-    Render_to_CubeMapTexture2();
-#endif
-
-
-
-#if 1
-    m_pipeline.matrixMode(PROJECTION_MATRIX);
-    m_pipeline.loadIdentity();
-    m_pipeline.perspective(45,SCREEN_WIDTH/SCREEN_HEIGHT, 0.5, 1000.0);
-
-
-///camera motion
-	m_pipeline.matrixMode(VIEW_MATRIX);
-	m_pipeline.loadIdentity();
-
-
-    if(isFirstPersonCamera)
-    {
-        firstPersonPovCamera.Control(SCREEN_WIDTH/2, SCREEN_HEIGHT/2);
-        firstPersonPovCamera.UpdateCamera();
-        firstPersonPovCamera.UpdateCameraRotation(m_pipeline);
-    #if SKY_BOX
-        m_skybox.UpdateRotationOnly_View_Pipeline(m_pipeline);
-    #endif
-        firstPersonPovCamera.UpdateCameraTranslation(m_pipeline);
-       // thirdPersonPovCamera.c_position = firstPersonPovCamera.getEyePoint();
-        /*
-        thirdPersonPovCamera.setCharacterPosition(firstPersonPovCamera.getEyePoint().x,
-                                                  firstPersonPovCamera.getEyePoint().y-5,
-                                                  firstPersonPovCamera.getEyePoint().z);
-
-        thirdPersonPovCamera.setPitch(firstPersonPovCamera.getPitch());
-        thirdPersonPovCamera.setYaw(firstPersonPovCamera.getYaw());
-  */
-    }
-
-
-    else
-    {
-
-#if ORBIT_CAMERA_FLAG
-     //   bool GuiFlag = m_particleCountSlider.getDraggingFlag() || m_velocitySlider.getDraggingFlag() || m_maxRadiusSlider.getDraggingFlag() || m_smokeSizeSlider.getDraggingFlag();
-        bool GUIFlag = (m_GUIComponentsFlags != 0);
-        m_orbitCamera.Control(m_pipeline, m_skybox, GUIFlag);
-#else
-        thirdPersonPovCamera.Control(m_pipeline, m_skybox);
-#endif
-    }
-
-
-
-
-
-    renderShadowMap();
-    l_SphereEffect.updateMatrices(m_pipeline);
-
-
-
-#if EULER_SMOKE_EFFECT
-
-        /// getting the depth of the scene
-        m_pipeline.matrixMode(MODEL_MATRIX);
-        glBindFramebuffer(GL_FRAMEBUFFER, m_sceneSurface.FBO);
-        glEnable(GL_DEPTH_TEST);
-        glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT);
-            m_pipeline.pushMatrix();
-
-            r_Technique = &r_depthRenderer;
-                r_Technique->enableShader(RENDER_PASS1);
-
-                o_wall.renderGroup(m_pipeline, r_Technique, RENDER_PASS1, ground);
-                o_wall.renderGroup(m_pipeline, r_Technique, RENDER_PASS1, wall_negative_z);
-                o_wall.renderGroup(m_pipeline, r_Technique, RENDER_PASS1, wall_positive_x);
-
-                o_reflectionSphere.renderGroup(m_pipeline, r_Technique, RENDER_PASS1, smoothSphere);
-                r_Technique->disableShader(RENDER_PASS1);
-
-
-            r_Technique = &r_instancedRenderer;
-                l_SphereEffect.instancedRender(m_pipeline, r_Technique, RENDER_PASS1, instancedSphere);
-
-        m_pipeline.popMatrix();
-        glBindFramebuffer(GL_FRAMEBUFFER, 0);
-#endif
-
-
-    /*
-#if SMOKE_EFFECT
-        r_Technique = &r_depthRenderer;
-        /// getting the depth of the scene
-        m_pipeline.matrixMode(MODEL_MATRIX);
-        glBindFramebuffer(GL_FRAMEBUFFER, FBO1);
-    //    glFramebufferTexture2D(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_TEXTURE_2D, depthTexture, 0);
-        glEnable(GL_DEPTH_TEST);
-        glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT);
-            m_pipeline.pushMatrix();
-            r_Technique->enableShader(RENDER_PASS1);
-
-            o_wall.renderGroup(m_pipeline, r_Technique, RENDER_PASS1, ground);
-            o_wall.renderGroup(m_pipeline, r_Technique, RENDER_PASS1, wall_negative_z);
-            o_wall.renderGroup(m_pipeline, r_Technique, RENDER_PASS1, wall_positive_x);
-
-    #if SPHERE_EFFECT
-        #if INSTANCED_RENDERING
-          //      l_SphereEffect.show(m_pipeline, r_Technique, RENDER_PASS1, sphere);
-        #else
-              l_SphereEffect.render(m_pipeline, r_Technique, RENDER_PASS1, testSphere);
-        #endif
-    #endif
-
-    #if CUBE_SPHERE_EFFECT
-                l_Cube_SphereEffect.show(m_pipeline, Depth_CameraRender->getProgramId(), cube);
-    #endif
-            o_reflectionSphere.renderGroup(m_pipeline, r_Technique, RENDER_PASS1, smoothSphere);
-          //  if(!isFirstPersonCamera)
-          //      thirdPersonPovCamera.render(m_pipeline, r_Technique, RENDER_PASS1);
-            r_Technique->disableShader(RENDER_PASS1);
-
-
-
-    #if SPHERE_EFFECT
-        #if INSTANCED_RENDERING
-                r_Technique = &r_instancedRenderer;
-                l_SphereEffect.instancedRender(m_pipeline, r_Technique, RENDER_PASS1, instancedSphere);
-        #endif
-    #endif
-
-
-
-    #if ANIMATED_OBJECT_FLAG
-     //   r_skinning.m_boneTransforms = mainAvatar.m_boneTransforms;
-            renderAnimatedObject(m_pipeline, RENDER_PASS1);
-    #endif
-        m_pipeline.popMatrix();
-        glBindFramebuffer(GL_FRAMEBUFFER, 0);
-#endif
-*/
-
-
-
-
-    glEnable(GL_CULL_FACE);
-    glCullFace(GL_BACK);
-
-
-    /// sets the color
-    glClearColor(0,0,0,0);      glClear(GL_COLOR_BUFFER_BIT); // clears the buffer
-    glDisable(GL_DEPTH_TEST);   glDisable(GL_CULL_FACE);
-
-#if SKY_BOX
-    r_Technique = &r_skyboxRenderer;
-    r_skyboxRenderer.setCubeMapTextureUnit(0);
-    m_skybox.render(r_Technique, RENDER_PASS1);
-#endif
-
-
-
-    glEnable(GL_CULL_FACE);
-    glEnable(GL_DEPTH_TEST);    glClear(GL_DEPTH_BUFFER_BIT);
-
-    RenderScene();
-
-
-#if ANIMATED_OBJECT_FLAG
-    renderAnimatedObject(m_pipeline, RENDER_PASS2);
-    r_skinning.renewVector();
-#endif
-
-
-#if REFLECTION_EFFECT
-    r_Technique = &r_reflectionRenderer;
-    if(isFirstPersonCamera)
-        r_reflectionRenderer.setCameraPosition(firstPersonPovCamera.getEyePoint());
-    else
-    {
-
-#if ORBIT_CAMERA_FLAG
-        r_reflectionRenderer.setCameraPosition(m_orbitCamera.getEyePoint());
-#else
-        r_reflectionRenderer.setCameraPosition(thirdPersonPovCamera.getEyePoint());
-#endif
-    }
-
-
-    r_reflectionRenderer.setReflectionTextureId(m_skybox.Dynamic_CubeMap_ColorTextureID);
-    o_reflectionSphere.renderSingle(m_pipeline, r_Technique, RENDER_PASS1, smoothSphere);
-#endif
-
-  //  glDepthFunc(GL_LEQUAL);
-    r_Technique = &r_fullColor;
-    p_modelPtr = &m_axisModel;
-    o_worldAxis.renderSingle(m_pipeline, r_Technique, RENDER_PASS1, p_modelPtr);
-
-
-
-#if 0
-    r_Technique = &r_billBoardRenderer;
-
-    m_pipeline.pushMatrix();
-
-        m_pipeline.translate(0,5,0);
-        m_pipeline.scale(5.0);
-
-/*
-        glm::mat4 mv = m_pipeline.getModelViewMatrix();
-        mv[0][0] = 5; mv[0][1] = 0; mv[0][2] = 0;
-        mv[1][0] = 0; mv[1][1] = 5; mv[1][2] = 0;
-        mv[2][0] = 0; mv[2][1] = 0; mv[2][2] = 5;
-        glm::mat4 mvp = m_pipeline.getProjectionMatrix() * mv;
-*/
-
-        glm::mat4 mvp = m_pipeline.getModelViewProjectionMatrix();
-        r_billBoardRenderer.setModelViewProjectionMatrix(mvp);
-        r_billBoardRenderer.setCameraPosition(m_orbitCamera.getEyePoint());
-        r_billBoardRenderer.setCameraViewDir(m_orbitCamera.m_zAxis);
-      //  glm::mat4 vp = m_pipeline.getProjectionMatrix() * m_pipeline.getViewMatrix();
-     //   r_billBoardRenderer.setViewProjectionMatrix(vp);
-     //   r_billBoardRenderer.setCameraPosition(m_orbitCamera.getEyePoint());
-
-        m_billboardList.render(m_pipeline, r_Technique, RENDER_PASS1);
-    m_pipeline.popMatrix();
-
-//    r_Technique =
- //   o_fullScreenQuad.render();
-#endif
-
-
- //   glDepthFunc(GL_LESS);
-
-#if EULER_SMOKE_EFFECT
-//    RenderSmoke(true, true, Matrices, depthTexture);
-    RenderSmoke(true, true, Matrices, m_sceneSurface.depthTexture);
-#endif
-/*
-    r_textureRenderer.setTextureUnit(0);
-    r_textureRenderer.setPixelSize(SCREEN_WIDTH, SCREEN_HEIGHT);
-    r_textureRenderer.renderFullScreen(m_billboardList.m_billboardTexture, o_fullScreenQuad);
-*/
-
-
-  //  renderNoiseBasedParticleEffect();
-    renderGUI();
-#endif
-}
-#endif
